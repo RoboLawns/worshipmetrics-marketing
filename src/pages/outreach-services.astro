@@ -1,0 +1,163 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const services = [
+  { name: "Website chat response", type: "Consulting" },
+  { name: "Livestream viewer engagement", type: "Consulting" },
+  { name: "Prayer request routing", type: "Platform + Consulting" },
+  { name: "Pastoral follow-up coordination", type: "Platform" },
+  { name: "Social monitoring cadence", type: "Consulting" },
+  { name: "Outbound communication planning", type: "Consulting" },
+  { name: "Visitor capture system design", type: "Platform + Consulting" },
+  { name: "Digital front door strategy", type: "Consulting" },
+];
+---
+
+<Layout
+  title="Outreach Services"
+  description="Hands-on digital ministry help — livestream engagement, prayer routing, visitor follow-up, and digital front door strategy."
+  canonical="/outreach-services"
+>
+  <!-- Hero -->
+  <section class="bg-white px-6 py-20 sm:py-28">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        Turn your online audience from unknown into known.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600 sm:text-xl">
+        WorshipMetrics Outreach Services helps your team build practical systems for livestream
+        engagement, prayer routing, visitor follow-up, and digital front door strategy.
+      </p>
+      <div class="mt-8">
+        <a
+          href="/discovery-call"
+          class="rounded-lg bg-indigo-600 px-7 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 transition"
+        >
+          Book a discovery call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attendance-led cards -->
+  <section class="bg-slate-50 px-6 py-20">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid gap-8 sm:grid-cols-3">
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Missed service follow-up</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Attendance patterns reveal who may need a check-in call or personal touch before too
+            much time passes.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Visitor context for your team</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            A volunteer marks a new guest during counting. Outreach starts with a name and story,
+            not guesswork.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">One clearer pastoral queue</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Digital requests, chat, and attendance signals work together so your team knows
+            exactly who to call next.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services list -->
+  <section class="bg-white px-6 py-20">
+    <div class="mx-auto max-w-4xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-12">
+        What we offer
+      </h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {services.map((svc) => (
+          <div class="flex items-center justify-between rounded-xl border border-slate-200 px-5 py-4">
+            <span class="text-slate-800 font-medium text-sm">{svc.name}</span>
+            <span class="ml-4 shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-500">
+              {svc.type}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="bg-slate-50 px-6 py-20">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-12">
+        How it works
+      </h2>
+      <ol class="relative border-l border-indigo-200 space-y-10 ml-4">
+        {[
+          ["Discover", "We map your current digital presence, team capacity, and where people are trying to reach you."],
+          ["Design", "We build a system that fits your team size, rhythm, and technical comfort level."],
+          ["Deploy", "We help you launch with real workflows, real tools, and trained team members."],
+          ["Refine", "We review what's working, what's not, and adjust the system as your ministry grows."],
+        ].map(([step, detail], i) => (
+          <li class="pl-8">
+            <span class="absolute -left-4 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white text-sm font-bold">
+              {i + 1}
+            </span>
+            <h3 class="text-xl font-bold text-slate-900">{step}</h3>
+            <p class="mt-2 text-slate-600 text-sm">{detail}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- By church size -->
+  <section class="bg-white px-6 py-20">
+    <div class="mx-auto max-w-4xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-12">
+        Built for your church size
+      </h2>
+      <div class="grid gap-6 sm:grid-cols-3">
+        <div class="rounded-2xl border border-slate-200 p-7">
+          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-3">Under 200</p>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            Simple, human response system your current team can sustain.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-7">
+          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-3">200–1,000</p>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            Consistent follow-up and clear ownership for growing online attention.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-7">
+          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-3">1,000+</p>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            Workflows, staffing patterns, and reporting to care for an online campus at scale.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bg-indigo-600 px-6 py-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        Build an outreach system your team can sustain.
+      </h2>
+      <p class="mt-4 text-lg text-indigo-100">
+        We'll help you design something that works — and keeps working.
+      </p>
+      <div class="mt-8">
+        <a
+          href="/discovery-call"
+          class="rounded-lg bg-white px-8 py-3 text-base font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 transition"
+        >
+          Book a discovery call
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

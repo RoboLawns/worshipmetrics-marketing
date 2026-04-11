@@ -1,0 +1,273 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="WorshipMetrics Hub"
+  description="One device for automatic attendance, cloud-managed signage, remote camera control, and full live production. One-time $499. No subscriptions."
+  canonical="/appliance"
+>
+  <!-- Hero -->
+  <section class="bg-slate-900 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-indigo-400">
+        WorshipMetrics Hub
+      </p>
+      <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        One device. Your entire church, connected.
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-slate-300 sm:text-xl">
+        Automatic attendance, cloud-managed digital signage, remote PTZ camera control, and full live
+        production — from one affordable appliance. No subscriptions. No monthly fees.
+      </p>
+      <div class="mt-6 inline-flex items-center rounded-full bg-indigo-600/20 px-5 py-2 text-sm font-semibold text-indigo-300 ring-1 ring-indigo-500/40">
+        $499 · One-time purchase · No subscription fees
+      </div>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="mailto:support@worshipmetrics.com?subject=WorshipMetrics%20Hub%20Order"
+          class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-500"
+        >
+          Talk to sales
+        </a>
+        <a
+          href="tel:4107257500"
+          class="text-sm font-semibold text-slate-300 transition hover:text-white"
+        >
+          (410) 725-7500
+        </a>
+      </div>
+    </div>
+
+    <!-- Stat cards -->
+    <div class="mx-auto mt-16 max-w-4xl grid gap-6 sm:grid-cols-3">
+      {[
+        { stat: "1 device", label: "for attendance, signage, and production" },
+        { stat: "$0", label: "monthly subscription fees" },
+        { stat: "100%", label: "cloud-managed from anywhere" },
+      ].map(({ stat, label }) => (
+        <div class="rounded-2xl bg-white/5 p-6 text-center ring-1 ring-white/10">
+          <p class="text-4xl font-extrabold text-white">{stat}</p>
+          <p class="mt-2 text-sm text-slate-400">{label}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Proof points strip -->
+    <div class="mx-auto mt-10 max-w-4xl flex flex-wrap justify-center gap-3">
+      {[
+        "Automatic weekly attendance",
+        "Cloud-managed signage",
+        "Remote production control",
+        "No subscriptions",
+      ].map((chip) => (
+        <span class="rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium text-slate-300">
+          {chip}
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- What it does -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="mb-12 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Three things in one.
+      </h2>
+      <div class="grid gap-8 lg:grid-cols-3">
+        {[
+          {
+            icon: "📊",
+            title: "Intelligence",
+            items: [
+              "Automatic attendance capture",
+              "AV health monitoring dashboard",
+              "Stream, audio, video, and display monitoring",
+              "Real-time alerts to your team's phones",
+              "Post-service health reports",
+            ],
+          },
+          {
+            icon: "🎬",
+            title: "Production",
+            items: [
+              "Remote PTZ camera control with presets",
+              "Remote OBS and vMix control",
+              "Pre-service automated checklist and scene setup",
+              "Local and cloud recording simultaneously",
+            ],
+          },
+          {
+            icon: "📡",
+            title: "Outreach",
+            items: [
+              "Auto video upload to cloud (WorshipClips workflow)",
+              "Social media scheduling queue",
+              "Digital signage managed from anywhere",
+            ],
+          },
+        ].map(({ icon, title, items }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div class="mb-4 text-4xl">{icon}</div>
+            <h3 class="mb-4 text-xl font-bold text-slate-900">{title}</h3>
+            <ul class="space-y-3">
+              {items.map((item) => (
+                <li class="flex items-start gap-3 text-sm">
+                  <svg
+                    class="mt-0.5 h-4 w-4 flex-shrink-0 text-indigo-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    aria-hidden="true"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-slate-600">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it helps -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="mb-12 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        The three pain points it solves.
+      </h2>
+      <div class="grid gap-8 lg:grid-cols-3">
+        {[
+          {
+            role: "For the Pastor",
+            body: "You shouldn't need a spreadsheet to know how many people showed up Sunday. The Hub counts your congregation automatically every week and sends data straight to your WorshipMetrics dashboard.",
+          },
+          {
+            role: "For the Administrator",
+            body: "Updating lobby displays used to mean walking to a computer in the building. Now manage every screen in your church from your phone, anywhere in the world.",
+          },
+          {
+            role: "For the AV Director",
+            body: "No camera operator? No problem. Control PTZ cameras, switch OBS scenes, and manage vMix production remotely — no need to be in the building to run a great service.",
+          },
+        ].map(({ role, body }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <p class="mb-3 text-xs font-bold uppercase tracking-widest text-indigo-600">{role}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Full feature list -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="mb-12 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Everything included — for one price.
+      </h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {[
+          {
+            name: "Automatic weekly attendance",
+            detail: "Camera captures your congregation, data goes to the cloud",
+          },
+          {
+            name: "AV health monitoring",
+            detail: "Stream, audio, video, and display monitoring in one view",
+          },
+          {
+            name: "Cloud-managed digital signage",
+            detail: "Push announcements, videos, and countdowns to any display",
+          },
+          {
+            name: "Remote PTZ camera control",
+            detail: "Pan, tilt, zoom, and save presets from anywhere",
+          },
+          {
+            name: "Remote OBS control",
+            detail: "Switch scenes, start streams, trigger transitions remotely",
+          },
+          {
+            name: "Remote vMix control",
+            detail: "Full production control from phone or laptop",
+          },
+          {
+            name: "Real-time alerts",
+            detail: "Notify your team when stream or display health needs attention",
+          },
+          {
+            name: "Pre-service checklist",
+            detail: "Prepare your production flow before service starts",
+          },
+          {
+            name: "Recording redundancy",
+            detail: "Local and cloud recording simultaneously",
+          },
+          {
+            name: "Auto video upload",
+            detail: "Send recordings to WorshipClips workflows",
+          },
+          {
+            name: "Social media scheduling",
+            detail: "Plan weekly content in advance",
+          },
+          {
+            name: "Secure cloud tunnel",
+            detail: "No port forwarding, no VPN, no IT headaches",
+          },
+        ].map(({ name, detail }) => (
+          <div class="flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
+            <svg
+              class="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <p class="text-sm font-semibold text-slate-900">{name}</p>
+              <p class="mt-0.5 text-xs text-slate-500">{detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">
+        One Hub. One purchase. One connected church.
+      </h2>
+      <p class="mt-4 text-lg text-indigo-200">
+        Bring your attendance, signage, camera control, and production workflow into one
+        cloud-connected system.
+      </p>
+      <p class="mt-3 text-sm font-medium text-indigo-300">
+        One-time purchase · No monthly fees · Works with your existing setup
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="mailto:support@worshipmetrics.com?subject=WorshipMetrics%20Hub%20Order"
+          class="rounded-xl bg-white px-8 py-3 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50"
+        >
+          Talk to sales about the Hub
+        </a>
+        <a
+          href="/discovery-call"
+          class="text-sm font-semibold text-indigo-200 underline underline-offset-2 transition hover:text-white"
+        >
+          Book a discovery call
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

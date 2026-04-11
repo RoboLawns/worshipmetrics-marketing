@@ -1,0 +1,195 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Operations & Team"
+  description="Volunteer roles, permissions, multi-campus tools, and device management in one operations workflow."
+  canonical="/platform/operations"
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+        Run your church team from one connected workflow.
+      </h1>
+      <p class="mt-4 text-lg text-slate-600">
+        Role-based permissions, multi-campus visibility, device management, and volunteer coordination — all in one operations view.
+      </p>
+    </div>
+
+    <!-- Why-use-it cards -->
+    <div class="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        {
+          heading: "Right access for every role",
+          body: "Volunteers, staff, ministry leaders, and pastors each see what's appropriate for their responsibility.",
+        },
+        {
+          heading: "Multi-campus visibility",
+          body: "Manage multiple locations from one dashboard without losing campus-level detail.",
+        },
+        {
+          heading: "Coordinate devices and hardware",
+          body: "Tablets, Hub devices, and signage all managed from the same system.",
+        },
+        {
+          heading: "Onboard your team fast",
+          body: "Role-based invitations and simple workflows reduce training overhead.",
+        },
+      ].map(({ heading, body }) => (
+        <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+          <h3 class="font-semibold text-slate-900">{heading}</h3>
+          <p class="mt-2 text-sm text-slate-500 leading-relaxed">{body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Roles & permissions -->
+  <section class="px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">
+            Everyone on the right tools, with the right access.
+          </h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Volunteers see simplified counting workflows. Staff see reporting and member detail. Admins and pastors have full oversight with confirmation-required actions.
+          </p>
+        </div>
+        <div class="space-y-3">
+          {[
+            { role: "Volunteer", desc: "Simplified counting. No access to member records." },
+            { role: "Ministry Leader", desc: "Counting + team roster + ministry-specific reports." },
+            { role: "Staff", desc: "Full reporting, people records, and follow-up queue." },
+            { role: "Pastor / Admin", desc: "Complete oversight. Confirmation required for sensitive actions." },
+          ].map(({ role, desc }) => (
+            <div class="flex items-start gap-4 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4">
+              <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-indigo-100 text-indigo-700">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-900">{role}</p>
+                <p class="text-sm text-slate-500">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-campus -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div class="order-last lg:order-first">
+          <div class="grid gap-4 sm:grid-cols-2">
+            {[
+              { label: "Campus A", sublabel: "Main Street" },
+              { label: "Campus B", sublabel: "Northside" },
+              { label: "Campus C", sublabel: "Online" },
+              { label: "Leadership", sublabel: "All campuses" },
+            ].map(({ label, sublabel }) => (
+              <div class="rounded-xl border border-slate-200 bg-white p-5 text-center shadow-sm">
+                <div class="mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                  </svg>
+                </div>
+                <p class="font-semibold text-slate-900">{label}</p>
+                <p class="text-xs text-slate-400">{sublabel}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">
+            See every campus. Run each one independently.
+          </h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Separate attendance, people records, and service schedules per campus. Leadership sees the full picture. Campus staff see only their site.
+          </p>
+          <ul class="mt-6 space-y-2">
+            {[
+              "Independent attendance per location",
+              "Campus-specific service schedules",
+              "Unified leadership dashboard",
+              "Staff scoped to their campus only",
+            ].map((item) => (
+              <li class="flex items-center gap-3 text-sm text-slate-700">
+                <svg class="h-4 w-4 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Devices -->
+  <section class="px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-10">
+        <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">
+          Hardware connects to the same system your team already uses.
+        </h2>
+        <p class="mt-3 text-slate-600">
+          WorshipMetrics Hub, Tablets, and signage all report into one dashboard. No separate logins, no disconnected data.
+        </p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-3">
+        {[
+          {
+            heading: "WorshipMetrics Hub",
+            body: "Automatic attendance, signage, and production control — managed remotely from your dashboard.",
+            href: "/appliance",
+          },
+          {
+            heading: "WorshipMetrics Tablet",
+            body: "Dedicated volunteer workflow at welcome desks, check-in stations, and counting positions.",
+            href: "/tablet",
+          },
+          {
+            heading: "Signage & displays",
+            body: "Cloud-managed digital signage tied to your service schedule and campus. No USB drives.",
+            href: "/appliance",
+          },
+        ].map(({ heading, body, href }) => (
+          <div class="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-slate-900">{heading}</h3>
+            <p class="mt-2 flex-1 text-sm text-slate-600 leading-relaxed">{body}</p>
+            <a href={href} class="mt-4 text-sm font-semibold text-indigo-600 hover:underline">See details →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold text-white">Map your team structure before you start.</h2>
+      <p class="mt-4 text-indigo-200">
+        A 30-minute discovery call helps us set up roles, campuses, and devices the right way from day one.
+      </p>
+      <a
+        href="/discovery-call"
+        class="mt-8 inline-block rounded-xl bg-white px-8 py-3 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50"
+      >
+        Book a discovery call
+      </a>
+    </div>
+  </section>
+</Layout>

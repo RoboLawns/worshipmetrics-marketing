@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const sections = [
+  {
+    title: "1. Acceptance",
+    body: "Using the service means you agree to these terms. If you do not agree, please do not use WorshipMetrics.",
+  },
+  {
+    title: "2. Use of Service",
+    body: "WorshipMetrics is for churches and ministry organizations. You are responsible for maintaining account security, including keeping your password confidential and restricting access to your account.",
+  },
+  {
+    title: "3. Subscription and Billing",
+    body: "Paid plans are billed monthly or annually. You can cancel anytime. Refunds follow our returns policy.",
+  },
+  {
+    title: "4. Data and Privacy",
+    body: "We handle your data per our Privacy Policy. You own your church and member data. We act as a steward of that data and will not sell or misuse it.",
+  },
+  {
+    title: "5. Acceptable Use",
+    body: "Do not use WorshipMetrics for illegal purposes or in ways that harm others or the platform. We reserve the right to suspend accounts that violate these terms.",
+  },
+  {
+    title: "6. Intellectual Property",
+    body: "WorshipMetrics retains rights to the platform, software, and branding. You retain all rights to your church data and any content you upload.",
+  },
+  {
+    title: "7. Limitation of Liability",
+    body: "WorshipMetrics is provided as-is. We are not liable for losses beyond your subscription fees paid in the prior 12 months. We make no warranties, expressed or implied, beyond what is stated here.",
+  },
+  {
+    title: "8. Contact",
+    body: "Questions about these terms? Email support@worshipmetrics.com",
+  },
+];
+---
+
+<Layout
+  title="Terms of Service"
+  description="WorshipMetrics Terms of Service."
+  canonical="/terms"
+>
+  <section class="bg-white px-6 py-20">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 mb-4">Terms of Service</h1>
+      <p class="text-sm text-slate-500 mb-4">Last updated: January 1, 2025</p>
+      <p class="text-slate-600 leading-relaxed mb-10">
+        By using WorshipMetrics, you agree to these terms.
+      </p>
+
+      <div class="space-y-10">
+        {sections.map((section) => (
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-3">{section.title}</h2>
+            <p class="text-slate-600 leading-relaxed">
+              {section.title === "8. Contact" ? (
+                <>
+                  Questions about these terms? Email{" "}
+                  <a
+                    href="mailto:support@worshipmetrics.com"
+                    class="text-indigo-600 hover:text-indigo-700 underline"
+                  >
+                    support@worshipmetrics.com
+                  </a>
+                </>
+              ) : (
+                section.body
+              )}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

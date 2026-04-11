@@ -1,0 +1,209 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const services = [
+  {
+    name: "Custom vMix & OBS Workflow Builds",
+    badge: "Our most requested service",
+    price: "From $500",
+    description:
+      "Build production workflows that record clean, high-quality segments directly to local storage — no YouTube re-download.",
+  },
+  {
+    name: "Live Stream Setup & Optimization",
+    badge: "Audit + recommendations",
+    price: "From $350",
+    description:
+      "Fix encoder settings, bitrate, audio chain, camera angles, and scene transitions.",
+  },
+  {
+    name: "YouTube Channel Audit & Strategy",
+    badge: "90-day roadmap",
+    price: "$299 flat",
+    description:
+      "Audit titles, thumbnails, playlists, and analytics. Build a 90-day plan to turn your channel into a real discovery tool.",
+  },
+  {
+    name: "Social Media Content Workflow",
+    badge: "Repeatable weekly workflow",
+    price: "From $399",
+    description:
+      "Design a workflow a single volunteer can run in under an hour, from raw stream to published social content.",
+  },
+  {
+    name: "Staff & Volunteer Training",
+    badge: "Most overlooked investment",
+    price: "From $299 half-day",
+    description:
+      "Customized to your current skill level and actual setup. Virtual or on-site.",
+  },
+  {
+    name: "Multi-Camera Production Consulting",
+    badge: "Planning + systems design",
+    price: "From $150/hour",
+    description:
+      "Camera placement, switching workflow, director training, and streaming integration.",
+  },
+  {
+    name: "Monthly Consulting Retainer",
+    badge: "Expert in your corner",
+    price: "From $299/month",
+    description:
+      "Monthly strategy call, async Q&A, workflow reviews, and priority support.",
+  },
+];
+---
+
+<Layout
+  title="Professional Services"
+  description="Broadcast-grade church technology consulting — workflow builds, live stream optimization, YouTube strategy, and monthly retainer."
+  canonical="/professional-services"
+>
+  <!-- Hero -->
+  <section class="bg-white px-6 py-20 sm:py-28">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        Your church is live. Let's make sure it looks, sounds, and connects like it should.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600 sm:text-xl">
+        WorshipMetrics Professional Services brings broadcast-grade expertise to your church:
+        workflow builds, training, and strategic consulting built around your team and mission.
+      </p>
+      <div class="mt-8">
+        <a
+          href="/discovery-call"
+          class="rounded-lg bg-indigo-600 px-7 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 transition"
+        >
+          Start with a free discovery call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement models -->
+  <section class="bg-slate-50 px-6 py-20">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-12">
+        How we work together
+      </h2>
+      <div class="grid gap-8 sm:grid-cols-3">
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">One-time projects</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Custom builds, audits, and implementations. Fixed scope, fixed price. You know what
+            you're getting before we start.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Staff &amp; volunteer training</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Half-day or full-day sessions, virtual or on-site. The knowledge stays with your
+            church long after we leave.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Monthly retainer</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            An expert in your corner every month. Strategy calls, workflow reviews, platform
+            optimization, and priority access.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="bg-white px-6 py-20">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-12">
+        Services
+      </h2>
+      <div class="grid gap-6 sm:grid-cols-2">
+        {services.map((svc) => (
+          <div class="rounded-2xl border border-slate-200 p-7 flex flex-col gap-3">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <h3 class="text-base font-bold text-slate-900">{svc.name}</h3>
+              <span class="rounded-full bg-indigo-50 px-3 py-0.5 text-xs font-medium text-indigo-700 whitespace-nowrap">
+                {svc.badge}
+              </span>
+            </div>
+            <p class="text-xl font-extrabold text-indigo-600">{svc.price}</p>
+            <p class="text-slate-600 text-sm leading-relaxed">{svc.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust cards -->
+  <section class="bg-slate-50 px-6 py-20">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid gap-8 sm:grid-cols-3">
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Broadcast roots, not software sales</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Our team comes from broadcast production. We know what good looks like.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Built for volunteers</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Every workflow must be runnable by a volunteer on Sunday morning. If it's too
+            complicated, we haven't done our job.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+          <h3 class="text-lg font-bold text-slate-900 mb-3">Platform-agnostic</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            We work with vMix, OBS, Wirecast, YouTube, Facebook Live, Resi — whatever you have.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="bg-white px-6 py-20">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-12">
+        How a project works
+      </h2>
+      <ol class="relative border-l border-indigo-200 space-y-10 ml-4">
+        {[
+          ["Discovery", "We learn your setup, goals, team size, and constraints before recommending anything."],
+          ["Scope &amp; proposal", "You receive a clear proposal with scope, timeline, and fixed price before we start."],
+          ["Build or consult", "We do the work — or sit alongside your team and transfer the knowledge."],
+          ["Handoff &amp; training", "You leave with documentation, trained volunteers, and confidence in the workflow."],
+        ].map(([step, detail], i) => (
+          <li class="pl-8">
+            <span class="absolute -left-4 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white text-sm font-bold">
+              {i + 1}
+            </span>
+            <h3 class="text-xl font-bold text-slate-900" set:html={step} />
+            <p class="mt-2 text-slate-600 text-sm">{detail}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bg-indigo-600 px-6 py-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        Start with a free discovery call.
+      </h2>
+      <p class="mt-4 text-lg text-indigo-100">
+        Thirty minutes. No pressure. We'll tell you exactly what would help most.
+      </p>
+      <div class="mt-8">
+        <a
+          href="/discovery-call"
+          class="rounded-lg bg-white px-8 py-3 text-base font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 transition"
+        >
+          Book a discovery call
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -6,7 +6,7 @@ const APP_URL = "https://app.worshipmetrics.com";
 
 <Layout
   title="Church Attendance & Community Platform"
-  description="WorshipMetrics gives churches effortless attendance tracking, member management, and community engagement tools — all in one place."
+  description="WorshipMetrics helps your church track attendance, follow up with visitors, and engage your online audience — all in one weekly workflow your volunteers can actually run."
   canonical="/"
 >
   <!-- Hero -->
@@ -16,81 +16,151 @@ const APP_URL = "https://app.worshipmetrics.com";
         Built for churches
       </span>
       <h1 class="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-        Know your congregation.<br />
-        <span class="text-indigo-600">Grow your community.</span>
+        Know who's in the room.<br />
+        <span class="text-indigo-600">Reach who isn't.</span>
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
-        WorshipMetrics makes it simple to track attendance, understand your members, and
-        stay connected — without the spreadsheets or complexity.
+        WorshipMetrics helps your church track attendance, follow up with visitors, and engage your
+        online audience — all in one weekly workflow your volunteers can actually run.
       </p>
       <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
-          href={`${APP_URL}/sign-up`}
+          href="/discovery-call"
           class="w-full rounded-xl bg-indigo-600 px-8 py-3.5 text-base font-semibold text-white shadow-md transition hover:bg-indigo-700 sm:w-auto"
         >
-          Get started free
+          Book a free discovery call
         </a>
         <a
-          href="/features"
+          href={`${APP_URL}/sign-up`}
           class="w-full rounded-xl border border-slate-300 bg-white px-8 py-3.5 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600 sm:w-auto"
         >
-          See all features →
+          Start for free
         </a>
       </div>
-      <p class="mt-4 text-sm text-slate-400">No credit card required. Free trial available.</p>
+      <p class="mt-4 text-sm text-slate-400">No credit card required. Free plan available.</p>
     </div>
 
-    <!-- Decorative background blobs -->
+    <!-- Trust pills -->
+    <div class="mx-auto mt-12 flex max-w-lg flex-wrap items-center justify-center gap-3">
+      {["Works on any device", "Built for volunteers", "1–3 min per service"].map((pill) => (
+        <span class="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
+          {pill}
+        </span>
+      ))}
+    </div>
+
+    <!-- Decorative blobs -->
     <div class="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-indigo-200 opacity-20 blur-3xl"></div>
     <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-violet-300 opacity-20 blur-3xl"></div>
   </section>
 
-  <!-- Social proof bar -->
-  <section class="border-y border-slate-100 bg-white px-4 py-6 sm:px-6 lg:px-8">
-    <p class="text-center text-sm font-medium text-slate-400">
-      Trusted by churches across the country
-    </p>
-  </section>
-
-  <!-- Feature highlights -->
-  <section class="px-4 py-20 sm:px-6 lg:px-8">
+  <!-- What WorshipMetrics does -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="text-center">
-        <h2 class="text-3xl font-bold text-slate-900">Everything your church needs</h2>
-        <p class="mt-3 text-slate-500">Powerful features without the enterprise price tag.</p>
+        <h2 class="text-3xl font-bold text-slate-900">What WorshipMetrics does</h2>
       </div>
+      <div class="mt-14 grid gap-10 sm:grid-cols-3">
+        {[
+          {
+            title: "Track attendance",
+            body: "Count in-person and online attendance together. Seat templates, Auto-Count, and quick manual entry — whatever fits your Sunday workflow.",
+          },
+          {
+            title: "Follow up faster",
+            body: "Know who is new, who is missing, and who needs a pastoral check-in. Attendance becomes action, not just a number.",
+          },
+          {
+            title: "Reach online visitors",
+            body: "Turn anonymous livestream viewers and website visitors into known people your team can actually follow up with.",
+          },
+        ].map(({ title, body }) => (
+          <div class="rounded-2xl border border-slate-100 bg-slate-50 p-8">
+            <h3 class="text-xl font-semibold text-slate-900">{title}</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+  <!-- How it works -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-slate-900">How it works</h2>
+        <p class="mt-3 text-slate-500">A simple Sunday-to-Monday rhythm your whole team can follow.</p>
+      </div>
+      <ol class="mt-12 space-y-8">
+        {[
+          {
+            step: "1",
+            title: "Count",
+            body: "Volunteers use a seat template or Auto-Count to log attendance in 1–3 minutes.",
+          },
+          {
+            step: "2",
+            title: "Capture",
+            body: "New visitors, prayer requests, and online interactions get attached to real people records.",
+          },
+          {
+            step: "3",
+            title: "Follow up",
+            body: "Leadership gets a clear Monday summary: who's new, who's missing, what needs attention.",
+          },
+        ].map(({ step, title, body }) => (
+          <li class="flex items-start gap-6">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">
+              {step}
+            </span>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+              <p class="mt-1 text-slate-600 leading-relaxed">{body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-slate-900">Everything in one place</h2>
+        <p class="mt-3 text-slate-500">Purpose-built for the way Sunday actually works.</p>
+      </div>
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
           {
             icon: "📊",
-            title: "Attendance Tracking",
-            body: "Record head counts in seconds with one-tap entry, auto-scheduling, and historical trend reports.",
+            title: "Attendance tracking",
+            body: "In-room and livestream together in one dashboard.",
           },
           {
             icon: "👥",
-            title: "Member Management",
-            body: "Maintain a rich directory with roles, birthdays, contact info, and custom groups.",
+            title: "People records",
+            body: "Guest capture, member notes, and follow-up all connected.",
           },
           {
             icon: "📱",
-            title: "Mobile Ready",
-            body: "Works on any device — phone, tablet, or desktop. No app install required.",
+            title: "Any device",
+            body: "Phones, tablets, and browsers your team already owns.",
           },
           {
             icon: "📈",
-            title: "Analytics & Insights",
-            body: "Spot growth trends, track first-time visitors, and export reports for leadership.",
+            title: "Weekly reports",
+            body: "Trends, comparisons, and leadership summaries auto-generated.",
           },
           {
             icon: "🔔",
-            title: "Celebrations & Alerts",
-            body: "Automated birthday and anniversary reminders so no milestone slips through.",
+            title: "Care signals",
+            body: "Absence alerts, birthday reminders, and prayer routing built in.",
           },
           {
             icon: "🔒",
-            title: "Secure & Private",
-            body: "Role-based access control keeps sensitive member data in the right hands.",
+            title: "Role-based access",
+            body: "Volunteers, staff, and pastors each see what they need.",
           },
         ].map(({ icon, title, body }) => (
           <div class="rounded-2xl border border-slate-100 bg-slate-50 p-6 shadow-sm">
@@ -100,34 +170,63 @@ const APP_URL = "https://app.worshipmetrics.com";
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <div class="mt-12 text-center">
-        <a href="/features" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">
-          See the full feature list →
-        </a>
+  <!-- Testimonials -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-slate-900">What churches are saying</h2>
+      </div>
+      <div class="mt-14 grid gap-8 sm:grid-cols-3">
+        {[
+          {
+            quote:
+              "Before WorshipMetrics, we had no idea who was watching our stream. Now we have a follow-up system running within 24 hours of every service.",
+            attribution: "Executive Pastor, mid-size church, Southeast U.S.",
+          },
+          {
+            quote:
+              "The consulting piece made the difference. We had the technology — we just didn't know how to use it pastorally.",
+            attribution: "Lead Pastor, growing church, Midwest",
+          },
+          {
+            quote:
+              "Our YouTube chat used to go unmonitored every Sunday. Now someone is in there welcoming viewers and routing prayer requests in real time.",
+            attribution: "Communications Director, large church, Texas",
+          },
+        ].map(({ quote, attribution }) => (
+          <figure class="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm">
+            <blockquote>
+              <p class="text-slate-700 leading-relaxed">"{quote}"</p>
+            </blockquote>
+            <figcaption class="mt-6 text-sm font-medium text-slate-400">— {attribution}</figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA banner -->
-  <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
+  <!-- Bottom CTA banner -->
+  <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center">
-      <h2 class="text-3xl font-bold text-white">Ready to get started?</h2>
+      <h2 class="text-3xl font-bold text-white">Start this Sunday.</h2>
       <p class="mt-4 text-indigo-200">
-        Join churches already using WorshipMetrics to know and grow their congregations.
+        Join churches using WorshipMetrics to know their congregation and care for it well.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
           href={`${APP_URL}/sign-up`}
-          class="rounded-xl bg-white px-8 py-3 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50"
+          class="rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50"
         >
-          Create your free account
+          Get started free
         </a>
         <a
-          href={`${APP_URL}/sign-in`}
-          class="rounded-xl border border-indigo-400 px-8 py-3 text-base font-semibold text-white transition hover:bg-indigo-700"
+          href="/discovery-call"
+          class="rounded-xl border border-indigo-400 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-indigo-700"
         >
-          Sign in
+          Book a discovery call
         </a>
       </div>
     </div>

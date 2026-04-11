@@ -1,0 +1,338 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="WorshipMetrics Tablet"
+  description="A dedicated volunteer workflow for attendance, check-in, and guest capture. Pro at $349, Church Kit (3 tablets) at $999. Includes free Essentials plan."
+  canonical="/tablet"
+>
+  <!-- Hero -->
+  <section class="bg-slate-900 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-indigo-400">
+        WorshipMetrics Tablet
+      </p>
+      <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        Know who is here this Sunday, and who needs care next week.
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-slate-300 sm:text-xl">
+        Replace scattered tools with one clear system your staff and volunteers can trust. From
+        front door check-in to pastoral follow-up, every role sees what matters in real time.
+      </p>
+    </div>
+
+    <!-- Pricing cards -->
+    <div class="mx-auto mt-16 max-w-4xl grid gap-6 lg:grid-cols-2">
+      <!-- Pro -->
+      <div class="flex flex-col rounded-2xl bg-white/5 p-8 ring-1 ring-white/10">
+        <p class="text-sm font-semibold uppercase tracking-widest text-slate-400">Pro</p>
+        <p class="mt-2 text-4xl font-extrabold text-white">
+          $349
+          <span class="text-base font-normal text-slate-400"> one-time</span>
+        </p>
+        <p class="mt-2 text-sm text-slate-400">Good for a single check-in location</p>
+        <ul class="mt-6 flex-1 space-y-3">
+          {[
+            "10\" Android tablet, rugged case, stand, charger",
+            "Lifetime WorshipMetrics access",
+            "Includes FREE Essentials plan ($99/year value)",
+            "QR check-in and welcome card scanning",
+            "60-second setup",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm">
+              <svg
+                class="mt-0.5 h-4 w-4 flex-shrink-0 text-indigo-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-slate-300">{item}</span>
+            </li>
+          ))}
+        </ul>
+        <a
+          href="#"
+          class="mt-8 block rounded-xl border border-slate-500 py-3 text-center text-sm font-semibold text-white transition hover:border-indigo-400 hover:text-indigo-300"
+        >
+          Buy Pro on Amazon — $349
+        </a>
+      </div>
+
+      <!-- Church Kit -->
+      <div class="relative flex flex-col rounded-2xl bg-indigo-600 p-8 shadow-lg">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1 text-xs font-bold text-indigo-700 shadow">
+          Best value · Save $48
+        </span>
+        <p class="text-sm font-semibold uppercase tracking-widest text-indigo-200">Church Kit</p>
+        <p class="mt-2 text-4xl font-extrabold text-white">
+          $999
+          <span class="text-base font-normal text-indigo-300"> 3 tablets</span>
+        </p>
+        <p class="mt-2 text-sm text-indigo-200">
+          Your full Sunday workflow in one synchronized church account
+        </p>
+        <ul class="mt-6 flex-1 space-y-3">
+          {[
+            "3 complete tablet kits (list price $1,047)",
+            "Shared church account with unified real-time dashboard",
+            "Multi-station role access",
+            "Lifetime WorshipMetrics access",
+            "Includes FREE Essentials plan",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm">
+              <svg
+                class="mt-0.5 h-4 w-4 flex-shrink-0 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-indigo-100">{item}</span>
+            </li>
+          ))}
+        </ul>
+        <a
+          href="#"
+          class="mt-8 block rounded-xl bg-white py-3 text-center text-sm font-semibold text-indigo-700 shadow transition hover:bg-indigo-50"
+        >
+          Buy Church Kit on Amazon — $999
+        </a>
+      </div>
+    </div>
+
+    <!-- Trust signals -->
+    <div class="mx-auto mt-10 max-w-4xl flex flex-wrap justify-center gap-3">
+      {[
+        "30-day money-back guarantee",
+        "Lifetime access",
+        "U.S.-based priority support",
+        "60-second setup",
+      ].map((signal) => (
+        <span class="rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium text-slate-300">
+          {signal}
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- Three stations -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="mb-12 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Put each tablet in a real ministry role.
+      </h2>
+      <div class="grid gap-8 lg:grid-cols-3">
+        {[
+          {
+            station: "Welcome Desk",
+            role: "Greeter / Volunteer",
+            body: "Capture first-time guests and attendance in seconds so your team starts follow-up before people drift away.",
+          },
+          {
+            station: "Children's Check-In",
+            role: "Children's Ministry",
+            body: "Run safe, fast family check-in while keeping every attendance event tied to the same church record.",
+          },
+          {
+            station: "Production Booth",
+            role: "Lead Pastor / Tech Director",
+            body: "Watch service attendance live, then walk into leadership conversations with clear next steps for pastoral care.",
+          },
+        ].map(({ station, role, body }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <p class="text-lg font-bold text-slate-900">{station}</p>
+            <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-indigo-600">{role}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Synchronized account -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h3 class="text-2xl font-bold text-slate-900 sm:text-3xl">
+        One church account. Three stations. Everything synced in real time.
+      </h3>
+      <p class="mt-4 text-base leading-relaxed text-slate-600">
+        Most churches juggle 5–9 disconnected tools: spreadsheets, paper sign-in sheets, and
+        separate kiosk apps. Church Kit replaces that with one live dashboard.
+      </p>
+      <div class="mt-8 flex justify-center gap-10">
+        {[
+          { stat: "3 stations", label: "" },
+          { stat: "1 dashboard", label: "" },
+          { stat: "0 renewal fees", label: "" },
+        ].map(({ stat }) => (
+          <div class="text-center">
+            <p class="text-3xl font-extrabold text-indigo-600">{stat}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="mb-10 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Pro tracks a station. Church Kit aligns your church.
+      </h2>
+      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50">
+            <tr>
+              <th class="px-6 py-4 text-left font-semibold text-slate-700">Feature</th>
+              <th class="px-6 py-4 text-center font-semibold text-slate-700">Pro ($349)</th>
+              <th class="px-6 py-4 text-center font-semibold text-indigo-700">Church Kit ($999)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {[
+              { feature: "Lifetime subscription included", pro: true, kit: true },
+              { feature: "QR check-in", pro: true, kit: true },
+              { feature: "Welcome card scanning", pro: true, kit: true },
+              { feature: "U.S.-based priority support", pro: true, kit: true },
+              { feature: "Shared church account", pro: false, kit: true },
+              { feature: "Unified real-time dashboard", pro: false, kit: true },
+              { feature: "Multi-station role access", pro: false, kit: true },
+            ].map(({ feature, pro, kit }) => (
+              <tr class="hover:bg-slate-50/50">
+                <td class="px-6 py-4 text-slate-700">{feature}</td>
+                <td class="px-6 py-4 text-center">
+                  {pro ? (
+                    <svg class="mx-auto h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <span class="text-slate-300">—</span>
+                  )}
+                </td>
+                <td class="px-6 py-4 text-center">
+                  {kit ? (
+                    <svg class="mx-auto h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <span class="text-slate-300">—</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 feature cards -->
+  <section class="bg-slate-50 px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-8 lg:grid-cols-3">
+      {[
+        {
+          heading: "Notice when a regular disappears",
+          body: "See when someone goes missing before weeks become months, so pastoral follow-up happens on time.",
+        },
+        {
+          heading: "Give each role what they need",
+          body: "Greeters see check-in. Children's volunteers handle family flow. Leaders see everything.",
+        },
+        {
+          heading: "Start this week, not next month",
+          body: "Turn it on, connect to Wi-Fi, enter your activation code. Ready in 60 seconds.",
+        },
+      ].map(({ heading, body }) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900">{heading}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Specs -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <h2 class="mb-10 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Specs
+      </h2>
+      <div class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50">
+            <tr>
+              <th class="px-6 py-4 text-left font-semibold text-slate-700">Category</th>
+              <th class="px-6 py-4 text-center font-semibold text-slate-700">Pro</th>
+              <th class="px-6 py-4 text-center font-semibold text-indigo-700">Church Kit</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {[
+              {
+                category: "Hardware",
+                pro: "10\" Android tablet, rugged case, stand, charger",
+                kit: "3× 10\" Android tablet, rugged case, stand, charger",
+              },
+              { category: "SKU", pro: "WM-1", kit: "WM-3" },
+              { category: "Price", pro: "$349", kit: "$999" },
+              { category: "Subscription", pro: "Lifetime WorshipMetrics access", kit: "Lifetime WorshipMetrics access" },
+              { category: "Setup time", pro: "Turn on, Wi-Fi, enter code", kit: "Turn on, Wi-Fi, enter code" },
+              { category: "Included plan", pro: "FREE Essentials plan", kit: "FREE Essentials plan" },
+              {
+                category: "Capacity",
+                pro: "Up to 250 members, 3 team users",
+                kit: "Up to 250 members, 3 team users",
+              },
+              { category: "Best fit", pro: "One dedicated station", kit: "Three synchronized stations" },
+            ].map(({ category, pro, kit }) => (
+              <tr class="hover:bg-slate-50/50">
+                <td class="px-6 py-4 font-medium text-slate-700">{category}</td>
+                <td class="px-6 py-4 text-center text-slate-600">{pro}</td>
+                <td class="px-6 py-4 text-center text-slate-600">{kit}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Ready for this Sunday?</h2>
+      <p class="mt-4 text-lg text-indigo-200">
+        Start with Pro or go all-in with Church Kit. Both include lifetime access and a free
+        Essentials plan.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="#"
+          class="rounded-xl bg-white px-8 py-3 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50"
+        >
+          Buy Church Kit — $999
+        </a>
+        <a
+          href="#"
+          class="rounded-xl border border-indigo-400 px-8 py-3 text-base font-semibold text-white transition hover:border-white"
+        >
+          Buy Pro — $349
+        </a>
+      </div>
+      <p class="mt-6 text-sm text-indigo-300">
+        Questions?{" "}
+        <a href="/discovery-call" class="underline underline-offset-2 transition hover:text-white">
+          Book a discovery call.
+        </a>
+      </p>
+    </div>
+  </section>
+</Layout>
