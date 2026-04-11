@@ -1,0 +1,63 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+
+const {
+  title,
+  description = "WorshipMetrics — simple, powerful attendance tracking and community tools for churches.",
+  canonical,
+} = Astro.props;
+
+const canonicalUrl = canonical
+  ? `${SITE_URL}${canonical}`
+  : Astro.url.href;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title} | WorshipMetrics</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={`${title} | WorshipMetrics`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | WorshipMetrics`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- CTA convenience meta — used by Cloudflare Page Rules if needed -->
+    <meta name="app-url" content={APP_URL} />
+  </head>
+  <body class="flex min-h-screen flex-col bg-white text-slate-900 antialiased">
+    <Nav />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
