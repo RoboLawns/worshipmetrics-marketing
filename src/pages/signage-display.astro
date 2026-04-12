@@ -1,0 +1,561 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const SIGNAGE_EXAMPLE_URL = "https://app.worshipmetrics.com/tv/00000000-0000-4000-8000-00000000de10";
+const SIGNAGE_HERO = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/new%20images/Worship%20Digital%20Signage%20System.jpg";
+const SIGNAGE_HOW = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/new%20images/How%20it%20Works%20-%20Church%20Digital%20Signage.jpg";
+const SIGNAGE_SCHEDULING = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/new%20images/Digital%20Signage%20Calendar%20Scheduling.jpg";
+const SIGNAGE_GROUPS = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/new%20images/Church%20Digital%20Signage%20Groups.jpg";
+const SIGNAGE_HEALTH = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/new%20images/Church%20Signage%20Health%20Monitoring.jpg";
+const OG_IMAGE = SIGNAGE_HERO;
+
+const layoutTemplates = [
+  {
+    name: "Full Screen",
+    desc: "One bold message fills the entire display. Best for sermon series graphics, countdowns, and announcement slides.",
+    svg: `<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" rx="20" fill="#0f172a"/><rect x="18" y="18" width="284" height="164" rx="16" fill="#4f46e5"/></svg>`,
+  },
+  {
+    name: "Main + Sidebar",
+    desc: "Large primary area with a persistent info column. The workhorse lobby layout.",
+    svg: `<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" rx="20" fill="#0f172a"/><rect x="18" y="18" width="204" height="164" rx="16" fill="#4f46e5"/><rect x="230" y="18" width="72" height="164" rx="16" fill="#38bdf8"/></svg>`,
+  },
+  {
+    name: "Main + Ticker",
+    desc: "Full-height content with a scrolling announcement strip across the bottom.",
+    svg: `<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" rx="20" fill="#0f172a"/><rect x="18" y="18" width="284" height="124" rx="16" fill="#4f46e5"/><rect x="18" y="150" width="284" height="32" rx="12" fill="#f59e0b"/></svg>`,
+  },
+  {
+    name: "L-Bar",
+    desc: "The most information-rich church layout: main content, a utility sidebar, and a scrolling ticker.",
+    svg: `<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" rx="20" fill="#0f172a"/><rect x="18" y="18" width="204" height="124" rx="16" fill="#4f46e5"/><rect x="230" y="18" width="72" height="124" rx="16" fill="#38bdf8"/><rect x="18" y="150" width="284" height="32" rx="12" fill="#f59e0b"/></svg>`,
+  },
+  {
+    name: "Split Screen",
+    desc: "Two equal panels side by side. Perfect for bilingual announcements or QR-promoted events.",
+    svg: `<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" rx="20" fill="#0f172a"/><rect x="18" y="18" width="136" height="164" rx="16" fill="#4f46e5"/><rect x="166" y="18" width="136" height="164" rx="16" fill="#38bdf8"/></svg>`,
+  },
+  {
+    name: "Lower Third",
+    desc: "Full-screen background with a semi-transparent overlay. Broadcast-style overlays on video or photography.",
+    svg: `<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="200" rx="20" fill="#0f172a"/><rect x="18" y="18" width="284" height="164" rx="16" fill="#4f46e5" opacity="0.55"/><rect x="18" y="124" width="284" height="58" rx="16" fill="#111827" opacity="0.88"/></svg>`,
+  },
+];
+
+const contentTypes = [
+  ["🔤", "Text Slide"],
+  ["🖼", "Image"],
+  ["🎬", "Video"],
+  ["🌐", "Web Page"],
+  ["⏱", "Countdown"],
+  ["🕐", "Clock"],
+  ["📖", "Bible Verse"],
+  ["📅", "Service Times"],
+  ["👋", "Welcome"],
+  ["☁️", "Weather"],
+  ["📢", "Ticker"],
+  ["📱", "QR Code"],
+  ["🌐", "Social Feed"],
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics Signage Display",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: `${SITE_URL}/signage-display`,
+  image: OG_IMAGE,
+  description: "Free church digital signage for SmartTVs with multi-zone layouts, scheduling, and cloud-managed playlists.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${APP_URL}/sign-up`,
+  },
+};
+---
+
+<Layout
+  title="Free Church Digital Signage"
+  description="Beautiful church signage for any SmartTV. No hardware. No subscription. Just your TV, your content, and your church updates."
+  canonical="/signage-display"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <style>
+    .signage-hero-bg {
+      background: radial-gradient(circle at top, #eef2ff 0%, #ffffff 58%);
+    }
+
+    .tv-shell {
+      border-radius: 2rem;
+      border: 10px solid #111827;
+      background: #0f172a;
+      box-shadow: 0 30px 80px rgb(15 23 42 / 0.18);
+      overflow: hidden;
+    }
+
+    .tv-screen {
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #312e81 0%, #111827 100%);
+      padding: 1.1rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 12rem;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 0.85rem;
+    }
+
+    .tv-main,
+    .tv-side,
+    .tv-ticker,
+    .mini-ui,
+    .health-card,
+    .compare-card {
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .tv-main {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      padding: 1.2rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 17rem;
+    }
+
+    .tv-side {
+      background: linear-gradient(180deg, #e0f2fe 0%, #bfdbfe 100%);
+      padding: 0.9rem;
+      display: grid;
+      gap: 0.75rem;
+      color: #0f172a;
+    }
+
+    .tv-ticker {
+      grid-column: 1 / -1;
+      background: #f59e0b;
+      color: #1f2937;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mini-ui {
+      border: 1px solid rgb(226 232 240);
+      background: white;
+      box-shadow: 0 8px 24px rgb(15 23 42 / 0.06);
+    }
+
+    .mini-ui-top {
+      border-bottom: 1px solid rgb(226 232 240);
+      background: rgb(248 250 252);
+      padding: 0.8rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgb(51 65 85);
+    }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+      padding: 1rem;
+    }
+
+    .layout-grid span {
+      display: block;
+      aspect-ratio: 16 / 10;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+      border: 1px solid rgb(199 210 254);
+    }
+
+    .zone-editor {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 10rem;
+      gap: 0.8rem;
+      padding: 1rem;
+    }
+
+    .zone-canvas {
+      border-radius: 0.9rem;
+      background: #0f172a;
+      padding: 0.8rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 4.5rem;
+      grid-template-rows: minmax(0, 1fr) 2rem;
+      gap: 0.55rem;
+    }
+
+    .zone-canvas span:nth-child(1) { background: #4f46e5; border-radius: 0.75rem; }
+    .zone-canvas span:nth-child(2) { background: #38bdf8; border-radius: 0.75rem; outline: 3px solid #f59e0b; }
+    .zone-canvas span:nth-child(3) { grid-column: 1 / -1; background: #f59e0b; border-radius: 0.6rem; }
+
+    .zone-panel {
+      border-radius: 0.9rem;
+      background: #f8fafc;
+      border: 1px solid rgb(226 232 240);
+      padding: 0.8rem;
+      display: grid;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      color: rgb(71 85 105);
+    }
+
+    .zone-panel strong {
+      color: rgb(15 23 42);
+      font-size: 0.8rem;
+    }
+
+    .screen-groups {
+      position: relative;
+      border-radius: 1.5rem;
+      border: 1px solid rgb(226 232 240);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      padding: 1.5rem;
+      min-height: 23rem;
+      box-shadow: 0 12px 30px rgb(15 23 42 / 0.06);
+    }
+
+    .screen-groups .dashboard {
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10rem;
+      border-radius: 1rem;
+      background: #0f172a;
+      color: white;
+      padding: 0.9rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      padding-top: 6.5rem;
+    }
+
+    .room-card {
+      border-radius: 1rem;
+      border: 1px solid rgb(226 232 240);
+      background: white;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 8px 20px rgb(15 23 42 / 0.05);
+    }
+
+    .room-tv {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 0.9rem;
+      background: linear-gradient(135deg, #312e81 0%, #0f172a 100%);
+      margin-bottom: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .room-tv::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 0.9rem;
+      background: #f59e0b;
+    }
+
+    .health-card {
+      border: 1px solid rgb(30 41 59 / 0.08);
+      background: #0f172a;
+      color: white;
+      box-shadow: 0 18px 40px rgb(15 23 42 / 0.18);
+    }
+
+    .health-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    }
+
+    .health-list {
+      padding: 1rem 1.2rem 1.2rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .health-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 0.75rem;
+      align-items: center;
+      border-radius: 0.9rem;
+      background: rgb(255 255 255 / 0.05);
+      padding: 0.85rem 1rem;
+    }
+
+    .status-dot {
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgb(34 197 94 / 0.16);
+    }
+
+    .status-dot.warn {
+      background: #f59e0b;
+      box-shadow: 0 0 0 6px rgb(245 158 11 / 0.14);
+    }
+
+    .compare-card {
+      border: 1px solid rgb(226 232 240);
+      background: white;
+      box-shadow: 0 10px 24px rgb(15 23 42 / 0.06);
+      padding: 1.25rem;
+    }
+
+    @media (max-width: 1024px) {
+      .tv-screen,
+      .zone-editor {
+        grid-template-columns: 1fr;
+      }
+
+      .room-grid {
+        grid-template-columns: 1fr;
+        padding-top: 5.5rem;
+      }
+    }
+  </style>
+
+  <section class="signage-hero-bg px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Free for every church</p>
+        <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Beautiful church signage.<br />
+          No hardware. No subscription.<br />
+          Just your TV.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Create announcement displays, service countdowns, Bible verses, and welcome screens — then put them on any SmartTV in seconds. Free forever. No Hub required.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+          <a href={`${APP_URL}/sign-up`} class="rounded-xl bg-amber-500 px-8 py-3 text-base font-semibold text-slate-950 shadow transition hover:bg-amber-400">
+            Start for free
+          </a>
+          <a href={SIGNAGE_EXAMPLE_URL} target="_blank" rel="noopener noreferrer" class="rounded-xl border border-slate-300 px-8 py-3 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">
+            See an example
+          </a>
+        </div>
+      </div>
+
+      <div id="live-example" class="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.18)]">
+        <img src={SIGNAGE_HERO} alt="WorshipMetrics digital signage system on a church lobby TV" loading="lazy" decoding="async" class="w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Set up in three steps. Update from anywhere.</h2>
+      </div>
+      <div class="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={SIGNAGE_HOW} alt="How WorshipMetrics church digital signage works" loading="lazy" decoding="async" class="w-full object-cover" />
+        </div>
+        <div class="grid gap-6">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-slate-900">Step 1 — Choose a layout</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Pick from six professionally designed layouts: Full Screen, Main + Sidebar, Main + Ticker, L-Bar, Split Screen, or Lower Third. Each layout divides your screen into named zones.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-slate-900">Step 2 — Fill each zone</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Add text slides, Bible verses, service times, countdowns, images, videos, or web pages to each zone independently. Every zone runs its own content simultaneously.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-slate-900">Step 3 — Put the URL on your TV</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Toggle your playlist public and open the URL in any SmartTV browser. Your display goes live and updates you make in the dashboard appear on screen fast.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Six layouts designed for how churches actually use their screens.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {layoutTemplates.map(({ name, desc, svg }) => (
+          <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div class="bg-slate-950 p-5" set:html={svg}></div>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-slate-900">{name}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every zone can show something different — at the same time.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Each zone in your layout runs its own content type independently. Put a countdown in the sidebar while a video plays in the main area and a ticker scrolls event reminders below.
+      </p>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {contentTypes.map(([icon, label]) => (
+          <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left shadow-sm">
+            <span class="text-xl">{icon}</span>
+            <span class="text-sm font-semibold text-slate-800">{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Set it and forget it. Slides show when they should.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Date range scheduling</p>
+          <h3 class="mt-3 text-2xl font-bold text-slate-900">Christmas content starts and stops automatically.</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">Put Christmas content on screen Dec 1 and have it disappear automatically on Dec 26. Set a valid from and valid until date on any slide. Content manages itself.</p>
+          <img src={SIGNAGE_SCHEDULING} alt="Church digital signage calendar scheduling" loading="lazy" decoding="async" class="mt-8 w-full rounded-2xl border border-slate-200 shadow-sm" />
+        </div>
+
+        <div class="grid gap-6">
+          <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Day-of-week rules</p>
+            <h3 class="mt-3 text-xl font-bold text-slate-900">Show the right content on the right day.</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Show a Sunday countdown only on Sundays. Show Wednesday evening service times only on Wednesdays. Slides are smart about when they appear.</p>
+          </div>
+          <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Six transition styles</p>
+            <h3 class="mt-3 text-xl font-bold text-slate-900">Subtle motion makes it feel polished.</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Choose Fade, Slide Left, Slide Right, Slide Up, Zoom In, or Dissolve for each slide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Manage every TV in your building from one place.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Create screen groups like Lobby, Hallway, and Children's Wing. Assign one playlist to the whole group and update every screen from one URL.</p>
+        <div class="mt-8 space-y-3 text-sm text-slate-700">
+          {[
+            "One URL per group — no updating each TV individually",
+            "Change playlists instantly across all screens in a group",
+            "Works on SmartTV browsers including Samsung Tizen and LG webOS",
+          ].map((item) => (
+            <div class="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={SIGNAGE_GROUPS} alt="Church digital signage groups across multiple screens" loading="lazy" decoding="async" class="w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Health monitoring</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Know your screens are running — before Sunday morning.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Every registered TV automatically checks in every 60 seconds. If a screen goes dark more than 30 minutes before service, your team gets notified so you can fix it before people arrive.</p>
+        <div class="mt-8 space-y-3 text-sm text-slate-700">
+          {[
+            "Online/offline dashboard with last-seen timestamps and current display state",
+            "Automatic email alerts when a screen goes offline before service",
+            "Emergency alert broadcast to override every screen in seconds",
+          ].map((item) => (
+            <div class="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={SIGNAGE_HEALTH} alt="Church signage health monitoring dashboard" loading="lazy" decoding="async" class="w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Upgrade hook</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Already using signage? The Hub takes it further.</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">The Hub brings automatic attendance, remote production control, AV health monitoring, and cloud-managed signage together in one device. Signage content you create here works on Hub-connected displays too — no duplication.</p>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div class="compare-card">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Free · Any SmartTV</p>
+          <h3 class="mt-3 text-2xl font-bold text-slate-900">Free signage display</h3>
+            <img src={SIGNAGE_HERO} alt="Free signage display on a SmartTV" loading="lazy" decoding="async" class="mt-6 aspect-[16/10] w-full rounded-2xl border border-slate-200 object-cover" />
+          <ul class="mt-6 space-y-3 text-sm text-slate-600">
+            <li>Free signage works on any SmartTV browser</li>
+            <li>Same playlists, same layouts, same content system</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Hub · Integrated</p>
+          <h3 class="mt-3 text-2xl font-bold text-slate-900">Signage + attendance + production</h3>
+          <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/Worship%20Metrics%20Appliance%20Small.jpg" alt="WorshipMetrics Hub" loading="lazy" decoding="async" class="aspect-[16/10] w-full rounded-xl object-cover" />
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-slate-600">
+            <li>Hub-connected displays integrate with attendance, AV monitoring, and production control</li>
+            <li>One system whether or not you have a Hub</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/appliance" class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-700">Learn about the Hub</a>
+        <a href="/pricing" class="rounded-xl border border-slate-300 px-8 py-3 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Your lobby display could be live in ten minutes.</h2>
+      <p class="mt-4 text-lg text-indigo-100">No hardware to buy. No subscription to start. Just create your first playlist, toggle it public, and open the URL on your TV.</p>
+      <a href={`${APP_URL}/sign-up`} class="mt-8 inline-block rounded-xl bg-amber-400 px-8 py-3 text-base font-semibold text-slate-950 shadow transition hover:bg-amber-300">Create your free signage display</a>
+      <p class="mt-4 text-sm font-medium text-indigo-200">Free forever · No credit card · Works on any SmartTV browser</p>
+    </div>
+  </section>
+</Layout>

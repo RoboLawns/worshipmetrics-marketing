@@ -5,6 +5,7 @@ const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW   = `${R2}/homepage/new%20images`;
+const SIGNAGE_EXAMPLE_URL = "https://app.worshipmetrics.com/tv/00000000-0000-4000-8000-00000000de10";
 const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170";
 const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
 const APP_STORE_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Download_on_the_App_Store_Badge.svg.png";
@@ -437,30 +438,64 @@ const structuredData = {
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     DIGITAL SIGNAGE — FREE
+     FREE WORSHIP ATTENDANCE
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <div class="split">
+      <div class="split-img">
+        <img
+          src={`${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`}
+          alt="Free worship attendance workflows on the WorshipMetrics tablet"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Free Worship Attendance</p>
+        <h2>Free worship attendance.<br/>Because every church should know who was in the room.</h2>
+        <p>Track worship attendance without a credit card, without a complicated setup, and without waiting for a future budget cycle. Start free, keep your history, and give your team a better weekly attendance rhythm right away.</p>
+        <ul class="bullets">
+          <li>Start tracking attendance for free today</li>
+          <li>Works with phones, tablets, and the devices your team already has</li>
+          <li>Historical records and reporting from the beginning</li>
+          <li>Grow into seat templates, tablets, people workflows, and automation later</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="/free-church-attendance-software" class="btn-primary">Get free attendance →</a>
+          <a href="/platform/attendance" class="btn-outline">See attendance workflows</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FREE CHURCH DIGITAL SIGNAGE
 ════════════════════════════════════════════════════ -->
 <section class="section section-alt">
   <div class="inner">
     <div class="split">
       <div class="split-img">
         <img
-          src={`${R2NEW}/Church%20Digital%20Signage.jpg`}
-          alt="Church digital signage display showing announcements"
+          src={`${R2NEW}/Worship%20Digital%20Signage%20System.jpg`}
+          alt="Free church digital signage layout on a lobby display"
           loading="lazy" width="800" height="540"
         />
       </div>
       <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Digital signage</p>
-        <h2>Free digital signage.<br/>Because we believe in the mission.</h2>
-        <p>Update every screen in your church from your phone — announcements, countdowns, event slides, welcome messages. Cloud-managed, instantly updated, and completely free on every plan.</p>
-        <p style="font-size:0.875rem;color:var(--text-muted);font-style:italic;">We give signage away because we believe churches shouldn't pay to keep their congregation informed. Point any smart TV at a URL and it's live in under a minute.</p>
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Free Church Digital Signage</p>
+        <h2>Your lobby TV deserves better than a blank screen.</h2>
+        <p>Create multi-zone announcement displays with service times, countdowns, Bible verses, and event slides — then put them on any SmartTV with a single URL. Free for every church, no Hub required.</p>
         <ul class="bullets">
-          <li>Works with TVs you already own</li>
-          <li>Unlimited screens on paid plans — 1 screen free forever</li>
-          <li>No hardware required. No monthly fees. Ever.</li>
-          <li>Push updates from your phone mid-service</li>
+          <li>6 professional layout templates — Full Screen, L-Bar, Main + Sidebar, and more</li>
+          <li>13 content types per zone — text, image, video, clock, countdown, QR code</li>
+          <li>Schedule slides by date and day — Christmas content disappears automatically on Dec 26</li>
+          <li>Works on SmartTV browsers including Samsung Tizen and LG webOS</li>
         </ul>
-        <a href={`${APP_URL}/sign-up`} class="btn-primary">Start free — get your signage URL</a>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="/signage-display" class="btn-primary">Get free signage →</a>
+          <a href={SIGNAGE_EXAMPLE_URL} target="_blank" rel="noopener noreferrer" class="btn-outline">See a live example</a>
+        </div>
       </div>
     </div>
   </div>
@@ -541,7 +576,7 @@ const structuredData = {
         { label:"Attendance", title:"Automatic counting + insights", desc:"Auto-Count, seat templates, and Luminos AI turn Sunday numbers into Monday pastoral action.", href:"/platform/attendance", image:`${R2}/tablet/New%20Seat%20Counting%20Layout.jpg`, alt:"Seat counting layout inside WorshipMetrics" },
         { label:"People",     title:"Guest capture + follow-up",    desc:"Welcome cards, QR codes, prayer routing, and absence alerts — all connected.", href:"/platform/people", image:`${R2}/tablet/Auto-Scan%20Welcome%20Cards.jpg`, alt:"Welcome card scanning in WorshipMetrics" },
         { label:"AV + Production", title:"Stream health + remote control", desc:"AV monitoring, PTZ camera control, OBS and vMix switching from anywhere in the world.", href:"/appliance", image:`${R2NEW}/Stream%20Health.jpg`, alt:"WorshipMetrics stream health monitoring" },
-        { label:"Digital Signage — Free", title:"Free lobby displays",     desc:"Manage every screen from your phone. No fees. Ever.", href:"/platform/operations", badge:"Free", image:`${R2NEW}/Church%20Digital%20Signage.jpg`, alt:"Church digital signage managed by WorshipMetrics" },
+        { label:"Digital Signage — Free", title:"Free lobby displays",     desc:"Manage every screen from your phone. No fees. Ever.", href:"/signage-display", badge:"Free", image:`${R2NEW}/Church%20Digital%20Signage.jpg`, alt:"Church digital signage managed by WorshipMetrics" },
         { label:"Worship Clips",   title:"Sermon → social content", desc:"Automatic clips for Reels, Shorts, TikTok, and Facebook. No editing required.", href:"/solutions/worship-clips", image:`${R2}/homepage/Worship%20Clips%20Hero%202.jpg`, alt:"Worship Clips editing and publishing interface" },
         { label:"Community",  title:"All-week digital campus",      desc:"Discord-based community with YouTube chat sync and member onboarding.", href:"/solutions/church-community-platform", image:`${R2}/homepage/WorshipMetrics%20Discord%20Setup.jpg`, alt:"WorshipMetrics Discord community setup" },
       ].map(({ label, title, desc, href, badge, image, alt }) => (
