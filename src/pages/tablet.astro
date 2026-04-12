@@ -123,6 +123,54 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
+  <!-- Product gallery -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        WorshipMetrics Tablet in action
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-slate-600">
+        Built for real church workflows, from check-in and guest capture to seat counting and
+        synced multi-tablet operations.
+      </p>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          {
+            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg",
+            alt: "WorshipMetrics Tablet hero view",
+            wide: true,
+          },
+          {
+            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/New%20Tablet%20Hero%202.jpg",
+            alt: "Alternate WorshipMetrics Tablet hero image",
+          },
+          {
+            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/Worship%20Metrics%20Works%20on%20All%20Your%20Devices.jpg",
+            alt: "WorshipMetrics works across all your devices",
+          },
+          {
+            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/Sync%20with%20multiple%20tablets.jpg",
+            alt: "Sync with multiple WorshipMetrics tablets",
+          },
+          {
+            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/New%20Seat%20Counting%20Layout.jpg",
+            alt: "WorshipMetrics tablet seat counting layout",
+          },
+        ].map(({ src, alt, wide }) => (
+          <figure class:list={["overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm", wide && "sm:col-span-2 lg:col-span-2"]}>
+            <img
+              src={src}
+              alt={alt}
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Three stations -->
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">

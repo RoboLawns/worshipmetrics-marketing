@@ -94,4 +94,16 @@ import Layout from "../layouts/Layout.astro";
       </p>
     </div>
   </section>
+  <!-- Fire discovery call conversion on page load -->
+  <script>
+    // Matches AW-18048317342/r89HCOXszZEcEJ7vjZ5D in the React app
+    window.addEventListener('load', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-18048317342/r89HCOXszZEcEJ7vjZ5D',
+          transport_type: 'beacon',
+        });
+      }
+    });
+  </script>
 </Layout>
