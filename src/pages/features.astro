@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 
 const featureGroups = [
   {
@@ -88,8 +89,8 @@ const featureGroups = [
 ---
 
 <Layout
-  title="Features"
-  description="Explore the full set of WorshipMetrics features — attendance tracking, member management, analytics, hardware integrations, and more."
+  title="Church Attendance, Follow-Up, and Analytics Features"
+  description="Explore WorshipMetrics features for church attendance tracking, guest follow-up, analytics, hardware, digital engagement, and volunteer workflows."
   canonical="/features"
 >
   <!-- Page hero -->
@@ -114,6 +115,48 @@ const featureGroups = [
         >
           View pricing
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature visuals -->
+  <section class="bg-white px-4 pb-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          {
+            title: "Attendance",
+            body: "Seat templates, Auto-Count, and weekly reporting in one workflow.",
+            src: "/legacy-images/seat-counting-hero.jpg",
+            alt: "Attendance tracking in WorshipMetrics",
+          },
+          {
+            title: "People & Members",
+            body: "Capture guests, scan cards, and keep follow-up tied to real people.",
+            src: "/legacy-images/welcome-capture-wide.jpg",
+            alt: "Welcome capture workflow in WorshipMetrics",
+          },
+          {
+            title: "Insights & Analytics",
+            body: "Dashboards that help leaders see patterns, not just raw counts.",
+            src: "/legacy-images/attendance-tracking-dashboard.jpg",
+            alt: "Attendance analytics dashboard in WorshipMetrics",
+          },
+          {
+            title: "Devices & Hardware",
+            body: "Hub and Tablet workflows that connect directly to the same system.",
+            src: `${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`,
+            alt: "WorshipMetrics tablet hardware",
+          },
+        ].map(({ title, body, src, alt }) => (
+          <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <img src={src} alt={alt} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+            <div class="p-6">
+              <h2 class="text-lg font-semibold text-slate-900">{title}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -143,6 +186,35 @@ const featureGroups = [
           </div>
         </div>
       ))}
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Popular guides</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Explore common church software use cases</h2>
+      </div>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          { href: "/free-church-attendance-software", title: "Free church attendance software", body: "A conversion-focused page for churches ready to start tracking attendance without paying first." },
+          { href: "/free-church-digital-signage", title: "Free church digital signage", body: "A conversion-focused page for churches that want to manage lobby screens without monthly fees." },
+          { href: "/church-attendance-tracking-software", title: "Church attendance tracking software", body: "How churches track in-person and online attendance with one connected workflow." },
+          { href: "/church-visitor-follow-up-software", title: "Church visitor follow-up software", body: "How guest capture, prayer requests, and follow-up can work from one system." },
+          { href: "/church-check-in-tablet", title: "Church check-in tablet", body: "A dedicated tablet workflow for welcome desks, check-in, and volunteer teams." },
+          { href: "/church-digital-signage-software", title: "Church digital signage software", body: "How churches manage lobby screens and announcements without extra complexity." },
+          { href: "/church-livestream-analytics", title: "Church livestream analytics", body: "How churches track live viewers, replays, and online attendance in one reporting flow." },
+          { href: "/church-guest-follow-up-system", title: "Church guest follow-up system", body: "How churches move from first visit to real follow-up with a repeatable process." },
+          { href: "/church-attendance-app", title: "Church attendance app", body: "How mobile attendance workflows support staff and volunteers on the go." },
+          { href: "/sermon-clips-software", title: "Sermon clips software", body: "How churches turn Sunday messages into social content without manual editing." },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-50/20">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Read guide →</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

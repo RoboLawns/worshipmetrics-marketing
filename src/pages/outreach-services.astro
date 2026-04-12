@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+const PASTOR_IMAGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/New%20Pastor%20In%20Use%20Photo.jpg";
+
 const services = [
   { name: "Website chat response", type: "Consulting" },
   { name: "Livestream viewer engagement", type: "Consulting" },
@@ -35,6 +37,30 @@ const services = [
         >
           Book a discovery call
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outreach visual -->
+  <section class="bg-slate-50 px-6 pb-8 sm:pb-12">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img
+          src="/legacy-images/welcome-capture-wide.jpg"
+          alt="Welcome capture workflow in WorshipMetrics"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[16/10] w-full object-cover"
+        />
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img
+          src={PASTOR_IMAGE}
+          alt="Pastor using WorshipMetrics"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[16/10] w-full object-cover"
+        />
       </div>
     </div>
   </section>

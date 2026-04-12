@@ -2,12 +2,69 @@
 import Layout from "../layouts/Layout.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const faqItems = [
+  {
+    question: "Does WorshipMetrics offer a free plan?",
+    answer: "Yes. WorshipMetrics offers a free plan for churches that want to start tracking data without a credit card or time limit.",
+  },
+  {
+    question: "Which plan includes church attendance automation?",
+    answer: "The Established plan includes the advanced automation features, and the WorshipMetrics Hub can unlock those workflows in a plug-and-play hardware setup.",
+  },
+  {
+    question: "Does the WorshipMetrics Tablet include software?",
+    answer: "Yes. The WorshipMetrics Tablet includes a free Essentials plan so churches can start using check-in, attendance, and guest capture workflows immediately.",
+  },
+  {
+    question: "Can we talk with someone before choosing a plan?",
+    answer: "Yes. Churches can book a discovery call to compare plans, hardware, and services based on their real workflow and team size.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: "WorshipMetrics Pricing",
+    url: `${SITE_URL}/pricing`,
+    itemListElement: [
+      { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Essentials", price: "19.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Established", price: "49.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "WorshipMetrics Hub", price: "499", priceCurrency: "USD", url: `${SITE_URL}/appliance` },
+      { "@type": "Offer", name: "WorshipMetrics Tablet", price: "349", priceCurrency: "USD", url: `${SITE_URL}/tablet` },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Pricing", item: `${SITE_URL}/pricing` },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  },
+];
 ---
 
 <Layout
-  title="Pricing"
-  description="Simple, transparent pricing for churches of every size. Software plans, hardware, and services."
+  title="Church Attendance Software Pricing"
+  description="See WorshipMetrics pricing for church attendance software, visitor follow-up tools, hardware, and ministry support services."
   canonical="/pricing"
+  structuredData={structuredData}
 >
   <!-- Hero -->
   <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-16 sm:px-6 lg:px-8">
@@ -19,6 +76,30 @@ const APP_URL = "https://app.worshipmetrics.com";
       <p class="mt-4 text-lg text-slate-600">
         Monthly or annual billing. Every paid plan includes a free onboarding session. Cancel anytime.
       </p>
+    </div>
+  </section>
+
+  <!-- Pricing proof -->
+  <section class="bg-white px-4 pb-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <div class="grid items-center gap-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <div class="p-8 sm:p-10">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Included in paid plans</p>
+          <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Pricing is easier when the value is visible.
+          </h2>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            Luminos, Worship Clips, outreach tools, and team workflows are not abstract add-ons. They are part of the weekly ministry system your staff and volunteers actually use.
+          </p>
+        </div>
+        <img
+          src={`${R2}/homepage/Luminos%20Interface.png`}
+          alt="Luminos AI interface included in WorshipMetrics paid plans"
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+      </div>
     </div>
   </section>
 
@@ -154,6 +235,38 @@ const APP_URL = "https://app.worshipmetrics.com";
     </div>
   </section>
 
+  <!-- Compare by workflow -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-2xl font-bold text-slate-900 sm:text-3xl">Compare pricing by workflow, not just by plan.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          {
+            href: "/platform/attendance",
+            title: "Attendance workflows",
+            body: "See how seat templates, Auto-Count, and livestream reporting fit into the plans.",
+          },
+          {
+            href: "/tablet",
+            title: "Tablet hardware",
+            body: "See the dedicated church tablet for check-in, counting, and guest capture.",
+          },
+          {
+            href: "/appliance",
+            title: "Hub automation",
+            body: "See the hardware option for automatic attendance, AV monitoring, and signage.",
+          },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Hardware -->
   <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
@@ -162,7 +275,14 @@ const APP_URL = "https://app.worshipmetrics.com";
       <div class="grid gap-8 sm:grid-cols-2">
 
         <!-- Hub -->
-        <div class="flex flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div class="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <img
+            src={`${R2}/tablet/Worship%20Metrics%20Appliance%20Small.jpg`}
+            alt="WorshipMetrics Hub product image"
+            loading="lazy"
+            decoding="async"
+            class="-mx-8 -mt-8 mb-6 aspect-[16/10] w-[calc(100%+4rem)] object-cover"
+          />
           <div class="flex items-start justify-between">
             <div>
               <h3 class="text-lg font-bold text-slate-900">Worship Metrics Hub</h3>
@@ -180,7 +300,14 @@ const APP_URL = "https://app.worshipmetrics.com";
         </div>
 
         <!-- Tablet -->
-        <div class="flex flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div class="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <img
+            src={`${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`}
+            alt="WorshipMetrics Tablet product image"
+            loading="lazy"
+            decoding="async"
+            class="-mx-8 -mt-8 mb-6 aspect-[16/10] w-[calc(100%+4rem)] object-cover"
+          />
           <div class="flex items-start justify-between">
             <div>
               <h3 class="text-lg font-bold text-slate-900">Worship Metrics Tablet</h3>
@@ -224,6 +351,24 @@ const APP_URL = "https://app.worshipmetrics.com";
           <p class="mt-3 text-sm text-slate-600">Discord community setup, welcome automation, YouTube chat mirroring, and website integration.</p>
           <a href="/professional-services" class="mt-5 inline-block text-sm font-semibold text-indigo-600 hover:underline">Learn more →</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">FAQ</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Common questions about WorshipMetrics pricing</h2>
+      </div>
+      <div class="mt-8 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-slate-900">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{answer}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>

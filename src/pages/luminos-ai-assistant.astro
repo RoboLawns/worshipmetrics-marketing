@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 ---
 
 <Layout
@@ -38,6 +40,41 @@ import Layout from "../layouts/Layout.astro";
         <a href="/discovery-call" class="text-base font-semibold text-indigo-600 hover:text-indigo-700">
           See a demo &rarr;
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Luminos visual -->
+  <section class="bg-slate-50 px-6 pb-8 sm:pb-12">
+    <div class="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <div class="grid items-center gap-0 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+        <div class="flex h-full flex-col justify-center bg-slate-950 p-8 sm:p-10">
+          <div class="flex items-center gap-4">
+            <img
+              src={`${R2}/homepage/Luminos.jpg`}
+              alt="Luminos AI avatar"
+              loading="lazy"
+              decoding="async"
+              class="h-16 w-16 rounded-2xl object-cover ring-1 ring-white/10"
+            />
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Inside your dashboard</p>
+              <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Ask ministry questions. Get clear next steps.</h2>
+            </div>
+          </div>
+          <div class="mt-8 space-y-3 text-sm text-slate-300">
+            <div class="rounded-2xl bg-white/5 px-4 py-3 ring-1 ring-white/10">"Who has missed multiple services and may need a check-in?"</div>
+            <div class="rounded-2xl bg-white/5 px-4 py-3 ring-1 ring-white/10">"Which guests still need a response from this week?"</div>
+            <div class="rounded-2xl bg-white/5 px-4 py-3 ring-1 ring-white/10">"Give me a Monday summary I can act on."</div>
+          </div>
+        </div>
+        <img
+          src={`${R2}/homepage/Luminos%20Interface.png`}
+          alt="Luminos AI interface inside WorshipMetrics"
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
       </div>
     </div>
   </section>

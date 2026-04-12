@@ -1,0 +1,122 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const OG_IMAGE = `${SITE_URL}/legacy-images/virtual-attendance-wide.jpg`;
+const faqItems = [
+  {
+    question: "What are church livestream analytics?",
+    answer: "Church livestream analytics help churches understand live viewers, replay views, engagement trends, and how online attendance compares with in-person services.",
+  },
+  {
+    question: "Can WorshipMetrics combine online and in-person reporting?",
+    answer: "Yes. WorshipMetrics helps churches review livestream and in-person attendance in one weekly reporting workflow.",
+  },
+  {
+    question: "Why do livestream analytics matter for churches?",
+    answer: "They help leadership see whether online ministry is growing, which services are reaching people, and where follow-up opportunities may exist beyond the physical room.",
+  },
+  {
+    question: "Can livestream reporting connect to follow-up?",
+    answer: "Yes. WorshipMetrics can connect online attendance and engagement signals to people workflows and follow-up conversations.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "WorshipMetrics Church Livestream Analytics",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: `${SITE_URL}/church-livestream-analytics`,
+    image: OG_IMAGE,
+    description: "Church livestream analytics for live viewers, replay views, online attendance reporting, and ministry follow-up context.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  },
+];
+---
+
+<Layout
+  title="Church Livestream Analytics"
+  description="Church livestream analytics for live viewers, replay views, online attendance reporting, and ministry follow-up context."
+  canonical="/church-livestream-analytics"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Church livestream analytics</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Church livestream analytics that belong in the same report as Sunday attendance.</h1>
+      <p class="mt-6 text-lg text-slate-600 sm:text-xl">Track live viewers, replay reach, and online ministry signals without separating your digital audience from the rest of your church reporting.</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/platform/attendance" class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-700">See attendance workflows</a>
+        <a href="/solutions/digital-engagement" class="rounded-xl border border-slate-300 px-8 py-3 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">See digital engagement</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 pb-8 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"><img src={OG_IMAGE} alt="Church livestream analytics dashboard" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" /></div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"><img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Online%20Attendance%20Older%20Woman.jpg" alt="Online church attendance reporting" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" /></div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
+      {[
+        ["See more than a single number", "Track live viewers, replay views, and combined attendance instead of reducing online ministry to one incomplete count."],
+        ["Keep online and in-person together", "Leadership conversations are stronger when digital and physical attendance are reviewed in the same weekly rhythm."],
+        ["Turn viewing into ministry insight", "Online engagement matters most when it helps your church notice real people and next steps, not just traffic."],
+      ].map(([title, body]) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h2 class="text-xl font-bold text-slate-900">{title}</h2>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
+      {[
+        { href: "/platform/attendance", title: "Attendance reporting", body: "See how livestream analytics fit inside the broader attendance workflow." },
+        { href: "/solutions/digital-engagement", title: "Digital engagement", body: "Connect online audience reporting to actual engagement and follow-up workflows." },
+        { href: "/church-attendance-tracking-software", title: "Attendance tracking software", body: "Explore the larger attendance system that includes in-person and online reporting." },
+      ].map(({ href, title, body }) => (
+        <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+          <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">FAQ</p><h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Questions churches ask about livestream analytics</h2></div>
+      <div class="mt-8 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><summary class="cursor-pointer list-none text-lg font-semibold text-slate-900">{question}</summary><p class="mt-3 text-sm leading-relaxed text-slate-600">{answer}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

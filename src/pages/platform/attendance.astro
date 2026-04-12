@@ -1,12 +1,212 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const faqItems = [
+  {
+    question: "How does church attendance tracking work in WorshipMetrics?",
+    answer: "WorshipMetrics lets churches track attendance with seat templates, manual counts, mobile workflows, Auto-Count from room photos, and livestream reporting in one connected system.",
+  },
+  {
+    question: "Can WorshipMetrics track in-person and online attendance together?",
+    answer: "Yes. You can combine in-person attendance and online viewership into one weekly reporting workflow so leadership sees a clearer total picture.",
+  },
+  {
+    question: "Does WorshipMetrics support volunteer attendance counting?",
+    answer: "Yes. Volunteers can use seat templates and tablet workflows to confirm changes quickly without recounting every section from scratch each week.",
+  },
+  {
+    question: "Can attendance data connect to visitor follow-up?",
+    answer: "Yes. Attendance in WorshipMetrics is tied to people workflows, which helps churches notice first-time guests, missed attendees, and follow-up opportunities sooner.",
+  },
+];
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "WorshipMetrics Attendance Tracking",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, iOS, Android",
+    url: `${SITE_URL}/platform/attendance`,
+    image: `${SITE_URL}/legacy-images/seat-counting-hero.jpg`,
+    description: "Track church attendance in person and online with seat templates, Auto-Count, livestream reporting, and follow-up signals.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Platform", item: `${SITE_URL}/platform` },
+      { "@type": "ListItem", position: 3, name: "Attendance", item: `${SITE_URL}/platform/attendance` },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  },
+];
 ---
 
 <Layout
-  title="Attendance Tracking"
-  description="Count in-room and online attendance together. Seat templates, Auto-Count, and pastoral follow-up signals in one workflow."
+  title="Church Attendance Tracking Software"
+  description="Track church attendance in person and online with seat templates, Auto-Count, livestream reporting, and follow-up signals in one workflow."
   canonical="/platform/attendance"
+  ogImage="/legacy-images/seat-counting-hero.jpg"
+  structuredData={structuredData}
 >
+  <style>
+    .seat-demo-shell {
+      overflow: hidden;
+      border: 1px solid rgb(15 23 42 / 0.08);
+      border-radius: 1.5rem;
+      background: linear-gradient(180deg, #0f172a 0%, #172554 100%);
+      box-shadow: 0 20px 60px rgb(15 23 42 / 0.14);
+    }
+
+    .seat-demo-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+    }
+
+    .seat-demo-sidebar {
+      padding: 2rem;
+      color: rgb(224 231 255);
+      border-right: 1px solid rgb(255 255 255 / 0.08);
+    }
+
+    .seat-demo-board {
+      padding: 2rem;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    }
+
+    .seat-demo-total {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      line-height: 1;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.04em;
+    }
+
+    .seat-demo-total-sub {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: rgb(191 219 254);
+    }
+
+    .seat-demo-section-button {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgb(255 255 255 / 0.12);
+      border-radius: 1rem;
+      background: rgb(15 23 42 / 0.28);
+      text-align: left;
+      transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .seat-demo-section-button:hover {
+      transform: translateY(-1px);
+      background: rgb(30 41 59 / 0.5);
+    }
+
+    .seat-demo-section-button.is-active {
+      border-color: rgb(129 140 248 / 0.8);
+      background: rgb(49 46 129 / 0.55);
+    }
+
+    .seat-demo-bar {
+      height: 0.5rem;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgb(255 255 255 / 0.1);
+    }
+
+    .seat-demo-bar > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #818cf8 0%, #38bdf8 100%);
+    }
+
+    .seat-demo-stage {
+      width: min(22rem, 100%);
+      margin: 0 auto 1.5rem;
+      padding: 0.625rem 1rem;
+      border-radius: 999px;
+      background: rgb(226 232 240);
+      color: rgb(71 85 105);
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .seat-demo-grid {
+      display: grid;
+      gap: 0.55rem;
+      justify-content: center;
+    }
+
+    .seat-demo-seat {
+      width: clamp(1.2rem, 2.6vw, 2rem);
+      aspect-ratio: 1 / 1;
+      border: 1px solid rgb(148 163 184 / 0.45);
+      border-radius: 0.5rem;
+      background: white;
+      transition: transform 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .seat-demo-seat:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgb(79 70 229 / 0.14);
+    }
+
+    .seat-demo-seat.is-occupied {
+      background: rgb(79 70 229);
+      border-color: rgb(79 70 229);
+      box-shadow: 0 8px 18px rgb(79 70 229 / 0.2);
+    }
+
+    .seat-demo-seat.is-changed {
+      background: rgb(245 158 11);
+      border-color: rgb(245 158 11);
+      box-shadow: 0 8px 18px rgb(245 158 11 / 0.18);
+    }
+
+    .seat-demo-note {
+      border: 1px solid rgb(99 102 241 / 0.12);
+      border-radius: 1rem;
+      background: rgb(238 242 255);
+      color: rgb(49 46 129);
+    }
+
+    @media (max-width: 1024px) {
+      .seat-demo-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .seat-demo-sidebar {
+        border-right: 0;
+        border-bottom: 1px solid rgb(255 255 255 / 0.08);
+      }
+    }
+  </style>
+
   <!-- Hero -->
   <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center">
@@ -46,6 +246,30 @@ import Layout from "../../layouts/Layout.astro";
     </div>
   </section>
 
+  <!-- Attendance visuals -->
+  <section class="bg-white px-4 pb-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img
+          src="/legacy-images/seat-counting-hero.jpg"
+          alt="WorshipMetrics seat counting view"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[16/10] w-full object-cover"
+        />
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img
+          src="/legacy-images/attendance-tracking-dashboard.jpg"
+          alt="WorshipMetrics attendance tracking dashboard"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[16/10] w-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
   <!-- In-room counting -->
   <section class="px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
@@ -78,6 +302,238 @@ import Layout from "../../layouts/Layout.astro";
             <h3 class="font-semibold text-slate-900">{heading}</h3>
             <p class="mt-2 text-sm text-slate-600 leading-relaxed">{body}</p>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Seat counting proof -->
+  <section class="bg-white px-4 pb-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-6 lg:grid-cols-3">
+      {[
+        {
+          title: "Build the seat map once",
+          body: "Templates mirror the real sanctuary so volunteers start from a room they recognize.",
+          src: "/legacy-images/church-seat-mapping.jpg",
+          alt: "Church seat mapping inside WorshipMetrics",
+        },
+        {
+          title: "Confirm seats with member context",
+          body: "Seat-level counting becomes more useful when your team can understand who is usually there.",
+          src: "/legacy-images/seat-counting-members.jpg",
+          alt: "Seat counting with member assignment in WorshipMetrics",
+        },
+        {
+          title: "Use Auto-Count when the room moves fast",
+          body: "Take a room photo and keep the workflow moving when manual confirmation would slow your team down.",
+          src: "/legacy-images/automatic-counting-wide.jpg",
+          alt: "Automatic attendance counting from a room photo",
+        },
+      ].map(({ title, body, src, alt }) => (
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={src} alt={alt} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+          <div class="p-6">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Interactive seat template -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">
+          Interactive seat counter
+        </p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          Start with last week. Tap only what changed.
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          This is the seat-template workflow volunteers actually use: choose a section, tap seats to
+          confirm today's room, and watch totals update instantly.
+        </p>
+      </div>
+
+      <div class="seat-demo-shell">
+        <div class="seat-demo-layout">
+          <div class="seat-demo-sidebar">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-200">
+              Live sanctuary total
+            </p>
+            <p class="mt-4 seat-demo-total">
+              <span id="seat-demo-total-count">107</span>
+              <span class="text-2xl font-semibold text-indigo-200 sm:text-3xl">of 160</span>
+            </p>
+            <p id="seat-demo-total-percent" class="seat-demo-total-sub">67% of your saved layout</p>
+
+            <div class="mt-8 space-y-3">
+              <button type="button" class="seat-demo-section-button is-active" data-seat-demo-section="left">
+                <div class="flex items-center justify-between gap-4 text-white">
+                  <span class="text-base font-semibold">Left</span>
+                  <span class="text-sm font-medium text-indigo-100" data-seat-demo-count="left">27/40</span>
+                </div>
+                <div class="mt-3 seat-demo-bar">
+                  <span data-seat-demo-bar="left" style="width: 67.5%"></span>
+                </div>
+              </button>
+
+              <button type="button" class="seat-demo-section-button" data-seat-demo-section="center">
+                <div class="flex items-center justify-between gap-4 text-white">
+                  <span class="text-base font-semibold">Center</span>
+                  <span class="text-sm font-medium text-indigo-100" data-seat-demo-count="center">53/80</span>
+                </div>
+                <div class="mt-3 seat-demo-bar">
+                  <span data-seat-demo-bar="center" style="width: 66.25%"></span>
+                </div>
+              </button>
+
+              <button type="button" class="seat-demo-section-button" data-seat-demo-section="right">
+                <div class="flex items-center justify-between gap-4 text-white">
+                  <span class="text-base font-semibold">Right</span>
+                  <span class="text-sm font-medium text-indigo-100" data-seat-demo-count="right">27/40</span>
+                </div>
+                <div class="mt-3 seat-demo-bar">
+                  <span data-seat-demo-bar="right" style="width: 67.5%"></span>
+                </div>
+              </button>
+            </div>
+
+            <div class="mt-8 grid gap-3 text-sm text-indigo-100 sm:grid-cols-3 lg:grid-cols-1">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="font-semibold text-white">Baseline</p>
+                <p class="mt-1 text-indigo-100/80">Saved from a recent service so volunteers are not recounting from zero.</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="font-semibold text-white">Tap to confirm</p>
+                <p class="mt-1 text-indigo-100/80">Most seats stay the same. Only the differences need attention.</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="font-semibold text-white">Real-time total</p>
+                <p class="mt-1 text-indigo-100/80">Leadership gets one trusted number while volunteers are still in the room.</p>
+              </div>
+            </div>
+
+            <button
+              id="seat-demo-reset"
+              type="button"
+              class="mt-8 inline-flex rounded-xl border border-indigo-300/40 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-indigo-200 hover:bg-white/5"
+            >
+              Reset to saved baseline
+            </button>
+          </div>
+
+          <div class="seat-demo-board">
+            <div class="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+              <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">
+                    Seat template preview
+                  </p>
+                  <h3 id="seat-demo-active-title" class="mt-2 text-2xl font-bold text-slate-900">
+                    Left section
+                  </h3>
+                  <p id="seat-demo-active-copy" class="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+                    Greeters can tap through this section in seconds and move on, because the layout is already familiar.
+                  </p>
+                </div>
+                <div class="rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700">
+                  <span id="seat-demo-active-count">27/40</span>
+                  <span class="text-indigo-500">seats filled</span>
+                </div>
+              </div>
+
+              <div class="mt-8 rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-6 sm:px-6 sm:py-8">
+                <div class="seat-demo-stage">Platform</div>
+                <div id="seat-demo-grid" class="seat-demo-grid" aria-label="Interactive seat template"></div>
+              </div>
+
+              <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-slate-600">
+                <div class="flex items-center gap-2">
+                  <span class="h-3.5 w-3.5 rounded bg-indigo-600"></span>
+                  <span>Saved baseline</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="h-3.5 w-3.5 rounded bg-amber-500"></span>
+                  <span>Changed today</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="h-3.5 w-3.5 rounded border border-slate-300 bg-white"></span>
+                  <span>Empty seat</span>
+                </div>
+              </div>
+
+              <div class="seat-demo-note mt-6 p-4 sm:p-5">
+                <p class="text-sm font-semibold uppercase tracking-[0.14em]">Volunteer workflow</p>
+                <p id="seat-demo-delta" class="mt-2 text-sm leading-relaxed sm:text-base">
+                  No changes from the saved baseline yet. Tap seats to simulate what a volunteer sees on Sunday.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Online reporting proof -->
+  <section class="bg-white px-4 pb-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <div class="grid items-center gap-0 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+        <img
+          src="/legacy-images/virtual-attendance-wide.jpg"
+          alt="Virtual attendance tracking in WorshipMetrics"
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+        <div class="p-8 sm:p-10">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Online attendance</p>
+          <h3 class="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl">
+            Livestream reporting belongs in the same weekly dashboard.
+          </h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            Track live viewers, replay reach, and combined attendance without splitting your leadership conversation across multiple tools.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related pages -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Related workflows</p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Keep attendance connected to the rest of the system.</h2>
+        </div>
+      </div>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          {
+            href: "/platform/people",
+            title: "Visitor follow-up",
+            body: "Turn attendance signals into guest records, prayer routing, and pastoral next steps.",
+          },
+          {
+            href: "/tablet",
+            title: "Tablet workflows",
+            body: "Give greeters and volunteers a dedicated church attendance and check-in device.",
+          },
+          {
+            href: "/pricing",
+            title: "Pricing and plans",
+            body: "Compare Free, Essentials, and Established plans for church attendance software.",
+          },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Learn more →</span>
+          </a>
         ))}
       </div>
     </div>
@@ -178,6 +634,92 @@ import Layout from "../../layouts/Layout.astro";
     </div>
   </section>
 
+  <!-- Mobile apps -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-8 shadow-xl sm:p-10 lg:p-12">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">
+            Mobile apps
+          </p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Download for iOS or Android for free today.
+          </h2>
+          <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+            Take WorshipMetrics with you for check-ins, attendance workflows, and ministry updates
+            from anywhere.
+          </p>
+          <p class="mt-4 text-sm text-slate-400">
+            Perfect for greeters, children's ministry teams, and staff who need live updates without
+            being tied to a desk.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-start gap-4">
+          <a
+            href="https://apps.apple.com/us/app/worship-metrics/id6754773170"
+            class="inline-flex transition hover:opacity-90"
+            aria-label="Download WorshipMetrics on the App Store"
+          >
+            <img
+              src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Download_on_the_App_Store_Badge.svg.png"
+              alt="Download on the App Store"
+              loading="lazy"
+              decoding="async"
+              class="h-14 w-auto"
+            />
+          </a>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk"
+            class="inline-flex transition hover:opacity-90"
+            aria-label="Get WorshipMetrics on Google Play"
+          >
+            <img
+              src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Google_Play_Store_badge_EN.svg.png"
+              alt="Get it on Google Play"
+              loading="lazy"
+              decoding="async"
+              class="h-14 w-auto"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Related attendance guides</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          { href: "/church-attendance-tracking-software", title: "Church attendance tracking software", body: "A broader guide to in-person and online church attendance systems." },
+          { href: "/church-attendance-app", title: "Church attendance app", body: "How mobile attendance workflows support volunteers and staff beyond the desktop." },
+          { href: "/church-livestream-analytics", title: "Church livestream analytics", body: "How online attendance and livestream reporting fit into the same weekly review." },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white"><h3 class="text-lg font-semibold text-slate-900">{title}</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p><span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Read guide →</span></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">FAQ</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Common questions about church attendance tracking</h2>
+      </div>
+      <div class="mt-8 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-slate-900">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Bottom CTA -->
   <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
@@ -193,4 +735,183 @@ import Layout from "../../layouts/Layout.astro";
       </a>
     </div>
   </section>
+
+  <script>
+    (() => {
+      const sections = [
+        {
+          id: "left",
+          name: "Left section",
+          shortName: "Left",
+          rows: 5,
+          cols: 8,
+          counts: [5, 6, 6, 5, 5],
+          copy: "Greeters can tap through this section in seconds and move on, because the layout is already familiar.",
+        },
+        {
+          id: "center",
+          name: "Center section",
+          shortName: "Center",
+          rows: 8,
+          cols: 10,
+          counts: [5, 6, 7, 8, 8, 7, 6, 6],
+          copy: "The largest section still feels manageable when volunteers start with a saved template instead of a blank room.",
+        },
+        {
+          id: "right",
+          name: "Right section",
+          shortName: "Right",
+          rows: 5,
+          cols: 8,
+          counts: [5, 6, 6, 5, 5],
+          copy: "A second volunteer can confirm this side independently while the total updates across the whole sanctuary.",
+        },
+      ];
+
+      const createBaseline = (section) => {
+        const baseline = [];
+
+        for (let row = 0; row < section.rows; row += 1) {
+          const occupiedInRow = section.counts[row];
+          const start = Math.floor((section.cols - occupiedInRow) / 2);
+
+          for (let col = 0; col < section.cols; col += 1) {
+            baseline.push(col >= start && col < start + occupiedInRow);
+          }
+        }
+
+        return baseline;
+      };
+
+      const sectionState = sections.reduce((acc, section) => {
+        const baseline = createBaseline(section);
+        acc[section.id] = {
+          baseline,
+          current: [...baseline],
+        };
+        return acc;
+      }, {});
+
+      let activeSectionId = "left";
+
+      const totalCountEl = document.getElementById("seat-demo-total-count");
+      const totalPercentEl = document.getElementById("seat-demo-total-percent");
+      const activeTitleEl = document.getElementById("seat-demo-active-title");
+      const activeCopyEl = document.getElementById("seat-demo-active-copy");
+      const activeCountEl = document.getElementById("seat-demo-active-count");
+      const deltaEl = document.getElementById("seat-demo-delta");
+      const gridEl = document.getElementById("seat-demo-grid");
+      const resetButton = document.getElementById("seat-demo-reset");
+      const sectionButtons = Array.from(document.querySelectorAll("[data-seat-demo-section]"));
+
+      if (!totalCountEl || !totalPercentEl || !activeTitleEl || !activeCopyEl || !activeCountEl || !deltaEl || !gridEl || !resetButton || sectionButtons.length === 0) {
+        return;
+      }
+
+      const countFilled = (list) => list.filter(Boolean).length;
+
+      const getSection = (id) => sections.find((section) => section.id === id);
+
+      const updateSummary = () => {
+        const totals = sections.reduce(
+          (acc, section) => {
+            acc.capacity += section.rows * section.cols;
+            acc.filled += countFilled(sectionState[section.id].current);
+            acc.changed += sectionState[section.id].current.reduce((sum, occupied, index) => {
+              return sum + Number(occupied !== sectionState[section.id].baseline[index]);
+            }, 0);
+            return acc;
+          },
+          { filled: 0, capacity: 0, changed: 0 }
+        );
+
+        const percent = Math.round((totals.filled / totals.capacity) * 100);
+        totalCountEl.textContent = String(totals.filled);
+        totalPercentEl.textContent = `${percent}% of your saved layout`;
+
+        sections.forEach((section) => {
+          const filled = countFilled(sectionState[section.id].current);
+          const capacity = section.rows * section.cols;
+          const sectionPercent = (filled / capacity) * 100;
+          const countEl = document.querySelector(`[data-seat-demo-count="${section.id}"]`);
+          const barEl = document.querySelector(`[data-seat-demo-bar="${section.id}"]`);
+
+          if (countEl) countEl.textContent = `${filled}/${capacity}`;
+          if (barEl) barEl.style.width = `${sectionPercent}%`;
+        });
+
+        if (totals.changed === 0) {
+          deltaEl.textContent = "No changes from the saved baseline yet. Tap seats to simulate what a volunteer sees on Sunday.";
+        } else if (totals.changed === 1) {
+          deltaEl.textContent = "1 seat has changed from the saved baseline. Volunteers confirm what is different instead of recounting the whole room.";
+        } else {
+          deltaEl.textContent = `${totals.changed} seats have changed from the saved baseline. That is the whole point of templates: confirm exceptions, not every seat.`;
+        }
+      };
+
+      const renderActiveSection = () => {
+        const section = getSection(activeSectionId);
+        if (!section) return;
+
+        const state = sectionState[section.id];
+        const capacity = section.rows * section.cols;
+        const filled = countFilled(state.current);
+
+        activeTitleEl.textContent = section.name;
+        activeCopyEl.textContent = section.copy;
+        activeCountEl.textContent = `${filled}/${capacity}`;
+        gridEl.innerHTML = "";
+        gridEl.style.gridTemplateColumns = `repeat(${section.cols}, minmax(0, 1fr))`;
+
+        const aisleAfter = Math.floor(section.cols / 2) - 1;
+
+        state.current.forEach((occupied, index) => {
+          const seat = document.createElement("button");
+          const changed = occupied !== state.baseline[index];
+          const row = Math.floor(index / section.cols);
+          const col = index % section.cols;
+
+          seat.type = "button";
+          seat.className = "seat-demo-seat";
+          seat.setAttribute("aria-pressed", occupied ? "true" : "false");
+          seat.setAttribute("aria-label", `${section.shortName} row ${row + 1}, seat ${col + 1}`);
+
+          if (occupied) seat.classList.add("is-occupied");
+          if (changed) seat.classList.add("is-changed");
+          if (col === aisleAfter) seat.style.marginRight = "0.9rem";
+
+          seat.addEventListener("click", () => {
+            state.current[index] = !state.current[index];
+            renderActiveSection();
+            updateSummary();
+          });
+
+          gridEl.appendChild(seat);
+        });
+
+        sectionButtons.forEach((button) => {
+          button.classList.toggle("is-active", button.getAttribute("data-seat-demo-section") === section.id);
+        });
+      };
+
+      sectionButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          activeSectionId = button.getAttribute("data-seat-demo-section") || activeSectionId;
+          renderActiveSection();
+          updateSummary();
+        });
+      });
+
+      resetButton.addEventListener("click", () => {
+        sections.forEach((section) => {
+          sectionState[section.id].current = [...sectionState[section.id].baseline];
+        });
+        renderActiveSection();
+        updateSummary();
+      });
+
+      renderActiveSection();
+      updateSummary();
+    })();
+  </script>
 </Layout>

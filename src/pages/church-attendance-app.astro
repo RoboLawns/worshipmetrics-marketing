@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const OG_IMAGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/Worship%20Metrics%20Works%20on%20All%20Your%20Devices.jpg";
+const faqItems = [
+  {
+    question: "What is a church attendance app?",
+    answer: "A church attendance app helps leaders and volunteers track attendance from phones or tablets instead of relying on paper counts or disconnected spreadsheets.",
+  },
+  {
+    question: "Does WorshipMetrics have a church attendance app?",
+    answer: "Yes. WorshipMetrics supports mobile workflows for attendance, check-ins, and ministry updates, including dedicated tablet workflows and mobile apps for teams on the go.",
+  },
+  {
+    question: "Can volunteers use the app during service?",
+    answer: "Yes. Volunteers can use WorshipMetrics mobile workflows for quick counting, attendance confirmation, and related ministry tasks during service.",
+  },
+  {
+    question: "Can the app work with the rest of the system?",
+    answer: "Yes. Attendance entered in the app connects to the same WorshipMetrics platform used for guests, follow-up, reporting, and hardware workflows.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    name: "WorshipMetrics Church Attendance App",
+    operatingSystem: "iOS, Android",
+    applicationCategory: "BusinessApplication",
+    url: `${SITE_URL}/church-attendance-app`,
+    image: OG_IMAGE,
+    description: "Church attendance app for mobile counting, check-ins, volunteer workflows, and connected church reporting.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  },
+];
+---
+
+<Layout
+  title="Church Attendance App"
+  description="Church attendance app for mobile counting, check-ins, volunteer workflows, and connected church reporting."
+  canonical="/church-attendance-app"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Church attendance app</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">A church attendance app your team can use from anywhere.</h1>
+      <p class="mt-6 text-lg text-slate-600 sm:text-xl">Track attendance, run volunteer workflows, and stay connected to ministry updates from iPhone, Android, and tablet devices.</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/platform/attendance" class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-700">See attendance workflows</a>
+        <a href="/tablet" class="rounded-xl border border-slate-300 px-8 py-3 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">See the tablet</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 pb-8 sm:px-6 lg:px-8"><div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2"><div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"><img src={OG_IMAGE} alt="Church attendance app across devices" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" /></div><div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"><img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/Sync%20with%20multiple%20tablets.jpg" alt="Church attendance app synced across tablets" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" /></div></div></section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8"><div class="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">{[["Use it on the devices you already carry","Church teams need mobile attendance tools that work from phones and tablets, not only from one office computer."],["Support volunteers in the room","Volunteers can count, confirm, or check in people while staying connected to the same platform your staff uses."],["Keep ministry data connected","The attendance app becomes more valuable when it feeds guests, follow-up, and weekly reporting in the same system."]].map(([title, body]) => (<div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"><h2 class="text-xl font-bold text-slate-900">{title}</h2><p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p></div>))}</div></section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8"><div class="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">{[{ href: "/platform/attendance", title: "Attendance tracking", body: "See the complete church attendance workflow beyond the app itself." },{ href: "/tablet", title: "Church check-in tablet", body: "Compare mobile app workflows with the dedicated tablet option for staffed stations." },{ href: "/church-attendance-tracking-software", title: "Attendance tracking software", body: "See the larger platform that connects mobile attendance to reporting and follow-up." }].map(({ href, title, body }) => (<a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white"><h3 class="text-lg font-semibold text-slate-900">{title}</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p><span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span></a>))}</div></section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8"><div class="mx-auto max-w-4xl"><div class="text-center"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">FAQ</p><h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Questions churches ask about attendance apps</h2></div><div class="mt-8 space-y-4">{faqItems.map(({ question, answer }) => (<details class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><summary class="cursor-pointer list-none text-lg font-semibold text-slate-900">{question}</summary><p class="mt-3 text-sm leading-relaxed text-slate-600">{answer}</p></details>))}</div></div></section>
+</Layout>

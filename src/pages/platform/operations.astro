@@ -1,10 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 ---
 
 <Layout
-  title="Operations & Team"
-  description="Volunteer roles, permissions, multi-campus tools, and device management in one operations workflow."
+  title="Church Volunteer Management and Operations"
+  description="Manage church volunteers, permissions, campuses, and device workflows in one operations system built for ministry teams."
   canonical="/platform/operations"
 >
   <!-- Hero -->
@@ -43,6 +45,88 @@ import Layout from "../../layouts/Layout.astro";
           <p class="mt-2 text-sm text-slate-500 leading-relaxed">{body}</p>
         </div>
       ))}
+    </div>
+  </section>
+
+  <!-- Team visuals -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.9fr)]">
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img
+            src={`${R2}/homepage/Team%20Collaboration%20hero.jpg`}
+            alt="Team collaboration view in WorshipMetrics"
+            loading="lazy"
+            decoding="async"
+            class="aspect-[16/10] w-full object-cover"
+          />
+          <div class="p-6 sm:p-8">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Operations workflow</p>
+            <h2 class="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl">
+              Bring your whole team into the same system without giving everyone the same access.
+            </h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+              Invite volunteers, assign roles, and keep campus-level visibility clear so every team member sees what helps them serve well.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-6">
+          {[
+            {
+              title: "Invite the right team members",
+              body: "Onboard new staff and volunteers quickly with role-aware invitations.",
+              src: `${R2}/homepage/Invite%20Team%20Member.jpg`,
+              alt: "Invite team member workflow in WorshipMetrics",
+            },
+            {
+              title: "See every campus from one view",
+              body: "Leadership can compare locations while campus teams stay focused on their own work.",
+              src: `${R2}/homepage/Church%20Viewer.jpg`,
+              alt: "Multi-campus church viewer in WorshipMetrics",
+            },
+          ].map(({ title, body, src, alt }) => (
+            <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <img src={src} alt={alt} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+              <div class="p-6">
+                <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related guides -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          {
+            href: "/church-digital-signage-software",
+            title: "Church digital signage software",
+            body: "See how churches manage lobby displays and in-building communication from one connected workflow.",
+          },
+          {
+            href: "/church-check-in-tablet",
+            title: "Church check-in tablet",
+            body: "See how a dedicated tablet fits check-in, guest capture, and volunteer operations.",
+          },
+          {
+            href: "/church-attendance-tracking-software",
+            title: "Church attendance tracking software",
+            body: "Explore how operations, volunteers, and attendance reporting connect across the platform.",
+          },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Read guide →</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

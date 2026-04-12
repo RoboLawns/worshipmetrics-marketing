@@ -7,18 +7,61 @@ interface Props {
   title: string;
   description?: string;
   canonical?: string;
+  ogImage?: string;
+  robots?: string;
+  structuredData?: unknown | unknown[];
 }
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL  = "https://app.worshipmetrics.com";
+const DEFAULT_OG_IMAGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/WorshipMetrics%20Hero%20New.jpg";
 
 const {
   title,
   description = "WorshipMetrics — attendance tracking, visitor follow-up, and digital engagement tools built for churches.",
   canonical,
+  ogImage = DEFAULT_OG_IMAGE,
+  robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+  structuredData: pageStructuredData = [],
 } = Astro.props;
 
 const canonicalUrl = canonical ? `${SITE_URL}${canonical}` : Astro.url.href;
+const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
+const pageTitle = `${title} | WorshipMetrics`;
+
+const sharedStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "WorshipMetrics",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "WorshipMetrics",
+    url: SITE_URL,
+    description,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: pageTitle,
+    url: canonicalUrl,
+    description,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "WorshipMetrics",
+      url: SITE_URL,
+    },
+  },
+];
+
+const structuredData = [
+  ...sharedStructuredData,
+  ...(Array.isArray(pageStructuredData) ? pageStructuredData : [pageStructuredData]).filter(Boolean),
+];
 ---
 
 <!doctype html>
@@ -28,23 +71,27 @@ const canonicalUrl = canonical ? `${SITE_URL}${canonical}` : Astro.url.href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
-    <title>{title} | WorshipMetrics</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={canonicalUrl} />
 
     <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="WorshipMetrics" />
     <meta property="og:url"         content={canonicalUrl} />
-    <meta property="og:title"       content={`${title} | WorshipMetrics`} />
+    <meta property="og:title"       content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image"       content={`${SITE_URL}/og-image.png`} />
+    <meta property="og:image"       content={ogImageUrl} />
+    <meta property="og:image:alt"   content={pageTitle} />
 
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content={`${title} | WorshipMetrics`} />
+    <meta name="twitter:title"       content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image"       content={`${SITE_URL}/og-image.png`} />
+    <meta name="twitter:image"       content={ogImageUrl} />
 
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="app-url" content={APP_URL} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
 
     <!-- Google Ads tag — loads on every page for remarketing + conversion measurement -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18048317342"></script>

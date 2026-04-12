@@ -1,5 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 ---
 
 <Layout
@@ -28,6 +30,30 @@ import Layout from "../../layouts/Layout.astro";
         >
           Book a discovery call
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community visuals -->
+  <section class="bg-slate-50 px-6 pb-8 sm:pb-12">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img
+          src={`${R2}/homepage/WorshipMetrics%20Discord%20Setup.jpg`}
+          alt="WorshipMetrics Discord community setup"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[16/10] w-full object-cover"
+        />
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img
+          src={`${R2}/homepage/Discord%20for%20Worship.jpg`}
+          alt="Discord community for worship ministry"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[16/10] w-full object-cover"
+        />
       </div>
     </div>
   </section>

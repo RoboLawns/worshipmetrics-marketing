@@ -1,0 +1,161 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const OG_IMAGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg";
+const faqItems = [
+  {
+    question: "What is a church check-in tablet used for?",
+    answer: "A church check-in tablet is used for welcome desk workflows, guest capture, attendance counting, QR check-in, and other volunteer-driven ministry tasks on Sundays.",
+  },
+  {
+    question: "Is the WorshipMetrics Tablet only for attendance?",
+    answer: "No. The WorshipMetrics Tablet supports check-in, guest capture, seat counting, and related volunteer workflows across multiple ministry touchpoints.",
+  },
+  {
+    question: "Can a church use multiple tablets together?",
+    answer: "Yes. WorshipMetrics offers a Church Kit with three synchronized tablets for churches that want multiple staffed stations.",
+  },
+  {
+    question: "Does the church check-in tablet include software?",
+    answer: "Yes. The tablet includes a free Essentials plan so churches can begin using the workflow quickly.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "WorshipMetrics Church Check-In Tablet",
+    brand: { "@type": "Brand", name: "WorshipMetrics" },
+    image: [OG_IMAGE],
+    description: "Church check-in tablet for attendance, guest capture, and volunteer workflows.",
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "USD",
+      lowPrice: "349",
+      highPrice: "999",
+      offerCount: "2",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/tablet`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  },
+];
+---
+
+<Layout
+  title="Church Check-In Tablet"
+  description="Church check-in tablet for welcome desk workflows, guest capture, attendance counting, and volunteer ministry stations."
+  canonical="/church-check-in-tablet"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-slate-900 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-400">Church check-in tablet</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">A church check-in tablet built for volunteers, not IT teams.</h1>
+      <p class="mt-6 text-lg text-slate-300 sm:text-xl">Use the WorshipMetrics Tablet for church check-in, guest capture, attendance counting, and front-door ministry workflows that need to move fast on Sunday.</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/tablet" class="rounded-xl bg-white px-8 py-3 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50">See tablet details</a>
+        <a href="/pricing" class="rounded-xl border border-indigo-400 px-8 py-3 text-base font-semibold text-white transition hover:border-white">Compare pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={OG_IMAGE} alt="Church check-in tablet from WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/tablet/Sync%20with%20multiple%20tablets.jpg" alt="Multiple church check-in tablets working together" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
+      {[
+        ["Check in guests quickly", "Use the tablet at the welcome desk to capture guest information and keep the front door moving."],
+        ["Run attendance workflows", "Give volunteers a simple device for seat counting, head counting, or attendance confirmation during service."],
+        ["Deploy one or many stations", "Start with one tablet or use a synchronized church kit when your team needs multiple staffed positions."],
+      ].map(([title, body]) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h2 class="text-xl font-bold text-slate-900">{title}</h2>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Why churches look for a dedicated check-in tablet</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {[
+          ["Less friction", "Volunteers should not have to use a generic laptop or juggle multiple apps just to welcome people well."],
+          ["Faster training", "A dedicated workflow makes it easier to onboard greeters, children's volunteers, and front-desk staff."],
+          ["Connected data", "Check-in, attendance, and guest capture all flow back into the same WorshipMetrics system."],
+        ].map(([title, body]) => (
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-8">
+            <h3 class="text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-2xl font-bold text-slate-900 sm:text-3xl">Related pages</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          { href: "/tablet", title: "Full tablet page", body: "See pricing, specs, and package options for the WorshipMetrics Tablet." },
+          { href: "/platform/people", title: "Guest capture and follow-up", body: "See how the tablet connects to the people workflow after a first-time visit." },
+          { href: "/platform/attendance", title: "Attendance tracking", body: "Use the tablet as part of the broader church attendance tracking workflow." },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-50/20">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">FAQ</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Questions churches ask about check-in tablets</h2>
+      </div>
+      <div class="mt-8 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-slate-900">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold text-white">See whether the church check-in tablet fits your team.</h2>
+      <p class="mt-4 text-indigo-200">We can help you decide whether one tablet, multiple stations, or a different workflow makes the most sense for your church.</p>
+      <a href="/discovery-call" class="mt-8 inline-block rounded-xl bg-white px-8 py-3 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50">Book a discovery call</a>
+    </div>
+  </section>
+</Layout>

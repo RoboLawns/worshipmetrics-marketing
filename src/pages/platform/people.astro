@@ -1,11 +1,44 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const SITE_URL = "https://worshipmetrics.com";
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "WorshipMetrics People and Follow-Up",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, iOS, Android",
+    url: `${SITE_URL}/platform/people`,
+    image: `${SITE_URL}/legacy-images/welcome-capture-wide.jpg`,
+    description: "Capture church guests, scan welcome cards, route prayer requests, and organize visitor follow-up in one connected workflow.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Platform", item: `${SITE_URL}/platform` },
+      { "@type": "ListItem", position: 3, name: "People", item: `${SITE_URL}/platform/people` },
+    ],
+  },
+];
 ---
 
 <Layout
-  title="People & Follow-up"
-  description="Guest capture, prayer routing, visitor records, and member care — all connected in one people workflow."
+  title="Church Visitor Follow-Up and Guest Capture"
+  description="Capture church guests, scan welcome cards, route prayer requests, and organize visitor follow-up in one connected people workflow."
   canonical="/platform/people"
+  ogImage="/legacy-images/welcome-capture-wide.jpg"
+  structuredData={structuredData}
 >
   <!-- Hero -->
   <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-16 sm:px-6 lg:px-8">
@@ -43,6 +76,48 @@ import Layout from "../../layouts/Layout.astro";
           <p class="mt-2 text-sm text-slate-500 leading-relaxed">{body}</p>
         </div>
       ))}
+    </div>
+  </section>
+
+  <!-- Visual workflow -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">People workflow</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          From first response to faithful follow-up.
+        </h2>
+      </div>
+      <div class="grid gap-6 lg:grid-cols-3">
+        {[
+          {
+            title: "Scan paper welcome cards",
+            body: "Bring handwritten guest info into WorshipMetrics in seconds instead of after-hours data entry.",
+            src: `${R2}/tablet/Auto-Scan%20Welcome%20Cards.jpg`,
+            alt: "Auto scanning welcome cards in WorshipMetrics",
+          },
+          {
+            title: "Capture QR responses instantly",
+            body: "Phone-first guests can respond in the moment and create a people record immediately.",
+            src: `${R2}/tablet/QR%20Code%20Scanning.jpg`,
+            alt: "QR code scanning workflow in WorshipMetrics",
+          },
+          {
+            title: "See the pastoral picture sooner",
+            body: "Attendance signals, prayer needs, and guest history come together in one care workflow.",
+            src: `${R2}/tablet/Pastoral%20Care%202.jpg`,
+            alt: "Pastoral care dashboard in WorshipMetrics",
+          },
+        ].map(({ title, body, src, alt }) => (
+          <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <img src={src} alt={alt} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -120,6 +195,52 @@ import Layout from "../../layouts/Layout.astro";
               <p class="mt-1 text-sm text-slate-600 leading-relaxed">{body}</p>
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related pages -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          {
+            href: "/platform/attendance",
+            title: "Attendance tracking",
+            body: "Connect guests and absences to the weekly attendance picture your leaders already review.",
+          },
+          {
+            href: "/solutions/digital-engagement",
+            title: "Digital engagement",
+            body: "Carry visitor follow-up from the lobby to your livestream, prayer requests, and website outreach.",
+          },
+          {
+            href: "/pricing",
+            title: "See plan options",
+            body: "Compare plans for church guest capture, follow-up, and member-care workflows.",
+          },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Related people guides</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          { href: "/church-visitor-follow-up-software", title: "Church visitor follow-up software", body: "See the software-focused guide for guest capture and follow-up workflows." },
+          { href: "/church-guest-follow-up-system", title: "Church guest follow-up system", body: "See the system-focused guide for building a repeatable guest response process." },
+          { href: "/solutions/digital-engagement", title: "Digital engagement", body: "Connect online responses and digital attention to the same people workflow." },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-50/20"><h3 class="text-lg font-semibold text-slate-900">{title}</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p><span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Read guide →</span></a>
         ))}
       </div>
     </div>

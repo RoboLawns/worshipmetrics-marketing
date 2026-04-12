@@ -1,5 +1,9 @@
 ---
 const APP_URL = "https://app.worshipmetrics.com";
+const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170";
+const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
+const APP_STORE_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Download_on_the_App_Store_Badge.svg.png";
+const GOOGLE_PLAY_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Google_Play_Store_badge_EN.svg.png";
 const year = new Date().getFullYear();
 
 const cols = [
@@ -43,14 +47,46 @@ const cols = [
     background: #f7f8fc;
     padding: 3.5rem 1.5rem 2rem;
   }
+  .footer-app-band {
+    max-width: 80rem; margin: 0 auto 2rem;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 1.75rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(129, 140, 248, 0.18);
+    background: linear-gradient(135deg, #0f172a 0%, #312e81 55%, #0f172a 100%);
+    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
+  }
+  .footer-app-copy p:first-child {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(165, 180, 252, 0.92); margin-bottom: 0.5rem;
+  }
+  .footer-app-copy h3 {
+    font-size: clamp(1.35rem, 2.4vw, 2rem); font-weight: 800; line-height: 1.15;
+    color: #fff; margin-bottom: 0.5rem;
+  }
+  .footer-app-copy p:last-child {
+    font-size: 0.92rem; line-height: 1.7; color: rgba(226, 232, 240, 0.82); max-width: 40rem;
+  }
+  .footer-app-badges {
+    display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: flex-end;
+  }
+  .footer-app-badges a { display: inline-flex; transition: opacity 0.15s, transform 0.15s; }
+  .footer-app-badges a:hover { opacity: 0.92; transform: translateY(-1px); }
+  .footer-app-badges img { height: 3.5rem; width: auto; display: block; }
   .footer-inner {
     max-width: 80rem; margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr repeat(5, 1fr);
     gap: 2rem;
   }
+  @media (max-width: 900px) {
+    .footer-app-band { grid-template-columns: 1fr; }
+    .footer-app-badges { justify-content: flex-start; }
+  }
   @media (max-width: 1023px) { .footer-inner { grid-template-columns: repeat(3, 1fr); } .brand-col { grid-column: 1 / -1; } }
   @media (max-width: 639px)  { .footer-inner { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 639px)  { .footer-app-badges img { height: 3rem; } }
 
   .brand-col { display: flex; flex-direction: column; gap: 0.75rem; }
   .brand-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
@@ -75,6 +111,24 @@ const cols = [
 </style>
 
 <footer>
+  <div class="footer-app-band">
+    <div class="footer-app-copy">
+      <p>WorshipMetrics apps</p>
+      <h3>Download for iOS or Android and take WorshipMetrics with you.</h3>
+      <p>
+        Free today for check-ins, attendance workflows, and ministry updates from anywhere your team serves.
+      </p>
+    </div>
+    <div class="footer-app-badges">
+      <a href={IOS_APP_URL} aria-label="Download WorshipMetrics on the App Store">
+        <img src={APP_STORE_BADGE} alt="Download on the App Store" loading="lazy" decoding="async" />
+      </a>
+      <a href={ANDROID_APP_URL} aria-label="Get WorshipMetrics on Google Play">
+        <img src={GOOGLE_PLAY_BADGE} alt="Get it on Google Play" loading="lazy" decoding="async" />
+      </a>
+    </div>
+  </div>
+
   <div class="footer-inner">
     <div class="brand-col">
       <a href="/" class="brand-logo">

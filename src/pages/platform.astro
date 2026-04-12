@@ -1,10 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 ---
 
 <Layout
-  title="Platform Features"
-  description="Track attendance, capture visitors, surface pastoral insights, and coordinate your team — all in one place."
+  title="Church Management Platform for Attendance and Follow-Up"
+  description="Track church attendance, capture guests, coordinate volunteers, and surface pastoral follow-up insights in one connected platform."
   canonical="/platform"
 >
   <!-- Hero -->
@@ -48,6 +50,83 @@ import Layout from "../layouts/Layout.astro";
           <p class="mt-1 text-sm text-slate-500">{body}</p>
         </div>
       ))}
+    </div>
+  </section>
+
+  <!-- Platform walkthrough -->
+  <section class="px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Platform walkthrough</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          See the workflow your team actually uses.
+        </h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2">
+        {[
+          {
+            title: "Attendance that matches the room",
+            body: "Volunteers count inside a familiar seat template instead of starting from scratch every week.",
+            href: "/platform/attendance",
+            src: `${R2}/tablet/New%20Seat%20Counting%20Layout.jpg`,
+            alt: "WorshipMetrics seat counting layout",
+          },
+          {
+            title: "Welcome capture without data entry",
+            body: "Scan cards and bring first-time guest details into the same system your staff already uses.",
+            href: "/platform/people",
+            src: `${R2}/tablet/Auto-Scan%20Welcome%20Cards.jpg`,
+            alt: "WorshipMetrics welcome card scanning",
+          },
+          {
+            title: "Role-based team workflows",
+            body: "Give volunteers and staff the right screens for the role they serve in this week.",
+            href: "/platform/operations",
+            src: `${R2}/tablet/Team%20Collaboration.jpg`,
+            alt: "Team collaboration inside WorshipMetrics",
+          },
+          {
+            title: "Pastoral follow-up with context",
+            body: "See the attendance and people signals that matter before Monday conversations begin.",
+            href: "/platform/people",
+            src: `${R2}/tablet/Pastoral%20Care%202.jpg`,
+            alt: "Pastoral care workflow in WorshipMetrics",
+          },
+        ].map(({ title, body, href, src, alt }) => (
+          <a href={href} class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:border-indigo-300 hover:shadow-md">
+            <img src={src} alt={alt} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-slate-900 group-hover:text-indigo-700">{title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+              <span class="mt-4 inline-block text-sm font-semibold text-indigo-600 group-hover:underline">Learn more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular guides -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Popular guides</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Explore the specific workflows churches compare most.</h2>
+      </div>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          { href: "/church-attendance-tracking-software", title: "Attendance tracking software", body: "A focused guide to church attendance workflows, volunteer counting, and online reporting." },
+          { href: "/church-visitor-follow-up-software", title: "Visitor follow-up software", body: "How guest capture, prayer requests, and follow-up fit together in one system." },
+          { href: "/church-check-in-tablet", title: "Church check-in tablet", body: "A dedicated guide to tablet-based check-in, attendance, and guest workflows." },
+          { href: "/church-digital-signage-software", title: "Digital signage software", body: "How churches manage lobby displays and signage with less friction." },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Read guide →</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

@@ -2,14 +2,39 @@
 import Layout from "../layouts/Layout.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
 const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW   = `${R2}/homepage/new%20images`;
+const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170";
+const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
+const APP_STORE_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Download_on_the_App_Store_Badge.svg.png";
+const GOOGLE_PLAY_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Google_Play_Store_badge_EN.svg.png";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, iOS, Android",
+  url: SITE_URL,
+  image: `${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`,
+  description: "Church attendance tracking, visitor follow-up, digital engagement, signage, and volunteer workflows in one platform.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/pricing`,
+  },
+};
 ---
 
 <Layout
-  title="The Church Technology Partner"
-  description="WorshipMetrics is your church's technology partner — from automatic attendance and AV monitoring to livestream health, digital signage, volunteer tools, and online reach. Built by worship leaders, for worship leaders."
+  title="Church Attendance Tracking Software and Digital Engagement"
+  description="WorshipMetrics helps churches track attendance, capture visitors, monitor livestream health, manage digital signage, and turn online engagement into follow-up."
   canonical="/"
+  ogImage={`${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`}
+  structuredData={structuredData}
 >
 <style>
   /* ── Shared rhythm ─────────────────────────────────── */
@@ -57,6 +82,39 @@ const R2NEW   = `${R2}/homepage/new%20images`;
   }
   .hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 0.9rem; }
   .hero-fine  { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 3rem; }
+
+  .hero-app-band {
+    max-width: 48rem; margin: 0 auto 3rem;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.25rem;
+    align-items: center;
+    padding: 1.35rem 1.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(129, 140, 248, 0.16);
+    background: linear-gradient(135deg, #0f172a 0%, #312e81 55%, #0f172a 100%);
+    box-shadow: 0 20px 50px rgba(15,26,46,0.14);
+    text-align: left;
+  }
+  .hero-app-copy p:first-child {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(165, 180, 252, 0.94); margin-bottom: 0.45rem;
+  }
+  .hero-app-copy h2 {
+    font-size: clamp(1.2rem, 2.4vw, 1.7rem); font-weight: 800;
+    color: #fff; line-height: 1.15; margin-bottom: 0.5rem;
+  }
+  .hero-app-copy p:last-child {
+    font-size: 0.92rem; line-height: 1.7; color: rgba(226,232,240,0.82);
+  }
+  .hero-app-badges {
+    display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end;
+  }
+  .hero-app-badges a { display: inline-flex; transition: opacity 0.15s, transform 0.15s; }
+  .hero-app-badges a:hover { opacity: 0.92; transform: translateY(-1px); }
+  .hero-app-badges img { height: 3.5rem; width: auto; display: block; }
+  @media (max-width: 760px) {
+    .hero-app-band { grid-template-columns: 1fr; text-align: center; }
+    .hero-app-badges { align-items: center; }
+  }
 
   .hero-img-wrap {
     max-width: 64rem; margin: 0 auto;
@@ -119,6 +177,12 @@ const R2NEW   = `${R2}/homepage/new%20images`;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
   .eco-card:hover { border-color: var(--primary-border); box-shadow: 0 8px 28px rgba(67,97,238,0.09); transform: translateY(-2px); }
+  .eco-card-media {
+    aspect-ratio: 16 / 10; overflow: hidden; border-radius: 0.9rem;
+    border: 1px solid var(--border); margin-bottom: 0.4rem;
+    background: #eef2ff;
+  }
+  .eco-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .eco-label {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--text-muted);
@@ -285,6 +349,24 @@ const R2NEW   = `${R2}/homepage/new%20images`;
       <a href="/appliance" class="btn-outline">See the Hub</a>
     </div>
     <p class="hero-fine">Free forever. Upgrade when you're ready.</p>
+
+    <div class="hero-app-band">
+      <div class="hero-app-copy">
+        <p>iOS + Android apps</p>
+        <h2>Download WorshipMetrics and keep your church workflow in your pocket.</h2>
+        <p>
+          Free today for check-ins, attendance workflows, and ministry updates from anywhere.
+        </p>
+      </div>
+      <div class="hero-app-badges">
+        <a href={IOS_APP_URL} aria-label="Download WorshipMetrics on the App Store">
+          <img src={APP_STORE_BADGE} alt="Download on the App Store" loading="eager" decoding="async" />
+        </a>
+        <a href={ANDROID_APP_URL} aria-label="Get WorshipMetrics on Google Play">
+          <img src={GOOGLE_PLAY_BADGE} alt="Get it on Google Play" loading="eager" decoding="async" />
+        </a>
+      </div>
+    </div>
   </div>
 
   <div class="hero-img-wrap">
@@ -384,6 +466,29 @@ const R2NEW   = `${R2}/homepage/new%20images`;
   </div>
 </section>
 
+<section class="section section-alt">
+  <div class="inner">
+    <p class="eyebrow eyebrow-center">Popular searches</p>
+    <h2 class="h2-center">Explore the workflows churches search for most.</h2>
+    <p class="sub-center">These focused guides help explain where WorshipMetrics fits before you dive into the full platform.</p>
+    <div class="eco-grid">
+      {[
+        { href: "/church-attendance-tracking-software", title: "Church attendance tracking software", desc: "Track in-person and online attendance, seat counts, and follow-up signals in one workflow." },
+        { href: "/church-visitor-follow-up-software", title: "Church visitor follow-up software", desc: "Capture guests, route prayer requests, and organize follow-up without losing context." },
+        { href: "/church-check-in-tablet", title: "Church check-in tablet", desc: "See how a dedicated tablet helps welcome desks, guest capture, and volunteer attendance workflows." },
+        { href: "/church-digital-signage-software", title: "Church digital signage software", desc: "Manage welcome screens, lobby displays, and announcements from one connected system." },
+      ].map(({ href, title, desc }) => (
+        <a href={href} class="eco-card">
+          <div class="eco-label">Guide</div>
+          <div class="eco-title">{title}</div>
+          <div class="eco-desc">{desc}</div>
+          <div class="eco-link">Read guide →</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════════════════════
      HUB
 ════════════════════════════════════════════════════ -->
@@ -433,14 +538,17 @@ const R2NEW   = `${R2}/homepage/new%20images`;
 
     <div class="eco-grid">
       {[
-        { label:"Attendance", title:"Automatic counting + insights", desc:"Auto-Count, seat templates, and Luminos AI turn Sunday numbers into Monday pastoral action.", href:"/platform/attendance" },
-        { label:"People",     title:"Guest capture + follow-up",    desc:"Welcome cards, QR codes, prayer routing, and absence alerts — all connected.", href:"/platform/people" },
-        { label:"AV + Production", title:"Stream health + remote control", desc:"AV monitoring, PTZ camera control, OBS and vMix switching from anywhere in the world.", href:"/appliance" },
-        { label:"Digital Signage — Free", title:"Free lobby displays",     desc:"Manage every screen from your phone. No fees. Ever.", href:"/platform/operations", badge:"Free" },
-        { label:"Worship Clips",   title:"Sermon → social content", desc:"Automatic clips for Reels, Shorts, TikTok, and Facebook. No editing required.", href:"/solutions/worship-clips" },
-        { label:"Community",  title:"All-week digital campus",      desc:"Discord-based community with YouTube chat sync and member onboarding.", href:"/solutions/church-community-platform" },
-      ].map(({ label, title, desc, href, badge }) => (
+        { label:"Attendance", title:"Automatic counting + insights", desc:"Auto-Count, seat templates, and Luminos AI turn Sunday numbers into Monday pastoral action.", href:"/platform/attendance", image:`${R2}/tablet/New%20Seat%20Counting%20Layout.jpg`, alt:"Seat counting layout inside WorshipMetrics" },
+        { label:"People",     title:"Guest capture + follow-up",    desc:"Welcome cards, QR codes, prayer routing, and absence alerts — all connected.", href:"/platform/people", image:`${R2}/tablet/Auto-Scan%20Welcome%20Cards.jpg`, alt:"Welcome card scanning in WorshipMetrics" },
+        { label:"AV + Production", title:"Stream health + remote control", desc:"AV monitoring, PTZ camera control, OBS and vMix switching from anywhere in the world.", href:"/appliance", image:`${R2NEW}/Stream%20Health.jpg`, alt:"WorshipMetrics stream health monitoring" },
+        { label:"Digital Signage — Free", title:"Free lobby displays",     desc:"Manage every screen from your phone. No fees. Ever.", href:"/platform/operations", badge:"Free", image:`${R2NEW}/Church%20Digital%20Signage.jpg`, alt:"Church digital signage managed by WorshipMetrics" },
+        { label:"Worship Clips",   title:"Sermon → social content", desc:"Automatic clips for Reels, Shorts, TikTok, and Facebook. No editing required.", href:"/solutions/worship-clips", image:`${R2}/homepage/Worship%20Clips%20Hero%202.jpg`, alt:"Worship Clips editing and publishing interface" },
+        { label:"Community",  title:"All-week digital campus",      desc:"Discord-based community with YouTube chat sync and member onboarding.", href:"/solutions/church-community-platform", image:`${R2}/homepage/WorshipMetrics%20Discord%20Setup.jpg`, alt:"WorshipMetrics Discord community setup" },
+      ].map(({ label, title, desc, href, badge, image, alt }) => (
         <a href={href} class="eco-card">
+          <div class="eco-card-media">
+            <img src={image} alt={alt} loading="lazy" decoding="async" />
+          </div>
           <div class="eco-label">{label}</div>
           <div class="eco-title">{title} {badge && <span class="eco-badge">{badge}</span>}</div>
           <div class="eco-desc">{desc}</div>
