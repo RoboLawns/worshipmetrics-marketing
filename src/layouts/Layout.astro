@@ -32,22 +32,18 @@ const canonicalUrl = canonical ? `${SITE_URL}${canonical}` : Astro.url.href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Open Graph -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content={canonicalUrl} />
     <meta property="og:title"       content={`${title} | WorshipMetrics`} />
     <meta property="og:description" content={description} />
     <meta property="og:image"       content={`${SITE_URL}/og-image.png`} />
 
-    <!-- Twitter -->
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={`${title} | WorshipMetrics`} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={`${SITE_URL}/og-image.png`} />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo.png" />
-
     <meta name="app-url" content={APP_URL} />
   </head>
   <body class="flex min-h-screen flex-col antialiased">

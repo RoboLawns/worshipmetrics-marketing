@@ -11,211 +11,299 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
   canonical="/"
 >
 <style>
-  /* ── Hero ── */
+  /* ── Shared section rhythm ────────────────────── */
+  .section     { padding: 5rem 1.5rem; }
+  .section-alt { background: var(--bg-soft); }
+  .inner       { max-width: 72rem; margin: 0 auto; }
+  .inner-sm    { max-width: 48rem; margin: 0 auto; }
+
+  .section-eyebrow { text-align: center; margin-bottom: 0.4rem; }
+  .section-title   {
+    font-size: clamp(1.65rem, 3vw, 2.4rem);
+    font-weight: 800; text-align: center;
+    color: var(--text); margin-bottom: 0.75rem; line-height: 1.15;
+  }
+  .section-sub { text-align: center; color: var(--text-muted); font-size: 1rem; max-width: 40rem; margin: 0 auto 3rem; line-height: 1.7; }
+
+  /* ── Hero ─────────────────────────────────────── */
   .hero {
-    position: relative; overflow: hidden;
-    padding: 6rem 1.5rem 5rem;
+    padding: 5.5rem 1.5rem 4rem;
     text-align: center;
+    background: linear-gradient(180deg, #eef1fd 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--border);
   }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(900px circle at 20% 0%,  rgba(107,140,255,0.18), transparent 55%),
-      radial-gradient(700px circle at 80% 10%,  rgba(46,204,143,0.10),  transparent 55%);
-    pointer-events: none;
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: #fff; border: 1.5px solid var(--primary-border);
+    color: var(--primary); border-radius: 999px;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.3rem 0.9rem; margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(67,97,238,0.1);
   }
-  .hero-inner { position: relative; max-width: 56rem; margin: 0 auto; }
-  .pill {
-    display: inline-block;
-    background: rgba(107,140,255,0.12);
-    border: 1px solid rgba(107,140,255,0.28);
-    color: #9ab0ff;
-    font-size: 0.7rem; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.3rem 0.9rem; border-radius: 999px; margin-bottom: 1.25rem;
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 800; line-height: 1.1; letter-spacing: -0.025em;
+    color: var(--text); margin-bottom: 1.25rem;
   }
-  h1 {
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
-    font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
-    margin-bottom: 1.25rem;
-  }
+  .hero h1 span { color: var(--primary); }
   .hero-sub {
-    font-size: 1.1rem; color: #8a96b3; max-width: 38rem; margin: 0 auto 2rem; line-height: 1.7;
+    font-size: 1.125rem; color: var(--text-soft);
+    max-width: 38rem; margin: 0 auto 2.25rem; line-height: 1.72;
   }
   .hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
-  .hero-fine { margin-top: 1rem; font-size: 0.8rem; color: #8a96b3; }
-  .trust-pills {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 2.5rem;
-  }
-  .trust-pill {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 999px; padding: 0.3rem 0.9rem;
-    font-size: 0.78rem; color: #8a96b3;
-  }
+  .hero-fine { margin-top: 0.9rem; font-size: 0.8rem; color: var(--text-muted); }
 
-  /* ── Hero image ── */
-  .hero-img-wrap {
-    position: relative; max-width: 64rem; margin: 3.5rem auto 0;
+  .trust-row {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem;
+    margin-top: 2.75rem;
+  }
+  .trust-chip {
+    display: flex; align-items: center; gap: 0.4rem;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 999px; padding: 0.3rem 0.85rem;
+    font-size: 0.8rem; color: var(--text-soft); font-weight: 500;
+    box-shadow: 0 1px 4px rgba(15,26,46,0.06);
+  }
+  .trust-chip svg { color: var(--primary); flex-shrink: 0; }
+
+  /* Hero screenshot */
+  .hero-img {
+    max-width: 62rem; margin: 3.5rem auto 0;
     border-radius: 1rem; overflow: hidden;
-    border: 1px solid rgba(107,140,255,0.18);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(107,140,255,0.1);
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 64px rgba(15,26,46,0.12), 0 4px 16px rgba(67,97,238,0.08);
   }
-  .hero-img-wrap img { display: block; width: 100%; height: auto; }
+  .hero-img img { display: block; width: 100%; height: auto; }
 
-  /* ── Sections ── */
-  .section { padding: 5rem 1.5rem; }
-  .section-inner { max-width: 72rem; margin: 0 auto; }
-  .section-alt { background: rgba(255,255,255,0.02); }
-
-  .section-eyebrow { text-align: center; margin-bottom: 0.5rem; }
-  .section-title {
-    font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 700;
-    text-align: center; margin-bottom: 0.75rem;
-  }
-  .section-sub { text-align: center; color: #8a96b3; font-size: 1rem; margin-bottom: 3rem; }
-
-  /* ── 3-col feature cards ── */
+  /* ── 3-col grid ───────────────────────────────── */
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .grid-3 { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .grid-3 { grid-template-columns: 1fr; } }
 
-  /* ── How it works ── */
-  .steps { display: flex; flex-direction: column; gap: 2rem; max-width: 42rem; margin: 0 auto; }
-  .step { display: flex; gap: 1.25rem; align-items: flex-start; }
+  .feature-card {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: var(--radius-card); padding: 1.75rem;
+    text-decoration: none; display: block;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .feature-card:hover {
+    border-color: var(--primary-border);
+    box-shadow: 0 8px 28px rgba(67,97,238,0.09);
+    transform: translateY(-2px);
+  }
+  .feature-icon {
+    width: 2.6rem; height: 2.6rem; border-radius: 0.625rem;
+    background: var(--primary-light); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.9rem;
+  }
+  .feature-icon svg { width: 1.2rem; height: 1.2rem; color: var(--primary); }
+  .feature-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+  .feature-card p  { font-size: 0.875rem; color: var(--text-soft); line-height: 1.65; margin-bottom: 0.75rem; }
+  .feature-card .arrow { font-size: 0.8rem; font-weight: 700; color: var(--primary); }
+
+  /* ── Split sections ───────────────────────────── */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  @media (max-width: 768px) { .split { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .split-img {
+    border-radius: 0.875rem; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 40px rgba(15,26,46,0.1);
+  }
+  .split-img img { display: block; width: 100%; height: auto; }
+  .split-text h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 800; color: var(--text);
+    line-height: 1.2; margin-bottom: 0.75rem;
+  }
+  .split-text p   { color: var(--text-soft); line-height: 1.75; margin-bottom: 1.25rem; font-size: 0.95rem; }
+  .bullets { list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; }
+  .bullets li {
+    display: flex; align-items: flex-start; gap: 0.65rem;
+    font-size: 0.9rem; color: var(--text-soft);
+  }
+  .bullets li::before {
+    content: ''; flex-shrink: 0;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--primary); margin-top: 0.5rem;
+  }
+
+  /* ── Steps ────────────────────────────────────── */
+  .steps { display: flex; flex-direction: column; gap: 1.75rem; max-width: 40rem; margin: 0 auto; }
+  .step  { display: flex; gap: 1.25rem; align-items: flex-start; }
   .step-num {
     flex-shrink: 0; width: 2.5rem; height: 2.5rem;
     background: var(--primary); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 0.95rem; color: #fff;
-    box-shadow: 0 0 20px rgba(107,140,255,0.5);
+    font-weight: 800; font-size: 0.9rem; color: #fff;
+    box-shadow: 0 4px 12px rgba(67,97,238,0.3);
   }
-  .step-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
-  .step-body p  { color: #8a96b3; font-size: 0.9rem; line-height: 1.65; }
+  .step-body h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+  .step-body p  { font-size: 0.875rem; color: var(--text-soft); line-height: 1.65; }
 
-  /* ── Split sections ── */
-  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-  @media (max-width: 768px) { .split { grid-template-columns: 1fr; } }
-  .split-img {
-    border-radius: 0.875rem; overflow: hidden;
-    border: 1px solid rgba(107,140,255,0.16);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+  /* ── Testimonials ─────────────────────────────── */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+  .testimonial {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: var(--radius-card); padding: 1.5rem;
   }
-  .split-img img { display: block; width: 100%; height: auto; }
-  .split-content h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.25; }
-  .split-content p  { color: #8a96b3; line-height: 1.7; margin-bottom: 1.25rem; }
-  .split-bullets { list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
-  .split-bullets li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: #c4ceee; }
-  .split-bullets li::before { content: ''; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+  .testimonial-stars { color: var(--accent); font-size: 0.875rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+  .testimonial blockquote { font-size: 0.9rem; color: var(--text-soft); line-height: 1.7; font-style: italic; }
+  .testimonial figcaption { margin-top: 1rem; font-size: 0.78rem; color: var(--text-muted); font-weight: 600; font-style: normal; }
 
-  /* ── Video ── */
+  /* ── Video ────────────────────────────────────── */
   .video-wrap {
     position: relative; padding-bottom: 56.25%; height: 0;
     border-radius: 0.875rem; overflow: hidden;
-    border: 1px solid rgba(107,140,255,0.16);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 40px rgba(15,26,46,0.1);
     margin-top: 2.5rem;
   }
   .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-  /* ── Testimonials ── */
-  .grid-3-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
-  .testimonial-card {
-    background: var(--bg-card); border: 1px solid rgba(107,140,255,0.14);
-    border-radius: 1rem; padding: 1.5rem;
+  /* ── Hardware cards ───────────────────────────── */
+  .hw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+  @media (max-width: 600px) { .hw-grid { grid-template-columns: 1fr; } }
+  .hw-card {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: var(--radius-card); overflow: hidden;
+    text-decoration: none; display: block;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
-  .testimonial-card blockquote { color: #c4ceee; line-height: 1.7; font-size: 0.9rem; }
-  .testimonial-card figcaption { margin-top: 1rem; font-size: 0.78rem; color: #8a96b3; }
+  .hw-card:hover { border-color: var(--primary-border); box-shadow: 0 8px 28px rgba(67,97,238,0.1); transform: translateY(-2px); }
+  .hw-card img   { display: block; width: 100%; height: 200px; object-fit: cover; }
+  .hw-card-body  { padding: 1.4rem; }
+  .hw-name  { font-size: 1rem; font-weight: 700; color: var(--text); }
+  .hw-price { font-size: 0.82rem; font-weight: 700; color: var(--primary); }
+  .hw-desc  { font-size: 0.85rem; color: var(--text-soft); line-height: 1.6; margin: 0.4rem 0 0.75rem; }
 
-  /* ── Bottom CTA ── */
+  /* ── CTA banner ───────────────────────────────── */
   .cta-band {
-    text-align: center; padding: 5rem 1.5rem;
-    background:
-      radial-gradient(800px circle at 50% 100%, rgba(107,140,255,0.14), transparent 60%);
-    border-top: 1px solid rgba(107,140,255,0.12);
+    background: var(--primary);
+    padding: 5rem 1.5rem;
+    text-align: center;
   }
-  .cta-band h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; }
-  .cta-band p  { color: #8a96b3; margin-bottom: 2rem; }
+  .cta-band h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
+  .cta-band p  { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 2rem; }
   .cta-band .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+  .btn-white  {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.6rem; border-radius: var(--radius-btn);
+    background: #fff; color: var(--primary);
+    font-weight: 700; font-size: 0.9rem; text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .btn-white:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.2); transform: translateY(-1px); }
+  .btn-white-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.6rem; border-radius: var(--radius-btn);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff; background: transparent;
+    font-weight: 700; font-size: 0.9rem; text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-white-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
 </style>
 
-<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<!-- ═══════════════════════════════ HERO ════════════════════════════ -->
 <section class="hero">
-  <div class="hero-inner">
-    <span class="pill">Built for churches</span>
-    <h1>
-      Know who's in the room.<br/>
-      <span class="title-gradient">Reach who isn't.</span>
-    </h1>
+  <div class="inner-sm">
+    <div class="hero-pill">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+      Built for churches
+    </div>
+    <h1>Know who's in the room.<br/><span>Reach who isn't.</span></h1>
     <p class="hero-sub">
-      WorshipMetrics helps your church track attendance, follow up with visitors, and engage your
-      online audience — all in one weekly workflow your volunteers can actually run.
+      WorshipMetrics helps your church track attendance, follow up with visitors, and engage
+      your online audience — in one simple weekly workflow your volunteers can actually run.
     </p>
     <div class="hero-ctas">
       <a href="/discovery-call" class="btn-primary">Book a free discovery call</a>
       <a href={`${APP_URL}/sign-up`} class="btn-outline">Start for free</a>
     </div>
     <p class="hero-fine">No credit card required. Free plan available.</p>
-    <div class="trust-pills">
-      {["Works on any device", "Built for volunteers", "1–3 min per service", "In-room + online together"].map(p => (
-        <span class="trust-pill">{p}</span>
+
+    <div class="trust-row">
+      {[
+        { icon: "📱", text: "Works on any device" },
+        { icon: "🙋", text: "Built for volunteers" },
+        { icon: "⏱️", text: "1–3 min per service" },
+        { icon: "🌐", text: "In-person + online together" },
+      ].map(({ icon, text }) => (
+        <span class="trust-chip">{icon} {text}</span>
       ))}
     </div>
   </div>
 
-  <!-- Hero image — real dashboard screenshot -->
-  <div class="hero-img-wrap" style="max-width:64rem;margin-top:3.5rem;">
+  <div class="hero-img">
     <img
       src={`${R2}/tablet/Worship Metrics Dashboard.jpg`}
-      alt="WorshipMetrics dashboard showing attendance trends and people records"
-      loading="eager"
-      width="1280" height="720"
+      alt="WorshipMetrics dashboard showing attendance and people records"
+      loading="eager" width="1280" height="720"
     />
   </div>
 </section>
 
-<!-- ═══════════════════════════ WHAT IT DOES ══════════════════════════ -->
-<section class="section section-alt">
-  <div class="section-inner">
+<!-- ═══════════════════════ WHAT IT DOES ══════════════════════════════ -->
+<section class="section">
+  <div class="inner">
     <p class="eyebrow section-eyebrow">The platform</p>
     <h2 class="section-title">One workflow. Every Sunday.</h2>
-    <p class="section-sub">From counting the room to following up on Monday morning.</p>
+    <p class="section-sub">From counting the room to following up on Monday morning — all connected.</p>
 
     <div class="grid-3">
       {[
-        { title: "Track attendance", body: "Count in-person and online together. Seat templates, Auto-Count, and quick manual entry — whatever fits your Sunday.", href: "/platform/attendance" },
-        { title: "Follow up faster", body: "Know who is new, who is missing, and who needs a pastoral check-in. Attendance becomes action, not just a number.", href: "/platform/people" },
-        { title: "Reach online visitors", body: "Turn anonymous livestream viewers and website visitors into known people your team can actually follow up with.", href: "/solutions/digital-engagement" },
-      ].map(({ title, body, href }) => (
-        <a href={href} class="card" style="padding:1.75rem;text-decoration:none;display:block;">
-          <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">{title}</h3>
-          <p style="color:#8a96b3;font-size:0.875rem;line-height:1.65;margin-bottom:0.75rem;">{body}</p>
-          <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">Learn more →</span>
+        {
+          href: "/platform/attendance",
+          title: "Track attendance",
+          body: "Count in-person and online together. Seat templates, Auto-Count, and quick manual entry — whatever fits your Sunday.",
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>`,
+        },
+        {
+          href: "/platform/people",
+          title: "Follow up faster",
+          body: "Know who is new, who is missing, and who needs a pastoral check-in. Attendance becomes action, not just a number.",
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>`,
+        },
+        {
+          href: "/solutions/digital-engagement",
+          title: "Reach online visitors",
+          body: "Turn anonymous livestream viewers and website visitors into known people your team can actually follow up with.",
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>`,
+        },
+      ].map(({ href, title, body, icon }) => (
+        <a href={href} class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" set:html={icon}/>
+          </div>
+          <h3>{title}</h3>
+          <p>{body}</p>
+          <span class="arrow">Learn more →</span>
         </a>
       ))}
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════ SEAT COUNTING ════════════════════════ -->
-<section class="section">
-  <div class="section-inner">
+<!-- ═══════════════════════ SEAT COUNTING ════════════════════════════ -->
+<section class="section section-alt">
+  <div class="inner">
     <div class="split">
       <div class="split-img">
         <img
           src={`${R2}/homepage/3 Worship Metrics Attendance Tracking.jpg`}
-          alt="Worship Metrics seat counting layout on a tablet"
-          loading="lazy" width="800" height="530"
+          alt="Seat counting layout on a WorshipMetrics tablet"
+          loading="lazy" width="800" height="540"
         />
       </div>
-      <div class="split-content">
+      <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">Attendance tracking</p>
-        <h2>Count the room in 1–3 minutes every Sunday.</h2>
-        <p>Build your sanctuary layout once. Volunteers confirm what changed — they're not recounting from zero. Auto-Count handles the hectic Sundays.</p>
-        <ul class="split-bullets">
+        <h2>Count the room in 1–3 minutes, every Sunday.</h2>
+        <p>Build your sanctuary layout once. Volunteers confirm what changed each week — they're not recounting from zero. Auto-Count handles the hectic Sundays when there's no time to spare.</p>
+        <ul class="bullets">
           <li>Seat templates built for real church spaces</li>
           <li>Auto-Count from a quick photo when time is tight</li>
-          <li>In-person and livestream combined in one total</li>
+          <li>In-person and livestream in one combined total</li>
           <li>Attendance patterns tied to real people records</li>
         </ul>
         <a href="/platform/attendance" class="btn-primary">See how it works</a>
@@ -224,15 +312,15 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
   </div>
 </section>
 
-<!-- ═══════════════════════════ VISITOR CAPTURE ═══════════════════════ -->
-<section class="section section-alt">
-  <div class="section-inner">
+<!-- ═══════════════════════ VISITOR CAPTURE ══════════════════════════ -->
+<section class="section">
+  <div class="inner">
     <div class="split">
-      <div class="split-content">
+      <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">People & follow-up</p>
         <h2>Turn guests into known people before they leave the parking lot.</h2>
-        <p>Scan welcome cards with any phone camera. QR check-in for digital-first guests. All paths create the same usable people record your team can follow up from Monday morning.</p>
-        <ul class="split-bullets">
+        <p>Scan welcome cards with any phone camera. QR check-in for digital-first guests. Either way, a real people record is created instantly — with enough context for your team to follow up well.</p>
+        <ul class="bullets">
           <li>Welcome card scanning with computer vision</li>
           <li>QR code self-check-in for phone-first guests</li>
           <li>Prayer requests routed to the right person</li>
@@ -244,16 +332,16 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
         <img
           src={`${R2}/homepage/Worship Metrics is Easy.jpg`}
           alt="Church team using WorshipMetrics for visitor follow-up"
-          loading="lazy" width="800" height="530"
+          loading="lazy" width="800" height="540"
         />
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════ VIDEO ════════════════════════════ -->
-<section class="section">
-  <div class="section-inner" style="max-width:56rem;">
+<!-- ═══════════════════════════ VIDEO ═══════════════════════════════ -->
+<section class="section section-alt">
+  <div class="inner-sm">
     <p class="eyebrow section-eyebrow">See it in action</p>
     <h2 class="section-title">A quick look at WorshipMetrics</h2>
     <div class="video-wrap">
@@ -261,32 +349,31 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
         src="https://www.youtube-nocookie.com/embed/TUTc5Q3NliM?rel=0&modestbranding=1&playsinline=1"
         title="WorshipMetrics walkthrough"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy"
+        allowfullscreen loading="lazy"
       ></iframe>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ WORSHIP CLIPS ═════════════════════════ -->
-<section class="section section-alt">
-  <div class="section-inner">
+<!-- ════════════════════════ WORSHIP CLIPS ══════════════════════════ -->
+<section class="section">
+  <div class="inner">
     <div class="split">
       <div class="split-img">
         <img
           src={`${R2}/homepage/WorshipClips Hero.jpg`}
-          alt="Worship Clips turning a sermon into social content"
-          loading="lazy" width="800" height="530"
+          alt="Worship Clips converting a sermon into social media content"
+          loading="lazy" width="800" height="540"
         />
       </div>
-      <div class="split-content">
+      <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">Worship Clips</p>
         <h2>Your message doesn't end when the service does.</h2>
-        <p>WorshipMetrics automatically turns your livestream into ready-to-post social content — Reels, Shorts, TikTok, Facebook. No video editing software. One volunteer. Under an hour.</p>
-        <ul class="split-bullets">
-          <li>52 clips/year on Essentials. Unlimited on Established.</li>
-          <li>Vertical, square, and horizontal formats auto-generated</li>
-          <li>Reach people who weren't in the room</li>
+        <p>WorshipMetrics automatically turns your livestream into ready-to-post clips for Instagram, YouTube Shorts, TikTok, and Facebook. No video editing software. One volunteer. Under an hour.</p>
+        <ul class="bullets">
+          <li>52 clips/year on Essentials · Unlimited on Established</li>
+          <li>Vertical, square, and horizontal formats created automatically</li>
+          <li>Reach people who weren't in the room on Sunday</li>
         </ul>
         <a href="/solutions/worship-clips" class="btn-primary">See Worship Clips</a>
       </div>
@@ -294,15 +381,15 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
   </div>
 </section>
 
-<!-- ═══════════════════════ COMMUNITY PLATFORM ════════════════════════ -->
-<section class="section">
-  <div class="section-inner">
+<!-- ════════════════════════ COMMUNITY PLATFORM ════════════════════ -->
+<section class="section section-alt">
+  <div class="inner">
     <div class="split">
-      <div class="split-content">
+      <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">Community Platform</p>
         <h2>Build a digital home your congregation will actually use.</h2>
         <p>We set up a Discord-based community platform for your church — prayer channels, small group spaces, YouTube chat sync, announcements, and member onboarding. All week long, not just Sunday.</p>
-        <ul class="split-bullets">
+        <ul class="bullets">
           <li>Discord setup, automations, and YouTube chat sync</li>
           <li>Ministry-specific channels your team designs</li>
           <li>One-time setup fee — we handle the technical lift</li>
@@ -312,135 +399,106 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
       <div class="split-img">
         <img
           src={`${R2}/homepage/WorshipMetrics Discord Setup.jpg`}
-          alt="WorshipMetrics Discord community platform setup"
-          loading="lazy" width="800" height="530"
+          alt="WorshipMetrics Discord community platform"
+          loading="lazy" width="800" height="540"
         />
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════ LUMINOS AI ════════════════════════════ -->
-<section class="section section-alt">
-  <div class="section-inner">
-    <div class="split">
-      <div class="split-img">
-        <img
-          src={`${R2}/homepage/Luminos.jpg`}
-          alt="Luminos AI assistant summarizing weekly ministry data"
-          loading="lazy" width="800" height="530"
-        />
-      </div>
-      <div class="split-content">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Luminos AI</p>
-        <h2>Walk into Monday knowing what matters most.</h2>
-        <p>Luminos lives inside your WorshipMetrics dashboard and answers the questions your team already asks every Monday — in plain English, without digging through reports.</p>
-        <ul class="split-bullets">
-          <li>"Who has missed multiple services and may need a check-in?"</li>
-          <li>"Which guests still need a response from this week?"</li>
-          <li>"Give me a summary before Monday staff meeting."</li>
-        </ul>
-        <a href="/luminos-ai-assistant" class="btn-primary">See Luminos</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ HOW IT WORKS ═════════════════════════ -->
+<!-- ═══════════════════════════ HOW IT WORKS ════════════════════════ -->
 <section class="section">
-  <div class="section-inner">
+  <div class="inner">
     <p class="eyebrow section-eyebrow">The weekly rhythm</p>
     <h2 class="section-title">Simple enough to repeat every Sunday.</h2>
     <p class="section-sub">A three-step loop your whole team can run without any training overhead.</p>
     <ol class="steps">
       {[
-        { n:"1", t:"Count",      b:"Volunteers use a seat template or Auto-Count to log attendance in 1–3 minutes during or after service." },
-        { n:"2", t:"Capture",    b:"New visitors, prayer requests, and online interactions get attached to real people records automatically." },
-        { n:"3", t:"Follow up",  b:"Leadership gets a clear Monday summary: who's new, who's missing, what needs pastoral attention this week." },
+        { n:"1", t:"Count",     b:"Volunteers use a seat template or Auto-Count to log attendance in 1–3 minutes during or after service." },
+        { n:"2", t:"Capture",   b:"New visitors, prayer requests, and online interactions get attached to real people records automatically." },
+        { n:"3", t:"Follow up", b:"Leadership gets a clear Monday summary: who's new, who's missing, what needs pastoral attention this week." },
       ].map(({ n, t, b }) => (
         <li class="step">
           <span class="step-num">{n}</span>
-          <div class="step-body">
-            <h3>{t}</h3>
-            <p>{b}</p>
-          </div>
+          <div class="step-body"><h3>{t}</h3><p>{b}</p></div>
         </li>
       ))}
     </ol>
   </div>
 </section>
 
-<!-- ══════════════════════════ TESTIMONIALS ══════════════════════════ -->
+<!-- ════════════════════════ TESTIMONIALS ═══════════════════════════ -->
 <section class="section section-alt">
-  <div class="section-inner">
+  <div class="inner">
     <p class="eyebrow section-eyebrow">What churches are saying</p>
     <h2 class="section-title">Real results from real ministry teams.</h2>
-    <div class="grid-3-auto" style="margin-top:2.5rem;">
+    <div class="testimonial-grid" style="margin-top:2.5rem;">
       {[
-        { quote: "Before WorshipMetrics, we had no idea who was watching our stream. Now we have a follow-up system running within 24 hours of every service.", attr: "Executive Pastor, mid-size church, Southeast U.S." },
-        { quote: "The consulting piece made the difference. We had the technology — we just didn't know how to use it pastorally.", attr: "Lead Pastor, growing church, Midwest" },
-        { quote: "Our YouTube chat used to go unmonitored every Sunday. Now someone is in there welcoming viewers and routing prayer requests in real time.", attr: "Communications Director, large church, Texas" },
-      ].map(({ quote, attr }) => (
-        <figure class="testimonial-card">
-          <div style="color:#6b8cff;font-size:1.5rem;margin-bottom:0.5rem;">⭐</div>
-          <blockquote>"{quote}"</blockquote>
-          <figcaption>— {attr}</figcaption>
+        { q: "Before WorshipMetrics, we had no idea who was watching our stream. Now we have a follow-up system running within 24 hours of every service.", a: "Executive Pastor, mid-size church, Southeast U.S." },
+        { q: "The consulting piece made the difference. We had the technology — we just didn't know how to use it pastorally.", a: "Lead Pastor, growing church, Midwest" },
+        { q: "Our YouTube chat used to go unmonitored every Sunday. Now someone is in there welcoming viewers and routing prayer requests in real time.", a: "Communications Director, large church, Texas" },
+      ].map(({ q, a }) => (
+        <figure class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>"{q}"</blockquote>
+          <figcaption>— {a}</figcaption>
         </figure>
       ))}
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════ HARDWARE ROW ═════════════════════════ -->
+<!-- ═══════════════════════ HARDWARE ROW ═══════════════════════════ -->
 <section class="section">
-  <div class="section-inner">
+  <div class="inner">
     <p class="eyebrow section-eyebrow">Hardware</p>
     <h2 class="section-title">Purpose-built devices for churches.</h2>
-    <p class="section-sub">Optional hardware that connects directly to the same WorshipMetrics dashboard.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;">
-      {[{
-        img: `${R2}/tablet/Worship Metrics Appliance Small.jpg`,
-        name: "WorshipMetrics Hub",
-        price: "$499 one-time",
-        desc: "Automatic attendance, cloud-managed digital signage, remote PTZ camera control, and live production — from one device. No subscriptions.",
-        href: "/appliance",
-      },{
-        img: `${R2}/tablet/New Worship Metrics Tablet Hero.jpg`,
-        name: "WorshipMetrics Tablet",
-        price: "From $349",
-        desc: "A dedicated volunteer workflow for check-in, attendance, and guest capture. Includes a free Essentials plan. Sets up in 60 seconds.",
-        href: "/tablet",
-      }].map(({ img, name, price, desc, href }) => (
-        <a href={href} class="card" style="text-decoration:none;display:block;overflow:hidden;">
-          <div style="height:200px;overflow:hidden;">
-            <img src={img} alt={name} loading="lazy" width="600" height="400"
-              style="width:100%;height:100%;object-fit:cover;" />
-          </div>
-          <div style="padding:1.5rem;">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
-              <h3 style="font-size:1rem;font-weight:600;">{name}</h3>
-              <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">{price}</span>
+    <p class="section-sub">Optional hardware that plugs directly into your WorshipMetrics account.</p>
+    <div class="hw-grid">
+      {[
+        {
+          img: `${R2}/tablet/Worship Metrics Appliance Small.jpg`,
+          name: "WorshipMetrics Hub",
+          price: "$499 · one-time",
+          desc: "Automatic attendance, cloud-managed digital signage, remote PTZ camera control, and live production — all from one device. No subscription fees.",
+          href: "/appliance",
+        },
+        {
+          img: `${R2}/tablet/New Worship Metrics Tablet Hero.jpg`,
+          name: "WorshipMetrics Tablet",
+          price: "From $349",
+          desc: "A dedicated volunteer workflow for check-in, attendance, and guest capture. Includes a free Essentials plan. Sets up in 60 seconds.",
+          href: "/tablet",
+        },
+      ].map(({ img, name, price, desc, href }) => (
+        <a href={href} class="hw-card">
+          <img src={img} alt={name} loading="lazy" width="600" height="400" />
+          <div class="hw-card-body">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.35rem;">
+              <span class="hw-name">{name}</span>
+              <span class="hw-price">{price}</span>
             </div>
-            <p style="color:#8a96b3;font-size:0.85rem;line-height:1.6;margin-bottom:0.75rem;">{desc}</p>
-            <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">See details →</span>
+            <p class="hw-desc">{desc}</p>
+            <span style="font-size:0.8rem;font-weight:700;color:var(--primary);">See details →</span>
           </div>
         </a>
       ))}
     </div>
     <p style="text-align:center;margin-top:1.25rem;">
-      <a href="/hardware" style="font-size:0.85rem;color:var(--primary);font-weight:600;">Compare Hub vs. Tablet →</a>
+      <a href="/hardware" style="font-size:0.85rem;font-weight:700;color:var(--primary);">Compare Hub vs. Tablet →</a>
     </p>
   </div>
 </section>
 
-<!-- ════════════════════════════ BOTTOM CTA ══════════════════════════ -->
+<!-- ═══════════════════════ BOTTOM CTA ═════════════════════════════ -->
 <div class="cta-band">
-  <p class="eyebrow" style="margin-bottom:0.5rem;">Start this Sunday</p>
-  <h2>Know your congregation. Care for it well.</h2>
+  <p class="eyebrow" style="color:rgba(255,255,255,0.65);margin-bottom:0.4rem;">Start this Sunday</p>
+  <h2>Know your congregation.<br/>Care for it well.</h2>
   <p>Join churches using WorshipMetrics to track attendance, follow up with visitors, and reach people online.</p>
   <div class="btns">
-    <a href={`${APP_URL}/sign-up`} class="btn-primary">Get started free</a>
-    <a href="/discovery-call" class="btn-outline">Book a discovery call</a>
+    <a href={`${APP_URL}/sign-up`} class="btn-white">Get started free</a>
+    <a href="/discovery-call" class="btn-white-outline">Book a discovery call</a>
   </div>
 </div>
 
