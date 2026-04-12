@@ -66,9 +66,15 @@ const R2NEW   = `${R2}/homepage/new%20images`;
   }
   .hero-img-wrap img { display: block; width: 100%; height: auto; }
 
+  .social-proof-bar {
+    background: #0f1a2e; color: rgba(255,255,255,0.86);
+    text-align: center; padding: 0.95rem 1.5rem;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.02em;
+  }
+
   /* ── PAIN → PROMISE ────────────────────────────────── */
   .pain-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+    display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem;
   }
   @media (max-width: 860px) { .pain-grid { grid-template-columns: 1fr; max-width: 36rem; margin: 0 auto; } }
 
@@ -234,25 +240,6 @@ const R2NEW   = `${R2}/homepage/new%20images`;
   .step-body h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
   .step-body p  { font-size: 0.875rem; color: var(--text-soft); line-height: 1.65; }
 
-  /* ── TESTIMONIALS ──────────────────────────────────── */
-  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
-  .testimonial {
-    background: #fff; border: 1.5px solid var(--border);
-    border-radius: var(--radius-card); padding: 1.5rem;
-  }
-  .t-stars { color: var(--accent); font-size: 0.875rem; margin-bottom: 0.75rem; }
-  .testimonial blockquote { font-size: 0.9rem; color: var(--text-soft); line-height: 1.72; font-style: italic; }
-  .testimonial figcaption { margin-top: 1rem; font-size: 0.78rem; color: var(--text-muted); font-weight: 700; font-style: normal; }
-
-  /* ── VIDEO ─────────────────────────────────────────── */
-  .video-wrap {
-    position: relative; padding-bottom: 56.25%; height: 0;
-    border-radius: 0.875rem; overflow: hidden;
-    border: 1px solid var(--border); box-shadow: 0 12px 40px rgba(15,26,46,0.1);
-    margin-top: 2.5rem;
-  }
-  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-
   /* ── CTA BAND ──────────────────────────────────────── */
   .cta-band { background: var(--primary); padding: 5.5rem 1.5rem; text-align: center; }
   .cta-band h2 { font-size: clamp(1.9rem, 3.5vw, 2.75rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; line-height: 1.15; }
@@ -283,22 +270,21 @@ const R2NEW   = `${R2}/homepage/new%20images`;
 <section class="hero">
   <div class="inner-sm">
     <div class="hero-badge">
-      Built by worship leaders, for worship leaders
+      The complete church technology platform
     </div>
     <h1>
-      The technology partner<br/>
-      <em>your church has been waiting for.</em>
+      Know who's in the room.<br/>
+      <em>Reach who isn't.</em>
     </h1>
     <p class="hero-sub">
-      From automatic attendance and AV monitoring to livestream health, free digital signage,
-      and tools that put every volunteer in the right role — we build the technology so you
-      can focus on the mission.
+      The complete church technology platform — automatic attendance, free digital signage,
+      AV monitoring, and tools that connect your congregation all week long.
     </p>
     <div class="hero-ctas">
-      <a href="/discovery-call" class="btn-primary">Talk to us — it's free</a>
-      <a href={`${APP_URL}/sign-up`} class="btn-outline">Start for free</a>
+      <a href={`${APP_URL}/sign-up`} class="btn-primary">Start free — no credit card</a>
+      <a href="/appliance" class="btn-outline">See the Hub</a>
     </div>
-    <p class="hero-fine">No credit card. No commitment. Just a conversation about where to start.</p>
+    <p class="hero-fine">Free forever. Upgrade when you're ready.</p>
   </div>
 
   <div class="hero-img-wrap">
@@ -310,14 +296,18 @@ const R2NEW   = `${R2}/homepage/new%20images`;
   </div>
 </section>
 
+<section class="social-proof-bar">
+  Trusted by churches of every size — from 50 seats to 5,000.
+</section>
+
 <!-- ═══════════════════════════════════════════════════
      PAIN → PROMISE
 ════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="inner">
-    <p class="eyebrow eyebrow-center">Sound familiar?</p>
+    <p class="eyebrow eyebrow-center">The challenge</p>
     <h2 class="h2-center">Every church is doing technology.<br/>Most are doing it alone.</h2>
-    <p class="sub-center">We built WorshipMetrics because we lived these problems firsthand. Here's what we actually fix.</p>
+    <p class="sub-center">We built WorshipMetrics because we lived these problems firsthand.</p>
 
     <div class="pain-grid">
       {[
@@ -325,22 +315,29 @@ const R2NEW   = `${R2}/homepage/new%20images`;
           icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/>`,
           before: "You're counting on paper",
           problem: "Someone tallies attendance on a notepad. It maybe gets entered into a spreadsheet. Maybe.",
-          after: "Intelligence-guided counting",
+          after: "What WorshipMetrics does",
           solution: "Auto-Count does the heavy lifting. Luminos AI turns numbers into pastoral insight before Monday morning.",
         },
         {
           icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>`,
           before: "Your stream goes down unnoticed",
           problem: "Twelve minutes in someone texts you. Half your online congregation already gave up.",
-          after: "AV monitoring + instant alerts",
-          solution: "Real-time stream health monitoring alerts your team the moment something goes wrong — before anyone else knows.",
+          after: "What WorshipMetrics does",
+          solution: "Real-time AV monitoring alerts your team the moment something goes wrong — before anyone else knows.",
         },
         {
           icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>`,
           before: "Online viewers are invisible",
           problem: "You get a view count. You have no idea who they are, whether they came back, or how to reach them.",
-          after: "Real follow-up with real people",
+          after: "What WorshipMetrics does",
           solution: "Digital engagement tools capture online visitors, route prayer requests, and turn viewership into relationships.",
+        },
+        {
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 4.5A2.25 2.25 0 014.5 2.25h15A2.25 2.25 0 0121.75 4.5v11.25A2.25 2.25 0 0119.5 18h-6l-3.75 3.75V18h-5.25A2.25 2.25 0 012.25 15.75V4.5z"/>`,
+          before: "Your lobby screen hasn't been updated in weeks",
+          problem: "Someone has to walk to a computer in the building, open a file, and remember the password.",
+          after: "What WorshipMetrics does",
+          solution: "Free digital signage. Update every screen in your church from your phone, from anywhere, right now.",
         },
       ].map(({ icon, before, problem, after, solution }) => (
         <div class="pain-card">
@@ -358,53 +355,11 @@ const R2NEW   = `${R2}/homepage/new%20images`;
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     AV MONITORING + STREAM HEALTH
+     DIGITAL SIGNAGE — FREE
 ════════════════════════════════════════════════════ -->
 <section class="section section-alt">
   <div class="inner">
     <div class="split">
-      <div class="split-img">
-        <img
-          src={`${R2NEW}/Stream%20Health.jpg`}
-          alt="WorshipMetrics AV monitoring and stream health dashboard"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">AV monitoring</p>
-        <h2>We'll tell you when your stream is down before your congregation does.</h2>
-        <p>The WorshipMetrics Hub watches your audio, video, displays, and stream health in real time. When something goes wrong, your team gets an instant alert — not a text from a concerned church member twelve minutes later.</p>
-        <ul class="bullets">
-          <li>Real-time stream, audio, and display monitoring</li>
-          <li>Instant alerts to your team's phones</li>
-          <li>Remote PTZ camera control from anywhere in the world</li>
-          <li>Remote OBS and vMix control — run a great service without being in the building</li>
-        </ul>
-        <a href="/appliance" class="btn-primary">See the WorshipMetrics Hub</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     DIGITAL SIGNAGE — FREE
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Digital signage</p>
-        <h2>Free digital signage.<br/>Because we believe in the mission.</h2>
-        <p>Update every screen in your church from your phone, from anywhere in the world. Announcements, countdowns, event slides, welcome messages — cloud-managed, instantly updated, completely free.</p>
-        <p style="font-size:0.875rem;color:var(--text-muted);font-style:italic;">We offer free digital signage because we're a team that genuinely believes in what churches are doing. You shouldn't have to pay for the lobby screen.</p>
-        <ul class="bullets">
-          <li>Manage every display from one dashboard</li>
-          <li>Push updates from your phone mid-service</li>
-          <li>Works with TVs your church already owns</li>
-          <li>No monthly fees. No hardware required beyond what you have.</li>
-        </ul>
-        <a href="/platform/operations" class="btn-primary">Learn about signage</a>
-      </div>
       <div class="split-img">
         <img
           src={`${R2NEW}/Church%20Digital%20Signage.jpg`}
@@ -412,7 +367,136 @@ const R2NEW   = `${R2}/homepage/new%20images`;
           loading="lazy" width="800" height="540"
         />
       </div>
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Digital signage</p>
+        <h2>Free digital signage.<br/>Because we believe in the mission.</h2>
+        <p>Update every screen in your church from your phone — announcements, countdowns, event slides, welcome messages. Cloud-managed, instantly updated, and completely free on every plan.</p>
+        <p style="font-size:0.875rem;color:var(--text-muted);font-style:italic;">We give signage away because we believe churches shouldn't pay to keep their congregation informed. Point any smart TV at a URL and it's live in under a minute.</p>
+        <ul class="bullets">
+          <li>Works with TVs you already own</li>
+          <li>Unlimited screens on paid plans — 1 screen free forever</li>
+          <li>No hardware required. No monthly fees. Ever.</li>
+          <li>Push updates from your phone mid-service</li>
+        </ul>
+        <a href={`${APP_URL}/sign-up`} class="btn-primary">Start free — get your signage URL</a>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     HUB
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <div class="split">
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Introducing the Worship Metrics Hub</p>
+        <h2>One device. Your entire church, connected.</h2>
+        <p>The Hub is a cloud-connected appliance that plugs into your existing setup and runs your entire Established plan automatically — no computer, no configuration, no volunteer overhead.</p>
+        <ul class="bullets">
+          <li>Fully automatic attendance — your camera counts your congregation every week</li>
+          <li>AV health monitoring — stream, audio, video, and display status in real time</li>
+          <li>Remote PTZ camera control — pan, tilt, zoom from anywhere in the world</li>
+          <li>Remote OBS and vMix control — run a great service without being in the building</li>
+          <li>Auto video upload — sermon clips in the cloud before the last car leaves the parking lot</li>
+          <li>Digital signage — lobby displays managed from your phone</li>
+        </ul>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">No subscription required. One-time purchase. Plug it in and it works.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="/appliance" class="btn-primary">See the Hub — $499</a>
+          <a href="/pricing" class="btn-outline">Compare plans</a>
+        </div>
+      </div>
+      <div class="split-img">
+        <img
+          src={`${R2NEW}/Stream%20Health.jpg`}
+          alt="WorshipMetrics AV monitoring and stream health dashboard"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     THE FULL ECOSYSTEM
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <p class="eyebrow eyebrow-center">Features</p>
+    <h2 class="h2-center">One partner. Every part.</h2>
+    <p class="sub-center">
+      Not six separate tools from six separate companies. One ecosystem, one support team,
+      one bill — built to work together because it was designed together.
+    </p>
+
+    <div class="eco-grid">
+      {[
+        { label:"Attendance", title:"Automatic counting + insights", desc:"Auto-Count, seat templates, and Luminos AI turn Sunday numbers into Monday pastoral action.", href:"/platform/attendance" },
+        { label:"People",     title:"Guest capture + follow-up",    desc:"Welcome cards, QR codes, prayer routing, and absence alerts — all connected.", href:"/platform/people" },
+        { label:"AV + Production", title:"Stream health + remote control", desc:"AV monitoring, PTZ camera control, OBS and vMix switching from anywhere in the world.", href:"/appliance" },
+        { label:"Digital Signage — Free", title:"Free lobby displays",     desc:"Manage every screen from your phone. No fees. Ever.", href:"/platform/operations", badge:"Free" },
+        { label:"Worship Clips",   title:"Sermon → social content", desc:"Automatic clips for Reels, Shorts, TikTok, and Facebook. No editing required.", href:"/solutions/worship-clips" },
+        { label:"Community",  title:"All-week digital campus",      desc:"Discord-based community with YouTube chat sync and member onboarding.", href:"/solutions/church-community-platform" },
+      ].map(({ label, title, desc, href, badge }) => (
+        <a href={href} class="eco-card">
+          <div class="eco-label">{label}</div>
+          <div class="eco-title">{title} {badge && <span class="eco-badge">{badge}</span>}</div>
+          <div class="eco-desc">{desc}</div>
+          <div class="eco-link">Learn more →</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     LUMINOS AI
+════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="inner-md">
+    <div class="luminos-band">
+      <div>
+        <p class="luminos-tag">Luminos AI</p>
+        <h3>Walk into Monday already knowing what matters most.</h3>
+        <p>Luminos lives inside your WorshipMetrics dashboard and answers the questions your team asks every Monday — in plain English, without digging through reports.</p>
+        <a href="/luminos-ai-assistant" class="btn-primary">See Luminos in action</a>
+      </div>
+      <div class="luminos-prompts">
+        {[
+          '"Who has missed multiple services and may need a check-in?"',
+          '"Which guests still haven\'t heard from us this week?"',
+          '"Give me a summary before Monday staff meeting."',
+          '"What changed this week that deserves our attention first?"',
+        ].map(prompt => (
+          <div class="luminos-prompt">{prompt}</div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <p class="eyebrow eyebrow-center">The weekly rhythm</p>
+    <h2 class="h2-center">Simple enough to repeat every Sunday.</h2>
+    <p class="sub-center">A simple three-step loop your team can run every week.</p>
+    <ol class="steps">
+      {[
+        { n:"1", t:"Count", b:"Auto-Count handles the room while your volunteers focus on people. Templates mean they're confirming changes, not recounting from zero." },
+        { n:"2", t:"Capture", b:"Welcome cards scan. QR codes check in. Prayer requests route. Online viewers get a next step. All of it creates real people records." },
+        { n:"3", t:"Reach", b:"Monday morning, Luminos surfaces who's new, who's missing, and what needs pastoral attention. Your team acts with intention — not reaction." },
+      ].map(({ n, t, b }) => (
+        <li class="step">
+          <span class="step-num">{n}</span>
+          <div class="step-body"><h3>{t}</h3><p>{b}</p></div>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
 
@@ -455,97 +539,23 @@ const R2NEW   = `${R2}/homepage/new%20images`;
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     THE FULL ECOSYSTEM
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <p class="eyebrow eyebrow-center">One partner. Every part.</p>
-    <h2 class="h2-center">Everything your church needs, from one team.</h2>
-    <p class="sub-center">
-      Not six separate tools from six separate companies. One ecosystem, one support team,
-      one bill — built to work together because it was designed together.
-    </p>
-
-    <div class="eco-grid">
-      {[
-        { label:"Attendance", title:"Automatic counting + insights", desc:"Seat templates, Auto-Count, and Luminos AI turn Sunday numbers into Monday pastoral action.", href:"/platform/attendance" },
-        { label:"People",     title:"Guest capture + follow-up",    desc:"Welcome cards, QR codes, prayer routing, and absence alerts — all connected.", href:"/platform/people" },
-        { label:"AV + Production", title:"Stream health + remote control", desc:"AV monitoring, PTZ camera control, OBS and vMix remote switching from anywhere.", href:"/appliance" },
-        { label:"Digital Signage", title:"Free lobby displays",     desc:"Manage every screen in your church from your phone. No fees. Ever.", href:"/platform/operations", badge:"Free" },
-        { label:"Worship Clips",   title:"Sermon → social content", desc:"Automatic clips for Reels, Shorts, TikTok, and Facebook. No editing required.", href:"/solutions/worship-clips" },
-        { label:"Community",  title:"All-week digital campus",      desc:"Discord-based community platform with YouTube chat sync and member onboarding.", href:"/solutions/church-community-platform" },
-      ].map(({ label, title, desc, href, badge }) => (
-        <a href={href} class="eco-card">
-          <div class="eco-label">{label}</div>
-          <div class="eco-title">{title} {badge && <span class="eco-badge">{badge}</span>}</div>
-          <div class="eco-desc">{desc}</div>
-          <div class="eco-link">Learn more →</div>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     LUMINOS AI
-════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner-md">
-    <div class="luminos-band">
-      <div>
-        <p class="luminos-tag">Luminos AI</p>
-        <h3>Walk into Monday already knowing what matters most.</h3>
-        <p>Luminos lives inside your WorshipMetrics dashboard and answers the questions your team asks every Monday — in plain English, without digging through reports. Role-aware, confirmation-required, and built for pastoral care, not data analysis.</p>
-        <a href="/luminos-ai-assistant" class="btn-primary">See Luminos in action</a>
-      </div>
-      <div class="luminos-prompts">
-        {[
-          '"Who has missed multiple services and may need a check-in?"',
-          '"Which guests still haven\'t heard from us this week?"',
-          '"Give me a summary before Monday staff meeting."',
-          '"What changed this week that deserves our attention first?"',
-        ].map(prompt => (
-          <div class="luminos-prompt">{prompt}</div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     VIDEO
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner-md">
-    <p class="eyebrow eyebrow-center">See it in action</p>
-    <h2 class="h2-center">A quick look at what we've built.</h2>
-    <div class="video-wrap">
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/TUTc5Q3NliM?rel=0&modestbranding=1&playsinline=1"
-        title="WorshipMetrics — the church technology partner"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen loading="lazy"
-      ></iframe>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
      ORIGIN / MISSION
 ════════════════════════════════════════════════════ -->
 <section class="section section-alt">
   <div class="inner-md">
     <div class="mission-band">
-      <h2>"We didn't come from Silicon Valley.<br/>We came from the front pew."</h2>
+      <h2>Built by people who believe in the local church.</h2>
       <p>
         WorshipMetrics was built by Rev. Andrew Esqueda and Paul Richards — a worship leader and a
-        broadcast technologist — because they lived these problems firsthand. Andrew asked: why should
-        a pastor need a spreadsheet to know who showed up on Sunday? The answer, with the cameras
-        already in the room, was: they shouldn't. That question became this platform.
+        broadcast technologist — because they lived these problems firsthand.
       </p>
       <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
-        We build with the audacity to believe that every church — regardless of size or budget — deserves
-        technology that respects the sacred work happening inside those walls.
+        The question that started it all: why should a pastor need a spreadsheet to know who showed up on Sunday?
+        With cameras already in the room, the answer was simple — they shouldn't. That question became this platform.
+      </p>
+      <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
+        We build with the conviction that every church — regardless of size or budget — deserves technology
+        that respects the sacred work happening inside those walls.
       </p>
       <div class="founders">
         <div class="founder">
@@ -572,64 +582,18 @@ const R2NEW   = `${R2}/homepage/new%20images`;
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     HOW IT WORKS
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <p class="eyebrow eyebrow-center">The weekly rhythm</p>
-    <h2 class="h2-center">Simple enough to repeat every Sunday.</h2>
-    <p class="sub-center">A three-step loop your volunteers can run without any training overhead.</p>
-    <ol class="steps">
-      {[
-        { n:"1", t:"Count — automatically or with a tap", b:"Auto-Count handles the room while your volunteers focus on people. Templates mean they're confirming changes, not recounting from zero." },
-        { n:"2", t:"Capture — guests, prayer, and online engagement", b:"Welcome cards scan. QR codes check in. Prayer requests route. Online viewers get a next step. All of it creates real people records." },
-        { n:"3", t:"Follow up — guided by Luminos, not guesswork", b:"Monday morning, Luminos surfaces who's new, who's missing, and what needs pastoral attention. Your team acts with intention, not reaction." },
-      ].map(({ n, t, b }) => (
-        <li class="step">
-          <span class="step-num">{n}</span>
-          <div class="step-body"><h3>{t}</h3><p>{b}</p></div>
-        </li>
-      ))}
-    </ol>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     TESTIMONIALS
-════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner">
-    <p class="eyebrow eyebrow-center">What churches are saying</p>
-    <h2 class="h2-center">Ministry teams that found their partner.</h2>
-    <div class="testimonial-grid" style="margin-top:2.5rem;">
-      {[
-        { q: "Before WorshipMetrics, we had no idea who was watching our stream. Now we have a follow-up system running within 24 hours of every service.", a: "Executive Pastor, mid-size church, Southeast U.S." },
-        { q: "The consulting piece made the difference. We had the technology — we just didn't know how to use it pastorally.", a: "Lead Pastor, growing church, Midwest" },
-        { q: "Our YouTube chat used to go unmonitored every Sunday. Now someone is in there welcoming viewers and routing prayer requests in real time.", a: "Communications Director, large church, Texas" },
-      ].map(({ q, a }) => (
-        <figure class="testimonial">
-          <div class="t-stars">★★★★★</div>
-          <blockquote>"{q}"</blockquote>
-          <figcaption>— {a}</figcaption>
-        </figure>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
      CTA
 ════════════════════════════════════════════════════ -->
 <div class="cta-band">
-  <p class="eyebrow" style="color:rgba(255,255,255,0.6);margin-bottom:0.5rem;">Let's find out what's possible together</p>
-  <h2>What can't we achieve<br/>with God's help?</h2>
+  <p class="eyebrow" style="color:rgba(255,255,255,0.6);margin-bottom:0.5rem;">Start today — it's free.</p>
+  <h2>Know who's in the room.<br/>Reach who isn't.</h2>
   <p>
-    Start with a free 30-minute call. We'll learn about your church, tell you honestly what
-    would make the biggest difference, and recommend exactly where to begin — no pitch, no pressure.
+    Sign up in two minutes. Get your free metrics dashboard, your free signage URL,
+    and a clear path to automating everything else when you're ready.
   </p>
   <div class="cta-btns">
-    <a href="/discovery-call" class="btn-white">Book a free discovery call</a>
-    <a href={`${APP_URL}/sign-up`} class="btn-ghost-white">Start for free</a>
+    <a href={`${APP_URL}/sign-up`} class="btn-white">Start free — no credit card</a>
+    <a href="/appliance" class="btn-ghost-white">See the Hub — $499</a>
   </div>
   <p class="cta-note">Available Monday–Friday · We respond within one business day</p>
 </div>
