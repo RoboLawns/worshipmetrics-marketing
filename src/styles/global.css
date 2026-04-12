@@ -1,1 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
+
+/* ── Brand tokens ─────────────────────────────────────── */
+:root {
+  --bg:        #0d1017;
+  --bg-card:   #12151f;
+  --bg-raised: #181c28;
+  --border:    rgba(107,140,255,0.18);
+  --primary:   #6b8cff;
+  --primary-dim: rgba(107,140,255,0.12);
+  --primary-border: rgba(107,140,255,0.34);
+  --text:      #ffffff;
+  --text-muted: #8a96b3;
+  --radius-card: 1.25rem;
+  --font-ui: "Outfit", Inter, system-ui, sans-serif;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+html { color-scheme: dark; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  /* Ambient glow background matching the app */
+  background-image:
+    radial-gradient(1200px circle at 8% -12%,  rgba(107,140,255,0.13), transparent 42%),
+    radial-gradient(900px  circle at 92% -8%,  rgba(46,204,143,0.09),  transparent 42%),
+    radial-gradient(1000px circle at 50% 120%, rgba(245,158,66,0.07),  transparent 44%);
+  background-attachment: fixed;
+}
+
+/* ── Typography ───────────────────────────────────────── */
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.title-gradient {
+  background: linear-gradient(92deg, #ffffff 0%, #b9caff 30%, #8de6c1 62%, #f7be81 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Cards ────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  border-color: var(--primary-border);
+  box-shadow: 0 0 32px rgba(107,140,255,0.08);
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.75rem;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: opacity 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 24px rgba(107,140,255,0.32);
+}
+.btn-primary:hover { opacity: 0.88; box-shadow: 0 6px 32px rgba(107,140,255,0.44); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--primary-border);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background: transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-outline:hover { background: var(--primary-dim); }
+
+/* ── Section utility ──────────────────────────────────── */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Prose (legal pages) ──────────────────────────────── */
+.prose h2 { color: #fff; font-size: 1.2rem; font-weight: 600; margin: 1.75rem 0 0.5rem; }
+.prose p, .prose li { color: var(--text-muted); line-height: 1.75; }
+.prose a { color: var(--primary); }
