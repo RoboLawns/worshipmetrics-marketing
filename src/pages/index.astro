@@ -3,351 +3,526 @@ import Layout from "../layouts/Layout.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const R2NEW   = `${R2}/homepage/new%20images`;
 ---
 
 <Layout
-  title="Church Attendance & Community Platform"
-  description="WorshipMetrics helps your church track attendance, follow up with visitors, and engage your online audience — all in one weekly workflow your volunteers can actually run."
+  title="The Church Technology Partner"
+  description="WorshipMetrics is your church's technology partner — from automatic attendance and AV monitoring to livestream health, digital signage, volunteer tools, and online reach. Built by worship leaders, for worship leaders."
   canonical="/"
 >
 <style>
-  /* ── Shared section rhythm ────────────────────── */
-  .section     { padding: 5rem 1.5rem; }
-  .section-alt { background: var(--bg-soft); }
-  .inner       { max-width: 72rem; margin: 0 auto; }
-  .inner-sm    { max-width: 48rem; margin: 0 auto; }
+  /* ── Shared rhythm ─────────────────────────────────── */
+  .section      { padding: 5rem 1.5rem; }
+  .section-alt  { background: var(--bg-soft); }
+  .inner        { max-width: 72rem; margin: 0 auto; }
+  .inner-md     { max-width: 56rem; margin: 0 auto; }
+  .inner-sm     { max-width: 44rem; margin: 0 auto; }
 
-  .section-eyebrow { text-align: center; margin-bottom: 0.4rem; }
-  .section-title   {
-    font-size: clamp(1.65rem, 3vw, 2.4rem);
-    font-weight: 800; text-align: center;
-    color: var(--text); margin-bottom: 0.75rem; line-height: 1.15;
+  .eyebrow-center { text-align: center; margin-bottom: 0.4rem; }
+  .h2-center {
+    font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800;
+    color: var(--text); text-align: center; line-height: 1.15; margin-bottom: 0.75rem;
   }
-  .section-sub { text-align: center; color: var(--text-muted); font-size: 1rem; max-width: 40rem; margin: 0 auto 3rem; line-height: 1.7; }
+  .sub-center {
+    text-align: center; color: var(--text-muted); font-size: 1rem;
+    max-width: 42rem; margin: 0 auto 3rem; line-height: 1.72;
+  }
 
-  /* ── Hero ─────────────────────────────────────── */
+  /* ── HERO ──────────────────────────────────────────── */
   .hero {
-    padding: 5.5rem 1.5rem 4rem;
+    padding: 5.5rem 1.5rem 0;
     text-align: center;
-    background: linear-gradient(180deg, #eef1fd 0%, #ffffff 100%);
+    background: linear-gradient(175deg, #eef1fd 0%, #ffffff 60%);
     border-bottom: 1px solid var(--border);
+    overflow: hidden;
   }
-  .hero-pill {
+  .hero-badge {
     display: inline-flex; align-items: center; gap: 0.4rem;
     background: #fff; border: 1.5px solid var(--primary-border);
     color: var(--primary); border-radius: 999px;
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 0.3rem 0.9rem; margin-bottom: 1.5rem;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.28rem 0.9rem; margin-bottom: 1.5rem;
     box-shadow: 0 2px 8px rgba(67,97,238,0.1);
   }
   .hero h1 {
-    font-size: clamp(2.4rem, 5.5vw, 4rem);
-    font-weight: 800; line-height: 1.1; letter-spacing: -0.025em;
-    color: var(--text); margin-bottom: 1.25rem;
+    font-size: clamp(2.4rem, 5.5vw, 4.25rem); font-weight: 800;
+    line-height: 1.08; letter-spacing: -0.03em; color: var(--text);
+    margin-bottom: 1.25rem;
   }
-  .hero h1 span { color: var(--primary); }
+  .hero h1 em { font-style: normal; color: var(--primary); }
   .hero-sub {
-    font-size: 1.125rem; color: var(--text-soft);
-    max-width: 38rem; margin: 0 auto 2.25rem; line-height: 1.72;
+    font-size: 1.1rem; color: var(--text-soft); max-width: 42rem;
+    margin: 0 auto 2.25rem; line-height: 1.75;
   }
-  .hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
-  .hero-fine { margin-top: 0.9rem; font-size: 0.8rem; color: var(--text-muted); }
+  .hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 0.9rem; }
+  .hero-fine  { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 3rem; }
 
-  .trust-row {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem;
-    margin-top: 2.75rem;
+  .hero-img-wrap {
+    max-width: 64rem; margin: 0 auto;
+    border-radius: 1rem 1rem 0 0; overflow: hidden;
+    border: 1px solid var(--border); border-bottom: none;
+    box-shadow: 0 -4px 40px rgba(67,97,238,0.06), 0 24px 64px rgba(15,26,46,0.1);
   }
-  .trust-chip {
-    display: flex; align-items: center; gap: 0.4rem;
-    background: #fff; border: 1px solid var(--border);
-    border-radius: 999px; padding: 0.3rem 0.85rem;
-    font-size: 0.8rem; color: var(--text-soft); font-weight: 500;
-    box-shadow: 0 1px 4px rgba(15,26,46,0.06);
+  .hero-img-wrap img { display: block; width: 100%; height: auto; }
+
+  /* ── PAIN → PROMISE ────────────────────────────────── */
+  .pain-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
   }
-  .trust-chip svg { color: var(--primary); flex-shrink: 0; }
+  @media (max-width: 860px) { .pain-grid { grid-template-columns: 1fr; max-width: 36rem; margin: 0 auto; } }
 
-  /* Hero screenshot */
-  .hero-img {
-    max-width: 62rem; margin: 3.5rem auto 0;
-    border-radius: 1rem; overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: 0 24px 64px rgba(15,26,46,0.12), 0 4px 16px rgba(67,97,238,0.08);
+  .pain-card {
+    border: 1.5px solid var(--border); border-radius: var(--radius-card);
+    background: #fff; padding: 1.75rem; position: relative; overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
   }
-  .hero-img img { display: block; width: 100%; height: auto; }
+  .pain-card:hover { border-color: var(--primary-border); box-shadow: 0 8px 28px rgba(67,97,238,0.09); transform: translateY(-2px); }
+  .pain-before {
+    font-size: 0.75rem; font-weight: 700; color: #dc2626;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.35rem;
+  }
+  .pain-before::before { content: '✕'; font-size: 0.7rem; }
+  .pain-after {
+    font-size: 0.75rem; font-weight: 700; color: #16a34a;
+    letter-spacing: 0.08em; text-transform: uppercase; margin: 1rem 0 0.5rem;
+    display: flex; align-items: center; gap: 0.35rem;
+  }
+  .pain-after::before { content: '✓'; font-size: 0.7rem; }
+  .pain-problem { font-size: 0.925rem; color: var(--text-soft); line-height: 1.6; font-style: italic; }
+  .pain-solution { font-size: 0.925rem; color: var(--text); font-weight: 600; line-height: 1.6; }
+  .pain-icon {
+    width: 2.75rem; height: 2.75rem; border-radius: 0.625rem;
+    background: var(--primary-light); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .pain-icon svg { width: 1.3rem; height: 1.3rem; color: var(--primary); }
 
-  /* ── 3-col grid ───────────────────────────────── */
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-  @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 560px) { .grid-3 { grid-template-columns: 1fr; } }
+  /* ── ECOSYSTEM GRID ────────────────────────────────── */
+  .eco-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem;
+  }
+  @media (max-width: 900px) { .eco-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .eco-grid { grid-template-columns: 1fr; } }
 
-  .feature-card {
+  .eco-card {
     background: #fff; border: 1.5px solid var(--border);
-    border-radius: var(--radius-card); padding: 1.75rem;
-    text-decoration: none; display: block;
+    border-radius: var(--radius-card); padding: 1.5rem;
+    text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
-  .feature-card:hover {
-    border-color: var(--primary-border);
-    box-shadow: 0 8px 28px rgba(67,97,238,0.09);
-    transform: translateY(-2px);
+  .eco-card:hover { border-color: var(--primary-border); box-shadow: 0 8px 28px rgba(67,97,238,0.09); transform: translateY(-2px); }
+  .eco-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-muted);
   }
-  .feature-icon {
-    width: 2.6rem; height: 2.6rem; border-radius: 0.625rem;
-    background: var(--primary-light); display: flex; align-items: center; justify-content: center;
-    margin-bottom: 0.9rem;
+  .eco-title { font-size: 1rem; font-weight: 700; color: var(--text); }
+  .eco-desc  { font-size: 0.825rem; color: var(--text-soft); line-height: 1.6; flex: 1; }
+  .eco-link  { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-top: 0.25rem; }
+  .eco-badge {
+    display: inline-block; font-size: 0.65rem; font-weight: 700;
+    padding: 0.2rem 0.55rem; border-radius: 999px;
+    background: #dcfce7; color: #15803d; align-self: flex-start;
   }
-  .feature-icon svg { width: 1.2rem; height: 1.2rem; color: var(--primary); }
-  .feature-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-  .feature-card p  { font-size: 0.875rem; color: var(--text-soft); line-height: 1.65; margin-bottom: 0.75rem; }
-  .feature-card .arrow { font-size: 0.8rem; font-weight: 700; color: var(--primary); }
 
-  /* ── Split sections ───────────────────────────── */
+  /* ── SPLIT SECTION ─────────────────────────────────── */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   @media (max-width: 768px) { .split { grid-template-columns: 1fr; gap: 2.5rem; } }
   .split-img {
     border-radius: 0.875rem; overflow: hidden;
     border: 1px solid var(--border);
-    box-shadow: 0 12px 40px rgba(15,26,46,0.1);
+    box-shadow: 0 12px 40px rgba(15,26,46,0.09);
   }
   .split-img img { display: block; width: 100%; height: auto; }
   .split-text h2 {
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
-    font-weight: 800; color: var(--text);
-    line-height: 1.2; margin-bottom: 0.75rem;
+    font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800;
+    color: var(--text); line-height: 1.2; margin-bottom: 0.75rem;
   }
-  .split-text p   { color: var(--text-soft); line-height: 1.75; margin-bottom: 1.25rem; font-size: 0.95rem; }
-  .bullets { list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; }
+  .split-text p   { color: var(--text-soft); line-height: 1.77; margin-bottom: 1.25rem; font-size: 0.95rem; }
+  .bullets { list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
   .bullets li {
     display: flex; align-items: flex-start; gap: 0.65rem;
     font-size: 0.9rem; color: var(--text-soft);
   }
   .bullets li::before {
-    content: ''; flex-shrink: 0;
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--primary); margin-top: 0.5rem;
+    content: ''; flex-shrink: 0; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--primary); margin-top: 0.5rem;
   }
 
-  /* ── Steps ────────────────────────────────────── */
+  /* ── AV / SIGNAGE highlight band ───────────────────── */
+  .highlight-band {
+    background: var(--primary); border-radius: 1.25rem;
+    padding: 2.5rem; display: flex; align-items: center; gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 640px) { .highlight-band { flex-direction: column; text-align: center; } }
+  .highlight-band-icon {
+    flex-shrink: 0; width: 3.5rem; height: 3.5rem;
+    background: rgba(255,255,255,0.15); border-radius: 0.875rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .highlight-band-icon svg { width: 1.75rem; height: 1.75rem; color: #fff; }
+  .highlight-band h3 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.35rem; }
+  .highlight-band p  { font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.65; margin: 0; }
+
+  /* ── VOLUNTEER ROLES ───────────────────────────────── */
+  .roles-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 2.5rem; }
+  @media (max-width: 900px) { .roles-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .roles-grid { grid-template-columns: 1fr; } }
+
+  .role-card {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: var(--radius-card); padding: 1.4rem;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .role-card:hover { border-color: var(--primary-border); box-shadow: 0 8px 24px rgba(67,97,238,0.08); transform: translateY(-2px); }
+  .role-emoji { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .role-name { font-size: 0.875rem; font-weight: 800; color: var(--text); margin-bottom: 0.2rem; }
+  .role-job  { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 0.5rem; }
+  .role-desc { font-size: 0.825rem; color: var(--text-soft); line-height: 1.6; }
+
+  /* ── ORIGIN / MISSION ──────────────────────────────── */
+  .mission-band {
+    background: var(--text); border-radius: 1.5rem;
+    padding: 3.5rem; text-align: center;
+  }
+  .mission-band h2 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; line-height: 1.2; }
+  .mission-band p  { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.75; max-width: 42rem; margin: 0 auto 2rem; }
+  .founders { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .founder  {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    width: 9rem;
+  }
+  .founder-avatar {
+    width: 5rem; height: 5rem; border-radius: 50%;
+    background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.2);
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.4); font-size: 1.5rem;
+  }
+  .founder-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .founder-name  { font-size: 0.875rem; font-weight: 700; color: #fff; }
+  .founder-title { font-size: 0.75rem; color: rgba(255,255,255,0.55); text-align: center; }
+
+  /* ── LUMINOS BAND ──────────────────────────────────── */
+  .luminos-band {
+    background: linear-gradient(135deg, #f0f3fb 0%, #e8ecff 100%);
+    border: 1.5px solid var(--primary-border); border-radius: 1.25rem;
+    padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
+  }
+  @media (max-width: 640px) { .luminos-band { grid-template-columns: 1fr; } }
+  .luminos-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+  .luminos-band h3 { font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 0.6rem; line-height: 1.2; }
+  .luminos-band p  { font-size: 0.9rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1.25rem; }
+  .luminos-prompts { display: flex; flex-direction: column; gap: 0.5rem; }
+  .luminos-prompt {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 0.625rem; padding: 0.65rem 0.9rem;
+    font-size: 0.825rem; color: var(--text-soft); font-style: italic;
+  }
+  .luminos-prompt span { font-style: normal; font-weight: 700; color: var(--primary); }
+
+  /* ── STEPS ─────────────────────────────────────────── */
   .steps { display: flex; flex-direction: column; gap: 1.75rem; max-width: 40rem; margin: 0 auto; }
   .step  { display: flex; gap: 1.25rem; align-items: flex-start; }
   .step-num {
-    flex-shrink: 0; width: 2.5rem; height: 2.5rem;
-    background: var(--primary); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+    background: var(--primary); display: flex; align-items: center; justify-content: center;
     font-weight: 800; font-size: 0.9rem; color: #fff;
     box-shadow: 0 4px 12px rgba(67,97,238,0.3);
   }
   .step-body h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
   .step-body p  { font-size: 0.875rem; color: var(--text-soft); line-height: 1.65; }
 
-  /* ── Testimonials ─────────────────────────────── */
+  /* ── TESTIMONIALS ──────────────────────────────────── */
   .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
   .testimonial {
     background: #fff; border: 1.5px solid var(--border);
     border-radius: var(--radius-card); padding: 1.5rem;
   }
-  .testimonial-stars { color: var(--accent); font-size: 0.875rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
-  .testimonial blockquote { font-size: 0.9rem; color: var(--text-soft); line-height: 1.7; font-style: italic; }
-  .testimonial figcaption { margin-top: 1rem; font-size: 0.78rem; color: var(--text-muted); font-weight: 600; font-style: normal; }
+  .t-stars { color: var(--accent); font-size: 0.875rem; margin-bottom: 0.75rem; }
+  .testimonial blockquote { font-size: 0.9rem; color: var(--text-soft); line-height: 1.72; font-style: italic; }
+  .testimonial figcaption { margin-top: 1rem; font-size: 0.78rem; color: var(--text-muted); font-weight: 700; font-style: normal; }
 
-  /* ── Video ────────────────────────────────────── */
+  /* ── VIDEO ─────────────────────────────────────────── */
   .video-wrap {
     position: relative; padding-bottom: 56.25%; height: 0;
     border-radius: 0.875rem; overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 40px rgba(15,26,46,0.1);
+    border: 1px solid var(--border); box-shadow: 0 12px 40px rgba(15,26,46,0.1);
     margin-top: 2.5rem;
   }
   .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-  /* ── Hardware cards ───────────────────────────── */
-  .hw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
-  @media (max-width: 600px) { .hw-grid { grid-template-columns: 1fr; } }
-  .hw-card {
-    background: #fff; border: 1.5px solid var(--border);
-    border-radius: var(--radius-card); overflow: hidden;
-    text-decoration: none; display: block;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-  .hw-card:hover { border-color: var(--primary-border); box-shadow: 0 8px 28px rgba(67,97,238,0.1); transform: translateY(-2px); }
-  .hw-card img   { display: block; width: 100%; height: 200px; object-fit: cover; }
-  .hw-card-body  { padding: 1.4rem; }
-  .hw-name  { font-size: 1rem; font-weight: 700; color: var(--text); }
-  .hw-price { font-size: 0.82rem; font-weight: 700; color: var(--primary); }
-  .hw-desc  { font-size: 0.85rem; color: var(--text-soft); line-height: 1.6; margin: 0.4rem 0 0.75rem; }
-
-  /* ── CTA banner ───────────────────────────────── */
-  .cta-band {
-    background: var(--primary);
-    padding: 5rem 1.5rem;
-    text-align: center;
-  }
-  .cta-band h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
-  .cta-band p  { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 2rem; }
-  .cta-band .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
-  .btn-white  {
+  /* ── CTA BAND ──────────────────────────────────────── */
+  .cta-band { background: var(--primary); padding: 5.5rem 1.5rem; text-align: center; }
+  .cta-band h2 { font-size: clamp(1.9rem, 3.5vw, 2.75rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; line-height: 1.15; }
+  .cta-band p  { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 2.25rem; max-width: 36rem; margin-left: auto; margin-right: auto; }
+  .cta-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .btn-white {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.7rem 1.6rem; border-radius: var(--radius-btn);
-    background: #fff; color: var(--primary);
-    font-weight: 700; font-size: 0.9rem; text-decoration: none;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    padding: 0.75rem 1.75rem; border-radius: var(--radius-btn);
+    background: #fff; color: var(--primary); font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     transition: box-shadow 0.15s, transform 0.15s;
   }
   .btn-white:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.2); transform: translateY(-1px); }
-  .btn-white-outline {
+  .btn-ghost-white {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.7rem 1.6rem; border-radius: var(--radius-btn);
-    border: 2px solid rgba(255,255,255,0.5);
-    color: #fff; background: transparent;
+    padding: 0.75rem 1.75rem; border-radius: var(--radius-btn);
+    border: 2px solid rgba(255,255,255,0.45); color: #fff; background: transparent;
     font-weight: 700; font-size: 0.9rem; text-decoration: none;
     transition: background 0.15s, border-color 0.15s;
   }
-  .btn-white-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+  .btn-ghost-white:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+  .cta-note { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
 </style>
 
-<!-- ═══════════════════════════════ HERO ════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="inner-sm">
-    <div class="hero-pill">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
-      Built for churches
+    <div class="hero-badge">
+      Built by worship leaders, for worship leaders
     </div>
-    <h1>Know who's in the room.<br/><span>Reach who isn't.</span></h1>
+    <h1>
+      The technology partner<br/>
+      <em>your church has been waiting for.</em>
+    </h1>
     <p class="hero-sub">
-      WorshipMetrics helps your church track attendance, follow up with visitors, and engage
-      your online audience — in one simple weekly workflow your volunteers can actually run.
+      From automatic attendance and AV monitoring to livestream health, free digital signage,
+      and tools that put every volunteer in the right role — we build the technology so you
+      can focus on the mission.
     </p>
     <div class="hero-ctas">
-      <a href="/discovery-call" class="btn-primary">Book a free discovery call</a>
+      <a href="/discovery-call" class="btn-primary">Talk to us — it's free</a>
       <a href={`${APP_URL}/sign-up`} class="btn-outline">Start for free</a>
     </div>
-    <p class="hero-fine">No credit card required. Free plan available.</p>
-
-    <div class="trust-row">
-      {[
-        { icon: "📱", text: "Works on any device" },
-        { icon: "🙋", text: "Built for volunteers" },
-        { icon: "⏱️", text: "1–3 min per service" },
-        { icon: "🌐", text: "In-person + online together" },
-      ].map(({ icon, text }) => (
-        <span class="trust-chip">{icon} {text}</span>
-      ))}
-    </div>
+    <p class="hero-fine">No credit card. No commitment. Just a conversation about where to start.</p>
   </div>
 
-  <div class="hero-img">
+  <div class="hero-img-wrap">
     <img
       src={`${R2}/tablet/Worship Metrics Dashboard.jpg`}
-      alt="WorshipMetrics dashboard showing attendance and people records"
+      alt="WorshipMetrics dashboard — attendance, people, and ministry insights"
       loading="eager" width="1280" height="720"
     />
   </div>
 </section>
 
-<!-- ═══════════════════════ WHAT IT DOES ══════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     PAIN → PROMISE
+════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="inner">
-    <p class="eyebrow section-eyebrow">The platform</p>
-    <h2 class="section-title">One workflow. Every Sunday.</h2>
-    <p class="section-sub">From counting the room to following up on Monday morning — all connected.</p>
+    <p class="eyebrow eyebrow-center">Sound familiar?</p>
+    <h2 class="h2-center">Every church is doing technology.<br/>Most are doing it alone.</h2>
+    <p class="sub-center">We built WorshipMetrics because we lived these problems firsthand. Here's what we actually fix.</p>
 
-    <div class="grid-3">
+    <div class="pain-grid">
       {[
         {
-          href: "/platform/attendance",
-          title: "Track attendance",
-          body: "Count in-person and online together. Seat templates, Auto-Count, and quick manual entry — whatever fits your Sunday.",
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>`,
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/>`,
+          before: "You're counting on paper",
+          problem: "Someone tallies attendance on a notepad. It maybe gets entered into a spreadsheet. Maybe.",
+          after: "Intelligence-guided counting",
+          solution: "Auto-Count does the heavy lifting. Luminos AI turns numbers into pastoral insight before Monday morning.",
         },
         {
-          href: "/platform/people",
-          title: "Follow up faster",
-          body: "Know who is new, who is missing, and who needs a pastoral check-in. Attendance becomes action, not just a number.",
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>`,
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>`,
+          before: "Your stream goes down unnoticed",
+          problem: "Twelve minutes in someone texts you. Half your online congregation already gave up.",
+          after: "AV monitoring + instant alerts",
+          solution: "Real-time stream health monitoring alerts your team the moment something goes wrong — before anyone else knows.",
         },
         {
-          href: "/solutions/digital-engagement",
-          title: "Reach online visitors",
-          body: "Turn anonymous livestream viewers and website visitors into known people your team can actually follow up with.",
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>`,
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>`,
+          before: "Online viewers are invisible",
+          problem: "You get a view count. You have no idea who they are, whether they came back, or how to reach them.",
+          after: "Real follow-up with real people",
+          solution: "Digital engagement tools capture online visitors, route prayer requests, and turn viewership into relationships.",
         },
-      ].map(({ href, title, body, icon }) => (
-        <a href={href} class="feature-card">
-          <div class="feature-icon">
+      ].map(({ icon, before, problem, after, solution }) => (
+        <div class="pain-card">
+          <div class="pain-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" set:html={icon}/>
           </div>
-          <h3>{title}</h3>
-          <p>{body}</p>
-          <span class="arrow">Learn more →</span>
+          <div class="pain-before">{before}</div>
+          <p class="pain-problem">"{problem}"</p>
+          <div class="pain-after">{after}</div>
+          <p class="pain-solution">{solution}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     AV MONITORING + STREAM HEALTH
+════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="inner">
+    <div class="split">
+      <div class="split-img">
+        <img
+          src={`${R2NEW}/Stream%20Health.jpg`}
+          alt="WorshipMetrics AV monitoring and stream health dashboard"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">AV monitoring</p>
+        <h2>We'll tell you when your stream is down before your congregation does.</h2>
+        <p>The WorshipMetrics Hub watches your audio, video, displays, and stream health in real time. When something goes wrong, your team gets an instant alert — not a text from a concerned church member twelve minutes later.</p>
+        <ul class="bullets">
+          <li>Real-time stream, audio, and display monitoring</li>
+          <li>Instant alerts to your team's phones</li>
+          <li>Remote PTZ camera control from anywhere in the world</li>
+          <li>Remote OBS and vMix control — run a great service without being in the building</li>
+        </ul>
+        <a href="/appliance" class="btn-primary">See the WorshipMetrics Hub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     DIGITAL SIGNAGE — FREE
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <div class="split">
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Digital signage</p>
+        <h2>Free digital signage.<br/>Because we believe in the mission.</h2>
+        <p>Update every screen in your church from your phone, from anywhere in the world. Announcements, countdowns, event slides, welcome messages — cloud-managed, instantly updated, completely free.</p>
+        <p style="font-size:0.875rem;color:var(--text-muted);font-style:italic;">We offer free digital signage because we're a team that genuinely believes in what churches are doing. You shouldn't have to pay for the lobby screen.</p>
+        <ul class="bullets">
+          <li>Manage every display from one dashboard</li>
+          <li>Push updates from your phone mid-service</li>
+          <li>Works with TVs your church already owns</li>
+          <li>No monthly fees. No hardware required beyond what you have.</li>
+        </ul>
+        <a href="/platform/operations" class="btn-primary">Learn about signage</a>
+      </div>
+      <div class="split-img">
+        <img
+          src={`${R2NEW}/Church%20Digital%20Signage.jpg`}
+          alt="Church digital signage display showing announcements"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     VOLUNTEER ROLES
+════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="inner">
+    <div class="split">
+      <div class="split-img">
+        <img
+          src={`${R2NEW}/Worship%20Volunteers%20Working%20Together.jpg`}
+          alt="Worship volunteers working together using WorshipMetrics"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Volunteer engagement</p>
+        <h2>Every volunteer deserves a role that matters.</h2>
+        <p>WorshipMetrics is built around the idea that technology should create opportunities to serve — not replace them. Every role gets tools built exactly for them, so volunteers are more deeply engaged, not just more efficient.</p>
+        <div class="roles-grid" style="margin-top:1.25rem;">
+          {[
+            { emoji:"🙋", name:"Greeter",         job:"Welcome desk",      desc:"Check in guests and capture first-time visitors in seconds." },
+            { emoji:"👶", name:"Children's Team",  job:"Kids ministry",     desc:"Run safe, fast family check-in tied to the same church record." },
+            { emoji:"🎬", name:"AV Volunteer",     job:"Production booth",  desc:"Monitor streams, control cameras, and manage scenes remotely." },
+            { emoji:"✝️", name:"Pastor / Leader",  job:"Leadership",        desc:"See who's new, who's missing, and what needs attention Monday." },
+          ].map(({ emoji, name, job, desc }) => (
+            <div class="role-card">
+              <div class="role-emoji">{emoji}</div>
+              <div class="role-name">{name}</div>
+              <div class="role-job">{job}</div>
+              <div class="role-desc">{desc}</div>
+            </div>
+          ))}
+        </div>
+        <a href="/platform/operations" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;">See how roles work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     THE FULL ECOSYSTEM
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <p class="eyebrow eyebrow-center">One partner. Every part.</p>
+    <h2 class="h2-center">Everything your church needs, from one team.</h2>
+    <p class="sub-center">
+      Not six separate tools from six separate companies. One ecosystem, one support team,
+      one bill — built to work together because it was designed together.
+    </p>
+
+    <div class="eco-grid">
+      {[
+        { label:"Attendance", title:"Automatic counting + insights", desc:"Seat templates, Auto-Count, and Luminos AI turn Sunday numbers into Monday pastoral action.", href:"/platform/attendance" },
+        { label:"People",     title:"Guest capture + follow-up",    desc:"Welcome cards, QR codes, prayer routing, and absence alerts — all connected.", href:"/platform/people" },
+        { label:"AV + Production", title:"Stream health + remote control", desc:"AV monitoring, PTZ camera control, OBS and vMix remote switching from anywhere.", href:"/appliance" },
+        { label:"Digital Signage", title:"Free lobby displays",     desc:"Manage every screen in your church from your phone. No fees. Ever.", href:"/platform/operations", badge:"Free" },
+        { label:"Worship Clips",   title:"Sermon → social content", desc:"Automatic clips for Reels, Shorts, TikTok, and Facebook. No editing required.", href:"/solutions/worship-clips" },
+        { label:"Community",  title:"All-week digital campus",      desc:"Discord-based community platform with YouTube chat sync and member onboarding.", href:"/solutions/church-community-platform" },
+      ].map(({ label, title, desc, href, badge }) => (
+        <a href={href} class="eco-card">
+          <div class="eco-label">{label}</div>
+          <div class="eco-title">{title} {badge && <span class="eco-badge">{badge}</span>}</div>
+          <div class="eco-desc">{desc}</div>
+          <div class="eco-link">Learn more →</div>
         </a>
       ))}
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ SEAT COUNTING ════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     LUMINOS AI
+════════════════════════════════════════════════════ -->
 <section class="section section-alt">
-  <div class="inner">
-    <div class="split">
-      <div class="split-img">
-        <img
-          src={`${R2}/homepage/3 Worship Metrics Attendance Tracking.jpg`}
-          alt="Seat counting layout on a WorshipMetrics tablet"
-          loading="lazy" width="800" height="540"
-        />
+  <div class="inner-md">
+    <div class="luminos-band">
+      <div>
+        <p class="luminos-tag">Luminos AI</p>
+        <h3>Walk into Monday already knowing what matters most.</h3>
+        <p>Luminos lives inside your WorshipMetrics dashboard and answers the questions your team asks every Monday — in plain English, without digging through reports. Role-aware, confirmation-required, and built for pastoral care, not data analysis.</p>
+        <a href="/luminos-ai-assistant" class="btn-primary">See Luminos in action</a>
       </div>
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Attendance tracking</p>
-        <h2>Count the room in 1–3 minutes, every Sunday.</h2>
-        <p>Build your sanctuary layout once. Volunteers confirm what changed each week — they're not recounting from zero. Auto-Count handles the hectic Sundays when there's no time to spare.</p>
-        <ul class="bullets">
-          <li>Seat templates built for real church spaces</li>
-          <li>Auto-Count from a quick photo when time is tight</li>
-          <li>In-person and livestream in one combined total</li>
-          <li>Attendance patterns tied to real people records</li>
-        </ul>
-        <a href="/platform/attendance" class="btn-primary">See how it works</a>
+      <div class="luminos-prompts">
+        {[
+          '"Who has missed multiple services and may need a check-in?"',
+          '"Which guests still haven\'t heard from us this week?"',
+          '"Give me a summary before Monday staff meeting."',
+          '"What changed this week that deserves our attention first?"',
+        ].map(prompt => (
+          <div class="luminos-prompt">{prompt}</div>
+        ))}
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ VISITOR CAPTURE ══════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     VIDEO
+════════════════════════════════════════════════════ -->
 <section class="section">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">People & follow-up</p>
-        <h2>Turn guests into known people before they leave the parking lot.</h2>
-        <p>Scan welcome cards with any phone camera. QR check-in for digital-first guests. Either way, a real people record is created instantly — with enough context for your team to follow up well.</p>
-        <ul class="bullets">
-          <li>Welcome card scanning with computer vision</li>
-          <li>QR code self-check-in for phone-first guests</li>
-          <li>Prayer requests routed to the right person</li>
-          <li>Absence alerts before weeks become months</li>
-        </ul>
-        <a href="/platform/people" class="btn-primary">See people tools</a>
-      </div>
-      <div class="split-img">
-        <img
-          src={`${R2}/homepage/Worship Metrics is Easy.jpg`}
-          alt="Church team using WorshipMetrics for visitor follow-up"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ VIDEO ═══════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner-sm">
-    <p class="eyebrow section-eyebrow">See it in action</p>
-    <h2 class="section-title">A quick look at WorshipMetrics</h2>
+  <div class="inner-md">
+    <p class="eyebrow eyebrow-center">See it in action</p>
+    <h2 class="h2-center">A quick look at what we've built.</h2>
     <div class="video-wrap">
       <iframe
         src="https://www.youtube-nocookie.com/embed/TUTc5Q3NliM?rel=0&modestbranding=1&playsinline=1"
-        title="WorshipMetrics walkthrough"
+        title="WorshipMetrics — the church technology partner"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen loading="lazy"
       ></iframe>
@@ -355,69 +530,60 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
   </div>
 </section>
 
-<!-- ════════════════════════ WORSHIP CLIPS ══════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <div class="split">
-      <div class="split-img">
-        <img
-          src={`${R2}/homepage/WorshipClips Hero.jpg`}
-          alt="Worship Clips converting a sermon into social media content"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Worship Clips</p>
-        <h2>Your message doesn't end when the service does.</h2>
-        <p>WorshipMetrics automatically turns your livestream into ready-to-post clips for Instagram, YouTube Shorts, TikTok, and Facebook. No video editing software. One volunteer. Under an hour.</p>
-        <ul class="bullets">
-          <li>52 clips/year on Essentials · Unlimited on Established</li>
-          <li>Vertical, square, and horizontal formats created automatically</li>
-          <li>Reach people who weren't in the room on Sunday</li>
-        </ul>
-        <a href="/solutions/worship-clips" class="btn-primary">See Worship Clips</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════ COMMUNITY PLATFORM ════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     ORIGIN / MISSION
+════════════════════════════════════════════════════ -->
 <section class="section section-alt">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Community Platform</p>
-        <h2>Build a digital home your congregation will actually use.</h2>
-        <p>We set up a Discord-based community platform for your church — prayer channels, small group spaces, YouTube chat sync, announcements, and member onboarding. All week long, not just Sunday.</p>
-        <ul class="bullets">
-          <li>Discord setup, automations, and YouTube chat sync</li>
-          <li>Ministry-specific channels your team designs</li>
-          <li>One-time setup fee — we handle the technical lift</li>
-        </ul>
-        <a href="/solutions/church-community-platform" class="btn-primary">See community platform</a>
+  <div class="inner-md">
+    <div class="mission-band">
+      <h2>"We didn't come from Silicon Valley.<br/>We came from the front pew."</h2>
+      <p>
+        WorshipMetrics was built by Rev. Andrew Esqueda and Paul Richards — a worship leader and a
+        broadcast technologist — because they lived these problems firsthand. Andrew asked: why should
+        a pastor need a spreadsheet to know who showed up on Sunday? The answer, with the cameras
+        already in the room, was: they shouldn't. That question became this platform.
+      </p>
+      <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
+        We build with the audacity to believe that every church — regardless of size or budget — deserves
+        technology that respects the sacred work happening inside those walls.
+      </p>
+      <div class="founders">
+        <div class="founder">
+          <div class="founder-avatar">
+            <img src={`${R2}/main/Andrew.jpg`} alt="Rev. Andrew Esqueda" loading="lazy"/>
+          </div>
+          <span class="founder-name">Rev. Andrew Esqueda</span>
+          <span class="founder-title">Co-Founder · Worship Leader</span>
+        </div>
+        <div class="founder">
+          <div class="founder-avatar">
+            <!-- Replace with paul.jpg when available -->
+            <img src={`${R2}/main/paul.jpg`} alt="Paul Richards" loading="lazy"/>
+          </div>
+          <span class="founder-name">Paul Richards</span>
+          <span class="founder-title">Co-Founder · Technology Lead</span>
+        </div>
       </div>
-      <div class="split-img">
-        <img
-          src={`${R2}/homepage/WorshipMetrics Discord Setup.jpg`}
-          alt="WorshipMetrics Discord community platform"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
+      <a href="/about" class="btn-outline" style="border-color:rgba(255,255,255,0.3);color:#fff;">
+        Read our story
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════ HOW IT WORKS ════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="inner">
-    <p class="eyebrow section-eyebrow">The weekly rhythm</p>
-    <h2 class="section-title">Simple enough to repeat every Sunday.</h2>
-    <p class="section-sub">A three-step loop your whole team can run without any training overhead.</p>
+    <p class="eyebrow eyebrow-center">The weekly rhythm</p>
+    <h2 class="h2-center">Simple enough to repeat every Sunday.</h2>
+    <p class="sub-center">A three-step loop your volunteers can run without any training overhead.</p>
     <ol class="steps">
       {[
-        { n:"1", t:"Count",     b:"Volunteers use a seat template or Auto-Count to log attendance in 1–3 minutes during or after service." },
-        { n:"2", t:"Capture",   b:"New visitors, prayer requests, and online interactions get attached to real people records automatically." },
-        { n:"3", t:"Follow up", b:"Leadership gets a clear Monday summary: who's new, who's missing, what needs pastoral attention this week." },
+        { n:"1", t:"Count — automatically or with a tap", b:"Auto-Count handles the room while your volunteers focus on people. Templates mean they're confirming changes, not recounting from zero." },
+        { n:"2", t:"Capture — guests, prayer, and online engagement", b:"Welcome cards scan. QR codes check in. Prayer requests route. Online viewers get a next step. All of it creates real people records." },
+        { n:"3", t:"Follow up — guided by Luminos, not guesswork", b:"Monday morning, Luminos surfaces who's new, who's missing, and what needs pastoral attention. Your team acts with intention, not reaction." },
       ].map(({ n, t, b }) => (
         <li class="step">
           <span class="step-num">{n}</span>
@@ -428,11 +594,13 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
   </div>
 </section>
 
-<!-- ════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════════ -->
 <section class="section section-alt">
   <div class="inner">
-    <p class="eyebrow section-eyebrow">What churches are saying</p>
-    <h2 class="section-title">Real results from real ministry teams.</h2>
+    <p class="eyebrow eyebrow-center">What churches are saying</p>
+    <h2 class="h2-center">Ministry teams that found their partner.</h2>
     <div class="testimonial-grid" style="margin-top:2.5rem;">
       {[
         { q: "Before WorshipMetrics, we had no idea who was watching our stream. Now we have a follow-up system running within 24 hours of every service.", a: "Executive Pastor, mid-size church, Southeast U.S." },
@@ -440,7 +608,7 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
         { q: "Our YouTube chat used to go unmonitored every Sunday. Now someone is in there welcoming viewers and routing prayer requests in real time.", a: "Communications Director, large church, Texas" },
       ].map(({ q, a }) => (
         <figure class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="t-stars">★★★★★</div>
           <blockquote>"{q}"</blockquote>
           <figcaption>— {a}</figcaption>
         </figure>
@@ -449,57 +617,21 @@ const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
   </div>
 </section>
 
-<!-- ═══════════════════════ HARDWARE ROW ═══════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <p class="eyebrow section-eyebrow">Hardware</p>
-    <h2 class="section-title">Purpose-built devices for churches.</h2>
-    <p class="section-sub">Optional hardware that plugs directly into your WorshipMetrics account.</p>
-    <div class="hw-grid">
-      {[
-        {
-          img: `${R2}/tablet/Worship Metrics Appliance Small.jpg`,
-          name: "WorshipMetrics Hub",
-          price: "$499 · one-time",
-          desc: "Automatic attendance, cloud-managed digital signage, remote PTZ camera control, and live production — all from one device. No subscription fees.",
-          href: "/appliance",
-        },
-        {
-          img: `${R2}/tablet/New Worship Metrics Tablet Hero.jpg`,
-          name: "WorshipMetrics Tablet",
-          price: "From $349",
-          desc: "A dedicated volunteer workflow for check-in, attendance, and guest capture. Includes a free Essentials plan. Sets up in 60 seconds.",
-          href: "/tablet",
-        },
-      ].map(({ img, name, price, desc, href }) => (
-        <a href={href} class="hw-card">
-          <img src={img} alt={name} loading="lazy" width="600" height="400" />
-          <div class="hw-card-body">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.35rem;">
-              <span class="hw-name">{name}</span>
-              <span class="hw-price">{price}</span>
-            </div>
-            <p class="hw-desc">{desc}</p>
-            <span style="font-size:0.8rem;font-weight:700;color:var(--primary);">See details →</span>
-          </div>
-        </a>
-      ))}
-    </div>
-    <p style="text-align:center;margin-top:1.25rem;">
-      <a href="/hardware" style="font-size:0.85rem;font-weight:700;color:var(--primary);">Compare Hub vs. Tablet →</a>
-    </p>
-  </div>
-</section>
-
-<!-- ═══════════════════════ BOTTOM CTA ═════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     CTA
+════════════════════════════════════════════════════ -->
 <div class="cta-band">
-  <p class="eyebrow" style="color:rgba(255,255,255,0.65);margin-bottom:0.4rem;">Start this Sunday</p>
-  <h2>Know your congregation.<br/>Care for it well.</h2>
-  <p>Join churches using WorshipMetrics to track attendance, follow up with visitors, and reach people online.</p>
-  <div class="btns">
-    <a href={`${APP_URL}/sign-up`} class="btn-white">Get started free</a>
-    <a href="/discovery-call" class="btn-white-outline">Book a discovery call</a>
+  <p class="eyebrow" style="color:rgba(255,255,255,0.6);margin-bottom:0.5rem;">Let's find out what's possible together</p>
+  <h2>What can't we achieve<br/>with God's help?</h2>
+  <p>
+    Start with a free 30-minute call. We'll learn about your church, tell you honestly what
+    would make the biggest difference, and recommend exactly where to begin — no pitch, no pressure.
+  </p>
+  <div class="cta-btns">
+    <a href="/discovery-call" class="btn-white">Book a free discovery call</a>
+    <a href={`${APP_URL}/sign-up`} class="btn-ghost-white">Start for free</a>
   </div>
+  <p class="cta-note">Available Monday–Friday · We respond within one business day</p>
 </div>
 
 </Layout>
