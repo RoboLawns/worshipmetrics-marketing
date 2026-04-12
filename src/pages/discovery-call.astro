@@ -7,6 +7,31 @@ import Layout from "../layouts/Layout.astro";
   description="A free 30-minute call with Paul Richards. No pressure — we learn about your church and recommend what actually makes sense."
   canonical="/discovery-call"
 >
+  <Fragment slot="head">
+    <script>
+      (() => {
+        const sendDiscoveryCallConversion = () => {
+          if (window.__wmDiscoveryCallConversionSent) return true;
+          if (typeof window.gtag !== 'function') return false;
+
+          window.gtag('config', 'AW-18048317342');
+          window.gtag('event', 'conversion', {
+            send_to: 'AW-18048317342/r89HCOXszZEcEJ7vjZ5D',
+            transport_type: 'beacon',
+          });
+
+          window.__wmDiscoveryCallConversionSent = true;
+          return true;
+        };
+
+        if (!sendDiscoveryCallConversion()) {
+          window.setTimeout(sendDiscoveryCallConversion, 500);
+          window.setTimeout(sendDiscoveryCallConversion, 1500);
+        }
+      })();
+    </script>
+  </Fragment>
+
   <!-- Hero -->
   <section class="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-slate-50 px-4 py-24 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center">
@@ -94,16 +119,4 @@ import Layout from "../layouts/Layout.astro";
       </p>
     </div>
   </section>
-  <!-- Fire discovery call conversion on page load -->
-  <script>
-    // Matches AW-18048317342/r89HCOXszZEcEJ7vjZ5D in the React app
-    window.addEventListener('load', () => {
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'conversion', {
-          send_to: 'AW-18048317342/r89HCOXszZEcEJ7vjZ5D',
-          transport_type: 'beacon',
-        });
-      }
-    });
-  </script>
 </Layout>
