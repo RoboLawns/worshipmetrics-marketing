@@ -1,0 +1,94 @@
+---
+title: Minrray UV570A Setup Guide
+description: Complete initial setup guide for the Minrray UV570A 30x NDI PTZ camera, from unboxing through network configuration and first NDI streaming.
+brand: Minrray
+modelId: uv570a
+modelFullName: Minrray UV570A
+articleType: setup-guide
+category: device-setup
+tags: [ptz-camera, ndi, 30x-zoom, setup, minrray]
+difficulty: beginner
+priceRange: 500-1500
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The Minrray UV570A brings professional 30x optical zoom and NDI streaming to churches with modern network-based broadcast infrastructure. The camera's combination of excellent zoom range and NDI capability makes it ideal for sanctuaries where you need both flexibility in framing and network-based video distribution. This guide covers complete setup from unboxing through first NDI broadcast.
+
+## Unboxing and Initial Inspection
+
+When your UV570A arrives, inspect the packaging for shipping damage. The camera should include the main body with integrated pan-tilt mechanism, a power supply, an Ethernet cable for network connectivity, and documentation.
+
+Set the camera on a stable work surface and verify that all components are present. The lens should be clear and the pan-tilt mechanism should feel smooth and solid. The 30x zoom is one of the camera's key features, so take a moment to appreciate the quality of the optics.
+
+## Powering On and Startup
+
+Connect the power supply to the camera and plug it into an outlet. The UV570A will begin booting almost immediately. During startup, you might hear small motor sounds from the pan-tilt system as it initializes.
+
+Wait 15 to 20 seconds for full startup. The indicator lights on the back panel will transition from a startup pattern to steady operational lights. Once the lights stabilize, the camera is ready for testing.
+
+## Network Connection and DHCP
+
+Connect an Ethernet cable from the camera to your church network switch. The UV570A automatically requests a DHCP IP address from your network.
+
+The network indicator light should illuminate to show a successful connection. If it doesn't change, verify that the Ethernet cable is firmly inserted on both ends and that your network switch is powered on.
+
+## Finding the Camera's IP Address
+
+Use your network router's connected devices list or a network scanning tool to find the camera's IP address. Once you have the IP, open a web browser and type the address into the address bar.
+
+The camera's web login page should appear. Log in with the default credentials (usually admin with a blank password). Immediately change the password to something unique for security.
+
+<ProductCTA variant="inline" />
+
+## Enabling NDI on the UV570A
+
+Navigate to the Network settings or NDI configuration section in the web interface. Ensure that NDI is enabled. Some cameras ship with NDI disabled, so this is a crucial step.
+
+Once NDI is enabled, configure the NDI source name—this is what appears in OBS, vMix, and other broadcast software. Choose something immediately recognizable like "Sanctuary Main PTZ" or "Stage 30x Camera". This name should clearly identify the camera's purpose.
+
+Verify that other NDI settings are appropriate. Default settings work well for most churches, but you can optimize bandwidth if needed for your specific network situation.
+
+## Testing NDI Discovery
+
+Save your NDI settings and allow the camera a few seconds to restart its network services. Open OBS Studio or vMix on a broadcast computer connected to the same network.
+
+In OBS, add a new NDI source. Your UV570A should appear in the list by the name you configured. Select it and verify that video appears.
+
+If the camera doesn't appear in the NDI source list, verify that NDI is enabled in the web interface. Ensure both devices are on the same network. Check that no firewall is blocking NDI traffic.
+
+## Testing Pan-Tilt-Zoom Functions
+
+Use the web interface PTZ control section to test camera movement. Pan left and right to verify the full pan range. Tilt up and down to verify tilt movement.
+
+Test the 30x optical zoom by zooming all the way in and all the way out. The zoom should move smoothly and maintain focus throughout. The 30x zoom is one of the UV570A's defining features, providing incredible framing flexibility.
+
+## Verifying Video Quality
+
+With the camera connected as an NDI source in OBS or vMix, verify that the video quality looks excellent. The UV570A outputs at 1080p, 59.94 frames per second.
+
+The image should be sharp and properly exposed. Colors should look natural and saturated. If the image appears blurry, the autofocus might need adjustment—this is something you can fine-tune through the web interface.
+
+## Network Infrastructure Assessment
+
+Evaluate whether your network is adequate for NDI streaming. The UV570A uses approximately 150 megabits per second of bandwidth. Ensure your network switch and cabling can handle this.
+
+If you're planning to add additional cameras later, discuss network upgrades with your IT team now. A managed switch with Quality of Service settings is ideal for multi-camera deployments.
+
+## Planning for Permanent Mounting
+
+Consider where you want to mount the UV570A permanently. The 30x zoom works best from a position where you have good sight lines to your entire stage and congregation.
+
+Verify that your mounting location has both network access (Ethernet cable run) and power access (outlet or properly installed power conduit). Plan cable routing before you mount the camera.
+
+## Assigning a Static IP Address
+
+For a permanent installation, assign a static IP address to the UV570A. In the web interface network settings, configure a static IP address in coordination with your IT team.
+
+Static IP ensures your camera always has the same address, so your broadcast software and bookmarks remain consistent. Document the IP address in your network records.
+
+## Conclusion
+
+Your Minrray UV570A is now powered on, connected to your network, and configured for NDI streaming. The exceptional 30x optical zoom combined with professional NDI support makes this a powerful tool for church production. Next steps involve permanent mounting, preset configuration, and full broadcast workflow integration.

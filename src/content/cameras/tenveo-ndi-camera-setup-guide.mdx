@@ -1,0 +1,88 @@
+---
+title: "Tenveo NDI Camera Setup Guide: Network PTZ for Churches"
+description: "Complete initial setup for Tenveo NDI PTZ camera, including network configuration, NDI enablement, and first presets."
+brand: "Tenveo"
+modelId: "tenveo-ndi"
+modelFullName: "Tenveo NDI PTZ Camera"
+articleType: "setup-guide"
+category: "device-setup"
+tags: ["Tenveo", "NDI", "network-camera", "setup", "church"]
+difficulty: "beginner"
+priceRange: "500-1500"
+publishedAt: "2024-04-05"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Introduction
+
+The Tenveo NDI camera combines affordable pricing with professional NDI video output, making it an excellent choice for churches that want network-based camera integration without expensive enterprise-grade equipment. Like the AVKANS NDI cameras, the Tenveo appears to your production software as a network source, allowing flexible integration with OBS, vMix, and other NDI-capable software.
+
+The NDI camera ships with network configuration and NDI enablement as standard features, which simplifies setup compared to cameras where these are optional. This guide covers unboxing, network connection, NDI configuration, and creating your first presets for production use.
+
+## What Comes in the Box and Network Requirements
+
+The Tenveo NDI camera arrives with the camera unit, power adapter, network cable, and documentation. Like all NDI cameras, it requires network infrastructure to operate. The camera needs a connection to your church network and must be on the same subnet as your production computer for NDI multicast discovery to work.
+
+The camera streams video over NDI, which consumes bandwidth on your network. Modern church networks can typically handle one or two NDI cameras without issue, but older or heavily-loaded networks may experience congestion.
+
+## Connect Power and Network Cable
+
+Plug the power adapter into the camera and connect it to an outlet. The camera boots up, which takes a few seconds. You should see a power indicator confirming the camera is on.
+
+Connect the network cable from the camera to your church network switch. The camera defaults to DHCP, so it should acquire an IP address automatically. Ideally, assign it a static IP address that matches your network range to ensure it remains accessible.
+
+## Access the Web Interface and Configure IP Address
+
+Log into your router or network device to find the camera's IP address, or use network scanning tools if you are familiar with them. Once you have the IP address, open a browser and navigate to it. You should see the camera's web-based configuration interface.
+
+Log in with default credentials (usually admin/admin or similar—check your documentation). Navigate to Network Settings and assign a static IP address in your network range. Use an address like 192.168.1.200 or 192.168.1.250, depending on your network.
+
+Save the settings. The camera reboots and attempts to connect with the new static IP address. Wait a moment, then navigate to the new IP address to confirm it is reachable.
+
+Document the static IP address for future reference. You will need it if you ever need to reconfigure the camera or troubleshoot network issues.
+
+## Verify NDI Output is Enabled
+
+In the web interface, locate the Video Settings or NDI Settings section. Confirm that NDI output is enabled. Most Tenveo NDI cameras have NDI enabled by default, but some variants may ship with it disabled.
+
+If NDI is disabled, enable it and save. The camera reboots while enabling NDI, which is normal and expected.
+
+Check your video resolution and frame rate settings. For church production, 1080p at 60 fps is standard. You can reduce to 1080p 30 fps or 720p 60 fps if bandwidth is limited.
+
+## Confirm NDI Discovery in Your Production Software
+
+With the camera networked and NDI enabled, open OBS or vMix on your production computer and add an NDI source. The Tenveo camera should appear in the available sources list. If it does not, wait a few seconds and refresh. NDI discovery can take 10 to 15 seconds on some networks.
+
+Once the camera appears, select it as an NDI source. OBS or vMix immediately begins receiving the NDI stream. You should see clean video in your preview. If you do not see the camera in the sources list, the issue is usually multicast blockage or a network subnet problem.
+
+<ProductCTA variant="inline" />
+
+## Create Initial Presets for Your Service
+
+Using the web UI or control software (if available), position the camera at key service moments and save presets. Most churches need three to five presets: a wide stage view, a pulpit position, a worship team position, and possibly additional positions for special moments.
+
+Position the camera to the desired framing, zoom appropriately, and save the preset. Test each preset by recalling it a few times to ensure consistent positioning.
+
+## Test NDI Stability During Extended Streaming
+
+Run a test broadcast that lasts 20 to 30 minutes. Monitor whether the NDI source remains connected and whether video quality stays consistent. If the camera drops out or video degrades, the issue is usually network bandwidth or congestion.
+
+If your test is stable, the camera should remain stable during services as well.
+
+## Optimize NDI Bitrate for Your Network
+
+The camera sends video at a certain bitrate (data rate). Higher bitrate means better quality but uses more bandwidth. Check your camera settings for NDI bitrate options and set it appropriately for your available bandwidth.
+
+If your network is limited, reducing bitrate from full quality to a reduced-bandwidth profile can improve stability. The tradeoff is slightly reduced image quality, but for most church applications, the difference is acceptable.
+
+## Document Your Configuration
+
+Record the camera's static IP address, NDI enabled status, resolution settings, and any custom configurations. Store this documentation where your team can access it, such as a shared folder or a printed sheet near your equipment.
+
+## Conclusion
+
+Tenveo NDI camera setup is straightforward and mirrors the setup process for AVKANS NDI cameras. Once networked, NDI-enabled, and configured with a static IP address, the camera operates reliably and integrates seamlessly with your production software.
+
+The affordability of Tenveo NDI cameras combined with their full NDI support makes them an attractive option for churches looking to deploy network cameras without expensive enterprise-grade equipment.

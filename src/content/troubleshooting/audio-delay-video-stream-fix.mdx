@@ -1,0 +1,127 @@
+---
+title: "Audio and Video Out of Sync on Church Stream: Fix"
+description: "Fix A/V sync issues on your church live stream. Covers OBS sync offset, ATEM delay, and hardware encoder buffer settings."
+symptom: "Audio and video are not synchronized on the live stream"
+affectedDevices: ["OBS Studio", "ATEM Mini", "Behringer X32"]
+tags: ["audio", "video", "sync", "streaming"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Viewers watching your stream see the pastor's mouth move but the audio is delayed — or audio comes first and then the mouth follows. Lip sync is broken, and it's distracting. This is a buffer or sync offset issue in your encoder, not a camera problem. We can fix it in minutes by adjusting sync settings.
+
+<ProductCTA variant="inline" />
+
+## Determine the Direction of the Sync Issue
+
+First, figure out which is ahead and which is behind:
+
+1. Watch the live stream yourself (on a separate device if possible, like a phone or tablet)
+2. Does the **pastor's mouth open before the audio comes out?** (Video leads, audio lags)
+3. Or does the **audio arrive first, then the mouth moves?** (Audio leads, video lags)
+4. Estimate the delay: is it 0.5 second, 1 second, or more?
+
+Write this down — you'll need it for the fix.
+
+## Fix in OBS: Audio Sync Offset
+
+If you're using OBS:
+
+1. In the **Sources** panel, click on your audio source (mixer input, USB interface, or microphone)
+2. Right-click and select **Filters**
+3. Click **Add Filter** (the + button)
+4. Choose **Audio Delay (ms)**
+5. Set the delay value:
+   - **If audio lags (video is ahead)**: *increase* the audio delay. Start with +500ms (0.5 second) and test.
+   - **If audio leads (video is behind)**: set a *negative* delay. Try -500ms and test.
+6. Do a test stream and watch the sync
+7. Adjust in 50–100ms increments until perfect
+8. Once aligned, save your scene
+
+**Tip:** Most sync issues fall in the 100–300ms range. Start there and fine-tune.
+
+## Fix in ATEM Mini: Audio Delay
+
+If you're using a Blackmagic ATEM Mini or ATEM Mini Pro:
+
+1. Open **ATEM Software Control** on your PC
+2. Go to the **Audio Mixer** tab
+3. Look for an **Audio Delay** or **Sync Offset** option (varies by ATEM model)
+4. Increase or decrease based on the direction:
+   - Audio lags: increase the audio delay
+   - Audio leads: decrease the delay (or use negative offset)
+5. Test a stream and fine-tune in 50ms increments
+6. Save the project
+
+Check your specific ATEM model's manual if you can't find the setting — it might be labeled differently or in a different menu.
+
+## Check Your Mixer's USB Audio Delay
+
+If audio is coming from your mixer's USB output:
+
+1. Some mixers (Behringer X32, Yamaha TF1) have USB audio latency settings
+2. Access the mixer's menu and look for **USB Settings** or **Audio Settings**
+3. Verify the USB audio buffer is set to **low latency** (not high)
+4. If you recently changed this, reset it to default
+5. Test the stream
+
+A high USB buffer introduces audio delay — lowering it can help sync.
+
+## Verify Your Video Source Doesn't Have Extra Delay
+
+Sometimes the video source itself introduces delay:
+
+- **OBS window capture**: if you're capturing a window (e.g., presentation software), window capture can add 1–2 frames of delay
+- **Game capture mode**: also adds delay; switch to **window capture** if possible
+- **Camera with HDMI**: ensure the HDMI cable and switcher aren't introducing delay (they typically don't, but confirm)
+
+If video is the problem, switching from **game capture** to **window capture** in OBS can reduce delay by 50–100ms.
+
+## Check Frame Rate Mismatch
+
+A frame rate mismatch between video and audio can cause apparent sync issues:
+
+1. In OBS, go **Settings > Video**
+2. Check the **Common FPS Values** — is it 30fps, 25fps, 29.97fps, or something else?
+3. Verify your camera or video source is outputting the *same* frame rate
+4. If they don't match, change OBS to match the camera's output
+5. Test the stream
+
+Mismatched frame rates don't directly cause sync problems, but they can make it harder to correct offset.
+
+## Use a Test Stream to Verify Sync
+
+Before going live on Sunday:
+
+1. Create a private/unlisted test stream on YouTube or Facebook
+2. Start streaming from OBS
+3. Have someone outside the booth watch the stream on their phone
+4. Ask them to confirm: "Is the audio and video in sync? Or is one ahead?"
+5. Stop the stream and adjust the sync offset
+6. Test again
+7. Repeat until perfect
+
+**Don't try to adjust sync during the live service.** Get it right beforehand.
+
+## Power Cycle if Sync Drifts During Service
+
+If sync starts correct but gradually drifts over time:
+
+1. Stop the stream
+2. Close OBS completely
+3. Restart your streaming PC
+4. Reopen OBS and resume
+5. Sync should reset
+
+This clears any buffer buildup that may have caused drift.
+
+---
+
+**Common sync offsets to try:**
+- Audio lags by ~0.5 sec → try +500ms audio delay
+- Audio lags by ~1 sec → try +1000ms
+- Audio leads by ~0.3 sec → try -300ms
+- Then fine-tune in 50ms increments

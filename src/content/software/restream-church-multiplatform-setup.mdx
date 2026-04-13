@@ -1,0 +1,108 @@
+---
+title: "Restream Setup Guide for Church Multistreaming"
+description: "Set up Restream.io for churches to stream simultaneously to YouTube, Facebook, and other platforms. Configure destinations and connect OBS."
+app: restream
+articleType: setup-guide
+tags: [multistream, restream, setup, youtube, facebook, church-av]
+difficulty: beginner
+publishedAt: "2024-03-08"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Restream.io is a cloud service that takes a single video stream from your OBS computer and distributes it simultaneously to YouTube, Facebook, and dozens of other platforms. Instead of managing separate streaming connections to each platform (a complex technical challenge), you send one stream to Restream and it handles the distribution. This simplifies multistreaming and adds features like unified chat, per-platform scheduling, and viewership analytics.
+
+For churches wanting to reach audiences on multiple platforms without technical complexity, Restream is the practical choice. This guide walks you through creating an account, configuring destinations, and connecting OBS to start multistreaming.
+
+## Creating Your Restream Account
+
+Visit restream.io and sign up for a free account. Free accounts support up to two simultaneous streams (enough for YouTube and Facebook) with limited features. Paid accounts ($19/month) support unlimited simultaneous streams and add advanced features like custom branding and clip creation.
+
+For your first Restream setup, free is sufficient. You can upgrade later as your church's streaming program grows.
+
+## Adding YouTube as a Destination
+
+Log into Restream and click "Add a new destination" (or "+" button in the Destinations section). Select "YouTube" from the platform list. Restream will ask for authorization to access your YouTube channel. Click "Authorize with Google" and log in with your YouTube account.
+
+Grant Restream permission to manage your livestreams. You'll be redirected back to Restream, and YouTube will be added to your destinations list.
+
+Now configure YouTube-specific details: title, description, category, thumbnail, and visibility (public, unlisted, or private). These settings apply to your YouTube stream—viewers searching YouTube will see this title and description. Set them clearly so people know what they're watching ("Sunday Service - March 15, 2024").
+
+<ProductCTA variant="inline" />
+
+## Adding Facebook as a Destination
+
+Click "Add a new destination" again and select "Facebook." Restream will ask to access your Facebook page. Authorize it, and Facebook will be added.
+
+Configure Facebook-specific details: post description, cover image. Facebook displays these to your followers. Use a clear description so people know you're streaming.
+
+If you have multiple Facebook pages, Restream lets you choose which page streams are posted to. Select your church's main page.
+
+## Connecting OBS to Restream
+
+This is the key step. Restream generates a unique RTMP ingest URL and stream key. Copy these from your Restream dashboard.
+
+Open OBS on your streaming computer. Go to Settings → Stream. Select "Custom RTMP Server" from the Service dropdown. Paste the Restream ingest URL into the Server field and the Stream Key into the Stream Key field.
+
+Click "Apply" and "OK." OBS now sends to Restream instead of directly to YouTube or Facebook.
+
+## Starting Your First Stream
+
+To go live, start streaming in OBS as usual (click "Start Streaming"). OBS sends the stream to Restream, and Restream distributes it to all configured destinations simultaneously. Wait 10–20 seconds for the stream to propagate, then open YouTube and Facebook in separate tabs.
+
+On YouTube, you should see your livestream appearing. Check the video quality, frame rate, and audio. On Facebook, do the same. If video appears on both within 30 seconds, your setup is correct.
+
+## Monitoring Stream Health
+
+One advantage of Restream is the unified dashboard. Once you're streaming, open the Restream website and go to your active stream. You'll see real-time stats for each platform: viewer count, bitrate, frame rate, and stream health (green = healthy, red = issues).
+
+If one platform shows red, something is wrong with that connection. Check the platform's error message. Common issues: stream key expired (re-authorize), internet connectivity problem, or platform temporarily offline. Restream will keep your stream alive on other platforms while you troubleshoot the failing one.
+
+## Chat Moderation and Engagement
+
+Restream aggregates chat from all platforms into one inbox. You see YouTube comments and Facebook comments in the same feed. This is valuable for moderation—you're not toggling between platforms to respond.
+
+Some churches assign a volunteer to monitor Restream chat during service. Prayer requests, questions, or comments appear in one place. The volunteer can respond to comments on either platform without leaving Restream.
+
+## Per-Platform Customization
+
+Restream lets you set different titles and descriptions for each platform. YouTube might say "Sunday Service 10:30 AM Worship," while Facebook says "Tune in for live worship!" Customize per platform to optimize for each audience.
+
+Schedule streams per platform. If YouTube requires a scheduled event (which boosts recommendations), schedule the YouTube stream in advance. Facebook can go live without pre-scheduling. Restream respects per-platform requirements.
+
+## Backup Streaming
+
+Restream has a feature called "Backup Streaming." If your primary destination fails, Restream automatically switches to a backup. Configure YouTube as primary and Facebook as secondary. If YouTube goes down, Restream redirects your stream to Facebook, and your viewers on Facebook continue receiving video.
+
+This is rare in practice (YouTube and Facebook are stable), but it's a safety net for edge cases.
+
+## Cost and Tier Comparison
+
+Free tier (two destinations, limited features) costs $0. This is sufficient for YouTube and Facebook. Free tier has slight branding or limitations (like watermarking), but it works.
+
+Pro tier ($19/month) removes limitations, adds unlimited destinations (LinkedIn, Twitch, Instagram, etc.), and adds advanced features like custom branding and analytics.
+
+For most churches, free tier is adequate. If you want to stream to three or more platforms simultaneously, upgrade to Pro.
+
+## Troubleshooting Common Issues
+
+If video doesn't appear on one platform, check Restream's dashboard for error messages. "Stream key expired" means you need to re-authorize that platform (go to Destination settings and authorize again). "Network error" usually means Restream's connection to that platform is temporarily failing—wait a few seconds and refresh.
+
+If video appears on one platform but not another (e.g., YouTube works, Facebook doesn't), the problem is usually platform-specific. Confirm your Facebook page is in streaming mode (some pages have restrictions). Ask your Facebook account administrator if there are any blocks or limitations.
+
+If neither platform receives video, the problem is likely your OBS connection. Verify OBS is "Start Streaming" (not "Start Recording"). Check that your Restream Stream Key hasn't expired. Try stopping and restarting the stream in OBS.
+
+## First Service Checklist
+
+Before streaming your first Sunday service via Restream, complete this checklist. One: Add both YouTube and Facebook as destinations in Restream. Two: Connect OBS to Restream's RTMP URL. Three: Do a test stream Friday afternoon (not Sunday). Four: Open both YouTube and Facebook to confirm video is arriving on both platforms. Five: Check Restream's dashboard to confirm both streams show healthy (green status). Six: Stop the test stream and confirm both platforms stop receiving video (confirming your stop command propagates).
+
+Once you've passed these checks, you're ready for Sunday service.
+
+## Ongoing Management
+
+Each week, update your YouTube title and description in Restream before going live. Update Facebook description similarly. This takes two minutes but ensures viewers see accurate, current information.
+
+Monitor Restream's dashboard during the actual service. If problems occur, you'll see them in real-time and can troubleshoot while streaming (or stop and restart if needed).
+
+Restream makes multistreaming accessible to churches without technical expertise. The single-stream-to-multiple-platforms model simplifies setup and removes the complexity of managing separate connections. Your volunteers focus on producing great content; Restream handles distribution.

@@ -1,0 +1,116 @@
+---
+title: "Roland V-1HD No Video Output: Fix"
+description: "Fix Roland V-1HD switcher showing black screen or no HDMI output. Covers input configuration and output routing."
+symptom: "Roland V-1HD connected but output shows black or no signal"
+affectedDevices: ["Roland V-1HD"]
+tags: ["switcher", "hdmi", "output", "video"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your Roland V-1HD switcher is powered on with video inputs connected, but the HDMI output shows nothing but black. The switcher seems to be working, but the output to your projector or recorder is dead. This is usually a simple routing or input selection issue.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Verify the HDMI Output Cable
+
+First, check the physical connection:
+
+1. Look at the Roland's **HDMI Output port** on the back
+2. Is the HDMI cable firmly plugged in? Push it in to make sure it's fully seated
+3. Try a **different HDMI cable** if you have one (the current cable may be bad)
+4. Check the receiving device (projector, monitor, capture card) — is it powered on and set to the correct HDMI input?
+5. If using a projector, press **Input** or **Source** button and select the HDMI port the Roland is connected to
+
+If the output works with a different cable, the original cable was the problem.
+
+## Step 2: Select an Input Channel
+
+The Roland may have no input selected:
+
+1. On the Roland's touch screen or control panel, look for **Input Selection**
+2. Select one of the video inputs (usually labeled **HDMI 1**, **HDMI 2**, **Video In**, etc.)
+3. Ensure that input has a video signal connected (camera, laptop, etc.)
+4. The output should now show that input's video
+
+If no input is selected, the output has nothing to display.
+
+## Step 3: Check Input Settings
+
+Verify the selected input is actually receiving a video signal:
+
+1. On the Roland, select each input and watch the output
+2. Does any input show video on the output?
+3. If yes, that input is working — the other inputs may have problems (bad cables, powered-off source)
+4. If no input shows video, continue to step 4
+
+## Step 4: Verify HDCP Handshake
+
+HDCP (copy protection) can sometimes fail:
+
+1. Try disabling HDCP on the source device (camera, laptop, etc.) if possible
+2. Or disable HDCP on the Roland (check the menu for **HDCP** settings)
+3. This sometimes resolves black screen issues
+
+If the output immediately shows video after disabling HDCP, that was the problem.
+
+## Step 5: Check Output Resolution Mismatch
+
+The Roland may be outputting a resolution the receiving device can't display:
+
+1. On the Roland, look for **Output Settings** or **Video Setup**
+2. Check the **Output Resolution** (e.g., 1080p, 720p)
+3. Try a different resolution to see if the output works
+4. If a lower resolution works, set it to that and adjust if needed
+
+Mismatched resolutions can cause black screens.
+
+## Step 6: Restart the Roland
+
+Power cycle the switcher:
+
+1. Power off the Roland
+2. Wait 30 seconds
+3. Power it back on
+4. Wait for full boot (control panel should respond)
+5. Select an input — the output should show video
+
+A restart often clears stuck configurations.
+
+## Step 7: Reset to Factory Defaults
+
+If nothing works, reset the Roland:
+
+1. On the Roland, access **Menu > System Settings**
+2. Look for **Initialize** or **Factory Reset**
+3. Confirm the reset — this erases all custom settings
+4. Wait for the Roland to restart
+5. Power it off and back on
+6. Connect inputs and select one — output should show video
+
+This is a last resort, but it clears any corrupted settings.
+
+## Step 8: Check for Firmware Updates
+
+Outdated firmware can cause video issues:
+
+1. Visit **roland.com/support**
+2. Download the latest firmware for your V-1HD
+3. Follow Roland's firmware update instructions (usually involves USB or SD card)
+4. Restart the Roland
+5. Test video output
+
+---
+
+**Roland V-1HD troubleshooting checklist:**
+- [ ] HDMI output cable firmly connected
+- [ ] Receiving device (projector, monitor) powered on and on correct HDMI input
+- [ ] Input selected on Roland (not blank)
+- [ ] Selected input has video source connected
+- [ ] HDCP not causing handshake failure
+- [ ] Output resolution compatible with receiving device
+- [ ] Roland restarted
+- [ ] Latest firmware installed

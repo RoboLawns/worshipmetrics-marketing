@@ -1,0 +1,98 @@
+---
+title: "Going NDI-First: Full IP Video Production for Churches"
+description: "Build your entire church production system around NDI networking. Eliminate HDMI cables, simplify routing, and gain flexibility. NDI-first architecture for modern churches."
+churchSize: medium
+budget: 1k-5k
+gearList: ["avkans-ptz-u100", "smtav-bx30n", "kiloview-n2", "vmix"]
+tags: ["ndi", "networking", "ip-video", "modernization"]
+publishedAt: "2024-01-21"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## The NDI Revolution in Church AV
+
+NDI (Network Device Interface) is changing how churches think about video infrastructure. Instead of running separate power cables, separate HDMI cables, and separate network cables for cameras and switchers, NDI consolidates everything. One Ethernet cable to a camera carries power, video, and network connectivity simultaneously. This simplicity and flexibility is exactly what growing churches need.
+
+The paradigm shift is thinking of your entire church AV setup as an IP network first, with video and audio flowing across that network, rather than thinking in terms of individual HDMI cable runs. A camera isn't a box that outputs HDMI—it's a network device that sends video to anyone on the network who wants to receive it.
+
+For churches, this changes everything. Your stage can be cleaner because cameras only need one cable. Your cable runs are simpler and less prone to failure. Your ability to add devices or reroute signals is vastly more flexible. You're buying into an architecture that scales with your growth.
+
+## Building Your NDI-First Network
+
+The foundation is a managed Ethernet switch, not a home WiFi router. You need a switch that supports PoE (Power over Ethernet), managed VLANs for security, and sufficient port capacity for your cameras, audio equipment, and switching devices. A TP-Link or Netgear managed switch in the $300-400 range handles this.
+
+Connect your cameras to the network switch. AVKANS PTZ cameras are NDI-native, so they connect directly to Ethernet. Most broadcast cameras have NDI modules or third-party adapters that convert their output to NDI. Each camera receives power via PoE and broadcasts its video feed across the network.
+
+Your switching device (like the SmartAV BX30N or similar NDI-capable switcher) also connects to the same network. Your audio mixer connects via Ethernet. ProPresenter outputs its feed via NDI directly to the network. Your streaming PC receives video and audio from the network. Everything is connected to the same managed switch, and everything communicates via IP protocol.
+
+This is radically simpler than traditional setups where you run individual HDMI cables from each camera to a central switcher, then route the program output to an encoder and a monitor, and patch audio separately. In NDI-first architecture, everything is on the network, and routing becomes a software decision rather than a hardware decision.
+
+## The SmartAV BX30N as Your Central Switcher
+
+The SmartAV BX30N is a capable NDI switcher designed for this exact use case. It natively accepts up to eight NDI inputs and handles switching, mixing, and output. Unlike the ATEM Mini (which is designed for HDMI), the BX30N assumes an IP network first and operates within that paradigm.
+
+Your three AVKANS cameras connect as NDI sources. ProPresenter connects as an NDI source. Your streaming PC can output graphics as an NDI source. The BX30N receives all of these natively, switches between them, and outputs a program mix back to the network as an NDI stream.
+
+Your streaming PC simply subscribes to the BX30N's program output via NDI. No HDMI cables involved. If you need to output to a projection system, another NDI-capable device (like a Kiloview decoder) receives the program feed and converts it to HDMI or outputs it directly as video. Everything flows through the network.
+
+## ProPresenter as an NDI Source
+
+One of the biggest advantages of NDI-first architecture is how naturally ProPresenter integrates. ProPresenter has built-in NDI output, so you connect to your church WiFi network and immediately your lyrics, slides, and graphics are available as an NDI source to your switcher and streaming setup.
+
+This means you can add ProPresenter to your switching mix without touching a cable. Your operator can switch to ProPresenter directly from the BX30N interface. You can have multiple devices subscribing to the ProPresenter feed simultaneously: your switching device, your projection system, and your streaming PC all receive the same feed in real time.
+
+For multi-site churches, ProPresenter NDI output means your satellite campuses can subscribe to the main campus feed and display it locally. The same song lyrics appear in all locations simultaneously because they're all subscribing to the same NDI source.
+
+## Audio Mixing in NDI-First Production
+
+Modern digital audio mixers like the Allen & Heath SQ-5 or Yamaha CL series support AES67 and Dante, which are IP audio protocols that integrate cleanly with NDI video. Your mixer connects to the network, outputs a stereo stream via Dante or AES67, and your switcher or streaming PC subscribes to that audio feed.
+
+This means clean audio and video synchronization without any extra cables. Your mixer's streaming output (the balanced stereo mix you've prepared for broadcast) flows across the network directly to your switcher and streaming device. No analog cables, no level conversion, just high-quality digital audio flowing to the right places.
+
+If your mixer doesn't support Dante, NDI can wrap audio within video streams, so your NDI cameras can carry audio with their video, or your switcher can bridge audio and video together. The principle remains: everything flows across the network, and synchronization is automatic.
+
+<ProductCTA variant="inline" />
+
+## Streaming From an NDI-First Setup
+
+Your streaming PC doesn't need HDMI capture cards or USB audio converters. It simply runs OBS or vMix and subscribes to NDI sources directly. OBS has built-in NDI support (via plugin), and vMix has native NDI integration.
+
+Open OBS, add an NDI source (the BX30N program output), add an NDI audio source (from your mixer), and you're receiving broadcast-quality video and audio from the network. No physical cables, no frame rate conversions, no latency. You're subscribing directly to the video and audio streams.
+
+This is liberating because you can rearrange your setup without any physical rewiring. Your streaming PC is in a server room or an equipment closet, far away from the stage. It doesn't matter—it's receiving everything it needs across the network.
+
+## Redundancy and Backup in NDI Architecture
+
+An NDI-first system is inherently more resilient because devices are independent. If one camera goes offline, your switcher keeps accepting the other cameras. If your primary encoder fails, you can start a backup encoder on a different PC, and it immediately has access to all the same NDI sources.
+
+You can set up automatic backup by deploying a secondary streaming PC that's always ready. If your primary streaming PC fails, viewers switch to the backup within seconds. Both PCs are receiving the same NDI sources, so they have identical video and audio. There's no synchronization problem.
+
+You can also implement redundant network paths. Your managed switch can have connection failover, so if one network path is interrupted, devices automatically route through a secondary path. This is enterprise-grade resilience, but it's achievable in NDI architecture with proper network design.
+
+## Scaling an NDI System as Your Church Grows
+
+The architecture doesn't change as you grow. You add more cameras? They connect to the same network switch. You add more sources like a document camera or replay system? They're just additional NDI devices on the network. You want multiple streaming encoders for redundancy? They all subscribe to the same NDI sources.
+
+You can also implement NDI bandwidth management. If your network is congested, NDI allows you to subscribe to lower-resolution versions of high-bitrate feeds. A satellite campus might receive a lower-resolution ProPresenter feed to conserve bandwidth while still getting full-resolution video from your main cameras.
+
+Over time, you might upgrade individual cameras, replace your switcher, or change your streaming software. But you're not changing the fundamental architecture. Everything remains IP-native, everything communicates via NDI, and your operational flexibility only increases.
+
+## Training and Operational Complexity
+
+An NDI system is actually simpler operationally because the switching interface is software-based. Your operator uses a touchscreen or keyboard to switch between sources instead of pushing physical buttons. Transitions and effects are software-definable, not hardware-limited.
+
+The downside is that troubleshooting requires network literacy. If a camera stops showing up in your switcher, you need to understand IP addressing and network diagnostics. You're no longer in the world of "Is the HDMI cable plugged in?" You're in the world of "Is the camera getting a DHCP address from the network?" and "Does the switcher have a route to that device?"
+
+Address this by training someone on your team in basic network administration. They don't need to be a professional IT person, but they should understand IP addressing, DHCP, and basic network troubleshooting. This person becomes invaluable for keeping your system running smoothly.
+
+## The Case for NDI-First From Day One
+
+If you're building a new church AV system from scratch, an NDI-first architecture is increasingly the right choice. The equipment costs are not significantly higher than HDMI-based systems. The operational simplicity is dramatically better. The scalability and flexibility are incomparable.
+
+You avoid the technical debt of a legacy HDMI-based system. You're not running long cable runs from your stage to a central location. You're not managing separate power and video cables. You're not limited by HDMI bandwidth or cable run distance.
+
+Instead, you're building a modern church AV system that assumes IP networking as the foundation. Everything—cameras, mixers, switchers, graphics devices, and streaming systems—communicates across a shared network. Your volunteers operate a software-based control interface. Your system scales and adapts to your church's growth without fundamental redesign.
+
+This is the future of church AV production. The question isn't whether to go NDI-first—it's whether you want to build your system on future-proof architecture from day one, or spend the next five years migrating from legacy HDMI-based infrastructure.

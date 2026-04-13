@@ -1,0 +1,108 @@
+---
+title: Using Teradek CORE for Remote Encoder Management
+description: Set up CORE cloud accounts, monitor stream health remotely, manage stream keys and encoder configuration from one dashboard.
+deviceCategory: encoder
+brand: Teradek
+modelId: teradek-vidiu-x
+modelFullName: Teradek VidiU X
+articleType: integration
+category: streaming
+tags: [encoder, Teradek, CORE, cloud, remote management, monitoring, dashboard]
+difficulty: intermediate
+priceRange: 500-1500
+publishedAt: "2024-11-16"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Teradek CORE is a cloud-based management and monitoring platform that transforms your VidiU X from a standalone encoder into a remotely-managed streaming appliance. This is particularly valuable for churches where your AV lead might not be physically present during streaming, or where you manage multiple venues. This article covers CORE setup, remote monitoring, and managing stream keys from a centralized dashboard.
+
+## Creating Your Teradek CORE Account
+
+Teradek CORE is free for basic functionality (one or two encoders). Visit `core.teradek.com` and create an account. You'll need an email address and password. Teradek may also request company information and intended use case—be truthful about your church streaming setup.
+
+Once you've created your account and logged in, you'll see an empty dashboard. Before your encoders appear here, you need to link them. This pairing process connects your VidiU X to your CORE account so that all monitoring and configuration flows through the cloud.
+
+## Pairing Your VidiU X with CORE
+
+On your VidiU X's local web interface, navigate to **Settings** and look for **CORE Setup** or **Cloud Configuration**. The interface will display a unique pairing code specific to your encoder unit.
+
+Back in your CORE dashboard on the web, click **Add Encoder** or **Link New Device**. Paste the pairing code from your VidiU X. CORE will validate the code and establish a connection to your encoder.
+
+Within 30 seconds, your VidiU X should appear in your CORE dashboard with a status indicator showing "Online." If the status remains offline, ensure your encoder has a stable internet connection and try restarting the CORE sync in the encoder's settings menu.
+
+Once paired, your encoder appears in CORE's main dashboard with real-time information: stream status, bitrate, frame rate, CPU load, temperature, and any active destinations (YouTube, Facebook, etc.).
+
+## Real-Time Stream Monitoring
+
+The primary value of CORE is real-time monitoring from anywhere. Instead of needing to be at the encoder to check stream health, you can monitor from your phone, tablet, or computer.
+
+Open your CORE dashboard and select your VidiU X. The main view shows critical metrics: whether your stream is currently live, current bitrate, frame rate, and any dropped frames. For YouTube and Facebook streams, CORE displays the platform connection status and estimated bitrate being received by each platform.
+
+If you're streaming to both YouTube and Facebook simultaneously, CORE shows the status of each connection separately. This is invaluable—if Facebook disconnects due to authentication failure while YouTube continues, you'll immediately see this in CORE and can troubleshoot or take action.
+
+The dashboard includes historical graphs showing bitrate, frame rate, and CPU usage over time. If your stream frequently drops around a certain time, these graphs might reveal patterns—perhaps a scheduled network backup occurs at that time, or your internet provider throttles during peak hours.
+
+## Remote Stream Key Management
+
+One of CORE's most practical features is centralized stream key management. Rather than logging into each platform (YouTube, Facebook, etc.) and copying stream keys into each encoder individually, you can manage all stream keys in CORE.
+
+In your CORE dashboard, look for the **Stream Destinations** or **Outputs** section. Click to add a new streaming destination. CORE provides templates for popular platforms like YouTube, Facebook, Twitch, and others.
+
+Select YouTube from the templates. CORE will ask for your YouTube stream key. Once entered, CORE securely stores this key and synchronizes it to your VidiU X. Your encoder immediately begins streaming to YouTube using this key.
+
+When your YouTube stream key expires or you regenerate it for security reasons, you don't need to physically access your encoder to update the key. Simply update it in CORE, and the change propagates to all paired encoders instantly.
+
+This is especially valuable if you manage encoders in multiple church locations. Update a stream key once in CORE and it's automatically distributed to all relevant encoders.
+
+<ProductCTA variant="inline" />
+
+## Multi-Destination Configuration in CORE
+
+CORE makes it straightforward to add multiple streaming destinations. In the **Stream Destinations** section, add YouTube, Facebook, Twitch, or custom RTMP servers as separate destinations.
+
+Each destination is configured independently. You can assign different bitrate limits or quality settings to each if needed—for example, stream to YouTube at 1080p60 while streaming to a backup server at 720p to manage bandwidth.
+
+CORE also supports failover configuration. Some CORE plans allow you to designate a primary destination and a backup destination. If the primary platform becomes unavailable, CORE automatically switches to your backup destination, ensuring your stream doesn't drop.
+
+## Monitoring and Alerts
+
+Advanced CORE tiers (paid plans) include alerting capabilities. You can configure CORE to send you email or push notifications if your stream drops, if bitrate falls below a threshold, or if your encoder goes offline.
+
+This is valuable for churches with volunteer AV teams. When something goes wrong, you're immediately notified and can take action—either remotely through CORE or by having someone physically check the encoder.
+
+Even without paid alerts, CORE's dashboard is always available. Log in on your phone during a service and glance at stream status. If something looks wrong (dropped frames, disconnected platforms, bitrate anomalies), you can investigate immediately.
+
+## Firmware Updates and Device Management
+
+CORE allows you to monitor and update your VidiU X's firmware from the cloud. Periodically, Teradek releases firmware improvements, bug fixes, and new features. In CORE, you can see your encoder's current firmware version and check for updates.
+
+Firmware updates are typically safe and quick (5-10 minutes), but plan them outside of streaming times. Navigate to your encoder's settings in CORE and click **Update Firmware** when a new version is available. CORE handles the download and installation automatically.
+
+## Integration with Church AV Workflows
+
+For churches managing multiple encoders across different campuses or venues, CORE provides a single pane of glass. Instead of accessing five different encoder web interfaces, you see all your encoders in one CORE dashboard.
+
+This centralized management simplifies troubleshooting. If one campus's stream is dropping frames while another runs perfectly, you can immediately compare their bitrate settings, network conditions, and encoder loads directly in CORE.
+
+Some churches assign CORE dashboard responsibility to a tech-savvy volunteer or staff member who isn't physically at the encoder. They monitor the dashboard during services and communicate any issues to the on-site AV team via radio, phone, or text.
+
+## Security and Access Control
+
+CORE accounts can include multiple users. You might add your lead AV technician, a backup technician, and perhaps a pastor who wants to monitor stream health from the office.
+
+When adding users, CORE allows you to set permission levels. You can restrict some users to view-only access (monitoring only) while granting full edit access to trusted technicians. This prevents accidental configuration changes or stream key exposure.
+
+Always use strong passwords for your CORE account and enable two-factor authentication if available. Your CORE account has access to all your stream keys—protecting it is critical.
+
+## Troubleshooting CORE Connection Issues
+
+If your encoder isn't showing as online in CORE, verify it has internet connectivity. Check the encoder's local web interface to confirm the internet connection is active.
+
+If the encoder is connected to the internet but CORE still shows offline, restart the CORE sync in the encoder's settings. Some encoders have a "Reconnect to Cloud" button that forces a reconnection.
+
+If you frequently see the encoder go offline and reconnect, you might have a network stability issue. Check your firewall settings—ensure outbound HTTPS connections (port 443) aren't being blocked. Some restrictive corporate firewalls block cloud connectivity; coordinate with your IT team to allow Teradek's cloud services.
+
+CORE provides incredible value for managing and monitoring Teradek encoders. For multi-campus churches or any setup where the AV operator isn't always physically present, CORE transforms streaming from a local operation into a truly managed, monitored service.
+

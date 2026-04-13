@@ -1,0 +1,94 @@
+---
+title: Magewell USB Capture HDMI in vMix
+description: Add the Magewell USB Capture as an input in vMix, configure resolution and audio embedding, manage multiple video sources.
+deviceCategory: encoder
+brand: Magewell
+modelId: magewell-usb-capture-hdmi
+modelFullName: Magewell USB Capture HDMI
+articleType: setup-guide
+category: device-setup
+tags: [USB, capture, vMix, setup, HDMI, streaming, software]
+difficulty: beginner
+priceRange: under-500
+publishedAt: "2024-11-16"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+vMix is a popular video production software used in many churches for streaming and video mixing. The Magewell USB Capture HDMI integrates seamlessly as a video input in vMix, allowing you to bring camera feeds or mixed video into your production without requiring dedicated hardware encoders. This guide covers adding the USB Capture to vMix and configuring its settings.
+
+## Prerequisites and Driver Installation
+
+Before using the Magewell USB Capture in vMix, ensure the device drivers are installed on your Windows computer. vMix runs on Windows 10 and later, and driver installation follows the standard process: download the Magewell driver from their website, run the installer, and restart your computer.
+
+Connect your HDMI video source to the USB Capture's HDMI input and plug the USB Capture into an available USB port on your computer. Your computer should recognize the device immediately after driver installation.
+
+vMix will automatically detect the USB Capture once it's connected and drivers are loaded. You don't need to install vMix-specific drivers or plugins—vMix recognizes the USB Capture as a standard Windows video capture device.
+
+## Adding the USB Capture as an Input in vMix
+
+Launch vMix and look for the **Add Input** button or menu option. In vMix's interface, this is typically located in the Inputs panel on the left side of the screen. Click **Add Input** and select **Web Camera** or **Video Capture** from the menu.
+
+vMix displays a list of available video capture devices. Look for your Magewell USB Capture in this list. Device names sometimes include "Magewell" or "USB Capture," though vMix might also identify it generically. Select your device.
+
+vMix creates a new input in your Inputs panel, displaying a preview of the video from your USB Capture. You should immediately see your HDMI source's video in the preview window. If the preview is black, verify your HDMI source is powered on and outputting video.
+
+## Configuring Resolution and Frame Rate
+
+With the USB Capture added to vMix, you can configure its resolution and frame rate. Right-click on the USB Capture input and select **Settings** or **Properties**. A configuration dialog appears.
+
+Look for **Resolution** and **Frame Rate** (sometimes labeled **Frames Per Second** or **FPS**) options. The USB Capture supports resolutions up to 1080p60, though exact supported modes depend on your HDMI source's output capabilities.
+
+Select a resolution and frame rate matching your HDMI source. If your source outputs 1080p30, select 1080p30. Mismatches can cause black screens or dropped frames. Some sources output specific resolutions only—if your camera outputs 1080p60, trying to force it into 1080p30 mode in vMix will result in a black screen.
+
+The **Buffer** setting in vMix determines how much data is buffered from the USB Capture. The default buffer size is usually adequate, but if you experience dropped frames or stuttering, you can increase the buffer slightly. This adds latency but improves stability with unreliable USB connections.
+
+## Audio Configuration and Embedding
+
+The Magewell USB Capture embeds audio from your HDMI source directly in the video feed if the HDMI source includes audio. vMix automatically captures this audio alongside the video.
+
+To configure audio from the USB Capture, right-click the input and access its Audio settings. You should see an option to select an audio input device. If you want to use audio embedded in the HDMI feed, select the USB Capture as the audio source. The audio levels should automatically match your video.
+
+Alternatively, if your audio comes from a separate audio console, you can decouple the USB Capture's video from a separate audio input. In vMix's audio mixer, assign a different audio device (your audio interface or microphone input) while keeping the USB Capture as your video source. This allows your video and audio to come from different sources but remain synchronized in your output.
+
+For churches mixing video and audio from separate sources, this flexibility is valuable. You can bring video from your camera or mixer via USB Capture while bringing audio from your audio console through a separate audio interface.
+
+<ProductCTA variant="inline" />
+
+## Managing Multiple USB Capture Inputs
+
+Some churches use multiple USB Capture devices to bring in feeds from different cameras or sources. vMix supports multiple USB Capture devices—each appears as a separate input in the Inputs panel.
+
+When adding a second USB Capture, ensure it's plugged into a different USB port than the first device. Most computers have adequate USB bandwidth to support two USB 3.0 devices simultaneously. If you're adding a third USB Capture, ensure your computer has sufficient USB ports and bandwidth—older computers or those with USB 2.0 ports might struggle.
+
+Each USB Capture input can be configured independently with different resolutions and frame rates. This is useful if you're capturing from sources with different output resolutions. One camera might output 1080p60 while another outputs 1080p30, and vMix handles both seamlessly.
+
+## Video Quality and Optimization
+
+vMix's preview window shows your USB Capture's video in real-time. The video quality depends on three factors: your HDMI source quality, the resolution you've selected in vMix, and your computer's processing power.
+
+If your preview appears pixelated or compressed, ensure you've selected an appropriate resolution. If your HDMI source outputs 1080p60 but vMix is configured for a lower resolution like 720p, vMix will downscale the signal, which can introduce artifacts.
+
+vMix displays CPU usage in the interface. If CPU usage spikes above 70% when using your USB Capture, consider reducing the resolution or disabling video effects. High CPU usage can cause stuttering, dropped frames, or system instability during streaming.
+
+For optimal performance, use a computer with at least an Intel Core i7 (or equivalent AMD processor) and 8GB RAM when running vMix with video capture inputs. Older computers might struggle with multiple high-resolution USB inputs.
+
+## Troubleshooting Connection Issues
+
+If vMix doesn't recognize your USB Capture, ensure the driver is installed correctly on your computer. Restart vMix and check if the device appears. If not, restart your computer completely.
+
+If the USB Capture appears in vMix but shows a black preview, verify your HDMI source is powered on and outputting video. Try a different HDMI cable—faulty cables are a common cause of black screens.
+
+If the preview shows video intermittently (video appears, then blacks out, then reappears), you might have a USB bandwidth issue. Try connecting the USB Capture to a different USB port, preferably a USB 3.0 port (usually blue). If you're using a USB hub, connect directly to your computer's USB port instead.
+
+If vMix reports dropped frames or your streaming output stutters, reduce the resolution of your USB Capture input or close other applications consuming CPU resources. Streaming to platforms like YouTube while capturing video is CPU-intensive, and older computers might not handle both simultaneously.
+
+## Integration with vMix Streaming and Recording
+
+Once your USB Capture is configured as an input, you can include it in your broadcast output. In vMix, add your USB Capture input to your mix (the mix being what gets sent to your streaming platform or recording device).
+
+vMix will automatically encode your video (including the USB Capture feed) according to your streaming settings. Configure your streaming output bitrate and resolution in vMix's streaming settings—vMix will handle encoding and platform authentication (YouTube, Facebook, etc.).
+
+For churches using vMix's streaming capabilities, the USB Capture provides a simple, affordable way to capture multiple video sources without expensive hardware encoders.
+

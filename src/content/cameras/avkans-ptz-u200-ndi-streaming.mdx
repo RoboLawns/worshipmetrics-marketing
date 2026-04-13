@@ -1,0 +1,82 @@
+---
+title: "AVKANS PTZ-U200 NDI Streaming Configuration"
+description: "Complete NDI streaming setup for the PTZ-U200, configuring bitrate, resolution, and multicast settings for reliable church broadcasts."
+brand: "AVKANS"
+modelId: "avkans-ptz-u200"
+modelFullName: "AVKANS PTZ-U200 Full HD NDI PoE Camera"
+articleType: "integration"
+category: "device-setup"
+tags: ["AVKANS", "NDI", "streaming", "network-configuration"]
+difficulty: "intermediate"
+priceRange: "500-1500"
+publishedAt: "2024-02-22"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Introduction
+
+The AVKANS PTZ-U200 is purpose-built for NDI streaming, with full support for high-quality video transmission over church networks. Configuring NDI properly on the U200 ensures that your production software receives clean, stable video without buffering, dropped frames, or network interference.
+
+NDI configuration involves more than just enabling the feature. It includes understanding bitrate versus quality trade-offs, confirming that your network can sustain the data rate, and verifying that multicast discovery is working on your network. This guide covers the complete NDI streaming setup process from camera configuration through production software integration.
+
+## Access the PTZ-U200 Web Interface
+
+Log into the camera's web UI using the static IP address you assigned during initial setup. Navigate to the Video Settings or Streaming Settings section, depending on how your camera firmware organizes the interface. You should see NDI-specific options for enabling, configuring, and monitoring NDI output.
+
+If you are accessing the camera for the first time or do not remember the IP address, check your documentation or ask your IT administrator. The camera's IP address is essential for all configuration work, so maintain that information in an accessible location.
+
+## Configure NDI Output Settings
+
+Locate the NDI configuration panel and confirm that NDI output is enabled. If it is not, enable it and save. The camera will reboot once while it initializes NDI support.
+
+Next, configure the NDI video parameters. The U200 typically offers choices for resolution and bitrate. For most church applications, 1080p at 60 fps is standard, offering the best balance between image quality and bandwidth consumption. If your network bandwidth is limited, you can reduce to 1080p 30 fps or 720p 60 fps, both of which still deliver professional-looking video while consuming less data.
+
+The bitrate setting controls how much data the camera sends per second. Higher bitrate means better image quality but more bandwidth required. For 1080p 60 fps NDI, typical bitrate ranges from 150 to 200 Mbps depending on the complexity of the image (busy stage with lots of movement consumes more bitrate than a still speaker at a pulpit).
+
+Estimate your available bandwidth and set the NDI bitrate conservatively. If your switch shows 1 Gbps total capacity and you have other network traffic, you might have only 500 Mbps available for video. Two cameras at 150 Mbps each would use 300 Mbps, leaving margin for other network traffic. Running at maximum bitrate leaves no headroom for network congestion.
+
+## Enable NDI Multicast for Discovery
+
+NDI uses multicast discovery to allow your production software to automatically find cameras on the network. This feature must be enabled on both the camera and on your network infrastructure.
+
+In the camera's NDI settings, confirm that multicast is enabled. Some cameras have this as a separate option, while others enable it by default when NDI output is enabled. If you see a multicast address option, use the default (typically 239.255.0.x) unless your IT administrator has configured a custom multicast address for your network.
+
+Ask your IT administrator whether multicast is allowed on your network segment. Some enterprise networks block multicast for security reasons, which prevents NDI discovery even when the camera is powered and configured correctly. If your network blocks multicast, you may need to work with your administrator to allow NDI multicast traffic or enable it on your network segment specifically.
+
+## Test NDI Discovery on Your Production Computer
+
+With NDI configured and multicast enabled on the camera, open OBS or vMix on your production computer and add an NDI source. Refresh the source list and look for the AVKANS PTZ-U200 in the available devices. If it appears immediately, multicast is working and NDI discovery is functional. If it does not appear, wait 10 to 15 seconds and refresh again. NDI discovery can be slow on some networks.
+
+<ProductCTA variant="inline" />
+
+If the camera still does not appear after waiting and refreshing, the problem is usually multicast blockage or a network configuration issue. Check that your production computer and the camera are on the same network subnet. If they are on different subnets (for example, production computer on 192.168.1.x and camera on 10.0.0.x), multicast will not reach between them.
+
+## Confirm Stream Quality and Bitrate Performance
+
+Once the NDI source appears in your production software, add it to a test scene and monitor the stream quality. Watch for these indicators of good NDI streaming: clean video without artifacts or pixelation, consistent frame rate without stuttering, and stable connection indicators in your production software.
+
+Check your network monitoring tools to confirm that the camera's bitrate matches what you configured. If you set the camera to 150 Mbps, your network monitoring should show approximately that amount of data flowing from the camera to your production computer. Significantly higher or lower bitrate might indicate a configuration mismatch.
+
+If the stream is stuttering or dropping frames, the issue is usually bandwidth. Reduce the NDI bitrate or resolution, check for other network traffic competing with the camera, or verify that your production computer is on wired ethernet, not wireless.
+
+## Monitor NDI Stability During Extended Streaming
+
+Run a test stream for at least 30 minutes, simulating a real service. Watch for disconnections, frame drops, or quality degradation. NDI streams should remain stable indefinitely as long as the camera is powered and networked.
+
+If the camera disconnects or the stream quality degrades during extended use, it usually indicates a network issue like congestion or instability, not a camera problem. Work with your IT administrator to identify and resolve the network issue.
+
+If the camera loses power during streaming (which should not happen on a properly configured PoE system, but can if the PoE power fails), the NDI source will become unavailable. This is why proper PoE infrastructure is important—a camera that loses power mid-service is worse than no camera at all.
+
+## Optimize for Your Network and Workflow
+
+NDI configuration is not one-size-fits-all. Your optimal settings depend on your network capacity, your production software, and your specific workflow. A church with a modern gigabit network and few competing devices can support 1080p 60 fps at full bitrate. A church with an older network or heavy traffic may need to reduce to 720p 60 fps or 1080p 30 fps.
+
+Document your NDI configuration—resolution, frame rate, bitrate settings—for future reference. If you need to troubleshoot or add a second camera, you will want consistency across all devices.
+
+## Conclusion
+
+AVKANS PTZ-U200 NDI streaming is straightforward once multicast is enabled and bitrate is set appropriately for your network. The U200's dedicated NDI support makes it a reliable choice for churches that want professional-quality network video without the complexity of compression or capture cards.
+
+Test your complete NDI streaming setup during a full service rehearsal before going live. That single rehearsal will reveal any bandwidth, network, or configuration issues while you have time to address them.

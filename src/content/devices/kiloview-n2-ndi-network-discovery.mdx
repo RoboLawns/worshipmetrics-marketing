@@ -1,0 +1,97 @@
+---
+title: Kiloview N2 NDI Discovery on Church Networks
+description: Troubleshoot NDI not appearing in OBS or vMix, and configure network settings for proper discovery.
+deviceCategory: switcher
+brand: Kiloview
+modelId: kiloview-n2
+modelFullName: Kiloview N2
+articleType: troubleshooting
+category: troubleshooting
+tags: [kiloview-n2, ndi, discovery, troubleshooting, network, obs, vmix]
+difficulty: intermediate
+priceRange: under-500
+publishedAt: "2024-05-31"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+NDI relies on network discovery for devices to find each other. If you've set up your Kiloview N2 but it's not appearing in OBS or your switcher's NDI source list, the problem is usually discovery, not the N2 itself.
+
+This guide walks through diagnosing and fixing NDI discovery issues.
+
+## How NDI Discovery Works
+
+When you add an NDI source in OBS or your switcher, the application broadcasts a "discovery" message on your network looking for NDI devices. Each NDI device (like the Kiloview N2) hears this and responds with "I'm here, and I'm named X."
+
+If the N2 never responds to the discovery request, it won't appear in your list of available sources.
+
+## Common Discovery Failure Reasons
+
+The N2 is on a different network segment or subnet from your receiving device. Your network has a firewall blocking discovery traffic. The N2's Ethernet cable is disconnected. The N2 hasn't finished booting. Multicast traffic (required for NDI discovery) is disabled on your network switch.
+
+## Checking N2 Network Connectivity
+
+Open the N2's web interface (type its IP address in a browser). If the interface loads, the N2 has internet connectivity and is running.
+
+If you can't access the web interface, the N2 might not be on your network. Check your router's connected devices list to find the N2's IP address.
+
+If the N2 doesn't appear in your router's connected devices, verify that the Ethernet cable is connected and the port is active.
+
+## Checking Network Connectivity in OBS
+
+In OBS, go to Sources → NDI Source. Click the small dropdown arrow next to the NDI source field. This should show a list of available NDI devices discovered on your network.
+
+If the list is empty, NDI discovery isn't working. If the Kiloview N2 is in the list, select it and you're done.
+
+## Firewall and Network Blocking
+
+Your church's network might have a firewall or network segmentation that blocks multicast traffic (required for NDI discovery). Work with your IT team to verify that multicast is allowed on your network.
+
+If your IT team says multicast is blocked, you have two options: ask them to enable it for NDI, or manually enter the N2's IP address in your NDI source (if OBS or your switcher supports manual IP entry).
+
+<ProductCTA variant="inline" />
+
+## Network Segmentation
+
+If your streaming PC is on a different network segment from the Kiloview N2, they might not see each other even if both are connected to your network. For example, if the N2 is on your "Guest Wi-Fi" network and the streaming PC is on your "Office" network, they're isolated.
+
+Connect both devices to the same network segment. This usually means connecting to the same Ethernet switch or the same Wi-Fi network.
+
+## Multicast Support on Network Switch
+
+Some network switches have multicast disabled for bandwidth reasons. If your network isn't discovering NDI devices, your IT team should check switch settings.
+
+Most modern switches have multicast enabled by default, but older or heavily configured switches might not.
+
+## Restarting Devices
+
+Restart the Kiloview N2. Unplug power for 10 seconds, plug back in, wait for it to fully boot (usually 30 seconds).
+
+Restart OBS or your switcher's discovery process. Close and reopen OBS, or go back to the NDI source selection and refresh.
+
+## Manual IP Entry as Last Resort
+
+If discovery fails but you know the N2's IP address, some applications (including newer versions of OBS) allow you to manually enter the N2's IP address to connect directly.
+
+Instead of using discovery, you'd type something like "192.168.1.100" to connect directly to that IP address.
+
+This is a workaround, not a solution. Fix your network's discovery for a more robust setup.
+
+## Testing NDI on a Simple Network
+
+If you're having trouble on your church's complex network, test the N2 on a simple network first (a home Wi-Fi network, for example). If it works there, the problem is your church network's configuration.
+
+This narrows down whether the issue is the N2 or your network.
+
+## Contacting Support
+
+If you've confirmed that: the N2 has network connectivity (can access web UI), the receiving device is on the same network (can ping the N2), multicast is enabled on your switch, and devices still don't discover each other—contact Kiloview support with your network details.
+
+They can help diagnose network configuration issues.
+
+## Your Troubleshooting Workflow
+
+Verify N2 connectivity: open its web UI. Verify receiving device connectivity: ping the N2 from your streaming PC. Check OBS/switcher NDI discovery list. If the N2 isn't there, work with your IT team on multicast and network segmentation. If the N2 appears, select it and you're done.
+
+NDI discovery issues are almost always network configuration, not the N2 itself. Once your network is properly configured, the N2 works reliably.

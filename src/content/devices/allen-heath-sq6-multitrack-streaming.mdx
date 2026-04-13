@@ -1,0 +1,97 @@
+---
+title: SQ-6 Multi-Track Recording and Streaming Configuration
+description: Configure the Allen & Heath SQ-6 for simultaneous multi-track recording and live streaming with independent mix buses and USB audio routing.
+deviceCategory: mixer
+brand: Allen & Heath
+modelId: allen-heath-sq6
+modelFullName: Allen & Heath SQ-6
+articleType: workflow
+category: streaming
+tags: [streaming, recording, multitrack, usb, audio-capture, church-audio]
+difficulty: advanced
+priceRange: 1500-plus
+publishedAt: "2024-01-21"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+# SQ-6 Multi-Track Recording and Streaming Configuration
+
+The Allen & Heath SQ-6's expanded capabilities make it ideal for churches that want to simultaneously stream their services to online audiences while recording multiple individual tracks for post-production editing, archival, or future broadcast. Rather than routing a simple stereo mix to your streaming platform, you can send individual instrumental and vocal tracks to your recording software, enabling post-service editing and professional podcast production.
+
+## Understanding Multi-Track Workflow in Larger Churches
+
+Multi-track recording captures each instrument, vocal, and microphone on a separate audio track. This approach gives you tremendous flexibility in post-production. If the sermon audio is slightly buried in the live mix, you can boost it when editing. If a music cue needs different balance than what worked for the live service, you adjust it in editing. This flexibility transforms your audio from something that's merely acceptable for live broadcast into something that's genuinely professional for archive and podcast use.
+
+The SQ-6 provides multiple USB audio channels, allowing you to send multiple mix buses simultaneously to your recording software. Rather than everything flowing to a single stereo pair, you send lead vocals to one USB channel, backing vocals to another, drums to another pair, and so forth. Your recording software captures all these individual tracks simultaneously with perfect synchronization.
+
+## Planning Your Track Architecture
+
+Before configuring anything, determine which sources need individual tracks. For a typical worship service, you might capture: lead vocal, backing vocals, acoustic guitar, keyboard, drums, and ambient room audio. That's six individual tracks plus a final stereo mix, resulting in eight total audio channels flowing to your recording software.
+
+Write down your exact track list and assign each source to a specific USB channel. This consistency matters enormously for post-production workflow. If the lead vocal appears on channel one every week, your podcast editor learns to expect it there and works more efficiently. If it moves around randomly, editing becomes chaotic.
+
+## Configuring USB Audio Output on the SQ-6
+
+The SQ-6 provides extensive USB audio configuration options. Navigate to the System Settings and access the USB Audio section. You'll see a matrix allowing you to route any mix bus or output to any USB channel.
+
+Start by configuring your primary channels. If you want the lead vocal on USB channel one, find the lead vocal input in the matrix and route it to USB Channel 1. Do this for each source you want to capture individually. The SQ-6 might provide 16 or more USB channels, depending on your software's capability, so you have plenty of capacity for comprehensive multi-track capture.
+
+## Establishing Your Mix Bus Routing
+
+Unlike your main mix, which blends everything into a cohesive sound, your multi-track recording approach uses discrete mix buses for each type of audio. Create separate mix buses for: Vocals (leading these through careful compression), Instruments, Drums, and Ambient. Each mix bus feeds to a specific USB channel.
+
+Don't use your primary MIX1 (main PA mix) for recording. Instead, create dedicated mix buses optimized for recording. A vocal mix bus might include aggressive compression to ensure intelligibility and consistency. An instrument mix bus might emphasize clarity and separation. Drums might have specific processing optimized for definition.
+
+This approach requires discipline—you're maintaining multiple simultaneous mixes. However, the SQ-6's expanded processing capacity makes this feasible. The payoff is that your recorded audio is fundamentally separate from your live mix, each optimized for its specific purpose.
+
+<ProductCTA variant="inline" />
+
+## Recording Hardware: Computer Requirements
+
+Your recording software runs on a computer equipped with proper USB audio drivers. Connect a USB cable from the SQ-6 to your recording computer and install the appropriate drivers if needed. Modern recording software like Adobe Audition, Reaper, or Steinberg Nuendo all recognize the SQ-6 as a multi-channel audio interface.
+
+Configure your recording software to capture all 8+ channels simultaneously. In the audio input settings, enable each USB channel as a separate recording track. Name each track according to your track list—"Lead Vocal," "Drums," "Keyboard"—to avoid confusion during editing.
+
+## Simultaneous Streaming Setup
+
+While recording individual tracks, you might also stream a final stereo mix to YouTube, Facebook, or your website. The beauty of the SQ-6's architecture is that recording and streaming happen independently. Your streaming mix can be completely separate from your recording tracks.
+
+Create a dedicated auxiliary mix bus for streaming. This mix combines all your inputs into a cohesive stereo mix optimized for broadcast, with careful compression and level balancing to ensure that online viewers experience consistent, professional audio. Route this streaming mix to a dedicated USB channel that your streaming software (OBS, vMix, etc.) receives.
+
+Your streaming computer likely runs two software applications: your recording application capturing individual tracks, and your streaming application (OBS, vMix, or similar) capturing the final stereo mix. Both applications receive their audio from the SQ-6's USB output, but on different channels. They operate independently, meaning technical issues with streaming don't affect your recording and vice versa.
+
+## Processing Strategy for Multi-Track
+
+Individual tracks require different processing than final mixes. Lead vocal tracks need compression to control dynamics, but less overall compression than a final vocal bus would receive. You're preserving the performance's natural dynamics while controlling excessive peaks.
+
+Apply gentle parametric EQ to individual tracks, correcting frequency issues rather than shaping tone. You'll do more aggressive shaping in post-production when you have better perspective. Use compression at ratios around 4:1 with moderate thresholds—just taming performance variations without over-processing.
+
+On the recording mix buses themselves (the ones going to your recording software's tracks), apply more substantial processing. These are your intermediate mixes, not your final output. They need control and consistency but shouldn't sound overly processed or obviously compressed in a way that would make post-production editing difficult.
+
+## Testing Your Setup
+
+Before your first actual multi-track recording session, run a full rehearsal with all systems engaged. Record a complete rehearsal service, then examine the resulting audio files. Did all eight tracks record correctly? Are levels appropriate? Do any tracks show distortion or clipping? Did the streaming mix sound professional?
+
+Listen critically to your recorded tracks and your streamed audio. If vocal tracks are too quiet, adjust the input gain or routing on the SQ-6. If drums are overwhelming everything else, adjust the drum mix bus routing. Make these adjustments during rehearsal, not during your first live service.
+
+## Post-Production Workflow Integration
+
+Your recorded tracks now flow into post-production. Using audio editing software, load all eight tracks into a new project. Typically, individual vocal tracks get cleaned up—removing unwanted mouth noises, breath sounds, or ambient room issues. Instrumental tracks get balanced and may receive additional processing.
+
+The beauty of multi-track recording is flexibility. If a vocalist performed amazingly but was barely audible in the live mix, you boost their track and remix for archive. If background vocals muddied things during the live service, you can reduce their level in post-production. This flexibility transforms raw recordings into polished podcast content.
+
+## Archive and Distribution Strategy
+
+After editing, render your final podcast mix down to a stereo file optimized for the podcast platform you use. While you're editing, save your project file including all individual tracks—this archive version allows future re-mixing if your podcast aesthetic changes or if you want to create variations (music-only version, sermon-only version, etc.).
+
+Many churches upload their sermon-only tracks to podcast platforms weekly, reaching listeners who prefer audio-only content. Your multi-track approach enables this workflow seamlessly—simply isolate the sermon audio track and render it separately.
+
+## Maintenance and Hardware Monitoring
+
+USB audio capture puts sustained load on your computer. Monitor CPU usage during recording—if your computer is consistently above 60% CPU during recording, you risk dropped audio or lag. Reduce the number of simultaneous tracks you're capturing, close unnecessary background applications, or upgrade to a more powerful computer.
+
+Check your USB cable monthly to ensure it remains undamaged. A failing USB cable causes audio dropouts, corruption, or complete loss of connection. Keep a spare high-quality USB cable on hand as backup.
+
+Your Allen & Heath SQ-6 now provides professional-grade recording capability alongside your live streaming, enabling podcast and archive production that matches larger broadcast operations.

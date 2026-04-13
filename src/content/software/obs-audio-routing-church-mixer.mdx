@@ -1,0 +1,66 @@
+---
+title: "OBS Audio Routing from Your Church Mixer (USB and Aux)"
+description: "Connect your church mixer to OBS via USB or analog audio interfaces, configure audio levels, and prevent feedback and echo during streaming."
+app: obs
+articleType: setup-guide
+tags: [audio, mixer, usb, routing, church-av]
+difficulty: intermediate
+publishedAt: "2024-02-18"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Audio is invisible on screen but instantly noticeable when it goes wrong. A church stream with perfect video but fuzzy, distorted, or delayed audio will drive viewers away. Getting audio right requires understanding how your mixer connects to OBS and what settings prevent feedback while maintaining clean levels.
+
+Most churches use one of two approaches: USB audio from a modern mixer with built-in USB output, or an analog audio interface connected to aux sends from a traditional mixer. This guide covers both methods and walks you through the critical step of preventing audio echo—the challenge that derails most church AV setups.
+
+## USB Audio Method: Direct Mixer Connection
+
+Modern mixer-consoles from brands like Allen & Heath, Behringer, and Yamaha include USB ports that send mixed audio directly to your computer. This is the simplest approach. Connect a USB cable from your mixer to your OBS computer, power on the mixer, and Windows or Mac will detect it as an audio input device.
+
+In OBS, open Settings → Audio. Under "Mic/Auxiliary Audio," select your mixer's USB audio output from the dropdown. The mixer's name will appear (like "Allen & Heath QU16 USB 1"). Test the connection by speaking into a microphone connected to the mixer. Watch the audio meters in OBS's Mixer panel—you should see green bars moving. If you see nothing, the mixer isn't sending audio. Check the mixer's USB settings to confirm the USB output channel is active and routed to its output.
+
+Adjust your mixer's output level so that during normal speaking, the OBS meter hovers around -6dB to -12dB. This is "headroom"—room to accommodate loud peaks without clipping. Set the mixer's level too high and audio distorts; set it too low and viewers hear constant hiss underneath. Finding the right level is crucial, so spend time testing. Speak at normal volume, sing at full volume, and watch the meter peak. It should never exceed 0dB.
+
+<ProductCTA variant="inline" />
+
+## Analog Audio Interface Method
+
+If you have an older mixer without USB, use a small external USB audio interface. Devices like the Behringer U-Phoria UMC202 or Focusrite Scarlett 2i2 accept analog audio from your mixer's auxiliary output and convert it to USB. Connect an RCA or XLR cable from your mixer's main auxiliary output to the interface's input, then connect the interface to your OBS computer via USB.
+
+In OBS's audio settings, select the audio interface as your Mic/Auxiliary Audio input. Test the signal by adjusting the auxiliary output on your mixer. The OBS meter should respond. Set the mixer's auxiliary level to peak at -6dB to -12dB during normal use, just as you would with USB audio.
+
+The advantage of an external audio interface is flexibility—you can position it near your mixer and run a single USB cable to OBS, or use a long USB extension if your mixer and OBS computer are far apart. The disadvantage is an additional device to power, cable-manage, and occasionally troubleshoot.
+
+## Preventing Audio Echo and Feedback
+
+Echo is the most frustrating audio problem: viewers hear the service audio delayed by one or two seconds, creating a hollow, double-voice effect. Feedback is squealing or howling caused by audio looping between speakers and microphones.
+
+Echo happens because your church's sanctuary speakers (amplifying the service for in-person attendees) are receiving audio that OBS is sending out of your internet—a round-trip delay. The solution is to never send OBS's output back through your sanctuary speakers. Your sanctuary audio system should be independent from your streaming setup.
+
+Specifically, your microphones feed into your mixer. Your mixer sends the same audio to two destinations: one output drives your sanctuary's amplifier and speakers (in-person attendees hear live sound), and a separate auxiliary output feeds OBS (online viewers hear streamed sound). These two paths must never reconnect.
+
+Check your mixer's configuration. The channel that's routed to the sanctuary speakers should not be routed to the auxiliary output feeding OBS. If you're using a matrix-style mixer, this is easy to verify. If you're unsure, ask your sound engineer or contact your mixer's manufacturer.
+
+Feedback happens when microphone audio loops: microphone → mixer → OBS → sanctuary speaker → microphone's pickup pattern → back to mixer (all within milliseconds). The solution is the same: ensure microphone sources don't feed back into microphone areas. Position speakers away from mic pickup zones, or use directional microphones aimed away from speakers.
+
+## Monitoring Stream Audio Without Echo
+
+Your director needs to hear the stream audio to verify it's working, but they can't monitor it through the sanctuary's main speakers (which would create the echo problem). Instead, monitor stream audio through headphones or a separate monitor speaker.
+
+In OBS's audio settings, enable "Monitor Out." This creates a separate audio output that plays only on your monitoring device, not in the stream. Connect headphones to your OBS computer or a small USB speaker (positioned away from microphones). Set OBS's Monitor Out to the headphones, and the director can listen to the stream without affecting the sanctuary audio.
+
+Alternatively, if your OBS computer has a second audio output, send the monitoring feed to one device and the stream feed to another. This is more complex to set up but gives more flexibility in a large production room.
+
+## Volume Levels and Gain Matching
+
+Establish a standard level so different operators use consistent settings. During service setup, set your mixer's output to peak at -6dB during speaking voice. Mark this position on the mixer (using a marker or piece of tape) so operators see the target. If a guest speaker or musician needs to adjust their microphone level, they adjust at the microphone (the input), not at the mixer's main output.
+
+In OBS, once your mixer's USB audio is connected, you should need minimal level adjustment. If the mixer is already delivering -6dB peaks, OBS's default 0dB gain is appropriate. Some operators like to use OBS's Gain slider (right-click the Mixer audio channel) to add a small boost for quiet sources, but this should be a fine adjustment, not a major correction. If you're constantly boosting audio in OBS, your mixer level is too low—increase it at the mixer instead.
+
+## Testing Before Service
+
+Do a full audio test before every service. Speak into all microphones one at a time and watch the OBS meter. Ask your worship team to run through a song, watching levels during peak volume. Confirm that the sanctuary speakers and OBS monitoring (headphones) are both working independently. Have someone check the stream on YouTube or Facebook from a different location—what sounds good in your control room might sound thin or muffled to remote viewers if your network is compressing audio.
+
+Audio setup seems technical and invisible, but it's the foundation of viewer experience. A clean, well-leveled audio feed tells viewers that your church takes streaming seriously. Spending an hour getting audio right saves you dozens of hours troubleshooting during and after services.

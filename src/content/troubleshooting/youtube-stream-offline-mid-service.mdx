@@ -1,0 +1,148 @@
+---
+title: "YouTube Stream Goes Offline Mid-Service: Recovery Guide"
+description: "Quickly recover when your YouTube Live stream drops mid-service. Covers reconnection, stream keys, and prevention."
+symptom: "YouTube Live stream unexpectedly stops and shows as offline"
+affectedDevices: ["OBS Studio", "ATEM Mini Pro", "Magewell Ultra Encode"]
+tags: ["streaming", "youtube", "recovery", "connectivity"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+You're 15 minutes into the service and YouTube suddenly shows "Stream Offline." Viewers are trying to refresh and they see nothing. You've got maybe 30–60 seconds to get it back before people give up watching. Here's the fastest way to recover.
+
+<ProductCTA variant="inline" />
+
+## Immediate Recovery: Restart the Stream in OBS
+
+The fastest fix is usually just restarting:
+
+1. In OBS, click **Stop Streaming**
+2. Wait 5 seconds (let the connection fully close)
+3. Click **Start Streaming** again
+4. Watch the OBS status bar — it should say "Streaming" within 10 seconds
+5. Check YouTube: the stream should be back online (may take another 5–10 seconds to be visible)
+
+**This works 80% of the time.** If the stream is back within 15 seconds, viewers may not even notice the brief outage.
+
+## If Simple Restart Doesn't Work: Check the Network
+
+If the restart didn't reconnect:
+
+1. Open a browser and navigate to **youtube.com** or a simple website like **google.com**
+2. Does the page load? If not, your internet connection is down
+3. If internet is down, there's nothing OBS can do — you're stuck until connection returns
+4. If internet works, continue to the next step
+
+## Verify Your Stream Key Is Still Valid
+
+YouTube stream keys can expire if the stream has been online for very long or if there's an issue:
+
+1. Go to **YouTube Studio** on a different device (phone, tablet, or second PC)
+2. Click **Go Live** or find the active stream
+3. Look for the **RTMP URL** and **Stream Key** (usually under "Set Up Encoder")
+4. In OBS, go **Settings > Stream**
+5. Compare your OBS stream key to the one in YouTube Studio
+6. If they don't match, copy the new one from YouTube Studio into OBS
+7. Restart the stream in OBS
+
+**Why this happens:** YouTube's stream key sometimes changes, especially if the stream has been running for several hours.
+
+## Check for Bitrate or Technical Errors
+
+YouTube shows specific error messages on the live stream page:
+
+1. Go to YouTube Studio
+2. Click **Analytics** or **Stream Health**
+3. Look for any red warnings about **bitrate**, **upload speed**, or **encoding errors**
+4. If there's a bitrate spike, your upload speed can't keep up:
+   - Stop the stream
+   - In OBS, lower the bitrate (Settings > Output > Streaming > Bitrate)
+   - Restart the stream with lower bitrate
+
+## Common Reasons YouTube Disconnects
+
+**Bitrate too high for your upload:**
+- Your PC is trying to send more data than your internet can handle
+- YouTube will disconnect after 30–60 seconds of unmanageable bitrate
+- Solution: Reduce bitrate in OBS and restart
+
+**Stream has been running too long:**
+- YouTube can occasionally drop streams that run for many hours
+- Solution: Stop and restart the stream (which you've already done)
+
+**Encoder software crashed:**
+- OBS or your hardware encoder may have crashed silently
+- Check if OBS is still running and the status shows "Streaming"
+- If OBS crashed, restart it and go live again
+
+**Network connectivity issue:**
+- Brief internet hiccup caused the disconnect
+- Usually recovers within a minute if you just restart
+
+## Prevent Mid-Stream Outages: Use Auto-Reconnect
+
+OBS has an automatic reconnection feature:
+
+1. In OBS, go **Settings > Output > Streaming**
+2. Look for **Auto-Reconnect** checkbox
+3. Enable it
+4. Set **Reconnect Timeout** to **10 seconds**
+5. Set **Retry Delay** to **2 seconds**
+6. Max **Reconnect Attempts** to **20** (or higher)
+
+This makes OBS automatically restart the stream if it drops, without you needing to click anything.
+
+## Pre-Stage a Backup Stream Key
+
+For critical services (holidays, special events), have a backup:
+
+1. In YouTube Studio, you can have multiple stream keys
+2. Generate a second stream key and save it somewhere
+3. Before the service, have the backup key written down or copied
+4. If the main stream fails and won't reconnect, quickly switch to the backup key in OBS and restart
+
+This is overkill for most services, but useful for high-stakes streams.
+
+## Monitor Stream Health During Service
+
+During the live stream, periodically check:
+
+1. **In OBS**: Watch the status bar for frame drops or connection indicators
+2. **On YouTube Studio**: Check **Stream Health** for any warnings (bitrate spikes, encoding errors)
+3. **On the stream itself**: Every few minutes, refresh the YouTube Live page as a viewer would. Does it play smoothly?
+
+If you catch a problem early, you can fix it before it causes an outage.
+
+## If YouTube Continues Failing
+
+If the stream keeps disconnecting and won't stay live:
+
+1. Lower your bitrate significantly (try 2500 kbps instead of 5000 kbps)
+2. Reduce resolution to 720p instead of 1080p
+3. Close all background programs on your streaming PC
+4. Check your internet upload speed with a speed test
+5. If upload is under 3 Mbps, it's too low for reliable streaming — contact your ISP or switch to mobile hotspot
+
+## What Viewers See
+
+During a mid-stream outage:
+
+- YouTube shows "Stream Offline"
+- Viewers can see the chat and previous stream info, but can't watch
+- When you restart, it may take 10–30 seconds for the video to reappear
+- Most viewers will refresh once and try again; if you're down longer than 30 seconds, many will give up
+
+That's why speed is critical — get back online in under 30 seconds if possible.
+
+---
+
+**Recovery checklist:**
+- [ ] Stop and restart stream (takes 10 seconds)
+- [ ] Check internet connection (load a website)
+- [ ] Verify stream key matches YouTube Studio
+- [ ] Check for YouTube Stream Health warnings
+- [ ] If bitrate spike, lower bitrate and restart
+- [ ] Enable Auto-Reconnect in OBS for next time

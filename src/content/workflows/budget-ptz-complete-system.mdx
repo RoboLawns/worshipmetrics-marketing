@@ -1,0 +1,114 @@
+---
+title: "Building a Complete PTZ Camera System on a Budget"
+description: "Two or three budget NDI PTZ cameras, NDI-capable switcher, network infrastructure. Complete multi-camera setup for $2,000-4,000."
+churchSize: small
+budget: 1k-5k
+gearList: ["avkans-ptz-u100", "avkans-ptz-u200", "atem-mini-pro", "kiloview-n2"]
+tags: ["ptz-cameras", "ndi", "budget-friendly", "multi-camera"]
+publishedAt: "2024-01-20"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Why PTZ Cameras Win on Budget
+
+Here's the central truth of budget church AV systems: a single motorized PTZ camera can do the work of three fixed cameras. It pans, tilts, and zooms, giving you wide shots, medium shots, and tight shots all from one physical camera. You don't need a camera operator because the zoom and pan movements are controlled via a joystick at your switcher position.
+
+Most churches that try to build multi-camera systems on a tight budget make one fatal mistake: they buy three fixed cameras and hire three operators. The cost explodes immediately. The complexity becomes nightmarish. The human coordination breaks.
+
+A budget PTZ camera like the AVKANS U100 costs $450-500 and includes the motorized head and network connectivity. Buy two of them, add basic network infrastructure and a simple switcher, and you have a legitimate two-camera production system that a single person can operate from a joystick. Add a third camera for $500, and you have three-camera coverage that one trained operator can handle smoothly.
+
+## The AVKANS PTZ Advantage
+
+The AVKANS U100 is the benchmark budget PTZ camera because it's NDI-native, which means it sends video over Ethernet without needing HDMI converters. A single CAT-6 Ethernet cable carries both power (via PoE) and video to each camera. This is a radical simplification compared to cameras that need separate power cables and HDMI runs across your sanctuary.
+
+The camera includes a 20x optical zoom, which gives you good framing flexibility. The wide angle shows your whole stage. The tight zoom captures expressions from the back of your sanctuary. The PTZ head is motorized and smooth, responsive to joystick control. For church use, it's more than adequate.
+
+The key specification is that it's NDI. This means it connects directly to an NDI-capable switcher (like the ATEM Mini Pro with NDI module, or you use small converters to translate NDI to HDMI for other switchers). You don't need separate capture cards or converters for each camera.
+
+For your third camera, consider the AVKANS U200 (around $550), which has higher resolution and a larger zoom range. Or stick with three U100s for consistency. Three identical cameras are easier to train operators on.
+
+## Network Infrastructure on a Budget
+
+Two or three NDI cameras need a managed Ethernet switch that supports PoE (Power over Ethernet). You're not buying an expensive enterprise switch. A managed PoE switch from TP-Link or Netgear in the $200-300 range handles this perfectly. Look for at least four PoE ports and support for jumbo frames (important for NDI reliability).
+
+Run CAT-6 Ethernet cables from each camera to the switch. If your cameras are more than 50 meters from your switch, use quality cable and verify that PoE power is reaching the cameras (they have status LEDs that tell you if they're powered correctly).
+
+This is the networking investment that pays off. Compared to running separate power and HDMI cables to three fixed cameras, NDI networking is cleaner, simpler, and more reliable. The $300 switch investment saves you $500 in cable runs alone.
+
+## The Switcher: ATEM Mini Pro
+
+The ATEM Mini Pro is the perfect switcher for a three-camera PTZ system. It has four HDMI inputs, which gives you room for your three NDI cameras (converted to HDMI) plus ProPresenter output or graphics from a secondary computer.
+
+The Mini Pro includes built-in recording to SSD, which means you're archiving your services without needing additional recording infrastructure. It includes two USB outputs, so you can stream while recording. It has a clean, intuitive button layout that a volunteer can learn quickly.
+
+Configure your ATEM Mini Pro with your three camera feeds already labeled and preset. "Camera 1 - Wide," "Camera 2 - Medium," "Camera 3 - Tight." The operator sits at the switcher with a joystick controller mounted on either side, controlling pan, tilt, and zoom for each camera. They look at a monitor showing the live program output and another monitor showing camera preview feeds. When they want to switch from Camera 1 to Camera 2, they tap the button and adjust framing with the joystick simultaneously.
+
+This is intuitive operation. After three or four services, a volunteer operator becomes smooth and confident.
+
+## Adding Network-Based Conversion If Needed
+
+If you already have an ATEM switcher that doesn't have native NDI support, you can use small network-to-HDMI converters like a Kiloview N2. The NDI cameras connect to your network, the N2 converter decodes the NDI signal and outputs HDMI directly into your ATEM. This adds about $300 per camera to your budget but unlocks NDI camera advantages on existing switchers.
+
+## Audio Mixing for the System
+
+You're not using a professional mixer for this setup. You're either using the built-in audio mixing in OBS or a simple USB mixer. If you have a wireless microphone system, connect it to a basic USB mixer (like the Behringer Xenyx USB, around $80), which sends audio to your streaming laptop via USB.
+
+The audio quality matters more than the cost. Invest in a decent microphone (or reuse what you already have from your PA system) rather than cheap audio inputs. Poor audio is the easiest way to look unprofessional.
+
+## Streaming Software and PC
+
+OBS is your streaming platform. It's free and capable of handling this setup perfectly. Your streaming PC takes video input from the ATEM Mini Pro (via HDMI capture card, around $50) and audio input from your USB mixer (via USB). OBS encodes both and streams to YouTube and Facebook simultaneously.
+
+Your PC needs a dedicated GPU for real-time encoding. A mid-range desktop with an RTX 3060 or similar handles 1080p/30fps streaming without strain. You're not editing video on this PC—you're purely streaming, so the requirements are modest.
+
+<ProductCTA variant="inline" />
+
+## Operating the Three-Camera System
+
+Your production operator sits at the ATEM switcher with a joystick on each side controlling Cameras 2 and 3. Camera 1 (the wide shot) is typically left framed wide and switched to less frequently, so they might control it with just button presses without live joystick adjustment.
+
+The runsheet for your operator is simple:
+
+- Song 1: Start on Camera 1 (wide). Transition to Camera 2 (medium, on worship leader) at verse 2.
+- Song 2: Stay on Camera 2, adjust zoom for energy.
+- Announcements: Switch to Camera 3 (positioned on speaker) at the start.
+- Teaching: Use Camera 2 and Camera 3 alternately, tight shots of the pastor. Pull back to Camera 1 for transitions.
+- Closing song: Return to Camera 1 (wide) for a sense of finale.
+
+This isn't complex. A person with basic video experience learns this in two or three services. A motivated volunteer becomes competent in their first month.
+
+## Backup and Flexibility
+
+The beauty of the PTZ system is that you can operate with fewer cameras if needed. If Camera 2 fails, you can run the entire service with Cameras 1 and 3. If one camera goes offline, you have five minutes to investigate while your other cameras keep working. This resilience is huge for volunteer operations.
+
+You can also upgrade incrementally. Start with two AVKANS cameras and run the system for a few months. When you have the budget, add a third. Upgrade from Mini Pro to Mini Extreme when you want more inputs and recording capability. The system grows without requiring a complete rebuild.
+
+## Training and Documentation
+
+Document your setup. Create a one-page sheet showing what each camera does, which joystick controls which camera, and basic troubleshooting (what to do if a camera goes offline or stops responding).
+
+Train two primary operators and two backups. Your backups don't need to be as skilled, but they should be able to handle a service if your primary is unavailable. Operator rotation prevents burnout and ensures knowledge isn't trapped in one person.
+
+Monthly, do a quick training refresh. Show incoming volunteers how the system works. Answer questions about specific camera movements or transitions they've seen. This ongoing education keeps your team current and confident.
+
+## Total Cost Breakdown
+
+- Two AVKANS U100 PTZ cameras: $900
+- Managed PoE network switch: $250
+- Ethernet cables and connectors: $100
+- ATEM Mini Pro: $395
+- HDMI capture card for streaming PC: $50
+- USB audio mixer: $80
+- Joystick controllers: $100
+- Storage SSD for recording: $100
+- Network converters (if needed): $300
+
+Total: approximately $2,275 for a complete two-camera system, or $2,775 adding a third camera. You can run this entire operation with one trained volunteer operator and produce professional-looking services.
+
+## Why This Approach Scales
+
+As your church grows, this architecture continues to work. You don't throw out PTZ cameras and start over with fixed cameras. You add a fourth PTZ camera if you need more angles. You upgrade to an ATEM Mini Extreme for more inputs. You invest in better audio infrastructure. But the foundation is sound and doesn't waste money on complexity you don't need.
+
+The real power of the budget PTZ system is that it teaches your volunteers how professional production actually works. They learn switcher operation, camera framing, audio mixing, and streaming management. When you eventually upgrade to a more sophisticated system, you're building on this foundation, not starting from zero.

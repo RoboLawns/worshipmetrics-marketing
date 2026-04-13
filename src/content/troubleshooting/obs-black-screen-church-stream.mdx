@@ -1,0 +1,187 @@
+---
+title: "OBS Black Screen: Fix for Church Streaming Setup"
+description: "Fix OBS preview showing black screen instead of camera or presentation. Covers GPU selection, administrator mode, and capture modes."
+symptom: "OBS preview shows black screen instead of camera or source"
+affectedDevices: ["OBS Studio"]
+tags: ["obs", "video-capture", "streaming", "display"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+OBS is open and ready to go, but the preview window is completely black. No camera feed, no presentation, nothing. You have minutes before the service and OBS isn't showing anything. This is usually a capture mode mismatch or graphics driver issue. Let's get your video back in seconds.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Run OBS as Administrator
+
+The most common fix is simply running OBS with admin privileges:
+
+1. Right-click the OBS icon on your desktop or in your Start menu
+2. Select **Run as Administrator**
+3. Click **Yes** when Windows asks for permission
+4. OBS will relaunch
+5. Check the preview — does it show video now?
+
+This fixes black screen issues in about 40% of cases, especially for display capture and window capture.
+
+## Step 2: Check Your Video Source and Capture Mode
+
+If running as admin didn't fix it:
+
+1. In OBS, look at the **Sources** panel on the left
+2. You should see one or more sources listed (Camera, Display Capture, Window Capture, etc.)
+3. Click on each source and verify it's selected
+4. Look at the **Properties** panel on the right and check the **Capture Method**:
+
+**For camera input:**
+- If it shows a blank source, try changing the **Device** dropdown to your camera
+- Click the dropdown and select your PTZ camera or USB camera
+- If you don't see your camera in the list, the camera may not be installed or drivers are missing
+
+**For presentation/display:**
+- If you're using **Display Capture**: verify you've selected the correct **Display** from the dropdown (especially if you have multiple monitors)
+- If you're using **Window Capture**: verify you've selected the correct window (e.g., "ProPresenter" or "PowerPoint")
+- If you're using **Game Capture**: switch to **Window Capture** instead — Game Capture is meant for games, not presentations
+
+## Step 3: Switch to a Different Capture Method
+
+If one capture mode isn't working, try another:
+
+**For capturing your presentation software (ProPresenter, PowerPoint):**
+1. In OBS, right-click the source and select **Delete**
+2. Click **+** to add a new source
+3. If using **Window Capture**, try switching to **Display Capture** instead (capture the entire monitor)
+4. Or try **Game Capture** (though Window Capture is usually better)
+5. Select the right window or display
+6. Click **OK**
+
+**For capturing a camera:**
+1. If Camera is not working, right-click and delete it
+2. Click **+** to add a source
+3. Select **Video Capture Device**
+4. In the Device dropdown, select your camera
+5. Click **OK**
+
+## Step 4: Check Your GPU/Graphics Settings
+
+OBS uses graphics hardware to render the preview. If your GPU is set wrong, you get a black screen:
+
+1. In OBS, go **Settings > Advanced**
+2. Look for **General** section and find the **Rendering** or **GPU** setting
+3. Check what GPU is selected:
+   - If you have an NVIDIA or AMD graphics card, it may be set to **Integrated** graphics (built into your CPU)
+   - Try switching to your discrete GPU (e.g., "NVIDIA GeForce RTX 3060" or "AMD Radeon")
+4. Click **Apply** and restart OBS
+
+**If OBS still shows black:**
+- Try switching back to **Integrated** graphics
+- Sometimes the discrete GPU isn't compatible with OBS
+- Integrated GPU is fine for most streaming — it's slower but compatible
+
+## Step 5: Check DirectX vs OpenGL Rendering
+
+OBS can render using different graphics APIs:
+
+1. In OBS, go **Settings > Advanced**
+2. Look for **Rendering** or **Graphics API** option
+3. Try switching between:
+   - **Direct3D 11** (Windows default)
+   - **OpenGL** (alternative)
+4. Click **Apply** and restart OBS
+5. Does the preview show video now?
+
+## Step 6: Update Your Graphics Driver
+
+Outdated drivers can cause black screen issues:
+
+**For NVIDIA cards:**
+1. Visit **nvidia.com/drivers**
+2. Enter your GPU model and download the latest driver
+3. Install it and restart your PC
+4. Reopen OBS
+
+**For AMD cards:**
+1. Visit **amd.com/drivers**
+2. Download the latest driver
+3. Install and restart
+
+**For Intel integrated graphics:**
+1. Visit **intel.com/download**
+2. Search for your processor model
+3. Download the graphics driver
+4. Install and restart
+
+## Step 7: Check Video Device Permissions
+
+Windows sometimes blocks camera or display capture:
+
+1. Go **Settings > Privacy & Security > Camera** (Windows 10/11)
+2. Verify **Camera** is enabled for OBS Studio
+3. Go **Settings > Privacy & Security > Screen capture**
+4. Verify **Screen capture** is enabled for OBS
+5. Restart OBS
+
+If permissions weren't enabled, enable them and restart.
+
+## Step 8: Restart Everything
+
+Sometimes OBS gets stuck in a bad state:
+
+1. Close OBS completely
+2. Restart your PC
+3. Reopen OBS
+4. Try adding your source again
+
+This clears any driver or graphics issues that persisted.
+
+## Step 9: Test Each Source Separately
+
+Before the service:
+
+1. Create a new **Scene** in OBS
+2. Add *only* your camera as a source
+3. Does the preview show the camera feed? If yes, the camera works
+4. Delete that source and add your presentation software
+5. Does the preview show the presentation? If yes, it works
+6. Once you confirm each source individually, add them all to your main scene
+
+This isolates which source is causing the black screen.
+
+## Specific Fix: ProPresenter Not Showing
+
+If you're using ProPresenter:
+
+1. In OBS, go to your ProPresenter source
+2. Right-click and select **Filters**
+3. Check if there's a **Color Key** or **Chroma Key** filter enabled
+4. If yes, disable it (it might be hiding your video behind a color mask)
+5. In source **Properties**, verify **Window** dropdown shows the right ProPresenter window (not "ProPresenter - Screen 1" but the main window)
+
+## Specific Fix: Camera Not Showing
+
+If you're using a USB camera or PTZ camera via HDMI:
+
+1. Verify the camera is powered on and connected
+2. In OBS source **Properties**, click the **Device** dropdown
+3. Look for your camera in the list
+4. If not there, the camera driver may not be installed:
+   - Download the driver from the camera manufacturer's website
+   - Install the driver
+   - Restart OBS
+5. Now select the camera from the Device dropdown
+
+---
+
+**Black screen troubleshooting order:**
+1. [ ] Run OBS as Administrator
+2. [ ] Verify source is selected in Sources panel
+3. [ ] Try a different capture mode (Window vs Display)
+4. [ ] Switch GPU/Graphics setting (Discrete vs Integrated)
+5. [ ] Try DirectX 11 vs OpenGL rendering
+6. [ ] Update graphics driver
+7. [ ] Enable camera/display permissions in Windows
+8. [ ] Restart PC and OBS
+9. [ ] Test each source individually before going live

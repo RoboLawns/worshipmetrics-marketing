@@ -1,0 +1,96 @@
+---
+title: "AVKANS PTZ-U100 Preset Positions for Sunday Service"
+description: "Creating, saving, and recalling shot presets for reliable church service workflows with the AVKANS PTZ-U100."
+brand: "AVKANS"
+modelId: "avkans-ptz-u100"
+modelFullName: "AVKANS PTZ-U100 NDI Camera"
+articleType: "how-to"
+category: "device-setup"
+tags: ["AVKANS", "presets", "workflow", "production"]
+difficulty: "beginner"
+priceRange: "under-500"
+publishedAt: "2024-02-12"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Introduction
+
+Presets are the heart of reliable PTZ operation in church production. A well-designed preset system removes the need for manual camera control during service and reduces operator cognitive load dramatically. Instead of hunting for the right framing mid-service, the operator simply recalls a preset and the camera moves to the exact position that was saved during setup.
+
+The AVKANS PTZ-U100 supports multiple preset positions that can be recalled from the camera web interface, dedicated control software, or directly from your production software if it integrates with the camera. This guide covers designing a preset system that matches your service flow, saving presets correctly, and training your operator to use them reliably.
+
+## Understand Your Service Flow Before Creating Presets
+
+Before you save a single preset, walk through your service order and identify the distinct moments that need specific camera framing. Most churches need presets for three to five key moments: a wide stage shot, a pulpit or speaker position, a worship team or band position, and possibly a choir or special moment position.
+
+The mistake many teams make is creating too many presets. Having 20 saved preset positions sounds flexible but actually makes the operator's job harder because they have to hunt through a long list under pressure. A focused set of five to seven presets that cover most moments is far more useful than a comprehensive library that slows down operation.
+
+Document your service flow on paper before touching the camera. Write down the moments where the camera needs to move: worship begins, teacher walks to pulpit, worship team steps back, announcements, closing prayer. These moments define your preset system. Everything else can be handled by the wide shot.
+
+## Save Your First Wide Preset
+
+The wide shot is your safety preset, the one the camera returns to if anything goes wrong or if the operator misses a cue. Position the camera to show the full stage, most of the worship team, and enough context for online viewers to understand what is happening. This is usually a position that is not zoomed in at all or only slightly zoomed.
+
+Navigate the camera to this position using the pan, tilt, and zoom controls in the web UI or in your control software. Once the framing looks right, save it as Preset 1 and name it Wide or Stage Wide. Do this through the web UI by finding the Preset section and clicking Save or Create.
+
+Test this preset by moving the camera to a different position, then recalling the Wide preset. The camera should return to the exact same framing reliably. If the pan or tilt drifts slightly, the camera may need calibration, but minor drifts of a few degrees are usually acceptable. If the preset never recalls to the same position twice, there may be a mechanical issue that needs addressing before service use.
+
+## Create Your Speaker or Pulpit Preset
+
+The next essential preset is usually a speaker or pulpit position, depending on where teaching happens in your church. This preset should frame the person speaking clearly without excessive zoom, ideally showing shoulders and head with some space above. Too close and it feels claustrophobic; too wide and online viewers cannot see the speaker's expression.
+
+Position the camera carefully at this framing. Move the camera from your Wide preset to the speaker position, zoom in to frame the person speaking, and pan or tilt to center them. Once the framing feels right, save this as Preset 2 and name it Pulpit or Speaker.
+
+This preset deserves special attention because it is probably the most-used shot in your service. If the framing is uncomfortable for your speaker or if the zoom level makes them feel watched, the preset will feel wrong week after week. Spend time getting this one right, and ask your speaker if the framing feels good for them.
+
+## Add Worship Team and Other Key Positions
+
+Most churches need a preset for the worship or music moment. This might be a wide shot that shows the entire band, or it might be a tighter shot of the lead singer. The choice depends on your theology of worship and what you want online viewers to focus on.
+
+Save a worship position as Preset 3. If your church uses a large band or choir, you might save multiple presets here: one for the full ensemble and one for a tighter soloist shot. But again, resist the urge to create a preset for every possible combination. Five to seven well-chosen presets serve you better than fifteen confusing options.
+
+<ProductCTA variant="inline" />
+
+If your service includes special moments like baptism, testimony, or prayer, consider whether you need a preset for those. If those moments happen occasionally and use different framing, you can note the preset number in your service outline so the operator knows to use the worship preset or the speaker preset depending on the moment. You do not need a unique preset for every variation.
+
+## Name and Document Your Preset System
+
+Once you have saved four to six presets, document them clearly. Create a simple list that maps preset numbers to names and describe what each preset is designed to show:
+
+Preset 1: Wide — Full stage, entire worship team visible
+Preset 2: Pulpit — Speaker close-up, shoulders to head
+Preset 3: Worship — Lead singer or band position
+Preset 4: Choir — If applicable, choir position from audience perspective
+Preset 5: Announcements — Pulpit or stage position for announcements
+
+Print this list and tape it to the camera control device or post it on the production computer where the operator will see it every Sunday. This removes any ambiguity about which preset to use at which moment. If your operator is new to the camera system, a printed reference is worth hours of training.
+
+## Test Presets During a Full Service Run-Through
+
+Before Sunday, run through your service order and test every preset transition. Start with your Wide preset, move to Pulpit, then to Worship, then back to Wide. Time these transitions to match your actual service timing. If the camera takes five seconds to move between presets, the operator needs to know that and cue the movement before the moment requires it.
+
+Pay attention to how preset transitions feel during the worship flow. If every transition requires a fast, jerky movement, consider adjusting your presets so movements are less dramatic. The camera should support the service, not distract from it. A slightly wider pulpit shot might mean less dramatic zoom changes during transitions, which feels more professional to online viewers.
+
+Also test your backup position. If something goes wrong with your preset system mid-service (which is rare but possible), your operator should know to default to the Wide preset and operate manually. Having a practiced backup prevents panic if technology fails.
+
+## Integrate Presets with Your Production Software
+
+Most modern production software can be configured to recall camera presets directly from OBS, vMix, or similar tools. If your production software supports ONVIF or NDI camera control, you can often set up keyboard shortcuts or buttons that recall presets without requiring your operator to separately control the camera.
+
+Check your production software documentation for camera control integration. If you can recall AVKANS presets directly from your OBS scenes, each scene can trigger the appropriate camera preset automatically. This reduces operator load to a single button click per scene change.
+
+If your production software does not support direct camera control, your operator will need to control the camera separately using the camera's control interface or software. This is workable, but less elegant than fully integrated control.
+
+## Adjust Presets as Your Service Evolves
+
+Your preset system is not static. As your service order changes seasonally, as your team changes, or as you rearrange your stage, presets become outdated. The pulpit position that worked perfectly in July may not work well in January if the holiday service has a different layout.
+
+Plan to review and adjust presets at least quarterly or whenever your service flow changes significantly. Do this during setup time, not during the service itself. If a preset no longer frames things well, update it by moving the camera to the correct position and resaving the preset. The camera will overwrite the old position with the new one.
+
+## Conclusion
+
+A focused preset system is one of the most effective ways to reduce production complexity on Sunday. The AVKANS PTZ-U100 makes preset management straightforward through its web interface and control options. Spend time now designing presets that match your actual service flow, name them clearly, and document them so any trained operator can use the system.
+
+Presets are not about creating perfect framing for every possible moment. They are about eliminating decision-making during service so your operator can focus on timing and responding to what is happening in the room, not struggling to find the right camera position.

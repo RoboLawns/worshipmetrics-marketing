@@ -1,0 +1,176 @@
+---
+title: "ProPresenter NDI Output Not Visible in OBS or vMix"
+description: "Fix ProPresenter NDI not appearing in OBS or vMix. Covers NDI licensing, plugin setup, and network configuration."
+symptom: "ProPresenter NDI output is enabled but doesn't appear in OBS or vMix"
+affectedDevices: ["ProPresenter 7", "OBS Studio", "vMix"]
+tags: ["propresenter", "ndi", "streaming", "presentation"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+You've enabled NDI output in ProPresenter, and the presentation software says it's broadcasting. But OBS and vMix don't see it. The NDI source should be discoverable, but it's missing. This is usually a licensing issue, plugin mismatch, or firewall problem. Let's get ProPresenter showing up.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Verify ProPresenter Has NDI License
+
+ProPresenter 7 requires an **active license** for NDI output to work:
+
+1. In ProPresenter, go **Preferences** (or **Settings**)
+2. Look for **License** or **About**
+3. Check if your license shows **NDI enabled** or **NDI license active**
+4. If NDI is not listed or shows as "unlicensed," you need to:
+   - Purchase an NDI license add-on for ProPresenter, or
+   - Enable it in your existing license (if included)
+5. Contact Renewed Vision (ProPresenter support) to add NDI to your license
+
+If NDI isn't licensed, that's why it's not broadcasting. Without a license, the feature is disabled.
+
+## Step 2: Enable NDI Output in ProPresenter
+
+1. In ProPresenter, go **Preferences > Network** or **Streaming Settings**
+2. Look for **NDI Output** or **NDI Network Output**
+3. Verify it's **enabled** (checkbox should be checked)
+4. You should see an **NDI stream name** (usually "ProPresenter" or your church name)
+5. Write down the stream name
+6. If NDI output is off, turn it on
+7. Restart ProPresenter
+
+## Step 3: Verify OBS-NDI Plugin Is Installed
+
+OBS doesn't include NDI support by default:
+
+1. In OBS, go **Tools > obs-ndi**
+2. If obs-ndi doesn't appear in the Tools menu, the plugin isn't installed
+3. If not installed:
+   - Go to **github.com/Palakis/obs-ndi**
+   - Download the installer for your Windows version (32-bit or 64-bit)
+   - Install it
+   - Restart OBS
+4. Once installed, go **Tools > obs-ndi Settings**
+5. Verify NDI is **enabled** (you should see "NDI is enabled" message)
+
+## Step 4: Check vMix Has NDI Support
+
+vMix includes NDI built-in (no plugin needed):
+
+1. In vMix, go **Input > Add Input > NDI**
+2. If NDI doesn't appear in the input menu, restart vMix
+3. vMix should show a list of available NDI sources
+
+If NDI still doesn't appear, you may need to update vMix to the latest version.
+
+## Step 5: Scan for NDI Sources
+
+**In OBS:**
+1. Add a new source: click **+** in Sources
+2. Select **NDI Source**
+3. Click **Refresh Sources** or wait for a list to appear
+4. Look for "ProPresenter" in the list
+5. If you see it, select it and click OK
+6. If not, continue troubleshooting
+
+**In vMix:**
+1. Click **Input > Add Input > NDI**
+2. vMix should show all discoverable NDI sources
+3. Look for ProPresenter
+4. If not found, continue troubleshooting
+
+## Step 6: Check Firewall Rules
+
+Firewall may be blocking NDI on UDP ports 5353 and 5004:
+
+**Windows Firewall:**
+1. Open **Windows Defender Firewall with Advanced Security**
+2. Click **Inbound Rules**
+3. Look for any rules blocking **multicast**, **5353**, or **5004**
+4. If found, delete those rules or create an exception
+5. Add a new inbound rule:
+   - Protocol: UDP
+   - Port: 5353, 5004
+   - Direction: Inbound
+   - Action: Allow
+6. Restart OBS/vMix
+
+**Third-party firewalls:**
+- Temporarily disable to test
+- If ProPresenter NDI appears when firewall is off, add an exception for OBS/vMix
+
+## Step 7: Verify ProPresenter and OBS Are on Same Subnet
+
+NDI discovery only works on the same subnet:
+
+1. On the PC running ProPresenter, open Command Prompt and type `ipconfig`
+2. Note the IP address (e.g., 192.168.1.50)
+3. On the streaming PC running OBS, do the same and note its IP
+4. Check if the **first three octets match**:
+   - ProPresenter: 192.168.1.50
+   - OBS: 192.168.1.100
+   - Match? Good, same subnet
+5. If subnets don't match, you need **NDI Bridge** (see step 9)
+
+## Step 8: Use NDI Monitor to Test Discovery
+
+Download **NDI Tools** to verify NDI is working:
+
+1. Go to **ndi.tv** and download **NDI Tools**
+2. Install and run **NDI Monitor**
+3. Look for "ProPresenter" in the left panel
+4. If it appears, NDI discovery is working — OBS/vMix setup has an issue (go back to step 5)
+5. If it doesn't appear, multicast/firewall is blocking NDI (see step 6)
+
+## Step 9: Use NDI Bridge for Cross-Subnet Setup
+
+If ProPresenter and OBS are on different subnets:
+
+1. Run **NDI Bridge** on a PC that can see ProPresenter (same subnet)
+2. NDI Bridge is included in NDI Tools
+3. Launch it and let it run as a service
+4. On your OBS streaming PC, ProPresenter should now appear as an NDI source
+
+NDI Bridge tunnels the NDI discovery across subnets.
+
+## Step 10: Restart ProPresenter and OBS
+
+Sometimes NDI gets stuck:
+
+1. Close OBS completely
+2. Restart ProPresenter
+3. Wait 30 seconds
+4. Reopen OBS
+5. Try adding the NDI source again
+
+## Step 11: Check ProPresenter Network Settings
+
+Verify ProPresenter is broadcasting on the network:
+
+1. In ProPresenter, go **Preferences > Network**
+2. Verify the correct **network interface** is selected (usually "Ethernet" or your main connection)
+3. If multiple network cards are shown, try switching to a different one
+4. Restart ProPresenter after changing
+
+## Verify It Works
+
+Before the service:
+
+1. Start a presentation in ProPresenter
+2. In OBS, add ProPresenter as an NDI source
+3. The presentation should appear in OBS's preview
+4. If you can see the slides, you're good
+5. Test with ProPresenter slide transitions to ensure it's live
+
+---
+
+**ProPresenter NDI troubleshooting checklist:**
+- [ ] ProPresenter license includes NDI (check Preferences)
+- [ ] NDI output is enabled in ProPresenter
+- [ ] OBS-NDI plugin installed and enabled
+- [ ] vMix has latest version (built-in NDI support)
+- [ ] Firewall allows UDP 5353/5004
+- [ ] ProPresenter and OBS on same subnet (or NDI Bridge configured)
+- [ ] NDI Monitor confirms ProPresenter is discoverable
+- [ ] OBS/vMix shows ProPresenter in NDI source list
+- [ ] Test presentation confirms live slides appear

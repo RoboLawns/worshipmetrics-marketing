@@ -1,0 +1,80 @@
+---
+title: "Adding NDI Cameras to vMix for Church Production"
+description: "Add NDI camera inputs to vMix, manage multiple NDI sources, handle bandwidth requirements, and troubleshoot NDI connectivity issues."
+app: vmix
+articleType: feature-guide
+tags: [ndi, cameras, networking, vmix, church-av]
+difficulty: intermediate
+publishedAt: "2024-02-26"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+NDI integration in vMix is simpler and more robust than in OBS. Rather than relying on a third-party plugin, vMix includes native NDI support with live monitoring, tally light control, and automatic camera discovery. If your church has invested in NDI cameras, vMix makes managing them straightforward.
+
+This guide covers adding NDI cameras to vMix, managing multiple simultaneous NDI feeds, handling network bandwidth, and troubleshooting the connectivity issues that sometimes plague NDI setups.
+
+## Discovering and Adding NDI Cameras
+
+Start by powering on all your NDI cameras and ensuring they're on the same network as your vMix computer. Open vMix and click "Add Input" in the left panel. Select "NDI" from the dropdown. vMix will automatically discover NDI devices on your network—within 10–15 seconds, your cameras will appear in the list.
+
+Click the camera you want to add. vMix immediately receives its video feed and displays it in the preview. The input appears in your Inputs panel. Repeat for each camera. Unlike OBS, which requires you to configure each NDI input separately, vMix makes bulk NDI discovery effortless.
+
+Confirm the video is flowing by looking at the input preview. You should see live video from the camera. If the preview is black or shows no signal, check that the camera is powered on and connected to your network. See the troubleshooting section below if problems persist.
+
+<ProductCTA variant="inline" />
+
+## Managing Multiple NDI Sources
+
+If you have three or four NDI cameras, add them all as separate inputs. vMix lets you layer multiple NDI sources in a single layout—click and drag NDI inputs into your preview to position them. You might have one camera full-screen with a second camera as a picture-in-picture (PIP) in the corner, plus a third camera available to switch to at any moment.
+
+The advantage of vMix over OBS is responsiveness. vMix's hardware encoding and optimized architecture handle multiple NDI streams with minimal CPU overhead. A production that would strain OBS (three NDI cameras plus graphics) runs smoothly on a standard i7 in vMix.
+
+As you add more cameras, monitor your network bandwidth. Each 1080p NDI camera uses about 150 Mbps of network bandwidth. Three cameras use 450 Mbps. Your gigabit network (1,000 Mbps) can handle this, but you're using almost half your available bandwidth. If you're also downloading files, streaming music, or running backups, network congestion will appear as dropped frames in vMix.
+
+For churches with large NDI deployments (five or more cameras), consider a dedicated network segment for NDI traffic. Use a separate gigabit switch connected only to cameras and your vMix PC, isolating NDI traffic from office computers and WiFi.
+
+## Bandwidth and Network Requirements
+
+NDI requires a stable gigabit network. Connect your vMix computer and all cameras to a gigabit switch with short Ethernet cables. Avoid routing through multiple switches or mixing old 100 Mbps switches with gigabit equipment—the slowest device in the chain determines speed.
+
+Test your network before deploying multiple cameras. Run a network speed test from your vMix computer. You should see 900+ Mbps download and upload on your local network (this is different from internet speed). If you see speeds below 500 Mbps, you have a network problem: loose cables, old switch, or misconfigured switch. Fix the network before deploying cameras.
+
+Network latency also matters. Add NDI → vMix Settings → Tally Light Control (if you're using tally lights, covered later). vMix will display latency for each camera. Latency below 50ms is excellent; 50–100ms is acceptable; above 100ms may cause noticeable sync issues if you're combining NDI with other sources.
+
+If you see high latency from one camera, it's usually because that camera is farther from your network switch or connected through intermediate switches. Move the camera closer to the switch, or replace the network cable with a new one.
+
+## Using NDI Tally Lights for Camera Operators
+
+One powerful vMix feature is NDI tally light control. When a camera is the primary output (you're streaming that camera), vMix can tell the camera to illuminate a tally light on its display. Your camera operator sees the red light and knows they're live without being told verbally.
+
+To set up tally, your cameras must support tally-over-NDI (most modern NDI cameras do). Add a camera input in vMix, then click the camera's settings icon. Enable "Tally Light Control" and assign the camera to a Tally Output (usually "Program"). Now when you make that camera your primary output, the camera's tally light activates automatically.
+
+This is a game-changer for multi-camera productions. Your camera operators work independently without needing a separate communication system. The tally light is their instruction: if it's on, they're live; if it's off, they're standby.
+
+## Troubleshooting NDI Not Appearing
+
+If a camera is powered on and connected to the network but doesn't appear in vMix's NDI list, the issue is usually network misconfiguration. Confirm that the camera and vMix are on the same network. Some IT environments separate networks with VLANs (Virtual LANs), isolating devices. If your camera is on a "Guest" VLAN and your vMix PC is on "Staff" VLAN, they can't see each other via NDI discovery.
+
+Check with your IT person to confirm all cameras and your vMix PC are on the same network segment. If they're on different VLANs, ask IT to place them on the same VLAN or to allow NDI traffic between VLANs.
+
+If you're certain they're on the same network, restart the camera and wait 30 seconds. Sometimes NDI discovery is slow on startup. If the camera still doesn't appear, try restarting vMix. Close it fully and reopen it—vMix will re-scan for NDI devices.
+
+If one camera consistently doesn't appear while others do, the camera may have NDI disabled or unsupported. Log into the camera's web interface and confirm NDI is enabled. Check the camera's firmware version—older firmware sometimes has buggy NDI. Update the firmware, restart the camera, and try again.
+
+## NDI Source Dropout During Service
+
+Occasionally, an NDI source disappears mid-stream (video turns black). This usually means the camera lost network connectivity. Check the camera's network indicator light. If it's off or red, the Ethernet cable is loose or the camera crashed. Reseat the cable firmly and wait 15 seconds.
+
+If the cable is fine, the issue is your network. Some switches have port errors that disconnect devices momentarily. Ask your IT person to check switch port status. Look for errors or collisions on the port the camera is using.
+
+To prevent mid-service failures, some churches maintain a USB backup camera connected directly to vMix. If an NDI camera fails, they quickly switch to the USB camera while troubleshooting the NDI issue. This adds redundancy and keeps your stream going.
+
+## vMix's NDI Advantage Over OBS
+
+vMix's native NDI support is tighter and more stable than OBS's plugin-based approach. vMix discovers NDI sources automatically without requiring you to find them in a dropdown. vMix handles tally lights, which OBS doesn't support. vMix's interface for managing NDI is cleaner—fewer steps, less clicking.
+
+For churches with multiple NDI cameras, vMix's approach feels natural. Your camera operators see tally lights immediately, and your director switches between cameras with minimal latency. By the time you've added your third NDI camera, you'll appreciate vMix's integration.
+
+NDI is the modern way to connect church production equipment. vMix takes that technology and integrates it deeply into the software, making multi-camera productions feel polished and professional.

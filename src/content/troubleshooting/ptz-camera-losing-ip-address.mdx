@@ -1,0 +1,155 @@
+---
+title: "PTZ Camera Keeps Losing Its IP Address"
+description: "Fix a PTZ camera that changes IP addresses or becomes unreachable after restart. Set a static IP and prevent DHCP conflicts."
+symptom: "PTZ camera IP address changes or becomes unreachable after restart"
+affectedDevices: ["AVKANS PTZ", "Tenveo", "TONGVEO", "SMTAV", "FoMaKo"]
+tags: ["ptz", "network", "ip-address", "dhcp"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+You carefully configured your PTZ camera with IP address 192.168.1.100, but after the camera reboots or after the service, it's suddenly at 192.168.1.150. Your control software can't find it. This is because the camera is using DHCP (automatic IP assignment) and getting a different address each time. Let's lock it to a static IP.
+
+<ProductCTA variant="inline" />
+
+## The Problem: DHCP vs Static IP
+
+Most PTZ cameras come configured for **DHCP**, which means they ask the router for an IP address every time they boot. The router assigns whatever IP is available:
+
+- **First boot:** Camera gets 192.168.1.100
+- **After restart:** Router gives it 192.168.1.105 (because 100 is available for other devices now)
+- **Your control software:** Still looking for 100, can't find the camera
+
+**Solution:** Set the camera to use a **static IP** — one that doesn't change.
+
+## Step 1: Access the Camera's Web Interface
+
+1. Discover the camera's current IP address using a discovery tool (AVKANS software, Angry IP Scanner, etc.)
+2. Write down the IP (e.g., 192.168.1.100)
+3. Open a web browser and navigate to `http://192.168.1.100`
+4. Log in (default is often `admin` / `admin` — check your manual)
+
+## Step 2: Find the Network Settings
+
+In the camera's web interface:
+
+1. Look for **Settings**, **Network**, **TCP/IP**, or **Configuration**
+2. Find the section that shows current IP settings
+3. You should see something like:
+   - **IP Configuration:** DHCP (currently enabled)
+   - **IP Address:** 192.168.1.100
+   - **Subnet Mask:** 255.255.255.0
+   - **Default Gateway:** 192.168.1.1
+
+Write down these values — you'll need them.
+
+## Step 3: Switch from DHCP to Static IP
+
+1. Find the **IP Configuration** dropdown or toggle
+2. Change it from **DHCP** to **Static IP** or **Manual**
+3. The IP address, subnet mask, and gateway fields will become editable
+
+## Step 4: Assign a Static IP Outside Your DHCP Range
+
+Don't just use the current IP — use one that's outside your router's DHCP range:
+
+**Identify your DHCP range:**
+1. Log into your router (usually `192.168.1.1`)
+2. Find **DHCP Settings** or **Local Network**
+3. Look for **DHCP Start** and **DHCP End** (e.g., 192.168.1.50 to 192.168.1.200)
+4. Devices outside this range won't be assigned by DHCP, so they'll keep the same IP
+
+**Choose a static IP:**
+- If DHCP is 192.168.1.50–192.168.1.200, use something like 192.168.1.240
+- If DHCP is 192.168.0.100–192.168.0.200, use 192.168.0.10 or 192.168.0.250
+- Just pick one outside the DHCP range
+
+**In the camera's web interface:**
+1. Set **IP Address** to your chosen static IP (e.g., 192.168.1.240)
+2. Set **Subnet Mask** to what was there before (usually 255.255.255.0)
+3. Set **Default Gateway** to your router (usually 192.168.1.1 or 192.168.0.1)
+4. Leave **DNS** as default (usually automatic or 8.8.8.8)
+
+## Step 5: Save and Restart the Camera
+
+1. Click **Save** or **Apply** in the web interface
+2. The camera will typically restart automatically
+3. Wait 30–60 seconds for the camera to fully boot
+
+## Step 6: Verify the Camera Has the New IP
+
+1. Once the camera reboots, open a browser and go to `http://192.168.1.240` (your new static IP)
+2. If the camera's web interface loads, the static IP is working
+3. Write down this new IP in a safe place (church notes, shared document, etc.)
+
+## Step 7: Update Your Control Software
+
+1. In your PTZ control software (AVKANS app, vMix, etc.), update the camera's IP address to the new static IP
+2. Test controlling the camera — it should respond
+3. Save your control software configuration
+
+## Alternative: DHCP Reservation (If You Prefer DHCP)
+
+Some churches prefer to keep DHCP but want the camera to always get the same IP. Use **DHCP Reservation:**
+
+1. Log into your router (192.168.1.1)
+2. Find **DHCP Reservations** or **Reserved IPs**
+3. Find your camera in the list (look for its MAC address — printed on the camera or in the router's connected devices)
+4. Click **Reserve** or **Add Reservation**
+5. Assign the camera's current IP (e.g., 192.168.1.100) as reserved
+6. Save
+
+Now the camera will always get 192.168.1.100 when it boots, even though it's technically using DHCP.
+
+## Step 8: Test the Persistence
+
+Before the service:
+
+1. Power off the camera
+2. Wait 30 seconds
+3. Power it back on
+4. Once it boots, go to the new static IP in your browser (or check your DHCP reservation)
+5. Confirm the IP is the same
+6. In your control software, confirm the camera is reachable
+7. Test control again
+
+If the IP stays the same after restart, you're done.
+
+## Document Your Camera's IP
+
+Create a simple document in your church's shared drive or in a note:
+
+```
+Camera IPs:
+- Pulpit Camera (AVKANS PTZ): 192.168.1.240
+- Side Camera (Tenveo): 192.168.1.241
+- Wide Shot (Kiloview): 192.168.1.242
+```
+
+This helps anyone troubleshooting later.
+
+## Troubleshoot: Static IP Not Sticking
+
+If you set a static IP but it doesn't persist after restart:
+
+1. Verify you clicked **Save** or **Apply** after changing the setting
+2. The camera may need a **factory reset** to apply static IP (check the manual)
+3. Try the DHCP Reservation method instead (step above)
+4. Contact the camera manufacturer's support
+
+---
+
+**Quick setup checklist:**
+- [ ] Accessed camera web interface with current IP
+- [ ] Noted current IP, subnet mask, gateway
+- [ ] Identified router's DHCP range
+- [ ] Chose a static IP outside DHCP range
+- [ ] Changed camera from DHCP to Static
+- [ ] Entered new static IP and saved
+- [ ] Restarted camera and verified new IP works
+- [ ] Updated control software with new IP
+- [ ] Tested control after restart
+- [ ] Documented IP address for reference

@@ -1,0 +1,138 @@
+---
+title: "Behringer X32 USB Audio Not Working in OBS or DAW"
+description: "Fix X32 USB audio not appearing in OBS. Covers USB cables, drivers, mixer settings, and sample rate configuration."
+symptom: "X32 connected via USB but not appearing as audio device"
+affectedDevices: ["Behringer X32", "Behringer X32 Compact"]
+tags: ["mixer", "usb", "audio", "x32"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your Behringer X32 is plugged in via USB, but Windows and OBS don't see it as an audio device. It's connected, it's powered, but you can't route audio from it. This is almost always a USB cable type issue or driver problem. Let's get the X32 recognized in minutes.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Check Your USB Cable Type
+
+The X32 requires a **USB-B cable**, not a standard USB-A cable:
+
+1. Look at the X32's USB port on the back — it should be a **USB-B port** (square, slightly recessed)
+2. Look at the cable going to your PC — what type is the connector going into the X32?
+3. If it's a small rectangular USB plug (USB-A), that's wrong — replace it
+4. You need a **USB-A to USB-B cable** (standard printer cable)
+5. If you don't have one, borrow from a printer or buy one cheaply (£5–10)
+
+Using the wrong cable type is the #1 reason X32 USB fails.
+
+## Step 2: Verify the X32 USB Output Is Routed
+
+The X32 needs to be configured to send audio out via USB:
+
+1. On the X32, press **Menu** or **Setup**
+2. Navigate to **Routing** or **Card Sends** (check your X32 manual for exact menu path)
+3. Look for **USB Send** or **USB Output**
+4. Verify it's set to output the **Main Mix** (or the mix you're using)
+5. Set the **USB send level** to a normal level (not muted or at zero)
+6. Save the setting
+
+Without this, the X32 won't send any audio to USB.
+
+## Step 3: Install X32 USB Driver
+
+The X32 requires a driver:
+
+1. Visit **behringer.com/support**
+2. Search for **X32 USB Driver**
+3. Download the **Windows 10/11 driver** (match your OS)
+4. **Disconnect the X32 from USB**
+5. Install the driver and restart your PC
+6. **Reconnect the X32** via USB
+7. Wait 10 seconds for Windows to recognize it
+
+## Step 4: Check Windows Audio Device Settings
+
+1. Go **Settings > Sound > Volume mixer** (Windows 10/11)
+2. Scroll down and look for your X32 in the device list (it might be labeled "X32" or "Behringer")
+3. If you see it, set it as the **Default Device** (right-click > Set as default)
+4. If you don't see it, the driver didn't install correctly — restart the PC and try again
+
+## Step 5: Verify Sample Rate Matches
+
+The X32 defaults to **48kHz** sample rate. OBS must match:
+
+1. On the X32 display, check the current sample rate (usually shown in the setup menu)
+2. In Windows, verify the X32 audio device is set to **48kHz** (not 44.1kHz or other)
+   - Right-click the X32 in Sound settings > Properties > Advanced
+   - Set to **48kHz, 24-bit**
+3. In OBS, go **Settings > Audio > Sample Rate**
+   - Set to **48kHz** to match the X32
+4. Click **Apply** in OBS
+
+If sample rates don't match, you'll get artifacts or no audio.
+
+## Step 6: Add X32 as Audio Source in OBS
+
+1. In OBS, go **Settings > Audio**
+2. Under **Microphone** or **Desktop Audio**, click the dropdown
+3. Look for "Behringer X32" or similar
+4. Select it
+5. Click **Apply** and **OK**
+6. In OBS's **Audio Mixer** panel, you should now see levels from the X32
+
+If the X32 doesn't appear in the dropdown, the driver isn't installed (go back to step 3).
+
+## Step 7: Check X32 USB Cable Port Quality
+
+Sometimes the X32's USB port or your PC's USB port is damaged:
+
+1. Inspect both the X32's USB-B port and your PC's USB-A port for:
+   - Bent or damaged pins
+   - Debris or lint
+   - Loose fit
+2. If the connector feels loose or wiggly, try a different cable or port
+3. Use a USB 2.0 port on your PC if available (USB 3.0 sometimes causes issues with older equipment)
+
+## Step 8: Update X32 Firmware
+
+Outdated firmware can cause USB issues:
+
+1. Visit **behringer.com/support**
+2. Download the latest **X32 Firmware**
+3. Follow Behringer's instructions to update the firmware
+4. This usually involves connecting the X32 to your PC and running an updater
+5. After firmware update, the X32 may reassert USB control — restart your PC
+
+## Step 9: Use X-Air Controller As Alternative
+
+If USB audio isn't working, the X32 has an Ethernet/Wi-Fi remote option:
+
+1. Connect the X32 to your network via Ethernet or Wi-Fi
+2. On your PC, download **X-Air Controller** (free app)
+3. Control the X32 remotely over the network
+4. Audio can still come via USB (once it works) or via network streaming
+
+This is a workaround, but USB audio should be your primary goal.
+
+## Step 10: Test Audio
+
+Before the service:
+
+1. Play audio through the X32 (talk into a mic, or route audio through a channel)
+2. In OBS, watch the **Audio Mixer** panel — do the levels react?
+3. If meters are moving, the USB connection is working
+4. Record a short test stream to verify audio is captured
+
+---
+
+**X32 USB audio checklist:**
+- [ ] Using USB-A to USB-B cable (not wrong cable type)
+- [ ] X32 USB Send routed to Main Mix in X32 menu
+- [ ] X32 driver installed from Behringer website
+- [ ] X32 appears in Windows Sound settings
+- [ ] X32 set as default audio device
+- [ ] Sample rate is 48kHz on X32, Windows, and OBS
+- [ ] OBS Audio settings shows X32 as Microphone or Desktop Audio
+- [ ] Test audio confirms levels are moving in OBS mixer

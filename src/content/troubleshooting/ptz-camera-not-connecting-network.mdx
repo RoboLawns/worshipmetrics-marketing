@@ -1,0 +1,97 @@
+---
+title: "PTZ Camera Not Connecting to the Network: Step-by-Step Fix"
+description: "Diagnose and fix a PTZ camera that won't connect to your church network. Covers IP conflicts, factory resets, and DHCP troubleshooting."
+symptom: "PTZ camera is powered on but cannot be found on the network"
+affectedDevices: ["AVKANS PTZ", "Tenveo", "TONGVEO", "SMTAV", "FoMaKo", "Minrray"]
+tags: ["camera", "network", "connectivity", "ptz"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your PTZ camera is powered on, the lights are on, but your control software can't find it on the network. Sunday morning just started, and you're minutes away from going live. The good news: this is usually fixable in under ten minutes with the right steps. The camera is likely there — you just need to locate it and resolve the connection.
+
+<ProductCTA variant="inline" />
+
+## Check the Basics First
+
+Before diving into advanced diagnostics, verify the physical setup:
+
+- **Confirm power**: PTZ cameras need a solid power connection. Check that the power cable is seated firmly, and if there's a power indicator light, verify it's on.
+- **Verify the network cable**: Use an Ethernet cable (CAT5e or better) directly from your network switch to the camera. Avoid daisy-chaining through other devices or using hubs.
+- **Test the switch port**: Plug the camera's Ethernet cable into a *different* port on your switch. Occasionally a port fails without warning.
+
+## Discover the Camera's IP Address
+
+Your PTZ camera has an IP address on your network. You need to find it:
+
+**Option 1: Check your router's DHCP table**
+- Log into your church router (typically 192.168.1.1 or 192.168.0.1)
+- Look for the DHCP clients list or connected devices
+- Look for the camera's MAC address (printed on the back of the camera or in documentation)
+- Write down the IP address listed
+
+**Option 2: Use manufacturer's discovery tool**
+- Tenveo, AVKANS, and most brands provide a discovery utility (often a .exe file or web-based tool)
+- Download from the manufacturer's support page
+- Run the tool — it will scan your network and list all cameras with their IPs
+- Write down the IP
+
+**Option 3: Manual IP scan (Windows only)**
+- If the above don't work, use a free tool like **Advanced IP Scanner** or **Angry IP Scanner**
+- Scan your network range (e.g., 192.168.1.0 to 192.168.1.255)
+- Look for the camera in the results; try accessing it via a web browser
+
+Once you have the IP address, open a web browser and type `http://[CAMERA_IP]` (e.g., `http://192.168.1.100`). If the camera's web interface loads, you're connected — skip to step 3 below.
+
+## If the Camera Doesn't Respond
+
+If you found the IP but the camera's web interface won't load, or you can't find it at all:
+
+**Check for an IP conflict:**
+- Run your discovery tool again and look for *two* devices with very similar IPs (this happens if the router assigned the same IP to two devices).
+- If there's a conflict, unplug the camera for 30 seconds, restart your network switch (power off for 10 seconds, then on), and plug the camera back in. This forces a fresh DHCP lease.
+
+**Try the camera's factory default IP:**
+- Most PTZ cameras ship with a default IP like `192.168.0.110` or `192.168.0.111` (check the manual).
+- If your network uses `192.168.1.x`, the camera won't connect until it gets a DHCP address.
+- Temporarily test the camera on a PC or laptop using a direct Ethernet cable to that computer's network card (no router in between).
+- If you can reach it on the default IP, you can reset it or configure static IP (see next section).
+
+## Set the Camera to a Static IP
+
+Once you can access the camera's web interface, configure it to use a static IP so it doesn't change:
+
+1. Log into the camera's web UI (default username and password are often `admin` / `admin` — check your manual)
+2. Navigate to **Network Settings** or **TCP/IP Settings**
+3. Switch from **DHCP** to **Static IP**
+4. Assign an IP address *outside* your DHCP range (e.g., if your router assigns 192.168.1.50–192.168.1.200, use 192.168.1.240)
+5. Set the gateway and DNS to match your router (typically 192.168.1.1)
+6. Save and restart the camera
+
+## Factory Reset (Last Resort)
+
+If the camera is completely unreachable and you can't access the web interface:
+
+1. Power off the camera
+2. Look for a **Reset** button on the back (often recessed, requiring a paperclip)
+3. Press and hold it for 10–15 seconds while the camera is powered *off*
+4. Power the camera back on while still holding the reset button for another 10 seconds
+5. Release and wait for the camera to boot
+6. The camera will now have its factory default IP — discover it again and reconfigure it from scratch
+
+## Verify Network Connectivity in Control Software
+
+Once the camera is online and you can access its web UI:
+
+1. Open your PTZ control software (e.g., AVKANS software, VISCA control, or vMix)
+2. Add the camera by IP address or auto-discovery
+3. Test basic pan/tilt/zoom commands — if it responds, you're live
+
+**If control software still can't find it**, the issue is likely a firewall or protocol mismatch. Ask your IT staff to check if the firewall is blocking the control protocol port (typically UDP/TCP ports 5000–5005, but check your camera manual for the exact port).
+
+---
+
+**Still stuck?** Verify the camera is on the *same subnet* as your control PC. If your PC is on 192.168.1.x and the camera is on 192.168.0.x, they can't see each other — reconfigure the camera's IP to match.

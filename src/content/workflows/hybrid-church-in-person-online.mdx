@@ -1,0 +1,102 @@
+---
+title: "Hybrid Church Setup: Serving In-Person and Online Simultaneously"
+description: "Design services for both physical congregation and online viewers. Separate audio mixes, IMAG systems, graphics strategies, and online engagement tools."
+churchSize: medium
+budget: 1k-5k
+gearList: ["atem-mini-pro", "behringer-x32-compact", "magewell-usb-capture-hdmi"]
+tags: ["hybrid-church", "in-person", "online-integration", "imag"]
+publishedAt: "2024-01-23"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Hybrid Church is Not a Temporary State
+
+Many churches approached hybrid worship as a pandemic necessity that would eventually end. The reality is different. Hybrid is now permanent. Your church includes people who attend in person every Sunday, people who watch online exclusively, people who attend in person sometimes and watch online other times. You're no longer running an in-person service that's also being streamed. You're running an integrated service that serves two audiences simultaneously with different needs.
+
+This requires intentional design. Your audio system serves two audiences with completely different acoustical environments. Your visual production must tell the story clearly on a smartphone screen and on a 4K projection system. Your pastors need to engage both the people in front of them and the camera. You're essentially running two productions that share the same source material.
+
+## Splitting Audio Into Two Mixes
+
+This is the most important architectural decision in hybrid production. Your in-room PA system and your online stream receive completely different audio mixes. This isn't a compromise—it's a professional production practice.
+
+Your in-room PA system is heavily processed. It includes reverb to match your sanctuary acoustics, compression to keep things consistent in a live space, and EQ to compensate for the frequency response of your worship space. It's mixed to be heard in a room where acoustics are working against you.
+
+Your streaming audio is completely different. It has no reverb (you want listeners to feel like they're watching on an iPad, not listening through a public address system). It has precise compression that keeps vocal levels consistent. It's EQ'd for earbuds and laptop speakers, which have completely different frequency response curves than your PA system.
+
+The Behringer X32 Compact handles this perfectly. You configure two independent output pairs: "Main PA Out" and "Streaming Out." Everything gets mixed into both, but each output gets separate processing. Your Main PA output goes to your sanctuary speakers. Your Streaming Output goes to your streaming PC via USB.
+
+Configure your mixing workflow: a volunteer audio engineer (or an automated mix preset) handles Main PA mixing for in-person listeners. Simultaneously, a second mixing function (often preset EQ chains) optimizes the same mix for streaming. Both mixes come from the same raw inputs but are processed differently downstream.
+
+This dual-mix approach is why your online congregation doesn't sound like they're listening through a cave. It's also why people who attend in person love your sanctuary acoustics while people at home hear pristine, well-balanced audio.
+
+## IMAG for the In-Person Congregation
+
+Your physical congregation sitting more than 30 feet from your stage needs projection. This is IMAG: Image Magnification. Without it, people in the back can't see the pastor's face or the worship leader's expressions. The congregation feels disconnected.
+
+Your ATEM Mini Pro's auxiliary output becomes your IMAG feed. Configure the aux output to show camera feeds without streaming graphics. You're sending a clean camera view to projection, without the lower-thirds or logos that are meant for your YouTube audience.
+
+This is important: your IMAG feed and your streaming feed are different. Your IMAG is full screen, camera-focused, intimate. Your streaming feed has graphics, logos, and branding. Your in-person congregation sees the authentic, undecorated production. Your online congregation sees the polished, branded version.
+
+The IMAG feed goes to a media server like Resolume, which handles projection automation, brightness/contrast control, and failsafe systems. If your IMAG system fails, you have a backup: a second HDMI output that can display pre-recorded content or a static slide until the primary system is back online.
+
+Position IMAG screens strategically. You need coverage in every seat. Sometimes this means multiple screens in a large sanctuary. Sometimes it means one large screen centered behind the stage. The investment in IMAG is an investment in serving your physical congregation as well as your online audience.
+
+## Graphics and Branding for Dual Audiences
+
+Your streaming graphics are branded and polished. Your IMAG might be less branded or have a different aesthetic. This is intentional. Online viewers get your full church branding because that helps your online presence and social media sharing. In-person viewers get a focus on the content and the people, with branding playing a supporting role.
+
+Create two graphics templates: one for streaming (includes church logo, series title, speaker name, social media handles) and one for IMAG (more minimal, focuses on readability from 50 feet away, no small text or complex designs).
+
+Your ProPresenter lyrics need to work for both audiences. Configure lyrics that are readable on a big screen from the back of the sanctuary and also clearly visible on a phone screen. This usually means larger, simpler text than you might use for a slide deck.
+
+## Engagement Strategies for Online Viewers
+
+In-person congregants experience worship through physical presence, singing together, and personal connection with their neighbors. Online viewers experience worship through a screen, alone or with family. You need active engagement strategies that make online worship feel like participation, not passive observation.
+
+Enable YouTube live chat during the service. Have a volunteer moderator monitoring chat, highlighting good comments, answering questions. This makes online viewers feel seen and heard. They're not just watching—they're in conversation.
+
+Consider a pre-service announcement that encourages online viewers to sing along, speak prayers out loud, and participate fully. Many online viewers feel self-conscious singing by themselves or speaking to their screen. Permission and encouragement change this.
+
+After the message, read a few comments from the live chat aloud to the in-person congregation. This creates a moment where physical and online communities acknowledge each other. It's powerful for online viewers to hear their comment read in church.
+
+Provide a way for online viewers to submit prayer requests that get read in the physical service. This integrates your online congregation into the actual prayer time, making them feel like participants rather than observers.
+
+<ProductCTA variant="inline" />
+
+## Coordinating Between In-Person and Online Moments
+
+Your pastor preaches better when they acknowledge both audiences. They're not just talking to people in the room—they're talking to people watching on their phones. This changes the energy.
+
+Train your pastors to look at the camera occasionally. Not constantly (it's creepy), but enough that online viewers feel like they're being addressed. A quick glance at the camera lens once per minute maintains connection with online viewers.
+
+Some churches do specific moments for online engagement. Maybe during announcements, there's an interactive moment: "If you're watching online, put your name in the chat and we'll pray for you by name." This creates a bridge between the two audiences.
+
+During prayer times, the pastor might say, "Whether you're here in person or watching online, let's pray together." This acknowledges that the prayer is truly unified, happening across both audiences simultaneously.
+
+## Technical Integration Points
+
+Your ATEM Mini Pro is the center of this integrated operation. It's receiving feeds from your stage cameras, your graphics computer, and your backup systems. It's outputting the program feed to your streaming PC (for YouTube), the aux feed to your projection system (for IMAG), and potentially a confidence monitor for your technical director.
+
+Your audio mixer (X32 Compact) is routing Main PA output to your in-room system and Streaming Output to your streaming PC. Both outputs are always live. When the pastor speaks, their audio is reaching both the people in the sanctuary and the people watching online, each through an optimized mix.
+
+Your streaming PC is running OBS, receiving video from the ATEM and audio from the X32, encoding both, and sending to YouTube. Simultaneously, your IMAG system is receiving the aux output from the ATEM and displaying it through projection.
+
+This triple-path output (IMAG via aux, streaming via USB/HDMI, Main PA via analog) means that each audience is receiving optimized content, but all from the same source production.
+
+## Backup and Resilience for Hybrid Services
+
+When your IMAG system fails, your in-person congregation is disappointed but not harmed. When your streaming system fails, your online congregation is disappointed but not harmed. When your audio system fails, both audiences are impacted. This is why your audio system needs redundancy.
+
+Deploy a backup audio input (maybe a wired microphone through a simple USB mixer) so if your primary wireless system fails, you can continue. Have a backup internet circuit so if your primary internet drops, you switch to cellular without stopping the stream. Have backup cameras so if one fails, you're still providing coverage.
+
+The in-person congregation's experience should never depend on internet connectivity or streaming infrastructure. They're in the room. Their experience is fundamental. Streaming is a broadcast of what's happening in the room, not the other way around.
+
+## The Philosophical Shift
+
+Hybrid church requires acknowledging that your online congregation is just as real as your in-person congregation. They're worshipping. They're praying. They're hearing the gospel. They're part of your church community. You're not streaming to people "out there"—you're shepherding people who are part of your congregation but worshipping from home.
+
+This changes how you approach every decision. Your lighting isn't just for the room—it needs to look good on camera. Your stage setup isn't just for the people in front of you—it needs to tell a story on a smartphone screen. Your audio isn't just for your PA system—it needs to be clear through earbuds. Your graphics aren't just for fun—they need to engage people watching alone.
+
+When you truly adopt this perspective, hybrid worship becomes natural. You're not running a service and also streaming it. You're shepherding a congregation that's distributed across geography but united in worship. That's the real shift.

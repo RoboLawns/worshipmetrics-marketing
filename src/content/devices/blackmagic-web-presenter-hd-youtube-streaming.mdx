@@ -1,0 +1,109 @@
+---
+title: Web Presenter HD Direct YouTube Streaming Configuration
+description: Stream ProPresenter slides and presentations directly to YouTube using the Web Presenter HD with OBS.
+deviceCategory: switcher
+brand: Blackmagic Design
+modelId: web-presenter-hd
+modelFullName: Blackmagic Design Web Presenter HD
+articleType: integration
+category: streaming
+tags: [web-presenter-hd, youtube, streaming, propresenter, obs]
+difficulty: beginner
+priceRange: under-500
+publishedAt: "2024-04-22"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Streaming ProPresenter slides or other presentation content directly to YouTube is valuable for conferences, seminars, prayer times, and announcements. The Web Presenter HD connected to OBS makes this straightforward and reliable.
+
+This guide covers the specific steps for streaming presentation-only content to YouTube.
+
+## Setting Up OBS for YouTube Streaming
+
+Open OBS and go to Settings > Stream. Select YouTube as the service. Click Authenticate with Browser, and OBS will open YouTube Studio in your browser.
+
+Sign in with your church's YouTube account. Authorize OBS to access your YouTube channel. Return to OBS, and you're authenticated.
+
+Configure your stream settings: bitrate (2500–5000 Kbps is typical for presentation content), resolution (1080p or 720p), and frame rate (30 fps is standard).
+
+## Adding Web Presenter HD Video Source
+
+In OBS, create a new Video Capture Device source. Select the Web Presenter HD from the dropdown. The ProPresenter content will immediately appear in your OBS preview.
+
+Position and scale the video source in your scene to fill your output canvas. If you want to add text overlays, lower-thirds, or other graphics, add them as separate sources on top of your Web Presenter HD video.
+
+## Configuring Audio Input
+
+Open OBS Settings > Audio. For your microphone/line input, select your audio device (USB audio interface from your mixer, or your PC's built-in audio).
+
+In your OBS scene, add an Audio Input source if you haven't already. Verify that the audio level appears in the mixer at the bottom of OBS.
+
+Test your audio by speaking into a microphone. You should see the level bars move in the OBS mixer.
+
+<ProductCTA variant="inline" />
+
+## Creating Scenes for Different Content Types
+
+Create separate OBS scenes for different moments in your broadcast: ProPresenter slides with presenter (add a camera source above the Web Presenter HD), slides-only (just the Web Presenter HD), title cards, and intermission slides.
+
+Switch between scenes as your presentation flow changes. This is more efficient than trying to manage a single scene with multiple overlays.
+
+## Testing Before Going Live
+
+Before streaming a full service or event, do a test stream. Start streaming to YouTube as an unlisted video. Let it run for a few minutes while you switch scenes and adjust audio.
+
+Check the YouTube stream on a different device (phone, tablet) to see how it looks to viewers. Verify that the video quality is good, audio is synced, and that scene transitions are smooth.
+
+Stop the test stream. This creates a test video in your YouTube channel, which you can delete later if you want.
+
+## Starting the Live Stream
+
+About 10 minutes before you want to go live, start your OBS stream to YouTube. The stream will appear on your YouTube channel within 10–15 seconds.
+
+Verify that video and audio are present. Cue up your first scene (probably a title slide). You're ready for participants to start watching.
+
+## Monitoring Stream Health During Broadcast
+
+Watch the OBS stats panel (right-click > View > Stats) while you're streaming. You're looking for: CPU usage (shouldn't exceed 70%), bitrate (should match your target), and dropped frames (should be zero or near-zero).
+
+If bitrate drops, your internet upload speed might be inadequate. Reduce your OBS bitrate and restart the stream.
+
+If dropped frames spike, your CPU is overloaded. Reduce resolution or close other applications.
+
+## Switching Scenes Smoothly
+
+During your broadcast, switch scenes smoothly and deliberately. Don't click through multiple scenes rapidly. Each scene change is visible to your viewers—make them intentional.
+
+Use transitions (fade, dissolve) between scenes rather than cuts, unless you want a snap transition for dramatic effect.
+
+## Ending the Stream
+
+When your presentation is complete, click Stop Streaming in OBS. The stream will end, and YouTube will finalize your recording within a few seconds.
+
+The video will be saved to your YouTube channel's Videos tab and can be shared immediately.
+
+## Advanced: Multiple Web Presenter HD Units in OBS
+
+If you want to stream multiple presentation sources simultaneously (like two ProPresenter instances side-by-side), you can add multiple Web Presenter HD units and use OBS scene layouts to position them.
+
+Add both devices as separate video sources in the same scene, position them side-by-side, and you're streaming a split-screen presentation. This is useful for workshops or dual-presenter formats.
+
+## Streaming to Multiple Platforms
+
+OBS can stream to multiple platforms simultaneously. Configure YouTube, but also add Facebook, Vimeo, or another platform as a secondary destination. OBS will encode once and send to both platforms.
+
+This maximizes reach—YouTube users see the stream on YouTube, Facebook users see it on Facebook, and you only encode once.
+
+## Recording Locally While Streaming
+
+Enable local recording in OBS while simultaneously streaming to YouTube. This gives you a high-quality local copy for archival, even if something goes wrong with the YouTube stream.
+
+Go to Settings > Output > Recording and choose a location for your local files.
+
+## Your Presentation Streaming Workflow
+
+Connect Web Presenter HD to your ProPresenter output. Connect USB to your streaming PC. Open OBS and add the Web Presenter HD as a video source. Configure YouTube streaming. Create scenes for your different presentation moments. Test with an unlisted stream. Go live. Monitor bitrate and CPU during your broadcast. End the stream when you're done.
+
+The Web Presenter HD enables reliable presentation streaming without needing a complex switcher or multi-PC setup. It's an elegant, straightforward solution for churches that stream presentation-based content.

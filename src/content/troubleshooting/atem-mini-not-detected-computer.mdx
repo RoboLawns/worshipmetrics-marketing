@@ -1,0 +1,162 @@
+---
+title: "ATEM Mini Not Detected by Computer or ATEM Software Control"
+description: "Fix ATEM Mini not showing up in ATEM Software Control or Windows. Covers USB detection, connection modes, and firewall issues."
+symptom: "ATEM Mini is connected but not showing in ATEM Software Control or OBS"
+affectedDevices: ["Blackmagic Design ATEM Mini", "ATEM Mini Pro"]
+tags: ["atem", "hardware", "usb", "detection"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your ATEM Mini is plugged in, the power light is on, but ATEM Software Control shows "No Switcher Connected." You can't control it, and you're minutes away from the service. This is usually a USB detection or driver issue. Let's get it recognized in 2–3 minutes.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Verify Physical Connection
+
+First, check the basics:
+
+1. **USB-C cable:** Is it firmly plugged into both the ATEM Mini and your PC? (ATEM Mini uses USB-C, not standard USB-A)
+2. **Power:** Is the ATEM Mini powered on? (look for indicator lights on the front)
+3. **Different USB port:** Try plugging the USB cable into a different USB port on your PC (not a USB hub — direct to the computer)
+4. Wait 10 seconds after connecting for the USB device to be recognized
+
+If the ATEM Mini has a USB-C power option, ensure it's plugged in or powered via USB.
+
+## Step 2: Check ATEM Software Control Settings
+
+1. Open **ATEM Software Control** (the control application)
+2. Look at the top of the window — it usually shows "Connecting to..." or "No Switcher Connected"
+3. Click on the dropdown next to this (if present) and look for:
+   - **USB** (direct USB connection)
+   - **Network/Ethernet** (connected via network)
+4. Select **USB** if it's available
+5. Click **Connect** or wait for automatic connection
+
+If ATEM Software Control still says "No Switcher," the USB device isn't being recognized by Windows. Go to step 3.
+
+## Step 3: Check Windows Device Manager
+
+Windows may not recognize the ATEM Mini:
+
+1. Right-click the **Start** button
+2. Select **Device Manager**
+3. Look for **Universal Serial Bus devices** or **Ports (COM & LPT)**
+4. Expand these sections
+5. Look for "ATEM" or "Blackmagic" in the list
+6. If you see it listed **without a warning icon**, it's recognized — drivers are installed (skip to step 4)
+7. If you see a **yellow warning icon** or you don't see ATEM listed at all, drivers are missing (go to step 4)
+
+## Step 4: Install or Update ATEM Drivers
+
+If Device Manager shows a warning icon or ATEM isn't listed:
+
+1. Visit **blackmagicdesign.com/support**
+2. Search for **ATEM Mini** driver downloads
+3. Download the **USB Driver** for Windows (match your Windows version: 10 or 11)
+4. **Disconnect the ATEM Mini from USB**
+5. Install the driver and restart your PC
+6. **Reconnect the ATEM Mini** via USB
+7. Open ATEM Software Control — it should now detect the switcher
+
+If the driver installation asks you to sign the driver, click through any security prompts.
+
+## Step 5: Check Firewall Blocking USB or Network Connection
+
+Firewalls can block ATEM Software Control:
+
+1. Temporarily **disable Windows Defender Firewall**:
+   - Click the **Start** button
+   - Go **Settings > Privacy & Security > Windows Security**
+   - Click **Firewall & network protection**
+   - Click **Manage settings**
+   - Toggle **Firewall on/off** to OFF (just for testing)
+2. Try connecting ATEM Software Control again
+3. If it connects, the firewall was blocking it — re-enable the firewall and add an exception:
+   - Re-enable the firewall
+   - Add ATEM Software Control to the firewall whitelist (or allow port 9910 for ATEM)
+
+If you have a third-party firewall (Norton, McAfee, etc.), temporarily disable it and test.
+
+## Step 6: Use Ethernet Instead of USB (ATEM Mini Pro Only)
+
+The ATEM Mini Pro (not the regular Mini) supports Ethernet control:
+
+1. Plug an Ethernet cable from your PC's network port to the ATEM Mini Pro's Ethernet port
+2. In ATEM Software Control, click the connection dropdown
+3. Select **Network** or **Ethernet**
+4. It should auto-discover the switcher on your network
+5. If not, manually enter the ATEM's IP address (check ATEM's settings for its IP)
+
+This bypasses USB entirely and is often more reliable.
+
+## Step 7: Update ATEM Firmware and Software
+
+Outdated firmware or software can cause detection issues:
+
+1. Visit **blackmagicdesign.com** and download the latest:
+   - **ATEM Mini Firmware** (the updater application)
+   - **ATEM Software Control** (latest version)
+2. Disconnect the ATEM Mini from USB
+3. Install the new ATEM Software Control
+4. Reconnect the ATEM Mini
+5. Run the ATEM Firmware Updater to upgrade the switcher's firmware
+6. Wait for the update to complete (usually 2–5 minutes)
+7. Restart the PC
+8. Open ATEM Software Control — it should now connect
+
+## Step 8: Try a Different USB Port or PC
+
+To isolate the problem:
+
+1. If you have a second PC, try connecting the ATEM Mini to that PC via USB
+2. Does ATEM Software Control detect it on the other PC? 
+   - **Yes:** The issue is your streaming PC (outdated drivers, firewall, USB port)
+   - **No:** The ATEM Mini itself may have a problem — contact Blackmagic support
+
+Alternatively, try a different USB port on your current PC. USB 3.0 ports sometimes work better than USB 2.0.
+
+## Step 9: ATEM Mini vs ATEM Mini Pro Connection Differences
+
+Make sure you're using the right connection for your model:
+
+**ATEM Mini (original):**
+- Connects via **USB-C only**
+- No Ethernet control
+- Power via USB or USB-C power adapter
+
+**ATEM Mini Pro:**
+- Connects via **USB-C** OR **Ethernet**
+- Ethernet is recommended for stable control
+- Power via AC adapter
+
+If you have the Mini Pro, try Ethernet (step 6) instead of USB.
+
+## Step 10: Last Resort — Factory Reset
+
+If nothing works:
+
+1. Power on the ATEM Mini
+2. Locate the **Reset button** on the back (usually recessed, requiring a paperclip)
+3. Press and hold for 10 seconds while powered on
+4. Release — the switcher will restart
+5. Wait 30 seconds for full boot
+6. Reconnect USB and test ATEM Software Control
+
+This clears any stuck configuration and restores defaults.
+
+---
+
+**Quick detection checklist:**
+- [ ] USB-C cable firmly connected (not USB hub)
+- [ ] ATEM Mini powered on (indicator lights on)
+- [ ] Tried different USB port on PC
+- [ ] Device Manager shows ATEM (may show warning icon)
+- [ ] ATEM drivers installed
+- [ ] ATEM Software Control set to USB connection mode
+- [ ] Firewall not blocking ATEM (tested with firewall off)
+- [ ] Latest ATEM Software Control and firmware installed
+- [ ] If ATEM Mini Pro: try Ethernet connection instead

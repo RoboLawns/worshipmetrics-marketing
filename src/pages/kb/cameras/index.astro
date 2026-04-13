@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProductCTA from '../../../components/kb/ProductCTA.astro';
+import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
+
+const allCameras = await getCollection('cameras');
+const brands = [...new Set(allCameras.map(e => e.data.brand))].sort();
+const brandCounts = Object.fromEntries(brands.map(b => [b, allCameras.filter(e => e.data.brand === b).length]));
+const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+---
+<BaseLayout title="PTZ Camera Knowledge Base for Churches" description="Setup guides, troubleshooting, and integration docs for every PTZ camera brand used in church production." canonical="/kb/cameras">
+  <section class="border-b border-border bg-bg px-6 py-16">
+    <div class="mx-auto max-w-7xl">
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'PTZ Cameras' }]} />
+      <p class="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Device Documentation</p>
+      <h1 class="mt-3 font-display text-5xl text-white">PTZ Camera Guides</h1>
+      <p class="mt-5 max-w-3xl text-lg text-slate-300">Every church PTZ camera brand — from AVKANS and Tenveo to OBSBOT and Minrray. Setup guides, NDI integration, network configuration, and troubleshooting.</p>
+    </div>
+  </section>
+  <section class="bg-[#10151d] px-6 py-16">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Browse by Brand</p>
+      <h2 class="mt-3 font-display text-4xl text-white">Select your camera brand</h2>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {brands.map(brand => (
+          <a href={`/kb/cameras/${brandSlug(brand)}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
+            <h3 class="font-display text-xl text-white group-hover:text-blue-200">{brand}</h3>
+            <p class="mt-2 text-sm text-slate-400">{brandCounts[brand]} article{brandCounts[brand] !== 1 ? 's' : ''}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="bg-bg px-6 py-16">
+    <div class="mx-auto max-w-5xl">
+      <ProductCTA variant="banner" />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,125 @@
+---
+title: "Mixer USB Audio Not Recognized by Streaming PC"
+description: "Fix when your mixer's USB connection isn't showing up in Windows or OBS. Covers drivers, cables, and device settings."
+symptom: "Computer doesn't see the mixer as an audio device"
+affectedDevices: ["Behringer X32", "Behringer XR18", "Allen & Heath SQ-5", "Yamaha TF1"]
+tags: ["mixer", "usb", "audio", "drivers"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+You've connected your mixer to the PC with USB, but Windows and OBS don't see it as an audio device. The mixer is powered on, the USB cable is connected, but nothing shows up. This is almost always a driver issue or a cable problem. Let's get the mixer recognized in minutes.
+
+<ProductCTA variant="inline" />
+
+## Check the USB Cable Type
+
+The most common mistake is using the wrong USB cable:
+
+1. **Look at the mixer's USB port**: Is it a **USB-B port** (square, slightly wider than USB-A)?
+2. If USB-B, you need a **USB-A to USB-B cable** — not a USB-A to USB-A cable
+3. Unplug the current cable and inspect it: look at the end going into the mixer
+4. If it's a standard rectangular USB-A plug, **replace it with a USB-B cable**
+5. Connect the proper cable and proceed
+
+USB-B cables are standard for audio equipment but are different from the cables used for printers and other devices. If you don't have one, borrow one from another device or pick one up cheaply.
+
+## Install or Update the Mixer's USB Driver
+
+Most mixers require a driver to be recognized by Windows:
+
+1. Visit the manufacturer's support website:
+   - **Behringer X32/XR18**: www.behringer.com/support
+   - **Yamaha TF1**: www.yamaha.com/support
+   - **Allen & Heath SQ-5**: www.allen-heath.com/support
+2. Download the **USB Driver** for your mixer and Windows version (32-bit or 64-bit)
+3. Disconnect the mixer from USB temporarily
+4. Install the driver and restart your PC
+5. Reconnect the mixer via USB
+6. Check **Settings > Sound > Volume mixer** in Windows — the mixer should now appear in the device list
+
+If you can't find the driver, contact the manufacturer's support or check the mixer's manual for the download link.
+
+## Verify Windows Can See the Mixer
+
+1. Go to **Settings > Sound** (Windows 10/11)
+2. Scroll down to **Advanced > Volume mixer**
+3. Look for your mixer in the list (it might be labeled by the brand name)
+4. If the mixer appears here, Windows recognizes it — skip to step 5
+5. If it doesn't appear, the driver isn't installed correctly — reinstall it (step above)
+
+## Check Device Manager for Driver Issues
+
+If Windows sees the mixer but it's not working:
+
+1. Right-click the **Start** button and select **Device Manager**
+2. Look for **Sound, video and game controllers** section
+3. Expand it and look for your mixer
+4. If there's a **yellow warning icon**, right-click it and select **Update driver**
+5. Choose **Search automatically for updated driver software**
+6. Windows will search for the latest driver online
+7. Restart the PC if prompted
+
+## Select the Mixer as the Default Audio Input in Windows
+
+1. Go to **Settings > Sound > Advanced > Volume mixer**
+2. Find your mixer in the list
+3. Right-click on it and select **Set as default device**
+4. This makes Windows use the mixer's audio input by default
+
+## Configure the Mixer's USB Output
+
+Some mixers (especially X32/XR18) have settings to determine what audio goes out via USB:
+
+1. Access the mixer's menu or web interface
+2. Look for **USB Settings** or **Card Sends** (exact name varies)
+3. Verify the USB output is set to send the **Main Mix** or **Master Output**
+4. Some mixers have separate USB send knobs — make sure they're not at zero
+5. Test: play audio through the mixer and check if Windows audio levels react
+
+Consult your mixer's manual for exact menu paths — each brand is different.
+
+## Verify OBS Can See the Mixer
+
+Once Windows recognizes the mixer:
+
+1. Open OBS
+2. Go to **Settings > Audio**
+3. Under **Microphone**, click the dropdown
+4. Look for your mixer in the list
+5. Select it
+6. Click **Apply** and **OK**
+
+If the mixer doesn't appear in OBS's dropdown, it may not be fully recognized by Windows yet. Restart OBS and try again.
+
+## Test the Connection
+
+Before the service:
+
+1. Play audio through the mixer (talk into a mic, or stream audio through a channel)
+2. In OBS, go to the **Audio Mixer** panel at the bottom
+3. Watch the levels — do the meters react to the audio from your mixer?
+4. If yes, the connection is working
+5. If no, restart both the mixer and OBS, then test again
+
+## Troubleshoot Persistent Connection Issues
+
+If the mixer is still not appearing:
+
+1. **Try a different USB port** on the PC (some ports are USB 2.0 vs 3.0; try a 2.0 port)
+2. **Use a powered USB hub** instead of plugging directly into the PC (some mixers need more power than the PC can provide)
+3. **Uninstall and reinstall the driver**: Go to Device Manager, right-click the mixer, select **Uninstall device**, then restart the PC and let Windows reinstall it automatically
+4. **Check for firmware updates** for your mixer (some firmware versions have USB driver issues)
+
+---
+
+**Quick checklist:**
+- [ ] Using USB-B cable (not USB-A to USB-A)
+- [ ] Driver installed and up to date
+- [ ] Mixer appears in Windows Sound settings
+- [ ] Mixer set as default audio device
+- [ ] OBS can see the mixer in Audio settings
+- [ ] Audio levels react in OBS when mixer plays audio

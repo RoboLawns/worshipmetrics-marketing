@@ -1,0 +1,123 @@
+---
+title: Multiple Upstream Keyers on the ATEM Mini Extreme
+description: Configure multiple upstream keyers simultaneously for complex graphics and effects layering during worship production.
+deviceCategory: switcher
+brand: Blackmagic Design
+modelId: atem-mini-extreme
+modelFullName: Blackmagic Design ATEM Mini Extreme
+articleType: how-to
+category: how-to
+tags: [atem-mini-extreme, keyers, graphics, upstream-keyer, alpha-key]
+difficulty: advanced
+priceRange: 500-1500
+publishedAt: "2024-04-05"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The ATEM Mini Extreme has multiple upstream keyers, while the ATEM Mini and ATEM Mini Pro have only one. This means you can layer multiple graphics simultaneously on top of your camera feed—a band logo and song lyrics, for example, or a graphic watermark alongside speaker notes.
+
+This is advanced territory. Most churches achieve everything they need with a single keyer or with SuperSource. But if you're building complex visual presentations, multiple keyers open possibilities.
+
+## Understanding Multiple Keyer Layers
+
+Keyers work on top of each other in order. Keyer 1 operates on the camera feed, keyer 2 operates on the result of keyer 1, and so on. This stacking creates layers.
+
+For example: Keyer 1 might key ProPresenter lyrics over the camera feed. Keyer 2 (operating on the result of keyer 1) might key a watermark or logo. The final output shows the camera with lyrics, plus the logo overlaid on top.
+
+Each keyer can use different inputs and different keying modes (alpha key, color key, luma key). This flexibility is powerful but also complex. You can achieve remarkable visual effects—just make sure the viewer experience is clean and professional, not chaotic.
+
+## Accessing Upstream Keyers in ATEM Software Control
+
+Open ATEM Software Control and navigate to the Keyers section. You'll see Keyer 1, Keyer 2, etc. (the exact number depends on your ATEM model; the Mini Extreme has multiple).
+
+Select Keyer 1 and verify it's enabled. Configure its source (fill), keying type (alpha, color, luma), and its position/size. This is identical to single-keyer operation.
+
+Now select Keyer 2 and enable it. Configure its source and keying type. Keyer 2 will now layer on top of Keyer 1's output.
+
+Test what you're seeing in your program output. You should see both graphics appearing. If keyer 2 is completely covering keyer 1, adjust keyer 2's size or position so both are visible.
+
+## Practical Multi-Keyer Examples
+
+A "Song" setup might use Keyer 1 for song lyrics (ProPresenter alpha key) filling the lower third of the screen, and Keyer 2 for your church logo (with transparency) in the upper right corner. Both graphics are always visible simultaneously when you enable both keyers.
+
+A "Sermon" setup might use Keyer 1 for Scripture references on the right side and Keyer 2 for speaker notes on the left side. Both are keyed over the pastor's video, giving listeners multiple information sources.
+
+These setups require careful positioning so the two keyed elements don't overlap. Spend time in rehearsal getting the positioning perfect before you broadcast.
+
+<ProductCTA variant="inline" />
+
+## Keyer Macros
+
+Once you've configured both keyers exactly how you want them, save the configuration as a macro. A "Song with Logo" macro might: enable keyer 1 with ProPresenter at full size, enable keyer 2 with your logo at 20% size in the corner, select the worship leader camera, and adjust audio levels. One button press engages this entire visual setup.
+
+This is how you manage complexity. Instead of manually enabling keyers, positioning them, and selecting inputs during a service, you save the configuration as a macro and recall it on demand.
+
+## Avoiding Visual Chaos
+
+The key to multi-keyer success is restraint. Just because you can layer four graphics simultaneously doesn't mean you should.
+
+Limit yourself to two keyers maximum for most moments. Position them so there's clear visual separation—not competing for attention. Make sure text and graphics are large enough to be readable, even on phone screens.
+
+If your broadcast looks cluttered or confusing, you've overdone it. Professional productions are clean, with clear visual hierarchy. A camera feed with one or two information elements (lyrics, speaker notes, scripture) feels polished. A camera feed covered with four different overlays feels amateurish.
+
+## Keyer Types: Alpha, Color, Luma
+
+Alpha keying is the standard for graphics. ProPresenter outputs with an alpha channel (transparency), and the alpha keyer respects that transparency.
+
+Color keying (chroma key) is useful when you have a solid-color background you want to key out—like a green screen presenter.
+
+Luma keying is based on brightness levels. Everything above a certain brightness threshold becomes transparent.
+
+For church graphics, stick with alpha keying. It's the most intuitive and produces the best results.
+
+## Downstream Keyer vs. Upstream Keyers
+
+The ATEM Mini Extreme also has a downstream keyer, which is different from upstream keyers. The downstream keyer operates after all other processing and can key any input over everything else.
+
+Most churches don't use the downstream keyer. Upstream keyers are sufficient for all typical needs.
+
+## Controlling Keyer On/Off During Service
+
+You can toggle each keyer on and off independently. If you enable both keyers in a macro, they're both active. If you want to turn off one keyer (say, remove lyrics because you want a clean camera shot for a prayer moment), you can do so manually with a button in ATEM Software Control, or by creating a second macro that disables that keyer.
+
+Many churches create two versions of their Song macro: "Song with Lyrics" (both keyers enabled) and "Song Instrumental" (keyer 2 disabled, showing only logo). This gives your operator flexibility based on how the service unfolds.
+
+## CPU and Processing Load
+
+Multiple keyers use more processing power than a single keyer, but the ATEM Mini Extreme handles it easily. You're not going to overwhelm the device by using two keyers simultaneously.
+
+The complexity is operational (managing which keyers are on or off) rather than technical (the device can't process it).
+
+## Positioning and Scaling Keyed Elements
+
+Each keyer has controls for position, scale, rotation, and other DVE (Digital Video Effects) parameters. You can position keyer 1 in the lower third and keyer 2 in the upper right, or overlap them if the design requires it.
+
+Spend time positioning elements precisely during rehearsal. Small adjustments to position or scale can dramatically improve how professional your layout looks.
+
+## Troubleshooting Multiple Keyers
+
+If keyer 2 isn't visible, it might be behind keyer 1 (lacking transparency). Verify that the fill source for keyer 2 actually has transparency/alpha channel. If keyer 2 is opaque, it will completely cover keyer 1.
+
+If keyer 1 looks fine but keyer 2 looks wrong, check keyer 2's input and keying type. Maybe the wrong input is assigned, or you're using luma key when you should be using alpha key.
+
+If performance feels sluggish or you see dropped frames, reduce your bitrate or switch to lower resolution. Two keyers shouldn't cause this, but if you're pushing other systems to the limit, reducing resolution might help.
+
+## Moving Beyond Multiple Keyers
+
+If you find yourself wanting four or five keyers, you've likely outgrown what the ATEM Mini Extreme can cleanly accomplish. At that point, you might consider:
+
+Using SuperSource instead of multiple keyers. SuperSource layouts are often cleaner for complex multi-element designs.
+
+Using OBS on a separate streaming PC. OBS can layer unlimited graphics, giving you complete creative freedom (at the cost of needing a dedicated PC).
+
+Simplifying your graphics. Ask whether every element is necessary. Sometimes the cleanest broadcast uses fewer, larger graphics rather than many small ones.
+
+## Your Multi-Keyer Workflow
+
+Enable keyer 1 and verify it looks good. Enable keyer 2 and position it so it doesn't overlap or conflict with keyer 1. Test the combined output. If both look good, save the configuration as a macro.
+
+During your service, trigger the macro when you need both keyers active. If you need to change one keyer's input or position, you can do that manually. Macros set the starting point; manual adjustments handle the exceptions.
+
+Multiple keyers are a tool for sophisticated visual production. Use them strategically, and your broadcast will look polished and professional. Overuse them, and your broadcast will feel chaotic. The judgment call is yours.

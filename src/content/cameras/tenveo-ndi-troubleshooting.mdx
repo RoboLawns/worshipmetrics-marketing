@@ -1,0 +1,106 @@
+---
+title: "Tenveo NDI Camera Troubleshooting and Network Issues"
+description: "Fixing common Tenveo NDI camera problems: camera not discoverable, network connection issues, video quality problems, and preset failures."
+brand: "Tenveo"
+modelId: "tenveo-ndi"
+modelFullName: "Tenveo NDI PTZ Camera"
+articleType: "troubleshooting"
+category: "troubleshooting"
+tags: ["Tenveo", "NDI", "troubleshooting", "network", "connectivity"]
+difficulty: "advanced"
+priceRange: "500-1500"
+publishedAt: "2024-04-12"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Introduction
+
+Tenveo NDI camera issues typically originate in the network layer rather than in the camera hardware itself. A camera that appears to be failing is often just unreachable due to network configuration, multicast blockage, or IP addressing problems. Systematic troubleshooting of the network layer almost always reveals and resolves the underlying issue.
+
+This guide walks through network-level diagnostics and camera-level troubleshooting for the most common Tenveo NDI problems.
+
+## Camera Not Appearing in NDI Source List
+
+When the camera is not discoverable in your production software, the issue is always network-related. Work through these diagnostics:
+
+The camera is not actually on your network. Confirm that the camera is powered on and that the network cable is fully seated. Access the camera's web UI directly using its static IP address to verify it is reachable. If you cannot access the web UI from your production computer, the camera is not on your network.
+
+The production computer and camera are on different subnets. NDI multicast does not reach between subnets. Check your production computer's IP address and the camera's IP address. If the first three octets differ (for example, 192.168.1.x vs 10.0.0.x), they are on different subnets. You need to either move the camera to the same subnet as your production computer or ask your IT administrator to bridge multicast between subnets.
+
+Multicast is blocked between devices. Some firewalls or network configurations block multicast traffic. Ask your IT administrator whether multicast is allowed on your network. If multicast is blocked, your IT administrator may need to allow it or move your camera to a network segment that allows multicast.
+
+The NDI Runtime is not installed. Even if the OBS or vMix NDI plugin appears installed, it requires the NDI Runtime to function. Reinstall the NDI Runtime from the official source, restart your computer, and try adding the NDI source again.
+
+## Confirm Network Connectivity to the Camera
+
+If the camera is not appearing in NDI discovery, verify that the camera is actually on your network and reachable. Open a browser on your production computer and navigate to the camera's IP address. If the web UI loads, the camera is networked and reachable.
+
+If the web UI does not load, the camera is not on your network or not reachable from your production computer. Check the physical network connection, verify the camera's static IP address, and confirm both devices are on the same subnet.
+
+## Camera Appears in NDI List But Video Does Not Stream
+
+If the camera appears in your NDI sources list but video does not appear when you select it, the issue is usually one of these:
+
+The camera's NDI output is not actually enabled. Log into the camera's web UI and confirm that NDI output is enabled in the Video or Network settings.
+
+The camera is receiving power but not streaming. Ensure the camera is fully booted and that all initialization is complete. Wait a few moments and try adding the NDI source again.
+
+Network bandwidth is insufficient. If the camera is streaming but OBS or vMix cannot receive the stream cleanly, your network may be congested. Try reducing the NDI bitrate at the camera or reducing resolution.
+
+## NDI Source Drops Out During Broadcast
+
+Intermittent video dropout from an NDI source usually indicates network instability. The camera and production computer lose connection briefly and then reconnect. This is almost always a network issue, not a camera hardware problem.
+
+Check your network switch for indications of problems: link lights on the camera port should show stable connection, not flashing or off. If the switch port light is off, the cable connection is not working.
+
+Test your network connection using ping or other network tools. From your production computer, ping the camera's IP address. If you see packet loss, your network path to the camera is unstable.
+
+Disconnect other devices from your network temporarily and retest. If dropouts cease when other devices are disconnected, your network is congested. You may need to upgrade your switch, prioritize camera traffic, or reduce the number of concurrent bandwidth-consuming devices.
+
+<ProductCTA variant="inline" />
+
+## Video Quality Is Degraded or Pixelated
+
+Poor video quality from an NDI source usually indicates bandwidth limitation. The camera is streaming but at a reduced bitrate or compressed quality.
+
+Check your camera settings for NDI bitrate. If the camera is set to a reduced-bandwidth profile, upgrade it to full quality if your network can sustain it. Conversely, if your network is limited, reducing bitrate at the camera improves stability at the cost of quality.
+
+Check your production software settings. Some software has resolution or quality settings that affect how NDI sources are received. Confirm these are set appropriately.
+
+Monitor your network bandwidth during video streaming. If bandwidth is at or above your network capacity, reduce sources or resolution to fit within available bandwidth.
+
+## Camera Loses Its IP Address or Becomes Unreachable
+
+If the camera was reachable on your network but later becomes unreachable at its expected address, the IP address may have changed. This can happen if the camera was set to DHCP instead of static, or if your network's DHCP server is reassigning addresses.
+
+Log into your router or network device and identify all assigned IP addresses. Look for the camera by its hostname or MAC address. Once you find it, note its current address.
+
+If the address is different from what you expected, the camera likely reverted to DHCP or had its address reassigned. Log into the camera using the new address and confirm it is set to a static IP address. If it is set to static but the address changed anyway, there may be a network configuration issue that requires your IT administrator's involvement.
+
+## Preset Saves or Recalls Not Working
+
+If presets are not saving or not recalling correctly, the issue is usually camera-specific, not network-related. Verify that the camera is responding to basic control commands (pan, tilt, zoom) to confirm the camera is fully operational.
+
+Try resaving the problematic preset by moving the camera to the desired position and pressing Save again. Some cameras allow overwriting existing presets; others may require clearing the preset first.
+
+If presets are still not working, the camera may need a firmware update or may have a hardware issue. Check with the manufacturer for firmware updates or support.
+
+## Multicast Traffic Verification
+
+If you suspect multicast is the issue, you can verify it using network tools. Some network administrators use multicast testing tools to confirm multicast is flowing. If you have access to network monitoring, ask your IT administrator to verify that multicast traffic is actually reaching your network segment.
+
+If multicast is confirmed to be blocked, ask your IT administrator to allow it. If they cannot allow it network-wide, ask if it can be allowed specifically for your AV equipment network segment.
+
+## Isolate Camera vs Network Issues
+
+To determine whether a problem is camera-related or network-related, test the camera on a different network if possible. If you have a laptop with a wireless connection, temporarily connect the camera to that wireless network and test NDI discovery and streaming.
+
+If the camera works on a different network, the problem is network-related and should be resolved with your IT administrator. If the camera still does not work on the different network, the problem is camera-related and may require manufacturer support.
+
+## Conclusion
+
+Tenveo NDI camera issues are almost always network-related rather than camera hardware failures. Systematic network diagnostics—confirming physical connectivity, verifying multicast, checking IP addressing, and testing bandwidth—usually reveal the underlying issue.
+
+Keep your network documentation current and maintain contact with your IT administrator. Most NDI problems that seem frustrating are actually simple network configuration issues that take minutes to resolve with the right information and perspective.

@@ -1,0 +1,129 @@
+---
+title: "No Audio on YouTube or Facebook Live Church Stream"
+description: "Fix missing audio on live streams. Covers audio source selection, track configuration, copyright muting, and mixer routing."
+symptom: "Stream is live but viewers hear no audio"
+affectedDevices: ["OBS Studio", "ATEM Mini Pro", "Magewell Ultra Encode"]
+tags: ["audio", "streaming", "youtube", "facebook"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your stream is live and viewers see video, but there's complete silence. The audio isn't reaching the platform. This is usually a misconfigured audio source, wrong track selection, or copyright muting — all fixable in under a minute. Let's get the sound back.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Verify Audio Is Actually Being Captured in OBS
+
+First, check that OBS is even *capturing* audio:
+
+1. In OBS, look at the **Audio Mixer** at the bottom of the screen
+2. Play some audio (talk into a mic, or play music from the mixer)
+3. Watch the audio meters in OBS — do they show levels moving up and down?
+4. If meters are **completely flat** (no movement), OBS isn't capturing audio at all — go to step 2
+5. If meters are **moving**, OBS is capturing audio — skip to step 3
+
+## Step 2: Add or Select the Correct Audio Source
+
+If OBS isn't capturing audio, you need to add an audio input:
+
+1. In OBS, go to **Settings > Audio**
+2. Look at **Microphone** and **Desktop Audio** dropdowns
+3. **Microphone**: select your audio interface, USB mixer, or microphone
+4. **Desktop Audio**: select your mixer's USB output (if it has one)
+5. Click **Apply** and then **OK**
+6. Now check the mixer again — do you see audio levels?
+
+If you still don't see audio levels, try selecting a different device in the dropdown (sometimes the wrong device is selected by default).
+
+## Step 3: Verify Audio Tracks Are Enabled for Streaming
+
+OBS can route audio to multiple places. Make sure audio is going to the stream output:
+
+1. In OBS, go **Settings > Output > Streaming**
+2. Look for **Audio Track** setting (or **Audio Bitrate**)
+3. Verify **Audio Track 1** is selected (or whichever track you're using)
+4. If nothing is selected, select **Audio Track 1**
+5. Click **Apply** and **OK**
+
+Without this setting, the stream output has no audio data.
+
+## Step 4: Check That No Audio Devices Are Muted
+
+Sometimes audio gets muted without you realizing:
+
+**In OBS:**
+1. Look at the **Audio Mixer** panel at the bottom
+2. Check each audio source (microphone, desktop audio)
+3. Verify the **mute button** (M icon) is NOT lit/pressed
+4. If muted, click it to unmute
+
+**In Windows:**
+1. Right-click the speaker icon in the system tray (bottom right)
+2. Click **Open Volume mixer**
+3. Look for OBS Studio or your audio application
+4. Verify the volume slider is not at zero
+5. Verify there's no mute icon next to it
+
+**In your mixer:**
+1. If audio comes from a USB mixer (Behringer X32, Yamaha TF1, etc.), check that the **USB channel isn't muted** on the mixer itself
+2. Look for a mute button on the USB channel and make sure it's not active
+
+## Step 5: Test the Stream Audio with a Private Stream
+
+Before going live publicly:
+
+1. In OBS, click **Start Streaming**
+2. On YouTube or Facebook, set the stream to **Private** or **Unlisted** (not public yet)
+3. Open a second browser window and watch the stream
+4. Do you hear audio? If yes, you're golden — make the stream public now
+5. If still silent, continue to step 6
+
+## Step 6: Check for Copyright-Detected Muting
+
+If you're streaming worship music, YouTube or Facebook may automatically mute the audio due to copyright detection:
+
+1. Check YouTube Studio or Facebook stream settings for warnings about copyright or music
+2. If there's a copyright flag, the audio may be muted for that segment
+3. Either:
+   - Avoid the copyrighted content during the stream
+   - Accept the copyright claim and let the platform monetize it (you won't earn revenue on that segment, but viewers will hear it)
+   - Disable "automatic copyright detection" if you have permission to use the music (less common)
+
+**Note:** Most churches have CCLI licenses that allow them to play worship music during services, but the license doesn't automatically cover streaming. Check with your CCLI provider about streaming rights.
+
+## Step 7: Verify Your Mixer Channel Is Routed to the Stream Mix
+
+If audio comes from a physical mixer:
+
+1. Check that the channel sending audio to the PC is **enabled**
+2. Verify the **channel fader** is not at zero
+3. Check the **master output** fader is not at zero
+4. If using a **USB output** on the mixer, verify it's set to output the correct mix (usually "Main Mix" or a dedicated "USB Mix")
+5. Test by playing audio through the mixer and watching the PC's audio levels
+
+---
+
+## Audio Levels Are Clipping or Too Quiet?
+
+If audio is present but the levels are wrong:
+
+**Too quiet:**
+- Increase the volume on your mixer's main output or USB send
+- In OBS, increase the audio source volume (click the audio source > Filters > Volume Gain)
+
+**Clipping/distorted:**
+- Lower the volume on your mixer's main output
+- In OBS, reduce the audio source volume in Filters
+
+---
+
+**Quick checklist before going live:**
+- [ ] OBS audio meters show movement when audio plays
+- [ ] Audio Track 1 is selected in OBS streaming settings
+- [ ] No audio sources are muted in OBS
+- [ ] Windows/Mac volume isn't muted
+- [ ] Mixer audio is not muted
+- [ ] Test stream (private) confirms audio is audible

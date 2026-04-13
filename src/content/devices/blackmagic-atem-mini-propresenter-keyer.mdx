@@ -1,0 +1,93 @@
+---
+title: ATEM Mini + ProPresenter — Setting Up the Upstream Keyer
+description: Learn how to key graphics from ProPresenter over your camera feed using the ATEM Mini's upstream keyer with alpha keying and luma key techniques.
+deviceCategory: switcher
+brand: Blackmagic Design
+modelId: atem-mini
+modelFullName: Blackmagic Design ATEM Mini
+articleType: integration
+category: how-to
+tags: [atem-mini, propresenter, keyer, graphics, alpha-key, luma-key, chroma-key]
+difficulty: intermediate
+priceRange: under-500
+publishedAt: "2024-02-01"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Keying graphics over your camera feed—displaying song lyrics, Scripture, or your church logo on top of the worship leader—is where church production really comes alive. The ATEM Mini has a built-in upstream keyer that lets you layer ProPresenter's output (or any HDMI graphics source) directly over your camera feeds without needing a second PC for graphics compositing. This is powerful stuff, and it's entirely within reach for volunteers.
+
+This guide focuses on getting your ProPresenter running on a dedicated graphics PC and keying that output into your ATEM Mini's program feed. We'll cover both alpha keying (which is the most common setup) and luma keying for when you need more control.
+
+## The ProPresenter Setup
+
+ProPresenter runs on a separate PC (Windows or Mac) and outputs to HDMI. This HDMI output goes into one of the ATEM Mini's six HDMI inputs. Let's say it's input 5. ProPresenter doesn't need to be visible on your graphics operator's monitor—that monitor can show your master program output from the ATEM Mini, so the graphics operator sees exactly what the congregation sees and can position graphics accordingly.
+
+Set ProPresenter to output a resolution that matches your ATEM Mini's program output. If you're streaming at 1080p, set ProPresenter to 1080p as well. The refresh rate should match too—typically 30 or 60 frames per second. Consistency here prevents scaling issues and ensures your graphics look crisp.
+
+In ProPresenter, you'll typically use themes where your backgrounds are transparent or a specific color (often black or green). The ATEM Mini will key out that background color or transparency and composite your graphics over the camera feed. This is the essence of keying: replacing a specific color or transparent area with the camera's video underneath.
+
+## Understanding Alpha Keying vs. Luma Keying
+
+Alpha keying is the modern standard. When ProPresenter outputs video with transparent areas (indicated by an alpha channel), the ATEM Mini recognizes that transparency and composites only the visible parts of the graphics over your camera feed. This works beautifully for text, logos, and graphics that have clean edges.
+
+Luma keying is older technology that keys based on brightness levels. You set a threshold—everything above a certain brightness value becomes transparent, and everything below stays visible. Luma keying is useful when you're keying solid colors (like a green screen for a presenter) but is trickier with ProPresenter because you have to carefully choose your background color and threshold to avoid accidentally keying out parts of your text or graphics.
+
+For ProPresenter, alpha keying is almost always the right choice. Your ProPresenter theme should have a transparent background (often rendered as a checkerboard pattern in the ProPresenter editor), and the ATEM Mini's keyer will respect that transparency.
+
+## Configuring the Upstream Keyer in ATEM Software Control
+
+Open ATEM Software Control and navigate to the Keyers section. The ATEM Mini has one upstream keyer and one downstream keyer. For now, focus on the upstream keyer, which is what you'll use to key ProPresenter graphics over your live camera feed.
+
+Select upstream keyer 1. You'll see several options: Pattern, DVE (Digital Video Effects), Color, and Media Player. You're interested in the "DVE" or custom fill/key option, depending on your ATEM Software Control version. The setup is similar: choose your keying type (alpha key), select ProPresenter input as your fill source (the video that will appear), and select your camera input as your key source (what you're keying over).
+
+In the upstream keyer settings, verify that alpha keying is enabled. This tells the ATEM Mini to respect the alpha channel (transparency) in the ProPresenter output. You should immediately see your ProPresenter graphics appearing over your camera feed in the program output.
+
+<ProductCTA variant="inline" />
+
+## Positioning and Fine-Tuning the Key
+
+By default, the keyer may place your graphics in a specific area of the frame. ATEM Software Control lets you adjust the size and position of the keyed element. You might want your song lyrics centered in the lower third of the screen, or your church logo in the top right corner.
+
+Use the DVE parameters (scale, X/Y position, rotation) to position your graphics exactly where you want them. Many churches overlay song lyrics on the bottom third, with the worship leader's face still visible in the upper two-thirds. This is a comfortable composition that feels natural to viewers.
+
+Test your positioning by launching ProPresenter and displaying a slide with text. Watch the ATEM Mini's program output and adjust the scale and position until it looks right. Remember that what you see on a 16:9 HD monitor might look different when displayed on a 21:9 projection screen in your sanctuary, so consider your actual worship space when positioning graphics.
+
+## Handling ProPresenter Backgrounds
+
+ProPresenter themes often come with built-in backgrounds—maybe a church logo, a gradient, or a textured image. If your ProPresenter background has an alpha channel (transparency), the ATEM Mini will key it out, and you'll see your camera feed underneath. If ProPresenter is set to output a solid color background, the luma keyer approach might work, but it's messier.
+
+The cleanest approach is to use a ProPresenter theme designed for green screen or transparent backgrounds. Many churches use themes from vendors like ProPresenter's built-in library or third-party creators like Motion Worship or Hybrid Worship. These themes are specifically designed for layering graphics over video.
+
+If you're using a theme with a built-in background that you want to preserve, you have two options: select the graphics elements only in ProPresenter (without the background), or switch to a theme designed for transparency and rebuild your look.
+
+## Chroma Key Setup for Presenters with Green Screens
+
+Some churches go further and use chroma keying to key a presenter standing in front of a green screen. This is advanced but possible with the ATEM Mini's keyer. You'd set the presenter PC or feed as your key source, enable chroma key mode, and adjust the hue and saturation range to key out the green.
+
+Chroma keying looks impressive but requires discipline: the green screen needs to be properly lit, the presenter can't wear green, and camera focus must be critical. For most churches, chroma key is overkill. Keying ProPresenter graphics is the sweet spot for complexity and payoff.
+
+If you do want to explore chroma keying, the same ATEM Software Control interface handles it. Switch to the Color Key or Chroma Key option in the upstream keyer settings, select your green screen feed as the source, and adjust the threshold until the green disappears and only your presenter remains. Test this extensively before using it in a live service.
+
+## Managing Multiple Graphics with Macros
+
+Once you're comfortable with one keyed graphics feed, you might want to switch between different ProPresenter themes or toggle graphics on and off during your service. This is where macros come in. You can record a macro that turns off the upstream keyer (so graphics disappear) or changes which input is being keyed.
+
+For example, you might have a "Sermon" macro that keys ProPresenter as your fill source and positions it in the lower third, and a "Prayer Time" macro that disables graphics entirely and gives the pastor a clean camera feed. We cover macros in more detail in a separate guide, but the principle is simple: once you get your keyer settings perfect, save them as a macro for one-button recall.
+
+## Testing Before Sunday
+
+Before your first service with keyed graphics, run a full rehearsal. Have your graphics operator in one location, your camera switcher in another, and your pastor or worship leader moving around on stage. Verify that the graphics move smoothly with the camera feed, that text is readable at the size you've chosen, and that the positioning doesn't accidentally cover important parts of the video.
+
+Watch especially for text that's too small to read on a typical mobile phone screen—remember that some people are watching your stream on a small device, not a projection screen. Test with real ProPresenter content from an upcoming service, not placeholder text, so you catch any layout issues before they go live.
+
+Audio is not affected by keying, so your synced audio from the ATEM Mini's mixer continues to work perfectly. The key is purely visual.
+
+## Expanding Beyond ProPresenter
+
+Once you've mastered keying ProPresenter, you can apply the same technique to any HDMI source: a laptop running PowerPoint, a document camera for Scripture passages, even a second camera or ATEM input. The keying principles remain the same—choose your key source, select your fill source, and position the graphic where you want it.
+
+The ATEM Mini's keyer has limitations compared to larger ATEM models—only one upstream keyer, versus multiple keyers on higher-end units—but for a single ProPresenter feed, one keyer is usually all you need.
+
+Your graphics are now an integral part of your broadcast, not an afterthought. That's the power of the upstream keyer and the reason keying ProPresenter output into your ATEM Mini elevates your production from serviceable to professional.

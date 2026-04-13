@@ -1,0 +1,93 @@
+---
+title: ATEM Mini Stream Dropping or Freezing — Fix for Churches
+description: Diagnose and resolve ATEM Mini streaming issues caused by USB bandwidth, encoder settings, network problems, and bitrate mismatches.
+deviceCategory: switcher
+brand: Blackmagic Design
+modelId: atem-mini
+modelFullName: Blackmagic Design ATEM Mini
+articleType: troubleshooting
+category: troubleshooting
+tags: [atem-mini, streaming, troubleshooting, bandwidth, bitrate, encoder]
+difficulty: intermediate
+priceRange: under-500
+publishedAt: "2024-02-05"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+You're halfway through your Sunday service when the stream suddenly freezes. Your camera feed locks in place, and people watching online see a stuck image. You restart OBS, and it works again—until it happens the next week. This is one of the most frustrating problems in church streaming, and it usually comes down to one of a few predictable culprits. This guide walks through diagnosing exactly what's causing your stream to drop and fixing it permanently.
+
+## Is It Your USB Connection or Your Network?
+
+The first step is pinpointing whether the problem is on the streaming PC side (USB, encoder settings) or on the internet side (network upload speed, ISP issues). To tell the difference, check what's happening at the moment the stream freezes.
+
+Open OBS and look at the Bitrate indicator while streaming. If your bitrate suddenly drops to zero while your stream is live, that's a network problem—your upload speed to YouTube or Facebook has tanked. But if your bitrate stays steady and the OBS interface remains responsive (you can still switch sources and adjust settings), the problem is likely USB bandwidth or CPU overload.
+
+Look at your ATEM Mini's USB connection. Is the cable tightly plugged in on both ends? A loose USB cable is surprisingly common and can cause the data stream to interrupt. Reseat the cable firmly and test again. If you're using an extension cable or a USB hub, disconnect the hub and plug the ATEM Mini directly into a USB port on your streaming PC. Hubs and extension cables add another point of failure and can reduce bandwidth available to the ATEM Mini.
+
+Use a USB port on your motherboard directly, not a front-panel USB connection, if your PC has both. Motherboard USB ports usually have more stable power delivery. If you have multiple motherboard ports, try a different one to rule out a problem with a single port.
+
+## USB Bandwidth and Video Resolution
+
+The ATEM Mini outputs video at whatever resolution your program bus is set to. If you're streaming at 1080p60, you're sending 1080p60 over USB to your PC. USB 2.0 can theoretically handle this, but if your system is doing other heavy USB work (external hard drives, wireless receivers, etc.), you might be close to the bandwidth limit.
+
+Check your ATEM Mini settings in ATEM Software Control. What resolution and frame rate is your program output set to? If it's 1080p60 and you're experiencing dropouts, try switching to 1080p30. This is a common fix for churches that upgraded to 1080p60 thinking it would look better, only to discover that their USB or streaming infrastructure can't handle it.
+
+Go to ATEM Software Control, Settings, Multi View, and check the output format. If it shows 1080p60, change it to 1080p30. Many YouTube viewers on phones and tablets won't even notice the difference, and you'll eliminate a potential USB bottleneck.
+
+<ProductCTA variant="inline" />
+
+## OBS Encoder Settings and CPU Load
+
+Open OBS and navigate to Settings > Output. Look at your encoder choice. Are you using "Software (x264)" or a hardware encoder like "NVIDIA NVENC" or "AMD VCE"? Software encoding uses your PC's CPU, and if your CPU is already running at 90–100% utilization for other tasks (antivirus scanning, background updates, etc.), there's nothing left for encoding.
+
+Check your CPU usage while OBS is streaming. Right-click on the taskbar and open Task Manager, then look at the CPU column. If you're seeing sustained 80%+ CPU usage, you're too close to the limit. Switch to a hardware encoder if your GPU supports it. Both NVIDIA and AMD GPUs can encode video with much lower CPU overhead.
+
+If you're using x264 software encoding, reduce your bitrate. Go to Output settings and look for the Bitrate field. If you're targeting 5000 Kbps or higher, drop it to 4500 Kbps or even 4000 Kbps and see if dropouts stop. The trade-off is slightly lower video quality, but a stable stream with moderate quality is better than a high-quality stream that keeps freezing.
+
+Another common culprit is multiple scenes with too many sources. If each scene in OBS has five or six image layers, animated backgrounds, and multiple text elements, you're asking your CPU to render all of that every frame. Simplify your scene layouts. Use fewer overlays and focus on what's essential—the ATEM Mini video, your church logo, and essential graphics.
+
+## Network Upload Speed and Your ISP
+
+If your OBS bitrate indicator is dropping to zero during freezes, the problem is your internet upload speed. Most church internet connections are fast downloads but slow uploads. YouTube recommends 5–8 Mbps upload for 1080p streaming, but many churches have upload speeds of 2–3 Mbps.
+
+Check your current upload speed by visiting speedtest.net and running a test. What speed does it report? If it's consistently below 3 Mbps, you might need to contact your ISP about upgrading to a faster plan. Some churches invest in business-class internet with better upload speeds specifically for streaming.
+
+In the meantime, reduce your stream bitrate. If you're targeting 4500 Kbps but your upload speed is only 3000 Kbps, you're guaranteed to have dropouts. Set OBS bitrate to 2500 Kbps (which YouTube will accept and re-encode as needed) and see if freezing stops. It's not ideal, but it's stable.
+
+Some churches supplement their standard internet with a secondary connection—a cellular hotspot from a smartphone or mobile broadband router. You can add multiple streaming destinations in OBS, sending one stream to YouTube via your primary internet and a backup stream via mobile hotspot to a secondary platform. This redundancy protects you against total stream failure if your primary internet drops.
+
+## Thermal Throttling and Heat
+
+If your PC is running in a warm or poorly ventilated location (like a closet or under a desk), it might be thermal throttling—automatically reducing CPU speed to cool down. This causes frame drops and encoder lag.
+
+Check if your PC is getting hot. Feel the air coming out of the exhaust fans. If it's too hot to hold your hand over the vent, you've got a heat problem. Move the PC to a better-ventilated location, add a USB fan to blow air at it, or open the case to improve internal airflow.
+
+This is especially common in church AV closets, which tend to be small spaces with poor ventilation and multiple devices running. Moving your streaming PC out of the closet and into a more open area can eliminate thermal issues entirely.
+
+## Testing and Validation
+
+Once you've made a change—switched encoder, reduced bitrate, fixed a USB cable—do several test streams before relying on it for a Sunday broadcast. Test during the actual time of day your service happens, because network congestion varies throughout the day. Your 3 Mbps upload speed at midnight might be 2 Mbps at 11 AM Sunday morning.
+
+Set up an unlisted YouTube video and stream for 15 minutes while actively switching cameras and moving around on stage. Watch the OBS stats overlay (right-click in OBS > View > Stats) and look for rising CPU usage, frame drops, or renderer lag. A few occasional frame drops are normal, but sustained drops indicate an unsolved problem.
+
+Also have someone watching the YouTube stream on a separate device (phone, tablet, another computer). They should report if the video freezes, gets pixelated, or becomes out of sync with audio. What you see in OBS is not always what viewers see online.
+
+## When to Upgrade
+
+If you've optimized bitrate, switched to a hardware encoder, fixed USB cables, and confirmed your internet speed is adequate, and you're still experiencing dropouts, your streaming PC might be too old or underpowered. Streaming is CPU-intensive, and older machines struggle.
+
+A modern PC with an i5/i7 processor and dedicated GPU handles 1080p30 streaming reliably. If your streaming PC is five or more years old, it might be time to invest in a newer machine.
+
+Alternatively, consider upgrading to the ATEM Mini Pro or Mini Pro ISO, which can stream directly to YouTube without needing a PC at all. This eliminates the entire USB/encoder/CPU problem and is worth considering if your church's budget allows.
+
+## Prevention and Monitoring
+
+Once you have a stable stream, keep it that way by monitoring key metrics. Before each Sunday service, run a five-minute test stream and watch your OBS stats. If CPU usage is creeping upward or you're seeing more frame drops than usual, something has changed on your system (maybe an update, or a new background process).
+
+Keep your streaming PC clean. Disable unnecessary startup programs, run antivirus and malware scans regularly, and keep Windows or macOS updated. A PC that's bogged down with background tasks won't have spare CPU for smooth streaming.
+
+Document your working settings: encoder choice, bitrate, resolution, frame rate, and any hardware configuration. If you ever change PCs or troubleshoot in the future, these settings are your baseline.
+
+Stream freezing during a Sunday service is stressful and undermines your church's online presence. But the good news is that the problems are usually simple—a cable, a setting, or an internet speed. Work through the diagnostics systematically, make one change at a time, and test before going live. You'll find the fix and have reliable streaming that your congregation can count on.

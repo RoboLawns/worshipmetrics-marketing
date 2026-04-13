@@ -1,0 +1,98 @@
+---
+title: "OBS + Restream: Streaming to Multiple Platforms for Churches"
+description: "Connect OBS to Restream's RTMP server, monitor stream health per platform, and handle platform-specific failures during service."
+app: restream
+articleType: integration
+tags: [integration, restream, obs, multistream, church-av]
+difficulty: intermediate
+publishedAt: "2024-03-09"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The OBS and Restream integration is straightforward on the surface—paste a URL into OBS and you're multistreaming. But understanding how Restream distributes your stream, monitoring platform-specific issues, and recovering from failures requires deeper knowledge. This guide walks you through integration, monitoring, and troubleshooting.
+
+## OBS Configuration for Restream
+
+In OBS, go to Settings → Stream. Under Service, select "Custom RTMP Server." Copy your Restream ingest URL from the Restream dashboard (your account → Streaming) and paste it into the Server field. Copy your Restream Stream Key and paste it into the Stream Key field.
+
+Click "Apply" and "OK." OBS is now configured to stream to Restream. Every stream you start in OBS will send to Restream, which distributes to your configured destinations (YouTube, Facebook, etc.).
+
+You don't need to configure YouTube or Facebook directly in OBS anymore—Restream is your single destination. This simplifies setup and reduces the number of places you manage settings.
+
+<ProductCTA variant="inline" />
+
+## Understanding the Restream Flow
+
+When you click "Start Streaming" in OBS, OBS sends video to Restream's servers. Restream receives your stream and immediately distributes it to all configured platforms. The process happens in real-time with minimal latency (usually 5–10 seconds from OBS to viewer, depending on platform).
+
+Restream acts as a pass-through. It doesn't encode or re-compress your stream—it receives what OBS sends and forwards it to each platform. This means your OBS bitrate determines stream quality everywhere. If you stream at 2,500 Kbps to Restream, YouTube and Facebook both receive 2,500 Kbps.
+
+Each platform can compress the 2,500 Kbps differently. YouTube might preserve quality, while Facebook compresses more aggressively. But the quality coming from OBS is consistent.
+
+## Monitoring Stream Health in the Restream Dashboard
+
+Start streaming in OBS. Open the Restream website and go to your active stream. You'll see a dashboard with real-time metrics for each destination: viewer count, bitrate, frame rate, and overall stream health (a colored status indicator).
+
+Green status means the stream is healthy and stable. Yellow means slight issues but still streaming (temporary lag, brief connection hiccup). Red means the platform isn't receiving video or the connection is failing.
+
+Monitor this dashboard during service. If status turns red on Facebook while YouTube remains green, something is wrong with Restream's connection to Facebook (not your OBS stream). The problem is platform-specific and likely temporary. Wait a few seconds and the status usually returns to green.
+
+## What to Do When One Destination Fails
+
+During service, if Restream shows red status on one platform (e.g., Facebook), it means viewers on Facebook are not receiving video. YouTube viewers are fine. Your OBS stream is still healthy, but the distribution to that platform is broken.
+
+Check the error message in Restream. "Auth error" means the authorization token expired—you need to re-authorize that platform. Go to Restream Destinations, find the failing platform, and click "Re-authorize." You'll be directed to log in with that platform's account. After re-authorizing, the stream should resume.
+
+"Network timeout" or "Connection refused" usually means that platform's servers are temporarily unavailable or overloaded. This is rare, but when it happens, wait 30 seconds and the connection usually restores automatically.
+
+If red status persists for more than one minute, you have a more serious problem. Options: stop the Restream stream temporarily, restart it, and see if it reconnects. Or stop OBS, restart it, and initiate a new stream. Or, if you must remain live, document that one platform is temporarily unavailable and plan to follow up after service.
+
+Most churches have a backup plan: assign a volunteer to watch the Restream dashboard during service specifically to catch platform failures. If failures occur, they alert the streaming director so you know what's happening and can inform your pastor/leadership.
+
+## Bitrate Consistency Across Platforms
+
+Your OBS bitrate (set in Settings → Output → Bitrate) applies to your Restream stream. All platforms receive the same bitrate. You can't set different bitrates for YouTube vs. Facebook through Restream.
+
+If you want to optimize bitrate per platform (higher for YouTube, lower for Facebook), that requires native streaming to each platform in OBS, not using Restream. Restream's power is simplicity—one stream to all platforms—which means uniform bitrate.
+
+For most churches, a single bitrate (2,500 Kbps for 720p) works well on all platforms. Platform-specific bitrate optimization is rarely necessary.
+
+## Chat and Engagement
+
+Restream displays chat from all platforms in a unified inbox. During service, you can see comments and questions from both YouTube and Facebook. Many churches assign a volunteer to monitor chat and respond to prayer requests, questions, or comments that come through.
+
+The unified chat is powerful for churches—you're not toggling between platforms to see what people are saying. Everyone's feedback is in one place.
+
+Some platforms send comments, others send emojis or reactions. Restream shows all of these. You can configure which comments appear (hide spam, only show verified users, etc.) in Restream settings.
+
+## Metadata and Titles
+
+Restream lets you set different metadata (title, description, thumbnail, tags) for each platform. Before going live, configure these in Restream Destinations. Set a clear, descriptive title that appears on YouTube and Facebook. Update descriptions to be platform-appropriate.
+
+You can't change these during a live stream without stopping the stream. So configure them before you start. If you want to adjust titles week to week, do it in Restream's Destination settings before Sunday service.
+
+## Internet Stability During Streaming
+
+Restream depends on a stable connection from your OBS computer to Restream's servers. Use wired Ethernet (not WiFi) for your streaming computer whenever possible. Wired connections are more stable and less prone to dropout.
+
+Monitor your internet speed during service time using Speedtest.com run a day or two before your planned stream. Check your actual upload speed at the time of day you stream. Many churches experience upload speed drops during peak hours. If your upload drops below 3 Mbps when streaming 2,500 Kbps bitrate, you'll see dropped frames.
+
+## Fallback Plans
+
+Restream fails rarely, but it can happen. Have a documented fallback plan. Option one: If Restream fails completely, switch OBS to native YouTube streaming (configure OBS with YouTube's native RTMP settings) and stream YouTube only while you troubleshoot Restream. Option two: Have a secondary OBS instance pre-configured with native YouTube and Facebook settings, ready to launch if Restream fails. Option three: Pause streaming, restart OBS, and try streaming through Restream again.
+
+Most churches go with option one or three. It's rare enough that the hassle of maintaining a backup OBS setup isn't justified.
+
+## Testing Before Service
+
+Do a full test of the OBS-Restream pipeline before your first Sunday. Thursday or Friday, open OBS, start streaming through Restream, and monitor for 5–10 minutes. Open YouTube and Facebook in separate tabs and confirm video appears on both within 20 seconds. Check the Restream dashboard and confirm both platforms show green status. Stop the stream and confirm video stops on both platforms.
+
+Once you've passed this test, you're ready for real service.
+
+## First Service on Restream
+
+Go live at your scheduled time. Monitor the Restream dashboard for the first few minutes. Confirm both platforms are receiving video and showing healthy status. Your director runs the OBS production as usual. The Restream integration is seamless—OBS doesn't know or care that it's sending to Restream; Restream handles distribution automatically.
+
+OBS and Restream integration is one of the cleanest multistreaming solutions available. The single-URL approach removes complexity, and Restream's dashboard provides visibility. For churches trying to reach multiple platforms, this is the practical, reliable choice.

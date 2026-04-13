@@ -1,0 +1,79 @@
+---
+title: Using ATEM Mini with OBS Studio via NDI and USB
+description: Configure the ATEM Mini as a video source in OBS using both USB video capture and NDI networking for flexible streaming setups.
+deviceCategory: switcher
+brand: Blackmagic Design
+modelId: atem-mini
+modelFullName: Blackmagic Design ATEM Mini
+articleType: integration
+category: streaming
+tags: [atem-mini, obs, ndi, streaming, usb-video, scene-switching]
+difficulty: intermediate
+priceRange: under-500
+publishedAt: "2024-01-25"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+OBS Studio is the streaming platform of choice for most church AV teams—it's free, powerful, and flexible. The ATEM Mini integrates beautifully with OBS, and you have options for how to connect them: via USB video capture or through NDI networking. Choosing the right approach depends on your setup and your team's comfort level with network configuration.
+
+This guide covers both methods, focusing on the practical side of getting your ATEM Mini feeding into OBS scenes so you can add graphics, manage multiple streaming destinations, and have more control over your broadcast than the ATEM Mini alone provides.
+
+## USB Video Capture: The Simple Approach
+
+The simplest way to connect the ATEM Mini to OBS is via the USB video feed. When you connect the ATEM Mini to your streaming PC via USB, it appears as a standard USB video device on your computer. OBS recognizes it just like it would a USB webcam.
+
+In OBS, create a new source and select "Video Capture Device." A dropdown menu will appear—choose the ATEM Mini from the list. OBS will immediately start displaying the video feed from your switcher. That's it. You don't need to install drivers or configure network settings. The USB connection carries both the video and the audio embedded in the ATEM Mini's output, so your stream has synchronized picture and sound right out of the box.
+
+This approach has one limitation: USB can only handle so much bandwidth. If you're running 1080p at 60 frames per second (1080p60), you're pushing the USB 2.0 interface to its limits. Most churches run 1080p30 (30 frames per second), which is well within USB 2.0 capacity and looks smooth for worship services. If you ever upgrade to a larger ATEM with 4K output, USB won't be sufficient, and you'd need to switch to a capture card or NDI—but for the ATEM Mini, USB is reliable and proven.
+
+The upside of USB is that it's bulletproof. Your streaming PC can be anywhere in the church—in the back office, in the AV closet, even in a separate streaming room. The ATEM Mini connects via USB, and as long as you're using a good-quality USB cable (not a cheap charging cable), you'll have a rock-solid connection.
+
+## Setting Up Scene Switching in OBS
+
+Once your ATEM Mini is showing up as a video source in OBS, the typical next step is to add graphics, lower-thirds (the text overlays you see with names and titles), and your church logo to your scenes. Create a scene for your opening/announcements, another for singing, another for the sermon, and so on. In each scene, add the ATEM Mini video source as your base layer, then add text elements, images, and graphics on top.
+
+The beautiful thing about this setup is that your ATEM Mini is still managing camera switching in real time. Your switcher operator cuts between cameras, and OBS receives that finished output. Meanwhile, your graphics operator (or the same person, depending on your team) is managing lower-thirds and overlays in OBS. The two operations are independent—the ATEM Mini doesn't need to know about your OBS scenes, and OBS doesn't need to know how many cameras are plugged into the ATEM Mini.
+
+Many churches set up a second monitor at the ATEM Mini's location so the switcher operator can see what's being broadcast through OBS. This lets them know if there's a graphics issue or if the stream output looks different from what they see on their main program monitor.
+
+<ProductCTA variant="inline" />
+
+## NDI: Network Integration for Flexibility
+
+If you're comfortable with networking, NDI (Network Device Interface) offers a more elegant approach. NDI allows video to travel over your church's Ethernet network rather than via USB, which gives you several advantages: your ATEM Mini and streaming PC don't have to be tethered by a cable, you can have multiple devices pulling from the ATEM Mini's feed, and you get lower latency in many setups.
+
+To use NDI with the ATEM Mini, you need ATEM Software Control running on a networked PC. The ATEM Software Control application can output the switcher's program feed as an NDI source onto your network. This requires the PC running ATEM Software Control to be on the same network as the streaming PC.
+
+In OBS, install the NDI plugin (available free from the OBS project website). Once installed, create a new source and select "NDI Source." OBS will scan your network and find the ATEM Mini's NDI output. Click on it, and it will immediately appear in your OBS scene. From that point forward, everything works the same as it would with USB—you've just replaced the USB cable with a network connection.
+
+The main advantage of NDI is flexibility. You could have your streaming PC running OBS in one location, your ATEM Mini in another (connected to the ATEM Software Control PC on Ethernet), and they all coordinate over your network. If you want to add a secondary monitor or recording station, you can pull the same NDI feed to multiple devices simultaneously. Many larger churches use NDI to stream from the main service while simultaneously recording to a local drive for archiving.
+
+The downside is complexity. If your church's Ethernet network has issues—which is common in older buildings with long cable runs and questionable switches—NDI can become unreliable. USB, despite being "old" technology, is more forgiving in imperfect conditions.
+
+## Choosing Between USB and NDI
+
+For most churches, start with USB. It's simple, it works, and you don't need to troubleshoot network issues. If your streaming PC is close enough to the ATEM Mini, run a good USB cable and call it done.
+
+Move to NDI only if you have a specific reason: your streaming PC needs to be in a different room, you want to record simultaneously to a second location, or you're planning to expand your setup beyond what a single USB connection can handle. NDI also shines if you're using multiple video sources—not just the ATEM Mini, but also a document camera, a laptop for PowerPoint, or a second mixer feed. NDI can bring all of those into OBS cleanly.
+
+## Audio Considerations in OBS
+
+Whether you use USB or NDI, the ATEM Mini's audio comes along with the video. In OBS, you'll see an audio track embedded in your video source. This means your YouTube stream or Facebook live broadcast will have synchronized audio without any extra configuration.
+
+However, make sure you're not double-recording audio. If your ATEM Mini is pulling audio from your mixer via RCA, and that audio is traveling through the USB or NDI stream to OBS, don't also create a separate audio source in OBS pulling directly from your mixer. That creates the double-audio problem we discussed in the audio routing guide.
+
+## Running a Test Stream Before Sunday
+
+Before your first live broadcast, create an unlisted YouTube video or use OBS's direct recording feature to capture a five-minute test. Have someone speak and sing while you monitor the OBS display. Listen for audio sync issues, make sure your graphics are positioned correctly, and verify that the video quality looks good at your intended bitrate.
+
+Common issues to watch for include audio delay (if you hear the speaker's words a moment after seeing their lips move), graphics that are cut off or positioned incorrectly on smaller screens, and video that's pixelated or stuttering (usually a sign that your bitrate is too low or your CPU can't keep up with encoding).
+
+Most of these issues are resolved with simple tweaks to OBS settings or your graphics layout. By testing before Sunday, you'll catch them when it doesn't matter, rather than discovering problems during your live service.
+
+## Scaling Your Setup
+
+Once you're comfortable with the ATEM Mini and OBS, you're in a great position to expand. You might add a second ATEM device for redundancy, integrate a document camera for Bible passages, or bring in a Kiloview encoder to send NDI feeds from remote locations. The beauty of this setup is that it's modular—OBS becomes your central broadcast hub, and the ATEM Mini is just one of many possible inputs.
+
+For now, focus on mastering USB or NDI with your current setup. Once camera switching and graphics feel natural, you can add complexity. Most successful church production teams started exactly where you are—one switcher, one streaming PC, and the willingness to learn. You're already on your way.

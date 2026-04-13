@@ -1,0 +1,96 @@
+---
+title: "ProPresenter NDI Output: Sending Graphics to OBS or vMix"
+description: "Enable ProPresenter NDI output, configure which layers to send, receive in OBS and vMix, and troubleshoot ProPresenter NDI appearing issues."
+app: propresenter
+articleType: integration
+tags: [ndi, integration, streaming, graphics, church-av]
+difficulty: intermediate
+publishedAt: "2024-03-03"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProjectCTA.astro';
+
+ProPresenter is designed to send its output to your streaming software. Rather than having your director look at ProPresenter on one monitor and OBS on another, ProPresenter's NDI output appears directly in your stream. Your director sees one unified production in OBS or vMix with cameras, ProPresenter slides, and graphics all in one place.
+
+This integration is seamless when configured correctly and a nightmare when something goes wrong. This guide walks you through enabling NDI in ProPresenter, configuring which layers you want to send, receiving it in your streaming software, and solving the most common issues.
+
+## Enabling ProPresenter NDI Output
+
+Open ProPresenter 7 and go to ProPresenter → Preferences → Network. Look for the NDI section and check the box "Send NDI Output." This enables ProPresenter to broadcast its presentation as an NDI source on your network.
+
+ProPresenter will now send several NDI outputs: Main Screen (what the congregation sees), Stage Screen (worship leader notes), and individual layers if you're using advanced compositing. Most churches use just the Main Screen NDI, which is the full presentation with lyrics, graphics, and backgrounds all composited together.
+
+Confirm NDI is enabled by checking your network connection. ProPresenter must be on the same network (same subnet) as your OBS or vMix computer. Test this by opening your streaming software and confirming ProPresenter appears in the NDI source list.
+
+<ProductCTA variant="inline" />
+
+## Configuring NDI Layers
+
+ProPresenter is flexible about what it sends via NDI. You can send just the lyrics slides, or full compositions with backgrounds, or only the video layer. This flexibility is powerful but requires understanding what you want your streaming output to look like.
+
+By default, ProPresenter's Main Screen NDI output includes everything displayed on your house screen: lyrics, backgrounds, graphics, and any other elements. This is usually what you want—your streaming viewers see the same presentation as your congregation.
+
+Advanced churches sometimes want to send only specific layers. For example, you might want to send only the lyrics (without your church's background) so OBS can layer it over a live camera feed. Or you might want to send only the video content, excluding lyrics. These custom configurations are possible but require detailed NDI layer setup, which is beyond basic ProPresenter use.
+
+For most churches, leave the default NDI output configuration as is. Send everything to OBS/vMix and layer it in your streaming software.
+
+## Receiving ProPresenter NDI in OBS
+
+In OBS, right-click in the Sources panel and select "Add Source," then "NDI Source." Look for your ProPresenter computer in the dropdown (it will be listed by name, like "ProPresenter_Main" or "Church_Presentation"). Select it and OBS immediately begins receiving video from ProPresenter.
+
+Position the ProPresenter source in your preview. Many churches position it as a lower-third overlay—ProPresenter occupies the bottom third of the frame while cameras fill the top two-thirds. Resize and reposition by dragging the source edges.
+
+Alternatively, create a dedicated scene where ProPresenter fills the entire frame. During worship, switch OBS to this full-screen ProPresenter scene. During sermon (when most of the focus is on the pastor), switch back to a camera-forward scene with ProPresenter as a smaller overlay.
+
+## Receiving ProPresenter NDI in vMix
+
+In vMix, click "Add Input" → "NDI" and select ProPresenter from the list. vMix receives the video and displays it in your inputs panel. Drag the ProPresenter input into your preview layout to position it.
+
+vMix's approach is similar to OBS, but vMix makes it easier to layer multiple inputs. You can have three NDI cameras plus ProPresenter all visible in the same layout with no scene switching. OBS forces you to switch scenes; vMix lets you keep everything in one view.
+
+## Network Considerations
+
+ProPresenter NDI requires network bandwidth, though it's less demanding than multiple camera NDI. A typical ProPresenter presentation uses 50–100 Mbps bandwidth, manageable even on networks already carrying camera feeds. However, your network must be stable. NDI disconnections manifest as ProPresenter video dropping out—the stream turns black.
+
+Ensure ProPresenter and your streaming software (OBS/vMix) are on the same gigabit network segment. Use wired Ethernet for both devices, not WiFi. WiFi drops or latency will interrupt ProPresenter NDI.
+
+If you have multiple ProPresenter outputs (Main Screen, Stage Screen, and custom layers all sending simultaneously), bandwidth usage increases. Monitor your network for signs of congestion: dropped frames in your stream, brief blackouts in NDI sources, or CPU spike in OBS/vMix.
+
+## Troubleshooting ProPresenter NDI Not Appearing
+
+If ProPresenter is running but doesn't appear in your OBS/vMix NDI list, the issue is almost always network separation. ProPresenter and your streaming computer must be on the same network. Check your network configuration.
+
+First, confirm ProPresenter is actually sending NDI. Open ProPresenter Preferences → Network and verify "Send NDI Output" is checked. If it's unchecked, enable it and wait 10–15 seconds, then refresh your NDI source list in OBS/vMix.
+
+If ProPresenter is enabled but still doesn't appear, restart ProPresenter. Close it completely and reopen it. Sometimes NDI discovery fails on first launch.
+
+If that doesn't work, restart OBS or vMix. The streaming software caches NDI source lists, and occasionally the cache becomes stale. Restarting forces a fresh NDI scan.
+
+If ProPresenter still doesn't appear, the issue is likely your network. Ask your IT person if ProPresenter and your streaming PC are on the same network segment. If they're on different VLANs (Virtual LANs), NDI won't work. Request that they be placed on the same VLAN or that NDI traffic be allowed between VLANs.
+
+## ProPresenter NDI Dropout During Service
+
+If ProPresenter NDI suddenly disappears mid-stream (video goes black), the network connection has probably dropped. Check the Ethernet cable connecting ProPresenter's Mac to the network. Reseat it firmly and wait 15 seconds. ProPresenter NDI should reappear.
+
+If the cable is fine, the network switch may have an issue. Try connecting ProPresenter to a different switch port using a different cable. This rules out a bad port or cable.
+
+If neither fixes it, ProPresenter itself may have crashed. Check the ProPresenter Mac's display—if ProPresenter has quit, relaunch it. The NDI signal should resume within 30 seconds.
+
+## Backup Plan for NDI Failure
+
+ProPresenter NDI failures mid-stream are rare but possible. Have a contingency: a USB-connected graphics computer running a simple graphics app (like Preview on Mac displaying a static image), or a dedicated camera showing a graphics monitor from a distance. If ProPresenter NDI fails, quickly switch OBS/vMix to the backup while you troubleshoot ProPresenter.
+
+Communicate with your ProPresenter operator about the possibility of failure. They should monitor ProPresenter during service and be ready to troubleshoot quickly if NDI drops. This might mean having them watch both the ProPresenter screen and a secondary monitor showing OBS to confirm NDI is flowing.
+
+## Best Practices for ProPresenter NDI
+
+Test ProPresenter NDI before every service. Open both ProPresenter and your streaming software, confirm ProPresenter appears in the NDI list, and monitor for 30 seconds. This quick check catches problems before they affect your live stream.
+
+Keep ProPresenter and your streaming computer on the same network switch if possible. Long network runs (routing through multiple switches or through patch panels) introduce latency and connection fragility.
+
+Update ProPresenter and your streaming software regularly. Newer versions include NDI stability improvements and bug fixes.
+
+Document your ProPresenter NDI configuration. Note which NDI output you're using (Main Screen? Stage Screen?), where it's positioned in your OBS/vMix layout, and any custom settings. If a new volunteer needs to troubleshoot, clear documentation saves time.
+
+ProPresenter NDI is a powerful integration that transforms your production. When it works, it's invisible—viewers see slides smoothly integrated with cameras, and your director manages everything from one software window. Set it up correctly and test thoroughly, and you'll have years of reliable graphics distribution.

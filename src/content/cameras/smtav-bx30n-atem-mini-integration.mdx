@@ -1,0 +1,112 @@
+---
+title: SMTAV BX30N with Blackmagic ATEM Mini Switcher Integration
+description: Complete guide to integrating the SMTAV BX30N NDI camera with the Blackmagic ATEM Mini switcher for professional church production workflows.
+brand: SMTAV
+modelId: bx30n
+modelFullName: SMTAV BX30N
+articleType: integration
+category: streaming
+tags: [ptz-camera, atem-mini, ndi, switcher, smtav]
+difficulty: intermediate
+priceRange: 500-1500
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The Blackmagic ATEM Mini switcher has become popular in churches for its affordable multi-camera switching capability. When combined with NDI cameras like the SMTAV BX30N, you get a professional broadcast setup that requires no HDMI cables running across your sanctuary. This guide covers the complete integration process.
+
+## ATEM Mini and NDI Compatibility
+
+The ATEM Mini support for NDI varies depending on the model and firmware version. Verify that your ATEM Mini firmware is up to date. Blackmagic regularly releases firmware updates that improve NDI support. Check the Blackmagic website for the latest firmware and update if necessary.
+
+The ATEM Mini accepts NDI sources through its input options. Once configured, NDI sources appear as available inputs on the switcher, and you can switch between them just like any other video input.
+
+## Preparing Your ATEM Mini for NDI
+
+Power on your ATEM Mini and ensure it's connected to your network via Ethernet. The switcher will request a DHCP IP address automatically. Verify that the ATEM Mini is on the same network as your SMTAV BX30N camera.
+
+Access the ATEM Mini's configuration interface through its web browser. On a computer connected to the same network, open a browser and navigate to the ATEM Mini's IP address. If you don't know the IP, check your router or use a network scanning tool.
+
+Log into the ATEM Mini configuration interface and navigate to the Network or NDI settings section. Ensure that NDI support is enabled in the switcher settings. Some ATEM Mini models require you to enable NDI explicitly.
+
+## Adding the BX30N as an NDI Input
+
+In the ATEM Mini configuration interface, look for the section to add network inputs or NDI sources. The exact location varies depending on firmware version, but it's typically in the Inputs section.
+
+Click the option to add an NDI source. You should see a list of available NDI devices on your network. Your SMTAV BX30N should appear in this list by the name you configured in its web interface. Select it and confirm.
+
+The ATEM Mini will establish a connection to the camera and add it as an available input. The input might appear as "NDI 1" or with the camera's configured name, depending on your firmware version.
+
+<ProductCTA variant="inline" />
+
+## Switching Between Camera Inputs
+
+Once the BX30N is added as an NDI input on the ATEM Mini, you can select it just like any other input. Use the input selector buttons on the front of the ATEM Mini to switch to the camera. The preview window will show the current input, and the program window will show what's being broadcast.
+
+Test the switching by alternating between your BX30N NDI source and any HDMI inputs you might have. Verify that the video switches smoothly and that the image quality is consistent with your other inputs.
+
+## Configuring Multiple NDI Cameras
+
+If you want to add multiple SMTAV cameras or other NDI sources to your ATEM Mini setup, repeat the process of adding each camera as a separate NDI input. The ATEM Mini supports multiple NDI inputs limited only by your network bandwidth and the switcher's available input slots.
+
+With multiple NDI cameras, you get professional multi-camera switching capability. You can cut between wide shots, close-ups, and detail shots of your stage, all from your broadcast switcher.
+
+## Managing Pan-Tilt-Zoom Control
+
+While the ATEM Mini provides video input from the BX30N, it doesn't natively control pan-tilt-zoom functions. You need a separate method to control the camera's movement. You have several options:
+
+Use the camera's web interface in a browser window. Your camera operator can have the web interface open alongside the switcher. When you need to recall a preset or adjust camera position, the operator clicks buttons in the web interface.
+
+Use the SMTAV's dedicated control software if available. This provides a dedicated interface for pan-tilt-zoom control that might be more convenient than the web interface.
+
+Use vMix alongside the ATEM Mini. vMix can act as your camera control hub, providing both PTZ control of your cameras and preview windows showing each camera's output, while the ATEM Mini handles the final broadcast switching.
+
+## Optimizing Bandwidth for ATEM Mini NDI
+
+The ATEM Mini requires adequate network bandwidth to handle multiple NDI inputs simultaneously. Each NDI source consumes approximately 150 megabits per second. Plan your network accordingly.
+
+If you're running two full-quality NDI cameras (300 Mbps combined) plus other network traffic, you need a robust network. Upgrade to a managed switch with QoS capabilities to prioritize video traffic.
+
+If bandwidth is limited, you can reduce the quality or resolution of NDI sources in the camera's settings. This reduces bandwidth but also reduces video quality.
+
+## Network Cable Considerations
+
+For the most reliable setup, use a wired Ethernet connection from both your ATEM Mini and your SMTAV BX30N to your network switch. Avoid WiFi for video equipment, as WiFi is unpredictable and can cause intermittent connection issues.
+
+Use quality Ethernet cables (Cat 6 or better) for your video connections. Poor cable quality can cause subtle connection issues that are difficult to diagnose.
+
+## Testing Before Live Broadcast
+
+Before relying on this setup during a live service, conduct a thorough test. Power on the ATEM Mini and verify that it discovers your BX30N NDI source. Test switching between the NDI input and any other inputs.
+
+Verify that you can control the camera's presets through the web interface while the ATEM Mini is displaying its video. Test recalling a few presets to ensure the camera responds correctly.
+
+Have someone monitor network performance while you test. If you see dropped frames or connection issues, investigate and resolve them before your broadcast.
+
+## Troubleshooting NDI Connectivity Issues
+
+If the BX30N doesn't appear as an available NDI source in the ATEM Mini, first verify that both devices are powered on and connected to the network. Check that NDI is enabled in the camera's web settings.
+
+Verify that both the camera and ATEM Mini are on the same network. If your church uses network segmentation, they might be on different segments that can't communicate.
+
+Power cycle both the camera and the ATEM Mini. Sometimes network connectivity issues are resolved by a fresh restart.
+
+If connectivity issues persist, check your network switch for any problems. Verify that all cables are properly connected and that there are no error lights indicating port problems.
+
+## Recording Your Broadcast
+
+The ATEM Mini has integrated recording capability. You can record your broadcast output directly to a USB drive or SD card connected to the switcher. This provides a complete record of your service including all your switching, titles, and effects.
+
+Additionally, you can record the individual NDI sources in OBS or vMix for additional backup or for creating edited versions later.
+
+## Advanced Features and Customization
+
+As you become comfortable with the ATEM Mini and NDI camera integration, explore advanced features. The ATEM Mini supports DVE effects, picture-in-picture displays, and chromakey. These advanced features can add polish to your broadcast.
+
+PTZ automation is possible with some advanced setups, where camera movements are triggered automatically during your broadcast. This is beyond the scope of basic integration but worth exploring as your production skills grow.
+
+## Conclusion
+
+The combination of the SMTAV BX30N NDI camera and Blackmagic ATEM Mini switcher provides professional multi-camera switching without requiring HDMI cables. This modern network-based approach is ideal for churches modernizing their production infrastructure. Your broadcast will benefit from flexible camera control and professional switching capabilities.

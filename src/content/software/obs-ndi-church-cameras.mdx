@@ -1,0 +1,74 @@
+---
+title: "Using NDI Camera Sources in OBS for Church Production"
+description: "Guide to installing the OBS NDI plugin, adding camera sources, managing multiple NDI inputs, and troubleshooting common NDI issues in church streaming."
+app: obs
+articleType: setup-guide
+tags: [ndi, cameras, networking, plugin, church-av]
+difficulty: intermediate
+publishedAt: "2024-02-17"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+NDI (Network Device Interface) has transformed how churches connect cameras and graphics without running expensive video cables across sanctuaries. Instead of HDMI or SDI cables running from each camera to a central control room, NDI sends video over your existing Ethernet network. This approach is simpler to install, more flexible, and significantly cheaper—especially for churches with sprawling spaces.
+
+OBS supports NDI through a plugin, turning any networked NDI camera into a source OBS can use. This guide walks you through installing the plugin, discovering NDI sources, managing multiple cameras, and solving the most common NDI problems that plague church streamers.
+
+## Installing the OBS NDI Plugin
+
+The OBS NDI plugin is free and maintained by the OBS project. Visit the NDI GitHub page (obs-ndi on GitHub) and download the installer for your operating system. Run it, and it will automatically detect your OBS installation and install the plugin into the correct folder.
+
+Restart OBS. You should now see NDI Source as an option when you add a new source. If NDI Source doesn't appear, double-check that OBS is fully closed before installing the plugin. Windows sometimes locks OBS files, preventing installation. Restart your computer if the plugin still doesn't appear.
+
+## Finding and Adding Your First NDI Camera
+
+For NDI cameras to appear in OBS, they must be powered on, connected to your network, and configured to broadcast NDI. Most modern cameras (Panasonic, Sony, Blackmagic) have NDI built in or support it via firmware update. Older cameras or low-cost cameras may not support NDI—check your camera's manual to confirm.
+
+Connect your camera to your network using Ethernet. Power it on and wait 10–15 seconds for it to initialize. In OBS, right-click in the Sources panel and select "Add Source," then "NDI Source." A dropdown will appear listing all NDI devices on your network. Your camera should be listed by name (like "Panasonic Camera 1"). If it doesn't appear, see the troubleshooting section below.
+
+Click the camera name and OBS will begin receiving its video feed. Adjust the source size and position in your scene preview. You're now streaming from an NDI camera—no cables required.
+
+<ProductCTA variant="inline" />
+
+## Managing Multiple NDI Cameras
+
+Churches with multiple cameras create an NDI source for each one. Add a second NDI source to your worship scene by clicking "+" in the Sources panel, selecting NDI Source again, and choosing the second camera. Position the two sources side by side, one above the other, or with one as a smaller inset. OBS lets you layer and position sources freely.
+
+In OBS, multiple sources all stream simultaneously (unless you hide a source by clicking the eye icon). Your director chooses which camera is prominent and which is secondary by positioning them in the layering order. Drag sources up and down in the Sources panel to change their stacking order—the topmost source is visually on top.
+
+If you have three or four NDI cameras, managing them in a single scene becomes complex. Instead, create multiple scenes: "Camera 1 Primary" with Camera 1 large and Camera 2 small, then "Camera 2 Primary" with Camera 2 large and Camera 1 small. Your director simply switches between scenes rather than trying to adjust source positions in real time.
+
+## NDI Network Requirements
+
+NDI works reliably over gigabit Ethernet, but churches sometimes struggle if their network isn't set up for it. Here's what you need. All cameras must be on the same network as your OBS computer—either connected to the same switch or the same WiFi network (though Ethernet is much more reliable). Your network switch should be gigabit capable; older 10/100 Mbps switches cause excessive buffering and dropped frames.
+
+Run an Ethernet cable from your camera to a gigabit switch, then run another cable to your OBS computer. If your camera is far from the control room, use a long Ethernet cable or a network switch positioned near the camera. Avoid daisy-chaining network cables (running one cable into another switch) unless necessary—each connection point introduces potential lag.
+
+NDI requires significant bandwidth. A single 1080p camera stream uses about 80–150 Mbps depending on frame rate and compression. If you have three cameras, that's 240–450 Mbps. Your gigabit network (1,000 Mbps) can handle this, but only if no other devices are competing for bandwidth. Avoid streaming other video, downloading large files, or running cloud backups over the same network while streaming.
+
+## Troubleshooting: NDI Not Showing in OBS
+
+The most common problem is that OBS and the camera aren't on the same network. Check your camera's network settings (usually on a menu on the camera's display or via a web browser interface). Verify it's connected to the same network as your OBS computer. Some churches have multiple networks—a main office network and a WiFi guest network—and it's easy to accidentally connect cameras to the wrong one.
+
+If the camera is on the correct network and still doesn't appear, restart the camera and wait 20 seconds, then refresh the NDI source dropdown in OBS. Sometimes NDI discovery is slow on startup. If it still doesn't work, check your network switch. Ensure the Ethernet cable is fully inserted (push until you hear a click), and try a different cable if available.
+
+Some churches disable NDI on their cameras by accident. Log into the camera's menu or web interface and verify NDI is enabled. Check for a recent firmware update—older camera firmware sometimes has buggy NDI support. Update the camera firmware, restart it, and try again.
+
+If one camera appears in OBS but another doesn't, the second camera might be on a different subnet or VLAN. Your IT person can help verify all cameras are on the same network segment. In small churches, this rarely happens, but larger organizations with complex networks sometimes isolate devices inadvertently.
+
+## NDI Latency and Sync
+
+NDI introduces about 50–100 milliseconds of latency—the video arrives at OBS slightly delayed compared to the camera's output. For most church services, this is imperceptible. If you're syncing NDI video with physical speakers on stage, you might notice slight delay between audio and video. To minimize this, ensure all cameras and your OBS computer have current network drivers and that there are no other high-bandwidth activities on your network during the stream.
+
+Professional churches with multiple cameras often sync them before service starts. Have two cameras aimed at the same scene, start both, and visually check that they show identical images at the same time. If one is noticeably delayed, it may be farther from your network switch (electrical distance increases latency) or have an older network interface. Move that camera closer to the switch or replace its network cable.
+
+## Managing NDI Source Disappearance
+
+Occasionally, an NDI source vanishes from OBS mid-stream—the source turns black and the video stops. This usually means the camera lost network connectivity. Check the camera's indicator lights to confirm it's still connected to the network. If the light is off or red, the cable is loose or the camera crashed. Reseat the Ethernet cable firmly.
+
+If the camera is connected but the NDI signal still won't reappear in OBS, restart the camera. Wait 30 seconds, then close OBS and reopen it. The NDI discovery should find the camera again. If this happens frequently, your network may be unstable. Ask your IT provider to check for packet loss or network errors.
+
+To guard against NDI failures during live services, some churches maintain a USB backup camera connected directly to OBS. If an NDI camera fails, you can quickly switch to the backup until you resolve the network issue.
+
+NDI represents a significant step forward in church production infrastructure. With proper network setup and occasional troubleshooting, NDI cameras provide professional flexibility that hardwired cable setups can't match. Your setup investment becomes a foundation for years of reliable streaming.

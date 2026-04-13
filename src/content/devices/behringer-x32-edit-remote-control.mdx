@@ -1,0 +1,85 @@
+---
+title: "X32-Edit Remote Control: Complete Setup Guide for Churches"
+description: "Control your Behringer X32 from a tablet or laptop using X32-Edit software. Learn download, installation, network setup, and real-world workflows for front-of-house and livestream mixing."
+deviceCategory: mixer
+brand: "Behringer"
+modelId: behringer-x32
+modelFullName: "Behringer X32"
+articleType: software-control
+category: device-setup
+tags: [x32, x32-edit, remote-control, tablet-mixing, church-audio]
+difficulty: intermediate
+priceRange: 500-1500
+publishedAt: "2024-04-04"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+# X32-Edit Remote Control: Complete Setup Guide for Churches
+
+X32-Edit is the official remote control software for the Behringer X32, allowing you to operate the mixer from a computer, tablet, or even a smartphone over a network connection. For church audio professionals, this opens up entirely new workflow possibilities. Your audio engineer can mix from the front of the sanctuary to hear what the congregation hears, rather than mixing from a back control room. Livestream engineers can operate a separate mixing station without the need for expensive hardware. Stage monitor engineers can have their own control interface without requiring a second mixer. X32-Edit transforms the X32 into a distributed control system.
+
+## Downloading and Installing X32-Edit
+
+X32-Edit is available as a free download from Behringer's website. Navigate to behringer.com, search for X32-Edit, and download the version appropriate for your operating system—Windows, Mac, or Linux. The software is lightweight, typically under 50 megabytes, and installs quickly.
+
+On Windows, simply run the installer and follow the prompts. Installation takes less than a minute. On Mac, download the application file and drag it to your Applications folder, just like any other Mac software. You don't need administrator privileges or any special setup.
+
+The first time you launch X32-Edit, it will ask you to identify your X32 on the network. This is where the network connection becomes important. X32-Edit communicates with your X32 over Ethernet using a protocol called OSC (Open Sound Control). This means you need to establish a network connection between your X32 and whatever device you're running X32-Edit on.
+
+## Network Connection Setup
+
+The simplest setup for a small church is to connect your X32 and your computer via a standard Ethernet switch or router. The X32 has one Ethernet port on the rear panel. Connect that port to your network switch with a standard CAT5e or CAT6 Ethernet cable. Connect your computer running X32-Edit to the same switch.
+
+When the X32 boots up, it will acquire an IP address from your network automatically (assuming you have a DHCP server, which most routers provide). Open X32-Edit on your computer, and it will search your network for the X32. Within a few seconds, it should find the mixer and display it in the "Devices" list. Click on your X32, and X32-Edit establishes a connection.
+
+If X32-Edit doesn't find your mixer automatically, you can manually enter the X32's IP address. Go to Settings in X32-Edit and look for Network. Click "Add Device" and manually enter the IP address (you can find the X32's IP address by going to Setup > IO on the console itself, then looking for the Network section). Once entered, X32-Edit will connect.
+
+For larger churches with existing network infrastructure, you can use your main IT network, just like you would with any other piece of equipment. The X32 doesn't require special network configuration or high bandwidth. A simple 1 Mbps connection is more than sufficient for real-time control.
+
+## Understanding X32-Edit's Interface
+
+Once connected, X32-Edit replicates the X32's entire control interface on your screen. You see the 32 channel faders arranged exactly as they appear on the physical console. All the buttons, rotary encoders, and parameter adjustments you can make on the physical mixer can be made in X32-Edit. The software updates in real-time, so if someone adjusts a fader on the physical console, you immediately see that change in X32-Edit, and vice versa.
+
+On a tablet, X32-Edit presents a more compact interface optimized for touch. You can swipe left and right to scroll through channels, tap on parameters to adjust them, and use the same scene recall buttons as the physical console. For a 10-inch iPad running X32-Edit, the experience is surprisingly close to operating the physical mixer, though obviously without the tactile feedback of physical faders.
+
+The software is also highly customizable. You can create custom layouts showing only the channels you need, hide advanced parameters, and create presets for different operational roles. Your front-of-house engineer might have a layout showing all 32 channels with effects. Your livestream engineer might have a layout showing only their aux bus and a few key channels.
+
+## Remote Mixing at Front of House
+
+Many churches discover that mixing from the front of the house—where the congregation sits—yields better results than mixing from a back control room. You can actually hear what people in the room are hearing, rather than relying on your best guess about acoustics and speaker placement. With X32-Edit on a tablet, you can operate the mixer from anywhere in the sanctuary, giving you the freedom to move around and make critical mixing decisions from the best listening position.
+
+Set up an Ethernet connection extending to your front-of-house location—this might be a wireless access point connected to your network, or a simple Ethernet run if you have the infrastructure. Have your audio engineer arrive early, fire up X32-Edit on their tablet, and they're ready to mix. Between songs or sections, they can adjust individual channel levels, tweak effects, or jump to a different scene.
+
+For security, X32-Edit allows you to set a password to prevent unauthorized users from launching the software and changing your mixer settings. Go to Settings in X32-Edit, enable Password Protection, and choose a strong password. Only your authorized mixing engineers get the password.
+
+## Separate Streaming Control Station
+
+One of the most powerful workflows for churches live-streaming services is having a dedicated streaming audio engineer with their own X32-Edit station. While your main front-of-house engineer focuses on the live mix for the congregation, the streaming engineer operates their own auxiliary bus using a separate laptop or tablet running X32-Edit in another location.
+
+Both engineers are operating the same physical X32, but they're focused on completely different mixes. When a band member comes in too hot, the streaming engineer can adjust that channel's send level to their streaming auxiliary bus without affecting the main mix. If they want to emphasize a vocal or de-emphasize drums for online viewers, they can do that independently. This separation of concerns means both mixes get proper attention.
+
+To make this work, configure your streaming auxiliary bus (as covered in our streaming guide), then set the streaming engineer's X32-Edit layout to display only that aux bus and the input channels they need to control. This keeps their interface focused and prevents accidental changes to the main mix.
+
+## Stage Monitor Control with X32-Edit
+
+Some churches use X32-Edit to provide band members with control over their own monitor mix. A tablet in the stage area (usually with a wireless connection) runs X32-Edit in a limited mode showing only the monitor auxiliary bus and perhaps a couple of key channels. Band members can adjust their monitor level without requiring a separate monitor mixing console or a dedicated monitor engineer.
+
+This only works effectively with a clear workflow established beforehand. Designate one person as responsible for the monitor mix, and restrict other users' access. Clear communication and training prevent situations where band members are constantly tweaking their mix mid-service.
+
+<ProductCTA variant="inline" />
+
+## Troubleshooting Connection Issues
+
+If X32-Edit can't find your mixer, the most likely culprit is a network connection issue. Verify that both devices are connected to the same network (the same Ethernet switch or the same Wi-Fi network). Check that the X32 actually has an IP address by navigating to Setup > IO on the console and looking at the network section. If it shows "0.0.0.0," the X32 didn't get an IP address from your DHCP server.
+
+If X32-Edit finds the mixer but then loses connection, it's usually because the network connection dropped. Wireless connections are particularly prone to this. For reliable remote control, use wired Ethernet whenever possible. If you must use Wi-Fi, make sure you have a strong signal and minimal interference.
+
+Sometimes X32-Edit will connect but controls seem unresponsive or laggy. This usually indicates network congestion or a weak signal. Try moving closer to the wireless access point, or better yet, switch to a wired connection. Network latency should be imperceptible on a good connection.
+
+## Taking X32-Edit to the Next Level
+
+Once you're comfortable with basic X32-Edit operation, explore its advanced features. You can create macros that trigger complex sequences of parameter changes with a single button press. You can set up custom layouts that show exactly the channels and parameters relevant to different users. You can even trigger lighting changes or video cues if you have additional equipment connected to your network.
+
+The key is to start simple with X32-Edit—just use it to adjust a few faders from your phone as you get comfortable. Then graduate to more sophisticated setups like front-of-house mixing from a tablet. Each step builds your confidence and reveals new possibilities for your worship production.

@@ -1,0 +1,81 @@
+---
+title: ATEM Mini Setup Guide for Churches — First Use to First Stream
+description: Complete walkthrough for unboxing, connecting cameras, configuring USB output, and going live on YouTube using the ATEM Mini in a church environment.
+deviceCategory: switcher
+brand: Blackmagic Design
+modelId: atem-mini
+modelFullName: Blackmagic Design ATEM Mini
+articleType: setup-guide
+category: device-setup
+tags: [atem-mini, setup, streaming, church-av, usb-output, youtube]
+difficulty: beginner
+priceRange: under-500
+publishedAt: "2024-01-15"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The ATEM Mini is the entry point to professional switching for many church AV teams. At under $300, it delivers the core switching features that let you cut between multiple cameras, add graphics, and stream to YouTube all from a single compact device. If you've been managing a single-camera livestream or manually switching between video feeds, the ATEM Mini transforms your production into something that feels polished and intentional.
+
+This guide walks you through every step from opening the box to broadcasting your first service online. Whether you're self-taught or completely new to video switching, you'll have a working setup in about an hour.
+
+## What's in the Box and What You'll Need
+
+The ATEM Mini ships with the switcher itself, a power adapter, and a USB cable. You'll also need HDMI cables to connect your cameras or other video sources. Most churches start with two to four cameras, though the ATEM Mini has six HDMI inputs if you need more sources down the road.
+
+Before you plug anything in, gather your equipment. You'll need at least one camera with HDMI output—this could be a traditional broadcast camera, a mirrorless camera with HDMI out, or even a laptop running presentation software. If you're streaming to YouTube or Facebook, you'll also need a PC or Mac running ATEM Software Control (free to download from Blackmagic Design's website) and an internet connection.
+
+The ATEM Mini itself is small enough to fit in a equipment bag and light enough to move between rooms. Many churches mount it on a shelf in their AV closet or next to their streaming PC. The critical thing is keeping the power adapter and USB cable organized—you'll be connecting and disconnecting them frequently as your setup evolves.
+
+## Physical Connections and First Power-Up
+
+Start by connecting the ATEM Mini's power adapter. You'll see the unit's LED light up, and the front panel will display the current input being previewed. Next, connect your first camera to one of the six HDMI inputs on the back of the device. It doesn't matter which input you use first; the ATEM Mini lets you map them to camera 1, 2, 3, and so on in software.
+
+Once your camera is connected, you should see its video appear in the preview window on the ATEM Mini's small LCD screen. If you don't see video, check that your camera is powered on and sending HDMI signal. Some cameras require you to enable HDMI output in their menu—this is a common point of confusion, so check your camera's manual if the video isn't appearing.
+
+Now connect the USB cable from the ATEM Mini to your streaming PC or Mac. This USB connection serves dual purpose: it's how you control the ATEM Mini from your computer using ATEM Software Control, and it's also how the device sends video to your PC for streaming. Think of the USB connection as your remote control and your video feed all rolled into one.
+
+## Installing ATEM Software Control and First Connection
+
+Download ATEM Software Control from the Blackmagic Design website. The installation is straightforward on both Mac and Windows. Once installed, launch the application, and it will automatically detect your ATEM Mini connected via USB.
+
+When ATEM Software Control opens, you'll see a virtual version of the ATEM Mini on your screen. The main panel shows your preview and program buses—the preview bus (top) shows what you're about to switch to, and the program bus (bottom) shows what's currently live. Between them is a large T-bar that you use to execute transitions.
+
+Take a moment to explore the interface. Click on different cameras or inputs in the preview bus to see them appear in the program view once you move the T-bar all the way toward the program side. This is how you'll switch between cameras during your service. The ATEM Mini itself has physical buttons that mirror this same functionality, so you can switch using either the physical device or the software on your PC—or both simultaneously if your tech team has multiple people managing the production.
+
+## Audio Routing Basics
+
+The ATEM Mini has two audio inputs: one 3.5mm jack for a headset microphone, and one RCA pair for line-level audio from a mixer or other audio source. For most churches, you'll want to set the ATEM Mini to pass through audio from your main mixer rather than using it to capture microphone audio directly.
+
+In ATEM Software Control, navigate to the Audio Mixer tab. Here you'll see sliders for each input. If you're using the RCA audio input from your mixer, make sure the level for "Audio In" is not too hot. Start at around 50% and adjust upward until the levels look healthy in the meter without clipping into the red.
+
+Many churches make the mistake of trying to both record audio from the ATEM Mini and from their mixer separately, which creates a double-audio problem where the stream has audio out of sync or duplicated. Instead, let the ATEM Mini carry the audio from your mixer, and it will embed that audio into your USB stream to your PC. This keeps everything in sync and simplifies your signal chain.
+
+## Setting Up USB Streaming to YouTube
+
+The ATEM Mini sends video via USB to your streaming PC, where it appears as a USB video device. Open OBS Studio (free, open-source streaming software) on your PC. Create a new Video Capture Device source and select "ATEM Mini" from the dropdown. OBS will immediately start showing the video feed from your switcher.
+
+<ProductCTA variant="inline" />
+
+Configure your stream settings in OBS. Go to Settings, then Stream, and select YouTube as your streaming service. Sign in with the Google account that owns your church's YouTube channel. OBS will authenticate and let you select which YouTube channel to stream to.
+
+Before going live on a Sunday, do a test stream. Many churches stream to an unlisted YouTube video first to check audio sync, picture quality, and that everything is working. Click Start Streaming in OBS, and you should see the ATEM Mini video appear on your YouTube page within 10–15 seconds. Talk and move around in front of your camera to verify audio and video are synchronized.
+
+## Running Your First Service
+
+On Sunday morning, arrive early and power up your ATEM Mini and streaming PC at least 15 minutes before service. Connect your cameras, verify they have video signal, and open ATEM Software Control to confirm all inputs are showing in the software.
+
+Start your YouTube stream through OBS a few minutes before you begin. Many churches run a pre-service screen or slide show on their main program output, then switch to the first camera when the pastor comes on stage.
+
+As you switch between cameras during the service, you'll notice the ATEM Mini's small preview screen lets you see what's coming next. This is crucial for smooth transitions—you preview a camera, cue it up, then move the T-bar to switch. If multiple team members are in the room, one person can operate the switcher while another manages audio from the mixer.
+
+After the service, stop the stream in OBS and let the recording finish uploading to YouTube. The ATEM Mini itself doesn't record; it only provides video to your PC for streaming, so your YouTube recording lives in your YouTube account, not on the device.
+
+## What Comes Next
+
+Once you're comfortable with basic switching and streaming, you'll likely want to add graphics—your church logo, song lyrics, or Scripture verses. This is where you move into keying and SuperSource, topics covered in dedicated guides. You might also explore macros, which let you automate multiple switching moves with a single button press.
+
+For now, focus on getting comfortable with basic camera switching and smooth transitions. Most church AV teams spend their first month just getting confident with two or three cameras and basic audio levels. Once that feels natural, you're ready to expand into more advanced features.
+
+The ATEM Mini gives you professional-grade switching capability at an affordable price. Your congregation will notice the difference between a static single-camera feed and smooth multi-camera coverage of your service. That production polish conveys that worship matters and that you've put thought and care into how people experience the service—whether they're in the room or watching online.

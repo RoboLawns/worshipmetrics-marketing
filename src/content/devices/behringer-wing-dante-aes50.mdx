@@ -1,0 +1,147 @@
+---
+title: "Behringer WING Digital Snake: AES50 and Network Audio Setup"
+description: "Configure the Behringer WING's advanced networking: Dante audio networking, AES50 digital snakes, and multi-room audio distribution for large churches."
+deviceCategory: mixer
+brand: "Behringer"
+modelId: behringer-wing
+modelFullName: "Behringer WING"
+articleType: integration
+category: device-setup
+tags: [wing, dante, aes50, networking, digital-snake, multi-room]
+difficulty: advanced
+priceRange: 1500-plus
+publishedAt: "2024-04-24"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+# Behringer WING Digital Snake: AES50 and Network Audio Setup
+
+The Behringer WING includes professional digital audio networking capabilities that transform it from a single-location mixing console into the hub of a distributed audio system. With Dante networking and AES50 digital snake support, the WING can distribute audio to remote locations, satellite campuses, monitor mixing stations, and video production equipment without running long analog cables. For large, multi-space churches, this networking capability is transformative.
+
+## Understanding Dante Audio Networking
+
+Dante is a professional audio networking standard that sends high-quality audio over standard Ethernet cables. A single Dante connection can carry up to 512 channels of audio simultaneously. For church applications, Dante means you can run a single Ethernet cable from your WING to a remote location and that location has access to your full audio mix.
+
+The WING includes one Dante port. Connect it to your network switch with a standard Ethernet cable. Configure the WING as a Dante device in the Setup menu, and it appears on your Dante network.
+
+## Dante Configuration on the WING
+
+In the WING's Setup menu, navigate to Dante. Here you configure which audio channels and buses the WING will send over Dante. You might send all 32 input channels, all six auxiliary outputs, your main mix, and any subgroup outputs.
+
+On the receiving end (a remote location or another networked audio device), users subscribe to the Dante streams they need. The remote location's mixing console receives your selected audio streams.
+
+For example, a satellite campus might subscribe to the main Dante stream from your WING, receiving your complete worship mix. Their local mixing engineer can then adjust local monitor sends and local routing while hearing the full mix from the main campus.
+
+## Multi-Location Dante Workflows
+
+A common large-church setup: Main campus WING feeds audio via Dante to satellite campuses and overflow rooms. Each location receives the same main mix, potentially with local monitor adjustments.
+
+All locations are mixing the same worship service simultaneously. The band performs at the main campus (captured by the WING). Their audio flows via Dante to all other locations. Each location's mixing engineer focuses on their room's specific needs while the main engineer controls the overall mix.
+
+This architecture requires strong Dante networking infrastructure (proper switches, cables, configuration) but is incredibly powerful.
+
+## AES50 Digital Snake Support
+
+The WING can function as a digital snake using AES50 protocol. AES50 is a predecessor to Dante but still widely used in professional audio. If you have AES50-compatible equipment (some monitor mixers, stage boxes, or interface equipment), the WING can communicate with it.
+
+AES50 configuration is similar to Dante: you configure which audio streams the WING will send over AES50, and remote devices subscribe to those streams.
+
+In practice, most modern installations use Dante rather than AES50 because Dante is more flexible and supports higher channel counts. However, the WING's AES50 support ensures compatibility with legacy equipment.
+
+## Network Architecture for Multi-Room Churches
+
+A professional multi-room church network might look like this:
+
+Main sanctuary has the WING. Multiple satellite rooms (overflow, children's ministry, youth) connect to the WING via Dante. Each room has a simple monitor mixing console or networked speakers.
+
+Main room: WING feeds the main mix to speakers and to Dante network. Also sends individual channel feeds and multiple auxiliary mixes via Dante.
+
+Satellite room A: Receives the main mix from Dante, plays it through local speakers. Local engineer makes minor EQ or level adjustments for their room's acoustics.
+
+Satellite room B: Receives a different Dante stream (perhaps emphasizing different instruments or removing certain channels) optimized for their use.
+
+Streaming operation: Receives multiple Dante streams (main mix plus backup) and feeds them to streaming software.
+
+Monitor engineer station: Receives all individual channels and subgroups via Dante, allowing remote operation of stage monitors independent of the main engineer.
+
+This infrastructure is sophisticated but entirely feasible with the WING.
+
+## Dante Network Infrastructure Requirements
+
+Dante networking isn't plug-and-play in the way Ethernet is. To operate reliably, your network needs:
+
+Quality Dante-compatible network switches. Consumer-grade switches might work for small setups but become unreliable at larger scales. Professional Dante switches (from Audinate, who owns the Dante standard, or other manufacturers) are recommended.
+
+Proper cabling. Use quality CAT6 or better cables. CAT5e can work but is less reliable. Keep cables under 100 meters per IEEE standards.
+
+Network configuration. Your IT person should configure Dante flow (which devices send to which devices) and QoS (Quality of Service) settings to prioritize audio traffic.
+
+Redundancy. For mission-critical applications, you might have redundant Dante connections and backup audio paths so a single cable break doesn't take down your entire system.
+
+## Setting Up a Dante Network
+
+1. Install a Dante-compatible network switch. Connect it to your church's main network (or keep it separate for audio-only traffic).
+
+2. Connect the WING's Dante port to the Dante switch.
+
+3. Connect any remote mixing consoles, interface devices, or monitors that support Dante to the same switch.
+
+4. On the WING, configure Dante outputs. Specify which audio channels and mixes flow over Dante.
+
+5. On each remote device, configure Dante inputs. Subscribe to the audio streams you need from the WING.
+
+6. Test thoroughly. Send audio through Dante and verify it arrives correctly at all endpoints. Adjust levels and configuration as needed.
+
+## Troubleshooting Dante Audio Issues
+
+**No Dante audio reaching remote location**: Verify the Dante cable is connected to both the WING and the receiving device. Check that Dante is enabled on the WING in the Setup menu. Verify the receiving device is configured to subscribe to the correct Dante streams.
+
+**Dante audio is intermittent or drops out**: Network congestion. Check that other devices aren't flooding the network with traffic. Verify Dante switch is professional-grade, not a consumer switch. Check cable quality and replace if suspected.
+
+**Remote device can't find WING's Dante streams**: The WING might not be sending any streams. Go to Setup > Dante and configure which outputs to send. Verify the receiving device is on the same Dante network.
+
+**Audio quality is poor or has dropouts**: Network latency or bandwidth issues. Separate Dante network from other traffic if possible. Use a professional Dante switch. Verify cabling is quality.
+
+## AES50 Configuration (Legacy)
+
+If using AES50, the configuration is similar. In Setup, navigate to AES50 instead of Dante. Configure which audio streams to send over AES50. Remote devices connect to the AES50 port and subscribe to the streams they need.
+
+AES50 has lower bandwidth than Dante (limited to 64 channels) but is simpler in some ways. If your existing equipment supports AES50 and you don't need Dante's advanced features, AES50 is a valid choice.
+
+## Remote Mixing Station Setup
+
+Some churches set up a separate mixing console at a remote location (perhaps a monitor position on stage) connected to the WING via Dante. This remote console receives all the WING's audio streams and has independent mixing control for monitors or secondary mixes.
+
+The monitor engineer at the remote location operates their console normally. Everything they're mixing comes from the WING via Dante rather than from local analog cables.
+
+This setup eliminates long cables running from the stage to the main console area. Instead, you have a single Dante Ethernet cable carrying all the audio.
+
+## Disaster Recovery and Redundancy
+
+For critical applications, design redundancy. Have a primary Dante path and a secondary USB or analog backup path. If Dante fails, your streaming or monitoring can switch to the backup automatically or manually.
+
+For the most critical situations, you might have two WINGs operating in parallel, each feeding the network independently. If one fails, the other continues.
+
+## Future-Proofing Your Installation
+
+Dante is the industry standard for professional audio networking and is becoming more prevalent in churches. Installing Dante now (even if you don't use it immediately) future-proofs your installation.
+
+As your needs expand and you acquire equipment with Dante support, your infrastructure is already in place.
+
+<ProductCTA variant="inline" />
+
+## Professional Integration Services
+
+For large churches implementing sophisticated Dante networks, professional AV integrators experienced with Dante can design your system, specify equipment, handle installation, and train your team. This ensures reliability and professional results.
+
+The WING's Dante capability puts it in the realm of professional touring and large-venue equipment. Your investment in a WING opens possibilities that smaller mixing consoles can't match.
+
+## The WING as Network Hub
+
+Beyond just mixing, the WING becomes the central hub of your entire audio infrastructure. Every audio source flows through the WING. Dante distributes that audio throughout your facility. Remote locations, backup systems, streaming operations, and monitoring stations all receive their audio from the WING via Dante.
+
+This centralization simplifies management and ensures all locations are working from the same core mix.
+
+For large churches serious about professional audio infrastructure, the WING's networking capabilities justify its cost and complexity. Welcome to professional-grade networked audio production.

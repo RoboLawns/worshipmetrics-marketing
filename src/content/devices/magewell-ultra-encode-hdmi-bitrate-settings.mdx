@@ -1,0 +1,82 @@
+---
+title: Magewell Encoder Bitrate and Resolution Settings for Church Streaming
+description: Choose optimal resolution and bitrate for YouTube, Facebook, and multi-campus distribution. Understand CBR vs VBR and managing limited upload bandwidth.
+deviceCategory: encoder
+brand: Magewell
+modelId: magewell-ultra-encode-hdmi
+modelFullName: Magewell Ultra Encode HDMI
+articleType: setup-guide
+category: streaming
+tags: [encoder, bitrate, resolution, bandwidth, streaming quality, YouTube, Facebook]
+difficulty: intermediate
+priceRange: 1500-plus
+publishedAt: "2024-11-18"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Bitrate and resolution are the primary controls for balancing stream quality against bandwidth consumption. Get these settings wrong, and you'll either waste bandwidth on unnecessarily high quality or deliver a pixelated, unwatchable stream. This article helps you choose the right combination for your church's specific internet connection and viewing audience.
+
+## Understanding Bitrate Fundamentals
+
+Bitrate is measured in kilobits per second (kbps) or megabits per second (mbps). A bitrate of 6000 kbps means your encoder is transmitting 6 megabits of data every second. Over the course of a two-hour service, that's about 54 gigabytes of data flowing through your internet connection. For YouTube or Facebook streams, this data flows out through your upload connection.
+
+The relationship between bitrate and quality is not linear. Doubling your bitrate doesn't double your quality—it adds diminishing returns. For example, the difference between 2000 kbps and 4000 kbps is visually noticeable and significant. But the difference between 8000 kbps and 10000 kbps is subtle, perhaps only visible on very large screens or when viewing technical graphics with fine detail.
+
+Most churches operate in the 4000-8000 kbps range for RTMP streaming to YouTube and Facebook. Within this range, you get good quality without demanding enormous upload bandwidth. If your church's internet connection tops out at 10 mbps upload, you can reliably stream one 6000 kbps stream with bandwidth to spare for other network traffic.
+
+## Resolution Choices for Church Streaming
+
+Resolution describes the pixel dimensions of your video: 1080p (1920x1080), 720p (1280x720), or 480p (640x480). Higher resolution requires higher bitrate to maintain quality, but higher resolution also scales better to large screens and viewers with high-quality monitors.
+
+For churches with modern video equipment (newer cameras, good mixer output), 1080p is the standard recommendation. Viewers expect 1080p from professional-looking broadcasts, and YouTube's recommendation algorithm actually favors 1080p content. If your upload bandwidth is 10 mbps or higher, stream at 1080p.
+
+If your upload bandwidth is limited to 5-7 mbps or if your video source isn't particularly high quality (older cameras, compressed-looking graphics), 720p is a sensible choice. It looks excellent on typical viewing devices and requires significantly less bandwidth. A 720p stream at 4000 kbps looks sharper and cleaner than a 1080p stream at 4000 kbps because the encoder has more bitrate to work with relative to the total pixel count.
+
+480p is rarely necessary for churches in 2024, but if you're streaming to remote locations on severely constrained connections (like overseas satellite locations with 2 mbps download), 480p at 1500-2000 kbps can still look watchable on tablets and phones.
+
+## Frame Rate Considerations
+
+Frame rate (measured in frames per second, or fps) describes how many individual images per second make up your video. Church services typically run at 30fps or 60fps. The difference is important if you're capturing fast motion like dance or quick graphics transitions.
+
+For worship services with static speakers, music, and hymn lyrics, 30fps is perfectly adequate and requires less bandwidth than 60fps. A 1080p30 stream at 6000 kbps delivers excellent quality for most churches. If your church has contemporary music with motion graphics or dance elements, consider 1080p60 at 8000 kbps for smoother motion rendering.
+
+The Magewell encoder automatically detects your incoming HDMI signal's frame rate and attempts to match it. If your mixer or switcher outputs 60fps, the encoder will capture at 60fps. You can force it lower in the encoder settings if you want to reduce bandwidth consumption.
+
+## CBR vs VBR Encoding
+
+The encoder gives you a choice between CBR (Constant Bitrate) and VBR (Variable Bitrate) encoding. These are fundamentally different approaches to how bitrate is allocated throughout your stream.
+
+CBR maintains a consistent bitrate throughout the entire stream. If you set CBR to 6000 kbps, the encoder transmits exactly 6000 kbps whether the content is a static title slide or an action-packed music video. This is predictable and reliable for bandwidth planning. If your upload connection is exactly 6000 kbps, CBR guarantees your stream won't stutter or drop—you're using the full available bandwidth consistently.
+
+VBR adjusts bitrate based on content complexity. Simple scenes (static slides, talking head interviews) receive lower bitrate, while complex scenes (fast motion, detailed graphics) receive higher bitrate to maintain quality. VBR is more efficient and typically delivers better quality overall, but it requires more upload bandwidth headroom. If you set VBR to a maximum of 8000 kbps, some moments might spike to 8000 kbps while others drop to 3000 kbps, averaging around 5500 kbps.
+
+For churches, CBR is usually the safer choice because it's predictable. You test it once, know how much bandwidth it consumes, and can reliably repeat that same consumption every week. VBR can deliver slightly better quality but requires more bandwidth headroom and is harder to plan around if your upload connection is constrained.
+
+<ProductCTA variant="inline" />
+
+## Bandwidth Planning for Different Internet Speeds
+
+Before configuring your Magewell encoder, test your actual upload speed. Many online speed test tools measure download speed prominently but bury upload speed. Use `speedtest.net` or ask your internet service provider for your committed upload speed.
+
+If your upload is 5 mbps or less, stream at 1080p30 with 3000-4000 kbps bitrate. This ensures you have 1-2 mbps of headroom for other network traffic and unexpected congestion. A slightly lower bitrate is preferable to a dropped stream midway through a service.
+
+If your upload is 10 mbps, you can comfortably stream 1080p30 or 1080p60 at 6000-7000 kbps. This leaves 3-4 mbps for other network activity.
+
+If your upload exceeds 20 mbps, you have plenty of room for high-quality 1080p60 at 8000-10000 kbps, or even simultaneous streams to multiple platforms.
+
+Remember that upload bandwidth is shared with other network activities. If your church is downloading Zoom recordings, running email servers, or streaming other content simultaneously, these activities will compete with your live stream. Consider scheduling your live stream during times when you know network usage is light, or upgrade to a dedicated connection for streaming if your church's network is consistently busy.
+
+## Multi-Campus Distribution Bandwidth
+
+If you're using SRT to distribute your stream to satellite campuses, the bandwidth calculation changes. Your main encoder needs enough upload bandwidth for RTMP streams (YouTube/Facebook) and also for SRT streams (satellite campuses). If you're sending to YouTube at 6000 kbps and also distributing via SRT at 5000 kbps to two satellite campuses, your main encoder is effectively consuming 16,000 kbps (6000 + 5000 + 5000) of bandwidth.
+
+In practice, SRT streams from your main encoder to satellite campuses typically run over your internal network infrastructure or dedicated WAN links, not through your standard internet upload connection. So the YouTube/Facebook streams consume your public upload bandwidth, while SRT distribution uses separate infrastructure. Clarify this with your IT team before assuming your single internet connection needs to handle all traffic.
+
+## Testing and Adjustment
+
+Before your first live service, test your chosen bitrate and resolution settings during a non-critical broadcast. Stream for 30 minutes and monitor your actual bandwidth consumption and the stream quality on viewers' devices. If the stream stutters or drops, your bitrate is too high for your available bandwidth. If the video quality looks worse than expected, you might have over-compressed (set bitrate too low for the resolution).
+
+Once you've found your optimal settings, write them down and save a screenshot of your encoder's configuration. These same settings will work reliably every week, provided your internet connection remains stable.
+

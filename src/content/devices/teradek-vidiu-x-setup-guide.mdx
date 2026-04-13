@@ -1,0 +1,100 @@
+---
+title: Teradek VidiU X Church Streaming Setup Guide
+description: Initial configuration of Teradek VidiU X encoder, HDMI connection, CORE cloud management setup, and first stream to YouTube or Facebook.
+deviceCategory: encoder
+brand: Teradek
+modelId: teradek-vidiu-x
+modelFullName: Teradek VidiU X
+articleType: setup-guide
+category: device-setup
+tags: [encoder, Teradek, CORE, cloud management, HDMI, streaming, YouTube, Facebook]
+difficulty: beginner
+priceRange: 500-1500
+publishedAt: "2024-11-15"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The Teradek VidiU X is a compact, portable hardware encoder designed for streaming from anywhere—your sanctuary, a remote venue, or outdoor events. It's smaller than most alternatives and integrates with Teradek's CORE cloud management platform, allowing you to monitor and manage your stream from a phone or web browser. This guide covers initial setup and your first stream.
+
+## Unboxing and Physical Setup
+
+The VidiU X arrives in a compact box containing the encoder unit, power supply, Ethernet cable, and quick-start guide. The unit itself is roughly the size of a tablet—small enough to carry in a bag, making it ideal for churches with multiple venues or satellite campuses.
+
+Power on the unit by plugging in the included power supply and flipping the power switch. Status lights on the front panel illuminate, indicating successful startup. The VidiU X takes about one minute to fully boot, after which its Wi-Fi and Ethernet radios become active.
+
+For network connectivity, the VidiU X supports both Wi-Fi and Ethernet. For live streaming, Ethernet is preferred—plug the included cable into an available network port. If Ethernet isn't available, Wi-Fi works but is less stable, especially in busy network environments. We'll configure network connectivity in the next section.
+
+## Initial Network Connection and Access
+
+The VidiU X needs to connect to your network before you can configure streaming. If using Ethernet, simply plug the cable in and the device will request an IP address from your DHCP server (usually your router).
+
+To access the encoder, open a web browser on any device on the same network and type `vidiu-x.local` or try the default IP address `192.168.1.100`. The VidiU X's web interface should load. The default login credentials are username `admin` and password `1234`. Change this password immediately in the Settings menu for security.
+
+If you're using Wi-Fi instead, look for the SSID "VidiU-X" in your Wi-Fi networks list. The Wi-Fi password is printed on the unit or in your documentation. Once connected, access the web interface using the same URLs above.
+
+## Connecting Your HDMI Video Source
+
+The VidiU X has a single HDMI input on the back panel. Connect your video source here—typically your mixer, switcher, or camera. Power on your video source and ensure it's outputting video.
+
+In the VidiU X's web interface, navigate to the **Input** section. You should see "HDMI Signal Detected" displayed with the detected resolution and frame rate. If no signal appears, verify your HDMI cable is fully seated and your video source is actually outputting video.
+
+The encoder automatically detects your HDMI signal's resolution (1080p, 720p, etc.) and frame rate (30fps, 60fps). It will maintain these settings throughout streaming. If your HDMI source changes resolution mid-stream, the encoder adapts automatically.
+
+Audio is embedded in the HDMI signal. The VidiU X captures audio directly from your HDMI source. If your HDMI source doesn't carry audio, you can configure a separate audio input if the unit's hardware supports it—check your specific unit's specifications.
+
+## Setting Up Teradek CORE
+
+Teradek CORE is a cloud-based management platform that connects your VidiU X to Teradek's infrastructure, enabling remote monitoring and management. This is one of the VidiU X's key differentiators—you can check your stream health from your phone even if you're not physically at the encoder.
+
+Visit `teradek.com/core` and create an account if you don't already have one. Once logged in, you'll see an option to add a new device. The interface will ask for a pairing code from your VidiU X.
+
+Back on the encoder's web interface, navigate to Settings and look for the CORE pairing code. It's a unique code specific to your unit. Copy this code and paste it into Teradek's CORE platform. The encoder and CORE will then be linked.
+
+Once linked, your VidiU X appears in your CORE dashboard. You can now see real-time stream status, bitrate, dropped frames, and connection health from any web browser or mobile app. This remote monitoring is invaluable for churches with AV volunteers who can't be physically present at the encoder during streaming.
+
+## Configuring Your First Stream Destination
+
+Navigate to the **Streaming** section in the VidiU X's web interface. Click **Add Destination** to begin configuring a streaming platform.
+
+For YouTube, select RTMP as the protocol. Teradek provides pre-configured templates for YouTube, so you might see a "YouTube Live" preset option. If so, select it and you'll only need to enter your stream key.
+
+To find your YouTube stream key, log into your YouTube account, go to Creator Studio, and navigate to Live Streaming settings. Copy your stream key. Paste it into the VidiU X's YouTube configuration. The encoder should automatically fill in YouTube's stream URL.
+
+For Facebook, the process is similar. Facebook requires RTMPS (encrypted RTMP), and Teradek provides a Facebook preset. Select Facebook from the destination templates and enter your stream key from Facebook's Creator Studio.
+
+<ProductCTA variant="inline" />
+
+## Testing Your Configuration
+
+Before streaming during an actual service, run a complete test. Ensure your HDMI source is active, then click **Start Streaming** in the VidiU X's web interface. The encoder will attempt to connect to your configured platform.
+
+Within 15-30 seconds, you should see your video appear in YouTube Creator Studio or Facebook Creator Studio. Test video quality, audio levels, and overall appearance. If something doesn't look right, stop the stream, make adjustments, and test again.
+
+Check your CORE dashboard during this test. You should see real-time bitrate, frame rate, and connection status. This confirms that both the direct streaming connection and the CORE cloud connection are working.
+
+## Setting Resolution and Bitrate
+
+The VidiU X defaults to 1080p30 at 6000 kbps, which is appropriate for most churches with moderate upload bandwidth. In the Encoding section, you can adjust the bitrate and resolution.
+
+If your upload bandwidth is limited (under 10 mbps), consider reducing to 720p or lowering the bitrate to 4000-4500 kbps. If you have robust bandwidth (20 mbps or higher), you can stream at 1080p60 with 7000-8000 kbps for high quality.
+
+CBR (Constant Bitrate) is the recommended encoding mode. VBR (Variable Bitrate) is available but adds complexity for minimal gain.
+
+## Security Considerations
+
+The VidiU X's default password is weak. Change it immediately in the Settings menu. Use a strong password that's not easily guessed, especially if your encoder is on your church's main network.
+
+Consider restricting network access to your encoder. Some churches place the VidiU X on a separate network segment or VLAN accessible only to authorized AV staff. This prevents unauthorized access to your streaming configuration or stream keys.
+
+Teradek CORE requires a password as well. Use a strong password and enable two-factor authentication if Teradek offers it.
+
+## Backup and Failover Strategy
+
+The VidiU X is a single point of failure. For critical services, document your configuration (stream URLs, stream keys, bitrate settings) so you can quickly reconfigure a backup encoder if the primary unit fails. Some churches maintain a second VidiU X as a cold spare.
+
+Alternatively, ensure your CORE account provides quick access to all your stream key information so that in an emergency, you could quickly pivot to an alternate streaming setup.
+
+The VidiU X is reliable and rarely fails unexpectedly, but having a documented backup plan provides peace of mind for critical broadcasts.
+

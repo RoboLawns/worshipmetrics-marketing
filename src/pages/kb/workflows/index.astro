@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProductCTA from '../../../components/kb/ProductCTA.astro';
+import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
+
+const allWorkflows = await getCollection('workflows');
+const sorted = allWorkflows.sort((a,b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+const sizeLabels: Record<string, string> = { small: 'Small Church', medium: 'Medium Church', large: 'Large Church', 'multi-campus': 'Multi-Campus' };
+const budgetLabels: Record<string, string> = { 'under-1k': 'Under $1k', '1k-5k': '$1k–$5k', '5k-plus': '$5k+' };
+---
+<BaseLayout title="Church AV Workflow Guides — End-to-End Production Systems" description="Complete workflow guides for church AV production — from small congregation setups to large multi-campus systems. Covers every piece of gear and how it connects." canonical="/kb/workflows">
+  <section class="border-b border-border bg-bg px-6 py-16">
+    <div class="mx-auto max-w-7xl">
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'Workflow Guides' }]} />
+      <p class="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">End-to-End Production</p>
+      <h1 class="mt-3 font-display text-5xl text-white">Church AV Workflow Guides</h1>
+      <p class="mt-5 max-w-3xl text-lg text-slate-300">Pillar guides covering complete church production systems — from first camera to live stream. Covers camera selection, switching, encoding, audio, and software for every church size and budget.</p>
+    </div>
+  </section>
+  <section class="bg-[#10151d] px-6 py-16">
+    <div class="mx-auto max-w-7xl grid gap-6 lg:grid-cols-2">
+      {sorted.map(w => (
+        <a href={`/kb/workflows/${w.id}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full bg-blue-900/50 px-3 py-1 text-xs text-blue-200">{sizeLabels[w.data.churchSize]}</span>
+            <span class="rounded-full bg-slate-700/50 px-3 py-1 text-xs text-slate-300">{budgetLabels[w.data.budget]}</span>
+          </div>
+          <h3 class="mt-4 font-display text-xl text-white group-hover:text-blue-200">{w.data.title}</h3>
+          <p class="mt-2 text-sm text-slate-400">{w.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+  <section class="bg-bg px-6 py-16">
+    <div class="mx-auto max-w-5xl"><ProductCTA variant="banner" /></div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,74 @@
+---
+title: Magewell Ultra Encode HDMI: Streaming to YouTube and Facebook
+description: Detailed setup for YouTube Live and Facebook Live stream keys, managing simultaneous streams, and handling platform authentication errors with the Magewell encoder.
+deviceCategory: encoder
+brand: Magewell
+modelId: magewell-ultra-encode-hdmi
+modelFullName: Magewell Ultra Encode HDMI
+articleType: setup-guide
+category: streaming
+tags: [encoder, YouTube, Facebook, RTMP, stream keys, multi-platform, streaming]
+difficulty: beginner
+priceRange: 1500-plus
+publishedAt: "2024-11-16"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Many churches want to reach both YouTube and Facebook audiences during a single service. The Magewell Ultra Encode HDMI supports simultaneous streaming to both platforms from a single encoder, eliminating the need for redundant hardware or software-based solutions. This article walks you through configuring both destinations and troubleshooting the occasional authentication hiccup.
+
+## YouTube Live Stream Configuration
+
+YouTube remains the most popular streaming platform for churches, offering good viewer retention, searchable archives, and strong integration with church websites. Start by logging into YouTube with the account that manages your church channel. Navigate to YouTube Creator Studio by clicking your profile icon and selecting "Create" or navigating directly to `youtube.com/studio`.
+
+Look for the "Go Live" option in the left sidebar. If you don't see it immediately, you may need to enable live streaming for your channel first—YouTube requires a short waiting period after creating a new channel before live features unlock. Once that's complete, you'll find the "Go Live" button. Click it and select "Stream" rather than "Schedule" (unless you want to schedule for a future date).
+
+YouTube displays your stream key and stream URL in two separate locations. The stream key is a long alphanumeric string that looks like a jumbled password. Copy this entire key—it's essential for your encoder configuration. The stream URL is always `rtmp://a.rtmp.youtube.com/live2/` for YouTube Live streaming.
+
+Back in the Magewell Ultra Encode HDMI web interface, navigate to the **Streaming** menu. Click **Add Destination** and ensure RTMP is selected as the protocol. Paste the YouTube stream URL (`rtmp://a.rtmp.youtube.com/live2/`) into the **Server URL** field. Then paste your stream key into the **Stream Key** field. Give this destination a friendly name like "YouTube Live" so you can easily identify it if you add more destinations later.
+
+Before going live during a service, test this configuration by clicking **Start Streaming** and then checking your YouTube Creator Studio. You should see your video appear in the preview within 15-30 seconds, along with a green indicator showing an active broadcast. If the video appears but is silent, verify that your HDMI input is actually carrying audio. Some video sources output only video without embedded audio.
+
+## Facebook Live Stream Configuration
+
+Facebook Live offers different capabilities than YouTube—primarily, Facebook viewers tend to engage more actively through comments and reactions during a stream. However, Facebook requires a slightly different authentication approach than YouTube.
+
+Log into Facebook with the account that manages your church's business page or fan page. Navigate to your Page and look for the "Create" button or "Live Video" option. When you're ready to stream, Facebook provides a stream key through its Creator Studio or directly through the "Go Live" option. The stream URL for Facebook Live is typically `rtmps://live-api-s.facebook.com:443/rtmp/` (note the "s" in "rtmps" for secure connection) or sometimes `rtmp://live-api-s.facebook.com:80/rtmp/` depending on your network configuration.
+
+Copy the stream key and URL from Facebook's interface. Note that Facebook stream keys are unique to each Page and cannot be reused across multiple pages or shared with other encoders without creating new keys.
+
+In the Magewell encoder, click **Add Destination** again. Select RTMP as the protocol. Paste the Facebook stream URL and stream key into the appropriate fields. Name it "Facebook Live" so you can distinguish it from YouTube if needed. Save the configuration.
+
+Test your Facebook Live stream by starting the encoder and checking that your video appears on your Facebook Page's live preview. Facebook typically shows a brief processing period before your stream is visible to viewers, so wait 30-45 seconds before concluding the connection failed.
+
+<ProductCTA variant="inline" />
+
+## Simultaneous Streaming to Both Platforms
+
+One of the Ultra Encode HDMI's key advantages is the ability to send your single encoder's output to both YouTube and Facebook simultaneously. This is ideal for churches that want to maximize reach without buying duplicate hardware.
+
+With both destinations now configured in the encoder (one for YouTube, one for Facebook), you simply click **Start Streaming** once. The encoder automatically connects to both platforms and sends the same video and audio to each one. Your encoder's dashboard shows the status of both connections—green indicators mean both streams are live and connected.
+
+However, there's an important caveat: the two platforms may display slightly different stream keys or URLs at different times, and if either platform changes its authentication requirement, you'll need to update the encoder's configuration. This is why it's essential to test both streams 15-30 minutes before you go live on a Sunday. If one platform's authentication fails, you'll discover it during testing rather than discovering it when the pastor is halfway through the sermon.
+
+Simultaneously streaming to both platforms does consume your upload bandwidth. If you're streaming 1080p30 at 6000 kbps to both destinations, your encoder is actually using about 12,000 kbps of upload bandwidth (6000 for YouTube + 6000 for Facebook). Verify your upload speed can handle this load before relying on dual-platform streaming for a critical service.
+
+## Handling Stream Key Rotation and Authentication Errors
+
+Both YouTube and Facebook periodically rotate stream keys for security reasons. You might see an error message in the Magewell encoder dashboard saying "Authentication failed" or "Connection lost" even though your internet is working fine. This usually means the platform invalidated your old stream key and issued a new one.
+
+The solution is straightforward: go back to your platform (YouTube Creator Studio or Facebook Creator Studio) and grab the new stream key. Paste it into the Magewell encoder's destination settings, replacing the old key. You don't need to restart the encoder or reboot anything—simply update the key and the next time you click Start Streaming, it will use the new credentials.
+
+Some churches prefer to change stream keys manually before each week's broadcast for enhanced security. This ensures that even if a stream key accidentally gets shared or compromised, it's only valid for that particular service. To change your key, go to YouTube's or Facebook's settings, look for the option to "Generate New Key," and update your encoder immediately afterward.
+
+If you're seeing repeated authentication failures even with a fresh stream key, verify that your Magewell encoder has internet connectivity. Check your Ethernet connection, ensure your firewall isn't blocking outbound RTMP traffic (port 1935 is standard), and confirm that your upload speed is adequate. Many church networks have bandwidth limits or port restrictions in place.
+
+## Backup Destinations and Failover Strategy
+
+Beyond YouTube and Facebook, some churches also stream to their own website using an RTMP server or to third-party services like Vimeo Live or StreamYard. The Magewell encoder supports multiple destinations, so you could theoretically add a third or fourth destination to your configuration.
+
+However, each additional destination increases the bandwidth demand on your encoder. If you're streaming 1080p to three destinations simultaneously, you're consuming roughly 18,000 kbps of upload bandwidth. Make sure your church's internet connection can sustain this before adding a third destination. Most churches operate more reliably with two primary platforms (YouTube and Facebook) and a backup location on their website if they want redundancy.
+
+When configuring multiple destinations, the encoder treats them equally—if one platform is temporarily unavailable, the encoder continues streaming to the others. This is valuable insurance against platform outages or authentication issues on a single service.
+

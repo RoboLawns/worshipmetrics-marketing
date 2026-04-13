@@ -1,0 +1,100 @@
+---
+title: Magewell USB Capture HDMI: Setup in OBS Studio
+description: Plug-and-play setup of the Magewell USB Capture HDMI in OBS, including driver installation and capture source configuration.
+deviceCategory: encoder
+brand: Magewell
+modelId: magewell-usb-capture-hdmi
+modelFullName: Magewell USB Capture HDMI
+articleType: setup-guide
+category: device-setup
+tags: [USB, capture, OBS, driver, setup, HDMI, software streaming]
+difficulty: beginner
+priceRange: under-500
+publishedAt: "2024-11-15"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The Magewell USB Capture HDMI is a simple, affordable way to bring video into OBS Studio without needing a professional encoder. It's genuinely plug-and-play: connect it to your computer via USB, install the driver, and OBS recognizes it as a video capture device. This guide walks you through the process for both Windows and Mac.
+
+## Unboxing and System Requirements
+
+The Magewell USB Capture HDMI is a small rectangular device about the size of a paperback book. It has a USB Type-C port on one end and an HDMI input on the other. One USB cable is included; some versions also include an external power cable, though the device can typically power itself directly from a USB port.
+
+The USB Capture works on Windows 10 and later, Mac OS 10.13 and later, and Linux (though Linux support is less common in church AV setups). Your computer needs at least a USB 3.0 port for optimal performance, though USB 2.0 ports will work with lower resolution video.
+
+Before purchasing a USB Capture, verify your computer is compatible. Older Macs (pre-2012) and Windows 7 systems may have driver compatibility issues. If your church is running older computers, check Magewell's website for compatibility first.
+
+## Driver Installation on Windows
+
+Download the Magewell driver from Magewell's official website. Look for "USB Capture drivers" and select the Windows version matching your operating system (Windows 10 or Windows 11 are most common). The driver is typically a .zip file containing an installer executable.
+
+Extract the downloaded file and run the installer. Windows may display a security warning—click "Run anyway" or "Allow" depending on your Windows version. The installer guides you through the installation process, usually taking just a few minutes. You'll see a progress bar and a completion message when finished.
+
+Restart your computer after installing the driver. This ensures Windows fully loads the new capture device drivers.
+
+## Driver Installation on Mac
+
+On macOS, driver installation is similar. Download the Magewell USB Capture driver from Magewell's website, selecting the Mac OS version. Most recent Magewell drivers for USB Capture devices support Mac OS 10.13 and later.
+
+The downloaded file is typically a .dmg (disk image) file. Double-click it to open the disk image, then locate the installer application and run it. You may see a security prompt asking if you want to open an application downloaded from the internet—click "Open" or "Allow."
+
+The installer walks you through the process. On Mac, you may need to authorize the installation by entering your admin password. Once complete, restart your computer.
+
+## Connecting Your HDMI Source
+
+Connect your video source (camera, mixer, switcher) to the USB Capture's HDMI input using a standard HDMI cable. Ensure your video source is powered on and actively outputting video.
+
+Plug the USB Capture into your computer's USB port using the included USB-C cable. Your computer should detect the device and load the drivers automatically if you've already installed them.
+
+You should see a small status light on the USB Capture illuminate when it detects signal. Not all USB Capture units have status lights, so if yours doesn't, that's normal. The presence of the device will be confirmed when it appears in OBS.
+
+## Adding the USB Capture as a Source in OBS
+
+Launch OBS Studio. In the **Sources** panel (usually at the bottom left of the interface), click the **+** icon to add a new source. From the menu that appears, select **Video Capture Device**.
+
+OBS prompts you to name the source—something like "USB Capture" or "Camera Feed" is appropriate. Click OK. A new dialog appears with device settings.
+
+In the **Device** dropdown, you should see your Magewell USB Capture HDMI listed. Select it. OBS immediately begins capturing video from the device. You should see your HDMI source's video appear in the preview window.
+
+If the Magewell device doesn't appear in the Device dropdown, ensure your driver installed correctly. Restart OBS and try again. If it still doesn't appear, restart your computer completely and verify the driver was successfully installed by checking your operating system's device manager (Windows) or System Information (Mac).
+
+<ProductCTA variant="inline" />
+
+## Resolution and Refresh Rate Configuration
+
+After selecting the USB Capture device, OBS displays additional configuration options. The **Resolution** dropdown shows supported video modes. The USB Capture typically supports 1080p30 and 1080p60, and depending on your HDMI source, other resolutions like 720p60 or 4K30.
+
+Select a resolution matching your HDMI source's output. If your video mixer outputs 1080p30, select 1080p30 in OBS. If your camera outputs 1080p60, select 1080p60. Mismatches between your source and OBS's capture settings can cause dropped frames or black screens.
+
+The **Buffering** setting determines how much data OBS buffers from the USB Capture. For most churches, the default setting (30ms or similar) is adequate. If you experience dropped frames or stuttering, slightly increasing the buffer can help, though it adds latency.
+
+## Audio Configuration
+
+By default, OBS captures audio from your HDMI source through the USB Capture. This is convenient if your video source includes embedded audio (many cameras and mixers embed audio in the HDMI signal).
+
+However, some video sources don't embed audio. If your audio is coming from a separate audio console, you'll need to configure a separate audio input in OBS. Click the audio device settings in the audio mixer panel and select your audio interface or microphone as the source.
+
+If your HDMI source carries audio but it's too loud or too quiet, you can adjust the audio levels in OBS's Audio Mixer panel. Slide the volume slider up or down as needed. Set the level to approximately -6 dB to -3 dB for optimal audio without clipping.
+
+## Testing and Optimization
+
+Before your first live service, test your USB Capture configuration thoroughly. Have your video source active, verify video appears in OBS's preview, and confirm audio levels are appropriate.
+
+Run a test stream to YouTube or Facebook (without going live publicly) and monitor the actual stream quality. If you see dropped frames, stuttering, or audio issues, adjust your resolution or bitrate settings in OBS.
+
+Some older computers struggle with high-resolution USB capture. If your CPU usage spikes above 80% when capturing video, consider reducing the resolution to 720p or the frame rate to 30fps to reduce processing load.
+
+USB cable quality matters more than you might expect. If you're using a low-quality or very long USB cable, you might experience intermittent disconnections or video glitches. Use a high-quality USB 3.0 cable that's as short as practical, and avoid running it near power cables or high-noise electrical equipment.
+
+## Troubleshooting Common Issues
+
+If OBS doesn't recognize your USB Capture, unplug the device, restart OBS, and plug the device back in. Sometimes OBS needs to refresh its device list.
+
+If the video preview appears but is choppy or pixelated, reduce your resolution or frame rate. The USB Capture and your computer's USB bus both have bandwidth limits, and over-driving them causes compression artifacts.
+
+If audio isn't working, verify the audio source in OBS's Audio Mixer is set to the USB Capture or your separate audio interface, not your computer's built-in microphone.
+
+If the video appears black but OBS shows no error, verify your HDMI source is actually powered on and outputting video, and ensure the HDMI cable is fully seated on both ends.
+

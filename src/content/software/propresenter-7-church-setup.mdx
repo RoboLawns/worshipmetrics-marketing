@@ -1,0 +1,94 @@
+---
+title: "ProPresenter 7: Complete Church Setup Guide"
+description: "Install ProPresenter 7, create your first playlist, configure output screens for sanctuary and stage display, and build your Sunday service flow."
+app: propresenter
+articleType: setup-guide
+tags: [setup, propresenter, presentation, church-av, graphics]
+difficulty: beginner
+publishedAt: "2024-03-02"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+ProPresenter is the presentation software of choice in churches worldwide. It displays lyrics, sermon notes, scripture, and graphics to your congregation, and simultaneously sends video to your streaming production software. Unlike slide deck software designed for conferences, ProPresenter is built specifically for worship environments with real-time content switching, stage display support, and broadcast-quality output.
+
+This guide walks you through installing ProPresenter 7, creating your first playlist, configuring your output screens (sanctuary screen and stage monitor), and building a complete Sunday service.
+
+## Installing ProPresenter 7
+
+ProPresenter is a Mac-only application (it runs on macOS 10.14 or later). Purchase a license from renewpresenter.com—a single-computer license costs around $80. Download ProPresenter 7 and install it on your presentation Mac.
+
+Launch ProPresenter and you're greeted with an empty library. The interface has a left sidebar with your media library (songs, graphics, videos), a center editing area where you build your service, and a right panel for output configuration. At the bottom, you'll see your available screens and outputs.
+
+Before you do anything else, configure your displays. ProPresenter sends output to multiple screens: one shows your congregation (the house screen), another shows your worship leader (the stage display). Go to the menu ProPresenter → Preferences → Displays and configure these outputs.
+
+<ProductCTA variant="inline" />
+
+## Configuring Output Screens
+
+Most churches need two screens: a main sanctuary screen (usually a large projector display showing lyrics and graphics) and a stage monitor showing the current slide plus upcoming slides for the worship leader.
+
+In ProPresenter's Displays section, you'll see a list of available monitors. Drag and drop your main projector to "Main Display" (it controls what the congregation sees). Drag your stage monitor to "Stage Display" (it shows worship leader information).
+
+For the Stage Display, configure it to show the current slide, next slide, speaker notes, and a timer. This helps your worship leader stay on track and know what's coming next. Go to ProPresenter → Preferences → Stage Display and enable these elements.
+
+Some churches use a laptop or iPad at the stage monitor position instead of a built-in display. ProPresenter supports this via network connection. On your main ProPresenter Mac, go to Preferences → Network and enable Stage Display over network. Your stage device (iPad, laptop) connects to the same network and receives the stage display feed wirelessly. This is cleaner than running cables to a stage monitor.
+
+## Building Your Library
+
+ProPresenter organizes content into a library. Before you can build a service, you need songs and other content in your library. If your church uses Planning Center Online (PCO), ProPresenter can import your service plan directly. Go to ProPresenter → Preferences → Planning Center and authorize ProPresenter to access your PCO account. ProPresenter will then import your songs, slides, and order.
+
+If you don't use PCO, manually add songs to your library. Click "Library" in the left sidebar and then "Music." Add your worship songs by searching ProPresenter's built-in database or importing your own. Most contemporary worship songs are available in ProPresenter's database.
+
+Add scripture slides by creating text slides with verses. Add graphics (your church logo, backgrounds, prayer request graphics) by dragging files into the library.
+
+## Creating Your First Playlist
+
+A playlist is your Sunday service order. It contains songs, scripture, graphics, and sermon notes in sequence. Create a new playlist by clicking "New Presentation" (or "File" → "New Presentation"). Name it "Sunday Service - March 15" or similar.
+
+Your blank presentation opens with an empty slide list. Start building by adding content from your library. Drag a worship song into the playlist—ProPresenter automatically inserts all slides for that song (including lyrics, chord charts if available, and any custom slides you've added).
+
+Add another worship song. Then add a scripture slide. Then add a graphic for announcements. Continue building your service in the order it will happen. The left side shows your slide list (every slide you'll display during service), and the center shows the currently selected slide.
+
+## Configuring Service Flow
+
+As you build your playlist, notice the slide preview shows exactly what the congregation will see. Some slides might be for lyrics (congregation reads along), others for speaker notes (only the stage display shows these), and others for graphics (full-screen announcements).
+
+ProPresenter automatically decides what shows on house screen vs. stage display, but you can customize this. Right-click a slide and select "Show on House Display," "Show on Stage Only," or "Show on Both." For sermon notes (your pastor's outline), typically "Show on Stage Only" so the congregation doesn't see random notes.
+
+Add transitions between slides. By default, ProPresenter cuts between slides instantly. You can add fade transitions or other effects. For church services, keep transitions simple—fade works well for moving between songs, cut works for quick announcements.
+
+## Adding Media to Your Service
+
+ProPresenter supports video, background images, and animated graphics. Many churches play video during offering or special moments. Drag a video file into your library, then add it to your playlist. ProPresenter will play the video at the appropriate moment.
+
+Add background images behind text slides. For example, your church's color theme image behind a scripture slide, or a worship image during worship time. This visual consistency makes your service feel intentional.
+
+Some churches use the music visualization feature—animated graphics that respond to music in real-time. Enable this in ProPresenter → Preferences → Audio and select a visualization style. During worship, the visualization pulses with your music, adding visual interest to the sanctuary screen.
+
+## Using the Timer and Countdown
+
+ProPresenter includes a built-in timer visible only on the stage display. During your sermon, your pastor can see how much time they have remaining. Set the timer before sermon starts (typically 35–45 minutes depending on your service length). The timer counts down and alerts the pastor when time is running out.
+
+You can also use countdown timers for other moments. A 5-minute countdown during offering, or a 10-minute countdown before service start. These timers help your team stay on schedule.
+
+## Practicing Your Service
+
+Before your first Sunday, do a full run-through. Open your service playlist and go through every slide, every transition, every video. Click through the slides at the actual pace you'll use during service (not rushed). This reveals missing slides, awkward transitions, or timing issues.
+
+Pay attention to the stage display—is your pastor's outline clear? Are upcoming slides obvious? Adjust fonts or formatting as needed so information is readable from across the stage.
+
+Test your video playback—does it start and stop smoothly? Some videos have audio; confirm the audio isn't muted or too quiet.
+
+## Syncing ProPresenter with Streaming
+
+ProPresenter outputs video via NDI to your streaming software (OBS or vMix). Your streaming director sees the slides alongside camera feeds. This sync requires no configuration in ProPresenter—you just enable NDI output (Preferences → Network → Send NDI Output) and your streaming software discovers it automatically.
+
+Test this sync before service. Open OBS or vMix, add ProPresenter as an NDI source, and confirm you see slides in your stream. You should see exactly what's on your house screen.
+
+## Post-Service Cleanup
+
+After service, save your presentation. If you reuse this service structure next week (same songs, similar flow), save it as a template. ProPresenter will remember your custom slides, timings, and settings. Next week, duplicate the template and update song choices and sermon topics.
+
+ProPresenter's power lies in preparation. Churches that invest time building strong playlists find that services flow smoothly, volunteers are confident, and congregation engagement increases. Start with simple playlists (just lyrics), then gradually add complexity (graphics, videos, timers) as your team gains confidence.

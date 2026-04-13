@@ -1,0 +1,82 @@
+---
+title: "4K Church Production with vMix"
+description: "Evaluate when 4K streaming is worth it for churches, understand PC requirements, compare 4K vs 1080p delivery, and optimize performance."
+app: vmix
+articleType: feature-guide
+tags: [4k, resolution, streaming, performance, church-av]
+difficulty: advanced
+publishedAt: "2024-02-28"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+4K video (3840×2160 resolution) is increasingly common in broadcast equipment. Many cameras now support 4K capture, and streaming platforms like YouTube and Facebook support 4K playback. For a church considering 4K, the question isn't "can we do it?" but "should we?" This guide walks you through evaluating whether 4K makes sense for your church, what PC hardware you actually need, and how to deliver 4K without bankrupting your production.
+
+## When 4K Is Worth It
+
+4K sharpness is noticeable on large displays (65+ inch televisions or projectors in lobbies) but subtle on phones or average-sized home monitors. Most of your online congregation watches on 27-inch monitors or smaller—phones and tablets. For these viewers, 1080p is visually indistinguishable from 4K. They can't see the difference, and it doesn't matter to their experience.
+
+4K becomes worth it when you're displaying streams on large venue screens: lobby displays, auditorium jumbotrons, or archive footage that people later watch on larger displays. If your church has a large lobby with a 4K projector displaying the service, 4K streaming to that projector makes sense. If you're primarily delivering to YouTube viewers on phones, 4K is overkill.
+
+4K also matters if your church archives services and people later watch them on computers or large displays. 4K archive footage looks markedly better than 1080p when reviewed. Some churches stream 1080p live (easier on bandwidth) but record 4K locally (better for future playback).
+
+<ProductCTA variant="inline" />
+
+## PC Requirements for 4K Production
+
+4K requires significantly more processing power than 1080p. Your base requirement is an i9 processor (current generation, like 12th-gen Intel or 5000-series AMD Ryzen), 32GB RAM, and a high-end GPU (RTX 3070 or better). The total system cost is $2,500–3,500.
+
+vMix handles 4K better than OBS because vMix's hardware encoding offloads GPU work efficiently. A well-configured vMix system with 4K can use an i7 instead of i9, reducing cost by $500–800. However, you still need 32GB RAM and a dedicated GPU.
+
+To put this in perspective: a 1080p vMix system costs $800–1,200. A 4K vMix system costs $2,000–2,500. That's a significant jump. For most churches, 1080p performance is better value than struggling with 4K hardware requirements.
+
+## 4K Streaming vs. 4K Recording
+
+Most churches stream 1080p or 720p to the internet because of bandwidth constraints, then record 4K locally for archival. This is the practical middle ground. Your live stream is snappy and reliable on consumer internet, but you have high-quality 4K footage for future use.
+
+To do this, set vMix streaming output to 1080p (your upload internet determines stream quality), but set recording output to 4K (your local disk determines recording quality). This decoupling is one of vMix's advantages. OBS forces streaming and recording to be the same resolution.
+
+Recording 4K requires fast storage. SSDs are essential—hard drives can't sustain the 500+ Mbps write speed 4K recording requires. Budget $300–500 for a large SSD (2TB minimum) dedicated to recording.
+
+## 4K Upload Bandwidth
+
+Streaming 4K to the internet requires massive bandwidth. A 4K stream at reasonable quality needs 10,000–15,000 Kbps (10–15 Mbps). Most churches have 5–10 Mbps upload from their internet provider. They simply can't deliver 4K over the internet without upgrading their internet tier.
+
+If your church has a dedicated internet connection through a business provider (not residential cable), you might have 20+ Mbps upload. That's when 4K streaming becomes feasible. Ask your internet provider for your actual upload speed, and have them run a test at peak hours (Sunday morning). Many churches that think they have enough bandwidth actually don't.
+
+The math is simple: if your upload is less than 12 Mbps, you can't stream 4K reliably. If it's more than 20 Mbps, you can. The space between (12–20 Mbps) is borderline—technically possible but risky.
+
+## Platform Considerations
+
+YouTube supports 4K streaming and playback. Facebook also supports 4K, though they compress it more aggressively than YouTube. If you're streaming 4K to YouTube, it will look noticeably sharper than on Facebook.
+
+Many churches use different resolutions for different platforms: 4K to YouTube (your primary archive), 1080p to Facebook (where bandwidth matters less due to their compression). vMix supports per-platform encoding settings, making this approach feasible.
+
+However, most viewers don't change their watching behavior based on platform-specific quality. If you're 4K-on-YouTube and 1080p-on-Facebook, viewers see what their device and connection allow. The platform optimization matters more for archival quality than for live perception.
+
+## When to Avoid 4K
+
+If your upload bandwidth is less than 12 Mbps, skip 4K streaming. You'll struggle constantly with dropped frames, buffering, and viewer complaints.
+
+If your church uses NDI cameras (which bandwidth-limited), 4K NDI sources consume enormous network bandwidth. Three 4K NDI cameras can saturate a gigabit network. Stick with 1080p NDI.
+
+If your volunteers are comfortable with 1080p, adding 4K complexity isn't worth it. The additional training, hardware cost, and troubleshooting overhead exceed the value added. 1080p works excellently—there's no shame in staying there.
+
+If your PC is already stretched to capacity handling current productions, jumping to 4K will make it worse. Upgrade your content and skills on 1080p first; add 4K later when you're bored with current capabilities.
+
+## 4K Workflow
+
+If you decide to go 4K, approach it methodically. Start by filming one service in 4K (recording locally) without streaming 4K. Check the quality, confirm your storage keeps up, and verify your PC can handle the load. Make sure your backup and archival systems can manage the file sizes.
+
+Only after you've confirmed local 4K recording works smoothly should you attempt to stream 4K. Even then, do a test stream to YouTube on a Friday (not Sunday) at your service time. Verify your upload bandwidth is stable, and watch the stream on multiple devices to see how YouTube compresses it.
+
+Document your 4K settings (resolution, bitrate, encoder, hardware acceleration) so your team can reproduce them. 4K is less forgiving than 1080p—settings that work fine at 1080p might not work at 4K.
+
+## The Honest Assessment
+
+For most churches, 4K is aspirational rather than necessary. It looks impressive on paper but requires hardware investment and bandwidth that most churches don't have. The honest assessment: 1080p delivered reliably beats 4K delivered unreliably.
+
+If your church has excellent upload bandwidth (20+ Mbps), a willing budget for hardware ($2,500+), and a technical team that enjoys pushing boundaries, 4K is a valuable differentiator. You'll have archive footage that looks stunning in five years when people rewatch it on better displays.
+
+For churches without those advantages, 1080p is the sweet spot. Master 1080p production, achieve rock-solid reliability, and serve your congregation beautifully. That's plenty.

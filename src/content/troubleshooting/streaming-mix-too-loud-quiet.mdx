@@ -1,0 +1,136 @@
+---
+title: "Stream Audio Too Loud or Too Quiet for Online Viewers"
+description: "Adjust stream audio levels so online viewers hear the right volume. Covers mixer calibration and OBS volume settings."
+symptom: "Online viewers complain the stream audio level is wrong"
+affectedDevices: ["Behringer X32", "Behringer XR18", "OBS Studio"]
+tags: ["audio", "levels", "mixing", "streaming"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Viewers are messaging: "We can barely hear the pastor" or "The music is way too loud!" while people in the sanctuary hear the perfect mix. The issue is that your streaming audio level isn't calibrated the same as your room audio. We can fix this by adjusting your mixer's streaming output and OBS levels separately.
+
+<ProductCTA variant="inline" />
+
+## Understand the Two Different Mixes
+
+Here's the key: your in-room audio and your streaming audio *can and should be different*:
+
+- **Room mix**: What the congregation hears (controlled by your main speakers)
+- **Streaming mix**: What online viewers hear (controlled by your USB/streaming output)
+
+You can adjust these independently. The streaming audio doesn't affect the room, and vice versa.
+
+## Calibrate Your Mixer's Streaming Level
+
+Most mixers have separate outputs for the room and for streaming:
+
+1. Access your mixer's menu or web interface
+2. Look for **USB Output Settings**, **Card Sends**, or **Aux Sends** (varies by mixer)
+3. Find the **USB Master Output Level** or equivalent
+4. Set it to a standard level: typically **-18dB to -12dB** (not 0dB, which is very loud)
+5. If the streaming audio was too quiet, increase the USB output level slightly (e.g., from -18dB to -12dB)
+6. If it was too loud, decrease it (e.g., from -6dB to -12dB)
+7. Test the stream and adjust in small increments
+
+A good starting point is **-12dB USB output**, then adjust from there based on viewer feedback.
+
+## Adjust Individual Channel Levels for Streaming
+
+Some mixers let you route *specific channels* to the USB output. For example, you might send the pastor's mic and worship music to USB, but *not* the room ambient mix:
+
+1. In your mixer, identify which channels are feeding the streaming mix
+2. For each channel, look for a **USB Send** or **Card Send** knob
+3. Set the pastor's mic to a strong level (around -6 to -3dB from peak)
+4. Set worship music to a slightly lower level (around -12 to -9dB)
+5. Keep crowd noise or room ambient lower or off
+
+This gives viewers a clear, professional mix without the in-room reverb and ambient noise.
+
+## Adjust OBS Audio Levels
+
+If your mixer's USB output is correct but the stream is still off:
+
+1. In OBS, go to the **Audio Mixer** at the bottom
+2. Find your mixer input
+3. Look for the **volume slider** (usually labeled with a microphone icon)
+4. If too quiet, drag the slider to the right to increase volume
+5. If too loud, drag it to the left to decrease
+6. Watch the meter next to the slider — aim for around **-18 to -6dB** during normal speech
+7. Test the stream and adjust
+
+Ideal levels show peaks around -12dB (speech) to -6dB (music) with no clipping (red).
+
+## Set OBS Compressor/Limiter to Prevent Peaking
+
+A dynamic range compressor can help keep levels consistent:
+
+1. In OBS, click your audio source in the mixer
+2. Right-click and select **Filters**
+3. Add a **Compressor** filter
+4. Set **Ratio** to around 4:1 (moderate compression)
+5. Set **Threshold** to around -20dB
+6. This prevents sudden peaks from clipping
+
+A limiter is even better:
+1. Add a **Limiter** filter instead
+2. Set **Threshold** to -3dB
+3. This prevents any audio above -3dB, protecting against clipping
+
+## Use Normalization for Consistent Levels
+
+Some streaming platforms let you enable audio normalization:
+
+1. On **YouTube**, go to Stream settings and look for **Loudness normalization** (usually set to LUFS target)
+2. YouTube typically uses **-14 LUFS** normalization
+3. **Facebook** also has loudness normalization settings
+4. If available, enable it — this helps platforms automatically adjust audio to standard loudness
+
+This won't fix your OBS source levels, but it's an extra safeguard.
+
+## Create a Test Stream to Check Levels
+
+Before Sunday:
+
+1. Start an unlisted or private test stream on YouTube
+2. Stream for 5 minutes of music and speech
+3. Ask two people to watch on separate devices and report the volume:
+   - "Is it too loud, too quiet, or just right?"
+   - "Can you hear the pastor clearly?"
+   - "Is the music overpowering the speaking?"
+4. Adjust mixer USB levels or OBS volume based on feedback
+5. Do another 5-minute test and confirm
+6. Once satisfied, you're ready for Sunday
+
+## Document Your Final Settings
+
+Once you get levels right, write them down:
+
+- Mixer USB Master Output Level: _______ dB
+- Mixer Pastor Mic Level: _______ dB
+- Mixer Music Level: _______ dB
+- OBS Audio Source Volume: _______ %
+
+Save this as a text file or print it. Before each service, verify these settings are correct.
+
+## Troubleshoot Inconsistent Levels
+
+If levels are good one week but wrong the next:
+
+1. Someone may have adjusted the mixer's faders or USB output between services
+2. Always check your documented settings before going live
+3. Consider **locking** your mixer's faders or putting tape over the USB output level knob as a reminder
+
+---
+
+**Quick checklist:**
+- [ ] Mixer USB output set to -12dB (starting point)
+- [ ] OBS audio source volume set appropriately
+- [ ] Individual channel USB sends configured (if applicable)
+- [ ] Peak levels around -12dB in OBS meter (no clipping)
+- [ ] Compressor or limiter enabled to prevent peaks
+- [ ] Test stream confirms viewers hear good levels
+- [ ] Settings documented for next service

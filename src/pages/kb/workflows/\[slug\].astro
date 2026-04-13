@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
+import ProductCTA from '../../../components/kb/ProductCTA.astro';
+import TableOfContents from '../../../components/kb/TableOfContents.astro';
+
+export async function getStaticPaths() {
+  const all = await getCollection('workflows');
+  return all.map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const sizeLabels: Record<string, string> = { small: 'Small Church', medium: 'Medium Church', large: 'Large Church', 'multi-campus': 'Multi-Campus' };
+const budgetLabels: Record<string, string> = { 'under-1k': 'Under $1k', '1k-5k': '$1k–$5k', '5k-plus': '$5k+' };
+---
+<BaseLayout title={`${entry.data.title} | Church AV Knowledge Base`} description={entry.data.description} canonical={`/kb/workflows/${entry.id}`} type="article" publishedAt={entry.data.publishedAt}>
+  <section class="border-b border-border bg-bg px-6 py-16">
+    <div class="mx-auto max-w-7xl">
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'Workflow Guides', href: '/kb/workflows' }, { label: entry.data.title }]} />
+      <div class="mt-8 flex flex-wrap gap-2">
+        <span class="rounded-full bg-blue-900/50 px-3 py-1 text-sm text-blue-200">{sizeLabels[entry.data.churchSize]}</span>
+        <span class="rounded-full bg-slate-700/50 px-3 py-1 text-sm text-slate-300">{budgetLabels[entry.data.budget]}</span>
+      </div>
+      <h1 class="mt-6 max-w-4xl font-display text-5xl leading-tight text-white">{entry.data.title}</h1>
+      <p class="mt-5 max-w-3xl text-lg text-slate-300">{entry.data.description}</p>
+    </div>
+  </section>
+  <section class="bg-white">
+    <div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <article class="min-w-0">
+        <div class="kb-prose prose prose-slate max-w-none" data-pagefind-body><Content /></div>
+        <ProductCTA variant="banner" />
+      </article>
+      <div class="hidden lg:block"><TableOfContents headings={headings} /></div>
+    </div>
+  </section>
+</BaseLayout>

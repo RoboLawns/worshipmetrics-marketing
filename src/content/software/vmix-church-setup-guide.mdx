@@ -1,0 +1,84 @@
+---
+title: "vMix Complete Setup Guide for Church Production"
+description: "A comprehensive guide to choosing the right vMix license, meeting PC requirements, adding camera inputs, and configuring your first stream."
+app: vmix
+articleType: setup-guide
+tags: [setup, vmix, streaming, church-av, hardware]
+difficulty: beginner
+publishedAt: "2024-02-25"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+vMix is a professional production suite that transforms your church's streaming capabilities. Unlike OBS, which is built for flexibility, vMix is built for power—it handles multiple cameras, complex graphics, instant replay, and hardware control with less CPU strain. But vMix's power comes with a learning curve and hardware requirements. This guide walks you through choosing the right vMix tier for your church, ensuring your PC meets the demands, adding your first camera inputs, and making your first stream.
+
+## Choosing the Right vMix License
+
+vMix offers four tiers, and the right one depends on your ambitions. The Basic tier ($60/year) is for streaming on your own website or local network only—not YouTube or Facebook. Use Basic if you're developing your production skills or streaming to a private network. Most churches skip Basic.
+
+The Pro tier ($260/year) is the sweet spot. It supports unlimited NDI inputs, RTMP streaming to YouTube and Facebook, recording, replay, titles, and the full feature set. This is what most growing churches choose. It's affordable and feature-complete.
+
+The Premium tier ($1,000/year) adds advanced features like XML control and priority support. Most churches never need this tier.
+
+The Enterprise tier ($1,200+/year) is for large broadcast operations with dedicated staff. It includes commercial support and features you won't use unless your church is a media company.
+
+Start with Pro. If you hit limitations after a year, you can upgrade. Downgrading is also possible, so there's no penalty for starting at a higher tier and learning what you actually use.
+
+## PC Requirements for vMix
+
+vMix is hardware-hungry, but not impossibly so. The minimum specs are an Intel i5 processor (seventh generation or newer), 8GB RAM, and a dedicated GPU (NVIDIA or AMD graphics card). However, these are survival specs. Your PC will run vMix but struggle with multiple cameras and graphics.
+
+For smooth production with two to four cameras, aim for an Intel i7 (eighth generation or newer) or AMD Ryzen 7, with 16GB RAM and a dedicated GPU. A used i7 system from 2018–2020 costs $800–1,200 and runs vMix beautifully. This is the typical church production PC.
+
+For large productions with six or more cameras, graphics-heavy overlays, and replay, jump to a current-generation i9 or Ryzen 9. But honestly, most churches top out at four cameras and never need the i9 tier.
+
+GPU matters more in vMix than in OBS. vMix leverages GPU acceleration heavily. An NVIDIA RTX 2060 or newer (or AMD equivalent) is ideal. Integrated graphics (Intel UHD, AMD Radeon) work but strain the system. If your current PC has only integrated graphics, budget for a graphics card upgrade ($250–400) in addition to the PC itself.
+
+<ProductCTA variant="inline" />
+
+## Installing vMix and Choosing Your Input
+
+Download vMix from vmix.com and install it on your production PC. Launch vMix and you'll see an empty interface with an Input panel on the left (for adding cameras and sources) and a preview area in the center. The interface is more complex than OBS at first glance, but it follows logical patterns.
+
+Start by adding your first camera input. Click "Add Input" → "Camera" and select your USB camera or capture card. If you have an NDI camera, click "Add Input" → "NDI" and select the camera from the dropdown. vMix will immediately start receiving video from the source.
+
+Add your second camera by repeating this step. vMix shows all inputs in the left panel. Underneath each input is a preview thumbnail. Click a thumbnail to make that input the main output (the center preview). As you click between inputs, you're essentially switching cameras—a simple workflow that volunteer directors quickly understand.
+
+## Creating Your First Layout
+
+vMix uses the term "List" for what OBS calls a "Scene." A List is a collection of inputs (cameras, graphics, text, etc.) and how they're positioned on the output. Create your first list by clicking "Add List" at the bottom of the input panel.
+
+In the center preview area, you now see a blank layout. Drag your camera inputs into the preview to position them. You can have one camera full-screen, or two side-by-side, or any arrangement. Resize and reposition by dragging source edges. This WYSIWYG editor is more intuitive than OBS's source positioning.
+
+Once you've positioned your cameras, save the layout by right-clicking and selecting "Save." Give it a meaningful name like "Worship - Two Cameras." Create additional layouts for different service segments: "Sermon - Main Camera," "Graphics Full Screen," etc.
+
+Unlike OBS, where you swap scenes, vMix lets you swap between Inputs and between Lists. You'll primarily switch Inputs (cameras) while the layout stays constant. When you need a completely different arrangement, you switch Lists. This two-tier approach is powerful: your director stays on the same List but switches cameras constantly, then switches Lists when a major segment changes.
+
+## Configuring Your First Stream
+
+Go to Settings (top menu) → Streaming. Select your streaming service: YouTube, Facebook, or Custom RTMP. For YouTube, vMix will guide you through OAuth authentication. For Facebook, provide your Stream URL and Key. Once configured, the streaming setup is complete.
+
+Before your first stream, test locally. Create a test YouTube livestream (set it to Unlisted so only people with the link can find it). Click the Stream button in vMix and wait 30 seconds, then open your test YouTube stream in a web browser. You should see video. Stop the stream, close the browser, and you've confirmed the setup works.
+
+## Audio Configuration
+
+vMix audio setup is more straightforward than OBS. Go to Settings → Audio. Select your audio input device (your USB mixer or audio interface). The audio level meter should move when you speak into a microphone. Adjust the Gain slider so levels peak around -6dB during normal speaking.
+
+vMix includes a Master Volume control separate from input volume. Adjust input levels at the mixer, and use Master Volume in vMix only for fine-tuning. This separation of concerns is cleaner than OBS's approach.
+
+## Recording Alongside Streaming
+
+One advantage vMix has over OBS is the ability to record at a different quality than you stream. You might stream 720p at 2,500 Kbps to YouTube, but record locally at 1080p for archival. This is valuable for churches that later edit and re-post highlight videos.
+
+To record, click the Record button in vMix (visible on the top interface). vMix will record to your PC's disk in MP4 format. After service, you have a full recording without having to configure separate recording in OBS. The video quality is independent of your streaming settings.
+
+## First Service Rehearsal
+
+Before streaming a real service, do a full rehearsal. Launch vMix, set up all your inputs, create your Lists, switch between them rapidly, and practice the full service flow. This rehearsal reveals missing inputs, awkward transitions, or audio problems.
+
+Check your recording and streaming simultaneously. Start recording, start streaming, wait 30 seconds, then open your YouTube stream on a separate device to verify both are working.
+
+Ask yourself: Can your director switch Lists smoothly? Is audio monitoring clear? Are input levels correct? Once you've resolved these questions, you're ready.
+
+vMix's power is immediately apparent—it handles more sources and features than OBS without straining. Your first service in vMix might feel complex, but volunteers adjust quickly. Within a few services, the advantages (replay, better graphics, more inputs) become obvious, and you'll wonder how you ever produced with less.

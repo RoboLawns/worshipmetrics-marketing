@@ -1,0 +1,102 @@
+---
+title: "Tenveo NDI Camera OBS and vMix Integration"
+description: "Complete guide to adding Tenveo NDI cameras as sources in OBS and vMix, including configuration and troubleshooting."
+brand: "Tenveo"
+modelId: "tenveo-ndi"
+modelFullName: "Tenveo NDI PTZ Camera"
+articleType: "integration"
+category: "device-setup"
+tags: ["Tenveo", "NDI", "OBS", "vMix", "integration"]
+difficulty: "intermediate"
+priceRange: "500-1500"
+publishedAt: "2024-04-08"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Introduction
+
+Tenveo NDI cameras integrate with OBS and vMix through the same NDI protocol used by other network cameras. The integration process is identical to AVKANS NDI cameras: install NDI support, confirm multicast is working on your network, and add the camera as an NDI source in your production software.
+
+This guide covers the complete integration process, from NDI plugin installation through troubleshooting NDI discovery and optimizing performance.
+
+## Install NDI Support on Your Production Computer
+
+Before adding NDI sources to OBS or vMix, install the NDI Runtime and appropriate software plugin. The NDI Runtime is the underlying system library that handles network video. The software plugin is the interface that allows OBS or vMix to use NDI.
+
+Download the NDI Runtime from the Vizrt website and install it on your production computer. Restart your computer after installation.
+
+For OBS, download and install the obs-ndi plugin from the Newtek GitHub repository or community sources. For vMix, NDI support may be built-in depending on your version, or you may need to enable it through preferences. Consult your software documentation for specific installation steps.
+
+After installing both the Runtime and the software plugin, restart your production software. NDI sources should now be available when you add a new source.
+
+## Verify Network Configuration for Multicast Discovery
+
+NDI uses multicast to discover devices on the network. Both your production computer and the Tenveo camera must be on the same network subnet, and your network must allow multicast traffic.
+
+Confirm that your production computer and the camera are on the same subnet. If they are on different subnets, NDI discovery will not work even if both devices are networked. Check with your IT administrator if you are unsure.
+
+Confirm that multicast is not blocked by your firewall or network security. Some enterprise networks disable multicast for security, which prevents NDI discovery. If multicast is blocked, work with your IT administrator to allow NDI multicast traffic on your segment.
+
+## Add Tenveo as an NDI Source in OBS
+
+Open OBS and navigate to the scene where you want the camera. Click the + button under Sources and select NDI Source. A dialog appears showing available NDI devices. Look for your Tenveo camera in the list. It may appear by hostname or IP address.
+
+If the camera does not appear immediately, wait a few seconds and refresh the sources list. NDI discovery can be slow on some networks.
+
+Select the Tenveo from the list and click OK. OBS adds the source to your scene and begins streaming video from the camera. The video appears in your preview and is ready for use in your production.
+
+## Add Tenveo as an NDI Source in vMix
+
+In vMix, right-click in the Sources panel and select Add Input. Choose NDI as the input type. vMix displays available NDI sources. Select your Tenveo from the list.
+
+Once selected, vMix adds the camera as an input available for all your productions. Rename the input to something meaningful like Stage Camera so it is clear which camera it is.
+
+## Configure Video Quality and Performance Settings
+
+Both OBS and vMix allow configuration of how NDI sources are handled. In OBS, right-click the NDI source and select Properties to access quality settings. You can adjust resolution and other parameters to optimize for your network and CPU resources.
+
+In vMix, access input properties to configure how the NDI stream is handled. Most default settings are appropriate, but you can tune them if you encounter CPU or bandwidth issues.
+
+Monitor your production computer's CPU usage while the NDI source is active. If CPU usage is very high, reduce the NDI resolution at the camera or in your production software to bring usage within acceptable limits.
+
+## Test NDI Integration During Full Service Rehearsal
+
+Run a complete test of your production workflow with the Tenveo as an active NDI source. Test during typical network usage, not in an empty building. Monitor these factors:
+
+Does the NDI source remain available throughout the broadcast? Does video quality remain clean and stable? Does your production computer handle the CPU load? Do scene transitions work smoothly?
+
+If the NDI source drops out or video degrades, check that the camera is powered and networked. If performance is poor, your network may be congested and you may need to reduce NDI bitrate at the camera.
+
+<ProductCTA variant="inline" />
+
+## Troubleshoot NDI Discovery Issues
+
+If the Tenveo does not appear in your production software's NDI sources list, work through these diagnostics:
+
+The NDI Runtime is not installed. Even if the OBS or vMix plugin appears installed, it requires the NDI Runtime to function. Reinstall the Runtime, restart your computer, and try again.
+
+Multicast is blocked between devices. Some networks, especially enterprise networks with heavy security, block multicast or restrict it. You may need to work with your IT administrator to allow NDI multicast.
+
+The camera is on a different network subnet. If your production computer and the Tenveo are on different subnets, multicast will not reach between them. Check that both devices are on the same subnet.
+
+The camera's NDI output is not enabled. Log into the camera's web UI and confirm that NDI output is actually enabled in the Video or Network settings.
+
+## Create Preset Integration with Your Production Software
+
+If your production software supports it, create scene macros or scripts that recall camera presets when scene transitions happen. This keeps the camera and scene composition in sync automatically, creating a more professional workflow.
+
+OBS may require advanced scripting or third-party plugins for camera control. vMix often has better built-in support for camera control macros. Check your software documentation for options.
+
+## Optimize NDI Bandwidth Usage
+
+NDI streams consume network bandwidth. A single 1080p 60 fps NDI stream typically consumes 150-200 Mbps depending on scene complexity. If your network is limited or you have multiple cameras, reduce bitrate at the camera or reduce resolution to fit within your available bandwidth.
+
+Check your camera settings for NDI bitrate profiles. Many cameras offer reduced-bandwidth modes suitable for limited networks.
+
+## Conclusion
+
+Tenveo NDI camera integration with OBS and vMix follows the same process as any other NDI camera. Once NDI support is installed, multicast is working, and the camera is configured, integration is straightforward.
+
+The key to reliable NDI operation is careful network planning, confirmation of multicast capability, and testing during realistic load. A Tenveo NDI camera well-integrated into your production software becomes an invisible part of your system, delivering professional video reliably week after week.

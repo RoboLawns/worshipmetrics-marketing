@@ -1,0 +1,102 @@
+---
+title: "AVKANS PTZ-U100 Multi-Camera Setup on Church Networks"
+description: "Configuring multiple AVKANS cameras on the same network, managing IP addresses, and coordinating NDI sources in production."
+brand: "AVKANS"
+modelId: "avkans-ptz-u100"
+modelFullName: "AVKANS PTZ-U100 NDI Camera"
+articleType: "multi-unit"
+category: "device-setup"
+tags: ["AVKANS", "multi-camera", "network", "ndi", "scaling"]
+difficulty: "advanced"
+priceRange: "under-500"
+publishedAt: "2024-02-18"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Introduction
+
+Running multiple AVKANS PTZ-U100 cameras on a church network multiplies the complexity of initial setup but enables production flexibility that single-camera systems cannot achieve. Multiple cameras allow you to cut between different perspectives, show multiple speakers or worship team members simultaneously, and create production value that feels more professional than single-camera switching.
+
+The challenge is managing IP addresses, network bandwidth, NDI discovery, and configuration so that multiple cameras work together reliably without stepping on each other's presets or creating control conflicts. This guide covers planning a multi-camera setup, addressing each camera with static IP addresses, configuring NDI so all cameras appear to your production software, and managing bandwidth so your network can sustain multiple streams simultaneously.
+
+## Plan Your Multi-Camera Setup Before Installing
+
+Before you install the second or third camera, plan what each camera will cover. Most churches with multiple AVKANS cameras deploy them in positions like: wide stage shot, speaker close-up, worship team shot, or congregation response perspective. Each camera should have a clear role and a clear vantage point.
+
+Do not create a multi-camera system just because the budget allows it. Create one because you have a specific production need for multiple perspectives. A two-camera system planned thoughtfully is more useful than a three-camera system where one camera's purpose is vague.
+
+Document your camera plan on paper: where each camera will be mounted, what it will see, what presets each camera needs, and roughly how the operator will switch between them. This planning phase takes one or two hours but saves days of configuration confusion later.
+
+## Assign Static IP Addresses to Each Camera
+
+Each camera on your network must have a unique IP address. You cannot have two cameras at 192.168.1.200 any more than you can have two computers with the same address. Plan your IP addressing scheme before installation.
+
+A simple scheme is to reserve a range for cameras: 192.168.1.50 through 192.168.1.60, for example. Then assign your first camera 192.168.1.50, your second 192.168.1.51, and your third 192.168.1.52. Use the same gateway and subnet mask for all cameras. Document this addressing scheme in a simple spreadsheet or text file, and post it near your equipment cabinet or on your production computer.
+
+If your church IT administrator manages network addresses formally, check with them about the appropriate range to use. Some networks reserve specific ranges for different device types or have security policies about how addresses are assigned. Assigning an address that conflicts with a reserved range or a future expansion plan can cause problems later.
+
+For each camera, connect it to the network, access its web UI, and assign the static IP address. Do this one camera at a time, documenting the IP address you assigned and testing that the camera is reachable before moving to the next one.
+
+## Configure Each Camera's NDI Output Independently
+
+Once all cameras are networked and have static IP addresses, log into each camera's web UI and confirm that NDI output is enabled. Each camera should be sending NDI independently, not relying on another camera's configuration.
+
+Verify that the NDI output settings are consistent across all cameras: same resolution (usually 1080p), same frame rate (usually 60 fps), and similar bitrate settings. If one camera is set to 1080p60 and another is set to 720p30, the production software will see them as mismatched sources and it becomes harder to cut cleanly between them. Consistency matters.
+
+Test NDI discovery on your production computer. Once all cameras are networked and NDI is enabled, your production software should see all cameras in the available NDI sources list. If you see only some of them, the missing cameras may have NDI disabled or may be on a different network segment. Check the web UI for the missing camera and confirm NDI is actually enabled.
+
+## Manage Network Bandwidth for Multiple Streams
+
+Two AVKANS cameras streaming NDI simultaneously consume roughly 300-400 Mbps of bandwidth on your local network. This is sustainable on modern gigabit switches and network infrastructure, but it can quickly exceed capacity on older or smaller networks. Before committing to multiple cameras, confirm your network can handle the bandwidth.
+
+<ProductCTA variant="inline" />
+
+Check your network switch specifications. A gigabit switch (1000 Mbps) can handle multiple NDI streams in theory, but real-world conditions like other network traffic, wireless access points, and background data synchronization can reduce available bandwidth. If your switch is older than five years or was installed for basic office use, it may not be adequate for multiple video streams.
+
+If bandwidth is limited, consider these options: reduce the NDI resolution from 1080p to 720p for some cameras, reduce frame rate from 60 fps to 30 fps, or install additional network infrastructure like a separate switch dedicated to video devices.
+
+In OBS or vMix, adding multiple NDI sources consumes CPU resources on your production computer as well. Test your complete multi-camera workflow under realistic load before Sunday to confirm your production computer can handle the encoding and composition of multiple sources.
+
+## Configure Presets Consistently Across All Cameras
+
+If your operator will switch between cameras, preset consistency matters. All cameras should have presets saved in similar orders: Preset 1 is always Wide, Preset 2 is always Speaker, Preset 3 is always Worship. This consistency reduces the chance of the operator using the wrong preset and creating jarring shots.
+
+You may use different framing for each camera's presets because each camera has a different physical location. The wide shot from camera 1 looks different from the wide shot from camera 2 because they are positioned differently. But using consistent preset numbering and naming makes the operator's job easier.
+
+Document each camera's presets clearly. Create a simple reference sheet that maps camera number to preset names and expected framing. Laminate this or post it near your production computer so the operator has instant reference without hunting through camera web interfaces.
+
+## Set Up Naming in Your Production Software
+
+In OBS or vMix, rename each NDI source to reflect which camera it is. Instead of generic names like "NDI Source 1" and "NDI Source 2", use names like "Camera 1 Wide" or "Stage Camera" and "Pulpit Camera". This makes your scene setup clearer and prevents the operator from accidentally selecting the wrong camera during service.
+
+If your production software supports it, group sources or organize them in a way that makes sense to your operator. The goal is removing any ambiguity about which camera is which during service.
+
+## Coordinate Control Between Multiple Cameras
+
+If multiple people have the ability to control cameras, establish clear boundaries about who moves which camera when. In a larger production, you might designate one person to control camera 1 and another to control camera 2. In smaller operations, one person might control all cameras.
+
+Decide whether operators can override each other's control or whether control is exclusive. If two people can move the same camera simultaneously, you risk jerky motion and confused framing. It is better to establish clear control assignments than to debug multi-operator conflicts mid-service.
+
+If your production software allows assigning keyboard shortcuts to specific preset recalls, use this to reduce manual camera control. Operators can press a single key to recall a preset instead of manually navigating pan, tilt, and zoom. This reduces the chance of one operator's action conflicting with another's.
+
+## Test Multi-Camera Workflow During Full Service Rehearsal
+
+Before Sunday, run through your complete service with all cameras networked and operating. This is the only way to discover whether your network can handle the bandwidth, whether your production computer can manage the sources, and whether your operator can handle the complexity of multiple cameras.
+
+Pay attention to: whether all cameras remain available throughout the test, whether switching between cameras feels smooth and professional, whether presets recall correctly on all cameras, and whether the operator feels comfortable managing multiple cameras under service-like pressure.
+
+If you discover issues during rehearsal, you have time to address them. If you discover them during Sunday service, you are improvising under deadline.
+
+## Plan for Gradual Expansion
+
+You do not need all cameras live on your first Sunday with a multi-camera system. Start with one camera, get that operating perfectly, then add a second camera. Adding cameras gradually reduces the risk of overwhelming your team and your network simultaneously.
+
+Similarly, you do not need to use all cameras in every scene. You might have three cameras installed but use only two of them in your typical service workflow. The third camera is there for special events or for when your normal production pattern expands.
+
+## Conclusion
+
+Multi-camera AVKANS systems require careful planning of IP addresses, NDI configuration, and workflow management. The investment in proper setup is repaid by production flexibility and the ability to deliver more dynamic broadcasts to your congregation.
+
+The key to successful multi-camera deployments is treating the system as a whole unit: all cameras configured consistently, all addresses documented clearly, all presets named identically, and operator workflow planned in advance. Avoid the temptation to add cameras incrementally without planning. Plan the whole system first, then add cameras according to that plan.

@@ -1,0 +1,84 @@
+---
+title: "vMix Instant Replay for Church Production"
+description: "Learn when instant replay enhances worship services and special events. Configure replay buffer, manage storage, and execute smooth replay moments."
+app: vmix
+articleType: feature-guide
+tags: [replay, features, production, church-av, video]
+difficulty: intermediate
+publishedAt: "2024-02-27"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Instant replay is one of vMix's signature features. At the moment something special happens—a powerful worship moment, a baptism, a moving testimony—your director can replay it in real-time while your live feed continues. This transforms the viewing experience, allowing online audiences to experience the emotional peak twice without interrupting the flow of service.
+
+OBS can't do this natively. vMix's instant replay is a built-in feature that requires minimal configuration and no external recording. This guide walks you through understanding when replay adds value, configuring the replay system, managing storage, and executing smooth replay moments during service.
+
+## When Instant Replay Enhances Church Services
+
+Instant replay shines in specific moments. During worship, when a song reaches an emotional climax, replay the last 10 seconds of the worship leader or congregation with slow-motion intensity. During baptisms, replay the baptismal moment from a different camera angle to let the moment resonate. During testimonies, replay the most powerful quote. Special events like Easter sunrise services, Christmas productions, or conferences all benefit from well-timed replays.
+
+Replays aren't appropriate for every moment. Sermon content is rarely enhanced by replay—viewers want to follow the message in real-time. Announcements don't need replay. Long replays (more than 30 seconds) feel gratuitous. The art is knowing when a moment warrants stopping the live feed to revisit it.
+
+Many churches discover replay opportunities during their first month of use. You'll be streaming, see something special happen, and think "people need to see that again." That's your cue to replay. As your team learns the rhythm of replay, they anticipate moments and prepare the director in advance: "Replay the worship closing after this song ends."
+
+<ProductCTA variant="inline" />
+
+## Configuring Replay in vMix
+
+Start by allocating replay buffer. vMix can buffer up to 30 seconds of video in RAM. This happens automatically—you don't need to enable it. Larger buffer means you can replay longer clips. However, larger buffer uses more RAM. For most church services, the default 30-second buffer is perfect.
+
+Replay buffer uses RAM, not disk. If your vMix PC has 16GB RAM, allocating 30 seconds of 1080p video to replay uses about 500MB RAM—trivial. You could increase it further if needed, but 30 seconds is usually sufficient.
+
+To adjust replay length, go to vMix Settings → Replay. The default is enabled and set to 30 seconds (or maximum available RAM, whichever is lower). Leave these settings as they are unless you have a specific reason to change them. For most churches, no configuration is necessary—replay is ready to use immediately.
+
+## Recording Replay Moments
+
+When you play a replay moment, vMix can simultaneously record that replay to disk. This creates a separate file of just the highlight moments—valuable for creating post-service highlight reels without having to manually edit them later.
+
+Enable replay recording by going to Settings → Replay → Record Replays. vMix will create a folder in your document directory and automatically save each replay moment as a separate video file. After service, you'll have a collection of highlight videos you can quickly edit into a montage for your website or social media.
+
+Replay recording adds minimal overhead. If you're already recording the full service, recording replays simultaneously is negligible additional disk usage. Most churches enable this feature by default.
+
+## Using Instant Replay During Service
+
+When you decide to replay a moment, press the Replay button (visible on the vMix interface or assign a keyboard shortcut). Instantly, your output switches to the buffered replay. The replay plays at normal speed by default. You can also play it at half-speed or slow-motion for dramatic effect.
+
+As the replay finishes, press Replay again to return to your live feed. The transition is instantaneous—you're back to the live service without missing a beat.
+
+Some directors use a keyboard shortcut for replay (vMix lets you assign any key to replay), while others use a hardware button if they have a control surface. Train your director to press the replay button at the moment you want to replay to begin. The exact timing determines the duration of the replay—if you press replay 15 seconds after an event, you'll see the last 15 seconds. If you press replay immediately (within one or two seconds), you capture the full moment.
+
+## Deciding Replay Length
+
+Most effective replays are 8–15 seconds. This is long enough to capture a meaningful moment without feeling indulgent. Replays longer than 30 seconds (the maximum buffer) require stopping your replay to avoid showing stale footage.
+
+Replay very short moments (2–3 seconds) feel choppy. Give the viewer at least 8 seconds to absorb the emotional content.
+
+For slow-motion replays, slower playback takes longer to watch. A 10-second moment played at half-speed takes 20 seconds of your stream time. Plan accordingly—you have maybe 30–45 seconds before your audience expects you to return to the live feed.
+
+## Storage and Disk Space
+
+If you're recording replays and the full service simultaneously, disk usage accumulates. A 90-minute 1080p service at 5,000 Kbps uses about 33 GB of disk space. Replays add a few hundred MB (depending on how many you record).
+
+Before each service, confirm you have at least 100 GB free disk space on your vMix recording drive. After service, copy recordings to archive storage (external hard drive, network drive, cloud) to free up space for the next week.
+
+If your vMix PC has limited disk space, consider recording to an external USB 3 drive. USB 3 handles 1080p video without issue, and removable storage makes archival easy.
+
+## Replay Technique and Director Training
+
+The best replays feel natural—viewers don't feel like they're being manipulated into re-watching something. Train your director to replay moments that genuinely warrant a second look, not to replay everything "cool" that happens.
+
+Replay works best with planning. Before service, discuss with your pastor, worship leader, or team: "If the worship closing is powerful, we might replay it." "If someone's baptism is emotional, we'll replay it." This preps your director psychologically and lets them position cameras with replay in mind.
+
+Some churches develop a replay signal: your worship leader or speaker raises a hand after an important moment, cuing the director that replay is warranted. This takes the guesswork out of deciding when to replay.
+
+Replay shouldn't be jarring. If you're in the middle of a sentence or action and suddenly rewind, it breaks the flow. Wait for natural pauses: between songs, after a prayer, at a moment of silence. Replay during these natural breaks and it feels intentional.
+
+## Replay as a Tool for Emotional Depth
+
+The power of instant replay is psychological. When an audience sees something special happen, they absorb it emotionally but maybe don't fully process it. Replaying it immediately allows the audience to experience it again with fresh eyes. A baptism, a moment of corporate worship, a powerful statement—all feel more impactful when replayed.
+
+Online viewers especially benefit from replay. In-person congregants see the event live. Remote viewers see it once through a camera's perspective, which is different from being there. Replay gives remote viewers a second experience that feels closer to being present.
+
+Use replay judiciously and strategically, and it becomes a signature part of your church's production identity. Your congregation will begin to anticipate those special moments and the replay that follows. It becomes part of the worship rhythm itself.

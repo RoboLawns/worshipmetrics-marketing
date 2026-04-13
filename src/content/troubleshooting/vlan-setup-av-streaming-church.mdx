@@ -1,0 +1,193 @@
+---
+title: "Setting Up a VLAN for Church AV and Streaming"
+description: "Learn when and how to set up a dedicated VLAN for AV and streaming equipment. Understand benefits and basic network configuration."
+symptom: "Church network has congestion or security concerns affecting AV"
+affectedDevices: ["AVKANS PTZ", "Kiloview N2", "SMTAV BX30N"]
+tags: ["network", "vlan", "streaming", "architecture"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your church network is getting congested. Congregation Wi-Fi traffic is affecting your streaming, NDI discovery isn't working reliably, and IT is nervous about mixing AV equipment with staff computers. Setting up a dedicated VLAN for AV and streaming solves these problems, but is it necessary? Let's figure out if you need one and how to set it up.
+
+<ProductCTA variant="inline" />
+
+## Do You Actually Need a VLAN?
+
+VLANs add complexity. Only set one up if you have real problems:
+
+**You probably DON'T need a VLAN if:**
+- Your church is small (under 100 people)
+- Your current streaming is stable and reliable
+- NDI discovery works fine
+- You only have 2–3 cameras and 1 streaming PC
+- Your internet upload speed is sufficient
+
+**You PROBABLY need a VLAN if:**
+- Your streaming frequently drops or stutters
+- NDI discovery is unreliable (cameras not discoverable)
+- You have 10+ devices on the network
+- Congregation Wi-Fi is very busy
+- IT staff say "AV is clogging the network"
+- You're considering expanding with more cameras/encoders in the future
+
+If you're not sure, ask: *"Is our streaming and NDI stable right now?"* If yes, don't add a VLAN yet.
+
+## What a VLAN Does
+
+A **VLAN** (Virtual Local Area Network) is a logical separation of network traffic:
+
+- **Without VLAN:** All network traffic (congregation Wi-Fi, AV, IT servers) shares the same network
+- **With VLAN:** AV traffic is isolated on its own logical network, separate from congregation traffic
+- **Benefit:** AV equipment isn't competing with phones and laptops for bandwidth
+
+Think of it like: instead of a single highway with all cars, you have a dedicated lane for AV equipment.
+
+**What it doesn't do:**
+- Make your internet speed faster (that's ISP limited)
+- Fix a bad camera or bad cable
+- Replace good network design (still need wired Ethernet where possible)
+
+**VLAN limitations:**
+- Adds complexity — harder to troubleshoot
+- Requires a managed switch (most small churches have unmanaged switches)
+- Requires IT expertise to set up and maintain
+- If not done right, can actually make things worse
+
+## When to Set Up a VLAN
+
+**Wait until:**
+1. You've documented specific problems (e.g., "Streaming drops 20% of the time when church starts")
+2. You've tried simpler fixes (wired Ethernet for streaming PC, disabling Wi-Fi during service, etc.)
+3. Your IT staff is ready to help or you've budgeted for professional help
+
+## Basic VLAN Architecture for AV
+
+If you decide to set up a VLAN, here's the minimal setup:
+
+```
+Internet
+  |
+Router (with VLAN capability)
+  |
+Managed Network Switch (with VLAN support)
+  |
+  +--- VLAN 1 (AV / Streaming):
+  |      - PTZ cameras
+  |      - Streaming PC
+  |      - NDI encoders
+  |      - Mixers with network outputs
+  |
+  +--- VLAN 2 (Congregation / General):
+  |      - Wi-Fi access points
+  |      - Staff computers
+  |      - Printers
+```
+
+## Requirements for VLAN Setup
+
+**Hardware required:**
+1. **Managed network switch** (not consumer/unmanaged)
+   - Brands: Cisco, Arista, Dell, Netgear Managed, TP-Link Managed
+   - Consumer switches (NETGEAR FS105, TP-Link TL-SG105) don't support VLANs
+   - Expect to spend £200–500 for a basic managed switch
+2. **Router with VLAN support**
+   - Most business/prosumer routers support it
+   - Many consumer routers don't
+
+**Knowledge required:**
+- Basic network administration
+- Ability to log into switch and router web interfaces
+- Understanding of IP addressing (which you probably have if you've gotten this far)
+
+## Step-by-Step VLAN Setup (Simplified)
+
+This is a basic overview — actual setup varies by hardware. **Consult your switch's manual or call a network pro.**
+
+**1. Plan your IP ranges:**
+- VLAN 1 (AV): 192.168.10.0/24 (IPs from 192.168.10.1 to 192.168.10.254)
+- VLAN 2 (General): 192.168.20.0/24 (IPs from 192.168.20.1 to 192.168.20.254)
+
+**2. Configure the managed switch:**
+1. Log into the switch's web interface
+2. Create two VLANs: VLAN 10 (AV) and VLAN 20 (General)
+3. Assign physical ports to each VLAN:
+   - Ports 1–4: VLAN 10 (AV equipment)
+   - Ports 5–16: VLAN 20 (General)
+4. Set one port as "trunk" (carries both VLANs to the router)
+5. Save configuration
+
+**3. Configure the router:**
+1. Log into router's web interface
+2. Create sub-interfaces for each VLAN
+3. Assign DHCP ranges for each VLAN:
+   - VLAN 10: 192.168.10.50–192.168.10.200
+   - VLAN 20: 192.168.20.50–192.168.20.200
+4. Set routing rules (allow or deny traffic between VLANs)
+
+**4. Connect equipment:**
+1. Plug PTZ cameras into ports 1–4 (VLAN 10)
+2. Plug streaming PC into port 1 or 2 (VLAN 10)
+3. Plug general equipment into ports 5+ (VLAN 20)
+
+**5. Test:**
+1. Streaming PC should get an IP like 192.168.10.x
+2. Congregation PC should get an IP like 192.168.20.x
+3. Devices on the same VLAN can communicate
+4. Devices on different VLANs cannot (unless router allows it)
+
+## Gotcha: NDI Won't Work Across VLANs
+
+Important: **NDI multicast discovery doesn't cross VLANs** by default. If your camera is on VLAN 10 and your streaming PC is on VLAN 10, great. But if one is on VLAN 10 and the other is on VLAN 20, NDI won't find it.
+
+**Solution:** Use **NDI Bridge** (see NDI troubleshooting guide) to tunnel NDI across VLANs.
+
+## When NOT to Set Up a VLAN
+
+VLANs can create problems if:
+
+- Your IT staff doesn't have time to manage it
+- Your hardware doesn't support it
+- You're solving the wrong problem (e.g., blaming network when it's actually a bad cable)
+- You have fewer than 5 AV devices
+
+**Often a simpler fix works better:**
+- Upgrade to gigabit Ethernet (1000 Mbps instead of 100 Mbps)
+- Use wired Ethernet for streaming PC (not Wi-Fi)
+- Reduce congregation Wi-Fi interference
+- Upgrade your internet upload speed
+
+Try these first, then consider a VLAN if problems persist.
+
+## VLAN Troubleshooting
+
+If you set up a VLAN and things break:
+
+**Cameras can't be discovered:**
+- Verify they're on the correct VLAN port
+- Verify the switch port is configured for that VLAN
+- Use NDI Bridge if devices are on different VLANs
+
+**Devices can't communicate:**
+- Check if router is blocking inter-VLAN traffic
+- Verify both devices have IPs on the same VLAN (e.g., both 192.168.10.x)
+
+**Streaming drops:**
+- Verify streaming PC is on VLAN 10 (AV), not VLAN 20 (general)
+- Check if VLAN has enough bandwidth allocated
+- Verify no bandwidth shaping rules are limiting the AV VLAN
+
+---
+
+**VLAN decision checklist:**
+- [ ] Confirmed current streaming/NDI is actually unreliable
+- [ ] Tried simpler solutions (Ethernet, Wi-Fi scheduling, etc.)
+- [ ] Have a managed switch (not consumer switch)
+- [ ] Have or hired IT staff to help
+- [ ] Understand the complexity it adds
+- [ ] Budget approved for new equipment (if needed)
+
+**If you're not sure, start with:** Wired Ethernet for streaming PC + turning off congregation Wi-Fi during service. Solves 80% of problems and costs $50 instead of $500.

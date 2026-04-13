@@ -1,0 +1,78 @@
+---
+title: "Multi-Camera AV Setup for Medium Churches (200–500 Seats)"
+description: "Build a professional three-camera NDI production system for medium-sized churches. Complete signal flow, switcher operation, streaming setup, and volunteer training."
+churchSize: medium
+budget: 1k-5k
+gearList: ["avkans-ptz-u100", "atem-mini-pro", "behringer-x32", "magewell-usb-capture-hdmi"]
+tags: ["multi-camera", "medium-church", "ndi", "professional-production"]
+publishedAt: "2024-01-16"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Why Three Cameras Matter for Growing Churches
+
+When your congregation grows beyond 200 seats, a single camera no longer captures the full picture of worship. You need coverage of the stage from multiple angles—a wide shot showing the whole worship team, a medium shot on the preacher or worship leader, and a tight shot for emotional connection. This is the point where your streaming experience jumps from "acceptable" to "professional."
+
+The investment in a three-camera setup isn't just about better visuals, though that matters. It's about creating consistent coverage that doesn't rely on a single operator making decisions in real time. With three static or motorized cameras and a trained switcher operator, your production becomes repeatable and resilient. A volunteer can learn the patterns quickly: wide on verse, medium on chorus, tight on emotional moments. The system becomes trainable.
+
+## Building Your Three-Camera NDI Network
+
+The foundation of a modern medium-church production system is NDI networking. Instead of running HDMI cables from three cameras to your switcher (a real cable management nightmare), NDI lets you send video and power over a single Ethernet cable per camera. This radically simplifies your physical setup and gives you flexibility in camera placement.
+
+You'll want three AVKANS PTZ cameras (the U100 model is the sweet spot for price and reliability). Each camera costs around $450-500 and connects to a managed network switch via a single CAT-6 Ethernet run. The PoE (Power over Ethernet) switch supplies power to the cameras, so you don't need separate power cables running across your stage or auditorium. This is a game-changer for cable management.
+
+Position your wide-shot camera at the back of your auditorium, elevated slightly. This is the "establishing shot" that shows the full stage and gives viewers context. Position your medium shot camera stage left or right at about 45 degrees to capture the main speaker or worship leader without directly frontal flatness. Position your tight shot camera on the opposite side, also at 45 degrees, to give you reaction shots and emotional coverage.
+
+The AVKANS cameras include manual pan-tilt-zoom via a wired joystick controller, which you can place at your switcher position. This means your operator isn't just switching between camera angles—they're also framing and zooming each shot in real time. It sounds complex, but with a few weeks of practice, a good operator becomes intuitive with the controls.
+
+## The ATEM Mini Pro Switcher
+
+The ATEM Mini Pro is the hub of your operation. It accepts inputs from all three cameras (converted from NDI to HDMI via small converters), plus inputs for graphics, ProPresenter output, or video playback. It outputs a program feed to your streaming PC, an auxiliary mix for broadcast to a digital display or projection screen, and can record locally to an SSD for archive.
+
+What makes the Mini Pro worth the upgrade over the standard Mini is the built-in recording capability and the second USB output. You can record a high-quality ISO file (independent multicam archive) while streaming simultaneously. This ISO recording is invaluable for post-service editing, creating sermon clips, or producing highlight reels for social media.
+
+Your operator sits at the ATEM with the three camera joysticks mounted on either side of the switcher. They have a monitor showing the live program output and a second monitor showing camera preview feeds and upcoming graphics. They switch between cameras, adjust framing on the fly, and trigger pre-programmed graphics and transitions with button presses. This is the visible heart of your production operation.
+
+## Audio Mixing for Streaming and In-Person
+
+The Behringer X32 is a professional digital mixer that's affordable and remarkably capable. Unlike analog mixers, the X32 handles mixing for both your in-room sound system and your streaming audio independently. You can send one mix to your main PA system (serving your in-room congregation) and a separate stereo mix to your streaming PC.
+
+This separation is crucial. Your streaming mix doesn't include the reverb-heavy wash of your sanctuary acoustics. It doesn't include feedback from mains speakers. It's a clean, direct mix optimized for headphone and laptop speakers. Your in-room mix can be aggressive with effects and compression because it's being heard through speakers tuned for your space.
+
+The X32 connects to your ATEM Mini Pro via USB audio, so your streaming PC receives both video and broadcast-quality audio. This is professional-grade signal integrity. Connect your wireless microphone receivers, instrument line inputs, and any pre-recorded tracks to the X32, mix them down to a stereo pair labeled "streaming out," and that mix goes directly to your streaming encoder.
+
+Train one person to be your audio engineer, and give them a mixing cheat sheet. Worship leader vocals should hit -12dB on your mix meter, speaking should hit -6dB. During announcements, drop the music back to -18dB. During songs, keep instruments balanced and let the vocals sit slightly forward. These aren't rules—they're starting points that a volunteer can learn in a single service.
+
+<ProductCTA variant="inline" />
+
+## The Streaming PC and OBS Configuration
+
+Your streaming PC doesn't need to be top-of-the-line. A mid-range desktop with a dedicated GPU (like an RTX 3060) and an i5 processor handles streaming at 1080p/30fps without struggle. The important thing is that it runs only OBS during service. Close Slack, email, and every other application. This PC has one job.
+
+In OBS, you'll create scenes for each phase of your service: pre-service bumper, worship, speaking, announcements, and closing. Each scene pulls the video from your ATEM Mini Pro (via HDMI capture card), the audio from your X32 (via USB), and overlays your graphics. You add your church logo, service information, and any lower-third graphics in OBS, not in the switcher. This keeps your switcher simple and your graphics flexible.
+
+Configure your streaming output to send simultaneously to YouTube and Facebook. Many churches find that YouTube is watched during the service (people tune in to follow along), while Facebook is watched later (people catch the replay Monday morning). OBS handles this without breaking a sweat.
+
+## Integrating ProPresenter
+
+Most medium churches are already using ProPresenter for lyrics and sermon notes. ProPresenter outputs its screen via HDMI directly into one of your ATEM Mini Pro inputs. Your operator can switch to the ProPresenter output whenever you want to show lyrics, song charts, sermon notes, or any full-screen graphic. This integration is seamless and keeps your technical operation focused on camera switching and audio mixing.
+
+## The Complete Signal Flow
+
+Here's how everything connects: Your three AVKANS cameras send video via Ethernet to your managed network switch, which distributes power via PoE. Small HDBaseT converters change the NDI signal to HDMI. Your ATEM Mini Pro receives these three HDMI streams, plus a ProPresenter feed and any other video you want to include. The Mini Pro outputs a program mix via HDMI to your streaming PC, where an HDMI capture card receives it. Your X32 mixer sends audio to the streaming PC via USB. OBS takes both video and audio, adds graphics and transitions, and streams to YouTube and Facebook. A separate monitor shows your operator the program output they're creating in real time.
+
+This entire signal chain is resilient. If one camera loses network connection, the others keep working. If your X32 goes offline, you have a backup USB microphone. If OBS crashes, your ATEM Mini Pro is still outputting clean video to a backup monitor. The system degrades gracefully.
+
+## Training and Operational Rhythm
+
+A three-camera production requires a trained team: a switcher operator, an audio engineer, and ideally a graphics operator (though one person often handles both audio and graphics). Start by identifying your core team—people who are comfortable with technology and attend every week. Invest in two hours of hands-on training per person, then have them shadow a skilled operator for three services before they operate independently.
+
+Create a runsheet for each service that shows the progression of songs, speaking segments, and when graphics appear. The runsheet becomes the contract between your production team and your pastoral staff. When the pastor knows that graphics will appear at minute 22 and music will drop at minute 35, they can plan their message flow accordingly.
+
+## Building Toward Broadcast Quality
+
+Once this three-camera system is running smoothly for a few months, you have a foundation for upgrading to broadcast quality. You might add a fourth camera for more flexibility. You might upgrade to an ATEM Mini Extreme for more input options. You might invest in a dedicated graphics operator and a separate monitoring setup. But you're building on proven infrastructure, not starting from scratch.
+
+The real value of a medium-church three-camera system isn't the gear—it's the operational maturity it creates. You're training volunteers to think like production professionals. You're creating systems that volunteers can learn and execute reliably. You're building a production operation that can survive personnel changes and grow with your congregation.

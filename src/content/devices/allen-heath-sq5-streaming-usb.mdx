@@ -1,0 +1,77 @@
+---
+title: SQ-5 Streaming Audio: USB Interface Setup for OBS and vMix
+description: Configure USB streaming output on the Allen & Heath SQ-5 for live church broadcasts to OBS and vMix, including separate streaming bus setup.
+deviceCategory: mixer
+brand: Allen & Heath
+modelId: allen-heath-sq5
+modelFullName: Allen & Heath SQ-5
+articleType: streaming
+category: streaming
+tags: [streaming, usb, obs, vmix, live-broadcast, church-audio]
+difficulty: intermediate
+priceRange: 1500-plus
+publishedAt: "2024-01-16"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+# SQ-5 Streaming Audio: USB Interface Setup for OBS and vMix
+
+Many churches today livestream their worship services to reach members at home, in hospitals, or attending remotely. The Allen & Heath SQ-5 makes this remarkably straightforward through its USB audio interface capability. Rather than using a separate audio interface or routing through intermediate devices, the SQ-5 can send mixed audio directly to your streaming computer via a single USB cable. This direct connection ensures clean, consistent audio for your broadcast while maintaining independent control over your front-of-house mix.
+
+## Why Separate Your Streaming Mix
+
+Before diving into technical setup, understand why professional church audio systems create separate mixes for FOH and streaming. Your FOH mix—what the congregation hears through your main speakers—optimizes for the room acoustics, live dynamics, and moment-to-moment adjustments. A streaming mix, by contrast, needs consistent levels, reduced dynamics, and protection against sudden loud sounds that work in a live room but startle people watching at home.
+
+The SQ-5's flexibility allows you to create an entirely separate mix bus dedicated to streaming. This means your volunteer operating the main mix can make aggressive fade moves, duck music during announcements, and handle technical challenges without affecting what your online audience experiences. This separation of concerns is what distinguishes professional broadcast setups from simple "send us your main mix" approaches.
+
+## Configuring USB Audio on the SQ-5
+
+Start by connecting a USB cable from the SQ-5's USB output to your streaming computer. The SQ-5 features a standard USB Type-B port on its rear panel. Use a quality, shielded USB cable of reasonable length—ideally not longer than 15 feet, as longer cables can introduce latency issues or audio corruption.
+
+Power on the SQ-5 and allow it to boot completely. Navigate to the System Settings menu on the touchscreen. Look for the USB Audio section, where you'll configure how the SQ-5 presents itself to your computer. The SQ-5 can appear as a multi-channel audio device, allowing you to send multiple independent mixes to your streaming software simultaneously.
+
+In the USB Audio settings, you'll see options for which physical outputs appear as USB audio channels to your computer. By default, the SQ-5 likely shows the main stereo output. However, you want to route your streaming mix through a dedicated auxiliary output instead. Navigate to the Outputs section and configure an auxiliary bus—let's call it AUX1—to appear as your primary USB audio output to the computer.
+
+<ProductCTA variant="inline" />
+
+## Creating a Dedicated Streaming Bus
+
+Now comes the creative part: building your streaming-specific mix. In the Mix Rack on the SQ-5's touchscreen, locate an auxiliary fader you haven't assigned yet. This will become your streaming mix destination. Let's use AUX 1 for this purpose. This fader will control the overall level of everything feeding your streaming output.
+
+Begin by selecting which channels you want in your streaming mix. Unlike your main mix, you might choose to include only key elements: lead vocals, keys, drums (if any), and ambient crowd sound. For many churches, the sermon audio matters most for streaming, so ensure your sermon microphone(s) feed the streaming bus prominently.
+
+Assign your selected channels to AUX 1 by pressing the channel's AUX 1 button. You'll see the button illuminate, indicating that channel is feeding AUX 1. As you build this mix, monitor it on the AUX 1 fader and its corresponding meter on the screen. The goal is steady, consistent levels that compress dynamic range just enough to prevent sudden loud moments from overwhelming listeners.
+
+## Processing Your Streaming Mix
+
+The real magic happens in processing. Each channel on the SQ-5 includes parametric EQ, compression, and other tools. For your streaming mix, you want to take advantage of these. Start with compression on your vocal channels—this tames dynamic range and ensures voices stay intelligible even when people speak or sing at varying volumes.
+
+Set a fairly gentle compressor on your lead vocal channel: threshold around -20 dB, ratio 4:1, and attack set to medium. This smooths out performance variations without making voices sound obviously processed. Apply similar settings to other important channels feeding your streaming mix.
+
+On the AUX 1 fader itself, consider adding a limiter to prevent any unexpected peaks from clipping your streaming audio. The SQ-5 allows you to add processing to output channels just as you would to individual input channels. A limiter set to -1 dB with fast attack provides a safety net against sudden loud moments.
+
+## Configuring OBS or vMix
+
+With your SQ-5 prepared, now configure your streaming software. Open OBS Studio or vMix on your streaming computer. In the audio input settings, you need to select the SQ-5 as your audio source. In OBS, this appears under Audio Input Capture or Mic/Auxiliary Audio devices. Search for "Allen & Heath SQ-5" or "USB Audio Device" in your audio input options.
+
+Once selected, adjust the input level slider in OBS to ensure your streaming mix feeds at appropriate level. You're aiming for average levels around -18 dB on OBS's meters, with peaks at -12 dB. This gives streaming software plenty of headroom and prevents distortion if your mix accidentally goes hot.
+
+## Testing and Adjusting Levels
+
+Before your first livestream service, run a full technical rehearsal. Have your volunteer operator run the main mix while you monitor the streaming audio output on a computer at the back of your sanctuary or in a control room. Listen for any audio dropouts, latency issues, or level inconsistencies.
+
+Adjust the AUX 1 fader until your streaming computer receives consistent, clear audio. You may need to fine-tune individual channel contributions—if your sermon microphone is too quiet relative to music, boost it further on the AUX 1 mix by pressing its button and adjusting its fader. This independent control is the beauty of mixing-on-the-fly.
+
+## Handling Multiple Streams
+
+Some churches stream simultaneously to Facebook, YouTube, and their own website. The good news: your computer's streaming software handles multiplatform delivery. The SQ-5 simply provides clean audio to your computer, and your software sends it wherever you've configured it to go. You don't need separate audio hardware for each platform.
+
+## Troubleshooting Audio Dropout
+
+If you experience audio cutting in and out, check your USB cable first—a loose connection is the most common culprit. Ensure the cable is fully seated in both the SQ-5 and your computer. If dropout persists, try a different USB port on your computer or a different USB cable entirely.
+
+If your computer's CPU is heavily loaded during streaming, audio dropout can occur. Close unnecessary applications, reduce OBS's scene complexity, or add a dedicated streaming computer to your setup. The SQ-5's USB audio is only as good as the computer receiving it.
+
+Your Allen & Heath SQ-5 is now streaming-ready, providing professional-quality audio to your online congregation while your FOH operator maintains independent control of the room's live mix.

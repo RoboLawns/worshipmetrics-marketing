@@ -1,0 +1,102 @@
+---
+title: "AV Distribution Across Multiple Church Campuses"
+description: "Stream live services from your main campus to satellite locations in real time. Complete guide to inter-campus distribution, encoder setup, and managing multi-location worship."
+churchSize: multi-campus
+budget: 5k-plus
+gearList: ["magewell-ultra-encode-hdmi", "kiloview-dc230", "kiloview-n2"]
+tags: ["multi-campus", "distribution", "srt", "live-relay"]
+publishedAt: "2024-01-18"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## The Multi-Campus Opportunity and Challenge
+
+When a church grows to multiple campuses, you're no longer just streaming to individuals at home. You're streaming to congregation members in other physical locations. They deserve the same quality of worship experience as your main campus. That means distributed pastoring, live music, and the feeling that they're part of one church rather than isolated satellite congregations.
+
+The technical challenge is delivering a reliable, low-latency video feed across your network infrastructure—whether that's your own fiber network between campuses or cloud-based internet delivery. You're not just pushing video to YouTube. You're orchestrating a live relay system that includes multiple video inputs, professional audio, and real-time coordination between locations.
+
+## Understanding SRT vs NDI for Inter-Campus Distribution
+
+This is the first critical decision. Should you use SRT (Secure Reliable Transport) or NDI for sending video between campuses?
+
+SRT is purpose-built for sending video over the internet between production facilities. It's designed to handle variable bandwidth, network congestion, and latency. If you're sending video over standard internet (even a business-class circuit), SRT is more resilient because it adapts to changing network conditions. SRT also compresses video, so it uses less bandwidth. A Kiloview SRT encoder sends a compressed, encrypted video stream that your satellite location decodes and displays.
+
+NDI is a LAN-first technology designed for local network switching and distribution. It's incredibly efficient on a fast local network but less reliable over the internet. If you have a dedicated fiber connection between campuses or you're on the same campus network, NDI is fast, zero-latency, and elegant. If you're relying on standard internet connectivity or need to support reliability over a public network, SRT is the better choice.
+
+Most multi-campus churches choose SRT because it's more forgiving of network variability. Your internet circuit might be excellent most of the time but degrade during peak hours. SRT handles that gracefully by lowering video quality just enough to maintain connectivity. If you dropped the feed entirely, you'd have a much bigger problem.
+
+## The Main Campus Encoding Setup
+
+Your main campus is running the production you've already built: multiple cameras, a professional switcher like the ATEM Mini Extreme, professional audio mixing. The ATEM outputs a clean HDMI feed—the program your main campus audience is seeing.
+
+That HDMI feed goes to your Magewell Ultra Encode HDMI, which handles all your streaming: YouTube, Facebook, and your website. But now you add a second encoder—either a second Magewell or a Kiloview DC230—that encodes the same video feed using SRT and sends it specifically to your satellite locations.
+
+This dual-encoder approach means you're not competing for bandwidth with YouTube or Facebook streaming. The satellite feed has its own dedicated encoder and its own internet circuit (ideally). If your internet drops momentarily, your YouTube stream might drop, but your satellite campuses keep playing the cached video. If the satellite feed drops, your YouTube stream continues unaffected.
+
+Configure your primary Magewell encoder for YouTube and Facebook streaming (optimized for public internet delivery). Configure your secondary encoder (Kiloview DC230) for SRT transmission to satellite locations (optimized for reliability and low latency). Both encoders receive the same HDMI video input, and both can operate independently.
+
+## The Satellite Campus Decoding and Display
+
+At your satellite location, a Kiloview N2 decoder receives the SRT stream from your main campus encoder. The N2 is a simple, reliable device: it plugs into power and Ethernet, automatically decodes the SRT stream, and outputs HDMI to your local display system.
+
+The N2 is also a backup system. If the SRT stream from main campus drops, the N2 can output a local video feed—perhaps a "Service will resume shortly" graphic, or a slide show of photos. It keeps your sanctuary occupied instead of sitting in silence while you troubleshoot the connection.
+
+Connect your satellite location's sound system to the N2's audio output, or run audio separately for more control. Many satellite campuses prefer to decode audio from the main campus feed but then route it through their local mixer for volume adjustment, EQ, and integration with local announcements.
+
+<ProductCTA variant="inline" />
+
+## Audio Synchronization Across Locations
+
+Here's a technical detail that trips up a lot of churches: video and audio arrive at different rates over the network. If you're not careful, your satellite campus will see the pastor's lips moving but hear the words a half-second later. This is deeply distracting.
+
+The solution is to encode and transmit video and audio together in the same SRT stream. The Kiloview DC230 accepts both HDMI video and analog or AES audio, encodes them together, and sends them as a single synchronized stream. The decoder (N2) outputs synchronized video and audio, and they arrive together to your satellite display system.
+
+If you're routing audio separately (perhaps for local mixing), use a frame accurate sync reference. Most churches solve this by keeping audio and video on the same network, so any latency is consistent and minimal. Don't try to send video over fiber and audio over internet circuits—they'll drift apart.
+
+## Network Topology and Bandwidth Requirements
+
+Your main campus needs reliable internet for both YouTube/Facebook streaming and SRT transmission to satellites. A business-class dual internet circuit (two separate providers, both fast and reliable) is ideal. If that's cost-prohibitive, a single fast circuit can handle both if you configure your bitrates carefully.
+
+YouTube streaming to 5,000 concurrent viewers requires about 5 Mbps upstream. SRT transmission to satellite locations (depending on video quality) requires 3-8 Mbps. So your total upstream need is around 10-15 Mbps for simultaneous YouTube and satellite streaming at good quality.
+
+Your satellite location just needs enough bandwidth to receive the SRT stream reliably. 10 Mbps downstream is more than sufficient. This is one advantage of multi-campus production: your satellite locations don't have to stream anything. They just receive. The bandwidth demands are asymmetric.
+
+## Backup Strategies for Satellite Campuses
+
+What happens when the SRT stream from main campus drops? You've lost your video feed, and your congregation is staring at a black screen. This is unacceptable.
+
+Implement automated backup with local servers. At each satellite location, you run a small media server that caches the incoming SRT stream. If the stream drops for more than two seconds, the server automatically switches to playing back the cached video (with about 30 seconds of lag). Your congregation sees a brief delay but never loses the feed completely.
+
+More importantly, you've bought yourself time to diagnose and fix the problem. You're not scrambling while your congregation watches a black screen. You have five minutes to call IT and get the connection back up. If you can't fix it quickly, your satellite location has gracefully degraded to a slightly-delayed but continuous experience.
+
+Another backup: have a volunteer at the satellite location ready to switch to YouTube if the direct SRT feed fails. If the SRT decoder is offline, they can use a tablet to watch the YouTube stream and display it on the projection system. It's lower quality and has a few seconds of latency, but it keeps the service going.
+
+## Real-Time Coordination Between Campuses
+
+Multi-campus production requires active communication between your main campus production team and your satellite locations. You need a comm system that lets your main campus production director speak to leaders at each satellite location.
+
+Use a simple group video call (Zoom or Google Meet on a separate laptop at each location) to keep satellite campus leaders in the loop. They can see the production happening, hear audio from main campus, and communicate any technical issues immediately. This isn't for the congregation to see—it's a behind-the-scenes coordination channel.
+
+Your main campus production director should have audio from the satellite locations so they know if the feed is working. A simple way to do this is to have a technical person at each satellite location with a headset on the comm channel. If the feed goes down, they announce it immediately, and you can switch to backup systems.
+
+## Scaling to Three or More Campuses
+
+The same principles apply whether you have one satellite or five. Each satellite location receives an SRT feed from your main campus encoder. Each can have local backup systems. The key is that the main campus production operation doesn't change—you're just routing the program feed to multiple destinations simultaneously.
+
+If you have three or more satellite campuses, consider deploying a central media server that replicates the SRT stream to each location. Rather than your encoder sending individual streams to each satellite, it sends one stream to your central server, which then manages distribution to all satellites. This reduces the bandwidth demand on your main encoder.
+
+## Post-Service Archive and Accessibility
+
+Multi-campus production makes archiving even more important. People at satellite locations often can't attend main campus. Many will want to replay the service—either the next day, the next week, or months later. Your archive is the permanent record of what your church delivered.
+
+The same Magewell encoder sending to YouTube is also recording to local storage. That recording includes the entire service in broadcast quality. After the service, copy that file to your church's media server and make it available on your website or app. People at satellite locations get the same on-demand access as people streaming from home.
+
+## The Deeper Impact of Multi-Campus Distribution
+
+When you implement a reliable system for distributing your main campus service to satellite locations, you've changed the fundamental identity of your church. You're no longer multiple congregations that happen to be in the same organization. You're one congregation worshipping in multiple locations, in real time.
+
+This has implications for your pastoral team, your worship team, and your campus leaders. Your pastors need to preach to multiple locations simultaneously (or accept that one location gets recorded content). Your worship team needs to engage the entire church, not just the room they're in. Your campus leaders become facilitators of a shared experience rather than independent congregation leaders.
+
+It sounds complicated, but once the technical system is reliable, the ministry becomes natural. Your satellite campuses feel like they're part of something bigger. Your main campus hears prayer requests and testimonies from other locations. You become a truly unified church across geography.

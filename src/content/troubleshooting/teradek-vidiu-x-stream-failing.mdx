@@ -1,0 +1,159 @@
+---
+title: "Teradek VidiU X Stream Failing to Connect"
+description: "Fix Teradek VidiU X connection failures. Covers RTMP configuration, network connectivity, and bitrate issues."
+symptom: "Teradek VidiU X won't connect to streaming platform"
+affectedDevices: ["Teradek VidiU X"]
+tags: ["encoder", "streaming", "rtmp", "teradek"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your Teradek VidiU X encoder is configured and powered, but it won't connect to YouTube or your streaming platform. The web interface shows "Failed" or "Error" status. This is usually an RTMP configuration issue, network problem, or bitrate exceeding upload speed.
+
+<ProductCTA variant="invoke" />
+
+## Step 1: Verify Network Connectivity
+
+First, ensure the Teradek has internet access:
+
+1. Connect the Teradek to your network via Ethernet (Wi-Fi on VidiU X is unreliable for streaming)
+2. In the Teradek's web interface (access the IP on your network), check the **Network Status**
+3. Verify it shows **Connected** or **Online**
+4. If it shows offline, the network cable is loose or the port is inactive
+5. Try a different switch port or network cable
+
+If the Teradek isn't online, it can't stream.
+
+## Step 2: Access the Teradek Web Interface
+
+1. Determine the Teradek's IP address (check router DHCP clients or use Teradek discovery tool)
+2. Open a web browser and go to `http://[IP_ADDRESS]`
+3. Log in (default credentials: check Teradek manual, often `admin` / `admin`)
+4. Navigate to **Streaming** or **Output Settings**
+
+If you can't access the web UI, the Teradek isn't online (see step 1).
+
+## Step 3: Verify RTMP Server URL
+
+Check that the RTMP URL is in the correct format:
+
+**For YouTube:**
+- `rtmps://a.rtmp.youtube.com/live2/` (note: rtmps, secure)
+
+**For Facebook:**
+- `rtmps://live-api-s.facebook.com:443/rtmp/`
+
+**For generic RTMP:**
+- `rtmp://server.com:1935/live/` or `rtmps://server.com:443/rtmp/`
+
+1. In the Teradek web UI, check the **RTMP Server URL**
+2. If it looks wrong (has typos, missing protocol, etc.), correct it
+3. Save settings
+4. Try connecting again
+
+## Step 4: Verify Stream Key
+
+The stream key must be complete and correct:
+
+1. Go to YouTube/Facebook and copy a **fresh stream key** (regenerate if necessary)
+2. In Teradek settings, paste the stream key
+3. Make sure there are **no spaces** before or after the key
+4. Use **Notepad as a buffer** to avoid hidden characters (copy → paste into Notepad → copy from Notepad → paste into Teradek)
+5. Save settings
+
+## Step 5: Check Bitrate vs Upload Speed
+
+If Teradek connects but immediately drops:
+
+1. On your streaming network, run a **speed test** to measure upload speed
+2. In Teradek settings, check the **Bitrate** (usually in the Output section)
+3. Your upload should be **1.5x the bitrate**:
+   - 4000 kbps bitrate → need 6 Mbps upload
+   - 8000 kbps bitrate → need 12 Mbps upload
+4. If upload is insufficient, **lower the bitrate**:
+   - Set to 2500–3000 kbps if upload is 4–5 Mbps
+   - Set to 5000 kbps if upload is 7–8 Mbps
+5. Save and try streaming
+
+## Step 6: Verify HDMI Input Signal
+
+Teradek needs video input to encode:
+
+1. Connect your camera/switcher to Teradek's HDMI input
+2. In Teradek's web UI, check **Input Status** or **Video Input**
+3. It should show the resolution and frame rate (e.g., "1080p 30fps")
+4. If it shows "No Signal," the HDMI cable is loose or the source is off
+5. Verify the source device is powered on and outputting HDMI
+
+## Step 7: Test RTMP Connection
+
+Some encoders have a "Test Connection" feature:
+
+1. In Teradek settings, look for **Test Connection** or **Verify Settings**
+2. Click it to attempt a connection to your RTMP server
+3. If successful, you'll see a confirmation
+4. If failed, the error message will help diagnose (auth error, server not found, etc.)
+
+## Step 8: Check Firewall Blocking RTMP
+
+Firewall may be blocking the Teradek's connection:
+
+1. Temporarily disable your network firewall (if you have a hardware firewall)
+2. Try streaming from the Teradek
+3. If it works with firewall off, add an exception:
+   - Allow RTMP port (1935 for rtmp, 443 for rtmps)
+   - Allow Teradek IP to send outbound traffic
+
+## Step 9: Restart the Teradek
+
+Power cycle the encoder:
+
+1. Power off the Teradek
+2. Wait 30 seconds
+3. Power it back on
+4. Wait for full boot
+5. Try streaming again
+
+A restart sometimes clears stuck connections or memory issues.
+
+## Step 10: Update Teradek Firmware
+
+Outdated firmware can cause connectivity issues:
+
+1. Go to Teradek's support website
+2. Download the latest firmware for VidiU X
+3. In the Teradek web UI, go to **Settings > System > Firmware Update**
+4. Upload the firmware file
+5. Wait for update to complete (usually 2–5 minutes)
+6. The Teradek will restart
+7. Try streaming again
+
+## Step 11: Check for Specific Error Codes
+
+If the Teradek shows an error code in the web UI:
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| 401 | Unauthorized | Stream key wrong or expired |
+| 403 | Forbidden | Stream key invalid for this account |
+| Connection timeout | Can't reach server | RTMP URL wrong or firewall blocking |
+| No network | Ethernet offline | Check network connection |
+
+Reference your error code and apply the appropriate fix.
+
+---
+
+**Teradek VidiU X troubleshooting checklist:**
+- [ ] Teradek connected via Ethernet (not Wi-Fi)
+- [ ] Web interface shows Online/Connected status
+- [ ] RTMP server URL format correct (rtmps://, includes port if needed)
+- [ ] Stream key complete and correct (no spaces)
+- [ ] HDMI input shows video signal
+- [ ] Bitrate appropriate for upload speed (1.5x rule)
+- [ ] Test Connection passes (if available)
+- [ ] Firewall allows RTMP port (1935 or 443)
+- [ ] Teradek restarted after configuration changes
+- [ ] Latest firmware installed

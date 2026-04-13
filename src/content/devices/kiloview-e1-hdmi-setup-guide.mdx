@@ -1,0 +1,104 @@
+---
+title: Kiloview E1 HDMI Encoder: First-Time Setup for Churches
+description: Complete walkthrough for the budget-friendly Kiloview E1 encoder, covering web UI setup, RTMP and SRT configuration for YouTube, Facebook, and multi-campus distribution.
+deviceCategory: encoder
+brand: Kiloview
+modelId: kiloview-e1-hdmi
+modelFullName: Kiloview E1 HDMI Encoder
+articleType: setup-guide
+category: device-setup
+tags: [encoder, Kiloview, budget, HDMI, RTMP, SRT, setup, streaming]
+difficulty: beginner
+priceRange: under-500
+publishedAt: "2024-11-15"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The Kiloview E1 HDMI Encoder is an affordable, capable streaming device designed for churches and organizations with budget constraints. At under five hundred dollars, it delivers professional-grade streaming capabilities without the premium pricing of Teradek or Magewell. This guide covers initial setup and configuration for your first stream.
+
+## Unboxing and Physical Setup
+
+The Kiloview E1 arrives in a compact box containing the encoder unit, power supply, Ethernet cable, and documentation. The unit is small—about the size of a streaming mouse—making it ideal for space-constrained environments. It's lightweight enough to carry in a bag, useful if you stream from multiple locations.
+
+Connect the power supply to the E1 and plug it into a power outlet. Status lights on the front panel illuminate, indicating successful startup. The device typically takes one minute to fully boot. Power consumption is minimal (approximately 5-8 watts), so it won't impact your church's electricity costs noticeably.
+
+For network connectivity, use the included Ethernet cable. While the E1 supports Wi-Fi, Ethernet is strongly recommended for streaming. Wi-Fi is less stable, especially in church environments where walls and other wireless devices might degrade signal. Plug the Ethernet cable into your network switch or router.
+
+## Accessing the Web Interface
+
+Once powered and connected to your network, access the E1's configuration interface through any web browser on a device on the same network. Type `kiloview.local` in the address bar or try the default IP address `192.168.1.100`.
+
+The web interface loads with a login prompt. Default credentials are username `admin` and password `12345`. Immediately after logging in, navigate to Settings and change this default password to something more secure. This is especially important if your E1 is on your church's main network where multiple people have access.
+
+The interface displays your encoder's status, including HDMI input detection, current stream connections, and network information. This dashboard is your primary control point for all configuration.
+
+## Connecting Your HDMI Video Source
+
+The Kiloview E1 has a single HDMI input on the back panel. Connect your video source here—typically a camera, mixer, or switcher. Ensure your video source is powered on and actively outputting video.
+
+Back in the web interface, navigate to the **Input** section. Within seconds of powering on your video source, you should see "HDMI Signal Detected" with the detected resolution and frame rate. If no signal appears, verify your HDMI cable is fully seated on both ends and your video source is powered on.
+
+The E1 automatically adapts to your HDMI source's resolution and frame rate. If your mixer outputs 1080p30, the encoder detects this and encodes at 1080p30. If you later change your mixer's output to 720p60, the encoder adapts automatically.
+
+Audio is embedded in your HDMI signal. The E1 captures any audio embedded in your HDMI feed. If your video source doesn't include audio (some cameras output video-only), you'll need to route audio separately or accept the E1 will stream video without audio.
+
+## Configuring RTMP Streaming to YouTube
+
+Navigate to the **Streaming** or **Streaming Destination** section in the web interface. Click **Add Destination** to configure your first streaming platform.
+
+For YouTube, select RTMP as the protocol. The E1 requires both a stream URL and a stream key. For YouTube Live, the stream URL is always `rtmp://a.rtmp.youtube.com/live2/`.
+
+To obtain your stream key, log into your YouTube account and navigate to Creator Studio. Find the Live Streaming section and copy your stream key—a long alphanumeric string unique to your channel. Paste this key into the E1's configuration.
+
+The interface might display a preview URL—ignore this if present. The stream URL and key are all you need for YouTube.
+
+## Setting Up Facebook Live Streaming
+
+Adding Facebook as a destination follows the same process. Facebook's stream URL is `rtmps://live-api-s.facebook.com:443/rtmp/` (note the "s" in rtmps for secure connection). Log into Facebook with your church's page account and navigate to your Live Video settings to obtain your stream key.
+
+Add another destination in the E1, select RTMP, and enter Facebook's URL and key. The E1 now has both YouTube and Facebook configured.
+
+## Testing Your Configuration
+
+Before streaming during an actual service, run a complete test. Ensure your HDMI source is active, then click **Start Streaming** in the E1's web interface. The device attempts to connect to your configured platforms.
+
+Within 15-30 seconds, your video should appear in YouTube Creator Studio or Facebook Creator Studio. Test video quality, check that audio is present if your source includes it, and verify overall appearance.
+
+For YouTube, you should see a green notification "Stream is live" with your video preview. For Facebook, the video appears in your Page's preview area. If either platform shows no video after waiting 30 seconds, stop the stream and verify your stream key is correct.
+
+<ProductCTA variant="inline" />
+
+## Adjusting Resolution and Bitrate
+
+The E1 defaults to 1080p30 at 6000 kbps, appropriate for most churches with moderate upload bandwidth. Navigate to the **Encoding** section to adjust these settings if needed.
+
+If your upload bandwidth is limited (under 10 mbps), consider reducing resolution to 720p or lowering bitrate to 4000-4500 kbps. If you have robust bandwidth (20 mbps or higher), you can maintain 1080p60 at high bitrate.
+
+The E1 supports CBR (Constant Bitrate) and VBR (Variable Bitrate) encoding. CBR is recommended for stability—it maintains consistent bitrate regardless of content complexity. VBR adjusts bitrate based on content, which can provide better quality but requires more bandwidth headroom.
+
+## Simultaneous Multi-Platform Streaming
+
+With both YouTube and Facebook configured, streaming to both simultaneously is as simple as clicking **Start Streaming** once. The E1 connects to both platforms and sends your video to each.
+
+Monitor both destinations to confirm they're receiving your stream. The E1's dashboard displays connection status for each destination—green means connected and transmitting.
+
+Simultaneous streaming consumes bandwidth equal to the sum of your configured bitrates. If you stream 6000 kbps to YouTube and 6000 kbps to Facebook, you're using 12,000 kbps (12 mbps) of upload bandwidth total. Ensure your internet connection can sustain this load.
+
+## Network Configuration and Security
+
+The E1 uses DHCP by default to obtain an IP address from your router. In most cases, this works seamlessly without any manual configuration.
+
+If you need a static IP address (perhaps to ensure consistent access to the device), navigate to **Network Settings** and manually assign an IP address in your network's subnet. Document this IP address in your church's AV documentation.
+
+The default password is weak—change it immediately. A strong, unique password prevents unauthorized access to your stream keys and configuration.
+
+## Backup and Failover Considerations
+
+The Kiloview E1 is a single point of failure. If the device crashes or loses power, your stream stops. For critical services, document your stream keys and URL configuration so you can quickly reconfigure a backup encoder if the primary fails.
+
+For most churches, a single well-configured E1 is sufficient. It's reliable and rarely fails unexpectedly. However, keeping written documentation of your configuration means you're never stranded if the device requires replacement.
+
+The E1 is an excellent value for budget-conscious churches. It delivers professional-grade encoding at a fraction of the cost of premium alternatives. With proper setup and testing, you'll get reliable streaming results from this affordable device.
+

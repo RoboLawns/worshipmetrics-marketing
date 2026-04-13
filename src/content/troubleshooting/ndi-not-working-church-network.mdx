@@ -1,0 +1,177 @@
+---
+title: "NDI Not Working on Church Network: Complete Fix Guide"
+description: "Fix NDI discovery issues across your church network. Covers multicast, managed switches, VLAN separation, and NDI Bridge setup."
+symptom: "NDI sources are not discoverable across the church network"
+affectedDevices: ["AVKANS PTZ", "Kiloview N2", "OBS Studio", "vMix", "ProPresenter"]
+tags: ["ndi", "network", "multicast", "discovery"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your NDI camera is on the network and broadcasting, but OBS and vMix don't see it. You can access the camera's web interface, so it's definitely online — NDI discovery just isn't working. This is almost always a network configuration issue: multicast is blocked, devices are on separate VLANs, or your switch isn't configured for mDNS. Let's restore NDI discovery.
+
+<ProductCTA variant="inline" />
+
+## Understanding NDI Discovery
+
+Here's why NDI sometimes fails: **NDI uses multicast to announce and discover devices on the network.** Many consumer and business switches block multicast for performance reasons. If multicast is blocked, NDI devices can't find each other.
+
+This is different from DHCP or regular IP routing — multicast is a special type of network traffic, and many network administrators disable it.
+
+## Step 1: Verify the Camera Is Actually Broadcasting NDI
+
+First, confirm the camera is set up to output NDI:
+
+1. Access the camera's web interface (navigate to `http://[CAMERA_IP]`)
+2. Look for **Network** or **Streaming Settings**
+3. Find the **NDI** option
+4. Verify it's **enabled** (not disabled)
+5. Note the **NDI stream name** if there is one
+6. Save and reboot the camera if you made any changes
+
+If NDI is disabled, enable it and reboot the camera.
+
+## Step 2: Check if Your Streaming PC and Camera Are on the Same Subnet
+
+NDI discovery only works on the same local subnet:
+
+1. **Find the camera's IP:** Go to the camera's web interface and note the IP (e.g., 192.168.1.100)
+2. **Find your PC's IP:** On your streaming PC, open Command Prompt (Windows) or Terminal (Mac) and type `ipconfig` (Windows) or `ifconfig` (Mac)
+3. Look at your network adapter and find the IP address
+4. **Compare the first three octets:**
+   - Camera: 192.168.1.100
+   - PC: 192.168.1.50
+   - Match? Good, same subnet.
+   - Camera: 192.168.1.100
+   - PC: 192.168.0.50
+   - Don't match? Different subnets — skip to NDI Bridge (step 6)
+
+If they're on the same subnet, continue to step 3.
+
+## Step 3: Test with NDI Monitor
+
+Download and use **NDI Tools** (free from Newtek/NDI) to verify multicast is working:
+
+1. Go to **ndi.tv** and download **NDI Tools** for your OS
+2. Install and open **NDI Monitor** (included in NDI Tools)
+3. Look for your camera in the left panel
+4. If the camera appears, NDI discovery is working — your OBS/vMix setup has an issue (skip to OBS/vMix section below)
+5. If the camera does NOT appear in NDI Monitor, multicast is blocked on your network (continue to step 4)
+
+## Step 4: Check Your Network Switch's Multicast Settings
+
+If NDI Monitor doesn't see the camera, your network switch is likely blocking multicast. You need to configure the switch:
+
+**If you have a managed switch** (typically enterprise or business-grade):
+1. Access the switch's web interface (usually something like `http://192.168.1.254` — check your documentation)
+2. Log in with admin credentials
+3. Look for **IGMP Snooping** settings or **Multicast Settings**
+4. **Enable IGMP Snooping** (this allows multicast to work)
+5. Look for **IGMP Snooping Querier** and enable it if available
+6. Save settings and restart the switch
+7. Wait 2–3 minutes and test NDI discovery again
+
+**If you have a consumer/unmanaged switch** (typically small, no admin interface):
+- Consumer switches often block multicast by default
+- There's usually no way to enable it without replacing the switch
+- Solution: Upgrade to a managed switch, or use NDI Bridge (see step 6)
+
+**To verify your switch type:**
+- Managed switch: has a web interface (IP address you can log into)
+- Unmanaged switch: just has ports, no configuration interface
+
+## Step 5: Verify VLAN Separation Isn't Blocking Multicast
+
+If your church has a managed network with VLANs (separate virtual networks), NDI devices on different VLANs can't discover each other:
+
+1. **Ask your IT staff:** Are the camera and streaming PC on different VLANs?
+2. If yes, multicast doesn't cross VLANs — that's why NDI fails
+3. **Two solutions:**
+   - Move both devices to the same VLAN
+   - Use NDI Bridge to tunnel discovery across VLANs (step 6)
+
+## Step 6: Use NDI Bridge for Cross-Subnet or Cross-VLAN Discovery
+
+If the camera and PC are on different subnets or VLANs, use **NDI Bridge**:
+
+1. Download **NDI Tools** (from ndi.tv)
+2. Install it on a PC that **can see the camera** (on the same subnet or VLAN as the camera)
+3. Run **NDI Bridge** (included in NDI Tools)
+4. NDI Bridge runs as a service and converts multicast discovery into a unicast tunnel
+5. On your streaming PC, in OBS or vMix, the camera should now appear as a discoverable NDI source
+
+**How it works:** NDI Bridge tunnels the camera's NDI announcements so they can be seen across subnets/VLANs, even if multicast is blocked.
+
+## Step 7: Check Your Firewall
+
+Firewalls can block NDI on certain ports:
+
+**Windows Firewall:**
+1. Open **Windows Defender Firewall with Advanced Security**
+2. Click **Inbound Rules** in the left panel
+3. Look for rules related to **multicast**, **port 5353**, or **port 5004**
+4. If any rule is **blocking**, delete it or create an exception
+5. Add a new inbound rule allowing **UDP 5353 and 5004** for your streaming software
+
+**Third-party firewalls:**
+- Temporarily disable it to test
+- If NDI works with firewall off, whitelist OBS or vMix in your firewall settings
+
+**Hardware firewall (on your router):**
+- Disable **multicast blocking** if your router has this option
+- Access your router's admin panel and look for multicast or IGMP settings
+- Enable multicast if disabled
+
+## Step 8: Verify OBS/vMix NDI Configuration
+
+Once multicast/NDI Bridge is set up:
+
+**In OBS:**
+1. Go to **Settings > Output > Streaming** (or wherever your NDI sources are)
+2. Verify the **obs-ndi plugin is installed** and enabled
+3. Click **Tools > obs-ndi Settings**
+4. Check that NDI discovery is enabled
+5. In your source, click **Scan for Sources**
+6. Your camera should appear
+
+**In vMix:**
+1. Go to **Settings > Network**
+2. Verify **NDI** is enabled
+3. Click **Add Input > NDI**
+4. Your camera should appear in the list
+
+## Step 9: Restart Everything
+
+Sometimes NDI gets stuck. Do a clean restart:
+
+1. Power off the camera
+2. Close OBS or vMix
+3. Restart your streaming PC
+4. Power on the camera and wait for full boot
+5. Reopen OBS or vMix
+6. Try adding the NDI source again
+
+## Step 10: Test NDI Discovery
+
+Before the service:
+
+1. Run NDI Monitor and confirm your camera appears
+2. In OBS/vMix, add the camera as an NDI source
+3. Verify video appears in the preview
+4. Save your scene
+5. Do a 5-minute test stream
+
+---
+
+**Quick NDI troubleshooting checklist:**
+- [ ] Camera NDI output is enabled in its web UI
+- [ ] Camera and PC are on same subnet (or NDI Bridge is configured)
+- [ ] NDI Monitor shows the camera as discoverable
+- [ ] Switch has IGMP Snooping enabled (if managed switch)
+- [ ] Not on separate VLANs (or NDI Bridge is handling it)
+- [ ] Firewall not blocking UDP 5353/5004
+- [ ] OBS-NDI plugin installed and working
+- [ ] Test stream confirmed NDI source is visible and working

@@ -1,0 +1,157 @@
+---
+title: "Facebook Live Connection Failed for Church Stream"
+description: "Fix 'Connection Failed' errors when streaming to Facebook Live. Covers stream keys, RTMP URLs, and authentication issues."
+symptom: "Cannot connect to Facebook Live from OBS or encoder"
+affectedDevices: ["OBS Studio", "Magewell Ultra Encode", "ATEM Mini Pro"]
+tags: ["streaming", "facebook", "rtmp", "connectivity"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+OBS won't connect to Facebook Live. You're getting "Connection Failed" or "Authentication Failed" errors, and the stream won't start. This is usually a stream key issue, RTMP URL mismatch, or a permission problem. Let's get Facebook Live working in minutes.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Generate a Fresh Stream Key in Facebook
+
+The most common fix is simply getting a new stream key:
+
+1. Go to **facebook.com** and log into your church's account
+2. Click your profile picture (top right) and select **Settings**
+3. In the left menu, find **Live Video** or **Broadcasting**
+4. Look for your streaming setup (might be labeled "RTMP" or "Encoder")
+5. Click **Create New Stream** or **Get Stream Key**
+6. Facebook will generate an RTMP URL and Stream Key
+7. Copy the entire **RTMP URL** and the **Stream Key** separately
+
+You'll use both in OBS.
+
+## Step 2: Configure OBS with Facebook's RTMP Details
+
+1. In OBS, go **Settings > Stream**
+2. Set **Service** dropdown to **Facebook Live** (or **Custom** if Facebook isn't listed)
+3. If using **Facebook Live** from dropdown:
+   - Paste the **RTMP URL** in the URL field
+   - Paste the **Stream Key** in the Stream Key field
+4. If using **Custom**, you need both in the right format:
+   - **Server URL**: (Facebook's RTMP URL, e.g., `rtmps://live-api-s.facebook.com:443/rtmp/`)
+   - **Stream Key**: (your unique key from Facebook)
+5. Click **Apply** and **OK**
+
+**Important:** Make sure you're using the **RTMP URL from Facebook Studio**, not a generic RTMP server. Facebook requires a specific endpoint.
+
+## Step 3: Verify You Have Permission to Stream
+
+If you're getting an "Authentication Failed" error:
+
+1. Verify your Facebook account has streaming permissions
+2. If you're using a page (not a personal profile), make sure your account is an **Admin** or **Editor** of the page
+3. If you're not the page owner, ask the owner to:
+   - Give you **Admin** or **Editor** role on the page
+   - Check if streaming is enabled for the page (some pages have restrictions)
+
+You may need to authenticate OBS with Facebook:
+1. In OBS Stream settings, you may see an **Authorize** button
+2. Click it and log into Facebook when prompted
+3. OBS will generate a new stream key automatically
+
+## Step 4: Check Your Stream Key Format
+
+Validate that your stream key is correct:
+
+1. Go back to Facebook Live settings
+2. Copy the **Stream Key** exactly — no extra spaces before or after
+3. In OBS, clear the Stream Key field and paste the new one
+4. Check that there are no hidden characters (sometimes copy-paste adds extra spaces)
+
+**Pro tip:** To avoid hidden characters, type the stream key manually if it's short, or use Notepad as a paste buffer (paste into Notepad, then copy from Notepad to OBS).
+
+## Step 5: Check Your RTMP URL
+
+Verify the RTMP server address is correct:
+
+1. Facebook's RTMP endpoint is typically: `rtmps://live-api-s.facebook.com:443/rtmp/`
+2. Note the **rtmps** (not rtmp) — this is important, as it's encrypted
+3. In OBS, if using Custom service, make sure the server URL starts with `rtmps://`
+4. If you're using the Facebook Live dropdown, OBS handles this automatically
+
+## Step 6: Disable Any VPN or Proxy
+
+If you're using a VPN or proxy:
+
+1. Temporarily disable the VPN during setup
+2. Some VPNs block RTMP connections
+3. Once the stream is working, you can try re-enabling the VPN
+4. If stream fails with VPN on, keep the VPN off during services
+
+## Step 7: Test the Connection Before Going Live
+
+1. In OBS, with Facebook settings configured, click **Start Streaming**
+2. OBS should show "Streaming" in the status bar within 10 seconds
+3. Go to Facebook and check if the stream is live
+4. If Facebook shows a live feed, you're connected
+5. Stop the stream and test a few times to ensure stability
+
+Don't start streaming on Facebook yet — just verify the connection works.
+
+## Step 8: If Facebook Still Won't Connect
+
+Try these additional fixes:
+
+**Restart OBS:**
+1. Close OBS completely
+2. Wait 10 seconds
+3. Reopen OBS
+4. Try connecting again
+
+**Regenerate the Stream Key:**
+1. In Facebook, delete the current stream key
+2. Create a brand new stream key
+3. Copy it fresh and paste into OBS
+4. Try connecting
+
+**Check your internet connection:**
+1. Open a browser and load facebook.com
+2. Can you see Facebook? If yes, internet is fine
+3. If no, you don't have connectivity — fix that first
+
+**Use a different service (Restream):**
+1. If Facebook continues failing, consider using **Restream.io**
+2. Restream acts as a go-between: you stream to Restream, and Restream streams to Facebook (and YouTube, and others)
+3. This is more stable for multi-platform streaming
+
+## Facebook's 4-Hour Stream Key Expiry
+
+Facebook stream keys expire after 4 hours of streaming. If you have long services or stream multiple times per day:
+
+1. Generate a fresh stream key before each streaming session
+2. Note the time you create the key
+3. If streaming for more than 4 hours, you'll need to stop, generate a new key, and restart
+
+This is a Facebook limitation, not an OBS issue.
+
+## Multistream Setup
+
+If you want to stream to both YouTube and Facebook:
+
+1. Don't use Facebook's dropdown in OBS; use the **Custom** option
+2. In OBS, you can only have one service at a time
+3. Instead, use **Restream.io** as an intermediary:
+   - Stream from OBS to Restream
+   - Restream forwards to both Facebook and YouTube simultaneously
+   - This is more reliable than trying to manage multiple stream keys in OBS
+
+---
+
+**Quick checklist:**
+- [ ] Generated fresh stream key from Facebook
+- [ ] OBS service set to Facebook Live or Custom
+- [ ] RTMP URL and Stream Key both pasted correctly
+- [ ] No extra spaces in stream key
+- [ ] RTMP URL uses rtmps:// (secure)
+- [ ] Account has permission to stream to the page
+- [ ] Test connection confirmed working
+- [ ] Stream shows live on Facebook before starting service

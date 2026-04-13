@@ -1,0 +1,118 @@
+---
+title: "HDMI Signal Dropping or Going Black in Church AV Setup"
+description: "Fix intermittent HDMI disconnections and black screen issues. Covers cables, HDCP, EDID, and repeater solutions."
+symptom: "HDMI connection between camera/switcher drops signal or shows black screen"
+affectedDevices: ["ATEM Mini", "Roland V-1HD", "Blackmagic Web Presenter"]
+tags: ["hdmi", "video-signal", "connectivity"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your HDMI feed cuts out intermittently or shows a black screen, then comes back. It's usually happening during a key moment — choir entrance, pastor speaking, or important visual. HDMI dropouts are almost always cable-related, but HDCP handshake and EDID confusion can also cause blackouts. Let's get your signal stable.
+
+<ProductCTA variant="inline" />
+
+## Replace the HDMI Cable Immediately
+
+The most common cause of intermittent HDMI dropout is a degraded or defective cable:
+
+1. Unplug the current HDMI cable from both ends
+2. Use a **high-quality HDMI 2.0 cable** — not a cheap dollar-store cable or a 10-year-old one gathering dust
+3. Firmly push the connectors into both the source device (camera) and the receiving device (switcher/capture card) until you feel them click and lock
+4. Test the video — the signal should stabilize immediately
+5. If you don't have a spare cable, borrow one from another part of your setup to test
+
+**HDMI connector tip:** Make sure the cable isn't being bent at a sharp angle at either end. Keep it relatively straight, especially near the connectors.
+
+## Check Cable Length
+
+HDMI has distance limitations. If your cable is very long, signal degradation happens:
+
+- **Standard HDMI cable**: reliable up to about 25 meters
+- **Longer distances**: requires an **HDMI repeater** or **HDMI booster** (£20–50)
+- **Professional solution**: use **SDI** (Serial Digital Interface) instead, which handles longer runs without active equipment
+
+If your cable is running more than 15 meters, invest in an HDMI repeater or switch to SDI for reliability.
+
+## Verify Connections Are Fully Seated
+
+A slightly loose HDMI plug is a frequent culprit:
+
+1. Power off the source device (camera)
+2. Completely unplug the HDMI cable
+3. Look at both connectors: they should be clean and undamaged
+4. Inspect the ports on both the camera and switcher for bent pins or debris
+5. Firmly plug the HDMI cable back in — you should feel a definite click and see the connector lock into place
+6. Power the camera back on
+7. Test the video
+
+If the connector feels loose or wiggles, the cable or port may be damaged. Test with a new cable.
+
+## Disable HDCP If Possible (And Permitted)
+
+HDCP (High-bandwidth Digital Content Protection) is a copy-protection handshake that sometimes fails and causes black screens. This is most common when connecting certain cameras to switchers:
+
+1. If your *camera* has an HDCP setting, try disabling it:
+   - Access the camera's web interface or menu
+   - Look for **HDCP** or **Copy Protection**
+   - Set it to **Disabled** or **Off**
+2. If your *switcher* has an HDCP option, disable it too (check the manual)
+3. Restart both devices and test
+
+**Important:** Only disable HDCP if you're not capturing copyrighted content for distribution. In churches, you're typically fine, but check if you're streaming copyrighted worship material.
+
+## Resolve EDID (Extended Display Identification Data) Issues
+
+EDID is how devices communicate their capabilities (resolution, refresh rate, etc.). Mismatched EDID can cause the handshake to fail and drop the signal:
+
+1. Power off the switcher or capture device (the destination)
+2. Unplug the HDMI cable completely
+3. Power on the destination device *first*
+4. Then plug in the HDMI cable
+5. Then power on the source (camera)
+
+This forces the source to read EDID from the destination in the correct order. Often this alone fixes intermittent blackouts.
+
+**Alternative:** If that doesn't work, access the camera's video output settings and manually set the resolution and refresh rate to match what the switcher expects (usually 1080p 60Hz or 1080p 50Hz).
+
+## Use an HDMI Repeater or Booster
+
+If your cable is long or if the signal is marginal:
+
+1. Purchase an **HDMI repeater** or **HDMI booster** (not an HDMI splitter — different device)
+2. Place it roughly halfway along the cable run
+3. Power it via USB (if it requires power)
+4. This regenerates the HDMI signal and can solve dropout issues on marginal installations
+
+Repeaters typically cost £20–50 and are worth the investment if you're running cable through walls or across a large sanctuary.
+
+## Test with a Known-Good Spare Cable
+
+Before the service:
+
+1. Borrow an HDMI cable you know works from another part of your setup (e.g., from a projector or media player)
+2. Unplug the questionable cable and plug in the spare
+3. Run the service or do a test stream
+4. If the spare cable works flawlessly for 30 minutes, the original cable is the problem — replace it permanently
+5. If the spare cable also drops out, the issue is EDID, HDCP, or port damage (not the cable)
+
+## Power Cycle in the Right Order
+
+Sometimes HDMI handshakes get stuck. Perform a clean power cycle:
+
+1. Turn off the camera first
+2. Turn off the switcher/capture device second
+3. Wait 30 seconds
+4. Power on the switcher first
+5. Power on the camera second
+6. Wait 10 seconds for both devices to fully boot
+7. Test the signal
+
+This ensures the destination device is ready before the source tries to handshake with it.
+
+---
+
+**If signal is stable during testing but drops during the live service**, the issue may be heat. Make sure both devices have good ventilation and aren't overheating. A camera that's been on for 3+ hours may overheat and drop HDMI signal — temporarily power it off for 30 seconds to cool, then resume.

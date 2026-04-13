@@ -1,0 +1,68 @@
+---
+title: "OBS Studio: Complete Church Streaming Setup Guide"
+description: "A comprehensive beginner's guide to setting up OBS Studio for church streaming, from installation through basic scene configuration and reliability checks."
+app: obs
+articleType: setup-guide
+tags: [streaming, setup, beginner, church-av, live-production]
+difficulty: beginner
+publishedAt: "2024-02-15"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+OBS Studio has become the standard streaming software in churches around the world, and for good reason. It's free, powerful, and runs on Windows, Mac, and Linux. Whether you're streaming to YouTube, Facebook, or both, OBS provides the flexibility to handle everything from a simple single-camera setup to a multi-camera production with graphics and music visualization.
+
+This guide walks you through installing OBS, understanding its core concepts, and configuring it for a typical church service. By the end, you'll have a working production that's ready for Sunday.
+
+## Why Churches Choose OBS
+
+OBS Studio appeals to church tech volunteers because it removes the cost barrier that keeps many churches from streaming at all. There's no license fee, no monthly subscription. Your church pays for cameras, capture cards, and internet bandwidth—not software. Beyond the price, OBS integrates seamlessly with the tools churches already use: audio mixers via USB, presentation software like ProPresenter through NDI, and streaming platforms like YouTube and Facebook through simple RTMP configuration.
+
+The learning curve is gentle enough for volunteers to pick up in a few hours, yet powerful enough that professional broadcasters use it daily. That combination is rare and valuable in church production environments where you need reliable results without expensive training programs.
+
+## PC Requirements for Church Streaming
+
+OBS itself is lightweight—it runs on older hardware—but streaming adds demands. For a basic 720p church stream, you need a processor with at least four cores (an Intel i5 or AMD Ryzen 5 from the last five years works fine), 8GB of RAM, and a solid-state drive with at least 50GB free. Your upload internet speed matters more than your processor: OBS can encode a stream at 2,500 Kbps, but your church's internet connection must handle that consistently. Ask your internet provider about your upload speed. Most churches on cable internet have 5–10 Mbps upload, which is sufficient.
+
+For 1080p streaming or multi-camera setups with graphics, jump to a newer i7 or Ryzen 7 with 16GB of RAM. If your church uses NDI (networked camera video), make sure your network equipment can handle the bandwidth—gigabit switches and wired connections are strongly recommended.
+
+<ProductCTA variant="inline" />
+
+## Installing OBS Studio
+
+Visit obsproject.com and download the installer for your operating system. Run the installer with standard settings. On Windows, OBS will ask about installing OBS Virtual Camera—you can install this now if you plan to use OBS as a webcam source for other applications, though it's not necessary for streaming.
+
+Launch OBS and you'll see an empty interface with Scenes and Sources panels on the left, the main preview in the center, and controls for streaming and recording at the bottom right. The program may feel sparse at first, but that's by design: you build your production exactly as you need it.
+
+## Creating Your First Scene Collection
+
+A scene is a complete visual layout for a moment in your service. A scene collection is a group of scenes organized for a service type. Create a scene collection for your typical Sunday service.
+
+Right-click in the Scenes panel and select "New Scene." Name it "Service Start." This scene will display during your opening moments—perhaps a welcome graphic or camera view before the service begins. Add a source to this scene by clicking the "+" button under Sources and selecting your video source. If you have a USB camera connected, OBS will detect it immediately. If you have a hardware capture card (like a Blackmagic Intensity Shuttle), select it as a Video Capture Device.
+
+Position the source in the preview by dragging its edges. Adjust its size to fill the preview window. Create a second scene called "Worship" that will show your cameras and possibly ProPresenter slides through NDI. Add the same video source, and if you plan to use ProPresenter, you'll add the NDI source here too.
+
+Continue building scenes for each major segment: "Sermon," "Announcements," "Offering," "Prayer Request Display," and "Closing." Having dedicated scenes for each segment keeps your workflow clean and prevents accidental changes during service.
+
+## Configuring Your Audio Source
+
+Audio is often overlooked in church streaming setup, yet it's critical. In OBS, go to Settings → Audio and set your sample rate to 48 kHz (the standard for video production). Set Base (Canvas) Resolution to 1280×720 and Output (Scaled) Resolution to 1280×720—this is 720p, a good balance between quality and file size for most churches.
+
+Add your audio source in the Mixer section. If you have a USB mixer (like an Allen & Heath QU Series or Behringer X18), Windows will detect it as an audio input. Set OBS's Mic/Auxiliary Audio to that device. Test your audio by speaking into a microphone connected to your mixer and watching the audio meters in the Mixer panel move. If you're pulling audio from an analog mixer via USB audio interface, make sure the mixer is sending a strong but not clipping signal—the OBS meter should hover around -20dB to -6dB during normal speaking.
+
+## Initial Stream Settings
+
+Visit Settings → Stream. Choose your streaming service from the dropdown—YouTube Live, Facebook Live, or Custom RTMP Server (if you're using a third-party service like Restream). For YouTube, OBS will guide you through authorization the first time you attempt to stream. YouTube then generates a Stream Key that you paste into OBS. Keep this key private—anyone with your stream key can broadcast to your channel.
+
+Move to the Output tab. Ensure Streaming Bitrate is set to 2,500 Kbps for 720p. If your church has lower internet speed, reduce it to 2,000 Kbps. Enable VBR (Variable Bitrate) if your internet is inconsistent, or set it to CBR (Constant Bitrate) if you have stable upload speed. In the Video tab, ensure the FPS is set to 30 (or 60 if you prefer higher frame rate for fast motion like music videos).
+
+## The Reliability Checklist
+
+Before your first Sunday service, complete this checklist. First, test streaming to YouTube. Go to YouTube Studio, schedule a test livestream, and copy the Stream Key into OBS. Click "Start Streaming" and wait 30 seconds, then open YouTube in a web browser to confirm video is arriving. Second, test all your scenes. Switch between them using the mouse or keyboard shortcuts (configurable in Settings → Hotkeys). Third, test audio by speaking into each microphone connected to your mixer and verifying the signal arrives on your stream.
+
+Fourth, monitor your performance by opening View → Stats while streaming. Watch the CPU usage (should stay below 50%), dropped frames (should be zero), and skipped frames (should be zero). If you see high numbers, you may need to reduce resolution or bitrate. Fifth, create a disaster plan: if OBS crashes mid-stream, your stream will stop. Have a laptop with a backup OBS instance ready with the same configuration, and know how long it takes to switch over.
+
+Finally, establish a time-of-day test. Stream 15 minutes every Friday at 10 AM for two weeks, using the same internet, same equipment, and same scenes you'll use on Sunday. This routine identifies problems before they hit your actual audience.
+
+OBS Studio is a powerful tool built for reliability. With these basics in place, your church has the foundation for years of consistent, professional streaming.

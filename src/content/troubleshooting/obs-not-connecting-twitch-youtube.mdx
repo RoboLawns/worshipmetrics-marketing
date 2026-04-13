@@ -1,0 +1,160 @@
+---
+title: "OBS Not Connecting to YouTube or Twitch Stream"
+description: "Fix OBS connection errors to YouTube Live or Twitch. Covers stream key validation, RTMP servers, and authentication."
+symptom: "OBS reports connection failed when attempting to go live"
+affectedDevices: ["OBS Studio"]
+tags: ["streaming", "obs", "youtube", "twitch"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+You've set up OBS with your YouTube or Twitch stream key, hit "Start Streaming," and immediately get "Connection Failed." You're moments away from the service and can't go live. This is usually a stream key problem or OBS/platform mismatch. Let's fix it in 60 seconds.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Verify Your Stream Key Is Fresh and Correct
+
+The most common cause is an invalid or expired stream key:
+
+**For YouTube:**
+1. Go to **YouTube Studio** (youtube.com/studio)
+2. Click **Create > Go Live** (or find your scheduled stream)
+3. Copy the **Stream Key** (the long alphanumeric code)
+4. In OBS, go **Settings > Stream**
+5. Paste the key into **Stream Key** field
+6. Check: is it a very long string (30+ characters)? If short, you copied wrong
+
+**For Twitch:**
+1. Go to **Twitch.tv** and log in
+2. Click your profile > **Creator Dashboard**
+3. Click **Settings > Stream Key**
+4. Copy the key
+5. In OBS, set **Service** to **Twitch** (OBS auto-selects the RTMP server)
+6. Paste the key into **Stream Key**
+
+If the key was old or partially copied, that's your problem. Use a fresh key now.
+
+## Step 2: Clear Hidden Characters from Copy-Paste
+
+Sometimes invisible spaces sneak in when copying:
+
+1. In OBS, clear the **Stream Key** field completely
+2. Open **Notepad**
+3. Go back to YouTube Studio or Twitch and copy the stream key
+4. Paste into Notepad
+5. Copy from Notepad
+6. Paste into OBS's Stream Key field
+7. Try streaming
+
+Notepad removes hidden formatting and spaces.
+
+## Step 3: Verify OBS Is Set to the Right Service
+
+OBS needs to know which platform you're using:
+
+**In OBS, go Settings > Stream:**
+1. Check the **Service** dropdown
+2. Is it set to **YouTube** (for YouTube) or **Twitch** (for Twitch)?
+3. If wrong, change it to the correct service
+4. The RTMP URL and port should auto-populate when you select a service
+5. Click **Apply** and try streaming again
+
+If you're using **Custom** RTMP settings instead of the dropdown, verify:
+- RTMP URL matches the platform (YouTube: `rtmps://a.rtmp.youtube.com/live2/` )
+- Port is correct (typically 1935 or 443)
+
+## Step 4: Test Your Internet Connection
+
+OBS can't connect if your internet is down:
+
+1. Open a web browser and load **google.com** or **youtube.com**
+2. Does the page load? If not, your internet is down — fix that first
+3. If internet works, continue to step 5
+
+## Step 5: Disable Firewall (Test Only)
+
+Firewall may be blocking RTMP:
+
+1. Temporarily disable **Windows Defender Firewall** (Settings > Privacy & Security > Windows Security > Firewall & network protection)
+2. Try streaming from OBS again
+3. Did it work? If yes, firewall was blocking it:
+   - Re-enable firewall
+   - Whitelist OBS Studio in firewall exceptions
+   - Or whitelist RTMP port (typically 1935 or 443)
+4. If still doesn't work with firewall off, it's not a firewall issue
+
+## Step 6: Try the Fallback RTMP Server
+
+Some platforms have multiple RTMP servers. Try a different one:
+
+**YouTube fallback servers:**
+- Primary: `rtmps://a.rtmp.youtube.com/live2/`
+- Secondary: `rtmps://b.rtmp.youtube.com/live2/`
+
+**Twitch fallback servers:**
+- Primary: `rtmps://live.twitch.tv/app/`
+- Check Twitch's server list if neither works
+
+1. In OBS, if you're using **Custom** service, try the secondary RTMP server
+2. Keep your stream key the same
+3. Try streaming
+
+## Step 7: Regenerate Your Stream Key
+
+If the stream key was correct but OBS still won't connect:
+
+1. Go to YouTube Studio or Twitch settings
+2. **Delete or invalidate** the current stream key
+3. **Create a new stream key**
+4. Copy the new key
+5. Paste into OBS
+6. Try streaming
+
+Old stream keys can sometimes stop working. A fresh key often fixes it.
+
+## Step 8: Restart OBS
+
+Sometimes OBS gets stuck:
+
+1. Close OBS completely
+2. Wait 10 seconds
+3. Reopen OBS
+4. Verify settings (service, stream key) are still set correctly
+5. Try streaming
+
+## Step 9: Check OBS Log for Specific Error
+
+OBS shows detailed errors in its log:
+
+1. In OBS, go **Help > Log Files > View Current Log**
+2. Look for error messages (usually at the bottom)
+3. Common errors:
+   - "Invalid stream key" → key is wrong
+   - "Connection refused" → firewall or RTMP server down
+   - "Timeout" → internet latency or firewall
+4. If you see a specific error, it narrows down the problem
+
+## Step 10: Test with a Minimal Scene
+
+Complex scenes can sometimes cause connection issues:
+
+1. Create a new, simple scene in OBS with just one video source
+2. Try streaming with that minimal scene
+3. If it works, add sources back one by one to find the culprit
+
+(This is rare, but worth trying if nothing else works.)
+
+---
+
+**OBS streaming connection checklist:**
+- [ ] Stream key is fresh (regenerated from platform)
+- [ ] Stream key is complete and correct (30+ characters)
+- [ ] No hidden spaces in stream key (test with Notepad buffer)
+- [ ] OBS Service set to correct platform (YouTube or Twitch)
+- [ ] Internet connection is working
+- [ ] Firewall not blocking RTMP (tested with firewall off)
+- [ ] OBS restarted after any settings changes
+- [ ] Test with one-button go-live attempt (no complex setup)

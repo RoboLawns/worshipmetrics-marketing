@@ -1,0 +1,62 @@
+---
+title: TONGVEO PTZ-NDI30 Setup Guide
+description: Complete initial setup for the TONGVEO PTZ-NDI30 30x zoom NDI/IP camera, from unboxing through first connection and web UI configuration for church live streams.
+brand: TONGVEO
+modelId: ptz-ndi30
+modelFullName: TONGVEO PTZ-NDI30
+articleType: setup-guide
+category: device-setup
+tags: [ptz-camera, ndi, network, setup, tongveo]
+difficulty: beginner
+priceRange: under-500
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Getting a new PTZ camera installed in your church is exciting, but the initial setup can feel overwhelming if you're new to network video. The TONGVEO PTZ-NDI30 is designed to work well in church environments because it sends video directly over your existing network using NDI technology, meaning you don't need extra HDMI cables running across your sanctuary. This guide walks you through every step from opening the box to having your first live video stream.
+
+## Unboxing and Physical Inspection
+
+When your PTZ-NDI30 arrives, take a moment to inspect it for any shipping damage. The camera should come with the camera body, a power adapter, an Ethernet cable, a USB cable for control, and quick-start documentation. Check that the lens isn't scratched and the pan-tilt mechanism moves smoothly when you gently move it by hand. Avoid applying too much force at this stage, as the motors need to be powered on before you operate them electronically.
+
+Set the camera on a desk or table near your intended mounting location. Before you secure it to the ceiling or wall, you'll want to test it in this accessible position first. This allows you to verify that everything is working before your installers need to climb on ladders.
+
+## Powering On and Initial Checks
+
+Connect the power adapter to the camera and plug it into a standard outlet. You should see indicator lights on the back panel illuminate, typically showing power status and network connection status. The camera will boot up over the next 10 to 15 seconds. Don't be surprised if the pan-tilt head moves slightly during startup—this is normal behavior as the motors initialize.
+
+While the camera powers up, prepare your network connection. You'll need to connect the Ethernet cable from the camera to your church network switch. Unlike some cameras that require dedicated connections, the NDI30 works fine on your standard network as long as your switch can handle the bandwidth. If you're running multiple PTZ cameras, ensure your switch has sufficient ports and that your network infrastructure can support multiple video streams. A managed switch with quality of service settings is ideal, but many churches successfully run with standard gigabit switches.
+
+<ProductCTA variant="inline" />
+
+## Connecting to Your Network
+
+Plug the Ethernet cable into the port on the back of the camera. The network status indicator should change color or begin blinking, indicating that the camera is attempting to connect to your network. The camera will automatically request an IP address from your DHCP server, which is the easiest approach for most church setups.
+
+If you want to assign a static IP address instead, you'll need to access the camera's web interface. To find the camera on your network, you have a few options. Most modern networks have a way to discover connected devices. If you have access to your network router's admin interface, you can look for the camera there. Alternatively, you can use free network scanning tools like Angry IP Scanner to find all devices on your network, then identify the TONGVEO camera by its MAC address (printed on the back of the camera).
+
+## Accessing the Web Interface
+
+Open a web browser on a computer connected to the same network as your PTZ-NDI30. Type the camera's IP address into the address bar. If you don't know the IP address yet, your network administrator can help you find it, or you can use the network scanning approach mentioned above. Once you navigate to the IP address, you should see the camera's web login page.
+
+The default username is typically admin with a default password that came with your documentation. Log in with these credentials. We strongly recommend changing the default password to something unique once you're inside the interface, especially if your camera will be accessible from outside your physical building.
+
+## Configuring NDI Settings
+
+Once logged in, look for the Network or NDI settings section in the web interface. The NDI name field is crucial—this is what you'll see when adding the camera as a source in OBS, vMix, or other broadcasting software. Give it a clear, descriptive name that your team will recognize, such as "Sanctuary Main Camera" or "Pulpit PTZ 1". Avoid special characters and keep the name short.
+
+Verify that NDI is enabled in the settings. Some models ship with NDI disabled by default, so you may need to toggle this on and save your changes. After you enable NDI, the camera may take a few seconds to restart its network services. Don't worry if you lose connection to the web interface briefly—this is normal and the camera will come back online.
+
+## Testing Your Connection
+
+Go back to your recording or streaming software—whether that's OBS Studio, vMix, or another broadcaster. Look for the option to add a Network Device Interface (NDI) source. The camera should appear in the list of available NDI sources within a few seconds, appearing with the name you just configured. Select it and add it to your stream.
+
+You should see the video from the PTZ-NDI30 appear in your software. The video might appear zoomed in or at an odd angle if the camera has moved during startup, but that's fine. We'll deal with preset positioning in future sessions.
+
+If the camera doesn't appear in your NDI source list, check that both the camera and your broadcast computer are on the same network, and verify that NDI is enabled in the camera's web settings. Sometimes a firewall is blocking NDI traffic, so if you have an IT administrator at your church, ask them to verify that NDI is not being blocked.
+
+## Conclusion
+
+You've now successfully unboxed your TONGVEO PTZ-NDI30, powered it on, connected it to your network, and confirmed that it's streaming video. From here, you can set up presets for different camera positions, configure it to work with your specific switcher or broadcasting software, and plan the permanent mounting location. The next steps involve network optimization and preset setup, which we cover in other articles in this knowledge base.

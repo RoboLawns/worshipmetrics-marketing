@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../../../components/kb/BreadcrumbNav.astro';
+import DifficultyBadge from '../../../../components/kb/DifficultyBadge.astro';
+import ProductCTA from '../../../../components/kb/ProductCTA.astro';
+
+const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+
+export async function getStaticPaths() {
+  const allCameras = await getCollection('cameras');
+  const brands = [...new Set(allCameras.map(e => e.data.brand))];
+  return brands.map(brand => ({
+    params: { brand: brand.toLowerCase().replace(/[\s\/]+/g, '-') },
+    props: { brand, articles: allCameras.filter(e => e.data.brand === brand).sort((a,b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()) },
+  }));
+}
+
+const { brand, articles } = Astro.props;
+---
+<BaseLayout title={`${brand} PTZ Camera Setup Guides for Churches`} description={`Complete documentation for ${brand} PTZ cameras in church production — setup, NDI, troubleshooting, and integration guides.`} canonical={`/kb/cameras/${brandSlug(brand)}`}>
+  <section class="border-b border-border bg-bg px-6 py-16">
+    <div class="mx-auto max-w-7xl">
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'PTZ Cameras', href: '/kb/cameras' }, { label: brand }]} />
+      <h1 class="mt-8 font-display text-5xl text-white">{brand} PTZ Camera Guides</h1>
+      <p class="mt-4 text-lg text-slate-300">{articles.length} articles covering setup, integration, and troubleshooting for {brand} cameras in church environments.</p>
+    </div>
+  </section>
+  <section class="bg-[#10151d] px-6 py-16">
+    <div class="mx-auto max-w-7xl grid gap-6 lg:grid-cols-3">
+      {articles.map(article => (
+        <a href={`/kb/cameras/${brandSlug(brand)}/${article.id}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
+          <DifficultyBadge difficulty={article.data.difficulty} />
+          <h3 class="mt-4 font-display text-xl text-white group-hover:text-blue-200">{article.data.title}</h3>
+          <p class="mt-2 text-sm text-slate-400">{article.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+  <section class="bg-bg px-6 py-12">
+    <div class="mx-auto max-w-5xl">
+      <ProductCTA variant="banner" />
+    </div>
+  </section>
+</BaseLayout>

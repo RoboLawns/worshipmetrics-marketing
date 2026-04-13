@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../../../components/kb/BreadcrumbNav.astro';
+import DifficultyBadge from '../../../../components/kb/DifficultyBadge.astro';
+import ProductCTA from '../../../../components/kb/ProductCTA.astro';
+import TableOfContents from '../../../../components/kb/TableOfContents.astro';
+
+const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+
+export async function getStaticPaths() {
+  const allCameras = await getCollection('cameras');
+  return allCameras.map(entry => ({
+    params: { brand: brandSlug(entry.data.brand), slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const allCameras = await getCollection('cameras');
+const related = allCameras.filter(e => e.id !== entry.id && e.data.brand === entry.data.brand).slice(0, 3);
+---
+<BaseLayout title={`${entry.data.title} | Church AV Knowledge Base`} description={entry.data.description} canonical={`/kb/cameras/${brandSlug(entry.data.brand)}/${entry.id}`} type="article" publishedAt={entry.data.publishedAt}>
+  <section class="border-b border-border bg-bg px-6 py-16">
+    <div class="mx-auto max-w-7xl">
+      <BreadcrumbNav items={[
+        { label: 'Knowledge Base', href: '/kb' },
+        { label: 'PTZ Cameras', href: '/kb/cameras' },
+        { label: entry.data.brand, href: `/kb/cameras/${brandSlug(entry.data.brand)}` },
+        { label: entry.data.title },
+      ]} />
+      <div class="mt-8 flex flex-wrap gap-3">
+        <DifficultyBadge difficulty={entry.data.difficulty} />
+        <span class="text-xs uppercase tracking-[0.16em] text-muted">{entry.data.publishedAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+      </div>
+      <h1 class="mt-6 max-w-4xl font-display text-5xl leading-tight text-white">{entry.data.title}</h1>
+      <p class="mt-5 max-w-3xl text-lg text-slate-300">{entry.data.description}</p>
+    </div>
+  </section>
+  <section class="bg-white">
+    <div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <article class="min-w-0">
+        <div class="kb-prose prose prose-slate max-w-none" data-pagefind-body>
+          <Content />
+        </div>
+        <ProductCTA variant="banner" />
+        {related.length > 0 && (
+          <div class="mt-12">
+            <h2 class="font-display text-2xl text-slate-900">More {entry.data.brand} guides</h2>
+            <div class="mt-6 grid gap-4 sm:grid-cols-3">
+              {related.map(r => (
+                <a href={`/kb/cameras/${brandSlug(r.data.brand)}/${r.id}`} class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm hover:border-blue-300">
+                  <p class="font-semibold text-slate-900">{r.data.title}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+      <div class="hidden lg:block">
+        <TableOfContents headings={headings} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

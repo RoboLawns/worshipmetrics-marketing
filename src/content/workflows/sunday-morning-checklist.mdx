@@ -1,0 +1,160 @@
+---
+title: "The Complete Sunday Morning AV Checklist"
+description: "Comprehensive pre-service, during-service, and post-service procedures for reliable church AV operation. A training document for new volunteers."
+churchSize: small
+budget: under-1k
+gearList: []
+tags: ["operations", "checklist", "training", "procedures"]
+publishedAt: "2024-01-24"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Why Checklists Matter in Live Production
+
+The most professional broadcast operations use checklists. Not because the operators don't know the system—because they know how easy it is to miss one detail under the pressure of live production. A camera framing that's perfect during rehearsal is wrong during the actual service because someone unplugged a cable and plugged it back in the wrong port. A mix level that's fine for worship songs is too quiet for announcements because nobody checked the preset.
+
+Checklists aren't a sign of incompetence. They're a sign of professionalism. They're how you ensure consistent, reliable production week after week, regardless of who's operating the system.
+
+This checklist is written for your specific church AV setup. You'll customize it to your equipment, your venue, and your specific workflow. But the structure—pre-service verification, during-service operation, post-service shutdown—applies to every church streaming setup.
+
+## Pre-Service Checklist: 45 Minutes Before Service Starts
+
+**Facility and Equipment Check (30 minutes out)**
+
+The first step is making sure your building and equipment are actually functional. Nothing derails a service faster than discovering a broken camera or a breaker that's been tripped overnight.
+
+Power on all equipment in this order: network switch, cameras, switcher, audio mixer, streaming PC. Wait 60 seconds between each. This staggered power-on prevents electrical surges and gives each device time to fully boot.
+
+Walk through the sanctuary and verify every camera has power and a network connection. On AVKANS PTZ cameras, the front LED should be solid blue (powered and connected to network). If any camera shows red or is dark, you have a network problem that needs immediate attention.
+
+**Internet Verification (25 minutes out)**
+
+Your streaming is completely dependent on internet. If your internet is failing, no amount of perfect video production matters. Before you do anything else, verify upload bandwidth.
+
+On your streaming PC, open a browser and navigate to speedtest.net. Run a full speed test. You need at least 5 Mbps upload speed to reliably stream 1080p/30fps to YouTube. If you're seeing less than 5 Mbps, troubleshoot immediately. It might be a temporary network issue (wait 60 seconds and test again). It might be WiFi interference (switch to wired if possible). It might be a circuit issue (call your internet provider).
+
+If your internet is unreliable, activate your backup. Many churches use a cellular hotspot (MiFi device) as backup internet. Power it on, connect your streaming PC to it via WiFi, and verify you have at least 4G cellular signal. Document the backup internet credentials so any volunteer can activate it if needed.
+
+**Audio System Check (20 minutes out)**
+
+Have someone speak into each microphone while you watch the mixer levels. Main speaking microphone should peak at -6dB on the mixer. Worship microphones should peak at -12dB (they're usually hotter because they're singing). Every input you plan to use during the service needs to be tested.
+
+Check that all wireless microphone batteries are at 75% charge or higher. Wireless batteries die unpredictably, and low batteries create inconsistent signal. If any battery is below 50%, replace it immediately. Keep fresh batteries in your AV cabinet.
+
+Verify your Master Fader is not muted. This sounds obvious but happens at least twice per year at every church. Someone accidentally mutes the master channel during tear-down, and you don't discover it until the pastor is already speaking into a dead microphone.
+
+Listen to your headphone mix to verify you can hear a balance of all inputs. This is your safety monitor—if something goes wrong during the service, you'll hear it here first.
+
+**Camera and Video Check (15 minutes out)**
+
+In your switcher preview window, confirm all three camera feeds are live and framed appropriately. If you're using PTZ cameras, check that the joystick is responding by doing a quick pan on each camera. Make sure nothing has shifted since last week—cameras can be nudged by people in the room, or someone's cleared cables.
+
+Load your opening graphics. If you're using ProPresenter, open the current service file and verify it has the songs and notes for today's service. Nothing's worse than realizing 30 seconds before service that your graphics file is from last week.
+
+Test your switcher transitions. Press through your service scenes (Opening, Worship, Teaching, Closing) and verify transitions look clean. Watch your program monitor while you're doing this—see what your YouTube audience will see.
+
+**OBS and Streaming Configuration (10 minutes out)**
+
+Open OBS and verify your stream key is correct. The stream key is a unique identifier for your YouTube channel. It should be pasted in the OBS settings, not visible to anyone. If someone asks for your stream key, don't share it—they can broadcast as your church.
+
+In OBS, load your service profile (most OBS users create one profile per service, or one profile that handles all services). Verify that your video source is showing your switcher feed and your audio source is showing your mixer. Watch the preview window and confirm you see video and hear audio.
+
+Run a test stream. Click "Start Streaming" in OBS, give it 15 seconds, then click "Stop Streaming." Check YouTube to see if the test stream appeared. If YouTube shows your test stream starting, you have working internet and working stream configuration. That's your insurance that the real stream will work.
+
+**Final 5-Minute Check**
+
+Position yourself at your primary operator location (switcher, mixer, or streaming PC—wherever the main operator will be). From that position, can you see your program monitor? Can you reach the buttons you need? Is your runsheet visible and readable?
+
+Have your backup technical person do a final walk-through. Do the cameras look good from a viewer's perspective? Is the room lit well enough that people can see the pastor and worship leader clearly? Are any cables visible that shouldn't be?
+
+Confirm with your pastor that they're ready. Have them do a quick sound check if they haven't already. "Good morning, can you hear me?" in their normal speaking voice. Level shouldn't be unexpected.
+
+At the 2-minute mark, cue all your operators: "Two minutes to service. Is everyone ready?" Wait for audio check, switcher check, and streaming check confirmations before proceeding.
+
+<ProductCTA variant="inline" />
+
+## During Service: Operating Smoothly
+
+**Starting the Stream (First 30 seconds)**
+
+When the pastor says "Let's pray" or "Let's worship" (the signal point you've agreed on beforehand), your streaming operator clicks "Start Streaming" in OBS. The YouTube stream is now live. The first thing your audience sees is your opening bumper graphics.
+
+Your switcher operator should already have Opening Scene loaded and ready to press. When service officially begins, press Opening Scene. Your audience is now seeing the opening graphics and hearing the opening music/prayer.
+
+**Managing Scene Transitions**
+
+Your runsheet shows exactly when to transition between scenes. When it says "9:15 - Worship starts, Scene: Worship," your operator presses the Worship button on the switcher at exactly 9:15. The program output switches to your worship scene (camera 2 on worship leader, no opening graphics).
+
+If you're using joystick-controlled PTZ cameras, you might need to adjust framing in real time. After pressing the scene button, your camera framing might not be perfect for the specific moment. Adjust zoom and pan to frame the worship leader's face for the verse, pull back for the chorus, zoom in for the bridge. These adjustments happen smoothly because you've practiced this service.
+
+If something doesn't transition when expected—maybe the pastor runs long or skips an element—stay calm. Keep playing the current scene and wait for your next clear cue point from the service. Never try to change scenes while the pastor is talking unless they explicitly signal you.
+
+**Audio Monitoring**
+
+During the service, watch your audio meters continuously. Vocal levels should stay consistent around -12dB to -6dB. If a vocalist is hitting the red (clipping), reduce their fader gently until they're back in the green. If a vocalist is too quiet (less than -18dB), boost them slightly.
+
+You're not mixing in real time—you're making small adjustments to prevent problems. The mix should have been set in a pre-service soundcheck. During the service, you're watching for anomalies: a wireless mic dropping out, feedback starting, background noise, or level inconsistencies.
+
+If feedback starts, immediately reduce the fader for whichever input is feeding. Reduce it completely if you have to. Feedback is the enemy of credibility. Better to be silent than to have feedback disrupting your service.
+
+**Monitoring the Stream**
+
+Your streaming operator should have the YouTube stream open on a second monitor, watching in real time. You'll see a 3-5 second latency (that's normal—YouTube adds delay), and you can catch issues immediately. If the stream cuts out and comes back, you'll know about it. If the audio is unexpectedly quiet, you'll hear it.
+
+Many streaming operators also watch their CPU and network graphs in OBS. If CPU load spikes above 60%, your encoder is struggling and might drop frames. If network is red, your upload bandwidth is maxing out and the stream quality will suffer. These aren't emergencies—they're warnings that you're approaching a limit.
+
+**Handling Unexpected Moments**
+
+The pastor runs long. The worship team extends a song. Someone's wireless mic isn't working. These happen every church week. Here's the principle: don't panic, and don't try to fix it mid-service unless it's genuinely critical.
+
+If a camera goes offline, you still have two others. Switch to a different angle and keep going. Don't spend energy trying to bring the offline camera back—you're live.
+
+If a microphone cuts out, try toggling the mute button off and on (sometimes this resets the connection). If that doesn't work, raise the fader on a backup microphone (maybe the handheld to the speaking area). Keep the service going. You're worshipping, not problem-solving.
+
+If your stream drops, don't panic. YouTube automatically attempts to reconnect. Keep producing good video and audio. When internet comes back, YouTube will resume streaming.
+
+**Post-Message Handoff**
+
+When teaching ends and you're moving to your closing song, coordinate with your audio engineer. They need to know that music is coming so they can adjust from speech-optimized mixing to worship-optimized mixing. A simple hand signal or text message ("Music in 30 seconds") keeps everyone prepared.
+
+The last two minutes of service are critical. You're building toward the close. Your camera work should be intentional—pulling back to wide shots for the ending, not jumping nervously between angles. Your audio should be perfectly balanced. Your graphics should reinforce the message. End strong.
+
+## Post-Service Procedures
+
+**Stopping the Stream**
+
+When service ends and the pastor says the final blessing, wait for the music to finish, then your streaming operator clicks "Stop Streaming" in OBS. The YouTube stream is now offline.
+
+Immediately, a post-service graphic or closing slide should appear to anyone who hasn't refreshed YouTube yet. But the live broadcast is done. You've completed your service.
+
+**Shutting Down Properly**
+
+Don't just turn off equipment. Proper shutdown prevents data corruption and extends equipment life.
+
+In OBS, close the application normally (File > Exit). This saves your settings and logs for troubleshooting.
+
+On your audio mixer, bring all faders to zero (unity), then mute the master output. This prevents any stray signal from being amplified if someone accidentally touches a fader during tear-down.
+
+On your switcher, close any active scenes and return to a neutral state. This prevents accidental configuration changes before next week.
+
+On your streaming PC, shut down the operating system properly (don't just pull the power). Wait for it to fully shut down, then power off.
+
+On your network switch, you can leave powered on (it's designed to run continuously), but verify all cameras are still showing network status.
+
+**Archiving the Recording**
+
+If you're using the ATEM Mini Pro's built-in recording, eject the SSD carefully and copy the file to your network storage before the next day. Don't trust a single copy of your service.
+
+If you're using OBS recording, the file should already be saved in your default recording folder. Copy this to your backup storage as well. You now have a complete archive of today's service.
+
+**Weekly Maintenance**
+
+Once per week (usually Monday or Tuesday after Sunday), do a quick equipment check. Verify all cables are still connected. Check that no equipment is overheating. Replace any wireless mic batteries that are below 50%. This maintenance prevents failures during the service.
+
+## The Checklist Mindset
+
+The deepest truth about checklists is that they're not about following instructions. They're about building confidence. When you've verified every step before the service, you operate with the confidence that everything's working. When something fails during service, you're not panicking about what might be wrong—you already know everything was right beforehand.
+
+This confidence is what allows new volunteers to operate smoothly. This is what allows experienced operators to focus on the quality of production rather than worrying about basics. This is what separates churches that produce reliable services from churches that are always one technical failure away from a disaster.

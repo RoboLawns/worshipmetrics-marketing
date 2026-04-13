@@ -1,0 +1,107 @@
+---
+title: "Mackie DL32R Streaming Bus: Sending Audio to OBS and vMix"
+description: Configure streaming output on the Mackie DL32R for simultaneous live broadcast while maintaining independent FOH and streaming mixes.
+deviceCategory: mixer
+brand: Mackie
+modelId: mackie-dl32r
+modelFullName: Mackie DL32R
+articleType: streaming
+category: streaming
+tags: [streaming, usb, obs, vmix, broadcast, church-audio]
+difficulty: intermediate
+priceRange: 500-1500
+publishedAt: "2024-02-08"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+# Mackie DL32R Streaming Bus: Sending Audio to OBS and vMix
+
+The Mackie DL32R's flexible architecture allows you to create independent streaming audio completely separate from your front-of-house mix. Rather than simply sending your main mix to your streaming platform, you can optimize a dedicated bus specifically for broadcast, ensuring online viewers hear professionally processed audio optimized for their listening experience.
+
+## Understanding DL32R Streaming Architecture
+
+The DL32R provides eight auxiliary buses. Rather than using these for traditional monitor mixing, you can dedicate one—perhaps AUX7—as your streaming mix bus. This bus receives carefully selected audio sources at levels optimized for broadcast, completely independent from your main mix.
+
+This independence is powerful. Your FOH operator adjusts the main mix for the live room. Your streaming operator adjusts the streaming bus for online viewers. Neither interferes with the other, enabling each to optimize for their specific purpose.
+
+## Creating a Dedicated Streaming Bus
+
+Access the Master Fader app and navigate to your auxiliary buses. Select AUX7 (or another unused auxiliary) as your streaming output. This bus will be your streaming mix destination.
+
+Now configure which channels feed this bus and at what levels. Your streaming mix might include: lead vocal, backup vocals, sermon microphone, keyboard, acoustic guitar, and backing track. Exclude ambient room mics or other sources that work in the live room but would be distracting for headphone listeners.
+
+Adjust the level of each source feeding your streaming bus. You might set vocals 2-3 dB hotter than in your main mix, emphasizing intelligibility. You might reduce instrumental levels slightly, keeping them supportive rather than dominant.
+
+<ProductCTA variant="inline" />
+
+## Processing Your Streaming Bus
+
+Each auxiliary bus on the DL32R can include its own parametric EQ, compression, effects, and other processing. Apply processing specifically optimized for broadcast to your streaming bus.
+
+Add gentle compression to smooth dynamic range. A ratio around 4:1 with moderate threshold creates consistency without obviously sounding compressed. Add a limiter set to -1 dB to prevent any unexpected peaks from clipping your stream.
+
+Apply parametric EQ optimized for the streaming platform. A slight presence peak around 3-4 kHz can enhance clarity for headphone listeners. A gentle reduction below 100 Hz prevents excessive low-end that headphone users find uncomfortable.
+
+## Configuring USB Output for Streaming Bus
+
+Connect a USB cable from the DL32R to your streaming computer. Navigate to the System Settings within Master Fader and specify that you want your AUX7 streaming bus routed to USB rather than your main mix.
+
+This configuration sends only your streaming mix to the computer via USB. Your main mix continues feeding your PA system independently. Neither audio stream is affected by adjustments made to the other.
+
+## Setting Appropriate Streaming Levels
+
+Monitor your streaming computer's audio input level. In OBS or vMix, you should see meters responding to your streaming bus audio. Adjust the AUX7 fader on the DL32R until your streaming software shows average levels around -18 dB with peaks at -12 dB.
+
+This level provides professional headroom and protects against unexpected peaks causing distortion. If your streaming computer's software provides input level control, use that to fine-tune after setting the DL32R's bus level appropriately.
+
+## Configuring OBS for DL32R Audio
+
+Open OBS and navigate to Settings > Audio. In the Microphone dropdown, select the Mackie DL32R. OBS will now receive audio from your DL32R's USB output.
+
+In the Audio Mixer panel at the bottom of OBS, you should see the DL32R input with levels responding to your mixing. Set the input level slider until audio feeds at appropriate level to OBS.
+
+## Configuring vMix for DL32R Audio
+
+In vMix's Audio section, select the Mackie DL32R from the input device dropdown. vMix will immediately begin monitoring audio from your mixer's USB output.
+
+Use vMix's audio mixer controls to set appropriate level. Target average levels around -18 dB with peaks at -12 dB, ensuring professional broadcast audio with adequate headroom.
+
+## Creating Service Scenes with Streaming in Mind
+
+Save your carefully configured streaming bus setup as scenes within Master Fader. Create scenes like "Worship Streaming Mix" and "Sermon Streaming Mix" that capture different streaming configurations optimized for different service content.
+
+During services, recall the appropriate streaming scene alongside your main mix scene. This automation ensures consistency and prevents accidental changes to your streaming setup during transitions.
+
+## Testing Streaming Before Going Live
+
+Before your first actual livestream, run complete technical rehearsals with streaming engaged. Have your worship team run through normal music and speaking. Monitor the stream from a different device using headphones or speakers.
+
+Does the audio sound clear and balanced? Are levels consistent? Is there any noise or distortion? Are there periodic audio dropouts? This testing rehearsal catches issues before they affect your actual broadcast audience.
+
+## Managing Streaming Transitions
+
+When you transition from one service segment to another, coordinate your main mix scene changes with your streaming bus scene changes. Ideally, both happen nearly simultaneously, creating coherent transitions for both in-person and online audiences.
+
+During live transitions where music or vocal continuity matters, sync these changes carefully so neither audience experiences awkward silence or abrupt level changes.
+
+## Multi-Platform Streaming
+
+Your streaming computer running OBS or vMix can send your DL32R's audio to multiple platforms—YouTube, Facebook, Twitch, your website—simultaneously. The DL32R provides clean audio to your computer; your streaming software handles multiplatform delivery.
+
+This unified approach means one quality audio stream reaches all your online platforms. You don't need separate audio hardware or processes for each platform.
+
+## Recording Streaming Audio for Archive
+
+OBS and vMix both support simultaneous streaming and local recording. Enable local recording in your streaming software to capture a copy of your stream for archival purposes or podcast production.
+
+These recorded files become valuable assets for ministry—members can watch services they missed, you can create highlight clips for social media, and you maintain a complete record of your Sunday services.
+
+## Troubleshooting Streaming Audio Issues
+
+If audio sounds distorted or overly compressed, back off compression ratios or EQ settings on your streaming bus. The processing chain you've applied might be too aggressive for your specific sources.
+
+If streaming audio periodically drops, check your USB cable connection. Reseat it on both ends to ensure solid connection. If problems persist, try a different USB cable—defective cables are a common cause of intermittent audio issues.
+
+Your Mackie DL32R now provides sophisticated streaming capability with independent audio optimization for online viewers. This approach demonstrates your church's commitment to reaching beyond your physical location and serving the entire community both in-person and remotely.

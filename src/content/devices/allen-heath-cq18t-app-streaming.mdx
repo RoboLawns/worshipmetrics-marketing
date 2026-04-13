@@ -1,0 +1,101 @@
+---
+title: CQ-18T App Control and Streaming Audio Setup
+description: Configure remote iPad control and USB streaming audio on the Allen & Heath CQ-18T for accessible mixing and live broadcasts.
+deviceCategory: mixer
+brand: Allen & Heath
+modelId: allen-heath-cq18t
+modelFullName: Allen & Heath CQ-18T
+articleType: software-control
+category: streaming
+tags: [remote-control, streaming, ipad, usb, app-control, church-audio]
+difficulty: intermediate
+priceRange: under-500
+publishedAt: "2024-01-24"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+# CQ-18T App Control and Streaming Audio Setup
+
+The Allen & Heath CQ-18T's compact touchscreen might seem limiting for streaming and remote control workflows, but the mixer packs surprising capability into its small footprint. USB audio streaming to OBS or vMix works seamlessly, and Wi-Fi remote control through the Allen & Heath app transforms how you can manage mixing during worship services. This guide walks you through setting up both capabilities for maximum flexibility.
+
+## Understanding CQ-18T Streaming Capability
+
+While the CQ-18T is optimized for small worship setups, many churches that start with it eventually want to livestream services. The mixer's USB audio interface makes this straightforward. Rather than requiring external audio interfaces or complex routing, the CQ-18T connects directly to your streaming computer and provides clean audio output.
+
+The key is understanding that the CQ-18T's USB audio carries your mixed stereo output. Unlike larger Allen & Heath consoles that can send multiple independent mixes, the CQ-18T sends its main stereo mix to USB. This works perfectly for churches starting their streaming journey—you have one mix happening, and that mix goes to your speakers and simultaneously to your streaming software.
+
+## Configuring USB Audio Output
+
+Connect a USB cable from the CQ-18T's USB port to an available USB port on your streaming computer. The CQ-18T should appear as a USB audio device in your computer's sound settings within a few seconds.
+
+On the CQ-18T itself, navigate to the Settings menu and access the USB Audio section. You'll see options for which output feeds the USB connection. The default setting routes your main stereo output to USB, which is exactly what you want. Verify this configuration, then close the settings menu.
+
+If the USB device doesn't appear in your computer's audio settings, try a different USB port on the computer. USB 3.0 ports (usually blue-colored) work more reliably than USB 2.0 for audio. Also verify that your USB cable isn't damaged—a worn cable is a common cause of USB connection issues.
+
+<ProductCTA variant="inline" />
+
+## Setting Up OBS for CQ-18T Audio
+
+Open OBS Studio on your streaming computer. In the Audio section of settings, you should see the CQ-18T listed as an available audio input device. Select it. The CQ-18T will now provide audio to your OBS broadcast.
+
+Create a new Audio Input Capture source in your OBS scene if you haven't already. Set the input device to the CQ-18T's USB audio. In the audio mixer panel at the bottom of OBS, you should see the CQ-18T's audio input showing meter levels as you mix on the CQ-18T.
+
+Adjust your mixing levels on the CQ-18T until the OBS meters show average levels around -18 dB with occasional peaks at -12 dB. This gives your streaming platform healthy audio without risk of clipping or distortion. During your first test broadcast, monitor the OBS audio meters continuously to ensure they stay in healthy range throughout your service.
+
+## Configuring vMix Audio Input
+
+If you prefer vMix for streaming, the setup is equally straightforward. In vMix's Audio tab, look for the input device selector. Choose the CQ-18T from the dropdown list of available audio devices. vMix will immediately begin monitoring audio from your mixer.
+
+Use vMix's audio mixer controls to set appropriate input level from the CQ-18T. Again, target average levels around -18 dB with peaks at -12 dB. vMix's metering is clear and intuitive, making it easy to dial in proper levels.
+
+## Creating a Separate Streaming Mix Bus
+
+While the CQ-18T only streams its main mix via USB, you can still create a streaming-optimized mix by treating your primary mix as your streaming mix. Before your service, adjust your baseline levels to be appropriate for broadcast rather than live PA.
+
+This means slightly more consistent levels, perhaps more compression on vocals to smooth dynamic range, and careful overall level management. Your audience in the sanctuary and your streaming audience have different acoustic environments—what works for live PA might sound too aggressive or too quiet for online viewers. Optimize for streaming if that's your primary use case.
+
+## Remote iPad Control Configuration
+
+In addition to USB streaming, set up Wi-Fi app control to manage the CQ-18T remotely during services. Access the Settings menu and navigate to Network/WiFi. The CQ-18T can create its own Wi-Fi network, or connect to your existing facility network.
+
+For most churches, creating a dedicated Wi-Fi network for the CQ-18T works well. Give it a clear network name like "Church-Audio-Net" and set a strong password. This dedicated network isolates your mixing equipment from your guest WiFi and office network, improving reliability.
+
+## Installing and Using the Control App
+
+Download the Allen & Heath online Control app onto your iPad from the Apple App Store. Open the app and it will search for available Allen & Heath devices on your network. Your CQ-18T should appear in the list.
+
+Tap the CQ-18T to connect. If this is the first connection, you'll be prompted for authentication. Enter your CQ-18T's network password. Once authenticated, the app displays a virtual mixing interface mirroring your physical console's controls.
+
+The app shows channel faders, mute buttons, effects controls, and mixing functionality. Every action you take on the iPad app appears instantaneously on the physical mixer, and vice versa. If your primary sound operator adjusts a fader on the physical console, you see that change appear on the iPad immediately.
+
+## Positioning Your iPad During Services
+
+Some churches position the iPad at a secondary mixing location—perhaps the back of the sanctuary or in a control booth. A backup operator can follow along with the primary mix using the app, taking over if the primary operator becomes unavailable.
+
+Other churches use the iPad as their primary control during services, allowing a single operator to move around the sanctuary and mix from different positions. This flexibility is particularly valuable in smaller sanctuaries where intimate mixing—being positioned near the band or worship leaders—provides better audio context.
+
+Mount the iPad on a stand, or use an armband holder if you want to carry it while moving. Ensure the network connection remains strong throughout your expected position range.
+
+## Managing Network Bandwidth
+
+If multiple devices are using the same Wi-Fi network, ensure adequate bandwidth for smooth app control. The CQ-18T app uses minimal bandwidth, but other high-bandwidth activities might interfere.
+
+If you experience lag or latency in app control, reduce other network activity. Close unnecessary applications on the iPad, disable downloads or streaming activities on other devices, or position closer to the Wi-Fi source for stronger signal.
+
+## Combining Streaming and App Control
+
+Your CQ-18T now simultaneously streams audio to OBS for your YouTube/Facebook broadcast while the app provides remote mixing control through your iPad. These two functions operate independently—streaming issues don't affect app control, and app control doesn't affect your stream.
+
+During rehearsal, test both systems together. Have one person mixing via the physical console while another monitors the app on an iPad and ensures it's responding smoothly. Have a third person monitoring your OBS stream to verify audio is consistent. This rehearsal reveals any issues before your first live broadcast.
+
+## Troubleshooting Connection Issues
+
+If your iPad won't connect to the CQ-18T, verify the network password is correct. Ensure the iPad and mixer are on the same network—check your iPad's WiFi settings and verify it's connected to the CQ-18T's network.
+
+If the app connects but responds slowly, you might have network interference. Restart the mixer, restart the iPad, and try connecting again. If performance remains poor, you might be too far from the WiFi source—position closer to the CQ-18T.
+
+If USB audio streaming fails, try a different USB cable and a different USB port on your computer. Restart both the CQ-18T and your streaming computer. Check your streaming software's audio settings to verify the CQ-18T is still selected as the input device.
+
+Your Allen & Heath CQ-18T now provides professional streaming capability and flexible remote control, giving your small church the technical capability of larger operations while maintaining the affordability and simplicity that make the CQ-18T an excellent choice for budget-conscious ministries.

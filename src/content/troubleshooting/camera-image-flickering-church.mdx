@@ -1,0 +1,88 @@
+---
+title: "Camera Image Flickering or Stuttering During Church Stream"
+description: "Fix flickering, stuttering, or intermittent video from PTZ cameras during live church streams. Covers power frequency, cables, and network issues."
+symptom: "Camera output shows flickering, stuttering, or intermittent video"
+affectedDevices: ["AVKANS PTZ", "Tenveo", "OBSBOT Tail Air"]
+tags: ["camera", "video-quality", "flickering", "network"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your camera feed is live, but the video flickers, stutters, or drops frames intermittently. Viewers are seeing a jumpy image, and it's distracting during the service. This usually points to one of four issues: power frequency mismatch, cable degradation, network packet loss, or frame rate mismatch. Let's fix it systematically.
+
+<ProductCTA variant="inline" />
+
+## Check Power Frequency (50Hz vs 60Hz)
+
+Flickering that appears as a regular pulsing (especially under fluorescent or LED lights) is almost always a power frequency mismatch. Cameras have an anti-flicker setting that must match your country's electrical frequency:
+
+1. Access the camera's web interface (navigate to `http://[CAMERA_IP]`)
+2. Go to **Image Settings** or **Video Settings**
+3. Look for **Power Frequency**, **Flicker Control**, or **Anti-Flicker**
+4. If you're in the **US, Canada, or Japan**: set it to **60Hz**
+5. If you're in **Europe, Australia, or most of the world**: set it to **50Hz**
+6. Save and restart the camera
+7. Check the live video — flickering should disappear almost immediately
+
+If you're unsure which setting to use, try the 60Hz option first. If flickering persists, switch to 50Hz.
+
+## Inspect the HDMI Cable (If Using HDMI Output)
+
+If the camera outputs via HDMI to your switcher or capture card:
+
+- **Replace the cable**: Use a high-quality HDMI 2.0 cable, not a cheap or old one. Bad cables cause intermittent signal dropouts that look like stuttering.
+- **Check cable length**: HDMI has a practical limit of about 25 meters without a repeater. If your cable is longer, use an **HDMI repeater/booster** or switch to **SDI** (if your camera supports it).
+- **Verify both ends are fully seated**: Push the HDMI connectors firmly into both the camera and the receiving device. Loose connections cause intermittent dropout.
+- **Test with a different cable**: If you have a spare HDMI cable, temporarily swap it in to rule out cable failure.
+
+## For NDI Cameras: Check Network Packet Loss
+
+If your camera is streaming via NDI (not HDMI):
+
+1. On the streaming PC, open **Command Prompt** (Windows) or **Terminal** (Mac)
+2. Type `ping [CAMERA_IP]` and let it run for 30 seconds
+3. Look at the results: you should see **0% packet loss**
+4. If you see **any packet loss** (even 1–2%), the network is congested or unstable:
+   - Move the streaming PC closer to the network switch or use a wired (Ethernet) connection if it's currently on Wi-Fi
+   - Check if other devices on the network are downloading large files (ask staff to pause updates during the service)
+   - If the camera is on Wi-Fi, move it closer to the router or reconfigure it to use a wired Ethernet connection
+5. If packet loss persists, your network may be undersized — contact your IT staff about upgrading the switch or separating the AV network onto a dedicated VLAN
+
+## Verify Frame Rate Matching
+
+Mismatched frame rates between the camera and encoder can cause stuttering:
+
+1. Check the camera's output frame rate (usually in Image Settings): is it **25fps** (PAL/50Hz) or **30fps** (NTSC/60Hz)?
+2. In OBS, check **Settings > Video > Common FPS Values** and make sure it matches the camera
+3. In vMix, check **Settings > Video > Video Mix 1** and match the frame rate
+4. In your ATEM Mini or other hardware switcher, verify the project frame rate matches
+5. All sources and the output must use the same frame rate, or you'll see stuttering
+
+**Pro tip:** If you're in a 60Hz country, use **29.97fps** or **30fps** (not 25fps). If you're in a 50Hz country, use **25fps** (not 30fps).
+
+## Check the Camera Power Supply
+
+Unstable power can cause video glitches:
+
+- Verify the camera is plugged into a **dedicated power outlet**, not a shared outlet with other high-power devices (projectors, lights, etc.)
+- If using a power extension cord, make sure it's **rated for the camera's power draw** (check the camera's specs — typically 20–40W)
+- Try plugging the camera directly into the wall outlet (not through a power strip) to rule out power conditioning issues
+- If the camera has a backup battery or UPS option, ensure it's not in low-battery mode
+
+## Restart the Camera and Streaming System
+
+Sometimes firmware glitches cause stuttering. Perform a clean restart:
+
+1. Power off the camera and wait 30 seconds
+2. Close OBS or vMix completely
+3. Restart your streaming PC
+4. Power on the camera and wait for full boot (indicator lights stable)
+5. Open OBS/vMix and start the stream
+6. Monitor the first 2–3 minutes for flickering
+
+---
+
+**If flickering persists after these steps**, the issue may be lens auto-focus hunting (camera constantly refocusing). Access the camera's Image Settings and switch to **Manual Focus** or **Autofocus Lock**. Adjust focus once before the service starts and lock it.

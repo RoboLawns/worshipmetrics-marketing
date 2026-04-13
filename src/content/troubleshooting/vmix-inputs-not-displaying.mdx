@@ -1,0 +1,142 @@
+---
+title: "vMix Inputs Not Displaying or Showing Blank"
+description: "Fix vMix inputs showing black or not responding. Covers input configuration, resolution, and HDMI detection."
+symptom: "vMix inputs are added but show black or no signal"
+affectedDevices: ["vMix"]
+tags: ["vmix", "inputs", "video-capture", "switcher"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+You've added camera or presentation inputs to vMix, but the preview shows black screens. Your inputs are in the list, but they're not showing video. This is usually an input configuration mismatch, HDMI cable issue, or source isn't powered on.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Verify the Source Is Powered On
+
+The most obvious cause: the source isn't on:
+
+1. Is your camera powered on? (look for indicator lights)
+2. Is your laptop/presentation source on?
+3. Is the HDMI cable connected from the source to your vMix PC?
+4. Test by connecting a different source (e.g., a phone HDMI adapter) to verify the connection works
+
+If the source is powered and connected, continue to step 2.
+
+## Step 2: Check HDMI Resolution Compatibility
+
+HDMI resolution mismatch can cause blank inputs:
+
+1. On your source device (camera, laptop), verify the HDMI output resolution
+2. Typical values: 1080p 60Hz, 1080p 30Hz, 720p 60Hz
+3. In vMix, right-click the input and select **Properties**
+4. Look for **Resolution** or **Format** setting
+5. Manually set it to match the source device's output (e.g., 1080p 60Hz)
+6. Click **OK** and wait for vMix to reconnect
+7. Does the input now show video?
+
+If setting resolution fixes it, you're done. If not, continue.
+
+## Step 3: Try a Different HDMI Cable
+
+Bad HDMI cables are common:
+
+1. If you have a spare HDMI cable, try swapping it in
+2. Plug the new cable between the source and vMix PC
+3. Wait 5 seconds for vMix to detect the new input
+4. Does the input show video now?
+
+If a different cable fixes it, the original cable was bad — replace it.
+
+## Step 4: Check vMix Input Settings
+
+You may have selected the wrong input or device:
+
+1. In vMix, double-click the blank input to open its properties
+2. In the **Input** dropdown, verify you've selected the correct **HDMI Port** or **Video Device**
+3. If multiple video devices are listed (integrated graphics, USB, etc.), try a different one
+4. Sometimes the HDMI input appears as "HDMI 2" or "Video Input 3" — make sure you're on the right one
+5. Click **OK**
+
+If you were on the wrong device/port, switching fixes it.
+
+## Step 5: Restart the Source Device
+
+Resetting the source sometimes fixes HDMI handshake issues:
+
+1. Power off the source device (camera, laptop, etc.)
+2. Wait 10 seconds
+3. Power it back on
+4. Wait for full boot
+5. vMix should now detect the signal
+6. Does the input show video?
+
+## Step 6: Restart vMix
+
+Sometimes vMix's input detection gets stuck:
+
+1. Close vMix completely
+2. Wait 10 seconds
+3. Reopen vMix
+4. The input should now show video (if the source is connected and powered)
+
+## Step 7: Check for Resolution Limits
+
+Some vMix editions have resolution limitations:
+
+1. vMix Free: Limited to 1080p
+2. vMix HD: Limited to 720p
+3. vMix 4K: Supports 4K
+
+If your input is higher resolution than vMix supports, it will show black.
+
+**Solution:** Set the source device to a lower resolution (e.g., 720p or 1080p), or upgrade to a higher vMix edition.
+
+## Step 8: Test Input with Different Cables and Ports
+
+To isolate the problem:
+
+1. Try connecting the source to a **different HDMI port** on your PC (if you have multiple)
+2. Try a **different HDMI cable**
+3. Try connecting a **different source** to the same HDMI port
+4. Results help pinpoint the issue:
+   - Different port works: original port is bad
+   - Different cable works: original cable is bad
+   - Different source works: original source has HDMI output problem
+   - Nothing works: vMix configuration issue
+
+## Step 9: Check HDCP/Copy Protection
+
+If the source is a DVD player or protected device:
+
+1. Some devices use HDCP (copy protection), which can cause vMix to show black
+2. Try connecting directly (no HDCP on PC input)
+3. Or disable HDCP on the source if possible
+
+## Step 10: Update vMix
+
+Outdated software can have compatibility issues:
+
+1. Open vMix
+2. Go **Help > Check for Updates**
+3. If an update is available, install it
+4. Restart vMix
+5. Try the input again
+
+---
+
+**vMix blank input troubleshooting checklist:**
+- [ ] Source device is powered on
+- [ ] HDMI cable is connected and not damaged
+- [ ] Source HDMI output resolution is compatible
+- [ ] vMix input properties set to correct HDMI port/device
+- [ ] vMix resolution setting matches source
+- [ ] Source device restarted
+- [ ] vMix restarted
+- [ ] Tested with different HDMI cable
+- [ ] Tested with different HDMI port
+- [ ] Tested with different source device
+- [ ] vMix updated to latest version

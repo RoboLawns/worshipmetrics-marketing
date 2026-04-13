@@ -1,0 +1,60 @@
+---
+title: "Complete Streaming Setup for Small Churches (Under 200 Seats)"
+description: "A comprehensive guide to building a complete streaming system for small churches with limited budget and volunteer operators. Learn how to prioritize components and connect everything together."
+churchSize: small
+budget: under-1k
+gearList: ["avkans-ptz-u100", "behringer-x-air-xr18", "atem-mini"]
+tags: ["streaming", "small-church", "budget-friendly", "setup-guide"]
+publishedAt: "2024-01-15"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## Understanding Your Constraints and Opportunities
+
+Small churches face a unique set of challenges when approaching live streaming. You likely have a tight budget, a rotating cast of volunteer operators with varying technical skill levels, and unreliable internet connectivity. But here's what's important to understand: these constraints shouldn't stop you from streaming. In fact, many of the most reliable streaming operations I've worked with are in small churches because they operate with intentional simplicity.
+
+The goal with a small church setup is to get one or two reliable cameras capturing the service, mix clean audio, and push a stable stream to YouTube and Facebook. You're not aiming for a broadcast-quality IMAG system or multi-platform simultaneous delivery—at least not yet. You're building for consistency, resilience, and the ability for a new volunteer to operate the system after a quick rundown on Sunday morning.
+
+## The Core Components You Need
+
+A complete small church streaming setup consists of five essential layers: video capture, video switching, audio capture and mixing, streaming software, and internet infrastructure. Each layer must work together, but you can upgrade them independently over time.
+
+**Video capture** is where many small churches make their first mistake—buying a camera that's more expensive than their entire streaming infrastructure can support. For a small church, a single PTZ camera like the AVKANS U100 gives you automatic pan-tilt-zoom control via joystick without needing a human camera operator. It's NDI-native, which means it connects to your network with a single Ethernet cable that carries both power (via PoE) and video. The camera costs under $500, and it immediately solves your biggest problem: you don't need a dedicated person standing behind a camera all morning.
+
+If you can't stretch to $500 right now, start with what you have. A smartphone mounted on a tripod with a basic ring light works surprisingly well for a temporary solution. You can always upgrade the camera later without touching the rest of your system.
+
+**Video switching** is the next critical piece. The ATEM Mini is the standard-bearer for small churches because it's affordable, reliable, and simple. It switches between inputs, overlays graphics, and handles basic transitions. Unlike pure software-based switching, a hardware switcher like the ATEM Mini operates independently from your streaming PC, which means your system is more resilient. If the PC crashes, the camera feed doesn't disappear.
+
+**Audio mixing** is where small churches often underinvest, and it costs them credibility every single Sunday. Clean audio is more important than beautiful video—your congregation will forgive a frozen camera frame, but they won't forgive audio that cuts out, distorts, or forces them to adjust their volume. The Behringer X-Air XR18 is a digital mixer that connects to your network and offers both analog inputs for live microphones and digital mixing that integrates with your streaming software. You get remote mixing capability (important when your mixer is in a hard-to-reach location), and the built-in streaming preset sends a perfectly balanced stereo mix to your PC.
+
+**Streaming software** is almost certainly OBS (Open Broadcaster Software). It's free, open-source, and capable of professional-grade streaming. OBS takes inputs from your switcher (via HDMI), your mixer (via USB or network), and any graphics you want to overlay. It manages scene switching, encoding, and streaming to multiple platforms simultaneously.
+
+**Internet** is your constraint that no gear can solve. You need a minimum of 5 Mbps upstream bandwidth to reliably stream 720p at 30 fps. Most home internet connections or small church networks can't deliver this consistently. Upgrade your internet before you upgrade your camera. Many small churches have discovered that a dedicated internet circuit (separate from their office network) or a cellular backup with a MiFi hotspot pays off immediately.
+
+## Connecting Everything Together
+
+The signal flow is simpler than you might think. Your AVKANS PTZ camera connects via Ethernet to a network switch, where it receives power and sends video. The ATEM Mini accepts this video over HDMI (you'll use a small converter to translate the camera's network output) or directly if you use a different camera. Your microphone preamp connects to the XR18, which sends audio to your PC via USB. The ATEM Mini also connects to your PC via HDMI for video. OBS then combines everything: the video from the ATEM Mini, the audio from the XR18, any graphics you want to add, and sends the final mix to YouTube and Facebook.
+
+This setup gives you flexibility. If one component fails—say your ATEM Mini loses power—you can temporarily bypass it and send the camera directly to OBS. If the mixer goes offline, you can switch to a USB microphone for the emergency backup. The system degrades gracefully instead of failing completely.
+
+<ProductCTA variant="inline" />
+
+## Prioritizing Your First Purchase
+
+If your budget is truly limited, here's the priority order. First, upgrade your internet. Spend $50-100 per month on a reliable upstream connection. This is non-negotiable. Second, get a decent camera—either a budget PTZ or even a used broadcast camera if you can find one locally. The camera is your visible commitment to streaming, and volunteers are more motivated by clear video. Third, buy your mixer. Cheap audio sounds terrible and makes your whole production feel amateur. The ATEM Mini and OBS can wait; you can manually cut between camera angles with a simple HDMI switcher for a few weeks until you save up.
+
+## Training Your Volunteer Operators
+
+The entire system should be operable by someone who's never done this before, after a 15-minute briefing. This means clear labeling on every cable and button, written runsheets for each service, and preset scenes in your switcher and OBS that do most of the work automatically. Your ATEM Mini should have only three or four buttons that matter: "main camera," "title slide," "lower third graphic," and "closing slide." Everything else is hidden until they need it.
+
+Document everything. Create a one-page checklist that starts before the service (verify internet, check camera NDI light, confirm audio levels) and ends after (save the recording, back it up, reset all inputs for next week). The checklist takes five minutes, and it catches 90% of problems before they become Sunday morning disasters.
+
+## Scaling From Here
+
+Once this system is running reliably for a few months, you'll understand where to invest next. You might add a second PTZ camera for better angle coverage without hiring another operator. You might upgrade to the ATEM Mini Pro for built-in recording to local SSD. You might improve your network with a managed switch and better cable runs. But you don't need all of that on day one.
+
+The real win of starting small is that you'll learn what actually matters in your specific church context. Different congregations have different needs. Maybe your congregation watches 40% on YouTube and 20% on Facebook, which means you need different graphics for each platform. Maybe your pastor likes to wander around the stage, which means you need better pan-tilt-zoom coverage. These decisions are made best after you've actually been streaming for a while, not before.
+
+Build it, run it, learn from it, and upgrade thoughtfully. That's the path to a streaming system that lasts.

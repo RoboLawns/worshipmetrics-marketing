@@ -1,0 +1,129 @@
+---
+title: "ATEM Mini USB Webcam Not Recognized by Windows or Mac"
+description: "Fix ATEM Mini not appearing as a webcam in Zoom, Teams, or OBS. Covers driver installation and USB mode configuration."
+symptom: "ATEM Mini not showing as webcam in Zoom, Teams, or OBS"
+affectedDevices: ["ATEM Mini", "ATEM Mini Pro"]
+tags: ["atem", "webcam", "usb", "streaming"]
+difficulty: beginner
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+You want to use your ATEM Mini as a webcam for Zoom or Teams, but it doesn't appear in the device list. Zoom shows "No camera found" and OBS can't see it either. The ATEM has a USB webcam mode, but it's not being recognized.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Install the ATEM Mini Webcam Driver
+
+ATEM webcam mode requires a driver:
+
+1. Visit **blackmagicdesign.com/support**
+2. Search for **ATEM Mini Drivers**
+3. Download the **Webcam Driver** for your OS (Windows 10/11 or Mac)
+4. Install the driver
+5. Restart your PC or Mac
+6. Plug the ATEM Mini into USB
+7. Wait 10 seconds for Windows/Mac to recognize it
+
+If you skip this step, the ATEM won't appear as a webcam.
+
+## Step 2: Enable Webcam Mode on the ATEM
+
+The ATEM has a setting to enable/disable webcam mode:
+
+1. On the ATEM Mini, locate the **USB Mode** or **Webcam Mode** button or menu option
+2. Verify **Webcam Mode** is **enabled**
+3. Some ATEM models require you to go into **Settings > USB** and toggle it on
+4. If you changed the setting, restart the ATEM
+
+Without this enabled, the ATEM won't broadcast as a webcam.
+
+## Step 3: Check Device Manager (Windows)
+
+Verify Windows recognizes the ATEM as a webcam device:
+
+1. Right-click **Start** and select **Device Manager**
+2. Look for **Imaging devices** or **Camera** in the list
+3. Expand it and look for "ATEM" or "Blackmagic"
+4. If it appears without a warning icon, drivers are installed
+5. If you see a **yellow warning icon**, right-click and select **Update driver** (or reinstall the driver from step 1)
+
+## Step 4: Restart Your PC
+
+Sometimes the OS doesn't immediately recognize the new device:
+
+1. Connect the ATEM Mini to USB
+2. Wait 5 seconds
+3. Restart your PC
+4. Once booted, open Zoom or Teams
+5. Check if the ATEM now appears in the camera list
+
+## Step 5: Test in OBS
+
+OBS gives you good feedback on webcam detection:
+
+1. Open OBS
+2. Click **+** in Sources
+3. Select **Video Capture Device**
+4. In the **Device** dropdown, look for "ATEM Mini" or "Blackmagic"
+5. If it appears, select it and click OK
+6. You should see a preview in OBS
+
+If the ATEM appears in OBS, it's recognized. If Zoom still doesn't see it, it may be a Zoom-specific setting.
+
+## Step 6: Authorize Camera in Zoom/Teams
+
+Even if Windows recognizes the camera, Zoom/Teams may need permission:
+
+**Zoom:**
+1. Open Zoom settings
+2. Click **Audio/Video** or **Camera**
+3. Look for **Camera** dropdown
+4. Select **ATEM Mini** from the list
+5. If not in the list, restart Zoom and try again
+
+**Microsoft Teams:**
+1. Open Teams settings
+2. Click **Devices** or **Camera**
+3. Select the ATEM Mini from the camera dropdown
+4. If not listed, restart Teams
+
+## Step 7: Check USB Webcam Version
+
+Some older ATEM models don't support webcam mode:
+
+- **ATEM Mini Pro:** Full webcam support
+- **ATEM Mini Pro ISO:** Full webcam support
+- **ATEM Mini:** Basic webcam support (confirm your model supports it)
+
+If your model is very old, it may not have webcam drivers available. Check Blackmagic's support page to confirm your model supports webcam mode.
+
+## Step 8: Use Different USB Port
+
+Some USB ports work better than others:
+
+1. Try plugging the ATEM into a different USB port (not a hub — direct to the PC)
+2. Preferably a USB 3.0 port (faster, more compatible)
+3. Wait 10 seconds and check if it appears in the device list
+
+## Troubleshoot Zoom/Teams Not Showing Camera
+
+Even if the ATEM appears in Windows, Zoom/Teams sometimes don't see it:
+
+1. **Close and restart** Zoom/Teams completely (not just minimize)
+2. Open **Device Manager** and verify the ATEM is still listed
+3. If Zoom/Teams still don't see it, restart your PC
+4. After restart, open the software and check the camera list again
+
+---
+
+**ATEM Mini webcam setup checklist:**
+- [ ] Webcam driver installed from Blackmagic website
+- [ ] Webcam mode enabled on ATEM Mini
+- [ ] ATEM connected to USB (not hub)
+- [ ] Device Manager shows ATEM (no warning icon)
+- [ ] PC restarted after driver installation
+- [ ] OBS can see ATEM in Video Capture Device list
+- [ ] Zoom/Teams camera list shows ATEM Mini

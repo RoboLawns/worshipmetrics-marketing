@@ -1,0 +1,106 @@
+---
+title: Teradek VidiU X Stream Drops and Connection Issues
+description: Diagnose and fix connectivity problems, encoder overload, platform authentication errors, and stream quality issues with the VidiU X.
+deviceCategory: encoder
+brand: Teradek
+modelId: teradek-vidiu-x
+modelFullName: Teradek VidiU X
+articleType: troubleshooting
+category: troubleshooting
+tags: [encoder, Teradek, troubleshooting, stream drops, connectivity, authentication]
+difficulty: intermediate
+priceRange: 500-1500
+publishedAt: "2024-11-18"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Stream drops and connectivity issues are stressful, especially when they occur during live services. The Teradek VidiU X is reliable, but occasional problems arise related to network conditions, platform authentication, or encoder configuration. This guide helps diagnose and resolve the most common failure scenarios.
+
+## Stream Connected But No Video Appearing on Platform
+
+Your VidiU X shows "Connected" status in the web interface or Teradek CORE, but when you check YouTube or Facebook, no video appears on the platform. This usually indicates a signal format problem or encoding issue rather than a network problem.
+
+First, verify your HDMI signal is being detected. In the VidiU X's web interface, navigate to **Input**. You should see "HDMI Signal Detected" with the resolution and frame rate listed. If no signal appears, verify your HDMI cable is firmly connected and your video source is powered on and outputting video.
+
+If HDMI signal is detected but video still isn't appearing on the platform, check the encoding settings. Navigate to **Encoding** and verify the bitrate is appropriate for your upload speed. If your encoder is set to an unsustainable bitrate (e.g., 8000 kbps on a 5 mbps upload connection), it might fail to initialize properly.
+
+Reduce the bitrate to 4000 kbps temporarily and test again. If video now appears on the platform, your original bitrate was too high. Once confirmed working, gradually increase bitrate until you find the maximum sustainable level.
+
+## Intermittent Stream Drops During Service
+
+The stream starts fine but periodically drops or freezes. On the platform side, viewers see the stream briefly black out, then resume a few seconds later. This is almost always a network bandwidth issue.
+
+Check your actual upload bandwidth using a speed test tool on a computer connected to the same network. If your speed test shows 5 mbps upload but your encoder is set to 6000 kbps (requiring 6 mbps), you're right on the edge. Any network fluctuation causes drops.
+
+Reduce your encoder's bitrate by 1000-1500 kbps to create safety margin. If you were at 6000 kbps, reduce to 4500-5000 kbps. This gives your connection breathing room to handle minor fluctuations.
+
+Additionally, check what else is consuming network bandwidth during your service. If automatic backups, email syncing, or other network activity occurs during streaming, it competes with your stream for upload capacity. Coordinate with your IT team to avoid scheduling bandwidth-intensive tasks during services.
+
+If your upload bandwidth is genuinely adequate but drops continue, the issue might be your router or network equipment. Restart your router and test again. Older routers sometimes become unstable under sustained high-bandwidth loads.
+
+## Authentication Failed: Invalid Stream Key
+
+Your encoder shows "Authentication Failed" or similar error. This means your stream key is invalid, expired, or incorrect.
+
+First, verify you copied the stream key correctly. Stream keys are long alphanumeric strings, and a single missing character causes authentication failure. Go back to YouTube Creator Studio or Facebook Creator Studio, carefully copy your stream key again, and paste it into the VidiU X (or update it in Teradek CORE).
+
+If the copied key still fails, your stream key may have expired or been rotated by the platform. This is common if you don't stream regularly. Generate a new stream key in your platform account (YouTube: Creator Studio > Live Streaming settings > "Regenerate"; Facebook: Page settings > "Generate New Key"). Copy the new key and update your encoder immediately.
+
+Some churches periodically rotate stream keys for security. If authentication suddenly fails without any configuration changes you made, assume the platform reset your key and generate a fresh one.
+
+For YouTube, wait a few minutes after generating a new key before using it—sometimes there's a brief propagation delay before the key is active.
+
+## Network Connectivity Problems
+
+Your VidiU X is connected via Ethernet but shows no internet connectivity. First, verify the Ethernet cable is firmly plugged into both the encoder and your network switch or router.
+
+Check if other devices on the same network have internet access. Pull up a web browser on another device and confirm you have internet. If other devices have internet but the VidiU X doesn't, the encoder might not have received a DHCP address.
+
+Access the encoder's network settings through its web interface (if you can still reach it locally). Manually assign a static IP address in the same subnet as your router. If your router is 192.168.1.1, assign the encoder 192.168.1.100. Set the default gateway to 192.168.1.1 and DNS to 8.8.8.8 (Google's public DNS). Save and restart.
+
+If your church network has a firewall, ensure outbound RTMP (port 1935) or RTMPS (port 443) traffic isn't being blocked. The VidiU X needs to initiate connections to YouTube, Facebook, and potentially Teradek's CORE service. Contact your IT team to verify these ports are open.
+
+<ProductCTA variant="inline" />
+
+## Encoder Overload and Dropped Frames
+
+Your encoder reports "High CPU Load" or you see significant dropped frames in the monitoring dashboard. This means the VidiU X is working too hard and can't keep up with the video processing demands.
+
+Reduce the resolution or bitrate. If you're streaming 1080p60, step down to 1080p30 or 720p60. Monitor the CPU load metric in your CORE dashboard (if available) or in the encoder's web interface. If it remains above 70%, the VidiU X is still overloaded.
+
+Very rarely, the VidiU X might be underpowered for your streaming demands. The unit is designed for HD streaming at reasonable bitrates, but extreme configurations (4K video, very high bitrate, multiple simultaneous encoding) might exceed its capabilities. Reduce your bitrate or resolution until the encoder can handle the load.
+
+## CORE Cloud Connection Issues
+
+Your VidiU X is working fine (streaming locally), but Teradek CORE shows the encoder as offline. This means the encoder has internet connectivity but can't reach Teradek's cloud service.
+
+Verify the encoder has working internet connectivity. Try accessing a website from your computer to confirm the network is online. If the network is working, the issue might be a firewall blocking CORE connectivity.
+
+Teradek CORE uses HTTPS (port 443) and potentially other cloud APIs. Ensure your firewall isn't blocking outbound HTTPS traffic to Teradek's servers. If your firewall is very restrictive, you might need to whitelist Teradek's IP addresses or domains. Contact Teradek support for a list of required firewall rules.
+
+Alternatively, restart the encoder's CORE sync. In the VidiU X's settings, look for a "Reconnect to Cloud" or "Refresh CORE Connection" button. Click it and wait for the connection to reestablish.
+
+## Resolving HDMI Signal Problems
+
+No HDMI signal is detected, or the signal is intermittent (sometimes appears, sometimes disappears). Verify your HDMI cable is firmly connected on both ends. Push the connector in completely—even partially loose connections cause these symptoms.
+
+Test with a different HDMI cable if one is available. HDMI cables can fail, especially if rolled up and unrolled repeatedly or bent sharply.
+
+Verify your video source is powered on and actually outputting video. If you're using a mixer or switcher, ensure the output you're connected to is active.
+
+If your HDMI source supports multiple output resolutions, try manually selecting a resolution and test if the VidiU X detects signal. Some combinations of video source and encoder don't auto-negotiate properly.
+
+## Recovering from Encoder Crashes
+
+Rarely, the VidiU X might become unresponsive or crash. The most reliable recovery is a power cycle: unplug the power cable, wait 10 seconds, and plug it back in. Let the unit boot fully (1-2 minutes), then try accessing it again.
+
+If the encoder is caught in a boot loop or fails to start completely, contact Teradek support. There might be a firmware corruption issue requiring professional intervention.
+
+## Testing and Documentation
+
+After resolving any issue, document what you did. For example: "Reduced bitrate from 6000 to 4500 kbps due to insufficient upload bandwidth." Keep this documentation in your church's AV knowledge base so you or future technicians can quickly implement the same fix.
+
+Run a complete test stream before your next critical service. Stream for 30 minutes, monitor for dropped frames or quality issues, and verify both YouTube and Facebook connections if you stream to both platforms.
+

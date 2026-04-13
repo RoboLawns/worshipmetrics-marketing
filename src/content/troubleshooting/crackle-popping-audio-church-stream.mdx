@@ -1,0 +1,140 @@
+---
+title: "Crackling or Popping Audio on Church Live Stream"
+description: "Fix digital artifacts, crackling, and popping in your stream audio. Covers sample rate, buffer, and ground loop issues."
+symptom: "Stream audio has crackling, popping, or digital artifacts"
+affectedDevices: ["Behringer X32", "OBS Studio", "Magewell Ultra Encode"]
+tags: ["audio", "quality", "crackling", "streaming"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your stream audio has crackling or popping sounds, especially during quiet moments or under load. It's distracting and unprofessional. This is usually a sample rate mismatch, USB buffer configuration, or ground loop — all fixable without replacing hardware. Let's clean up the audio.
+
+<ProductCTA variant="inline" />
+
+## Check for Sample Rate Mismatch
+
+The most common cause of crackling is different devices using different sample rates:
+
+1. **Check your mixer's sample rate** (access the mixer's menu or web UI)
+   - Most modern mixers default to **48kHz**
+   - Some older ones might be **44.1kHz**
+   - Write down the mixer's sample rate
+2. **Check OBS sample rate**: Go **Settings > Audio > Sample Rate**
+   - Set it to **48kHz** (the most common for streaming)
+   - If your mixer is 44.1kHz, set OBS to 44.1kHz instead
+3. **Check Windows audio settings** (if using Windows):
+   - Right-click the speaker icon > Open Volume mixer
+   - Find your mixer device, right-click > Properties
+   - Go to **Advanced** tab
+   - Set the sample rate to **48kHz, 24 bit**
+4. **Make sure all three match**: Mixer, OBS, and Windows should all be the same sample rate
+5. Restart OBS after changing settings
+
+If a device is using 48kHz and another is using 44.1kHz, the audio engine has to resample on the fly, causing dropouts and crackling.
+
+## Adjust USB Buffer Size
+
+USB audio buffers that are too small cause underruns and pops. If your mixer has USB audio settings:
+
+1. Access the mixer's menu or web interface
+2. Look for **USB Settings**, **Buffer**, or **Latency**
+3. If buffer is set to very low (e.g., 32 samples), try increasing it to **256 samples** or **512 samples**
+4. Higher buffer = more latency but fewer pops
+5. Test and find the sweet spot (usually around 256–512 samples)
+
+For streaming (not live monitoring), a small amount of latency is acceptable. Prioritize audio stability over low latency.
+
+## Check OBS Audio Bitrate
+
+OBS's audio bitrate should be high enough to avoid compression artifacts:
+
+1. In OBS, go **Settings > Output > Streaming**
+2. Look for **Audio Bitrate**
+3. Set it to **128 kbps** or higher (160 kbps is ideal for stereo)
+4. Lower bitrates (64 kbps or less) cause compression artifacts and pops
+5. Click **Apply** and test
+
+Your upload speed can support higher bitrate — using 128–160 kbps for audio is very reasonable and costs minimal bandwidth.
+
+## Eliminate Ground Loop Noise
+
+If you're hearing a low-frequency hum or buzz underneath the crackling:
+
+1. Locate the power cable going into your mixer
+2. Route it *away* from your audio cables (especially microphone cables)
+3. If possible, plug the mixer into a **different power outlet** than other equipment
+4. Consider using a **ground loop isolator** (inexpensive device, £10–20) between your mixer and PC
+
+Ground loop hum is caused by multiple devices sharing power and ground connections. Separating the power outlet or adding a ground isolator usually fixes it.
+
+## Check for Driver Issues (USB Mixer)
+
+Outdated or corrupted drivers can cause audio artifacts:
+
+1. Visit the mixer manufacturer's support page
+2. Download the latest USB driver for your mixer
+3. Uninstall the current driver: Device Manager > Sound devices > right-click mixer > Uninstall device
+4. Restart the PC
+5. Install the latest driver
+6. Restart the PC again
+7. Test the audio
+
+Driver updates sometimes fix audio stability issues.
+
+## Reduce Background Processes
+
+If your streaming PC is running too many programs, it can cause audio underruns:
+
+1. Close unnecessary applications during the stream (email, web browsers, etc.)
+2. Disable Windows updates during the service
+3. Close antivirus scans
+4. If using OBS, verify GPU/CPU encoding settings aren't maxing out your CPU
+
+Look at your **Task Manager** (Ctrl+Shift+Esc) — if CPU usage is above 80%, close some programs.
+
+## Test with Different Cables
+
+Damaged or poor-quality USB cables can cause intermittent audio corruption:
+
+1. If you have a spare USB cable, try swapping it in
+2. Test the stream with the different cable
+3. If crackling stops, the original cable was the problem — replace it
+4. USB cables wear out, especially if they're frequently unplugged and replugged
+
+## Power Cycle Everything
+
+If crackling is new and intermittent:
+
+1. Power off the mixer and PC
+2. Wait 30 seconds
+3. Restart the mixer first
+4. Wait for full boot
+5. Restart the PC
+6. Open OBS and test the stream
+
+Sometimes audio drivers get into a bad state and a clean restart fixes it.
+
+## Test Before Going Live
+
+Before the Sunday service:
+
+1. Do a full 10–15 minute test stream on YouTube or Facebook (private/unlisted)
+2. Listen carefully for crackling, pops, or artifacts
+3. If you hear any, stop the stream and apply the fixes above
+4. Test again
+5. Once you get 10 minutes of clean audio, you're safe to go live
+
+---
+
+**Quick checklist:**
+- [ ] Mixer, OBS, and Windows all set to same sample rate (48kHz)
+- [ ] USB buffer not set to extreme low (aim for 256+ samples)
+- [ ] OBS audio bitrate is 128kbps or higher
+- [ ] Latest USB drivers installed
+- [ ] No ground loop hum (power cables separated from audio cables)
+- [ ] Background processes closed during service
+- [ ] Test stream confirmed crackling-free

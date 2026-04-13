@@ -1,0 +1,105 @@
+---
+title: ATEM Mini Macros for Church Automation
+description: Record and use macros to automate camera transitions, audio adjustments, and graphics switching during worship services.
+deviceCategory: switcher
+brand: Blackmagic Design
+modelId: atem-mini
+modelFullName: Blackmagic Design ATEM Mini
+articleType: how-to
+category: how-to
+tags: [atem-mini, macros, automation, camera-transitions, audio]
+difficulty: intermediate
+priceRange: under-500
+publishedAt: "2024-02-10"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+A macro is a recorded sequence of switching moves that plays back with a single button press. Instead of manually cutting between three cameras, adjusting audio levels, and enabling graphics—a sequence that takes four or five clicks—you press one macro button and all of it happens automatically. For church AV teams running tight services with few volunteers, macros are transformative.
+
+The ATEM Mini has ten assignable macro slots, which is more than enough for a typical Sunday service. You might have a macro for "Song Start," another for "Sermon," another for "Prayer," and so on. Each macro captures the exact sequence of events needed for that moment in your service.
+
+This guide walks through recording your first macro and using it effectively in a live service.
+
+## Understanding What a Macro Can Do
+
+A macro captures any button press or slider movement in ATEM Software Control. This includes camera selection, transition type and duration, audio fader adjustments, keyer on/off commands, and even upstream keyer positioning. When you play the macro back, ATEM executes every action in the exact sequence you recorded.
+
+A macro cannot change what's happening in OBS or other external software—it only controls the ATEM Mini itself. So if you want to switch cameras in the ATEM Mini and simultaneously switch scenes in OBS, you'd need to either do that manually or use a different approach like ATEM Switching Studio (advanced). For most churches, controlling the ATEM Mini is sufficient.
+
+Macros execute instantly or over a specified duration. For example, you might record a macro that fades from one camera to another over two seconds, adjusts audio levels to compensate for a new speaker, and turns on your graphics keyer—all of it timed and coordinated.
+
+## Recording Your First Macro
+
+Open ATEM Software Control and navigate to the Macro section. You'll see a list of ten empty macro slots. Click "Record" on macro 1. A red recording indicator appears, signaling that every action you take in ATEM Software Control is now being recorded.
+
+Now perform the sequence of actions you want to automate. For a "Song Start" macro, you might: click on camera 2 (the wide shot of the worship band), engage a mix transition, turn on the upstream keyer for your song lyrics, and set the audio level for the wireless mic from the worship leader to a specific level.
+
+As you make each action, you'll see it appear in the macro timeline. The ATEM Mini records not just which button you pressed but also the timing—if you pause between moves, that pause is recorded, and the macro will replay with the same timing.
+
+<ProductCTA variant="inline" />
+
+Once you've completed your sequence, click "Stop Recording." Your macro is now saved. Click the macro button (labeled "1") and it will play back instantly, executing every action you recorded.
+
+If your macro didn't turn out right—you clicked the wrong camera or adjusted the wrong fader—click "Edit" to re-record it. You don't lose the original; you're just re-doing it. This is much faster than troubleshooting after the fact.
+
+## Practical Macros for Church Services
+
+A typical church service benefits from about five macros: opening, song, sermon, prayer, and closing. You might add a sixth for announcements or special moments. Here's what each might include.
+
+Your "Opening" macro might start with a title slide or intro animation, have your ambient camera (sometimes called a "room shot" or "wide shot") running, and set audio levels for the announcement person. When you hit this macro five minutes before service, it instantly puts everything in place for the start of your broadcast.
+
+Your "Song" macro switches to a tighter framing on the worship leader, enables your graphics keyer to display lyrics, and adjusts audio levels for singing. Some churches have two song macros—one for a slow, intimate song and another for an upbeat moment—because the camera framing and graphics positioning might differ.
+
+Your "Sermon" macro typically switches to a podium or pulpit camera, disables graphics (clean feed of the pastor), and adjusts audio levels for speaking. Some churches keep graphics enabled on the lower third for sermon notes or Scripture references, but many prefer a clean image of the speaker.
+
+Your "Prayer" macro might use the same camera as sermon but adjust lighting or framing slightly, or switch to a different angle entirely. Some churches display the church name or a prayer screen during this time.
+
+Your "Closing" macro often mirrors the opening—a slide, a wide room shot, and music playing. This gives your broadcast a polished, intentional ending rather than an abrupt cut.
+
+## Timing and Transitions Within Macros
+
+When you record a macro, timing matters. If you record yourself waiting three seconds before making the next move, that three-second pause is part of the macro. This is useful for creating smooth transitions that don't happen all at once.
+
+For example, you might record a "Fade to Sermon" macro that: fades from the previous camera to the sermon camera over two seconds (using the T-bar), waits one second for the camera to settle, then turns on your sermon graphics. When you play this macro, it all happens in the correct order with the correct timing.
+
+However, if you want moves to happen instantly without timing, record them back-to-back with no pause. A macro that switches three cameras in rapid succession feels snappy and intentional, whereas one with pauses between moves feels more deliberate and gives viewers a moment to absorb each change.
+
+## Using Macros in a Live Service
+
+On Sunday morning, you've got ATEM Software Control open on a monitor visible to your switcher operator. As the service progresses, the operator watches the order of events and knows which macro comes next. When the worship leader finishes the opening song and the pastor steps to the podium, the operator clicks the "Sermon" macro button. Instantly, the camera changes, graphics adjust, and audio levels shift—all without the operator thinking about each individual step.
+
+This is where macros save your sanity. Your switcher operator is freed from worrying about the precise sequence of actions. Instead, they focus on watching the service and knowing when to press the next button. This reduces mistakes and lets your operator focus on the big picture rather than technical details.
+
+If a macro doesn't go exactly as planned—maybe you need to switch cameras slightly differently than the macro does—you can override it. Start the macro, then take manual control immediately after. The macro plays most of your moves, and you manually adjust the rest. This hybrid approach works well for services where timing varies or where unpredictable moments happen.
+
+## Editing Macros and Creating Variations
+
+After your first service, you might notice that your "Song" macro works great for upbeat songs but doesn't quite feel right for slower, more intimate moments. Rather than re-record the entire macro, many churches create a second version.
+
+Save your first "Song" macro as-is, then create a second macro called "Song Slow." Record a similar sequence but with tighter camera framing, slower transitions, and perhaps adjusted graphics positioning. Now during a service, you can choose the right macro for the right moment.
+
+The ATEM Mini's ten macro slots fill up quickly if you create this kind of variation. Experienced teams often have: opening, song (upbeat), song (slow), sermon, prayer, call to action, closing, plus two spares for special moments. This is about the limit for what most operators can manage during a service.
+
+## Managing Macro Slots and Documentation
+
+Write down what each macro does. Keep a note in your AV runsheet: "Macro 1 = Opening, Macro 2 = Song, Macro 3 = Sermon," etc. If your team has multiple switcher operators, everyone needs to know which button does what.
+
+If you need to change a macro for a future service (maybe next week's opening is different), you can re-record over the existing macro. Just click record, redo the sequence, and stop. The old macro is replaced. There's no undo, so if you're nervous about overwriting an important macro, duplicate your ATEM Software Control settings file before making changes. You can export and import macro sets, so if something goes wrong, you can restore from backup.
+
+ATEM Software Control lets you export your macro library to a file. Do this regularly—maybe every month—so you have a backup of all your macros. If your streaming PC crashes or you upgrade to a new one, you can import your macro library and all your automation is restored.
+
+## Advanced Macro Techniques
+
+Once you're comfortable with basic macros, you can layer them. Some churches create short "adjustments" macros—like "Lower Music Level" or "Enable Worship Graphics"—that adjust a single element. These shorter macros can be run between the larger service macros to fine-tune what's on screen.
+
+You can also use macros to prepare for unpredictable moments. If you know a guest pastor is speaking but you don't know exactly when, you might have a "Guest Sermon Ready" macro that positions the correct camera and graphics. When the guest gets to the podium, the macro is waiting, ready to go live with a single button press.
+
+The more you use macros, the more creative you'll get with them. The key principle is always the same: identify repetitive sequences that happen in your service, record them once, and replay them on demand.
+
+## Your Path Forward
+
+Start with your core service moments: opening, songs, sermon, prayer, closing. Record these macros for the next two services and refine them based on what works. Once you're comfortable with those five, explore variations for different types of songs or speakers.
+
+Macros transform your ATEM Mini from a switcher you operate to an automation system that executes your service vision. Instead of playing catch-up with manual switching, your team is playing ahead—preparing the next shot, the next graphic, the next transition. That professional coordination is what separates a polished broadcast from a scrambled one. And it all starts with recording your first macro and hitting the button on Sunday.

@@ -1,0 +1,109 @@
+---
+title: "NDI Camera Not Showing Up in OBS or vMix: Fix"
+description: "Troubleshoot why your NDI PTZ camera isn't visible in OBS or vMix. Covers plugin installation, firewall, and network configuration."
+symptom: "NDI source from PTZ camera is not visible in OBS or vMix"
+affectedDevices: ["AVKANS PTZ", "SMTAV BX30N", "Kiloview N2", "ProPresenter NDI"]
+tags: ["ndi", "obs", "vmix", "network"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your NDI camera is online and working, but OBS or vMix shows an empty list when you try to add it as a source. The camera should be discoverable — it's likely a plugin, firewall, or network routing issue. This usually resolves in minutes once you identify which layer is blocking discovery.
+
+<ProductCTA variant="inline" />
+
+## Step 1: Verify the Camera Has NDI Enabled
+
+First, confirm the camera is actually broadcasting NDI:
+
+1. Access the camera's web interface (navigate to `http://[CAMERA_IP]` in your browser)
+2. Look for **Network** or **Streaming** settings
+3. Find the **NDI** option and verify it's **enabled** (not disabled or set to output-only)
+4. If NDI is off, enable it and reboot the camera
+5. Check the camera documentation for the exact NDI stream name — some cameras require you to name the output (e.g., "Church Pulpit Camera")
+
+## Step 2: Install or Verify NDI Plugin
+
+**For OBS:**
+- OBS does *not* include NDI support by default — you must install the **obs-ndi plugin**
+- Visit [github.com/Palakis/obs-ndi](https://github.com/Palakis/obs-ndi) and download the Windows or Mac installer for your OS
+- Install it and restart OBS
+- If you already have the plugin, verify it's enabled: **Tools > obs-ndi Settings** should show no errors
+- Update the plugin if you're running an old version (some versions have NDI discovery bugs)
+
+**For vMix:**
+- vMix includes NDI support built-in — no plugin needed
+- Simply click **Add Input > NDI** and vMix will scan for sources
+- If NDI doesn't appear in the input menu, restart vMix
+
+## Step 3: Check Firewall Rules
+
+NDI uses **multicast packets** on ports **UDP 5353** and **UDP 5004** to discover devices. Your firewall might be blocking these:
+
+**Windows Firewall:**
+1. Open **Windows Defender Firewall with Advanced Security**
+2. Click **Inbound Rules** in the left panel
+3. Look for any rules blocking multicast or port 5353/5004
+4. Delete any restrictive rules (or better yet, add an exception rule specifically for OBS or vMix)
+5. Restart OBS/vMix and try scanning again
+
+**Third-party firewalls:**
+- Temporarily disable your firewall (e.g., Norton, McAfee, Kaspersky) for testing
+- If NDI sources appear, you've found the culprit — add an exception for OBS/vMix
+- Check your firewall's UDP filtering settings and explicitly allow multicast on ports 5353/5004
+
+## Step 4: Verify Camera and PC Are on the Same Network/Subnet
+
+NDI discovery only works if the camera and your streaming PC are on the *same subnet*:
+
+- **Camera IP**: Check the camera's web UI and note its IP (e.g., 192.168.1.100)
+- **PC IP**: On your PC, open **Command Prompt** (Windows) or **Terminal** (Mac) and type `ipconfig` (Windows) or `ifconfig` (Mac)
+- Look for your network adapter's IP and subnet mask
+- If the first three octets don't match (e.g., camera is 192.168.1.x but PC is 192.168.0.x), they're on different subnets and can't discover each other
+
+**If subnets don't match:**
+- Reconfigure the camera to use your PC's subnet, or
+- Use **NDI Bridge** (see step 6 below)
+
+## Step 5: Test NDI Discovery with NDI Tools
+
+Download **NDI Tools** (free from Newtek/NDI's website) to verify that NDI discovery is working on your network:
+
+1. Go to [ndi.tv](https://www.ndi.tv) and download **NDI Tools** for Windows or Mac
+2. Install and run **NDI Monitor** (included in NDI Tools)
+3. If the camera appears in NDI Monitor, NDI discovery is working — the issue is with your OBS/vMix setup (go back to step 2)
+4. If the camera *doesn't* appear in NDI Monitor, NDI packets aren't reaching your PC — this is a network routing issue (see step 6)
+
+## Step 6: Use NDI Bridge for Cross-Subnet Discovery
+
+If the camera and PC are on different subnets, or if multicast is being blocked on your network, use **NDI Bridge**:
+
+1. On a machine that *can* see the camera (or on the camera itself if it runs NDI Bridge), run **NDI Bridge** (included in NDI Tools)
+2. NDI Bridge converts multicast discovery into a unicast tunnel that works across subnets and firewalls
+3. In OBS or vMix, configure NDI to use the bridge's IP address
+4. The camera should now appear in your source list
+
+This is common in larger church networks where the camera is on a separate AV VLAN and the streaming PC is on a different VLAN.
+
+## Step 7: Restart Everything in Order
+
+Sometimes NDI discovery gets stuck in a bad state. Perform a clean restart:
+
+1. Close OBS or vMix completely
+2. Power off the camera for 30 seconds
+3. Disconnect the camera's network cable
+4. Restart your PC
+5. Plug the camera back in and wait for it to fully boot (indicator lights stable)
+6. Open OBS or vMix and try adding the NDI source again
+
+---
+
+**Quick checklist if still stuck:**
+- [ ] Camera NDI output is enabled in its web UI
+- [ ] OBS-NDI plugin is installed and up to date (vMix already includes NDI)
+- [ ] Firewall isn't blocking UDP 5353/5004
+- [ ] Camera and PC are on the same subnet (or NDI Bridge is configured)
+- [ ] NDI Monitor shows the camera as discoverable

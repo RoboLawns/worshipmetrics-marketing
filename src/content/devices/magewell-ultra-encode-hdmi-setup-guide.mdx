@@ -1,0 +1,70 @@
+---
+title: Magewell Ultra Encode HDMI Setup Guide for Churches
+description: Complete walkthrough for connecting the Magewell Ultra Encode HDMI encoder, accessing the web interface, and configuring your first stream to YouTube or Facebook.
+deviceCategory: encoder
+brand: Magewell
+modelId: magewell-ultra-encode-hdmi
+modelFullName: Magewell Ultra Encode HDMI
+articleType: setup-guide
+category: device-setup
+tags: [encoder, streaming, RTMP, SRT, setup, YouTube, Facebook]
+difficulty: beginner
+priceRange: 1500-plus
+publishedAt: "2024-11-15"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+The Magewell Ultra Encode HDMI is a professional-grade hardware encoder designed for reliable church streaming. Unlike software encoders that depend on your computer's performance, the Ultra Encode HDMI runs independently, delivering consistent stream quality even when your control computer is busy managing slides, graphics, or other elements. This guide walks you through initial setup so you can stream your first service within the hour.
+
+## Unboxing and Physical Setup
+
+When your encoder arrives, you'll find the Ultra Encode HDMI unit, a power supply, an Ethernet cable, and the quick-start guide. The unit itself is a compact metal appliance about the size of a small desktop amplifier. Place it near your video router or mixer in a well-ventilated location where it won't overheat during a multi-hour service stream.
+
+Connect the power supply and flip the power switch on the back of the unit. You should see indicator lights on the front panel illuminating. The encoder needs just one Ethernet connection to your church network—no USB cables required. Plug the included Ethernet cable into the back panel and connect it to your network switch or directly to your router if you're in a smaller setup.
+
+## Accessing the Web Interface
+
+The encoder communicates through a web browser, so you'll need a computer or tablet on the same network as the hardware. Once powered on and networked, the encoder broadcasts its own IP address on your local network through a protocol called mDNS. This means you don't need to hunt through network settings to find it.
+
+Open a web browser on any computer connected to your church network and type `magewell-encode.local` into the address bar. The encoder's web interface should load immediately. If that doesn't work, your network's mDNS isn't configured properly—contact your IT support or try accessing the encoder's setup page at `192.168.1.100` (the default IP address).
+
+When the interface loads, you'll see a dashboard showing your encoder's current status, input signal detection, and available settings. The first time you access it, the default username is `admin` and the default password is `12345`. For security, you should change this password in the Settings menu immediately, especially if your encoder is networked across your church's broader IT infrastructure.
+
+## Connecting Your Video Source
+
+The Ultra Encode HDMI accepts standard HDMI input on a connector labeled "HDMI IN" on the back panel. This is where your video feed comes in—typically from your video mixer, switcher, or camera. Plug your HDMI cable from your primary video source into this input. The encoder supports 1080p60 and other standard video formats, so it will automatically detect and lock to your incoming signal.
+
+Within the web interface, navigate to the **Input** section. You should see "HDMI Signal Detected" displayed in green. If no signal appears, verify that your HDMI cable is firmly seated and that your video source is actually outputting video at the time. The encoder won't show a detected signal if your mixer is in standby or your camera is powered down.
+
+For audio, the Ultra Encode HDMI embeds audio directly from the HDMI signal, so any audio on your HDMI input will be captured and streamed. Some churches prefer to mix audio and video separately using an audio console, then embed that mixed audio into the HDMI feed. This approach gives you maximum control over audio balance during the service.
+
+## Configuring Your First Stream Destination
+
+Now you're ready to set up streaming to a platform like YouTube or Facebook. Navigate to the **Streaming** section in the web interface. You'll see options to add streaming destinations and configure encoding parameters.
+
+Click **Add Destination** and select RTMP as the protocol—this is the standard for platforms like YouTube Live and Facebook Live. The web interface will prompt you for a stream URL and stream key. These come from your platform's settings.
+
+For YouTube, log into your YouTube account, navigate to Creator Studio, and find the Stream Key under the Live Streaming settings. Copy this key into the encoder's configuration. The stream URL for YouTube is always `rtmp://a.rtmp.youtube.com/live2/`.
+
+For Facebook, the process is similar but slightly different. Your stream URL typically looks like `rtmps://live-api-s.facebook.com:443/rtmp/` and your stream key is unique to your Page's streaming setup. Facebook provides these credentials in your Page's Settings under Live Videos.
+
+<ProductCTA variant="inline" />
+
+Once you've entered the stream URL and key, the encoder is ready to begin transmitting. You don't need any additional software or drivers on your PC. The encoder handles all the processing independently. Before going live during a service, test your stream by clicking the **Start Streaming** button. The encoder will attempt to connect to your platform and begin sending video and audio. Check your platform's dashboard to confirm you're receiving signal.
+
+## Setting Resolution and Bitrate
+
+The encoder defaults to 1080p30 at a reasonable bitrate for standard internet connections. If your church has limited upload bandwidth, you might want to lower the resolution to 720p or adjust the bitrate downward. Navigate to the **Encoding** section and you'll find controls for resolution, frame rate, bitrate, and codec selection.
+
+For most churches streaming to YouTube or Facebook, 1080p30 at 6000 kbps provides excellent quality without requiring an enormous upload speed. If your internet connection is known to be unreliable—perhaps your church is in a rural area with limited bandwidth—consider stepping down to 720p at 4000 kbps. This gives you room to handle network fluctuations without dropping the stream.
+
+The encoder uses H.264 video compression by default, which is universally compatible with streaming platforms. More advanced settings like SRT (Secure Reliable Transport) are available in the Destination settings if you plan to set up multi-campus distribution later, but for your first stream, RTMP to YouTube or Facebook is the most straightforward path.
+
+## Testing Before Your First Live Service
+
+Set aside time before your first live service to run a complete test. Have your video source active, press Start Streaming through the web interface, and verify the stream appears on your platform within 15-30 seconds. Audio, video quality, and sync should all check out. This is also when you'll discover any network issues in your current setup before they impact a real service.
+
+Once you've confirmed everything is working, you're ready to go live. The Ultra Encode HDMI will reliably stream your service without requiring any attention or intervention, freeing you and your team to focus on the actual production work during the service.
+

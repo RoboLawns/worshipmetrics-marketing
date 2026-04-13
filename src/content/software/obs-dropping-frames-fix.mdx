@@ -1,0 +1,72 @@
+---
+title: "OBS Dropping Frames: Diagnose and Fix for Church Streams"
+description: "Understand dropped frames, rendering lag, and skipped frames in OBS. Learn to diagnose issues with the stats panel and implement fixes."
+app: obs
+articleType: troubleshooting
+tags: [troubleshooting, performance, encoding, cpu, frames]
+difficulty: intermediate
+publishedAt: "2024-02-21"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your service is going live and suddenly viewers report freezing, buffering, or losing video entirely. Meanwhile, OBS looks fine on your monitor. You've hit the dreaded "dropped frames" problem, and it's panic-inducing because you don't know what's failing: your PC, your encoder, or your internet. Understanding the three types of frame loss—dropped frames, rendering lag, and skipped frames—transforms this chaos into a solvable problem.
+
+## The Three Types of Frame Loss
+
+OBS has three distinct sources of video problems, and they require different fixes. Dropped frames occur when your encoder (the software or hardware that compresses video) can't keep up with the incoming video stream. Your camera is sending 30 frames per second, but your encoder is only compressing 28 frames per second, so two frames are discarded. Viewers see stuttering or a frozen video followed by a jump.
+
+Rendering lag happens when your PC's graphics card is overwhelmed drawing scenes. If you have dozens of sources, complex transitions, or animation-heavy graphics, rendering lag means your scene preview is slow to update. This doesn't directly affect your stream (which is encoded from your canvas, not your preview), but it does affect your director's ability to switch scenes smoothly. It's a comfort problem, not a stream quality problem, unless lag is so severe that your director misses cue times.
+
+Skipped frames are the rarest issue. They occur when your CPU briefly spikes (due to disk activity, background updates, or other applications), and the encoder misses a frame deadline. Unlike dropped frames, skipped frames usually recover quickly. A few skipped frames in a 90-minute service are usually invisible to viewers.
+
+## Checking OBS's Stats Panel
+
+Open View → Stats to see real-time performance data. Watch the stats during a stream or while simulating a stream in OBS (preview mode). The panel shows CPU usage, GPU usage, dropped frames, and skipped frames. You're looking for the number after "Dropped Frames (Encoding)" and "Skipped Frames." During a healthy stream, both should be zero. If you see numbers climbing, you've identified the problem type.
+
+If Dropped Frames is increasing, your encoder is the bottleneck. If Skipped Frames is increasing, your PC is too busy. If rendering lag is visible (scene preview is slow to respond), but neither dropped frames nor skipped frames are high, then rendering lag is your issue.
+
+<ProductCTA variant="inline" />
+
+## Fixing Dropped Frames: Encoder Solutions
+
+Dropped frames mean your encoder can't compress video fast enough. Start by checking OBS's Encoding Preset. In Settings → Output, find the Preset dropdown (only visible if you're using x264 software encoder). "Ultra-fast" and "Superfast" presets use less CPU at the cost of slightly lower quality. Try switching from "Medium" or "Slow" to "Superfast" and test again. Dropped frames should decrease.
+
+The trade-off is visible: Superfast preset compresses less efficiently, so at the same bitrate, video quality is slightly softer. However, this is infinitely better than dropped frames, which make video freeze entirely. If dropping frames stops, you've found your fix. Use Superfast and don't worry about the small quality reduction.
+
+If you still have dropped frames after switching presets, your CPU is genuinely insufficient. Here's the nuclear option: switch to hardware encoding. If you have an NVIDIA graphics card, go to Settings → Output, change Encoder to "NVIDIA NVENC." For AMD graphics cards, select "AMD AMF." Hardware encoders offload compression to your GPU, freeing your CPU. Dropped frames should drop to zero.
+
+Hardware encoding produces slightly lower quality than software encoding (x264), but the difference is subtle and far outweighed by the benefit of no dropped frames. Professional streamers often use hardware encoding because CPU usage matters less than reliability.
+
+## Fixing Dropped Frames: Bitrate Adjustment
+
+Sometimes your encoder isn't the problem—your internet connection is. If your OBS bitrate is higher than your upload speed can sustain, your encoder compresses video at the target rate, but packets get dropped en route to the server. This appears as dropped frames in OBS.
+
+Check your internet speed using Speedtest.com at the time of day you stream. If your upload is 3 Mbps and OBS is set to 2,500 Kbps, you're using most of your connection. Any variation drops frames. Reduce OBS bitrate to 1,500 Kbps and test. If dropped frames stop, your internet was the culprit. Increase bitrate gradually until dropped frames reappear, then back off 500 Kbps for safety margin.
+
+## Fixing Rendering Lag
+
+If your scene preview is slow to respond (you click a scene but it takes a second or two to switch), rendering lag is slowing your director down. Open View → Stats and check GPU usage. If it's consistently above 70%, your graphics card is overwhelmed.
+
+Reduce the complexity of your scenes. Too many text overlays, animated stingers, or media files in a single scene contribute to rendering lag. Simplify by hiding sources you don't need (click the eye icon to hide, not delete), or split complex scenes into multiple simpler scenes your director switches between.
+
+Check your Output Resolution in Settings → Video. If your Output is 1920×1080 (1080p), switch to 1280×720 (720p). Rendering a 720p scene is easier than 1080p. If you're streaming 720p anyway, there's no reason to render at 1080p internally.
+
+## Fixing Skipped Frames
+
+Skipped frames are usually transient—a background Windows update, antivirus scan, or disk activity causes a brief CPU spike. Check your PC's Task Manager (Windows) or Activity Monitor (Mac) to see what's consuming CPU. Close unnecessary applications. Disable antivirus real-time scanning during services (or configure it to skip your OBS.exe folder).
+
+If skipped frames persist, increase your CPU headroom by switching to hardware encoding (described above) or reducing encoding complexity. But honestly, a few skipped frames in a 90-minute stream are rarely visible to viewers. Your viewers tolerate the occasional micro-stutter; they don't tolerate constant freezing. Once skipped frames are occasional rather than constant, you're fine.
+
+## Preventive Measures
+
+Before each service, open OBS's Stats panel and let it run in a preview stream for 5–10 minutes. Watch for dropped frames, rendering lag, or skipped frames. If problems appear during this test, fix them before the actual service. This simple step catches issues before they embarrass your church on a Sunday.
+
+Keep your PC clean. Update graphics drivers regularly (NVIDIA or AMD) and Windows updates when they don't conflict with your service schedule. A stale driver can cause dropped frames.
+
+Dedicate your OBS PC to streaming. Close email, web browsers, and other applications during services. Even watching YouTube in a background window can spike CPU usage and cause frame drops.
+
+If you've tried all these fixes and still drop frames, your PC may genuinely be too old or too slow for video streaming. In that case, consider a hardware upgrade: a modern i7 or Ryzen 7 (current generation or one prior) is affordable and solves most frame-dropping issues. For a church, this upgrade is a one-time investment that provides years of reliable streaming.
+
+Frame issues are frustrating in the moment, but they're solvable. Most churches fix dropping frames with a simple preset switch or bitrate adjustment. Do the tests, implement fixes methodically, and your stream will be rock-solid.

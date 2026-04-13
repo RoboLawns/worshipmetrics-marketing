@@ -1,0 +1,87 @@
+---
+title: "Remote Controlling the X32 Compact with X32-Edit"
+description: "Control your X32 Compact from tablets and laptops using X32-Edit. Learn network setup, remote mixing workflows, and operational best practices for smaller venues."
+deviceCategory: mixer
+brand: "Behringer"
+modelId: behringer-x32-compact
+modelFullName: "Behringer X32 Compact"
+articleType: software-control
+category: device-setup
+tags: [x32-compact, x32-edit, remote-control, tablet, software]
+difficulty: intermediate
+priceRange: 500-1500
+publishedAt: "2024-04-10"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+# Remote Controlling the X32 Compact with X32-Edit
+
+X32-Edit works identically on the X32 Compact as it does on the full X32. You can operate the Compact from a tablet or laptop anywhere on your network, giving you mixing flexibility without requiring the operator to be at the physical console. For smaller churches with limited booth space, this is particularly valuable. You can position the Compact in a cabinet or corner, and your engineer operates from a comfortable seating position in the congregation with a tablet.
+
+## Installing X32-Edit on Your Device
+
+Download X32-Edit from Behringer's website—it's available for Windows, Mac, iOS (iPad), and Android. The software is free and lightweight. For iPad users, search for "X32-Edit" in the App Store. For Android tablet users, find it on Google Play. For computers, download from behringer.com and run the installer.
+
+Once installed and launched, X32-Edit automatically searches your network for any connected X32 or X32 Compact mixers. If it finds your Compact, it displays it in the Devices list. Click on it and X32-Edit establishes a connection. If it doesn't find it automatically, you can manually add the Compact by entering its IP address (found on the Compact by pressing Setup > IO).
+
+## Network Connection for Small Venues
+
+For most small churches, the simplest network setup is to connect the Compact and your tablet to the same Ethernet switch via wired cables. The Compact has one Ethernet port; connect it to the switch. Plug your tablet (if it supports Ethernet, or a Bluetooth adapter) or computer into the same switch. Both devices now communicate on the local network.
+
+If wired Ethernet isn't practical, Wi-Fi works but requires a stable, interference-free connection. Connect both the Compact and your tablet to the same Wi-Fi network. The Compact needs to be set to connect to Wi-Fi. Go to Setup > IO on the Compact, find Network settings, and select your Wi-Fi network. Enter the password.
+
+For venues with existing IT infrastructure, simply connect the Compact to your church's main network the same way you'd connect any device. The Compact doesn't require high bandwidth or special network configuration.
+
+## The X32-Edit Interface on Tablets
+
+On an iPad, X32-Edit presents a touch-optimized interface. You see a main channel section displaying your active channels with their faders. Swipe left and right to access additional channels or groups. Tap on any parameter to adjust it—EQ, levels, effects, whatever you need.
+
+The layout is customizable. You can create different views for different operational roles. Your front-of-house engineer might have a view showing all channels with faders, effects, and metering. Your streaming engineer might have a simplified view showing just the streaming auxiliary bus and a few key channels. These custom layouts are saved in X32-Edit and you switch between them with a single tap.
+
+On Android tablets, the interface is similarly touch-friendly. The experience is slightly different due to Android's UI paradigm, but the functionality is identical.
+
+## Operational Workflow with Remote Control
+
+A practical workflow is to position the Compact in a cabinet or closet—somewhere out of sight but accessible if needed—and have your audio engineer mix from the front of the house using a tablet. They arrive early, fire up X32-Edit, load your Sunday scene, and they're ready to mix from anywhere in the sanctuary.
+
+During the service, they adjust the main output faders on the tablet to balance the mix. Unlike working at the physical console, they can move around to different parts of the room and hear how the mix sounds from various listening positions. This gives them invaluable information about acoustics and coverage.
+
+From stage position near the band, they can verify that the drummer's monitors are at the right level. From the back of the sanctuary, they can ensure that the vocal is clearly audible. From the middle, they can check overall balance. All of this is possible with X32-Edit on a tablet.
+
+## Security and Access Control
+
+To prevent unauthorized users from operating X32-Edit, enable password protection on the Compact. Go to Setup, find the network or security section, and enable password. Now when someone launches X32-Edit, they're prompted to enter a password before they can connect. Only your authorized mixing engineers know the password.
+
+For high-security environments, you can further restrict access by limiting which devices can connect. On the Compact, you can whitelist specific MAC addresses (the network hardware identifier of your tablet or computer). Only whitelisted devices can connect to the Compact. This requires a bit more technical setup but is extremely secure.
+
+## Tablet Placement During Service
+
+The tablet running X32-Edit can sit in your lap, on a music stand, or on a small cart—wherever your engineer needs it. Some churches use a wireless connection to allow true freedom of movement. Others use a Bluetooth-connected keyboard and mouse for an interface closer to operating the physical console.
+
+Protect the tablet with a sturdy case and keep it nearby where it won't get damaged. The tablet becomes your critical operational tool, so treat it accordingly.
+
+## Troubleshooting Remote Control Issues
+
+**X32-Edit can't find the Compact**: Verify that both devices are on the same network. If using Ethernet, confirm the cables are seated properly. If using Wi-Fi, confirm both devices are connected to the same network and that you see the wireless network symbol on the Compact.
+
+**Connection is slow or laggy**: Network congestion. Close other bandwidth-heavy applications on your network. If using Wi-Fi, move closer to the access point or consider wiring at least the Compact to the network.
+
+**Controls seem unresponsive**: Usually a network issue again. Try disconnecting and reconnecting X32-Edit. Reboot the Compact. Use a wired connection if possible.
+
+**Can't remember the Compact's IP address**: On the Compact, press Setup, go to IO, and look at the Network section. The IP address is displayed there.
+
+<ProductCTA variant="inline" />
+
+## Expanding Your Remote Control Capabilities
+
+Once you're comfortable with basic tablet operation, explore advanced features. X32-Edit allows you to create macros—sequences of commands triggered by a single button. For example, a macro might raise the vocal fader to maximum, lower all music faders, and disable the reverb effect with one tap. Useful for sermon transitions.
+
+You can also create custom layouts that show exactly what different operators need. Your front-of-house engineer's layout is different from your livestream engineer's layout, but they're both controlling the same mixer.
+
+## Comparison: Physical Console vs X32-Edit
+
+The physical X32 Compact console offers tactile feedback and full control visibility. X32-Edit on a tablet offers mobility and flexibility. Many churches use both—the tablet for most of the service for mobility, with the physical console available at the booth if detailed parameter adjustments are needed.
+
+For a smaller church, X32-Edit on a tablet might be sufficient for all your needs. You get the full power of the Compact's mixing engine with the added benefit of being able to mix from anywhere in your venue.

@@ -1,0 +1,74 @@
+---
+title: TONGVEO PTZ-NDI30 Preset Setup and Recall for Church Services
+description: Complete guide to setting up and recalling camera presets on the TONGVEO PTZ-NDI30 for consistent shot composition during Sunday services and events.
+brand: TONGVEO
+modelId: ptz-ndi30
+modelFullName: TONGVEO PTZ-NDI30
+articleType: workflow
+category: how-to
+tags: [ptz-camera, presets, workflow, production, tongveo]
+difficulty: intermediate
+priceRange: under-500
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+One of the biggest advantages of a PTZ camera over a fixed camera is the ability to save and recall specific positions—presets. For Sunday morning worship, you might need a wide shot of the pulpit, a close-up of the pastor, and a shot of the worship band. Instead of manually adjusting the camera each time, presets let you click a button and have the camera move instantly to the exact position you saved. This guide covers how to set up presets on your TONGVEO PTZ-NDI30 and incorporate them into your worship workflow.
+
+## Understanding Presets on the TONGVEO
+
+A preset on the TONGVEO stores three pieces of information: the pan position (left-right), the tilt position (up-down), and the zoom level. When you recall a preset, the camera automatically moves to that stored position. The TONGVEO can store multiple presets, allowing you to have different shots ready for different parts of your service.
+
+Presets are controlled through the camera's web interface or through compatible control software like vMix, which has native PTZ preset buttons for supported cameras. OBS Studio doesn't have built-in PTZ control, so if you're using OBS, you'll need to use the camera's web interface to manage presets.
+
+## Accessing the PTZ Control Interface
+
+Open the camera's web interface by typing its IP address into your browser and logging in with your admin credentials. Look for a section labeled "PTZ Control," "Camera Control," or similar. In this interface, you should see live video from the camera and controls for pan, tilt, and zoom. Some models show these as arrow buttons for pan and tilt, with a zoom slider.
+
+If the web interface doesn't show PTZ controls, check that you have the correct model selected in the firmware settings. Older firmware versions might not include a web-based PTZ interface. Check the manufacturer's website for the latest firmware update for your specific model.
+
+## Saving Your First Preset
+
+To save a preset, first position the camera exactly where you want it. Use the pan, tilt, and zoom controls in the web interface to frame your shot. If you're setting up a pulpit shot, zoom in so the pastor's face fills most of the frame and adjust the position so the pulpit is centered. Take your time and make sure the shot looks good in your broadcast software, not just in the web interface preview.
+
+Once you're satisfied with the position, look for a "Save Preset," "Store Preset," or similar button. Most interfaces require you to select a preset number (1, 2, 3, etc.) and then click save. Give your preset a meaningful name if the interface allows it, such as "Wide Pulpit" or "Pastor Close-up". If the interface only uses numbers, write down which number corresponds to which shot in a document so you don't forget.
+
+<ProductCTA variant="inline" />
+
+## Organizing Presets for Your Service
+
+Plan your presets around your actual service flow. For a typical worship service, you might want a wide shot of the entire stage or platform, a close-up of the pulpit, a shot of the worship band, and perhaps a shot of the congregation if you include audience reaction in your broadcast. This typically requires four to six presets.
+
+Before you save presets, discuss with your worship leader and AV director what shots are most important for your stream or recording. A choir-heavy church might want a dedicated choir preset, while a contemporary service with a band needs good band framing. Document your preset plan in a simple list so everyone on your team knows what each preset is for.
+
+Once you've positioned the camera for your first preset, save it with a clear number. Then move the camera to the next position and save it with the next number. Most TONGVEO models support at least 20 presets, so you have plenty of room for different shots.
+
+## Recalling Presets Through the Web Interface
+
+To recall a preset, go back to the PTZ control section of the web interface and look for preset recall buttons. These are typically numbered buttons (1, 2, 3, 4, etc.) that correspond to the presets you saved. Click on the button for the preset you want, and the camera will smoothly move from its current position to the saved position. The movement takes a few seconds, which gives a nice professional effect in your stream.
+
+If you're rehearsing your service, practice recalling presets in the order you'll use them on Sunday morning. This helps your camera operator get comfortable with the button sequence and ensures that the camera doesn't get stuck or behave unexpectedly. Most preset movements complete in three to five seconds, so you can time your switching accordingly.
+
+## Integration with vMix
+
+If you use vMix for your streaming or broadcast, you can control PTZ presets directly from the vMix interface without needing to open the web browser. Add your TONGVEO as a Network Device Interface input, and once it's connected, vMix will automatically detect its PTZ capabilities. In your vMix control panel, you'll see preset buttons that correspond to the presets you saved on the camera.
+
+Click the preset buttons in vMix to recall camera positions just as you would in the web interface. This workflow is faster than switching between applications and keeps everything in one place during your broadcast. Some churches even assign keyboard shortcuts to preset buttons so the camera operator can recall shots without using the mouse.
+
+## Backing Up Your Preset Configuration
+
+If your church stores presets on the camera and the camera ever needs a factory reset or firmware update, those presets could be lost. Some TONGVEO models allow you to export the camera's configuration through the web interface. If this option is available, use it to periodically save a backup file to your church's network storage. If you ever need to restore your presets, you can import the configuration back into the camera.
+
+If export isn't available, write down your preset positions in a document for safekeeping. Note the zoom level as a percentage, the pan and tilt positions if they're displayed, and what the shot is for. If you ever lose your presets, you can recreate them from these notes.
+
+## Troubleshooting Preset Issues
+
+If the camera doesn't move when you click a preset button, verify that you've actually saved the preset successfully. Sometimes a camera requires you to click a confirm button after selecting the preset number. Check the manual or the camera's web interface help section to confirm the save process.
+
+If the camera moves to a different position than you expected, the preset might have been accidentally changed. Return to the web interface and resave the preset in the correct position. If multiple presets seem to be pointing to the wrong locations, you might be looking at old presets from a previous installation. Carefully go through each preset number and update any that are incorrect.
+
+## Conclusion
+
+With presets configured, your TONGVEO PTZ-NDI30 becomes a powerful tool for consistent, professional-looking church broadcasts. Your camera operator can focus on recalling the right shot at the right moment instead of manually adjusting the camera during the service. Over time, as you refine your shot list, you might adjust preset positions slightly or add new presets for special events. The flexibility of PTZ cameras is one of the reasons they've become so popular in modern church productions.

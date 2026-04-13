@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProductCTA from '../../../components/kb/ProductCTA.astro';
+import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
+
+const allTroubleshooting = await getCollection('troubleshooting');
+const sorted = allTroubleshooting.sort((a,b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+const categories: Record<string, typeof allTroubleshooting> = {
+  'Video Issues': sorted.filter(t => t.data.tags.some(tag => tag.includes('video') || tag.includes('display') || tag.includes('hdmi'))),
+  'Audio Issues': sorted.filter(t => t.data.tags.some(tag => tag.includes('audio') || tag.includes('sound') || tag.includes('mixer'))),
+  'Streaming Issues': sorted.filter(t => t.data.tags.some(tag => tag.includes('stream') || tag.includes('rtmp') || tag.includes('srt'))),
+  'Network Issues': sorted.filter(t => t.data.tags.some(tag => tag.includes('network') || tag.includes('ndi') || tag.includes('ip'))),
+  'Equipment-Specific': sorted.filter(t => !t.data.tags.some(tag => ['video', 'display', 'hdmi', 'audio', 'sound', 'mixer', 'stream', 'rtmp', 'srt', 'network', 'ndi', 'ip'].includes(tag))),
+};
+---
+<BaseLayout title="Church AV Troubleshooting Guides — Fast Solutions" description="Troubleshooting guides for church AV equipment and streaming issues. Video, audio, network, and equipment-specific solutions when things go wrong." canonical="/kb/troubleshooting">
+  <section class="border-b border-border bg-bg px-6 py-16">
+    <div class="mx-auto max-w-7xl">
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'Troubleshooting' }]} />
+      <p class="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Fast Solutions</p>
+      <h1 class="mt-3 font-display text-5xl text-white">Troubleshooting Guides</h1>
+      <p class="mt-5 max-w-3xl text-lg text-slate-300">Step-by-step troubleshooting for church AV problems — video glitches, audio issues, streaming failures, network configuration, and equipment-specific help when things go wrong.</p>
+    </div>
+  </section>
+  {Object.entries(categories).map(([categoryName, articles]) => articles.length > 0 && (
+    <section class={categoryName === 'Video Issues' ? 'bg-[#10151d] px-6 py-16' : 'bg-bg px-6 py-16'}>
+      <div class="mx-auto max-w-7xl">
+        <h2 class="font-display text-3xl text-white">{categoryName}</h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {articles.map(article => (
+            <a href={`/kb/troubleshooting/${article.id}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
+              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">{article.data.symptom}</p>
+              <h3 class="mt-3 font-display text-lg text-white group-hover:text-blue-200">{article.data.title}</h3>
+              <p class="mt-2 text-sm text-slate-400">{article.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+  <section class="bg-white px-6 py-16">
+    <div class="mx-auto max-w-5xl"><ProductCTA variant="banner" /></div>
+  </section>
+</BaseLayout>

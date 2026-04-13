@@ -1,0 +1,113 @@
+---
+title: Avantis Dante Networking for Multi-Room Church Facilities
+description: Configure Dante audio networking on the Allen & Heath Avantis to support multi-room church facilities with distributed audio systems.
+deviceCategory: mixer
+brand: Allen & Heath
+modelId: allen-heath-avantis
+modelFullName: Allen & Heath Avantis
+articleType: integration
+category: device-setup
+tags: [dante, audio-over-ip, multi-location, church-audio, networking]
+difficulty: advanced
+priceRange: 1500-plus
+publishedAt: "2024-02-18"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+# Avantis Dante Networking for Multi-Room Church Facilities
+
+The Allen & Heath Avantis's comprehensive Dante networking support enables sophisticated audio architectures for large church facilities. Rather than maintaining separate mixing systems for different worship spaces, a single Avantis can manage audio across multiple rooms simultaneously, receiving audio from distributed stage boxes and sending mixed audio to multiple worship areas. This guide walks you through configuring Dante networking on the Avantis.
+
+## Understanding Avantis Dante Implementation
+
+The Avantis provides excellent Dante connectivity with the depth that professional facilities demand. Dante is an industry-standard audio networking protocol that carries professional-quality audio over standard Gigabit Ethernet infrastructure.
+
+Unlike proprietary stage box systems limited to a single manufacturer, Dante allows you to integrate equipment from PreSonus, Shure, Behringer, and many other manufacturers. This open-ecosystem approach provides tremendous flexibility for large facilities building complex, multi-vendor audio systems.
+
+## Network Infrastructure Requirements
+
+Professional Dante implementations require dedicated, high-quality network infrastructure. Consumer-grade network equipment often lacks the stability and priority queuing that Dante's low-latency performance demands.
+
+Invest in AVB-capable professional Gigabit Ethernet switches positioned at strategic locations in your facility. Run quality shielded Gigabit Ethernet cabling between your Avantis, stage locations, and other networked audio devices. This infrastructure investment creates a foundation for rock-solid audio reliability.
+
+Some larger churches employ professional network engineers to design and install their Dante infrastructure. While this adds cost upfront, it ensures that your audio system works reliably for many years.
+
+## Configuring Avantis Dante Ports
+
+On the Avantis, navigate to System Settings and access the Dante network configuration. You'll specify network addressing for your Dante ports—either DHCP for automatic assignment or static IP addresses if your network infrastructure requires predictability.
+
+The Avantis can provide multiple Dante connections, allowing you to separate different audio streams or create redundant paths. Some large facilities use dual Dante connections for redundancy, ensuring that if one network connection fails, audio automatically routes through the backup connection.
+
+<ProductCTA variant="inline" />
+
+## Installing Dante Controller Software
+
+Dante Controller is the management software for your entire Dante network. Install it on a computer with access to your facility network. Dante Controller provides visibility into all Dante devices on your network and allows you to configure routing between them.
+
+When you open Dante Controller, you should see your Avantis listed as an available Dante device. Click on it to see detailed information about the Avantis's Dante connections and available audio flows.
+
+## Adding Dante Stage Boxes to Your Network
+
+Connect your first Dante-enabled stage box to your facility network. Common options include Behringer Dante stage boxes, PreSonus networked devices, or Shure wireless systems with Dante outputs.
+
+When the stage box powers on and connects to your network, it should appear in Dante Controller within a few seconds. Once visible, you can configure how the stage box's audio flows to your Avantis.
+
+## Routing Stage Box Audio to Your Avantis
+
+In Dante Controller, you establish routing between your stage box and your Avantis. Click and drag from the stage box's audio outputs to your Avantis's available inputs. Each drag-and-drop creates an audio flow carrying the selected audio from the stage box to the Avantis.
+
+You can create multiple flows—perhaps assigning the stage box's vocal channels to specific Avantis input channels, instrumental channels to other inputs. This granular routing control gives you complete flexibility in how you organize your audio.
+
+## Scaling to Multiple Distributed Stage Locations
+
+As your church grows, add additional Dante stage boxes in different worship spaces. Each stage box appears in Dante Controller and can be routed to your Avantis independently.
+
+Imagine your facility has a sanctuary with stage box #1, an overflow room with stage box #2, and an outdoor worship area with stage box #3. Your single Avantis receives audio from all three locations simultaneously through Dante networking.
+
+Your Avantis now mixes audio from all worship spaces, creates independent mixes for each space, and distributes those mixes to appropriate speakers throughout your facility. One console manages audio for multiple simultaneous worship services.
+
+## Dante Speaker Integration
+
+Modern networked speakers and amplifiers support Dante output, allowing you to send mixed audio directly to speakers over your network. Rather than analog audio cables from your Avantis to each speaker location, Dante carries audio over your existing network infrastructure.
+
+This approach dramatically reduces cabling complexity. Particularly in large facilities with speakers in multiple locations, Dante speaker integration simplifies physical infrastructure significantly.
+
+## Network Redundancy and Reliability
+
+For critical installations where audio system failure would interrupt worship, implement redundant Dante connections. Connect your Avantis to multiple Gigabit Ethernet switches positioned in different parts of your facility. If one switch fails, audio automatically routes through alternate network paths.
+
+This redundancy requires additional hardware and configuration, but it creates exceptionally resilient audio systems capable of tolerating component failures without service interruption.
+
+## Dante Management and Monitoring
+
+Dante Controller displays real-time information about your entire network: which devices are connected, what audio is flowing where, network performance metrics, and potential issues.
+
+Monitor this information regularly to ensure your Dante network remains healthy. If devices disappear from the network unexpectedly, investigate immediately to diagnose and resolve connectivity issues.
+
+## Integrating Wireless Microphone Systems
+
+Modern wireless microphone systems from Shure, Sennheiser, and other manufacturers offer Dante outputs. Connect your wireless receivers' Dante outputs to your network, and their audio appears in Dante Controller for routing to the Avantis.
+
+This integration eliminates RF cables running from stage to your mixing location. Wireless systems simply connect to your network, and their audio flows digitally to the Avantis alongside stage box audio.
+
+## Backup and Disaster Recovery
+
+Given the Avantis's critical role in your multi-room facility, backup capability is essential. Regularly export your Avantis show files and maintain multiple copies in secure locations.
+
+Document your Dante network configuration—which devices connect where, what audio flows are established, how speakers are assigned. This documentation accelerates recovery if any component requires replacement.
+
+## Performance Monitoring and Optimization
+
+Over time, as your facility evolves and additional equipment connects to your Dante network, performance might require optimization. Monitor your network for bandwidth constraints or latency issues.
+
+Work with your network infrastructure provider to ensure that your Dante implementation remains optimized as your system grows.
+
+## Future-Proofing Your Audio Infrastructure
+
+Your Avantis with Dante networking creates a foundation for years of reliable, expandable audio management. As your church grows, adds facilities, or refreshes equipment, Dante's open-ecosystem approach allows you to integrate new devices without replacing existing infrastructure.
+
+This long-term architectural thinking transforms the Avantis from a single mixer into the centerpiece of an enterprise-grade audio system supporting your entire ministry.
+
+Your Allen & Heath Avantis with Dante networking now provides the sophisticated, scalable audio infrastructure that large, multi-location churches require. Through thoughtful network design and careful configuration, you create an audio system capable of supporting complex, contemporary worship production.

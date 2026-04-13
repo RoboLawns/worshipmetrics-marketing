@@ -1,0 +1,137 @@
+---
+title: "When It All Goes Wrong: AV Failure Recovery on Sunday Morning"
+description: "Common Sunday morning failures and graceful recovery. Stream drops, audio cuts, camera failures. Managing disasters while keeping worship intact."
+churchSize: small
+budget: under-1k
+gearList: []
+tags: ["disaster-recovery", "troubleshooting", "resilience", "failure-management"]
+publishedAt: "2024-01-25"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+## The Mindset of Graceful Degradation
+
+Something will fail on a Sunday morning. Not might—will. Your job isn't to prevent all failures (that's impossible). Your job is to ensure that when failures happen, your response prioritizes what matters most: the worship service continues, people connect with God, and the congregation doesn't panic.
+
+This requires a philosophy called "graceful degradation." You sacrifice non-essential elements to preserve essential ones. If you have to choose between streaming audio and in-room audio, you preserve in-room audio (the pastor should be able to continue speaking to the physical congregation). If you have to choose between camera video and ProPresenter graphics, you preserve camera video (people need to see the pastor's face). This priority ordering prevents panic and keeps things functioning.
+
+## The Five Most Common Failures
+
+**#1: Internet Drops Mid-Service**
+
+Your YouTube stream dies. The chat goes offline. Viewers can't access the feed. But here's what doesn't happen: your in-room congregation stops worshipping. Your audio system keeps working. Your cameras keep rolling. Your service continues.
+
+What to do: Don't announce anything. Viewers will see "Stream Offline" on YouTube and understand that it's a technical issue, not a service issue. Keep producing excellent video and audio. When your internet comes back online, YouTube automatically attempts to resume streaming. You're back online within 30-60 seconds usually.
+
+What to prepare: Have a cellular hotspot (MiFi device) as a backup internet circuit. If your primary internet fails and doesn't come back within 10 seconds, switch your streaming PC to the cellular backup. This is a pre-configured action—you've already tested the cellular network and know it works. Switching is just toggling a WiFi network.
+
+Some churches keep a second streaming PC configured and powered on, connected to backup internet. If primary streaming PC fails, you switch to the backup within seconds. This sounds paranoid until your primary PC actually crashes mid-service.
+
+**#2: Stream Drops for 30+ Seconds**
+
+A stream loss longer than 30 seconds starts affecting viewers' experience. Some people will think the service is over and close the stream. Some will refresh and restart watching from the current live position.
+
+What to do: Place a "We're Back Soon" graphic on your streaming output. In OBS, have a scene pre-built that shows your church logo with "Technical Difficulty - Stream resuming" text. When you realize the stream is offline, switch OBS to this scene. This tells viewers that you're aware of the issue and working on it.
+
+What to prepare: Test streaming resumption in OBS. Know exactly how to click the stop/start button sequence to gracefully resume streaming. Most technical failures in OBS are solved by: stop stream, wait 5 seconds, start stream. Done. You're back online.
+
+Keep your YouTube stream key written down and laminated next to your streaming PC. If you have to manually restart streaming, you don't want to waste time hunting for the key.
+
+**#3: Audio Cuts Out Completely**
+
+Silence. No microphones, no music, no audio at all. The worst failure for a worship service.
+
+What to do immediately: Check the master fader (is it accidentally muted?). Check the output meter (is it showing any signal?). If both look fine, unplug the power cable from your audio mixer and plug it back in. This forces a reboot (takes about 20 seconds).
+
+While the mixer is rebooting, have someone test the backup microphone (if you have a handheld or another wireless system). Get that broadcasting sound if possible. People need to hear something.
+
+What to prepare: Configure your mixer with a physical backup. Maybe it's a basic portable mixer connected to a USB input on your PC. If your primary mixer fails, switch audio input in OBS to the backup mixer. Now your streaming audio is coming from a simple source, but it's working.
+
+Alternatively, have a dedicated backup wireless microphone system available. If audio fails completely, at least your pastor can speak through the backup system to your in-room congregation and everyone watching online.
+
+**#4: Camera Loses Network Connection**
+
+One of your PTZ cameras goes offline. It disappears from your switcher input. You can't select it anymore.
+
+What to do: Switch to one of your other cameras immediately. If you're in the middle of a shot on the failed camera, don't stay there waiting for it to come back. Press the button for a working camera. Your audience doesn't see a dead camera—they see you switching to a different angle.
+
+After service, investigate. Check that the camera's power is still on (check the LED). Check that the Ethernet cable is firmly connected at both the camera and the network switch. Restart the camera (power off, power on). Restart the network switch if necessary.
+
+What to prepare: Never design your production where one camera is irreplaceable. If Camera 2 is your primary worship leader shot and it goes offline, you need Camera 3 or Camera 1 to be able to cover for it. Position your cameras so that any two cameras can handle the entire service.
+
+**#5: Switcher Freezes or Crashes**
+
+Your ATEM Mini Pro stops responding to button presses. The program output is locked on one scene. You can't switch cameras.
+
+What to do: If the switcher has frozen but the program output is still showing live video, let it be. Your audience doesn't know the switcher is frozen—they see a live camera feed. Continue worship with the current camera angle. Don't try to fix it mid-service.
+
+After the current segment, try to reset the switcher by powering it off (count to five), then powering it back on. This usually clears the freeze. You have time to do this during a song or between segments.
+
+What to prepare: Configure OBS to be able to receive video from multiple sources. If your ATEM completely dies, can OBS pull video directly from one of your cameras via a separate HDMI capture card? This is a backup path: camera → backup capture card → OBS. It bypasses the switcher entirely.
+
+Have a simple HDMI splitter at your camera outputs so you can route camera video to both the switcher and a backup capture card simultaneously. This costs $20 and could save your service.
+
+## The Recovery Hierarchy
+
+When multiple failures are happening simultaneously (because they always do), here's the priority order:
+
+1. Keep the pastor speaking and audible to everyone (in-room and online)
+2. Keep in-room congregation engaged (music, visuals, basic camera)
+3. Keep online audience connected (stream online, even if lower quality)
+4. Recover full quality production
+
+In the worst-case scenario, you're streaming a single fixed camera with one microphone and no graphics. It's not pretty, but it's functional. Your congregation is still worshipping. Your online audience is still connected. That's success in failure recovery.
+
+## Declaring an Emergency vs Pressing On
+
+Sometimes a failure is bad enough that you genuinely can't continue as normal. A fire alarm. A serious medical emergency. A complete power failure. These are times to actually declare an emergency and stop trying to recover.
+
+But most Sunday morning failures aren't emergencies—they're inconveniences. Your instinct should be to keep going, adapt, and recover. Your congregation wants to worship. Don't rob them of that because your camera went offline.
+
+The pastor's job is to minister to the congregation. The technical team's job is to enable that ministry without drawing attention to technical issues. The better you are at failure recovery, the more the congregation experiences uninterrupted worship.
+
+<ProductCTA variant="inline" />
+
+## Specific Failure Scenarios and Recovery Scripts
+
+**Scenario: Pastor's Wireless Mic Goes Dead Mid-Message**
+
+Immediate: Have someone run to the pastor with a handheld wireless mic (you have a backup, right?). Or signal the pastor to move to a lapel mic position if you have a second wireless system. The message pauses for 10 seconds while the transition happens, then continues.
+
+Permanent fix: Check the wireless battery immediately after service. It's almost certainly a dead battery. Replace it.
+
+**Scenario: ProPresenter Crashes and All Graphics Disappear**
+
+Immediate: You now have no graphics, just camera. That's fine. Your worship continues with just camera feed. The lyrics might not be visible on projection, but the worship team can see their lyric monitors on stage, and your pastor can continue speaking.
+
+Recovery: Restart ProPresenter (takes 30 seconds). When it comes back online, manually click to the current song/slide position. You're back broadcasting graphics within 60 seconds.
+
+Backup: Have your lyrics printed on paper and distributed to worship team members who need them. This is a backup for a backup, but it works.
+
+**Scenario: Streaming PC Fan Fails and PC Shuts Down from Overheating**
+
+Immediate: Your stream goes offline. Viewers see "Stream Offline."
+
+Recovery: Have a secondary streaming PC already configured and powered on (even if in standby). Switch your HDMI cable from the broken PC to the backup PC (or have it pre-configured to receive input from your ATEM). Resume streaming on the backup.
+
+This takes 30-60 seconds. Your service is briefly offline, but you recover quickly.
+
+**Scenario: Power Outage Affects Entire Facility**
+
+Worst case scenario. Everything goes dark and silent.
+
+Immediate: Don't panic. Announce to in-person congregation: "We're experiencing a temporary power issue. Let's keep worshipping." If you have battery backup (UPS) on your equipment, some systems might stay online. Your phones can provide light.
+
+Recovery: Most power outages resolve within 5-10 minutes. If generators come online, your systems power back up. If power doesn't return, you've now got a real emergency and should cease service.
+
+What to prepare: Have a cheap UPS (uninterruptible power supply) for your router and key equipment. A $150 UPS gives you 20-30 minutes of operation during a power outage—enough time to either get power back or safely shut down.
+
+## The Confidence of Preparation
+
+The churches with the best failure recovery aren't the ones that never experience failures. They're the ones that have thought through failures in advance, practiced recovery procedures, and built redundancy into critical systems.
+
+When your switcher freezes and you immediately switch OBS to a backup camera feed, you're not making a brilliant real-time decision. You're executing a plan you prepared weeks ago. When your internet drops and you calmly switch to cellular backup, you're not panicking—you're following a procedure you've documented and tested.
+
+This preparation gives you permission to stay calm when failures happen. Calmness is what keeps your congregation worshipping when technology fails. And in the end, that's what matters.

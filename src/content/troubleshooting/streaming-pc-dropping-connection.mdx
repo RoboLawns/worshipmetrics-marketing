@@ -1,0 +1,170 @@
+---
+title: "Streaming PC Keeps Dropping Network Connection"
+description: "Fix intermittent network disconnects on your streaming PC. Covers Wi-Fi vs Ethernet, power management, and driver issues."
+symptom: "The production PC loses network connectivity intermittently"
+affectedDevices: ["OBS Studio", "vMix"]
+tags: ["network", "connectivity", "pc", "wifi"]
+difficulty: intermediate
+publishedAt: "2024-04-13"
+productCTA: true
+---
+
+import ProductCTA from '../../components/kb/ProductCTA.astro';
+
+Your streaming PC randomly loses internet connection during the service. OBS shows "Disconnected" or the stream just stops. It reconnects a minute later, but then drops again. For streaming, this is a disaster. The issue is almost always Wi-Fi instability, power management settings, or a driver problem. Let's fix it permanently.
+
+<ProductCTA variant="inline" />
+
+## The Golden Rule: Use Wired Ethernet, Not Wi-Fi
+
+The fastest fix is switching to a wired connection:
+
+1. Get an **Ethernet cable** (CAT5e or CAT6)
+2. Plug one end into your church network switch
+3. Plug the other end into your streaming PC's Ethernet port
+4. Open a browser and confirm the connection works
+5. Restart OBS and resume streaming
+
+**Why this matters:** Wi-Fi is unreliable. Even a "strong signal" can drop packets or disconnect briefly. Streaming requires a stable, reliable connection — Ethernet provides that.
+
+If the problem completely disappears after switching to Ethernet, you're done. Wi-Fi was the culprit.
+
+## If You Must Use Wi-Fi
+
+If Ethernet isn't possible, apply these Wi-Fi fixes:
+
+**1. Move closer to the router:**
+- The farther from Wi-Fi, the weaker the signal
+- Ideally, place the streaming PC within 10–15 meters of the Wi-Fi router
+- If you're 30+ meters away or separated by walls, the signal degrades
+
+**2. Reduce interference:**
+- Move away from microwaves, cordless phones, baby monitors (they use 2.4GHz)
+- If the router supports **5GHz**, connect to the 5GHz band (faster and less interference)
+- Check the Wi-Fi network dropdown — you should see your router listed at full bars (not weak signal)
+
+**3. Switch to 5GHz Wi-Fi:**
+- Most modern routers broadcast both 2.4GHz and 5GHz
+- 5GHz is faster and less congested
+- When connecting, look for your network name with "5G" or "ac" suffix (e.g., "Church-5G")
+- Connect to that instead
+
+**4. Restart your router before the service:**
+- Power off the router for 30 seconds
+- Power it back on
+- Wait for full boot (indicator lights stable)
+- Connect your streaming PC
+- This clears any stuck connections or memory issues
+
+## Step 1: Disable Network Adapter Power Management
+
+Windows can power down your network card to save power, causing brief disconnects:
+
+1. Right-click the **Start** button
+2. Select **Device Manager**
+3. Expand **Network adapters**
+4. Right-click your network adapter (Wi-Fi or Ethernet) and select **Properties**
+5. Go to the **Power Management** tab
+6. **Uncheck** "Allow the computer to turn off this device to save power"
+7. Click **OK**
+8. Restart the PC
+
+This prevents Windows from powering down your network connection.
+
+## Step 2: Update Network Driver
+
+Outdated drivers can cause disconnects:
+
+1. In **Device Manager**, right-click your network adapter
+2. Select **Update driver**
+3. Choose **Search automatically for updated driver software**
+4. Windows will search online and install the latest version
+5. Restart the PC
+
+Check the adapter manufacturer's website (Intel, Realtek, etc.) for even newer drivers if the Windows update didn't help.
+
+## Step 3: Check Network Switch Port
+
+If using Ethernet:
+
+1. Power off the streaming PC for 30 seconds
+2. Unplug the Ethernet cable from both the PC and the network switch
+3. Plug into a **different port** on the network switch
+4. Power the PC back on
+
+Occasionally a switch port fails. Testing on a different port rules this out.
+
+## Step 4: Check for Duplicate IP Addresses
+
+If your PC's IP address conflicts with another device, the connection drops:
+
+1. Open **Command Prompt** (Windows) or **Terminal** (Mac)
+2. Type `ipconfig` (Windows) or `ifconfig` (Mac)
+3. Note your streaming PC's IP address (e.g., 192.168.1.50)
+4. Check if any other device on your network has the same IP
+5. Use a tool like **Angry IP Scanner** or **Nmap** to scan your network and look for duplicates
+6. If there's a duplicate, it's likely a camera or other device
+7. Give that device a static IP outside your DHCP range (see PTZ camera guide for how)
+
+## Step 5: Check Router Logs for Errors
+
+If you have access to your router admin panel:
+
+1. Log into your router (usually 192.168.1.1)
+2. Look for **System Logs** or **Event Logs**
+3. Check if there are repeated errors around the time your PC loses connection
+4. Common issues: IP address conflicts, DHCP lease expired, Wi-Fi association lost
+5. If you see a pattern, write it down and contact your IT staff or router manufacturer
+
+## Step 6: Isolate the Streaming PC on Its Own VLAN
+
+If your church has a managed network with VLANs, separate streaming traffic:
+
+1. Ask your IT staff to create a dedicated AV/Streaming VLAN
+2. Put your streaming PC on that VLAN
+3. Isolate it from congregation Wi-Fi and other network traffic
+4. This ensures streaming traffic doesn't get throttled or deprioritized
+
+This is an advanced setup but worth it if network issues persist.
+
+## Step 7: Monitor Network Health During Service
+
+Add real-time monitoring to catch issues early:
+
+1. Download a **ping monitor** (e.g., **GlassWire** for Windows, **Wireless Diagnostics** for Mac)
+2. Keep it running during the stream
+3. Monitor ping and packet loss — should be <1% loss and <50ms latency
+4. If you see packet loss, it's a network issue
+
+You can also add an **OBS plugin** that shows network stats in your OBS dock.
+
+## Step 8: Test Before the Service
+
+Before Sunday:
+
+1. Run a **full test stream** for 30–45 minutes
+2. Simulate normal streaming conditions (all cameras on, full resolution, etc.)
+3. Watch the OBS status bar for "Connection Lost" or disconnects
+4. If the PC loses connection during the test, troubleshoot further before the service
+5. Once you get 30+ minutes of stable streaming, you're ready
+
+## Backup Plan: Mobile Hotspot
+
+If network issues persist and Ethernet isn't possible:
+
+1. Have a backup mobile hotspot (phone or dedicated hotspot device) as a fallback
+2. Configure OBS with the hotspot as a secondary connection option
+3. If your primary connection drops mid-stream, quickly switch to the hotspot
+4. This keeps the stream alive while you diagnose the primary connection issue
+
+---
+
+**Network stability checklist:**
+- [ ] Using wired Ethernet (not Wi-Fi, if possible)
+- [ ] Network adapter power management disabled
+- [ ] Network driver up to date
+- [ ] Testing on a different switch port
+- [ ] No duplicate IP addresses on network
+- [ ] 30+ minute stable test stream completed
+- [ ] Packet loss <1%, latency <50ms
+- [ ] Backup mobile hotspot configured (optional)
