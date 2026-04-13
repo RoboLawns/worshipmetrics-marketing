@@ -16,12 +16,13 @@ const menus = [
   {
     key: "solutions",
     label: "Solutions",
-    overview: { href: "/solutions/worship-clips", label: "Solutions Overview", desc: "Tools that extend ministry beyond Sunday morning." },
+    overview: { href: "/platform", label: "Solutions Overview", desc: "Tools that extend ministry beyond Sunday morning." },
     items: [
       { href: "/solutions/worship-clips",             label: "Worship Clips",      desc: "Turn services into shareable social content" },
       { href: "/solutions/digital-engagement",        label: "Digital Engagement", desc: "Welcome online visitors and route follow-up" },
       { href: "/solutions/church-community-platform", label: "Community Platform", desc: "Discord-based digital campus with guided setup" },
       { href: "/outreach-services",                   label: "Outreach Services",  desc: "Hands-on livestream engagement help" },
+      { href: "/signage-display",                     label: "Digital Signage",    desc: "Lobby and hallway displays for every campus" },
     ],
   },
   {
@@ -45,14 +46,32 @@ const menus = [
 ];
 
 const simpleLinks = [
-  { href: "/signage-display", label: "Signage" },
   { href: "/kb", label: "Knowledge Base" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/about",   label: "About"   },
 ];
 ---
 
 <style>
+  /* ── Topbar ─────────────────────────────────────────────── */
+  .topbar {
+    background: #f0f3fb;
+    border-bottom: 1px solid #dde3f5;
+    font-size: 0.75rem;
+    color: #5a6a8a;
+  }
+  .topbar-inner {
+    max-width: 80rem; margin: 0 auto;
+    padding: 0 1.5rem; height: 2rem;
+    display: flex; align-items: center; justify-content: flex-end; gap: 1.25rem;
+  }
+  .topbar a {
+    color: #5a6a8a; text-decoration: none; font-weight: 500;
+    transition: color 0.15s;
+  }
+  .topbar a:hover { color: #4361ee; }
+  .topbar-sep { color: #c3cdf5; }
+  @media (max-width: 1023px) { .topbar { display: none; } }
+
+  /* ── Main nav root ──────────────────────────────────────── */
   .nav-root {
     position: sticky; top: 0; z-index: 50;
     background: rgba(255,255,255,0.95);
@@ -70,7 +89,7 @@ const simpleLinks = [
   .logo img  { height: 2rem; width: 2rem; }
   .logo span { font-size: 1rem; font-weight: 700; color: #0f1a2e; }
 
-  /* Desktop nav */
+  /* ── Desktop nav ────────────────────────────────────────── */
   .desktop-nav { display: none; align-items: center; gap: 0.1rem; }
   @media (min-width: 1024px) { .desktop-nav { display: flex; } }
 
@@ -84,7 +103,7 @@ const simpleLinks = [
   .nav-btn:hover { color: #4361ee; background: #f0f3fb; }
   .nav-btn svg { width: 0.85rem; height: 0.85rem; opacity: 0.6; transition: transform 0.2s; }
 
-  /* Dropdown */
+  /* ── Dropdowns ──────────────────────────────────────────── */
   .dropdown-wrap { position: relative; }
   .dropdown-wrap::after { content:''; position:absolute; left:0; right:0; top:100%; height:0.6rem; }
   .dropdown {
@@ -120,11 +139,11 @@ const simpleLinks = [
   .drop-item .il { font-size: 0.875rem; font-weight: 600; color: #0f1a2e; }
   .drop-item .id { font-size: 0.75rem; color: #8494b0; margin-top: 0.05rem; }
 
-  /* CTAs */
+  /* ── Desktop CTAs ───────────────────────────────────────── */
   .cta-area { display: none; align-items: center; gap: 0.5rem; }
   @media (min-width: 1024px) { .cta-area { display: flex; } }
 
-  /* Mobile toggle */
+  /* ── Mobile toggle ──────────────────────────────────────── */
   .mobile-toggle {
     display: flex; align-items: center; justify-content: center;
     width: 2.4rem; height: 2.4rem; border-radius: 0.5rem;
@@ -133,23 +152,83 @@ const simpleLinks = [
   }
   @media (min-width: 1024px) { .mobile-toggle { display: none; } }
 
-  /* Mobile menu */
+  /* ── Mobile menu ────────────────────────────────────────── */
   .mobile-menu {
-    display: none; flex-direction: column; gap: 0.15rem;
-    padding: 1rem 1.5rem 1.5rem;
+    display: none; flex-direction: column;
+    padding: 0.75rem 1rem 1.25rem;
     border-top: 1px solid #e4e8f4;
     background: #fff;
+    /* Scroll on small screens */
+    max-height: calc(100dvh - 4rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .mobile-menu.open { display: flex; }
   @media (min-width: 1024px) { .mobile-menu { display: none !important; } }
 
-  .mob-section { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4361ee; padding: 0.75rem 0.5rem 0.2rem; }
-  .mob-link { display: flex; flex-direction: column; padding: 0.45rem 0.75rem; border-radius: 0.5rem; text-decoration: none; transition: background 0.15s; }
+  /* Accordion section */
+  .mob-accordion { border-bottom: 1px solid #f0f3fb; }
+  .mob-accordion:last-of-type { border-bottom: none; }
+
+  .mob-acc-trigger {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; background: none; border: none; cursor: pointer;
+    padding: 0.65rem 0.5rem; text-align: left;
+  }
+  .mob-acc-trigger-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #4361ee;
+  }
+  .mob-acc-chevron {
+    width: 1rem; height: 1rem; color: #4361ee; opacity: 0.7;
+    transition: transform 0.2s; flex-shrink: 0;
+  }
+  .mob-accordion.open .mob-acc-chevron { transform: rotate(180deg); }
+
+  .mob-acc-body { display: none; padding-bottom: 0.5rem; }
+  .mob-accordion.open .mob-acc-body { display: block; }
+
+  .mob-link {
+    display: flex; flex-direction: column; padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem; text-decoration: none; transition: background 0.15s;
+  }
   .mob-link:hover { background: #f0f3fb; }
   .mob-link .ml { font-size: 0.875rem; font-weight: 600; color: #0f1a2e; }
   .mob-link .md { font-size: 0.75rem; color: #8494b0; }
-  .mob-ctas { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid #e4e8f4; margin-top: 0.5rem; }
+
+  /* Simple links section in mobile */
+  .mob-simple { padding: 0.5rem 0 0; }
+  .mob-simple-link {
+    display: block; padding: 0.5rem 0.75rem; border-radius: 0.5rem;
+    text-decoration: none; font-size: 0.875rem; font-weight: 600; color: #0f1a2e;
+    transition: background 0.15s;
+  }
+  .mob-simple-link:hover { background: #f0f3fb; }
+
+  /* Mobile contact row */
+  .mob-contact {
+    display: flex; flex-wrap: wrap; gap: 0.4rem 1rem;
+    padding: 0.6rem 0.75rem 0;
+    font-size: 0.78rem;
+  }
+  .mob-contact a { color: #5a6a8a; text-decoration: none; font-weight: 500; }
+  .mob-contact a:hover { color: #4361ee; }
+
+  .mob-ctas { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid #e4e8f4; margin-top: 0.75rem; }
 </style>
+
+<!-- Utility topbar (desktop only) -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="/about">About</a>
+    <span class="topbar-sep">|</span>
+    <a href="/pricing">Pricing</a>
+    <span class="topbar-sep">|</span>
+    <a href="mailto:support@worshipmetrics.com">support@worshipmetrics.com</a>
+    <span class="topbar-sep">|</span>
+    <a href="tel:+14107257500">(410) 725-7500</a>
+  </div>
+</div>
 
 <header class="nav-root">
   <div class="nav-inner">
@@ -211,24 +290,47 @@ const simpleLinks = [
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu">
+
+    <!-- Accordion sections for each dropdown menu -->
     {menus.map((menu) => (
-      <div>
-        <p class="mob-section">{menu.label}</p>
-        <a href={menu.overview.href} class="mob-link">
-          <span class="ml">{menu.overview.label}</span>
-          <span class="md">{menu.overview.desc}</span>
-        </a>
-        {menu.items.map((item) => (
-          <a href={item.href} class="mob-link">
-            <span class="ml">{item.label}</span>
-            <span class="md">{item.desc}</span>
+      <div class="mob-accordion" data-accordion>
+        <button class="mob-acc-trigger" type="button" data-acc-trigger>
+          <span class="mob-acc-trigger-label">{menu.label}</span>
+          <svg class="mob-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="mob-acc-body">
+          <a href={menu.overview.href} class="mob-link">
+            <span class="ml">{menu.overview.label}</span>
+            <span class="md">{menu.overview.desc}</span>
           </a>
-        ))}
+          {menu.items.map((item) => (
+            <a href={item.href} class="mob-link">
+              <span class="ml">{item.label}</span>
+              <span class="md">{item.desc}</span>
+            </a>
+          ))}
+        </div>
       </div>
     ))}
-    {simpleLinks.map((l) => (
-      <a href={l.href} class="mob-link"><span class="ml">{l.label}</span></a>
-    ))}
+
+    <!-- Simple links -->
+    <div class="mob-simple">
+      {simpleLinks.map((l) => (
+        <a href={l.href} class="mob-simple-link">{l.label}</a>
+      ))}
+      <a href="/about" class="mob-simple-link">About</a>
+      <a href="/pricing" class="mob-simple-link">Pricing</a>
+    </div>
+
+    <!-- Contact info on mobile -->
+    <div class="mob-contact">
+      <a href="mailto:support@worshipmetrics.com">support@worshipmetrics.com</a>
+      <a href="tel:+14107257500">(410) 725-7500</a>
+    </div>
+
+    <!-- CTAs -->
     <div class="mob-ctas">
       <a href={`${APP_URL}/sign-up`} class="btn-primary" style="justify-content:center">Get started free</a>
       <a href="/discovery-call" class="btn-outline" style="justify-content:center">Book a discovery call</a>
@@ -237,13 +339,31 @@ const simpleLinks = [
 </header>
 
 <script>
-  const toggle   = document.getElementById("mobile-nav-toggle")!;
-  const menu     = document.getElementById("mobile-menu")!;
+  // Main menu toggle
+  const toggle    = document.getElementById("mobile-nav-toggle")!;
+  const menu      = document.getElementById("mobile-menu")!;
   const iconMenu  = document.getElementById("icon-menu")!;
   const iconClose = document.getElementById("icon-close")!;
+
   toggle.addEventListener("click", () => {
     const open = menu.classList.toggle("open");
     iconMenu.style.display  = open ? "none" : "";
     iconClose.style.display = open ? ""     : "none";
+    // Close all accordions when reopening menu
+    if (!open) {
+      document.querySelectorAll("[data-accordion]").forEach(acc => acc.classList.remove("open"));
+    }
+  });
+
+  // Accordion sections
+  document.querySelectorAll("[data-acc-trigger]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const accordion = trigger.closest("[data-accordion]")!;
+      const isOpen = accordion.classList.contains("open");
+      // Close all others
+      document.querySelectorAll("[data-accordion]").forEach(acc => acc.classList.remove("open"));
+      // Toggle this one
+      if (!isOpen) accordion.classList.add("open");
+    });
   });
 </script>

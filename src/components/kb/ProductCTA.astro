@@ -16,17 +16,20 @@ const variantClasses = {
   <p class:list={[
     'text-sm font-semibold uppercase tracking-[0.18em]',
     variant === 'banner' ? 'text-blue-100' : 'text-blue-700',
-  ]}>Product CTA</p>
+  ]}>WorshipMetrics</p>
   <h3 class:list={['mt-3 text-2xl font-semibold font-display', variant === 'banner' ? 'text-white' : 'text-slate-900']}>
     Tired of managing AV devices one at a time?
   </h3>
   <p class:list={['mt-3 max-w-2xl text-sm leading-relaxed', variant === 'banner' ? 'text-blue-50' : 'text-slate-600']}>
     Our platform gives you a single dashboard to monitor firmware, push updates, track asset health, and remotely access every device on your campus — PTZ cameras, encoders, mixers, and more.
   </p>
-  <a href="/discovery-call" class:list={[
-    'mt-5 inline-flex rounded-xl px-5 py-3 text-sm font-semibold transition',
-    variant === 'banner' ? 'bg-white text-blue-700 hover:bg-blue-50' : 'bg-blue-600 text-white hover:bg-blue-700',
-  ]}>
-    Talk to the team →
-  </a>
+  {variant === 'banner' ? (
+    <a href="/discovery-call" class="mt-5 inline-flex rounded-xl bg-white px-5 py-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-50">
+      Talk to the team →
+    </a>
+  ) : (
+    <a href="/discovery-call" class="mt-5 inline-flex rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
+      Talk to the team →
+    </a>
+  )}
 </aside>
