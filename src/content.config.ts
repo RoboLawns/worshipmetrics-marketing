@@ -36,7 +36,7 @@ const cameras = defineCollection({
     articleType: z.enum([
       'setup-guide', 'troubleshooting', 'integration',
       'firmware-update', 'multi-unit', 'software-control',
-      'comparison', 'overview', 'workflow',
+      'comparison', 'overview', 'workflow', 'how-to', 'streaming',
     ]),
     category: z.enum(['device-setup', 'troubleshooting', 'how-to', 'streaming', 'audio', 'comparison']),
     tags: z.array(z.string()),
@@ -62,7 +62,7 @@ const devices = defineCollection({
     articleType: z.enum([
       'setup-guide', 'troubleshooting', 'integration',
       'firmware-update', 'multi-unit', 'software-control',
-      'comparison', 'overview', 'workflow',
+      'comparison', 'overview', 'workflow', 'how-to', 'streaming',
     ]),
     category: z.enum(['device-setup', 'troubleshooting', 'how-to', 'streaming', 'audio', 'comparison']),
     tags: z.array(z.string()),
