@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/kb/BreadcrumbNav.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="About the WorshipMetrics AV knowledge base."
+  canonical="/kb/about"
+>
+  <section class="bg-white px-6 py-20">
+    <div class="mx-auto max-w-3xl">
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'About' }]} />
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-blue-600">About</p>
+      <h1 class="mt-3 font-display text-5xl text-slate-900">About this knowledge base</h1>
+      <div class="kb-prose prose prose-slate mt-8 max-w-none">
+        <p>This resource library is for church AV directors, volunteer tech teams, production staff, and anyone responsible for keeping Sunday running well.</p>
+        <p>It is designed to answer practical questions about streaming, device management, audio, displays, video clipping, and operations.</p>
+        <!-- TODO: replace with real copy -->
+        <p>WorshipMetrics helps congregations monitor devices, automate workflows, and turn technical systems into repeatable ministry support.</p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/kb" class="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">Explore articles</a>
+        <a href="/kb/search" class="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-400 hover:text-blue-700">Search the knowledge base</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

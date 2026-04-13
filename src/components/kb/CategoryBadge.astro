@@ -1,0 +1,26 @@
+---
+import { categoryMap } from '../../data/categories';
+
+interface Props {
+  category: keyof typeof categoryMap;
+}
+
+const { category } = Astro.props;
+const item = categoryMap[category];
+
+const colorClasses = {
+  purple: 'bg-purple-500/12 text-purple-200 ring-purple-400/20',
+  blue: 'bg-blue-500/12 text-blue-200 ring-blue-400/20',
+  green: 'bg-emerald-500/12 text-emerald-200 ring-emerald-400/20',
+  amber: 'bg-amber-500/12 text-amber-200 ring-amber-400/20',
+  pink: 'bg-pink-500/12 text-pink-200 ring-pink-400/20',
+  red: 'bg-rose-500/12 text-rose-200 ring-rose-400/20',
+} as const;
+---
+
+<span class:list={[
+  'inline-flex items-center rounded-full px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] ring-1',
+  colorClasses[item.color],
+]}>
+  {item.label}
+</span>

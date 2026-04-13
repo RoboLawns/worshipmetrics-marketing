@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Display and presentation knowledge base cover</title>
+  <desc id="desc">Abstract stage display, slides, and presentation system illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="100%" stop-color="#9D174D"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="180" y="170" width="1240" height="520" rx="34" fill="#111827" stroke="#F472B6" stroke-width="4"/>
+  <rect x="250" y="240" width="1100" height="300" rx="22" fill="#1E293B"/>
+  <rect x="310" y="300" width="460" height="50" rx="12" fill="#F1F5F9" opacity="0.9"/>
+  <rect x="310" y="380" width="690" height="28" rx="12" fill="#CBD5E1" opacity="0.75"/>
+  <rect x="1030" y="300" width="210" height="160" rx="20" fill="#3B82F6"/>
+  <text x="180" y="780" fill="#F1F5F9" font-size="82" font-family="'IBM Plex Sans', Arial, sans-serif" font-weight="700">Display &amp; Presentation</text>
+  <text x="180" y="840" fill="#94A3B8" font-size="34" font-family="'IBM Plex Sans', Arial, sans-serif">ProPresenter, LED walls, projectors, confidence monitors, and screen systems</text>
+</svg>

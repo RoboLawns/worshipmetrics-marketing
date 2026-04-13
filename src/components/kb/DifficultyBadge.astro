@@ -1,0 +1,17 @@
+---
+interface Props {
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+}
+
+const { difficulty } = Astro.props;
+
+const classes = {
+  beginner: 'bg-emerald-100 text-emerald-700',
+  intermediate: 'bg-amber-100 text-amber-700',
+  advanced: 'bg-rose-100 text-rose-700',
+} as const;
+---
+
+<span class:list={['inline-flex rounded-full px-3 py-1 text-xs font-semibold capitalize', classes[difficulty]]}>
+  {difficulty}
+</span>

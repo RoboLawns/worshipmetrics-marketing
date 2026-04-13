@@ -1,0 +1,97 @@
+---
+interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  image?: string;
+  robots?: string;
+  type?: 'website' | 'article';
+  publishedAt?: Date;
+  updatedAt?: Date;
+  breadcrumbItems?: BreadcrumbItem[];
+}
+
+const SITE_URL = 'https://worshipmetrics.com';
+const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
+
+const {
+  title,
+  description,
+  canonical,
+  image = DEFAULT_IMAGE,
+  robots = 'index, follow',
+  type = 'website',
+  publishedAt,
+  updatedAt,
+  breadcrumbItems = [],
+} = Astro.props;
+
+const canonicalUrl = canonical.startsWith('http') ? canonical : `${SITE_URL}${canonical}`;
+const ogImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
+const pageTitle = `${title} | WorshipMetrics Knowledge Base`;
+
+const jsonLd: unknown[] = [];
+
+if (type === 'article') {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    image: ogImage,
+    datePublished: publishedAt?.toISOString(),
+    dateModified: (updatedAt || publishedAt)?.toISOString(),
+    author: {
+      '@type': 'Organization',
+      name: 'WorshipMetrics',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'WorshipMetrics',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+    mainEntityOfPage: canonicalUrl,
+  });
+}
+
+if (breadcrumbItems.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.item,
+    })),
+  });
+}
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{jsonLd.map((entry) => (
+  <script type="application/ld+json" set:html={JSON.stringify(entry)}></script>
+))}

@@ -1,0 +1,72 @@
+@import '@fontsource/dm-serif-display/400.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-sans/700.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #0B0E14;
+  --color-surface: #13181F;
+  --color-accent: #3B82F6;
+  --color-accent-warm: #F59E0B;
+  --color-text: #F1F5F9;
+  --color-muted: #64748B;
+  --color-border: #1E2733;
+
+  --font-display: 'DM Serif Display', serif;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+@plugin "@tailwindcss/typography";
+
+:root {
+  color-scheme: dark light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.kb-body {
+  background: #0b0e14;
+  color: #f1f5f9;
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.kb-prose {
+  color: #1e293b;
+}
+
+.kb-prose :where(h2, h3, h4) {
+  color: #0f172a;
+  font-family: 'DM Serif Display', serif;
+}
+
+.kb-prose :where(code) {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+}
+
+.kb-prose :where(pre) {
+  border-radius: 1rem;
+}
+
+.kb-prose :where(a) {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.kb-prose :where(a:hover) {
+  text-decoration: underline;
+}
+
+.kb-grid-bg {
+  background-image: linear-gradient(to right, rgba(59,130,246,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(59,130,246,0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}

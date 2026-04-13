@@ -1,256 +1,298 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const OG_IMAGE = `${R2}/homepage/Luminos.jpg`;
+
+const ministryPrompts = [
+  '"Who has missed multiple services and may need a check-in?"',
+  '"Which guests still haven\'t heard from us this week?"',
+  '"Give me a summary before Monday staff meeting."',
+  '"What changed this week that deserves our attention first?"',
+  '"How does this Sunday compare to the same Sunday last year?"',
+  '"Which ministries are growing and which are declining?"',
+];
+
+const avPrompts = [
+  '"Why does our stream always drop around 11am?"',
+  '"Should we upgrade our production computer?"',
+  '"Why is our camera offline?"',
+  '"Can you adjust our OBS bitrate right now?"',
+];
+
+const knowsWithTechManager = [
+  "Your production computer: processor, GPU, RAM, OBS version, plugin list",
+  "Your network: upload speed, connection type, latency, router",
+  "Your cameras: every PTZ on the network, model, firmware, current status",
+  "Your stream: current bitrate, dropped frames, encoder load, scene",
+  "Your history: last 30 days of stream quality scores and auto-resolved issues",
+  "Your timeline: 30 minutes of health data leading up to any issue",
+  "Your support history: every previous ticket and what fixed it",
+];
+
+const faqItems = [
+  {
+    question: "Does Luminos work without Tech Manager?",
+    answer: "Yes. Luminos works on all plans for ministry intelligence: attendance insights, guest follow-up, and congregation data questions. Tech Manager unlocks the AV intelligence layer: real-time monitoring, hardware-specific diagnostics, remote actions, and proactive alerts.",
+  },
+  {
+    question: "What computer does Tech Manager run on?",
+    answer: "Tech Manager runs on Windows 10 or later and macOS 12 or later. It should be installed on the production computer your AV team uses to run OBS or vMix.",
+  },
+  {
+    question: "Does Tech Manager need to be running during service?",
+    answer: "Yes. Tech Manager needs to be running on the production computer during service for real-time monitoring and alerts to work. It launches automatically on startup, so as long as the production computer is on, Tech Manager is running.",
+  },
+  {
+    question: "Can Luminos fix things without my permission?",
+    answer: "No. Luminos always proposes an action and waits for your confirmation before doing anything to your system. The exception is Tech Manager's self-healing engine, which handles minor automatic fixes like restarting OBS after a crash. Those actions are logged and included in the weekly digest.",
+  },
+  {
+    question: "Is my system data private?",
+    answer: "Yes. Your system documentation, hardware profile, and AV health data stay in your WorshipMetrics account and are used only to support your congregation. They are not shared with other customers or used for advertising.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Luminos",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: `${SITE_URL}/luminos-ai-assistant`,
+    image: OG_IMAGE,
+    description: "Luminos is the WorshipMetrics AI for ministry intelligence and, with Tech Manager installed, hardware-specific AV diagnosis and support.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  },
+];
 ---
 
 <Layout
   title="Luminos AI"
-  description="Luminos helps your team review attendance, visitors, follow-up signals, and weekly ministry context in plain English — inside WorshipMetrics."
+  description="Luminos is the WorshipMetrics AI for ministry intelligence and, with Tech Manager installed, hardware-specific AV diagnosis and support."
   canonical="/luminos-ai-assistant"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
 >
-  <!-- Hero -->
   <section class="bg-white px-6 py-20 sm:py-28">
     <div class="mx-auto max-w-3xl text-center">
-      <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-indigo-600">
-        Luminos
-      </p>
+      <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-indigo-600">Luminos</p>
       <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-        Walk into Monday knowing what matters most.
+        The only AI that knows<br />
+        your exact AV system.
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600 sm:text-xl">
-        Luminos lives inside WorshipMetrics and helps your team review attendance, notice visitor
-        and follow-up signals, and prepare confirmed actions — without digging through multiple
-        reports.
+        Luminos is the WorshipMetrics AI — built into your dashboard, connected to your production computer, and ready to answer the questions your team asks every Monday morning and every Sunday when something goes wrong.
       </p>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm text-slate-500">
-        <span class="rounded-full bg-slate-100 px-3 py-1">Weekly summaries</span>
-        <span class="text-slate-300">&middot;</span>
-        <span class="rounded-full bg-slate-100 px-3 py-1">Pastoral clarity</span>
-        <span class="text-slate-300">&middot;</span>
-        <span class="rounded-full bg-slate-100 px-3 py-1">Confirmed actions</span>
-      </div>
       <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-        <a
-          href="https://app.worshipmetrics.com/sign-up"
-          class="rounded-lg bg-indigo-600 px-7 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 transition"
-        >
-          Start for free
+        <a href="/discovery-call" class="rounded-lg bg-indigo-600 px-7 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 transition">
+          See Luminos in action
         </a>
-        <a href="/discovery-call" class="text-base font-semibold text-indigo-600 hover:text-indigo-700">
-          See a demo &rarr;
+        <a href="/tech-manager" class="rounded-lg border border-slate-300 px-7 py-3 text-base font-semibold text-slate-700 hover:border-indigo-400 hover:text-indigo-700 transition">
+          Download Tech Manager to unlock AV support
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Luminos visual -->
-  <section class="bg-slate-50 px-6 pb-8 sm:pb-12">
-    <div class="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-      <div class="grid items-center gap-0 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-        <div class="flex h-full flex-col justify-center bg-slate-950 p-8 sm:p-10">
-          <div class="flex items-center gap-4">
-            <img
-              src={`${R2}/homepage/Luminos.jpg`}
-              alt="Luminos AI avatar"
-              loading="lazy"
-              decoding="async"
-              class="h-16 w-16 rounded-2xl object-cover ring-1 ring-white/10"
-            />
-            <div>
-              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Inside your dashboard</p>
-              <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Ask ministry questions. Get clear next steps.</h2>
-            </div>
-          </div>
-          <div class="mt-8 space-y-3 text-sm text-slate-300">
-            <div class="rounded-2xl bg-white/5 px-4 py-3 ring-1 ring-white/10">"Who has missed multiple services and may need a check-in?"</div>
-            <div class="rounded-2xl bg-white/5 px-4 py-3 ring-1 ring-white/10">"Which guests still need a response from this week?"</div>
-            <div class="rounded-2xl bg-white/5 px-4 py-3 ring-1 ring-white/10">"Give me a Monday summary I can act on."</div>
-          </div>
-        </div>
-        <img
-          src={`${R2}/homepage/Luminos.jpg`}
-          alt="Luminos AI interface inside WorshipMetrics"
-          loading="lazy"
-          decoding="async"
-          class="h-full w-full object-cover"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- What it does -->
   <section class="bg-slate-50 px-6 py-20">
-    <div class="mx-auto max-w-5xl">
-      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-12">
-        What Luminos does
-      </h2>
-      <div class="grid gap-6 sm:grid-cols-2">
-        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
-          <h3 class="text-lg font-bold text-slate-900 mb-3">Ask church questions in plain English</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Attendance, visitors, follow-up signals, and weekly ministry context without digging
-            through dashboards.
-          </p>
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Two modes. One AI.</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Luminos works in two distinct modes depending on what you have installed.</h2>
+      </div>
+      <div class="mt-10 grid gap-8 lg:grid-cols-2">
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Mode 1 — Ministry intelligence</p>
+          <p class="mt-2 text-sm font-semibold text-slate-500">Available on all plans. No Tech Manager required.</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Luminos reads your attendance data, guest records, engagement history, and follow-up queue — and tells your team exactly what needs attention in plain English without digging through reports.</p>
+          <div class="mt-6 space-y-3">
+            {ministryPrompts.map((prompt) => (
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">{prompt}</div>
+            ))}
+          </div>
+          <p class="mt-6 text-sm text-slate-500">Role-aware, confirmation-required, and built for pastoral care — not data analysis.</p>
         </div>
-        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
-          <h3 class="text-lg font-bold text-slate-900 mb-3">Respect ministry roles</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Volunteers, staff, and pastors each see the level of detail that fits their
-            responsibility.
-          </p>
-        </div>
-        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
-          <h3 class="text-lg font-bold text-slate-900 mb-3">Draft actions with confirmation</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            When a pastor wants to take action, Luminos drafts it first and waits for confirmation
-            before anything runs.
-          </p>
-        </div>
-        <div class="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
-          <h3 class="text-lg font-bold text-slate-900 mb-3">Stays connected to your data</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Works from your actual WorshipMetrics data — not generic church guesses.
-          </p>
+        <div class="rounded-3xl border border-indigo-200 bg-indigo-50 p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Mode 2 — AV intelligence</p>
+          <p class="mt-2 text-sm font-semibold text-indigo-700">Requires Tech Manager installed on your production computer.</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-700">When Tech Manager is running on your production computer, Luminos gains something no other congregation AI has — real-time visibility into your physical AV system. It knows your hardware. It watches your stream. It reads your OBS logs. And when something goes wrong, it already has the full picture before you say a word.</p>
+          <div class="mt-6 space-y-3">
+            {avPrompts.map((prompt) => (
+              <div class="rounded-2xl border border-indigo-200 bg-white px-4 py-3 text-sm text-slate-700">{prompt}</div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sample prompts -->
   <section class="bg-white px-6 py-20">
-    <div class="mx-auto max-w-3xl">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-8 text-center">
-        The kinds of questions Luminos answers.
-      </h2>
-      <ul class="space-y-3">
-        {[
-          "What should our pastor know before Monday staff meeting?",
-          "Which guests still need a response from this week?",
-          "Who has missed multiple services and may need a check-in?",
-          "Give me a short summary of attendance, visitors, and follow-up from this week.",
-          "What changed this week that deserves our attention first?",
-        ].map((prompt) => (
-          <li class="flex items-start gap-3 rounded-xl border border-slate-200 px-5 py-4">
-            <span class="mt-0.5 text-indigo-500">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd" />
-              </svg>
-            </span>
-            <span class="text-slate-700 text-sm">{prompt}</span>
-          </li>
+    <div class="mx-auto max-w-5xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why Tech Manager matters for Luminos</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Context is everything.</h2>
+      </div>
+      <div class="mt-10 grid gap-8 lg:grid-cols-2">
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+          <h3 class="text-xl font-bold text-slate-900">Without Tech Manager</h3>
+          <div class="mt-6 space-y-3 text-sm text-slate-700">
+            <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3">"My stream is pixelated."</div>
+            <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3">"What version of OBS are you running?"</div>
+            <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3">"I'm not sure..."</div>
+            <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3">"What is your bitrate set to?"</div>
+            <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3">"Um, I think 6000?"</div>
+            <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3">"What is your internet upload speed?"</div>
+            <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3">"I don't know how to check that."</div>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-indigo-200 bg-indigo-50 p-8">
+          <h3 class="text-xl font-bold text-slate-900">With Tech Manager</h3>
+          <div class="mt-6 rounded-2xl border border-indigo-200 bg-white p-5 text-sm leading-relaxed text-slate-700">
+            "My stream is pixelated."<br /><br />
+            "I can see your system. You're running OBS 30.1 on a Dell Optiplex with an Intel i5. Your bitrate is set to 6,000 kbps but your upload speed tested at 11 Mbps this morning — that's borderline for 1080p. Your encoder CPU is also running at 78%, which suggests something else is competing with OBS. I can see Windows Update is scheduled to run on Sundays. That's likely the cause. I recommend reducing your bitrate to 4,000 kbps and disabling Windows Update during service hours. Want me to adjust your OBS bitrate right now?"
+          </div>
+        </div>
+      </div>
+      <p class="mt-8 text-center text-base leading-relaxed text-slate-600 sm:text-lg">That conversation takes 30 seconds and ends with a solution. Tech Manager is what makes that possible.</p>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-6 py-20">
+    <div class="mx-auto max-w-6xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What Luminos can do with Tech Manager</p>
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900">Diagnose problems with full context</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Luminos receives a 30-minute timeline of your system's health before every support interaction. It identifies the exact moment metrics began degrading and works backward to the root cause.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900">Fix problems remotely</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">On Established plans, Luminos can take action on your system with confirmation: adjust OBS bitrate, restart OBS, switch scenes, move PTZ cameras, restart the Hub, or run a network diagnostic.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900">Alert your team before they notice</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">When Tech Manager detects a bitrate drop, a camera outage, or an encoder overload, Luminos is notified instantly. If self-healing cannot fix it, support opens proactively before anyone in the congregation knows something is wrong.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-6 py-20">
+    <div class="mx-auto max-w-5xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What Luminos knows with Tech Manager installed</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Before you say a word.</h2>
+      </div>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        {knowsWithTechManager.map((item) => (
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 shadow-sm">{item}</div>
         ))}
-      </ul>
+      </div>
     </div>
   </section>
 
-  <!-- Mock conversation -->
   <section class="bg-slate-50 px-6 py-20">
-    <div class="mx-auto max-w-2xl">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-8 text-center">
-        See it in action.
-      </h2>
-      <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-        <!-- Chat header -->
-        <div class="border-b border-slate-100 bg-slate-50 px-5 py-3 flex items-center gap-2">
-          <div class="h-2.5 w-2.5 rounded-full bg-indigo-500"></div>
-          <span class="text-sm font-semibold text-slate-700">Luminos</span>
-          <span class="ml-auto text-xs text-slate-400">Inside WorshipMetrics</span>
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Proactive support — not just reactive</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Luminos doesn't wait for you to report a problem.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900">Weekly health digest</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Every Monday, Luminos sends a plain-English summary of what ran well, what Tech Manager auto-fixed, what needs attention, and one specific recommendation to improve reliability.</p>
         </div>
-        <!-- Messages -->
-        <div class="p-6 space-y-6">
-          <!-- User -->
-          <div class="flex justify-end">
-            <div class="max-w-sm rounded-2xl rounded-tr-sm bg-indigo-600 px-4 py-3 text-sm text-white">
-              Before staff meeting, give me a short summary of what matters most from this week.
-            </div>
-          </div>
-          <!-- Luminos -->
-          <div class="flex justify-start">
-            <div class="max-w-prose rounded-2xl rounded-tl-sm bg-slate-100 px-4 py-3 text-sm text-slate-800 leading-relaxed">
-              Attendance held steady this week, but three first-time visitor households were
-              captured and two regular families have now missed multiple services. Four recent
-              guest records still need follow-up, and one prayer request should be reviewed by
-              pastoral staff today. Would you like me to break this down by service, pull just
-              the guest follow-up items, or prepare a short recap for the team?
-            </div>
-          </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900">Pre-service check</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Tech Manager runs a diagnostic before service and Luminos sends a go/no-go status with issues flagged and resolved before Sunday morning.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900">Pattern detection</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">If the same issue occurs three or more times in 30 days, Luminos identifies the pattern and surfaces root-cause analysis before it becomes a recurring Sunday morning crisis.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Role access -->
-  <section class="bg-white px-6 py-20">
-    <div class="mx-auto max-w-5xl">
-      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
-        Helpful by design. Careful by default.
-      </h2>
-      <p class="text-center text-slate-600 mb-12">
-        Luminos surfaces different levels of context depending on who's asking.
-      </p>
-      <div class="grid gap-6 sm:grid-cols-3">
-        <div class="rounded-2xl border border-slate-200 p-8">
-          <p class="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-3">Volunteer</p>
-          <p class="text-slate-700 text-sm leading-relaxed">
-            Aggregate ministry visibility. No private records or contact details.
-          </p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 p-8">
-          <p class="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-3">Staff / Ministry Leader</p>
-          <p class="text-slate-700 text-sm leading-relaxed">
-            More member-care context and broader reporting visibility.
-          </p>
-        </div>
-        <div class="rounded-2xl border border-indigo-200 bg-indigo-50 p-8">
-          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-3">Admin / Pastor</p>
-          <p class="text-slate-700 text-sm leading-relaxed">
-            Full operational context, action drafting, and confirmation-required admin actions.
-          </p>
-        </div>
+  <section class="bg-slate-950 px-6 py-20">
+    <div class="mx-auto max-w-5xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">The relationship between Luminos and Tech Manager</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Tech Manager is the nervous system. Luminos is the brain.</h2>
+      <p class="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-slate-300 sm:text-lg">Tech Manager runs on your production computer, monitors every device, and feeds continuous data to the cloud. Luminos reads that data, understands what it means, and takes action or advises your team. Together they form a support system that knows your specific hardware, watches your system continuously, and gets smarter about your building every single week.</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/tech-manager" class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-500">Download Tech Manager</a>
+        <a href="https://app.worshipmetrics.com/sign-up" class="rounded-xl border border-indigo-300 px-8 py-3 text-base font-semibold text-white transition hover:border-white">Start free on WorshipMetrics</a>
       </div>
     </div>
   </section>
 
-  <!-- Plans -->
-  <section class="bg-slate-50 px-6 py-20">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-10">
-        Included on paid plans.
-      </h2>
-      <div class="grid gap-6 sm:grid-cols-2 text-left mb-10">
-        <div class="rounded-2xl border border-slate-200 bg-white p-8">
-          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-2">Essentials</p>
-          <p class="text-3xl font-extrabold text-slate-900 mb-1">$19.99<span class="text-base font-normal text-slate-500">/month</span></p>
-          <p class="mt-4 text-slate-700 font-medium">90 questions/day</p>
-        </div>
-        <div class="rounded-2xl border border-indigo-200 bg-indigo-50 p-8">
-          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-2">Established</p>
-          <p class="text-3xl font-extrabold text-slate-900 mb-1">$49.99<span class="text-base font-normal text-slate-500">/month</span></p>
-          <p class="mt-4 text-slate-700 font-medium">250 questions/day</p>
-        </div>
+  <section class="bg-white px-6 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Related pages</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          { href: "/tech-manager", title: "Tech Manager", body: "See the desktop layer that gives Luminos real-time AV visibility, system documentation, and self-healing context." },
+          { href: "/av-monitoring-for-houses-of-worship", title: "AV monitoring", body: "See how Luminos fits into the broader monitoring story for streams, cameras, displays, and alerts." },
+          { href: "/platform/attendance", title: "Attendance intelligence", body: "See the ministry-data side of Luminos with attendance, follow-up signals, and Monday-morning clarity." },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
+          </a>
+        ))}
       </div>
-      <a href="/pricing" class="text-base font-semibold text-indigo-600 hover:text-indigo-700">
-        See all pricing &rarr;
-      </a>
     </div>
   </section>
 
-  <!-- Bottom CTA -->
+  <section class="bg-white px-6 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Frequently asked questions</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Questions about Luminos and Tech Manager</h2>
+      </div>
+      <div class="mt-8 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-slate-900">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="bg-indigo-600 px-6 py-20">
     <div class="mx-auto max-w-3xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-        See how Luminos works with your church data.
-      </h2>
-      <p class="mt-4 text-lg text-indigo-100">
-        A short call is all it takes to see if it fits your team.
-      </p>
-      <div class="mt-8">
-        <a
-          href="/discovery-call"
-          class="rounded-lg bg-white px-8 py-3 text-base font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 transition"
-        >
-          Book a discovery call
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Give Luminos eyes and ears.</h2>
+      <p class="mt-4 text-lg text-indigo-100">Download Tech Manager free and connect your production computer to WorshipMetrics. From that moment forward, Luminos knows your system — and Sunday morning gets a little more predictable every week.</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/tech-manager" class="rounded-lg bg-white px-8 py-3 text-base font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 transition">
+          Download Tech Manager — free
+        </a>
+        <a href="https://app.worshipmetrics.com/sign-up" class="rounded-lg border border-indigo-200 px-8 py-3 text-base font-semibold text-white transition hover:border-white">
+          Start free on WorshipMetrics
         </a>
       </div>
     </div>

@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArticleCard from '../../../components/kb/ArticleCard.astro';
+import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
+import ProductCTA from '../../../components/kb/ProductCTA.astro';
+import { categories, categoryMap } from '../../../data/categories';
+import { Icon } from 'astro-icon/components';
+
+export async function getStaticPaths() {
+  return categories.map((category) => ({ params: { category: category.slug } }));
+}
+
+const { category } = Astro.params;
+if (!category || !(category in categoryMap)) {
+  throw new Error(`Unknown category: ${category}`);
+}
+
+const categoryData = categoryMap[category as keyof typeof categoryMap];
+const articles = (await getCollection('articles', (article) => article.data.category === categoryData.slug)).sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+);
+---
+
+<BaseLayout
+  title={categoryData.label}
+  description={categoryData.description}
+  canonical={`/kb/category/${categoryData.slug}`}
+>
+  <section class="bg-bg px-6 py-20">
+    <div class="mx-auto max-w-7xl">
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: categoryData.label }]} />
+      <div class="flex flex-wrap items-start justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-3 text-blue-300">
+            <Icon name={categoryData.icon} class="h-7 w-7" />
+            <p class="text-sm font-semibold uppercase tracking-[0.18em]">Category</p>
+          </div>
+          <h1 class="mt-4 font-display text-5xl text-white">{categoryData.label}</h1>
+          <p class="mt-4 max-w-3xl text-lg leading-relaxed text-slate-300">{categoryData.description}</p>
+        </div>
+        <span class="rounded-full bg-white/5 px-4 py-2 text-sm font-semibold text-slate-300">{articles.length} articles</span>
+      </div>
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        {articles.map((article) => <ArticleCard article={article} />)}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="/kb/search" class="rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-white transition hover:border-blue-400">Search the knowledge base</a>
+        <a href="/discovery-call" class="rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500">Talk to the team →</a>
+      </div>
+      <div class="mt-12">
+        <ProductCTA variant="banner" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

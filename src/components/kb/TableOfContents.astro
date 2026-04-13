@@ -1,0 +1,45 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const tocItems = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+
+{tocItems.length > 0 && (
+  <aside class="sticky top-24 rounded-3xl border border-slate-200 bg-slate-50 p-6" data-pagefind-ignore>
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">On this page</p>
+    <ul class="mt-4 space-y-3 text-sm">
+      {tocItems.map((heading) => (
+        <li class:list={[heading.depth === 3 && 'pl-4']}>
+          <a href={`#${heading.slug}`} class="toc-link text-slate-600 transition hover:text-blue-600">{heading.text}</a>
+        </li>
+      ))}
+    </ul>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const headings = Array.from(document.querySelectorAll('h2[id], h3[id]'));
+        const links = Array.from(document.querySelectorAll('.toc-link'));
+        const setActive = () => {
+          let active = headings[0]?.id;
+          for (const heading of headings) {
+            if (heading.getBoundingClientRect().top <= 120) active = heading.id;
+          }
+          links.forEach((link) => {
+            link.classList.toggle('text-blue-600', link.getAttribute('href') === `#${active}`);
+            link.classList.toggle('font-semibold', link.getAttribute('href') === `#${active}`);
+          });
+        };
+        setActive();
+        window.addEventListener('scroll', setActive, { passive: true });
+      });
+    </script>
+  </aside>
+)}

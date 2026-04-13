@@ -1,0 +1,100 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import BreadcrumbNav from '../components/kb/BreadcrumbNav.astro';
+import CategoryBadge from '../components/kb/CategoryBadge.astro';
+import DifficultyBadge from '../components/kb/DifficultyBadge.astro';
+import ProductCTA from '../components/kb/ProductCTA.astro';
+import TableOfContents from '../components/kb/TableOfContents.astro';
+import RelatedArticles from '../components/kb/RelatedArticles.astro';
+import type { CollectionEntry } from 'astro:content';
+import { categoryMap } from '../data/categories';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  headings: { depth: number; slug: string; text: string }[];
+  prevArticle?: CollectionEntry<'articles'>;
+  nextArticle?: CollectionEntry<'articles'>;
+  relatedArticles: CollectionEntry<'articles'>[];
+  readingTime: number;
+}
+
+const { article, headings, prevArticle, nextArticle, relatedArticles, readingTime } = Astro.props;
+const categoryLabel = categoryMap[article.data.category].label;
+const breadcrumbItems = [
+  { name: 'Home', item: 'https://worshipmetrics.com/kb' },
+  { name: categoryLabel, item: `https://worshipmetrics.com/kb/category/${article.data.category}` },
+  { name: article.data.title, item: `https://worshipmetrics.com/kb/articles/${article.id}` },
+];
+---
+
+<BaseLayout
+  title={article.data.title}
+  description={article.data.description}
+  canonical={`/kb/articles/${article.id}`}
+  image={article.data.coverImage}
+  type="article"
+  publishedAt={article.data.publishedAt}
+  updatedAt={article.data.updatedAt}
+  breadcrumbItems={breadcrumbItems}
+>
+  <section class="border-b border-border bg-bg">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <BreadcrumbNav items={[
+        { label: 'Knowledge Base', href: '/kb' },
+        { label: categoryLabel, href: `/kb/category/${article.data.category}` },
+        { label: article.data.title },
+      ]} />
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <CategoryBadge category={article.data.category} />
+        <DifficultyBadge difficulty={article.data.difficulty} />
+        <span class="text-xs uppercase tracking-[0.16em] text-muted">{article.data.publishedAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+        <span class="text-xs uppercase tracking-[0.16em] text-muted">{readingTime} min read</span>
+      </div>
+      <h1 class="mt-6 max-w-4xl font-display text-5xl leading-tight text-white sm:text-6xl">{article.data.title}</h1>
+      <p class="mt-5 max-w-3xl text-lg leading-relaxed text-slate-300">{article.data.description}</p>
+      {article.data.coverImage && (
+        <div class="mt-10 overflow-hidden rounded-3xl border border-border bg-surface shadow-[0_18px_40px_rgba(0,0,0,0.24)]">
+          <img src={article.data.coverImage} alt={article.data.title} class="aspect-[16/8] w-full object-cover" loading="lazy" />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <article class="min-w-0">
+        <div class="hidden">
+          <span data-pagefind-meta="title">{article.data.title}</span>
+          <span data-pagefind-meta="category">{article.data.category}</span>
+          <span data-pagefind-meta="publishedAt">{article.data.publishedAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+          <span data-pagefind-meta="difficulty">{article.data.difficulty}</span>
+          <span data-pagefind-filter="category">{article.data.category}</span>
+          <span data-pagefind-filter="difficulty">{article.data.difficulty}</span>
+          <span data-pagefind-sort="publishedAt">{article.data.publishedAt.toISOString()}</span>
+        </div>
+        <div class="kb-prose prose prose-slate max-w-none" data-pagefind-body>
+          <slot />
+        </div>
+        <ProductCTA variant="banner" />
+        <div class="mt-12 grid gap-4 sm:grid-cols-2" data-pagefind-ignore>
+          {prevArticle && (
+            <a href={`/kb/articles/${prevArticle.id}`} class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 shadow-sm transition hover:border-blue-300 hover:bg-white">
+              <span class="text-xs uppercase tracking-[0.16em] text-slate-500">Previous</span>
+              <p class="mt-2 font-semibold text-slate-900">{prevArticle.data.title}</p>
+            </a>
+          )}
+          {nextArticle && (
+            <a href={`/kb/articles/${nextArticle.id}`} class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 shadow-sm transition hover:border-blue-300 hover:bg-white">
+              <span class="text-xs uppercase tracking-[0.16em] text-slate-500">Next</span>
+              <p class="mt-2 font-semibold text-slate-900">{nextArticle.data.title}</p>
+            </a>
+          )}
+        </div>
+        <RelatedArticles articles={relatedArticles} />
+      </article>
+      <div class="hidden lg:block">
+        <TableOfContents headings={headings} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

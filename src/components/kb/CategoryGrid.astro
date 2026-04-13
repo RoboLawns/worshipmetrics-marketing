@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components';
+import { categories } from '../../data/categories';
+
+interface Props {
+  counts: Record<string, number>;
+}
+
+const { counts } = Astro.props;
+---
+
+<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+  {categories.map((category) => (
+    <a href={`/kb/category/${category.slug}`} class="rounded-3xl border border-border bg-surface p-6 shadow-[0_10px_30px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:border-accent/40">
+      <div class="flex items-start justify-between gap-4">
+        <div class="rounded-2xl bg-bg p-3 text-blue-300">
+          <Icon name={category.icon} class="h-6 w-6" />
+        </div>
+        <span class="rounded-full bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">{counts[category.slug] ?? 0} articles</span>
+      </div>
+      <h3 class="mt-5 font-display text-3xl text-white">{category.label}</h3>
+      <p class="mt-3 text-sm leading-relaxed text-slate-300">{category.description}</p>
+    </a>
+  ))}
+</div>

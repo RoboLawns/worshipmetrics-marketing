@@ -1,0 +1,241 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const R2NEW = `${R2}/homepage/new%20images`;
+const OG_IMAGE = `${R2NEW}/Stream%20Health.jpg`;
+
+const faqItems = [
+  {
+    question: "What is AV monitoring for houses of worship?",
+    answer: "AV monitoring for houses of worship means watching stream health, audio, cameras, displays, and related production signals in real time so issues can be caught before the congregation notices.",
+  },
+  {
+    question: "Does WorshipMetrics alert our team when something fails?",
+    answer: "Yes. WorshipMetrics is designed to alert your team when stream, audio, video, or display health changes so someone can respond immediately instead of learning about it from a text message later.",
+  },
+  {
+    question: "Can AV monitoring work with our existing setup?",
+    answer: "Yes. WorshipMetrics is built to work alongside existing production workflows, including PTZ cameras, OBS, vMix, and the displays your team already uses.",
+  },
+  {
+    question: "What is Tech Manager?",
+    answer: "Tech Manager is the desktop foundation behind the monitoring layer. It helps map devices on your network, watch OBS health, and give Luminos the context it needs to diagnose problems more quickly.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "WorshipMetrics AV Monitoring",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, Windows, Mac",
+    url: `${SITE_URL}/av-monitoring-for-houses-of-worship`,
+    image: OG_IMAGE,
+    description: "AV monitoring for houses of worship with stream health alerts, remote production visibility, device mapping, and Tech Manager support.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/discovery-call`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  },
+];
+---
+
+<Layout
+  title="AV Monitoring for Houses of Worship"
+  description="AV monitoring for houses of worship with stream health alerts, remote production visibility, device mapping, and Tech Manager support."
+  canonical="/av-monitoring-for-houses-of-worship"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-slate-900 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-400">AV monitoring for houses of worship</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        We'll tell you when your stream is down before your congregation does.
+      </h1>
+      <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+        WorshipMetrics watches stream health, audio, cameras, and displays in real time so your team knows the moment something breaks instead of learning about it from a text ten minutes later.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/appliance" class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-500">
+          See AV monitoring with the Hub
+        </a>
+        <a href="/tech-manager" class="rounded-xl border border-indigo-300 px-8 py-3 text-base font-semibold text-white transition hover:border-white">
+          See Tech Manager
+        </a>
+        <a href="/discovery-call" class="rounded-xl border border-indigo-300 px-8 py-3 text-base font-semibold text-white transition hover:border-white">
+          Book a discovery call
+        </a>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl">
+      <img src={OG_IMAGE} alt="WorshipMetrics AV monitoring dashboard" loading="lazy" decoding="async" class="w-full object-cover" />
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What it watches</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The signals that matter every service.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          ["Stream health", "Know when the stream drops, degrades, or stops reaching the people depending on it."],
+          ["Audio status", "Catch the silent failures that are easy to miss inside the room and devastating online."],
+          ["Camera visibility", "Keep PTZ control and camera state tied to the same system so remote teams can still respond."],
+          ["Display health", "See whether signage and display endpoints are online before the first person walks in."],
+        ].map(([title, body]) => (
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/1%20Worship%20Technology%20Assistance.jpg" alt="Worship technology assistance and AV support" loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why it matters</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Sunday should not begin with a diagnosis from your congregation.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Most teams do not need more hardware first. They need visibility. They need to know what is working, what is failing, and what changed before service momentum is lost.</p>
+        <div class="mt-8 space-y-3 text-sm text-slate-700">
+          {[
+            "Instant alerts to your team's phones when something breaks",
+            "Remote PTZ camera control from anywhere in the world",
+            "Remote OBS and vMix control for distributed production teams",
+            "Less guesswork for volunteers and less firefighting for leaders",
+          ].map((item) => (
+            <div class="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid items-center gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Tech Manager</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The monitoring layer gets stronger when Tech Manager is in the booth.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Tech Manager is the desktop foundation behind the monitoring story. It maps every device on your network, monitors OBS health, documents your AV environment, and gives Luminos the context it needs to diagnose problems faster.</p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            {[
+              "OBS connection monitoring and log visibility",
+              "LAN device discovery for cameras, encoders, and displays",
+              "Visual wiring awareness that survives volunteer turnover",
+              "A faster starting point when something breaks on Sunday",
+            ].map((item) => (
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 shadow-sm">{item}</div>
+            ))}
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/tech-manager" class="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-indigo-700">Explore Tech Manager</a>
+            <a href="/luminos-ai-assistant" class="rounded-xl border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">See Luminos AV support</a>
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={`${R2}/homepage/Luminos.jpg`} alt="Luminos and Tech Manager support" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Two paths</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Use the platform with your existing setup, or go deeper with the Hub.</h2>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm text-left">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Platform + remote onboarding</p>
+          <h3 class="mt-3 text-2xl font-bold text-slate-900">Keep your current production setup and get more visibility.</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">If you already have cameras, production software, and a stream, WorshipMetrics can still add monitoring, remote control, and support around what you already use.</p>
+          <a href="/your-av-partner" class="mt-8 inline-block rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-indigo-700">See remote onboarding</a>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm text-left">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Hub + automation</p>
+          <h3 class="mt-3 text-2xl font-bold text-slate-900">Add the Hub for a more automatic, connected workflow.</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">The Hub takes attendance, AV monitoring, signage, and remote production further by giving your team one connected hardware layer with no monthly fee.</p>
+          <a href="/appliance" class="mt-8 inline-block rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-indigo-700">See the Hub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Related pages</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          { href: "/appliance", title: "WorshipMetrics Hub", body: "See the hardware layer that makes AV monitoring, attendance, and signage more automatic." },
+          { href: "/tech-manager", title: "Tech Manager", body: "See the desktop layer that gives Luminos hardware context, self-healing, and AV diagnostics." },
+          { href: "/luminos-ai-assistant", title: "Luminos AI", body: "See how Tech Manager turns Luminos from ministry intelligence into AV intelligence." },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">FAQ</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Questions about AV monitoring for houses of worship</h2>
+      </div>
+      <div class="mt-8 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-slate-900">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Get visibility before your next service.</h2>
+      <p class="mt-4 text-lg text-indigo-100">If your team is still discovering AV problems from a text message, WorshipMetrics can help you move from reactive to ready.</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/discovery-call" class="rounded-xl bg-white px-8 py-3 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50">Book a discovery call</a>
+        <a href="/appliance" class="rounded-xl border border-indigo-300 px-8 py-3 text-base font-semibold text-white transition hover:border-white">See the Hub</a>
+      </div>
+    </div>
+  </section>
+</Layout>

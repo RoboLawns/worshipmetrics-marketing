@@ -1,0 +1,25 @@
+---
+import SearchBar from './SearchBar.astro';
+---
+
+<header class="border-b border-border bg-bg/95 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
+    <a href="/kb" class="flex items-center gap-3 text-white">
+      <img src="/logo.png" alt="WorshipMetrics" class="h-9 w-9 rounded-lg" />
+      <div>
+        <p class="font-display text-xl leading-none">Knowledge Base</p>
+        <p class="text-xs uppercase tracking-[0.18em] text-muted">Church AV</p>
+      </div>
+    </a>
+    <nav class="flex items-center gap-5 text-sm text-slate-300">
+      <a href="/kb" class="transition hover:text-white">Home</a>
+      <a href="/kb/search" class="transition hover:text-white">Search</a>
+      <a href="/kb/about" class="transition hover:text-white">About</a>
+      <a href="https://worshipmetrics.com" class="transition hover:text-white">Platform</a>
+    </nav>
+    <div class="hidden xl:block">
+      <SearchBar placeholder="Search the knowledge base..." />
+    </div>
+    <a href="/discovery-call" class="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">Talk to the team →</a>
+  </div>
+</header>

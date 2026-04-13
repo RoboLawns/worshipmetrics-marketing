@@ -1,0 +1,43 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const calculateReadingTime = (text: string) => Math.max(3, Math.ceil(text.split(/\s+/).filter(Boolean).length / 220));
+
+export async function getStaticPaths() {
+  const articles = (await getCollection('articles')).sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime());
+  return articles.map((article, index) => ({
+    params: { slug: article.id },
+    props: {
+      article,
+      prevArticle: index > 0 ? articles[index - 1] : undefined,
+      nextArticle: index < articles.length - 1 ? articles[index + 1] : undefined,
+    },
+  }));
+}
+
+const { article, prevArticle, nextArticle } = Astro.props as {
+  article: CollectionEntry<'articles'>;
+  prevArticle?: CollectionEntry<'articles'>;
+  nextArticle?: CollectionEntry<'articles'>;
+};
+
+const { Content, headings } = await render(article);
+const allArticles = await getCollection('articles');
+const relatedArticles = allArticles
+  .filter((candidate) => candidate.id !== article.id && candidate.data.category === article.data.category)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 3);
+const readingTime = article.data.readingTime ?? calculateReadingTime(article.body);
+---
+
+<ArticleLayout
+  article={article}
+  headings={headings}
+  prevArticle={prevArticle}
+  nextArticle={nextArticle}
+  relatedArticles={relatedArticles}
+  readingTime={readingTime}
+>
+  <Content />
+</ArticleLayout>

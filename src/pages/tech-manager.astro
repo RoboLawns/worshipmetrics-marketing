@@ -1,0 +1,386 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const DISCOVERY_URL = "/discovery-call";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const R2NEW = `${R2}/homepage/new%20images`;
+const OG_IMAGE = `${R2NEW}/Stream%20Health.jpg`;
+
+const systemDocumentation = [
+  "Computer name, operating system, version, and last update",
+  "Processor model, core count, clock speed, RAM, GPU, and storage",
+  "OBS version, plugin list, startup programs, and power-plan health",
+  "Wired vs WiFi status, internet speed, upload, latency, and jitter",
+  "Every camera, encoder, switcher, and display on the network",
+  "PTZ cameras discovered and mapped automatically via ONVIF",
+];
+
+const monitoringFeatures = [
+  "Stream status — live, offline, or degraded",
+  "Bitrate and dropped frames in real time",
+  "Encoder CPU load before it causes a drop",
+  "OBS connection and log warnings",
+  "Every camera on the network — online/offline",
+  "Every display — active and showing correct content",
+  "Internet connectivity and upload speed",
+  "Local network device availability",
+];
+
+const selfHealingRows = [
+  ["OBS crashes", "Restarts OBS and resumes the stream"],
+  ["Stream drops", "Attempts immediate stream restart"],
+  ["Bitrate degrades", "Reduces resolution to stabilize stream"],
+  ["Camera goes offline", "Sends wake command via ONVIF"],
+  ["Signage player crashes", "Restarts local signage server"],
+  ["Local recording stops", "Restarts recording, flags the gap"],
+  ["Disk space low", "Clears cached signage files, alerts team"],
+  ["Internet drops", "Switches displays to local cached content"],
+];
+
+const tierRows = [
+  ["System documentation", "Full", "Full", "Full"],
+  ["OBS monitoring", "Basic", "Full", "Full + Luminos AI"],
+  ["Cloud monitoring", "On-demand", "Continuous", "Continuous 24/7"],
+  ["Self-healing", "Yes", "Yes", "Yes"],
+  ["Luminos AV diagnostics", "Basic", "Full", "Full + remote action"],
+  ["Local signage hosting", "1 screen", "Unlimited", "Unlimited"],
+  ["PTZ camera control", "No", "Yes", "Yes + remote cloud"],
+  ["Stream health alerts", "No", "Email", "Push + phone"],
+  ["Remote OBS control", "No", "No", "Yes"],
+];
+
+const faqItems = [
+  {
+    question: "What is Tech Manager?",
+    answer: "Tech Manager is a free desktop app for Windows and Mac that sits on your production computer, documents your AV system, monitors signals continuously, and gives Luminos the context it needs to diagnose issues fast.",
+  },
+  {
+    question: "Does Tech Manager require the Hub?",
+    answer: "No. Tech Manager is the desktop bridge between your physical AV system and the WorshipMetrics cloud, and it can work with or without the Hub.",
+  },
+  {
+    question: "Does Tech Manager fix problems automatically?",
+    answer: "Yes. Tech Manager includes a self-healing layer for common issues like OBS crashes, stream drops, camera reconnects, signage restarts, and cached local signage during internet outages.",
+  },
+  {
+    question: "Why does Luminos need Tech Manager for AV support?",
+    answer: "Without Tech Manager, Luminos can answer questions about ministry data. With Tech Manager installed, Luminos gains real-time visibility into your actual hardware, OBS state, cameras, network health, and support history so it can diagnose AV problems specifically instead of generically.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "WorshipMetrics Tech Manager",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Windows, Mac",
+    url: `${SITE_URL}/tech-manager`,
+    image: OG_IMAGE,
+    description: "Free desktop AV monitoring and system mapping for OBS health, device discovery, self-healing, PTZ control, and Luminos AV diagnostics.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}${DISCOVERY_URL}`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  },
+];
+---
+
+<Layout
+  title="Tech Manager"
+  description="Free desktop AV monitoring and system mapping for OBS health, device discovery, self-healing, PTZ control, and Luminos AV diagnostics."
+  canonical="/tech-manager"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Tech Manager</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        The smartest thing in your AV booth<br />
+        isn't your switcher.
+      </h1>
+      <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+        Tech Manager is a free desktop app for Windows and Mac that sits quietly on your production computer — watching every device, monitoring every signal, and giving Luminos everything it needs to diagnose and fix problems fast.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={DISCOVERY_URL} class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-500">
+          Download free for Windows
+        </a>
+        <a href={DISCOVERY_URL} class="rounded-xl border border-indigo-300 px-8 py-3 text-base font-semibold text-white transition hover:border-white">
+          Download free for Mac
+        </a>
+      </div>
+      <p class="mt-4 text-sm text-slate-400">Free account required. Works on all plans. Beta access is provided through a discovery call.</p>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl">
+      <img src={OG_IMAGE} alt="Tech Manager monitoring stream health" loading="lazy" decoding="async" class="w-full object-cover" />
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center shadow-sm sm:p-10">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The one-line explanation</p>
+      <p class="mt-4 text-lg leading-relaxed text-slate-700 sm:text-xl">
+        Tech Manager is the bridge between your physical AV system and the WorshipMetrics cloud. Without it, Luminos can answer questions about your attendance data. With it, Luminos knows your exact hardware, watches your stream in real time, and can fix problems before your congregation notices them.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/av-monitoring-for-houses-of-worship" class="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-indigo-700">See AV monitoring</a>
+        <a href="/luminos-ai-assistant" class="rounded-xl border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">See Luminos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What it does</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Runs silently. Works constantly. Tells Luminos everything.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Tech Manager runs in your system tray from the moment your production computer starts. You do not manage it. You do not interact with it. It just works — watching your system, feeding data to the cloud, and stepping in automatically when something goes wrong.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 1 — System documentation</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your AV system, fully documented. Automatically.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">The moment Tech Manager installs, it starts building a complete profile of your production environment without you filling out a single form.</p>
+        <p class="mt-6 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">What it captures automatically</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          {systemDocumentation.map((item) => (
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 shadow-sm">{item}</div>
+          ))}
+        </div>
+        <p class="mt-6 text-sm leading-relaxed text-slate-600">You add the human details once: friendly names, physical locations, cable connections, input assignments, passwords, notes, and photos of physical hardware. The knowledge stays in the cloud even when a volunteer moves on.</p>
+        <a href="/your-av-partner" class="mt-8 inline-block rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-indigo-700">See the wiring diagram tool →</a>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/1%20Worship%20Technology%20Assistance.jpg" alt="Worship technology assistance and AV documentation" loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 2 — AV monitoring</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">We know something is wrong before you do.</h2>
+      <p class="mt-4 max-w-4xl text-base leading-relaxed text-slate-600 sm:text-lg">Tech Manager sends a health snapshot to the WorshipMetrics cloud every 30 seconds. Stream bitrate. Encoder CPU. Camera status. Display connectivity. Network speed. All of it, continuously.</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {monitoringFeatures.map((item) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm text-sm text-slate-700">{item}</div>
+        ))}
+      </div>
+      <p class="mt-8 text-sm leading-relaxed text-slate-600">When something goes wrong, Tech Manager attempts to fix it automatically first. If it cannot, Luminos opens a support ticket with a full 30-minute timeline of exactly what happened leading up to the issue.</p>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 3 — Self-healing</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Most problems fix themselves. You never know they happened.</h2>
+      <div class="mt-10 overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-slate-700">What happened</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">What Tech Manager does</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            {selfHealingRows.map(([issue, action]) => (
+              <tr>
+                <td class="px-6 py-4 font-semibold text-slate-900">{issue}</td>
+                <td class="px-6 py-4 text-slate-600">{action}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-6 text-sm leading-relaxed text-slate-600">Every self-healing action is logged silently in the background and included in your weekly health digest so you know what was handled on your behalf.</p>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+      <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 4 — OBS management</p>
+        <h2 class="mt-3 text-2xl font-bold text-slate-900">OBS support that actually knows your setup.</h2>
+        <ul class="mt-6 space-y-3 text-sm text-slate-700">
+          {[
+            "OBS connection status monitored continuously",
+            "OBS log file read in real time, with warnings surfaced early",
+            "Scene collection backed up to cloud automatically",
+            "Stream health overlay for bitrate, dropped frames, and encoder load",
+            "Remote OBS control via WorshipMetrics cloud on Established plans",
+            "Luminos reads the full log, identifies the cause, and tells you what to fix",
+          ].map((item) => (
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 5 — Local signage hosting</p>
+        <h2 class="mt-3 text-2xl font-bold text-slate-900">Your lobby screens stay live. Even when the internet doesn't.</h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600">Tech Manager runs a local signage server on your production computer. Displays on your network load from the local server — faster, more reliable, and immune to internet outages.</p>
+        <ul class="mt-6 space-y-3 text-sm text-slate-700">
+          {[
+            "Playlist synced from WorshipMetrics cloud when online",
+            "Full playlist cached locally so screens never go black",
+            "Multiple displays managed independently on the same network",
+            "Free tier: 1 local screen. Paid plans: unlimited",
+          ].map((item) => (
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 6 — PTZ camera control</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your cameras, controlled from anywhere.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Tech Manager bridges your PTZ cameras to the WorshipMetrics cloud. Point, tilt, zoom, and recall presets from the local dashboard or from your phone on the other side of the world.</p>
+        <ul class="mt-6 space-y-3 text-sm text-slate-700">
+          {[
+            "ONVIF-compatible PTZ cameras discovered automatically",
+            "Pan, tilt, zoom controls in Tech Manager",
+            "Save and recall presets like Wide, Pulpit, Worship Band, and Choir",
+            "Remote cloud control without a VPN or port forwarding",
+            "Pre-service preset support for congregation-wide attendance capture",
+          ].map((item) => (
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={`${R2}/tablet/Sync%20with%20multiple%20tablets.jpg`} alt="Remote control and connected device workflows" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">How it works with Luminos</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Tech Manager is what gives Luminos eyes and ears.</h2>
+      <p class="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-slate-300 sm:text-lg">Without Tech Manager, Luminos is a data assistant. With Tech Manager installed, Luminos becomes a real-time AV support system that knows your exact hardware, watches your system continuously, and can diagnose and fix problems with specificity that no generic AI can match.</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-8 text-left">
+          <h3 class="text-xl font-bold text-white">What Luminos already knows with Tech Manager</h3>
+          <ul class="mt-6 space-y-3 text-sm text-slate-300">
+            {[
+              "Your exact processor, GPU, RAM, and OBS version",
+              "Your OBS plugin list and startup configuration",
+              "Your internet upload speed and connection type",
+              "Every camera and device on your network",
+              "A 30-minute timeline of what happened before the issue",
+              "Your full support history and what fixed problems in the past",
+            ].map((item) => (
+              <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-400"></span><span>{item}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-8 text-left">
+          <h3 class="text-xl font-bold text-white">Why that context matters</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-300">That context is what turns a 20-minute support call into a 3-minute resolution. Tech Manager is free to install. Luminos becomes dramatically more useful the moment it can see your real system.</p>
+          <a href="/luminos-ai-assistant" class="mt-8 inline-block rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-indigo-500">Learn more about Luminos →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Tier comparison</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Choose the level of visibility your team needs.</h2>
+      <div class="mt-10 overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-slate-700">Feature</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Free</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Essentials</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Established</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            {tierRows.map(([feature, free, essentials, established]) => (
+              <tr>
+                <td class="px-6 py-4 font-semibold text-slate-900">{feature}</td>
+                <td class="px-6 py-4 text-slate-600">{free}</td>
+                <td class="px-6 py-4 text-slate-600">{essentials}</td>
+                <td class="px-6 py-4 text-slate-600">{established}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Free. No credit card. Works on Windows and Mac.</h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Tech Manager installs in under five minutes. Connect your WorshipMetrics account, let it scan your network, and your system is documented, monitored, and cloud-connected before the next service.</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={DISCOVERY_URL} class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-700">Download for Windows</a>
+        <a href={DISCOVERY_URL} class="rounded-xl border border-slate-300 px-8 py-3 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">Download for Mac</a>
+      </div>
+      <p class="mt-4 text-sm text-slate-500">Requires a WorshipMetrics account. Beta download links are shared during a discovery call.</p>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl mb-16">
+      <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Related pages</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          { href: "/av-monitoring-for-houses-of-worship", title: "AV monitoring", body: "See how Tech Manager feeds the broader monitoring layer that watches your stream, audio, cameras, and displays." },
+          { href: "/luminos-ai-assistant", title: "Luminos AI", body: "See how Luminos uses Tech Manager context for hardware-specific diagnostics and support." },
+          { href: "/your-av-partner", title: "Your AV Partner", body: "See how remote onboarding and local installs wrap real support around the same system." },
+        ].map(({ href, title, body }) => (
+          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">FAQ</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Questions about Tech Manager</h2>
+      </div>
+      <div class="mt-8 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-slate-900">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

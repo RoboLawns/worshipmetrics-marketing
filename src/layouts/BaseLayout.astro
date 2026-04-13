@@ -1,0 +1,42 @@
+---
+import SEO from '../components/kb/SEO.astro';
+import Header from '../components/kb/Header.astro';
+import Footer from '../components/kb/Footer.astro';
+import '../styles/kb.css';
+
+interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedAt?: Date;
+  updatedAt?: Date;
+  breadcrumbItems?: BreadcrumbItem[];
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO {...props} />
+    <link rel="icon" type="image/png" href="/logo.png" />
+  </head>
+  <body class="kb-body min-h-screen">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

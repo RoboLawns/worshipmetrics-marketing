@@ -10,6 +10,8 @@ const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170"
 const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
 const APP_STORE_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Download_on_the_App_Store_Badge.svg.png";
 const GOOGLE_PLAY_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Google_Play_Store_badge_EN.svg.png";
+const PAUL_HEADSHOT = `${R2}/paul.jpg`;
+const ANDREW_HEADSHOT = `${R2}/Andrew.jpg`;
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -19,7 +21,7 @@ const structuredData = {
   operatingSystem: "Web, iOS, Android",
   url: SITE_URL,
   image: `${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`,
-  description: "Church attendance tracking, visitor follow-up, digital engagement, signage, and volunteer workflows in one platform.",
+  description: "Congregation technology for AV monitoring, automatic attendance, free digital signage, and all-week engagement in one platform.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -327,6 +329,16 @@ const structuredData = {
   }
   .btn-ghost-white:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
   .cta-note { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+
+  .testimonial-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2.5rem; }
+  @media (max-width: 900px) { .testimonial-grid { grid-template-columns: 1fr; } }
+  .testimonial-card {
+    background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-card);
+    padding: 1.5rem; box-shadow: 0 10px 24px rgba(15,26,46,0.06);
+  }
+  .testimonial-stars { color: #f59e0b; font-size: 0.9rem; letter-spacing: 0.12em; font-weight: 800; margin-bottom: 0.8rem; }
+  .testimonial-quote { color: var(--text); line-height: 1.72; font-size: 0.92rem; margin-bottom: 1rem; }
+  .testimonial-author { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; }
 </style>
 
 <!-- ═══════════════════════════════════════════════════
@@ -335,15 +347,15 @@ const structuredData = {
 <section class="hero">
   <div class="inner-sm">
     <div class="hero-badge">
-      The complete church technology platform
+      The complete congregation technology platform
     </div>
     <h1>
-      Know who's in the room.<br/>
-      <em>Reach who isn't.</em>
+      Every person.<br/>
+      <em>Every screen.</em><br/>
+      Every service.
     </h1>
     <p class="hero-sub">
-      The complete church technology platform — automatic attendance, free digital signage,
-      AV monitoring, and tools that connect your congregation all week long.
+      The complete congregation technology platform — AV monitoring, automatic attendance, free digital signage, and tools that connect your congregation all week long.
     </p>
     <div class="hero-ctas">
       <a href={`${APP_URL}/sign-up`} class="btn-primary">Start free — no credit card</a>
@@ -354,7 +366,7 @@ const structuredData = {
     <div class="hero-app-band">
       <div class="hero-app-copy">
         <p>iOS + Android apps</p>
-        <h2>Download WorshipMetrics and keep your church workflow in your pocket.</h2>
+        <h2>Download WorshipMetrics and keep your congregation workflow in your pocket.</h2>
         <p>
           Free today for check-ins, attendance workflows, and ministry updates from anywhere.
         </p>
@@ -380,7 +392,7 @@ const structuredData = {
 </section>
 
 <section class="social-proof-bar">
-  Trusted by churches of every size — from 50 seats to 5,000.
+  Trusted by congregations of every size — from 50 seats to 5,000.
 </section>
 
 <!-- ═══════════════════════════════════════════════════
@@ -389,38 +401,38 @@ const structuredData = {
 <section class="section">
   <div class="inner">
     <p class="eyebrow eyebrow-center">The challenge</p>
-    <h2 class="h2-center">Every church is doing technology.<br/>Most are doing it alone.</h2>
+    <h2 class="h2-center">Every congregation is doing technology.<br/>Most are doing it alone.</h2>
     <p class="sub-center">We built WorshipMetrics because we lived these problems firsthand.</p>
 
     <div class="pain-grid">
       {[
         {
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/>`,
-          before: "You're counting on paper",
-          problem: "Someone tallies attendance on a notepad. It maybe gets entered into a spreadsheet. Maybe.",
-          after: "What WorshipMetrics does",
-          solution: "Auto-Count does the heavy lifting. Luminos AI turns numbers into pastoral insight before Monday morning.",
-        },
-        {
           icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>`,
           before: "Your stream goes down unnoticed",
           problem: "Twelve minutes in someone texts you. Half your online congregation already gave up.",
           after: "What WorshipMetrics does",
-          solution: "Real-time AV monitoring alerts your team the moment something goes wrong — before anyone else knows.",
+          solution: "Real-time AV monitoring watches your stream, audio, cameras, and displays continuously. Your team gets an instant alert the moment something goes wrong — before anyone in the congregation notices.",
+        },
+        {
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/>`,
+          before: "You're still counting on paper",
+          problem: "Someone tallies attendance on a notepad. It maybe gets entered into a spreadsheet. Maybe.",
+          after: "What WorshipMetrics does",
+          solution: "Auto-Count does the heavy lifting. One tap or fully automatic — your attendance is recorded, stored, and ready for Luminos AI to turn into pastoral insight before Monday morning.",
         },
         {
           icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>`,
           before: "Online viewers are invisible",
           problem: "You get a view count. You have no idea who they are, whether they came back, or how to reach them.",
           after: "What WorshipMetrics does",
-          solution: "Digital engagement tools capture online visitors, route prayer requests, and turn viewership into relationships.",
+          solution: "Digital engagement tools capture online visitors, route prayer requests, and turn anonymous viewership into real relationships with real follow-up.",
         },
         {
           icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 4.5A2.25 2.25 0 014.5 2.25h15A2.25 2.25 0 0121.75 4.5v11.25A2.25 2.25 0 0119.5 18h-6l-3.75 3.75V18h-5.25A2.25 2.25 0 012.25 15.75V4.5z"/>`,
           before: "Your lobby screen hasn't been updated in weeks",
           problem: "Someone has to walk to a computer in the building, open a file, and remember the password.",
           after: "What WorshipMetrics does",
-          solution: "Free digital signage. Update every screen in your church from your phone, from anywhere, right now.",
+          solution: "Free digital signage. Update every screen in your building from your phone, from anywhere, right now. No hardware required. No monthly fees. Ever.",
         },
       ].map(({ icon, before, problem, after, solution }) => (
         <div class="pain-card">
@@ -438,9 +450,43 @@ const structuredData = {
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     FREE WORSHIP ATTENDANCE
+     AV MONITORING
 ════════════════════════════════════════════════════ -->
 <section class="section">
+  <div class="inner">
+    <div class="split">
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">AV Monitoring</p>
+        <h2>We'll tell you when your stream is down<br/>before your congregation does.</h2>
+        <p>Sunday morning should not start with a text from a concerned member. The WorshipMetrics platform watches your audio, video, cameras, and displays in real time — so your team knows the moment something goes wrong, not twelve minutes after.</p>
+        <ul class="bullets">
+          <li>Real-time stream, audio, and display monitoring</li>
+          <li>Instant alerts to your team's phones</li>
+          <li>Remote PTZ camera control from anywhere in the world</li>
+          <li>Remote OBS and vMix control — run a great service without being in the building</li>
+          <li>Tech Manager maps your AV system, monitors every device, and gives Luminos what it needs to diagnose problems fast</li>
+        </ul>
+        <p style="font-size:0.875rem;color:var(--text-muted);font-style:italic;">So nothing gets in the way of the mission.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="/av-monitoring-for-houses-of-worship" class="btn-primary">See AV monitoring</a>
+          <a href="/tech-manager" class="btn-outline">See Tech Manager</a>
+        </div>
+      </div>
+      <div class="split-img">
+        <img
+          src={`${R2NEW}/Stream%20Health.jpg`}
+          alt="WorshipMetrics AV monitoring dashboard"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FREE WORSHIP ATTENDANCE
+════════════════════════════════════════════════════ -->
+<section class="section section-alt">
   <div class="inner">
     <div class="split">
       <div class="split-img">
@@ -452,17 +498,48 @@ const structuredData = {
       </div>
       <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">Free Worship Attendance</p>
-        <h2>Free worship attendance.<br/>Because every church should know who was in the room.</h2>
+        <h2>Free worship attendance.<br/>Because every congregation should know who was in the room.</h2>
         <p>Track worship attendance without a credit card, without a complicated setup, and without waiting for a future budget cycle. Start free, keep your history, and give your team a better weekly attendance rhythm right away.</p>
         <ul class="bullets">
-          <li>Start tracking attendance for free today</li>
           <li>Works with phones, tablets, and the devices your team already has</li>
           <li>Historical records and reporting from the beginning</li>
-          <li>Grow into seat templates, tablets, people workflows, and automation later</li>
+          <li>One-tap counting or fully automatic with the Hub</li>
+          <li>Grow into seat templates, people workflows, and automation later</li>
         </ul>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/free-church-attendance-software" class="btn-primary">Get free attendance →</a>
+          <a href="/free-church-attendance-software" class="btn-primary">Get free attendance</a>
           <a href="/platform/attendance" class="btn-outline">See attendance workflows</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ONLINE VIEWERSHIP & ENGAGEMENT
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <div class="split">
+      <div class="split-img">
+        <img
+          src={`${R2}/homepage/Online%20Attendance%20Older%20Woman.jpg`}
+          alt="Online congregation engagement through WorshipMetrics"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Online Viewership & Engagement</p>
+        <h2>Your online congregation deserves<br/>more than a view count.</h2>
+        <p>Every person watching your stream is a real person with a real need. WorshipMetrics captures online visitors, routes prayer requests, and gives your team a clear path to follow up — turning passive viewership into active community membership.</p>
+        <ul class="bullets">
+          <li>Online visitor capture with next-step prompts</li>
+          <li>Prayer request routing to the right team member</li>
+          <li>Return viewer tracking — know who keeps coming back</li>
+          <li>YouTube chat sync — someone is always in the room welcoming viewers</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="/solutions/digital-engagement" class="btn-primary">See engagement tools</a>
         </div>
       </div>
     </div>
@@ -484,16 +561,17 @@ const structuredData = {
       </div>
       <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">Free Church Digital Signage</p>
-        <h2>Your lobby TV deserves better than a blank screen.</h2>
-        <p>Create multi-zone announcement displays with service times, countdowns, Bible verses, and event slides — then put them on any SmartTV with a single URL. Free for every church, no Hub required.</p>
+        <h2>Your lobby TV deserves better<br/>than a blank screen.</h2>
+        <p>Create multi-zone announcement displays with service times, countdowns, scripture, and event slides — then put them on any smart TV with a single URL. Free for every congregation, no Hub required.</p>
         <ul class="bullets">
           <li>6 professional layout templates — Full Screen, L-Bar, Main + Sidebar, and more</li>
           <li>13 content types per zone — text, image, video, clock, countdown, QR code</li>
-          <li>Schedule slides by date and day — Christmas content disappears automatically on Dec 26</li>
-          <li>Works on SmartTV browsers including Samsung Tizen and LG webOS</li>
+          <li>Schedule slides by date — Christmas content disappears automatically on December 26</li>
+          <li>Works on smart TV browsers including Samsung Tizen and LG webOS</li>
+          <li>Unlimited screens on paid plans — 1 screen free forever</li>
         </ul>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/signage-display" class="btn-primary">Get free signage →</a>
+          <a href="/signage-display" class="btn-primary">Get free signage</a>
           <a href={SIGNAGE_EXAMPLE_URL} target="_blank" rel="noopener noreferrer" class="btn-outline">See a live example</a>
         </div>
       </div>
@@ -501,17 +579,48 @@ const structuredData = {
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════
+     WORSHIP CLIPS
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <div class="split">
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Worship Clips</p>
+        <h2>Your best moments are already<br/>in the cloud before the last car leaves.</h2>
+        <p>Every service has a moment worth sharing. WorshipMetrics automatically identifies, clips, and formats your best sermon moments for Reels, Shorts, TikTok, and Facebook — no editor, no extra software, no Monday morning video project.</p>
+        <ul class="bullets">
+          <li>AI clip detection — key quotes, worship peaks, sermon highlights</li>
+          <li>Auto-formatted for every major social platform</li>
+          <li>Podcast audio extracted automatically from the sermon segment</li>
+          <li>Staff approves clips from the dashboard — nothing posts without your sign-off</li>
+        </ul>
+        <a href="/solutions/worship-clips" class="btn-primary">See Worship Clips</a>
+      </div>
+      <div class="split-img">
+        <img
+          src={`${R2}/homepage/Worship%20Clips%20Hero%202.jpg`}
+          alt="Worship Clips creating social content from sermons"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-alt">
   <div class="inner">
-    <p class="eyebrow eyebrow-center">Popular searches</p>
-    <h2 class="h2-center">Explore the workflows churches search for most.</h2>
+    <p class="eyebrow eyebrow-center">Popular Guides</p>
+    <h2 class="h2-center">Explore the workflows congregations search for most.</h2>
     <p class="sub-center">These focused guides help explain where WorshipMetrics fits before you dive into the full platform.</p>
     <div class="eco-grid">
       {[
-        { href: "/church-attendance-tracking-software", title: "Church attendance tracking software", desc: "Track in-person and online attendance, seat counts, and follow-up signals in one workflow." },
-        { href: "/church-visitor-follow-up-software", title: "Church visitor follow-up software", desc: "Capture guests, route prayer requests, and organize follow-up without losing context." },
-        { href: "/church-check-in-tablet", title: "Church check-in tablet", desc: "See how a dedicated tablet helps welcome desks, guest capture, and volunteer attendance workflows." },
-        { href: "/church-digital-signage-software", title: "Church digital signage software", desc: "Manage welcome screens, lobby displays, and announcements from one connected system." },
+        { href: "/church-attendance-tracking-software", title: "Congregation attendance tracking software", desc: "Track in-person and online attendance, seat counts, and follow-up signals in one workflow." },
+        { href: "/church-visitor-follow-up-software", title: "Visitor follow-up software", desc: "Capture guests, route prayer requests, and organize follow-up without losing context." },
+        { href: "/church-check-in-tablet", title: "Check-in tablet", desc: "See how a dedicated tablet helps welcome desks, guest capture, and volunteer attendance workflows." },
+        { href: "/church-digital-signage-software", title: "Digital signage software", desc: "Manage welcome screens, lobby displays, and announcements from one connected system." },
+        { href: "/av-monitoring-for-houses-of-worship", title: "AV monitoring for houses of worship", desc: "Keep your stream, cameras, and displays healthy every service — and know instantly when something goes wrong." },
+        { href: "/tech-manager", title: "Tech Manager", desc: "Map your AV system, monitor OBS health, and give Luminos better diagnostic context." },
       ].map(({ href, title, desc }) => (
         <a href={href} class="eco-card">
           <div class="eco-label">Guide</div>
@@ -531,16 +640,16 @@ const structuredData = {
   <div class="inner">
     <div class="split">
       <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Introducing the Worship Metrics Hub</p>
-        <h2>One device. Your entire church, connected.</h2>
-        <p>The Hub is a cloud-connected appliance that plugs into your existing setup and runs your entire Established plan automatically — no computer, no configuration, no volunteer overhead.</p>
+        <p class="eyebrow" style="margin-bottom:0.5rem;">The Hub</p>
+        <h2>One device. Your entire congregation, connected.</h2>
+        <p>The Worship Metrics Hub is a cloud-connected appliance that plugs into your existing setup and runs your entire Established plan automatically — no computer, no configuration, no volunteer overhead.</p>
         <ul class="bullets">
           <li>Fully automatic attendance — your camera counts your congregation every week</li>
           <li>AV health monitoring — stream, audio, video, and display status in real time</li>
           <li>Remote PTZ camera control — pan, tilt, zoom from anywhere in the world</li>
           <li>Remote OBS and vMix control — run a great service without being in the building</li>
           <li>Auto video upload — sermon clips in the cloud before the last car leaves the parking lot</li>
-          <li>Digital signage — lobby displays managed from your phone</li>
+          <li>Digital signage — every display managed from your phone</li>
         </ul>
         <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">No subscription required. One-time purchase. Plug it in and it works.</p>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
@@ -562,23 +671,22 @@ const structuredData = {
 <!-- ═══════════════════════════════════════════════════
      THE FULL ECOSYSTEM
 ════════════════════════════════════════════════════ -->
-<section class="section">
+<section class="section section-alt">
   <div class="inner">
-    <p class="eyebrow eyebrow-center">Features</p>
-    <h2 class="h2-center">One partner. Every part.</h2>
+    <p class="eyebrow eyebrow-center">Tech Manager</p>
+    <h2 class="h2-center">The smartest thing in your AV booth<br/>isn't your switcher.</h2>
     <p class="sub-center">
-      Not six separate tools from six separate companies. One ecosystem, one support team,
-      one bill — built to work together because it was designed together.
+      Tech Manager is a free desktop app for Windows and Mac that runs silently on your production computer. It maps every device on your network, monitors your OBS health, documents your AV system, and feeds Luminos everything it needs to diagnose problems fast.
     </p>
 
     <div class="eco-grid">
       {[
-        { label:"Attendance", title:"Automatic counting + insights", desc:"Auto-Count, seat templates, and Luminos AI turn Sunday numbers into Monday pastoral action.", href:"/platform/attendance", image:`${R2}/tablet/New%20Seat%20Counting%20Layout.jpg`, alt:"Seat counting layout inside WorshipMetrics" },
-        { label:"People",     title:"Guest capture + follow-up",    desc:"Welcome cards, QR codes, prayer routing, and absence alerts — all connected.", href:"/platform/people", image:`${R2}/tablet/Auto-Scan%20Welcome%20Cards.jpg`, alt:"Welcome card scanning in WorshipMetrics" },
-        { label:"AV + Production", title:"Stream health + remote control", desc:"AV monitoring, PTZ camera control, OBS and vMix switching from anywhere in the world.", href:"/appliance", image:`${R2NEW}/Stream%20Health.jpg`, alt:"WorshipMetrics stream health monitoring" },
-        { label:"Digital Signage — Free", title:"Free lobby displays",     desc:"Manage every screen from your phone. No fees. Ever.", href:"/signage-display", badge:"Free", image:`${R2NEW}/Church%20Digital%20Signage.jpg`, alt:"Church digital signage managed by WorshipMetrics" },
-        { label:"Worship Clips",   title:"Sermon → social content", desc:"Automatic clips for Reels, Shorts, TikTok, and Facebook. No editing required.", href:"/solutions/worship-clips", image:`${R2}/homepage/Worship%20Clips%20Hero%202.jpg`, alt:"Worship Clips editing and publishing interface" },
-        { label:"Community",  title:"All-week digital campus",      desc:"Discord-based community with YouTube chat sync and member onboarding.", href:"/solutions/church-community-platform", image:`${R2}/homepage/WorshipMetrics%20Discord%20Setup.jpg`, alt:"WorshipMetrics Discord community setup" },
+        { label:"Monitoring", title:"OBS connection monitoring", desc:"Connection status, health checks, and log visibility before your congregation notices a problem.", href:"/tech-manager", image:`${R2NEW}/Stream%20Health.jpg`, alt:"WorshipMetrics stream health monitoring" },
+        { label:"Discovery", title:"LAN device discovery", desc:"Every camera, encoder, and display on your network mapped automatically so knowledge survives turnover.", href:"/your-av-partner", image:`${R2}/homepage/Team%20Collaboration%20hero.jpg`, alt:"WorshipMetrics AV system discovery" },
+        { label:"Documentation", title:"Visual wiring diagram", desc:"A living map of your AV signal chain so troubleshooting starts with clarity instead of guesswork.", href:"/your-av-partner", image:`${R2}/homepage/Church%20Viewer.jpg`, alt:"WorshipMetrics visual system map" },
+        { label:"Resilience", title:"Local signage hosting", desc:"Lobby screens stay live even when internet drops because Tech Manager keeps the local layer ready.", href:"/signage-display", image:`${R2NEW}/Worship%20Digital%20Signage%20System.jpg`, alt:"WorshipMetrics signage on a display" },
+        { label:"Knowledge", title:"AV system documentation", desc:"When something breaks on Sunday morning, Luminos already knows what is connected to what and where to start.", href:"/luminos-ai-assistant", image:`${R2}/homepage/Luminos.jpg`, alt:"Luminos AI assistant" },
+        { label:"Free", title:"Windows and Mac app", desc:"Free to download. Works with or without the Hub.", href:"/tech-manager", badge:"Free", image:`${R2}/homepage/1%20Worship%20Technology%20Assistance.jpg`, alt:"Worship technology assistance" },
       ].map(({ label, title, desc, href, badge, image, alt }) => (
         <a href={href} class="eco-card">
           <div class="eco-card-media">
@@ -590,6 +698,10 @@ const structuredData = {
           <div class="eco-link">Learn more →</div>
         </a>
       ))}
+    </div>
+    <div style="display:flex;justify-content:center;gap:0.75rem;flex-wrap:wrap;margin-top:2rem;">
+      <a href="/tech-manager" class="btn-primary">Download Tech Manager</a>
+      <a href="/your-av-partner" class="btn-outline">Learn more</a>
     </div>
   </div>
 </section>
@@ -603,7 +715,7 @@ const structuredData = {
       <div>
         <p class="luminos-tag">Luminos AI</p>
         <h3>Walk into Monday already knowing what matters most.</h3>
-        <p>Luminos lives inside your WorshipMetrics dashboard and answers the questions your team asks every Monday — in plain English, without digging through reports.</p>
+        <p>Luminos lives inside your WorshipMetrics dashboard and answers the questions your team asks every Monday — in plain English, without digging through reports. It reads attendance data, AV health logs, online engagement, and your follow-up queue, then tells you where to focus first.</p>
         <a href="/luminos-ai-assistant" class="btn-primary">See Luminos in action</a>
       </div>
       <div class="luminos-prompts">
@@ -612,6 +724,7 @@ const structuredData = {
           '"Which guests still haven\'t heard from us this week?"',
           '"Give me a summary before Monday staff meeting."',
           '"What changed this week that deserves our attention first?"',
+          '"My stream went down — what happened and how do I fix it?"',
         ].map(prompt => (
           <div class="luminos-prompt">{prompt}</div>
         ))}
@@ -626,13 +739,14 @@ const structuredData = {
 <section class="section">
   <div class="inner">
     <p class="eyebrow eyebrow-center">The weekly rhythm</p>
-    <h2 class="h2-center">Simple enough to repeat every Sunday.</h2>
-    <p class="sub-center">A simple three-step loop your team can run every week.</p>
+    <h2 class="h2-center">Simple enough to repeat every service.</h2>
+    <p class="sub-center">A four-step rhythm your team can repeat every week without rebuilding the process from scratch.</p>
     <ol class="steps">
       {[
-        { n:"1", t:"Count", b:"Auto-Count handles the room while your volunteers focus on people. Templates mean they're confirming changes, not recounting from zero." },
-        { n:"2", t:"Capture", b:"Welcome cards scan. QR codes check in. Prayer requests route. Online viewers get a next step. All of it creates real people records." },
-        { n:"3", t:"Reach", b:"Monday morning, Luminos surfaces who's new, who's missing, and what needs pastoral attention. Your team acts with intention — not reaction." },
+        { n:"1", t:"Ready", b:"Tech Manager confirms every device is live. Stream is healthy. Audio is active. Displays are running. Your team sees green before the first person walks in." },
+        { n:"2", t:"Count", b:"Auto-Count handles the room while your volunteers focus on people. Templates mean they're confirming changes, not recounting from zero." },
+        { n:"3", t:"Capture", b:"Welcome cards scan. QR codes check in. Prayer requests route. Online viewers get a next step. All of it creates real people records." },
+        { n:"4", t:"Reach", b:"Monday morning, Luminos surfaces who's new, who's missing, and what needs pastoral attention. Your team acts with intention — not reaction." },
       ].map(({ n, t, b }) => (
         <li class="step">
           <span class="step-num">{n}</span>
@@ -675,7 +789,7 @@ const structuredData = {
             </div>
           ))}
         </div>
-        <a href="/platform/operations" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;">See how roles work</a>
+        <a href="/volunteer-tools-for-congregations" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;">See how roles work</a>
       </div>
     </div>
   </div>
@@ -687,31 +801,30 @@ const structuredData = {
 <section class="section section-alt">
   <div class="inner-md">
     <div class="mission-band">
-      <h2>Built by people who believe in the local church.</h2>
+      <h2>Built by people who believe in the mission.</h2>
       <p>
         WorshipMetrics was built by Rev. Andrew Esqueda and Paul Richards — a worship leader and a
         broadcast technologist — because they lived these problems firsthand.
       </p>
       <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
-        The question that started it all: why should a pastor need a spreadsheet to know who showed up on Sunday?
+        The question that started it all: why should a leader need a spreadsheet to know who showed up?
         With cameras already in the room, the answer was simple — they shouldn't. That question became this platform.
       </p>
       <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
-        We build with the conviction that every church — regardless of size or budget — deserves technology
+        We build with the conviction that every congregation — regardless of size or budget — deserves technology
         that respects the sacred work happening inside those walls.
       </p>
       <div class="founders">
         <div class="founder">
           <div class="founder-avatar">
-            <img src={`${R2}/main/Andrew.jpg`} alt="Rev. Andrew Esqueda" loading="lazy"/>
+            <img src={ANDREW_HEADSHOT} alt="Rev. Andrew Esqueda" loading="lazy"/>
           </div>
           <span class="founder-name">Rev. Andrew Esqueda</span>
           <span class="founder-title">Co-Founder · Worship Leader</span>
         </div>
         <div class="founder">
           <div class="founder-avatar">
-            <!-- Replace with paul.jpg when available -->
-            <img src={`${R2}/main/paul.jpg`} alt="Paul Richards" loading="lazy"/>
+            <img src={PAUL_HEADSHOT} alt="Paul Richards" loading="lazy"/>
           </div>
           <span class="founder-name">Paul Richards</span>
           <span class="founder-title">Co-Founder · Technology Lead</span>
@@ -725,14 +838,77 @@ const structuredData = {
 </section>
 
 <!-- ═══════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <p class="eyebrow eyebrow-center">Testimonials</p>
+    <h2 class="h2-center">What congregations notice first</h2>
+    <div class="testimonial-grid">
+      {[
+        {
+          quote: '"Before WorshipMetrics, we had no idea who was watching our stream. Now we have a follow-up system running within 24 hours of every service."',
+          author: "Executive Pastor, mid-size congregation, Southeast U.S.",
+        },
+        {
+          quote: '"The AV monitoring piece changed everything. We used to find out the stream was down when someone texted us. Now we know before anyone else does."',
+          author: "AV Director, growing congregation, Midwest",
+        },
+        {
+          quote: '"Our YouTube chat used to go unmonitored every service. Now someone is in there welcoming viewers and routing prayer requests in real time."',
+          author: "Communications Director, large congregation, Texas",
+        },
+      ].map(({ quote, author }) => (
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">{quote}</p>
+          <p class="testimonial-author">— {author}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     KNOWLEDGE BASE
+════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="inner">
+    <div class="split">
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Knowledge Base</p>
+        <h2>Answers to the church AV questions teams ask every week.</h2>
+        <p>Our AV Knowledge Base is built for production directors, booth volunteers, and technical teams who need practical help with streaming, PTZ cameras, OBS, signage, audio, and device management.</p>
+        <ul class="bullets">
+          <li>20 starter guides covering the most common church AV and operations questions</li>
+          <li>Categories for streaming, audio, displays, device management, video clipping, and operations</li>
+          <li>Built as a searchable editorial resource, not a generic blog</li>
+          <li>Designed to help teams solve real Sunday problems faster</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="/kb" class="btn-primary">Explore the knowledge base</a>
+          <a href="/kb/search" class="btn-outline">Search articles</a>
+        </div>
+      </div>
+      <div class="split-img">
+        <img
+          src={`${R2NEW}/Stream%20Health.jpg`}
+          alt="Church AV knowledge base and monitoring topics"
+          loading="lazy" width="800" height="540"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
      CTA
 ════════════════════════════════════════════════════ -->
 <div class="cta-band">
-  <p class="eyebrow" style="color:rgba(255,255,255,0.6);margin-bottom:0.5rem;">Start today — it's free.</p>
-  <h2>Know who's in the room.<br/>Reach who isn't.</h2>
+  <p class="eyebrow" style="color:rgba(255,255,255,0.6);margin-bottom:0.5rem;">Every person. Every screen. Every service.</p>
+  <h2>Every person.<br/>Every screen. Every service.</h2>
   <p>
-    Sign up in two minutes. Get your free metrics dashboard, your free signage URL,
-    and a clear path to automating everything else when you're ready.
+    Sign up in two minutes. Get your free metrics dashboard, your free signage URL, and a clear path to automating everything else when you're ready.
   </p>
   <div class="cta-btns">
     <a href={`${APP_URL}/sign-up`} class="btn-white">Start free — no credit card</a>

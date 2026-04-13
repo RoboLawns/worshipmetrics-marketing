@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Audio knowledge base cover</title>
+  <desc id="desc">Abstract mixing console and waveform illustration for audio articles.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="170" y="200" width="1260" height="380" rx="28" fill="#111827" stroke="#FBBF24" stroke-width="4"/>
+  <g fill="#F59E0B">
+    <rect x="230" y="280" width="22" height="180" rx="11"/>
+    <rect x="300" y="320" width="22" height="140" rx="11"/>
+    <rect x="370" y="260" width="22" height="200" rx="11"/>
+    <rect x="440" y="300" width="22" height="160" rx="11"/>
+    <rect x="510" y="240" width="22" height="220" rx="11"/>
+    <rect x="580" y="330" width="22" height="130" rx="11"/>
+  </g>
+  <path d="M760 390h500" stroke="#FDE68A" stroke-width="8" stroke-linecap="round" opacity="0.65"/>
+  <text x="180" y="730" fill="#F1F5F9" font-size="82" font-family="'IBM Plex Sans', Arial, sans-serif" font-weight="700">Audio</text>
+  <text x="180" y="795" fill="#94A3B8" font-size="34" font-family="'IBM Plex Sans', Arial, sans-serif">Mixing boards, feedback control, gain staging, and recording</text>
+</svg>

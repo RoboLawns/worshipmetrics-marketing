@@ -158,16 +158,43 @@ const structuredData = [
 
     .seat-demo-grid {
       display: grid;
-      gap: 0.55rem;
+      gap: 0.6rem;
+    }
+
+    .seat-demo-row {
+      display: flex;
+      align-items: center;
       justify-content: center;
+      gap: 0.55rem;
+    }
+
+    .seat-demo-row-label {
+      width: 1.5rem;
+      flex-shrink: 0;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgb(100 116 139);
+    }
+
+    .seat-demo-row-seats {
+      display: flex;
+      gap: 0.55rem;
+      align-items: center;
     }
 
     .seat-demo-seat {
-      width: clamp(1.2rem, 2.6vw, 2rem);
+      width: clamp(1.45rem, 2.2vw, 2.1rem);
       aspect-ratio: 1 / 1;
       border: 1px solid rgb(148 163 184 / 0.45);
       border-radius: 0.5rem;
       background: white;
+      color: transparent;
+      font-size: 0.55rem;
+      font-weight: 800;
+      line-height: 1;
       transition: transform 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
 
@@ -179,13 +206,24 @@ const structuredData = [
     .seat-demo-seat.is-occupied {
       background: rgb(79 70 229);
       border-color: rgb(79 70 229);
+      color: white;
       box-shadow: 0 8px 18px rgb(79 70 229 / 0.2);
     }
 
+    .seat-demo-seat.is-assigned {
+      box-shadow: 0 0 0 1px rgb(255 255 255 / 0.9) inset, 0 8px 18px rgb(79 70 229 / 0.18);
+    }
+
+    .seat-demo-seat.is-visitor {
+      background: rgb(5 150 105);
+      border-color: rgb(5 150 105);
+      color: white;
+      box-shadow: 0 8px 18px rgb(5 150 105 / 0.2);
+    }
+
     .seat-demo-seat.is-changed {
-      background: rgb(245 158 11);
       border-color: rgb(245 158 11);
-      box-shadow: 0 8px 18px rgb(245 158 11 / 0.18);
+      box-shadow: 0 0 0 2px rgb(245 158 11 / 0.65), 0 8px 18px rgb(245 158 11 / 0.18);
     }
 
     .seat-demo-note {
@@ -193,6 +231,93 @@ const structuredData = [
       border-radius: 1rem;
       background: rgb(238 242 255);
       color: rgb(49 46 129);
+    }
+
+    .seat-demo-assign-panel {
+      border: 1px solid rgb(129 140 248 / 0.22);
+      border-radius: 1rem;
+      background: rgb(248 250 255);
+    }
+
+    .seat-demo-chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .seat-demo-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 0.8rem;
+      border: 1px solid rgb(226 232 240);
+      border-radius: 999px;
+      background: white;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgb(30 41 59);
+      transition: border-color 0.15s, background-color 0.15s, transform 0.15s;
+    }
+
+    .seat-demo-chip:hover {
+      transform: translateY(-1px);
+      border-color: rgb(129 140 248 / 0.55);
+      background: rgb(238 242 255);
+    }
+
+    .seat-demo-chip-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: 999px;
+      background: rgb(224 231 255);
+      color: rgb(79 70 229);
+      font-size: 0.65rem;
+      font-weight: 800;
+    }
+
+    .seat-demo-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .seat-demo-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 0.95rem;
+      border-radius: 0.85rem;
+      border: 1px solid rgb(199 210 254);
+      background: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgb(67 56 202);
+      transition: border-color 0.15s, background-color 0.15s, transform 0.15s;
+    }
+
+    .seat-demo-action:hover {
+      transform: translateY(-1px);
+      border-color: rgb(129 140 248);
+      background: rgb(238 242 255);
+    }
+
+    .seat-demo-action.is-danger {
+      border-color: rgb(252 165 165);
+      color: rgb(185 28 28);
+    }
+
+    .seat-demo-action.is-danger:hover {
+      background: rgb(254 242 242);
+      border-color: rgb(248 113 113);
+    }
+
+    .seat-demo-quick-roster {
+      border: 1px solid rgb(226 232 240);
+      border-radius: 1rem;
+      background: rgb(248 250 252);
     }
 
     @media (max-width: 1024px) {
@@ -436,12 +561,32 @@ const structuredData = [
                     Left section
                   </h3>
                   <p id="seat-demo-active-copy" class="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                    Greeters can tap through this section in seconds and move on, because the layout is already familiar.
+                    Tap seats to confirm who is present. Press and hold a seat to assign a member, add a new visitor, or clear it like the real app.
                   </p>
                 </div>
                 <div class="rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700">
                   <span id="seat-demo-active-count">27/40</span>
                   <span class="text-indigo-500">seats filled</span>
+                </div>
+              </div>
+
+              <div id="seat-demo-assign-panel" class="seat-demo-assign-panel mt-6 hidden p-4 sm:p-5">
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Seat assignment</p>
+                    <h4 id="seat-demo-assign-title" class="mt-1 text-lg font-bold text-slate-900">Assign seat</h4>
+                    <p id="seat-demo-assign-copy" class="mt-1 text-sm text-slate-600">Choose a member below, mark a new visitor, keep the seat occupied without a member, or clear it.</p>
+                  </div>
+                  <div id="seat-demo-assign-status" class="rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-semibold text-indigo-700">Holding seat...</div>
+                </div>
+
+                <div id="seat-demo-member-chips" class="seat-demo-chip-grid mt-4"></div>
+
+                <div class="seat-demo-action-row mt-4">
+                  <button id="seat-demo-new-visitor" type="button" class="seat-demo-action">New Visitor (NV)</button>
+                  <button id="seat-demo-occupied-only" type="button" class="seat-demo-action">Occupied (no member)</button>
+                  <button id="seat-demo-clear-seat" type="button" class="seat-demo-action is-danger">Clear seat</button>
+                  <button id="seat-demo-cancel-assign" type="button" class="seat-demo-action">Cancel</button>
                 </div>
               </div>
 
@@ -456,8 +601,12 @@ const structuredData = [
                   <span>Saved baseline</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="h-3.5 w-3.5 rounded bg-amber-500"></span>
+                  <span class="h-3.5 w-3.5 rounded border-2 border-amber-500 bg-white"></span>
                   <span>Changed today</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="h-3.5 w-3.5 rounded bg-emerald-600"></span>
+                  <span>New visitor</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="h-3.5 w-3.5 rounded border border-slate-300 bg-white"></span>
@@ -470,6 +619,12 @@ const structuredData = [
                 <p id="seat-demo-delta" class="mt-2 text-sm leading-relaxed sm:text-base">
                   No changes from the saved baseline yet. Tap seats to simulate what a volunteer sees on Sunday.
                 </p>
+              </div>
+
+              <div class="seat-demo-quick-roster mt-6 p-4 sm:p-5">
+                <p class="text-sm font-semibold uppercase tracking-[0.14em] text-slate-700">Quick assignment roster</p>
+                <p class="mt-2 text-sm text-slate-500">These fake members mirror the in-app quick assignment flow. Hold a seat to assign one instantly.</p>
+                <div id="seat-demo-roster" class="seat-demo-chip-grid mt-4"></div>
               </div>
             </div>
           </div>
@@ -738,15 +893,30 @@ const structuredData = [
 
   <script>
     (() => {
+      const fakeMembers = [
+        { memberId: "demo-1", displayName: "Alex Brown", initials: "AB", kind: "member" },
+        { memberId: "demo-2", displayName: "Maria Stone", initials: "MS", kind: "member" },
+        { memberId: "demo-3", displayName: "Chris Jones", initials: "CJ", kind: "member" },
+        { memberId: "demo-4", displayName: "Taylor White", initials: "TW", kind: "member" },
+        { memberId: "demo-5", displayName: "Jordan Davis", initials: "JD", kind: "member" },
+        { memberId: "demo-6", displayName: "Emma Miller", initials: "EM", kind: "member" },
+        { memberId: "demo-7", displayName: "Riley Parker", initials: "RP", kind: "member" },
+        { memberId: "demo-8", displayName: "Sam Thomas", initials: "ST", kind: "member" },
+        { memberId: "demo-9", displayName: "Noah Wilson", initials: "NW", kind: "member" },
+        { memberId: "demo-10", displayName: "Leah Morgan", initials: "LM", kind: "member" },
+      ];
+
       const sections = [
         {
           id: "left",
           name: "Left section",
           shortName: "Left",
-          rows: 5,
-          cols: 8,
-          counts: [5, 6, 6, 5, 5],
-          copy: "Greeters can tap through this section in seconds and move on, because the layout is already familiar.",
+          rows: 8,
+          cols: 5,
+          counts: [3, 4, 4, 3, 2, 3, 2, 2],
+          colorClass: "bg-blue-600",
+          seatColor: "rgb(37 99 235)",
+          copy: "This side mirrors the real app: every seat is visible, volunteers tap to toggle, and long-press opens member assignment.",
         },
         {
           id: "center",
@@ -754,19 +924,25 @@ const structuredData = [
           shortName: "Center",
           rows: 8,
           cols: 10,
-          counts: [5, 6, 7, 8, 8, 7, 6, 6],
-          copy: "The largest section still feels manageable when volunteers start with a saved template instead of a blank room.",
+          counts: [6, 7, 8, 8, 7, 7, 6, 5],
+          colorClass: "bg-indigo-600",
+          seatColor: "rgb(79 70 229)",
+          copy: "The center section behaves like a normal service count: regulars are seeded into a baseline, and you only adjust what changed this week.",
         },
         {
           id: "right",
           name: "Right section",
           shortName: "Right",
-          rows: 5,
-          cols: 8,
-          counts: [5, 6, 6, 5, 5],
-          copy: "A second volunteer can confirm this side independently while the total updates across the whole sanctuary.",
+          rows: 8,
+          cols: 5,
+          counts: [3, 4, 4, 3, 2, 3, 2, 2],
+          colorClass: "bg-amber-500",
+          seatColor: "rgb(245 158 11)",
+          copy: "A second volunteer can count this side independently, assign a visitor on long-press, and the total updates immediately across the room.",
         },
       ];
+
+      const rowLabel = (rowIndex) => String.fromCharCode(65 + rowIndex);
 
       const createBaseline = (section) => {
         const baseline = [];
@@ -785,14 +961,45 @@ const structuredData = [
 
       const sectionState = sections.reduce((acc, section) => {
         const baseline = createBaseline(section);
+        const current = [...baseline];
+        const assignments = {};
+        const occupiedIndexes = [];
+
+        baseline.forEach((occupied, index) => {
+          if (occupied) occupiedIndexes.push(index);
+        });
+
+        occupiedIndexes.slice(0, Math.min(fakeMembers.length, 5)).forEach((index, memberIndex) => {
+          assignments[index] = fakeMembers[memberIndex];
+        });
+
+        occupiedIndexes
+          .filter((index) => !assignments[index])
+          .filter((index) => Math.floor(index / section.cols) >= 4)
+          .slice(0, 2)
+          .forEach((index, visitorIndex) => {
+            assignments[index] = {
+              memberId: `visitor-${section.id}-${visitorIndex + 1}`,
+              displayName: `New Visitor ${visitorIndex + 1}`,
+              initials: "NV",
+              kind: "visitor",
+            };
+          });
+
         acc[section.id] = {
           baseline,
-          current: [...baseline],
+          current,
+          assignments,
+          baselineAssignments: { ...assignments },
         };
         return acc;
       }, {});
 
       let activeSectionId = "left";
+      let assigningSeat = null;
+      let longPressTimer = null;
+      let suppressNextClick = false;
+      let visitorCounter = 3;
 
       const totalCountEl = document.getElementById("seat-demo-total-count");
       const totalPercentEl = document.getElementById("seat-demo-total-percent");
@@ -802,9 +1009,19 @@ const structuredData = [
       const deltaEl = document.getElementById("seat-demo-delta");
       const gridEl = document.getElementById("seat-demo-grid");
       const resetButton = document.getElementById("seat-demo-reset");
+      const assignPanelEl = document.getElementById("seat-demo-assign-panel");
+      const assignTitleEl = document.getElementById("seat-demo-assign-title");
+      const assignCopyEl = document.getElementById("seat-demo-assign-copy");
+      const assignStatusEl = document.getElementById("seat-demo-assign-status");
+      const memberChipsEl = document.getElementById("seat-demo-member-chips");
+      const rosterEl = document.getElementById("seat-demo-roster");
+      const newVisitorButton = document.getElementById("seat-demo-new-visitor");
+      const occupiedOnlyButton = document.getElementById("seat-demo-occupied-only");
+      const clearSeatButton = document.getElementById("seat-demo-clear-seat");
+      const cancelAssignButton = document.getElementById("seat-demo-cancel-assign");
       const sectionButtons = Array.from(document.querySelectorAll("[data-seat-demo-section]"));
 
-      if (!totalCountEl || !totalPercentEl || !activeTitleEl || !activeCopyEl || !activeCountEl || !deltaEl || !gridEl || !resetButton || sectionButtons.length === 0) {
+      if (!totalCountEl || !totalPercentEl || !activeTitleEl || !activeCopyEl || !activeCountEl || !deltaEl || !gridEl || !resetButton || !assignPanelEl || !assignTitleEl || !assignCopyEl || !assignStatusEl || !memberChipsEl || !rosterEl || !newVisitorButton || !occupiedOnlyButton || !clearSeatButton || !cancelAssignButton || sectionButtons.length === 0) {
         return;
       }
 
@@ -812,17 +1029,125 @@ const structuredData = [
 
       const getSection = (id) => sections.find((section) => section.id === id);
 
+      const closeAssignPanel = () => {
+        assigningSeat = null;
+        assignPanelEl.classList.add("hidden");
+      };
+
+      const openAssignPanel = (sectionId, row, col, index) => {
+        const assigned = sectionState[sectionId].assignments[index];
+        assigningSeat = { sectionId, row, col, index };
+        assignPanelEl.classList.remove("hidden");
+        assignTitleEl.textContent = `Assign ${getSection(sectionId)?.shortName || "seat"} Row ${rowLabel(row)}, Seat ${col + 1}`;
+        assignCopyEl.textContent = assigned
+          ? `Currently assigned to ${assigned.displayName}. Choose a different person, mark a visitor, keep it occupied without a member, or clear the seat.`
+          : "Choose a member below, add a new visitor, keep the seat occupied without a member, or clear it.";
+        assignStatusEl.textContent = assigned
+          ? `${assigned.kind === "visitor" ? "Visitor" : "Member"}: ${assigned.displayName}`
+          : "Seat selected";
+      };
+
+      const clearLongPress = () => {
+        if (longPressTimer) {
+          window.clearTimeout(longPressTimer);
+          longPressTimer = null;
+        }
+      };
+
+      const startLongPress = (sectionId, row, col, index) => {
+        clearLongPress();
+        suppressNextClick = false;
+        longPressTimer = window.setTimeout(() => {
+          suppressNextClick = true;
+          openAssignPanel(sectionId, row, col, index);
+        }, 450);
+      };
+
+      const assignMemberToSeat = (member) => {
+        if (!assigningSeat) return;
+        const state = sectionState[assigningSeat.sectionId];
+        state.current[assigningSeat.index] = true;
+        state.assignments[assigningSeat.index] = member;
+        closeAssignPanel();
+        renderRoster();
+        renderActiveSection();
+        updateSummary();
+      };
+
+      const assignNewVisitor = () => {
+        assignMemberToSeat({
+          memberId: `visitor-${visitorCounter}`,
+          displayName: `New Visitor ${visitorCounter}`,
+          initials: "NV",
+          kind: "visitor",
+        });
+        visitorCounter += 1;
+      };
+
+      const markOccupiedOnly = () => {
+        if (!assigningSeat) return;
+        const state = sectionState[assigningSeat.sectionId];
+        state.current[assigningSeat.index] = true;
+        delete state.assignments[assigningSeat.index];
+        closeAssignPanel();
+        renderActiveSection();
+        updateSummary();
+      };
+
+      const clearSeat = () => {
+        if (!assigningSeat) return;
+        const state = sectionState[assigningSeat.sectionId];
+        state.current[assigningSeat.index] = false;
+        delete state.assignments[assigningSeat.index];
+        closeAssignPanel();
+        renderActiveSection();
+        updateSummary();
+      };
+
+      const createChip = (member, clickHandler) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "seat-demo-chip";
+        button.innerHTML = `<span class="seat-demo-chip-mark">${member.initials}</span><span>${member.displayName}</span>`;
+        button.addEventListener("click", clickHandler);
+        return button;
+      };
+
+      const renderMemberChips = () => {
+        memberChipsEl.innerHTML = "";
+        fakeMembers.forEach((member) => {
+          memberChipsEl.appendChild(createChip(member, () => assignMemberToSeat(member)));
+        });
+      };
+
+      const renderRoster = () => {
+        rosterEl.innerHTML = "";
+        const roster = [
+          { memberId: "visitor-chip", displayName: "New Visitor", initials: "NV", kind: "visitor" },
+          ...fakeMembers,
+        ];
+
+        roster.forEach((member) => {
+          const chip = document.createElement("div");
+          chip.className = "seat-demo-chip";
+          chip.innerHTML = `<span class="seat-demo-chip-mark">${member.initials}</span><span>${member.displayName}</span>`;
+          rosterEl.appendChild(chip);
+        });
+      };
+
       const updateSummary = () => {
         const totals = sections.reduce(
           (acc, section) => {
             acc.capacity += section.rows * section.cols;
             acc.filled += countFilled(sectionState[section.id].current);
+            acc.assigned += Object.values(sectionState[section.id].assignments).filter((assignment) => assignment.kind === "member").length;
+            acc.visitors += Object.values(sectionState[section.id].assignments).filter((assignment) => assignment.kind === "visitor").length;
             acc.changed += sectionState[section.id].current.reduce((sum, occupied, index) => {
               return sum + Number(occupied !== sectionState[section.id].baseline[index]);
             }, 0);
             return acc;
           },
-          { filled: 0, capacity: 0, changed: 0 }
+          { filled: 0, capacity: 0, changed: 0, assigned: 0, visitors: 0 }
         );
 
         const percent = Math.round((totals.filled / totals.capacity) * 100);
@@ -841,11 +1166,11 @@ const structuredData = [
         });
 
         if (totals.changed === 0) {
-          deltaEl.textContent = "No changes from the saved baseline yet. Tap seats to simulate what a volunteer sees on Sunday.";
+          deltaEl.textContent = `No changes from the saved baseline yet. ${totals.assigned} members and ${totals.visitors} visitors are already visible in the demo roster.`;
         } else if (totals.changed === 1) {
-          deltaEl.textContent = "1 seat has changed from the saved baseline. Volunteers confirm what is different instead of recounting the whole room.";
+          deltaEl.textContent = `1 seat has changed from the saved baseline. Right now the demo is showing ${totals.assigned} assigned members and ${totals.visitors} visitors.`;
         } else {
-          deltaEl.textContent = `${totals.changed} seats have changed from the saved baseline. That is the whole point of templates: confirm exceptions, not every seat.`;
+          deltaEl.textContent = `${totals.changed} seats have changed from the saved baseline. That is the real workflow: confirm exceptions, assign people where it helps, and keep the whole room current.`;
         }
       };
 
@@ -861,33 +1186,73 @@ const structuredData = [
         activeCopyEl.textContent = section.copy;
         activeCountEl.textContent = `${filled}/${capacity}`;
         gridEl.innerHTML = "";
-        gridEl.style.gridTemplateColumns = `repeat(${section.cols}, minmax(0, 1fr))`;
 
         const aisleAfter = Math.floor(section.cols / 2) - 1;
 
-        state.current.forEach((occupied, index) => {
-          const seat = document.createElement("button");
-          const changed = occupied !== state.baseline[index];
-          const row = Math.floor(index / section.cols);
-          const col = index % section.cols;
+        for (let row = 0; row < section.rows; row += 1) {
+          const rowEl = document.createElement("div");
+          rowEl.className = "seat-demo-row";
 
-          seat.type = "button";
-          seat.className = "seat-demo-seat";
-          seat.setAttribute("aria-pressed", occupied ? "true" : "false");
-          seat.setAttribute("aria-label", `${section.shortName} row ${row + 1}, seat ${col + 1}`);
+          const rowLabelEl = document.createElement("div");
+          rowLabelEl.className = "seat-demo-row-label";
+          rowLabelEl.textContent = rowLabel(row);
+          rowEl.appendChild(rowLabelEl);
 
-          if (occupied) seat.classList.add("is-occupied");
-          if (changed) seat.classList.add("is-changed");
-          if (col === aisleAfter) seat.style.marginRight = "0.9rem";
+          const seatsEl = document.createElement("div");
+          seatsEl.className = "seat-demo-row-seats";
 
-          seat.addEventListener("click", () => {
-            state.current[index] = !state.current[index];
-            renderActiveSection();
-            updateSummary();
-          });
+          for (let col = 0; col < section.cols; col += 1) {
+            const index = row * section.cols + col;
+            const occupied = state.current[index];
+            const assignment = state.assignments[index];
+            const changed = occupied !== state.baseline[index];
+            const seat = document.createElement("button");
 
-          gridEl.appendChild(seat);
-        });
+            seat.type = "button";
+            seat.className = "seat-demo-seat";
+            seat.setAttribute("aria-pressed", occupied ? "true" : "false");
+            seat.setAttribute("aria-label", `${section.shortName} row ${rowLabel(row)}, seat ${col + 1}`);
+
+            if (occupied) {
+              seat.classList.add("is-occupied");
+              if (assignment?.kind === "visitor") {
+                seat.style.backgroundColor = "rgb(5 150 105)";
+                seat.style.borderColor = "rgb(5 150 105)";
+              } else {
+                seat.style.backgroundColor = section.seatColor;
+                seat.style.borderColor = section.seatColor;
+              }
+            }
+            if (assignment) seat.classList.add("is-assigned");
+            if (assignment?.kind === "visitor") seat.classList.add("is-visitor");
+            if (changed) seat.classList.add("is-changed");
+            if (assignment?.initials && occupied) seat.textContent = assignment.initials;
+            if (col === aisleAfter) seat.style.marginRight = "0.9rem";
+
+            seat.addEventListener("mousedown", () => startLongPress(section.id, row, col, index));
+            seat.addEventListener("mouseup", clearLongPress);
+            seat.addEventListener("mouseleave", clearLongPress);
+            seat.addEventListener("touchstart", () => startLongPress(section.id, row, col, index), { passive: true });
+            seat.addEventListener("touchend", clearLongPress);
+            seat.addEventListener("touchcancel", clearLongPress);
+            seat.addEventListener("click", () => {
+              if (suppressNextClick) {
+                suppressNextClick = false;
+                return;
+              }
+
+              state.current[index] = !state.current[index];
+              if (!state.current[index]) delete state.assignments[index];
+              renderActiveSection();
+              updateSummary();
+            });
+
+            seatsEl.appendChild(seat);
+          }
+
+          rowEl.appendChild(seatsEl);
+          gridEl.appendChild(rowEl);
+        }
 
         sectionButtons.forEach((button) => {
           button.classList.toggle("is-active", button.getAttribute("data-seat-demo-section") === section.id);
@@ -897,6 +1262,7 @@ const structuredData = [
       sectionButtons.forEach((button) => {
         button.addEventListener("click", () => {
           activeSectionId = button.getAttribute("data-seat-demo-section") || activeSectionId;
+          closeAssignPanel();
           renderActiveSection();
           updateSummary();
         });
@@ -905,10 +1271,20 @@ const structuredData = [
       resetButton.addEventListener("click", () => {
         sections.forEach((section) => {
           sectionState[section.id].current = [...sectionState[section.id].baseline];
+          sectionState[section.id].assignments = { ...sectionState[section.id].baselineAssignments };
         });
+        closeAssignPanel();
         renderActiveSection();
         updateSummary();
       });
+
+      newVisitorButton.addEventListener("click", assignNewVisitor);
+      occupiedOnlyButton.addEventListener("click", markOccupiedOnly);
+      clearSeatButton.addEventListener("click", clearSeat);
+      cancelAssignButton.addEventListener("click", closeAssignPanel);
+
+      renderMemberChips();
+      renderRoster();
 
       renderActiveSection();
       updateSummary();
