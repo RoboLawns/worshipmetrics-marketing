@@ -5,7 +5,9 @@ import BreadcrumbNav from '../../../../components/kb/BreadcrumbNav.astro';
 import DifficultyBadge from '../../../../components/kb/DifficultyBadge.astro';
 import ProductCTA from '../../../../components/kb/ProductCTA.astro';
 
-const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+function brandSlug(b: string) {
+  return b.toLowerCase().replace(/[\s\/]+/g, '-');
+}
 
 export async function getStaticPaths() {
   const allCameras = await getCollection('cameras');

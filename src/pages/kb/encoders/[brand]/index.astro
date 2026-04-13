@@ -5,14 +5,16 @@ import BreadcrumbNav from '../../../../components/kb/BreadcrumbNav.astro';
 import DifficultyBadge from '../../../../components/kb/DifficultyBadge.astro';
 import ProductCTA from '../../../../components/kb/ProductCTA.astro';
 
-const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+function brandSlug(b: string) {
+  return b.toLowerCase().replace(/[\s\/]+/g, '-');
+}
 
 export async function getStaticPaths() {
   const allDevices = await getCollection('devices');
   const encoders = allDevices.filter(e => e.data.deviceCategory === 'encoder');
   const brands = [...new Set(encoders.map(e => e.data.brand))];
   return brands.map(brand => ({
-    params: { brand: brandSlug(brand) },
+    params: { brand: brand.toLowerCase().replace(/[\s\/]+/g, '-') },
     props: { brand, articles: encoders.filter(e => e.data.brand === brand).sort((a,b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()) },
   }));
 }

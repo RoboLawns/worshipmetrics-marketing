@@ -6,12 +6,14 @@ import DifficultyBadge from '../../../../components/kb/DifficultyBadge.astro';
 import ProductCTA from '../../../../components/kb/ProductCTA.astro';
 import TableOfContents from '../../../../components/kb/TableOfContents.astro';
 
-const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+function brandSlug(b: string) {
+  return b.toLowerCase().replace(/[\s\/]+/g, '-');
+}
 
 export async function getStaticPaths() {
   const allCameras = await getCollection('cameras');
   return allCameras.map(entry => ({
-    params: { brand: brandSlug(entry.data.brand), slug: entry.id },
+    params: { brand: entry.data.brand.toLowerCase().replace(/[\s\/]+/g, '-'), slug: entry.id },
     props: { entry },
   }));
 }
