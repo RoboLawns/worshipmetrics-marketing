@@ -7,6 +7,7 @@ tags: [ndi, integration, streaming, graphics, church-av]
 difficulty: intermediate
 publishedAt: "2024-03-03"
 productCTA: true
+coverImage: "/images/products/propresenter-ndi-output-obs-vmix/propresenter-ndi-output-interface-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
@@ -14,6 +15,18 @@ import ProductCTA from '../../components/kb/ProductCTA.astro';
 ProPresenter is designed to send its output to your streaming software. Rather than having your director look at ProPresenter on one monitor and OBS on another, ProPresenter's NDI output appears directly in your stream. Your director sees one unified production in OBS or vMix with cameras, ProPresenter slides, and graphics all in one place.
 
 This integration is seamless when configured correctly and a nightmare when something goes wrong. This guide walks you through enabling NDI in ProPresenter, configuring which layers you want to send, receiving it in your streaming software, and solving the most common issues.
+
+
+<figure>
+  <img
+    src="/images/products/propresenter-ndi-output-obs-vmix/propresenter-ndi-output-interface-church-streaming.png"
+    alt="ProPresenter NDI output configuration showing how to send presentation content to OBS or vMix via network"
+    title="ProPresenter NDI Output — send lyrics and graphics to OBS or vMix over your church network"
+    width="2448"
+    height="829"
+  />
+  <figcaption>ProPresenter's NDI output lets your presentation computer send its full output — lyrics, backgrounds, and graphics — to any OBS or vMix instance on the same network without capture cards.</figcaption>
+</figure>
 
 ## Enabling ProPresenter NDI Output
 
@@ -82,6 +95,19 @@ If neither fixes it, ProPresenter itself may have crashed. Check the ProPresente
 ProPresenter NDI failures mid-stream are rare but possible. Have a contingency: a USB-connected graphics computer running a simple graphics app (like Preview on Mac displaying a static image), or a dedicated camera showing a graphics monitor from a distance. If ProPresenter NDI fails, quickly switch OBS/vMix to the backup while you troubleshoot ProPresenter.
 
 Communicate with your ProPresenter operator about the possibility of failure. They should monitor ProPresenter during service and be ready to troubleshoot quickly if NDI drops. This might mean having them watch both the ProPresenter screen and a secondary monitor showing OBS to confirm NDI is flowing.
+
+
+<figure>
+  <img
+    src="/images/products/propresenter-ndi-output-obs-vmix/propresenter-screen-config-ndi-diagram-church.png"
+    alt="ProPresenter screen configuration dialog showing how to add an NDI virtual output screen"
+    title="ProPresenter NDI Screen Config — add a virtual NDI output to your church presentation system"
+    width="1736"
+    height="1588"
+    loading="lazy"
+  />
+  <figcaption>Adding an NDI output screen in ProPresenter's configuration dialog creates a virtual NDI source that OBS or vMix can pick up by name from anywhere on your church network.</figcaption>
+</figure>
 
 ## Best Practices for ProPresenter NDI
 

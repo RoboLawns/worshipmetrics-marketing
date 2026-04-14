@@ -7,11 +7,24 @@ tags: [streaming, youtube, facebook, multistream, restream, church-av]
 difficulty: intermediate
 publishedAt: "2024-02-19"
 productCTA: true
+coverImage: "/images/products/obs-multistream-restream/obs-studio-multistream-interface-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Many churches want their stream on both YouTube and Facebook—their communities use different platforms. OBS supports sending video to multiple destinations, but the approach depends on your setup and tolerance for complexity. This guide covers two popular methods: using Restream.io as a middleware platform, or configuring OBS's native custom RTMP server option. Each has trade-offs in reliability, ease of use, and cost.
+
+
+<figure>
+  <img
+    src="/images/products/obs-multistream-restream/obs-studio-multistream-interface-church-streaming.png"
+    alt="OBS Studio production interface showing scenes and sources panel configured for multistream church broadcasting"
+    title="OBS Studio Multistream Setup — one production feed to multiple church streaming platforms"
+    width="1880"
+    height="1200"
+  />
+  <figcaption>OBS Studio handles your entire church production — once configured with Restream.io, a single stream reaches YouTube, Facebook, and other platforms simultaneously.</figcaption>
+</figure>
 
 ## Why Multistream Matters for Churches
 
@@ -58,6 +71,19 @@ In practice, both methods are reliable for churches with stable upload speeds. A
 Facebook prioritizes frame rate. A 30 fps stream looks smoother on Facebook than 24 fps. YouTube is less sensitive to frame rate but very sensitive to resolution consistency—if your resolution changes mid-stream, YouTube may glitch. Restream masks these differences somewhat, but not entirely. If you're using native multistream, consider your primary platform: if YouTube is more important, optimize OBS for YouTube's preferences.
 
 Chat moderation differs between platforms. Facebook and YouTube have different chat interfaces, different rules, and different moderation tools. Restream aggregates chat into one view, but each platform still enforces its own rules. Many churches assign a volunteer to monitor chat on each platform, or use Restream's unified dashboard to stay on top of both.
+
+
+<figure>
+  <img
+    src="/images/products/obs-multistream-restream/obs-multistream-restream-settings-diagram-church.jpg"
+    alt="Restream tools and features dashboard showing multiplatform streaming management for churches"
+    title="Restream Dashboard — manage your church stream across all platforms from one screen"
+    width="1200"
+    height="675"
+    loading="lazy"
+  />
+  <figcaption>Restream's dashboard shows all your connected platforms, stream status, and viewer analytics in one place — making multi-platform church streaming manageable for volunteer AV teams.</figcaption>
+</figure>
 
 ## Making the Choice
 

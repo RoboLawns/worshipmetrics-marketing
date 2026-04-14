@@ -7,6 +7,7 @@ tags: [alpha-keyer, atem, compositing, advanced, church-av]
 difficulty: advanced
 publishedAt: "2024-03-05"
 productCTA: true
+coverImage: "/images/products/propresenter-alpha-keyer-atem/propresenter-alpha-key-interface-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
@@ -14,6 +15,18 @@ import ProductCTA from '../../components/kb/ProductCTA.astro';
 Alpha keying is a professional technique that gives churches broadcast-quality graphics without chroma key (green screen). Instead of relying on color to separate graphics from background, alpha keying uses transparency—ProPresenter sends a "fill" output (the graphics) and a "key" output (transparency map), and the ATEM switcher composites them cleanly over live video.
 
 The result looks polished: graphics appear perfectly layered over camera feeds with no color fringing or halos. This technique is common in professional broadcasts and increasingly accessible to churches with ATEM hardware. This guide covers the setup, configuration, and troubleshooting.
+
+
+<figure>
+  <img
+    src="/images/products/propresenter-alpha-keyer-atem/propresenter-alpha-key-interface-church-streaming.png"
+    alt="ProPresenter alpha key output configuration showing how to set up a keying screen for ATEM switcher integration"
+    title="ProPresenter Alpha Key Setup — configure HDMI output for ATEM downstream keyer integration"
+    width="927"
+    height="703"
+  />
+  <figcaption>ProPresenter's Configure Screens dialog lets you set up a dedicated alpha key output — sending fill and key signals directly to your ATEM switcher for live lower-third graphics.</figcaption>
+</figure>
 
 ## Understanding Alpha Keying
 
@@ -90,6 +103,19 @@ If graphics appear inverted (black text on white, or completely transparent), ch
 If graphics have colored fringing or ghosts, your key input signal is corrupted. Check cable connections and confirm your video capture cards are transmitting stable signals.
 
 If the ATEM can't detect ProPresenter outputs, restart the ATEM and your ProPresenter computer. Reseat all cables. If issues persist, try connecting ProPresenter to different ATEM inputs to isolate whether the problem is the input port or the ProPresenter output.
+
+
+<figure>
+  <img
+    src="/images/products/propresenter-alpha-keyer-atem/propresenter-alpha-key-output-settings-diagram-church.png"
+    alt="ProPresenter output settings showing the alpha key signal configuration for downstream keying to ATEM"
+    title="ProPresenter Alpha Key Output — fill and key signal routing to ATEM video switcher"
+    width="3684"
+    height="1464"
+    loading="lazy"
+  />
+  <figcaption>The alpha key output settings in ProPresenter define exactly how the fill (graphic) and key (transparency mask) channels are sent to your ATEM, enabling clean over-video titling.</figcaption>
+</figure>
 
 ## When Alpha Keying Is Worth It
 

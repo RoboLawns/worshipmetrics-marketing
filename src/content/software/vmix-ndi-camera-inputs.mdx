@@ -7,6 +7,7 @@ tags: [ndi, cameras, networking, vmix, church-av]
 difficulty: intermediate
 publishedAt: "2024-02-26"
 productCTA: true
+coverImage: "/images/products/vmix-ndi-camera-inputs/vmix-ndi-input-interface-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
@@ -14,6 +15,18 @@ import ProductCTA from '../../components/kb/ProductCTA.astro';
 NDI integration in vMix is simpler and more robust than in OBS. Rather than relying on a third-party plugin, vMix includes native NDI support with live monitoring, tally light control, and automatic camera discovery. If your church has invested in NDI cameras, vMix makes managing them straightforward.
 
 This guide covers adding NDI cameras to vMix, managing multiple simultaneous NDI feeds, handling network bandwidth, and troubleshooting the connectivity issues that sometimes plague NDI setups.
+
+
+<figure>
+  <img
+    src="/images/products/vmix-ndi-camera-inputs/vmix-ndi-input-interface-church-streaming.png"
+    alt="vMix NDI input configuration panel showing how to add network cameras as production sources in church streaming"
+    title="vMix NDI Camera Input — add PTZ and network cameras to your church production without capture cards"
+    width="1100"
+    height="400"
+  />
+  <figcaption>vMix discovers NDI sources automatically on your network — adding a PTZ camera, a ProPresenter NDI feed, or a remote camera requires nothing more than selecting it from a dropdown.</figcaption>
+</figure>
 
 ## Discovering and Adding NDI Cameras
 
@@ -70,6 +83,19 @@ Occasionally, an NDI source disappears mid-stream (video turns black). This usua
 If the cable is fine, the issue is your network. Some switches have port errors that disconnect devices momentarily. Ask your IT person to check switch port status. Look for errors or collisions on the port the camera is using.
 
 To prevent mid-service failures, some churches maintain a USB backup camera connected directly to vMix. If an NDI camera fails, they quickly switch to the USB camera while troubleshooting the NDI issue. This adds redundancy and keeps your stream going.
+
+
+<figure>
+  <img
+    src="/images/products/vmix-ndi-camera-inputs/vmix-multiview-ndi-settings-diagram-church.png"
+    alt="vMix multiview monitor showing all NDI camera inputs and program output for church production monitoring"
+    title="vMix Multiview — monitor all your NDI camera inputs and program output simultaneously"
+    width="900"
+    height="400"
+    loading="lazy"
+  />
+  <figcaption>vMix's multiview output sends a grid of all your camera previews and program output to a single monitor — letting your operator see every angle before cutting to it live.</figcaption>
+</figure>
 
 ## vMix's NDI Advantage Over OBS
 

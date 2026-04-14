@@ -7,6 +7,7 @@ tags: [ndi, cameras, networking, plugin, church-av]
 difficulty: intermediate
 publishedAt: "2024-02-17"
 productCTA: true
+coverImage: "/images/products/obs-ndi-church-cameras/obs-studio-mode-ndi-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
@@ -14,6 +15,18 @@ import ProductCTA from '../../components/kb/ProductCTA.astro';
 NDI (Network Device Interface) has transformed how churches connect cameras and graphics without running expensive video cables across sanctuaries. Instead of HDMI or SDI cables running from each camera to a central control room, NDI sends video over your existing Ethernet network. This approach is simpler to install, more flexible, and significantly cheaper—especially for churches with sprawling spaces.
 
 OBS supports NDI through a plugin, turning any networked NDI camera into a source OBS can use. This guide walks you through installing the plugin, discovering NDI sources, managing multiple cameras, and solving the most common NDI problems that plague church streamers.
+
+
+<figure>
+  <img
+    src="/images/products/obs-ndi-church-cameras/obs-studio-mode-ndi-church-streaming.png"
+    alt="OBS Studio studio mode showing preview and program windows for NDI camera switching in church production"
+    title="OBS Studio Mode — preview your NDI camera switch before it goes live to your church audience"
+    width="1880"
+    height="1200"
+  />
+  <figcaption>OBS Studio Mode gives you a preview window (left) and live output window (right), so you can prepare your next NDI camera cut without the congregation seeing the transition.</figcaption>
+</figure>
 
 ## Installing the OBS NDI Plugin
 
@@ -62,6 +75,19 @@ If one camera appears in OBS but another doesn't, the second camera might be on 
 NDI introduces about 50–100 milliseconds of latency—the video arrives at OBS slightly delayed compared to the camera's output. For most church services, this is imperceptible. If you're syncing NDI video with physical speakers on stage, you might notice slight delay between audio and video. To minimize this, ensure all cameras and your OBS computer have current network drivers and that there are no other high-bandwidth activities on your network during the stream.
 
 Professional churches with multiple cameras often sync them before service starts. Have two cameras aimed at the same scene, start both, and visually check that they show identical images at the same time. If one is noticeably delayed, it may be farther from your network switch (electrical distance increases latency) or have an older network interface. Move that camera closer to the switch or replace its network cable.
+
+
+<figure>
+  <img
+    src="/images/products/obs-ndi-church-cameras/obs-properties-ndi-settings-diagram-church.png"
+    alt="OBS Studio properties panel showing NDI source settings and input configuration for church cameras"
+    title="OBS NDI Source Properties — configure your NDI camera input name and bandwidth"
+    width="1073"
+    height="839"
+    loading="lazy"
+  />
+  <figcaption>The OBS NDI source properties panel lets you select your camera by name from the network, choose the video bandwidth, and set sync options for smooth PTZ camera integration.</figcaption>
+</figure>
 
 ## Managing NDI Source Disappearance
 

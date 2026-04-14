@@ -7,11 +7,24 @@ tags: [settings, bitrate, resolution, quality, church-av]
 difficulty: beginner
 publishedAt: "2024-02-20"
 productCTA: true
+coverImage: "/images/products/obs-bitrate-settings-church/obs-stream-settings-interface-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Bitrate and resolution are the primary settings controlling stream quality, but they're often misunderstood. Many church AV volunteers set them incorrectly, resulting in pixelated video, constant buffering, or streams that drop mid-service. This guide explains the relationship between these settings and your internet speed, then gives you specific recommendations for church streams.
+
+
+<figure>
+  <img
+    src="/images/products/obs-bitrate-settings-church/obs-stream-settings-interface-church-streaming.png"
+    alt="OBS Studio stream settings panel showing bitrate, encoder, and output configuration for church live streaming"
+    title="OBS Studio Stream Settings — bitrate and encoder configuration for churches"
+    width="1080"
+    height="840"
+  />
+  <figcaption>OBS's Stream settings panel is where you configure your bitrate, encoder, and streaming service — the three variables that most affect your church stream quality.</figcaption>
+</figure>
 
 ## Understanding Bitrate and Resolution
 
@@ -56,6 +69,19 @@ Ask your internet provider about your actual upload speed during peak hours. Int
 The codec (encoder) is the algorithm that compresses video. OBS defaults to x264, a software encoder that works on any PC. It produces good quality but uses significant CPU power. Modern CPUs have built-in hardware encoders: NVIDIA cards have NVENC, AMD cards have VCE. These hardware encoders use less CPU but produce slightly lower quality at the same bitrate.
 
 For churches, the difference is negligible. Use whatever encoder gives you headroom: if x264 drives your CPU to 60%, switch to hardware encoding to free up processing power. Your viewers won't see a quality difference. If you're editing graphics or running other applications alongside OBS, hardware encoding is essential.
+
+
+<figure>
+  <img
+    src="/images/products/obs-bitrate-settings-church/obs-audio-settings-window-diagram-church.png"
+    alt="OBS audio device settings window showing mic and desktop audio input configuration"
+    title="OBS Audio Device Settings — selecting your church mixer as the audio input"
+    width="774"
+    height="575"
+    loading="lazy"
+  />
+  <figcaption>The OBS audio settings window lets you select your mixer's USB output as the microphone/auxiliary input, ensuring your sanctuary audio feeds directly into your stream.</figcaption>
+</figure>
 
 ## Common Mistakes
 

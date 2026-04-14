@@ -7,11 +7,24 @@ tags: [troubleshooting, performance, encoding, cpu, frames]
 difficulty: intermediate
 publishedAt: "2024-02-21"
 productCTA: true
+coverImage: "/images/products/obs-dropping-frames-fix/obs-studio-multiview-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Your service is going live and suddenly viewers report freezing, buffering, or losing video entirely. Meanwhile, OBS looks fine on your monitor. You've hit the dreaded "dropped frames" problem, and it's panic-inducing because you don't know what's failing: your PC, your encoder, or your internet. Understanding the three types of frame loss—dropped frames, rendering lag, and skipped frames—transforms this chaos into a solvable problem.
+
+
+<figure>
+  <img
+    src="/images/products/obs-dropping-frames-fix/obs-studio-multiview-church-streaming.png"
+    alt="OBS Studio multiview layout showing multiple scene previews for church stream monitoring"
+    title="OBS Studio Multiview — monitor all your church scenes simultaneously to catch frame drop issues"
+    width="1880"
+    height="1120"
+  />
+  <figcaption>OBS's multiview mode lets you monitor all your church scenes at once, helping you spot quality issues before they reach your online audience.</figcaption>
+</figure>
 
 ## The Three Types of Frame Loss
 
@@ -58,6 +71,19 @@ Check your Output Resolution in Settings → Video. If your Output is 1920×1080
 Skipped frames are usually transient—a background Windows update, antivirus scan, or disk activity causes a brief CPU spike. Check your PC's Task Manager (Windows) or Activity Monitor (Mac) to see what's consuming CPU. Close unnecessary applications. Disable antivirus real-time scanning during services (or configure it to skip your OBS.exe folder).
 
 If skipped frames persist, increase your CPU headroom by switching to hardware encoding (described above) or reducing encoding complexity. But honestly, a few skipped frames in a 90-minute stream are rarely visible to viewers. Your viewers tolerate the occasional micro-stutter; they don't tolerate constant freezing. Once skipped frames are occasional rather than constant, you're fine.
+
+
+<figure>
+  <img
+    src="/images/products/obs-dropping-frames-fix/obs-hotkeys-settings-diagram-church.png"
+    alt="OBS Studio hotkeys settings panel for assigning keyboard shortcuts to church production controls"
+    title="OBS Hotkeys Settings — assign shortcuts to quickly respond to dropping frames"
+    width="1440"
+    height="1120"
+    loading="lazy"
+  />
+  <figcaption>Assigning hotkeys to scene switching and stream controls means you can quickly cut to a lower-quality scene or restart your stream when frames start dropping.</figcaption>
+</figure>
 
 ## Preventive Measures
 

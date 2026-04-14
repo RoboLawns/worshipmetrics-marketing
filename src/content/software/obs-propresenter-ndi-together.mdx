@@ -7,6 +7,7 @@ tags: [ndi, propresenter, integration, graphics, church-av]
 difficulty: intermediate
 publishedAt: "2024-02-23"
 productCTA: true
+coverImage: "/images/products/obs-propresenter-ndi-together/obs-propresenter-ndi-interface-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
@@ -14,6 +15,18 @@ import ProductCTA from '../../components/kb/ProductCTA.astro';
 ProPresenter and OBS are a natural pair. ProPresenter displays worship lyrics, sermon notes, and graphics on screens in your sanctuary, while OBS captures those graphics and sends them to online viewers. Rather than running a separate graphics computer or manually switching between slide deck and camera feeds, you can send ProPresenter's output directly to OBS via NDI. Your director controls one system—OBS—and ProPresenter slides appear in the stream automatically.
 
 This integration simplifies productions and creates a unified experience: online viewers see slides synchronized with what your in-person congregation sees. This guide walks you through enabling ProPresenter NDI, receiving it in OBS, handling sync issues, and fixing the most frustrating problem—ProPresenter NDI disappearing mid-stream.
+
+
+<figure>
+  <img
+    src="/images/products/obs-propresenter-ndi-together/obs-propresenter-ndi-interface-church-streaming.png"
+    alt="OBS Studio main interface configured to receive ProPresenter NDI output for integrated church streaming"
+    title="OBS Studio + ProPresenter NDI Integration — combine lyrics, graphics, and camera feeds in one stream"
+    width="1487"
+    height="1183"
+  />
+  <figcaption>With ProPresenter sending its output via NDI, OBS can receive it as a source — letting you overlay your lyrics and graphics directly onto your camera feeds without extra hardware.</figcaption>
+</figure>
 
 ## Enabling ProPresenter NDI Output
 
@@ -70,6 +83,19 @@ Option two: create a static image in OBS (a graphic saying "Please stand by") an
 Option three: have your ProPresenter operator quickly close and reopen the presentation in ProPresenter. This often reestablishes the NDI signal within 10–20 seconds. But this requires your ProPresenter operator to be watching for failures, which adds pressure.
 
 Most churches use a combination: a USB backup camera for immediate failover, plus training ProPresenter operators to monitor NDI status. If NDI drops, your ProPresenter operator knows to restart it while your OBS director switches to the camera backup. By the time the operator has restarted, ProPresenter NDI should be back online and the director switches back.
+
+
+<figure>
+  <img
+    src="/images/products/obs-propresenter-ndi-together/obs-propresenter-ndi-settings-diagram-church.png"
+    alt="ProPresenter screen configuration showing NDI output settings for sending to OBS"
+    title="ProPresenter Screen Config — enable NDI output to send to OBS over your church network"
+    width="1736"
+    height="1588"
+    loading="lazy"
+  />
+  <figcaption>The ProPresenter screen configuration panel is where you add an NDI output screen — once enabled, OBS on the same network can receive ProPresenter's full output as a source.</figcaption>
+</figure>
 
 ## Best Practices for ProPresenter NDI in OBS
 

@@ -7,6 +7,7 @@ tags: [audio, mixer, usb, routing, church-av]
 difficulty: intermediate
 publishedAt: "2024-02-18"
 productCTA: true
+coverImage: "/images/products/obs-audio-routing-church-mixer/obs-audio-mixer-interface-church-streaming.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
@@ -15,9 +16,34 @@ Audio is invisible on screen but instantly noticeable when it goes wrong. A chur
 
 Most churches use one of two approaches: USB audio from a modern mixer with built-in USB output, or an analog audio interface connected to aux sends from a traditional mixer. This guide covers both methods and walks you through the critical step of preventing audio echo—the challenge that derails most church AV setups.
 
+
+<figure>
+  <img
+    src="/images/products/obs-audio-routing-church-mixer/obs-audio-mixer-interface-church-streaming.png"
+    alt="OBS Studio audio mixer panel showing volume faders and level meters for church streaming"
+    title="OBS Studio Audio Mixer — per-source level control for church AV teams"
+    width="960"
+    height="744"
+  />
+  <figcaption>The OBS audio mixer gives you per-source volume control, making it easy to balance microphones, background music, and ambient audio before they hit your stream.</figcaption>
+</figure>
+
 ## USB Audio Method: Direct Mixer Connection
 
 Modern mixer-consoles from brands like Allen & Heath, Behringer, and Yamaha include USB ports that send mixed audio directly to your computer. This is the simplest approach. Connect a USB cable from your mixer to your OBS computer, power on the mixer, and Windows or Mac will detect it as an audio input device.
+
+<figure>
+  <img
+    src="/images/products/obs-audio-routing-church-mixer/obs-audio-mixer-sections-diagram-church.png"
+    alt="OBS audio mixer sections diagram showing the layout of controls and color-coded level zones"
+    title="OBS Audio Mixer Sections — green, yellow, and red level zones explained"
+    width="735"
+    height="332"
+    loading="lazy"
+  />
+  <figcaption>Understanding OBS's mixer section layout helps you set proper gain staging: green for normal levels, yellow for caution, and red for clipping you want to avoid.</figcaption>
+</figure>
+
 
 In OBS, open Settings → Audio. Under "Mic/Auxiliary Audio," select your mixer's USB audio output from the dropdown. The mixer's name will appear (like "Allen & Heath QU16 USB 1"). Test the connection by speaking into a microphone connected to the mixer. Watch the audio meters in OBS's Mixer panel—you should see green bars moving. If you see nothing, the mixer isn't sending audio. Check the mixer's USB settings to confirm the USB output channel is active and routed to its output.
 
