@@ -6,6 +6,8 @@ import DifficultyBadge from '../../../../components/kb/DifficultyBadge.astro';
 import ProductCTA from '../../../../components/kb/ProductCTA.astro';
 import TableOfContents from '../../../../components/kb/TableOfContents.astro';
 
+export const prerender = true;
+
 function brandSlug(b: string) {
   return b.toLowerCase().replace(/[\s\/]+/g, '-');
 }

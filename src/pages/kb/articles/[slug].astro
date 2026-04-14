@@ -2,6 +2,8 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 
+export const prerender = true;
+
 const calculateReadingTime = (text: string) => Math.max(3, Math.ceil(text.split(/\s+/).filter(Boolean).length / 220));
 
 export async function getStaticPaths() {

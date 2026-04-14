@@ -5,6 +5,8 @@ import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
 import ProductCTA from '../../../components/kb/ProductCTA.astro';
 import TableOfContents from '../../../components/kb/TableOfContents.astro';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const all = await getCollection('comparisons');
   return all.map(entry => ({ params: { slug: entry.id }, props: { entry } }));

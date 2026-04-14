@@ -6,6 +6,8 @@ import DifficultyBadge from '../../../../components/kb/DifficultyBadge.astro';
 import ProductCTA from '../../../../components/kb/ProductCTA.astro';
 import TableOfContents from '../../../../components/kb/TableOfContents.astro';
 
+export const prerender = true;
+
 const appLabels: Record<string, string> = {
   obs: 'OBS Studio', vmix: 'vMix', propresenter: 'ProPresenter',
   easyworship: 'EasyWorship', restream: 'Restream', castr: 'Castr',

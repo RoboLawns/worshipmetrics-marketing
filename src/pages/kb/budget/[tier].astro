@@ -5,6 +5,8 @@ import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
 import ProductCTA from '../../../components/kb/ProductCTA.astro';
 import TableOfContents from '../../../components/kb/TableOfContents.astro';
 
+export const prerender = true;
+
 const tierLabels: Record<string, string> = {
   'under-500': 'Under $500',
   'under-1000': 'Under $1,000',

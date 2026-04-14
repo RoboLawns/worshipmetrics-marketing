@@ -111,15 +111,9 @@ import Layout from "../layouts/Layout.astro";
 
       <form
         method="POST"
-        name="pilot-request"
-        data-netlify="true"
-        action="/pilot-program/thank-you"
+        action="/api/pilot-request"
         class="space-y-5 rounded-2xl bg-white p-8 shadow-sm border border-slate-200"
       >
-        <!-- Cloudflare Pages / Netlify hidden fields -->
-        <input type="hidden" name="_subject" value="New Pilot Program Request — WorshipMetrics" />
-        <input type="hidden" name="form-name" value="pilot-request" />
-
         <div>
           <label for="church-name" class="block text-sm font-semibold text-slate-800 mb-1">
             Church Name <span class="text-red-500">*</span>
