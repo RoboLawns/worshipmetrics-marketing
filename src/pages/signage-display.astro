@@ -68,7 +68,7 @@ const structuredData = {
   operatingSystem: "Web",
   url: `${SITE_URL}/signage-display`,
   image: OG_IMAGE,
-  description: "Free church digital signage for SmartTVs with multi-zone layouts, scheduling, and cloud-managed playlists.",
+  description: "Free church digital signage for SmartTVs with 40+ starting templates, Brand Kit setup, holiday-ready designs, and remote management from anywhere.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -81,7 +81,7 @@ const structuredData = {
 
 <Layout
   title="Free Church Digital Signage"
-  description="Beautiful church signage for any SmartTV. No hardware. No subscription. Just your TV, your content, and your church updates."
+  description="Beautiful church signage for any SmartTV with 40+ starting templates, Brand Kit setup, holiday-ready designs, and remote management from anywhere."
   canonical="/signage-display"
   ogImage={OG_IMAGE}
   structuredData={structuredData}
@@ -351,7 +351,7 @@ const structuredData = {
           Just your TV.
         </h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-          Create announcement displays, service countdowns, Bible verses, and welcome screens — then put them on any SmartTV in seconds. Free forever. No Hub required.
+          Start with 40+ beautiful templates for every major Christian holiday and year-round ministry use. Fill out your Brand Kit once, copy the link to any SmartTV, and manage your screens remotely from anywhere in the world. Free forever. No Hub required.
         </p>
         <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row">
           <a href={`${APP_URL}/sign-up`} class="rounded-xl bg-amber-500 px-8 py-3 text-base font-semibold text-slate-950 shadow transition hover:bg-amber-400">
@@ -372,7 +372,7 @@ const structuredData = {
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Set up in three steps. Update from anywhere.</h2>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Set it up once. Keep it beautiful all year.</h2>
       </div>
       <div class="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
@@ -380,16 +380,16 @@ const structuredData = {
         </div>
         <div class="grid gap-6">
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-slate-900">Step 1 — Choose a layout</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">Pick from six professionally designed layouts: Full Screen, Main + Sidebar, Main + Ticker, L-Bar, Split Screen, or Lower Third. Each layout divides your screen into named zones.</p>
+            <h3 class="text-lg font-semibold text-slate-900">Step 1 — Fill out your Brand Kit</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Add your congregation name, colors, logo, and service details once. WorshipMetrics uses that Brand Kit to pre-configure your signage automatically.</p>
           </div>
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-slate-900">Step 2 — Fill each zone</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">Add text slides, Bible verses, service times, countdowns, images, videos, or web pages to each zone independently. Every zone runs its own content simultaneously.</p>
+            <h3 class="text-lg font-semibold text-slate-900">Step 2 — Pick a starting template</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Choose from 40+ starting templates built for Christmas, Easter, Good Friday, Mother's Day, Father's Day, VBS, Back to School, and year-round welcome screens.</p>
           </div>
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-slate-900">Step 3 — Put the URL on your TV</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">Toggle your playlist public and open the URL in any SmartTV browser. Your display goes live and updates you make in the dashboard appear on screen fast.</p>
+            <h3 class="text-lg font-semibold text-slate-900">Step 3 — Put the link on your TV</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Copy the public playlist URL into any SmartTV browser one time. After that, your team manages everything remotely for the future without touching the TV again.</p>
           </div>
         </div>
       </div>
@@ -399,10 +399,31 @@ const structuredData = {
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Six layouts designed for how churches actually use their screens.</h2>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Start with the templates. Keep the flexibility you actually need.</h2>
       </div>
-      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {layoutTemplates.map(({ name, desc, svg }) => (
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          {
+            name: "40+ Starting Templates",
+            desc: "Start from polished signage instead of designing from scratch every week.",
+            svg: layoutTemplates[0].svg,
+          },
+          {
+            name: "Major Christian Holidays",
+            desc: "Christmas, Easter, Good Friday, Holy Week, and more are already prepared for you.",
+            svg: layoutTemplates[3].svg,
+          },
+          {
+            name: "Full Screen + L-Bar",
+            desc: "We still support the two layouts churches use most without forcing extra complexity.",
+            svg: layoutTemplates[1].svg,
+          },
+          {
+            name: "Brand Kit Once",
+            desc: "Set your brand once and your year-round signage starts pre-configured and on-brand.",
+            svg: layoutTemplates[2].svg,
+          },
+        ].map(({ name, desc, svg }) => (
           <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
             <div class="bg-slate-950 p-5" set:html={svg}></div>
             <div class="p-6">
@@ -417,12 +438,21 @@ const structuredData = {
 
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-5xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every zone can show something different — at the same time.</h2>
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Why teams actually keep this updated</h2>
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-        Each zone in your layout runs its own content type independently. Put a countdown in the sidebar while a video plays in the main area and a ticker scrolls event reminders below.
+        The goal is not more design work. The goal is signage that is already beautiful, already on-brand, and easy enough for your team to keep current week after week.
       </p>
       <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {contentTypes.map(([icon, label]) => (
+        {[
+          ["🎄", "Holiday Templates"],
+          ["🎨", "Brand Kit"],
+          ["📺", "SmartTV Ready"],
+          ["🌍", "Remote Updates"],
+          ["✝️", "Weekly Welcome"],
+          ["⏱", "Countdowns"],
+          ["📅", "Service Times"],
+          ["📱", "QR Codes"],
+        ].map(([icon, label]) => (
           <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left shadow-sm">
             <span class="text-xl">{icon}</span>
             <span class="text-sm font-semibold text-slate-800">{label}</span>
@@ -435,26 +465,26 @@ const structuredData = {
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Set it and forget it. Slides show when they should.</h2>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Holiday-ready signage without rebuilding it every season.</h2>
       </div>
       <div class="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
         <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Date range scheduling</p>
-          <h3 class="mt-3 text-2xl font-bold text-slate-900">Christmas content starts and stops automatically.</h3>
-          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">Put Christmas content on screen Dec 1 and have it disappear automatically on Dec 26. Set a valid from and valid until date on any slide. Content manages itself.</p>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Holiday templates + scheduling</p>
+          <h3 class="mt-3 text-2xl font-bold text-slate-900">Christmas starts on time and disappears when the season is over.</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">Use the built-in holiday templates and let scheduling handle the season for you. Christmas can start on Dec 1 and disappear on Dec 26 without anyone remembering to swap files manually.</p>
           <img src={SIGNAGE_SCHEDULING} alt="Church digital signage calendar scheduling" loading="lazy" decoding="async" class="mt-8 w-full rounded-2xl border border-slate-200 shadow-sm" />
         </div>
 
         <div class="grid gap-6">
           <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Day-of-week rules</p>
-            <h3 class="mt-3 text-xl font-bold text-slate-900">Show the right content on the right day.</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">Show a Sunday countdown only on Sundays. Show Wednesday evening service times only on Wednesdays. Slides are smart about when they appear.</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Brand Kit</p>
+            <h3 class="mt-3 text-xl font-bold text-slate-900">Set it once. Stay on-brand all year.</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Your colors, logo, and core service details are reused across the templates so the next holiday or weekly welcome screen already looks like your congregation.</p>
           </div>
           <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Six transition styles</p>
-            <h3 class="mt-3 text-xl font-bold text-slate-900">Subtle motion makes it feel polished.</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">Choose Fade, Slide Left, Slide Right, Slide Up, Zoom In, or Dissolve for each slide.</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Remote management</p>
+            <h3 class="mt-3 text-xl font-bold text-slate-900">After the TV is set once, the rest happens from anywhere.</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Your team can swap templates, update service times, or refresh announcements remotely without walking back to a display computer in the building.</p>
           </div>
         </div>
       </div>
@@ -465,7 +495,7 @@ const structuredData = {
     <div class="mx-auto max-w-6xl grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
       <div>
         <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Manage every TV in your building from one place.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Create screen groups like Lobby, Hallway, and Children's Wing. Assign one playlist to the whole group and update every screen from one URL.</p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Create screen groups like Lobby, Hallway, and Children's Wing. Assign one playlist to the whole group, put that link on each TV once, and manage everything remotely from then on.</p>
         <div class="mt-8 space-y-3 text-sm text-slate-700">
           {[
             "One URL per group — no updating each TV individually",
@@ -519,7 +549,7 @@ const structuredData = {
       <div class="text-center">
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Upgrade hook</p>
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Already using signage? The Hub takes it further.</h2>
-        <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">The Hub brings automatic attendance, remote production control, AV health monitoring, and cloud-managed signage together in one device. Signage content you create here works on Hub-connected displays too — no duplication.</p>
+        <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">The Hub brings automatic attendance, remote production control, AV health monitoring, and cloud-managed signage together in one device. The same templates, Brand Kit, and playlists you use for free signage work on Hub-connected displays too — no duplication.</p>
       </div>
       <div class="mt-10 grid gap-6 lg:grid-cols-2">
         <div class="compare-card">
@@ -528,7 +558,7 @@ const structuredData = {
             <img src={SIGNAGE_HERO} alt="Free signage display on a SmartTV" loading="lazy" decoding="async" class="mt-6 aspect-[16/10] w-full rounded-2xl border border-slate-200 object-cover" />
           <ul class="mt-6 space-y-3 text-sm text-slate-600">
             <li>Free signage works on any SmartTV browser</li>
-            <li>Same playlists, same layouts, same content system</li>
+            <li>Same playlists, same Brand Kit, same content system</li>
           </ul>
         </div>
         <div class="compare-card">

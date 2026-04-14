@@ -110,6 +110,8 @@ const cols = [
   .footer-bottom p { font-size: 0.75rem; color: #8494b0; }
   .footer-bottom a { color: #8494b0; text-decoration: none; }
   .footer-bottom a:hover { color: #4361ee; }
+  .footer-phone-wrap { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; }
+  .footer-phone-note { color: #9aa8bf; }
 </style>
 
 <footer>
@@ -159,7 +161,10 @@ const cols = [
     <p>
       <a href="mailto:paul@worshipmetrics.com">paul@worshipmetrics.com</a>
       &nbsp;&middot;&nbsp;
-      <a href="tel:9109677447">910-967-7447</a>
+      <span class="footer-phone-wrap">
+        <a href="tel:+19109677447">910 WORSHIP</a>
+        <span class="footer-phone-note">({`(910) 967-7447`})</span>
+      </span>
     </p>
   </div>
 </footer>
