@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, sessionDrivers } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
@@ -12,6 +12,9 @@ export default defineConfig({
   site: 'https://worshipmetrics.com',
   output: 'server',
   adapter: cloudflare(),
+  session: {
+    driver: sessionDrivers.lruCache(),
+  },
   integrations: [mdx(), sitemap(), icon()],
   vite: {
     plugins: [tailwindcss()]
