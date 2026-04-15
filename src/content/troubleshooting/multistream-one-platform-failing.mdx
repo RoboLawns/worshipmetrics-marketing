@@ -7,13 +7,38 @@ tags: ["streaming", "multistream", "platforms", "rtmp"]
 difficulty: intermediate
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/multistream-one-platform-failing/obs-studio-multistream-platform-church.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 You're streaming to YouTube and it's working fine, but Facebook keeps dropping or won't connect. Or the opposite — Facebook is solid but YouTube fails. When one platform works and the other doesn't, it's usually an RTMP server issue, bandwidth problem, or one of your stream keys is wrong. Let's get both working simultaneously.
 
+<figure>
+  <img
+    src="/images/products/multistream-one-platform-failing/obs-studio-multistream-platform-church.png"
+    alt="OBS Studio multistream setup for simultaneous YouTube and Facebook streaming"
+    title="OBS Studio — configure multiple RTMP outputs for simultaneous platform streaming"
+    width="1487"
+    height="1183"
+  />
+  <figcaption>OBS Studio 30+ supports native multistream to send your church service to YouTube, Facebook, and other platforms simultaneously.</figcaption>
+</figure>
+
 <ProductCTA variant="invoke" />
+
+
+<figure>
+  <img
+    src="/images/products/multistream-one-platform-failing/obs-studio-rtmp-multistream-settings-diagram-troubleshooting.png"
+    alt="OBS Studio stream settings showing RTMP server configuration for multistream"
+    title="OBS Studio multistream RTMP settings — configure each platform with correct server and key"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>In OBS Settings > Stream, enable 'Multiple RTMP Outputs'. Add each platform's RTMP server URL and stream key separately to stream to all platforms at once.</figcaption>
+</figure>
 
 ## Step 1: Verify Both Stream Keys Are Valid
 

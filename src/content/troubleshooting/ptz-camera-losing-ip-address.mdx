@@ -7,13 +7,38 @@ tags: ["ptz", "network", "ip-address", "dhcp"]
 difficulty: beginner
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/ptz-camera-losing-ip-address/avkans-ptz-camera-static-ip-church.jpg"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 You carefully configured your PTZ camera with IP address 192.168.1.100, but after the camera reboots or after the service, it's suddenly at 192.168.1.150. Your control software can't find it. This is because the camera is using DHCP (automatic IP assignment) and getting a different address each time. Let's lock it to a static IP.
 
+<figure>
+  <img
+    src="/images/products/ptz-camera-losing-ip-address/avkans-ptz-camera-static-ip-church.jpg"
+    alt="AVKANS PTZ camera with static IP configuration for church network"
+    title="AVKANS PTZ Camera — assign a static IP to prevent address changes after reboot"
+    width="1380"
+    height="1496"
+  />
+  <figcaption>PTZ cameras that lose their IP address on reboot are using DHCP. Assigning a static IP ensures the camera is always reachable at the same address.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/ptz-camera-losing-ip-address/ptz-camera-static-ip-network-settings-diagram-troubleshooting.jpg"
+    alt="PTZ camera static IP network settings diagram showing configuration fields"
+    title="PTZ camera static IP setup — configure IP, subnet mask, and gateway in web UI"
+    width="1380"
+    height="1496"
+    loading="lazy"
+  />
+  <figcaption>In the PTZ camera's web UI, go to Network Settings and switch from DHCP to Static. Assign an IP outside your router's DHCP range (e.g., 192.168.1.200) to avoid conflicts.</figcaption>
+</figure>
 
 ## The Problem: DHCP vs Static IP
 

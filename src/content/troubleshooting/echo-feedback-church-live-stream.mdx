@@ -7,13 +7,38 @@ tags: ["audio", "feedback", "echo", "streaming"]
 difficulty: beginner
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/echo-feedback-church-live-stream/behringer-x32-digital-mixer-feedback-church.jpg"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Your stream audio has a loud echo or feedback loop — sometimes the whole congregation hears itself a split-second delayed, or worse, it builds into a loud squeal. This usually happens when the room's audio is being picked up by a microphone and sent back out through speakers, creating a closed loop. We can break that loop in seconds.
 
+<figure>
+  <img
+    src="/images/products/echo-feedback-church-live-stream/behringer-x32-digital-mixer-feedback-church.jpg"
+    alt="Behringer X32 digital mixer for church live stream feedback elimination"
+    title="Behringer X32 — use aux send routing to create a separate streaming mix without feedback"
+    width="3000"
+    height="1883"
+  />
+  <figcaption>Echo and feedback in your livestream usually means your monitoring output is feeding back into your stream mix. The X32's bus routing can isolate these.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/echo-feedback-church-live-stream/obs-studio-audio-monitoring-settings-diagram-troubleshooting.png"
+    alt="OBS Studio audio monitoring settings showing monitoring mode configuration"
+    title="OBS Studio audio monitoring — turn off Monitor and Output to prevent echo"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>In OBS Advanced Audio Properties, set each source's monitoring mode to 'Monitor Off' to prevent the stream output from feeding back through your speakers.</figcaption>
+</figure>
 
 ## The Most Common Cause: Room Microphone Picking Up Stream Audio
 

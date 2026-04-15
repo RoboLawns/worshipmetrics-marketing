@@ -7,13 +7,38 @@ tags: ["network", "vlan", "streaming", "architecture"]
 difficulty: intermediate
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/vlan-setup-av-streaming-church/avkans-ptz-camera-vlan-network-church.jpg"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Your church network is getting congested. Congregation Wi-Fi traffic is affecting your streaming, NDI discovery isn't working reliably, and IT is nervous about mixing AV equipment with staff computers. Setting up a dedicated VLAN for AV and streaming solves these problems, but is it necessary? Let's figure out if you need one and how to set it up.
 
+<figure>
+  <img
+    src="/images/products/vlan-setup-av-streaming-church/avkans-ptz-camera-vlan-network-church.jpg"
+    alt="AVKANS PTZ camera in church VLAN network architecture for AV streaming"
+    title="Church AV VLAN setup — isolate PTZ cameras and streaming PC on a dedicated network segment"
+    width="1380"
+    height="1496"
+  />
+  <figcaption>A dedicated VLAN for church AV equipment prevents congregation Wi-Fi from competing with your streaming bandwidth and NDI traffic.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/vlan-setup-av-streaming-church/church-av-vlan-network-architecture-diagram-troubleshooting.jpg"
+    alt="Church AV VLAN network architecture diagram showing switch configuration"
+    title="Church AV VLAN topology — separate AV equipment from general congregation network"
+    width="1380"
+    height="1496"
+    loading="lazy"
+  />
+  <figcaption>A basic AV VLAN puts your PTZ cameras, streaming PC, and NDI encoders on ports 1–4 of a managed switch, while congregation Wi-Fi and staff computers use ports 5+.</figcaption>
+</figure>
 
 ## Do You Actually Need a VLAN?
 

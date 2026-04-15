@@ -7,13 +7,38 @@ tags: ["audio", "levels", "mixing", "streaming"]
 difficulty: beginner
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/streaming-mix-too-loud-quiet/behringer-x32-streaming-audio-mix-church.jpg"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Viewers are messaging: "We can barely hear the pastor" or "The music is way too loud!" while people in the sanctuary hear the perfect mix. The issue is that your streaming audio level isn't calibrated the same as your room audio. We can fix this by adjusting your mixer's streaming output and OBS levels separately.
 
+<figure>
+  <img
+    src="/images/products/streaming-mix-too-loud-quiet/behringer-x32-streaming-audio-mix-church.jpg"
+    alt="Behringer X32 digital mixer streaming audio mix level configuration"
+    title="Behringer X32 — configure a separate streaming mix at the correct level"
+    width="3000"
+    height="1883"
+  />
+  <figcaption>Your streaming mix should be independent of your house mix. The X32's matrix or auxilary outputs let you control stream levels without affecting the room sound.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/streaming-mix-too-loud-quiet/obs-studio-audio-levels-mixer-diagram-troubleshooting.png"
+    alt="OBS Studio audio mixer showing volume levels and streaming output configuration"
+    title="OBS Studio audio levels — target -14 LUFS for streaming, monitor with VU meters"
+    width="960"
+    height="744"
+    loading="lazy"
+  />
+  <figcaption>In OBS, aim for audio peaks around -12 to -6 dB on the mixer. The streaming platform (YouTube, Facebook) will apply its own normalization, so avoid clipping.</figcaption>
+</figure>
 
 ## Understand the Two Different Mixes
 

@@ -7,13 +7,38 @@ tags: ["streaming", "facebook", "rtmp", "connectivity"]
 difficulty: beginner
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/facebook-live-connection-failed-church/obs-studio-facebook-live-streaming-church.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 OBS won't connect to Facebook Live. You're getting "Connection Failed" or "Authentication Failed" errors, and the stream won't start. This is usually a stream key issue, RTMP URL mismatch, or a permission problem. Let's get Facebook Live working in minutes.
 
+<figure>
+  <img
+    src="/images/products/facebook-live-connection-failed-church/obs-studio-facebook-live-streaming-church.png"
+    alt="OBS Studio interface for Facebook Live streaming from church"
+    title="OBS Studio — configure Facebook Live RTMP settings for church streaming"
+    width="1487"
+    height="1183"
+  />
+  <figcaption>OBS Studio connects to Facebook Live via RTMP. Connection failures are usually caused by incorrect stream key or network issues.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/facebook-live-connection-failed-church/obs-studio-stream-key-settings-diagram-troubleshooting.png"
+    alt="OBS Studio stream settings panel showing Facebook Live RTMP configuration"
+    title="OBS Studio stream settings — Facebook Live server and stream key configuration"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>In OBS Settings > Stream, select 'Facebook Live' as the service. Always generate a fresh stream key from Facebook's Live Producer dashboard before each service.</figcaption>
+</figure>
 
 ## Step 1: Generate a Fresh Stream Key in Facebook
 

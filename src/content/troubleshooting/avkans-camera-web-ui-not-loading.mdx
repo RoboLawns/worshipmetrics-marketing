@@ -7,13 +7,38 @@ tags: ["avkans", "ptz", "web-ui", "camera"]
 difficulty: beginner
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/avkans-camera-web-ui-not-loading/avkans-ptz-camera-web-ui-church.jpg"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 You're trying to access your AVKANS camera's web interface, but the browser keeps showing "Connection Refused" or a blank page. You can't configure the camera, change settings, or even find it on the network. Let's locate the camera and get the web interface working.
 
+<figure>
+  <img
+    src="/images/products/avkans-camera-web-ui-not-loading/avkans-ptz-camera-web-ui-church.jpg"
+    alt="AVKANS PTZ camera for church live streaming with network connectivity"
+    title="AVKANS PTZ Camera — PoE-powered IP camera with web UI management"
+    width="1380"
+    height="1496"
+  />
+  <figcaption>The AVKANS PTZ camera is managed via a web browser interface. If the web UI won't load, the issue is typically a network or IP address conflict.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/avkans-camera-web-ui-not-loading/avkans-ptz-camera-network-web-ui-diagram-troubleshooting.jpg"
+    alt="AVKANS PTZ camera network connection setup for web UI access"
+    title="AVKANS PTZ camera network configuration — same subnet required for web UI access"
+    width="1380"
+    height="1496"
+    loading="lazy"
+  />
+  <figcaption>Your computer and the AVKANS camera must be on the same subnet (e.g., both 192.168.1.x) for the web UI to load. Check that no firewall is blocking port 80.</figcaption>
+</figure>
 
 ## Step 1: Discover the Camera's IP Address
 

@@ -7,13 +7,38 @@ tags: ["ndi", "obs", "vmix", "network"]
 difficulty: intermediate
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/ndi-camera-not-showing-obs-vmix/avkans-ptz-ndi-camera-obs-vmix-church.jpg"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Your NDI camera is online and working, but OBS or vMix shows an empty list when you try to add it as a source. The camera should be discoverable — it's likely a plugin, firewall, or network routing issue. This usually resolves in minutes once you identify which layer is blocking discovery.
 
+<figure>
+  <img
+    src="/images/products/ndi-camera-not-showing-obs-vmix/avkans-ptz-ndi-camera-obs-vmix-church.jpg"
+    alt="AVKANS PTZ NDI camera for church live streaming with OBS or vMix"
+    title="AVKANS PTZ NDI Camera — configure NDI output for OBS and vMix discovery"
+    width="1380"
+    height="1496"
+  />
+  <figcaption>NDI cameras must be on the same network subnet as OBS or vMix for automatic discovery to work. Firewall settings are a common cause of missing NDI sources.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/ndi-camera-not-showing-obs-vmix/obs-studio-ndi-source-layout-diagram-troubleshooting.png"
+    alt="OBS Studio NDI source selection showing camera discovery configuration"
+    title="OBS Studio NDI source — NDI camera must appear in Source Properties to be used"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>In OBS, add a new source and select 'NDI Source'. If your AVKANS camera doesn't appear in the dropdown, verify both devices are on the same network subnet.</figcaption>
+</figure>
 
 ## Step 1: Verify the Camera Has NDI Enabled
 

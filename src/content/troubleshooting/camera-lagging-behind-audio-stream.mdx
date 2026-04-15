@@ -7,13 +7,38 @@ tags: ["audio", "video", "sync", "streaming"]
 difficulty: intermediate
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/camera-lagging-behind-audio-stream/blackmagic-atem-mini-streaming-church.jpg"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Viewers are watching the pastor's lips move a half-second before the audio comes out. Or the opposite — the audio arrives first, then the video catches up. Lip sync is broken and it's distracting. Good news: this is almost always fixable by adjusting sync offsets in your encoder. The issue is usually in how OBS or your ATEM is buffering and combining the video and audio streams.
 
+<figure>
+  <img
+    src="/images/products/camera-lagging-behind-audio-stream/blackmagic-atem-mini-streaming-church.jpg"
+    alt="Blackmagic ATEM Mini Pro live streaming switcher for church"
+    title="Blackmagic ATEM Mini Pro — live streaming with audio sync control"
+    width="768"
+    height="499"
+  />
+  <figcaption>Camera lag behind audio is typically caused by encoding delay. The ATEM Mini and OBS both offer sync offset controls to compensate.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/camera-lagging-behind-audio-stream/obs-studio-audio-sync-offset-diagram-troubleshooting.png"
+    alt="OBS Studio audio mixer with sync offset settings for camera lag compensation"
+    title="OBS Studio sync offset — correct camera lag by adding delay to audio sources"
+    width="960"
+    height="744"
+    loading="lazy"
+  />
+  <figcaption>In OBS, right-click an audio source and go to Advanced Audio Properties. Increase the Sync Offset to delay audio until it matches your video.</figcaption>
+</figure>
 
 ## Identify Which Direction It's Off
 

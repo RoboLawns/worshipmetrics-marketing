@@ -7,13 +7,38 @@ tags: ["audio", "streaming", "youtube", "facebook"]
 difficulty: beginner
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/no-audio-youtube-facebook-stream/obs-studio-audio-mixer-no-audio-church.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Your stream is live and viewers see video, but there's complete silence. The audio isn't reaching the platform. This is usually a misconfigured audio source, wrong track selection, or copyright muting — all fixable in under a minute. Let's get the sound back.
 
+<figure>
+  <img
+    src="/images/products/no-audio-youtube-facebook-stream/obs-studio-audio-mixer-no-audio-church.png"
+    alt="OBS Studio audio mixer showing no audio output configuration"
+    title="OBS Studio audio mixer — troubleshoot missing audio on YouTube and Facebook streams"
+    width="960"
+    height="744"
+  />
+  <figcaption>No audio on your stream is usually caused by OBS capturing the wrong audio device or the audio track not being enabled for the stream output.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/no-audio-youtube-facebook-stream/obs-studio-audio-sources-track-selection-diagram-troubleshooting.png"
+    alt="OBS Studio audio sources panel showing track selection and monitoring mode"
+    title="OBS Studio audio track selection — verify audio tracks are enabled for stream output"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>In OBS Settings > Output > Recording, verify that audio Track 1 is checked. Then in the mixer, confirm your audio sources are not muted and showing signal.</figcaption>
+</figure>
 
 ## Step 1: Verify Audio Is Actually Being Captured in OBS
 

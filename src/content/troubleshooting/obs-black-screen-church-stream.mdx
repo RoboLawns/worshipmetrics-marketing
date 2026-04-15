@@ -7,13 +7,38 @@ tags: ["obs", "video-capture", "streaming", "display"]
 difficulty: beginner
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/obs-black-screen-church-stream/obs-studio-black-screen-fix-church.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 OBS is open and ready to go, but the preview window is completely black. No camera feed, no presentation, nothing. You have minutes before the service and OBS isn't showing anything. This is usually a capture mode mismatch or graphics driver issue. Let's get your video back in seconds.
 
+<figure>
+  <img
+    src="/images/products/obs-black-screen-church-stream/obs-studio-black-screen-fix-church.png"
+    alt="OBS Studio interface showing black screen display capture configuration"
+    title="OBS Studio — fix black screen by changing capture mode from Display to Window Capture"
+    width="1487"
+    height="1183"
+  />
+  <figcaption>OBS black screen on Display Capture is extremely common and is usually fixed by switching to Window Capture or changing the graphics adapter setting.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/obs-black-screen-church-stream/obs-studio-sources-capture-mode-diagram-troubleshooting.png"
+    alt="OBS Studio sources panel showing capture mode options for black screen fix"
+    title="OBS Studio sources — switch from Display Capture to Window Capture to fix black screen"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>Right-click the black Display Capture source, select Properties, and try selecting a different display. Or delete it and add a Window Capture source instead.</figcaption>
+</figure>
 
 ## Step 1: Run OBS as Administrator
 

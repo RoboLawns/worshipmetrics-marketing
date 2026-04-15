@@ -7,13 +7,38 @@ tags: ["ndi", "network", "multicast", "discovery"]
 difficulty: intermediate
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/ndi-not-working-church-network/avkans-ptz-ndi-camera-network-church.jpg"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Your NDI camera is on the network and broadcasting, but OBS and vMix don't see it. You can access the camera's web interface, so it's definitely online — NDI discovery just isn't working. This is almost always a network configuration issue: multicast is blocked, devices are on separate VLANs, or your switch isn't configured for mDNS. Let's restore NDI discovery.
 
+<figure>
+  <img
+    src="/images/products/ndi-not-working-church-network/avkans-ptz-ndi-camera-network-church.jpg"
+    alt="AVKANS PTZ camera NDI network configuration for church AV setup"
+    title="AVKANS PTZ Camera — NDI requires all devices on the same network subnet"
+    width="1380"
+    height="1496"
+  />
+  <figcaption>NDI uses multicast discovery which only works within a single network subnet. VLANs and subnet boundaries will block NDI discovery.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/ndi-not-working-church-network/kiloview-n2-ndi-network-topology-diagram-troubleshooting.jpg"
+    alt="Kiloview N2 NDI encoder network topology diagram showing device connectivity"
+    title="NDI network topology — all NDI devices must be on the same VLAN and subnet"
+    width="1200"
+    height="1200"
+    loading="lazy"
+  />
+  <figcaption>For reliable NDI, put all cameras, encoders, and production computers on the same wired Ethernet switch with no VLAN separation between them.</figcaption>
+</figure>
 
 ## Understanding NDI Discovery
 

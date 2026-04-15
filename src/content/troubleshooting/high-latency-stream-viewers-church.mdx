@@ -7,13 +7,38 @@ tags: ["streaming", "latency", "youtube", "facebook"]
 difficulty: intermediate
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/high-latency-stream-viewers-church/obs-studio-live-streaming-latency-church.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Viewers are 20–30 seconds behind the live action in the sanctuary. The chat is asking questions about something that happened half a minute ago, but the pastor is already talking about something else. High latency is frustrating, but it's partly inherent to how streaming works. Let's understand what you can actually control and what's platform limitation.
 
+<figure>
+  <img
+    src="/images/products/high-latency-stream-viewers-church/obs-studio-live-streaming-latency-church.png"
+    alt="OBS Studio streaming interface showing latency and buffer settings"
+    title="OBS Studio — configure low-latency streaming settings for church broadcasts"
+    width="1487"
+    height="1183"
+  />
+  <figcaption>High viewer latency (30+ seconds) is typically caused by YouTube's default DVR buffer. Switching to 'Ultra-low latency' mode reduces this significantly.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/high-latency-stream-viewers-church/obs-studio-keyframe-interval-settings-diagram-troubleshooting.png"
+    alt="OBS Studio output settings showing keyframe interval configuration for low latency"
+    title="OBS Studio output settings — set keyframe interval to 2 seconds for low-latency streaming"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>In OBS Settings > Output, set the Keyframe Interval to 2 seconds. This is required for YouTube's low-latency mode to work correctly.</figcaption>
+</figure>
 
 ## Understanding Stream Latency
 

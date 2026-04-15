@@ -7,13 +7,38 @@ tags: ["streaming", "obs", "youtube", "twitch"]
 difficulty: beginner
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/obs-not-connecting-twitch-youtube/obs-studio-youtube-twitch-connection-church.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 You've set up OBS with your YouTube or Twitch stream key, hit "Start Streaming," and immediately get "Connection Failed." You're moments away from the service and can't go live. This is usually a stream key problem or OBS/platform mismatch. Let's fix it in 60 seconds.
 
+<figure>
+  <img
+    src="/images/products/obs-not-connecting-twitch-youtube/obs-studio-youtube-twitch-connection-church.png"
+    alt="OBS Studio stream connection settings for YouTube and Twitch"
+    title="OBS Studio — troubleshoot RTMP connection failures to YouTube and Twitch"
+    width="1487"
+    height="1183"
+  />
+  <figcaption>Connection failures in OBS are typically caused by an expired stream key, network firewall blocking RTMP port 1935, or an incorrect server URL.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/obs-not-connecting-twitch-youtube/obs-studio-stream-service-settings-diagram-troubleshooting.png"
+    alt="OBS Studio stream service settings panel showing server and stream key fields"
+    title="OBS Studio stream settings — correct service, server, and stream key configuration"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>In OBS Settings > Stream, select your platform from the Service dropdown. Always use 'Get Stream Key' to generate a fresh key rather than reusing an old one.</figcaption>
+</figure>
 
 ## Step 1: Verify Your Stream Key Is Fresh and Correct
 

@@ -7,13 +7,38 @@ tags: ["audio", "video", "sync", "streaming"]
 difficulty: intermediate
 publishedAt: "2024-04-13"
 productCTA: true
+coverImage: "/images/products/audio-delay-video-stream-fix/obs-studio-audio-mixer-sync-church.png"
 ---
 
 import ProductCTA from '../../components/kb/ProductCTA.astro';
 
 Viewers watching your stream see the pastor's mouth move but the audio is delayed — or audio comes first and then the mouth follows. Lip sync is broken, and it's distracting. This is a buffer or sync offset issue in your encoder, not a camera problem. We can fix it in minutes by adjusting sync settings.
 
+<figure>
+  <img
+    src="/images/products/audio-delay-video-stream-fix/obs-studio-audio-mixer-sync-church.png"
+    alt="OBS Studio audio mixer showing sync offset controls"
+    title="OBS Studio audio mixer — use Advanced Audio Properties to set sync offset"
+    width="960"
+    height="744"
+  />
+  <figcaption>OBS Studio's audio mixer lets you apply sync offset per source to compensate for audio/video delay in your church stream.</figcaption>
+</figure>
+
 <ProductCTA variant="inline" />
+
+
+<figure>
+  <img
+    src="/images/products/audio-delay-video-stream-fix/obs-studio-sources-scenes-layout-diagram-troubleshooting.png"
+    alt="OBS Studio sources panel showing audio and video source layout"
+    title="OBS Studio source layout — audio and video sources with individual delay controls"
+    width="1080"
+    height="840"
+    loading="lazy"
+  />
+  <figcaption>In OBS, right-click any audio source and select 'Advanced Audio Properties' to set a sync offset in milliseconds.</figcaption>
+</figure>
 
 ## Determine the Direction of the Sync Issue
 
