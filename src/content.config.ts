@@ -46,6 +46,7 @@ const cameras = defineCollection({
     updatedAt: z.coerce.date().optional(),
     relatedModels: z.array(z.string()).optional(),
     productCTA: z.boolean().default(true),
+    coverImage: z.string().optional(),
     readingTime: z.number().optional(),
   }),
 });
@@ -88,6 +89,7 @@ const software = defineCollection({
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     productCTA: z.boolean().default(true),
+    coverImage: z.string().optional(),
     readingTime: z.number().optional(),
   }),
 });
@@ -104,6 +106,7 @@ const workflows = defineCollection({
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     productCTA: z.boolean().default(true),
+    coverImage: z.string().optional(),
   }),
 });
 
@@ -119,6 +122,7 @@ const comparisons = defineCollection({
     tags: z.array(z.string()),
     publishedAt: z.coerce.date(),
     productCTA: z.boolean().default(true),
+    coverImage: z.string().optional(),
   }),
 });
 
@@ -134,6 +138,7 @@ const troubleshooting = defineCollection({
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     productCTA: z.boolean().default(true),
+    coverImage: z.string().optional(),
   }),
 });
 
@@ -147,6 +152,7 @@ const budget = defineCollection({
     tags: z.array(z.string()),
     publishedAt: z.coerce.date(),
     productCTA: z.boolean().default(true),
+    coverImage: z.string().optional(),
   }),
 });
 

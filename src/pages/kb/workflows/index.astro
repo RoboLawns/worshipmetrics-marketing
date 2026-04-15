@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ProductCTA from '../../../components/kb/ProductCTA.astro';
 import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
+import { getKbCoverImage } from '../../../data/kbCoverImages';
 
 const allWorkflows = await getCollection('workflows');
 const sorted = allWorkflows.sort((a,b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
@@ -19,12 +20,13 @@ const budgetLabels: Record<string, string> = { 'under-1k': 'Under $1k', '1k-5k':
     </div>
   </section>
   <section class="bg-[#10151d] px-6 py-16">
-    <div class="mx-auto max-w-7xl grid gap-6 lg:grid-cols-2">
-      {sorted.map(w => (
-        <a href={`/kb/workflows/${w.id}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
-          <div class="flex flex-wrap gap-2">
-            <span class="rounded-full bg-blue-900/50 px-3 py-1 text-xs text-blue-200">{sizeLabels[w.data.churchSize]}</span>
-            <span class="rounded-full bg-slate-700/50 px-3 py-1 text-xs text-slate-300">{budgetLabels[w.data.budget]}</span>
+      <div class="mx-auto max-w-7xl grid gap-6 lg:grid-cols-2">
+        {sorted.map(w => (
+          <a href={`/kb/workflows/${w.id}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
+            <img src={getKbCoverImage(w.data.coverImage, 'workflows')} alt={w.data.title} class="mb-4 aspect-[16/9] w-full rounded-xl border border-border object-cover" loading="lazy" />
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded-full bg-blue-900/50 px-3 py-1 text-xs text-blue-200">{sizeLabels[w.data.churchSize]}</span>
+              <span class="rounded-full bg-slate-700/50 px-3 py-1 text-xs text-slate-300">{budgetLabels[w.data.budget]}</span>
           </div>
           <h3 class="mt-4 font-display text-xl text-white group-hover:text-blue-200">{w.data.title}</h3>
           <p class="mt-2 text-sm text-slate-400">{w.data.description}</p>

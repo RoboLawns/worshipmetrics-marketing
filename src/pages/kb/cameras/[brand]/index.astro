@@ -4,6 +4,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../../../../components/kb/BreadcrumbNav.astro';
 import DifficultyBadge from '../../../../components/kb/DifficultyBadge.astro';
 import ProductCTA from '../../../../components/kb/ProductCTA.astro';
+import { getKbCoverImage } from '../../../../data/kbCoverImages';
 
 export const prerender = true;
 
@@ -31,14 +32,15 @@ const { brand, articles } = Astro.props;
     </div>
   </section>
   <section class="bg-[#10151d] px-6 py-16">
-    <div class="mx-auto max-w-7xl grid gap-6 lg:grid-cols-3">
-      {articles.map(article => (
-        <a href={`/kb/cameras/${brandSlug(brand)}/${article.id}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
-          <DifficultyBadge difficulty={article.data.difficulty} />
-          <h3 class="mt-4 font-display text-xl text-white group-hover:text-blue-200">{article.data.title}</h3>
-          <p class="mt-2 text-sm text-slate-400">{article.data.description}</p>
-        </a>
-      ))}
+      <div class="mx-auto max-w-7xl grid gap-6 lg:grid-cols-3">
+        {articles.map(article => (
+          <a href={`/kb/cameras/${brandSlug(brand)}/${article.id}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
+            <img src={getKbCoverImage(article.data.coverImage, 'cameras')} alt={article.data.title} class="mb-4 aspect-[16/9] w-full rounded-xl border border-border object-cover" loading="lazy" />
+            <DifficultyBadge difficulty={article.data.difficulty} />
+            <h3 class="mt-4 font-display text-xl text-white group-hover:text-blue-200">{article.data.title}</h3>
+            <p class="mt-2 text-sm text-slate-400">{article.data.description}</p>
+          </a>
+        ))}
     </div>
   </section>
   <section class="bg-bg px-6 py-12">
