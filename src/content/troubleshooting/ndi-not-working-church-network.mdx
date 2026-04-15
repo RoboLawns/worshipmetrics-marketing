@@ -1,6 +1,7 @@
 ---
 title: "NDI Not Working on Church Network: Complete Fix Guide"
 description: "Fix NDI discovery issues across your church network. Covers multicast, managed switches, VLAN separation, and NDI Bridge setup."
+coverImage: "/images/products/ndi-not-working-church-network/cover.svg"
 symptom: "NDI sources are not discoverable across the church network"
 affectedDevices: ["AVKANS PTZ", "Kiloview N2", "OBS Studio", "vMix", "ProPresenter"]
 tags: ["ndi", "network", "multicast", "discovery"]
@@ -20,6 +21,12 @@ Your NDI camera is on the network and broadcasting, but OBS and vMix don't see i
 Here's why NDI sometimes fails: **NDI uses multicast to announce and discover devices on the network.** Many consumer and business switches block multicast for performance reasons. If multicast is blocked, NDI devices can't find each other.
 
 This is different from DHCP or regular IP routing — multicast is a special type of network traffic, and many network administrators disable it.
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/ndi-not-working-church-network/inline.svg" alt="NDI Not Working on Church Network: Complete Fix Guide — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Step 1: Verify the Camera Is Actually Broadcasting NDI
 

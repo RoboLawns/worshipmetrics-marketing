@@ -1,6 +1,7 @@
 ---
 title: "OBS Bitrate and Resolution Settings for Church Streaming"
 description: "Understand the relationship between upload speed, bitrate, and resolution. Learn church-specific settings for 720p vs 1080p and platform recommendations."
+coverImage: "/images/products/obs-bitrate-settings-church/cover.svg"
 app: obs
 articleType: setup-guide
 tags: [settings, bitrate, resolution, quality, church-av]
@@ -20,6 +21,12 @@ Resolution is the pixel dimensions of your video: 1280×720 (720p) or 1920×1080
 Think of bitrate as the highway bandwidth and resolution as how many lanes you're using. 1080p at 2,500 Kbps is trying to send a lot of detail through a narrow pipe. The result is visible compression artifacts—video looks soft or slightly pixelated. 720p at 2,500 Kbps has more room, so each pixel gets more bits, resulting in sharper video.
 
 The key constraint is your upload internet speed. If your church has 5 Mbps upload, you can't send a 4 Mbps stream—you'd saturate your connection and packets would drop. A safe rule: your bitrate should be 60–80% of your upload speed. For 5 Mbps upload, use 2,500–3,500 Kbps bitrate. For 10 Mbps upload, use 5,000–7,000 Kbps.
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/obs-bitrate-settings-church/inline.svg" alt="OBS Bitrate and Resolution Settings for Church Streaming — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Church-Specific Recommendation: 720p at 2,500 Kbps
 

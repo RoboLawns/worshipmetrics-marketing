@@ -1,6 +1,7 @@
 ---
 title: Using ATEM Mini with OBS Studio via NDI and USB
 description: Configure the ATEM Mini as a video source in OBS using both USB video capture and NDI networking for flexible streaming setups.
+coverImage: "/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-family-switchers-hero.jpg"
 deviceCategory: switcher
 brand: Blackmagic Design
 modelId: atem-mini
@@ -22,6 +23,18 @@ This guide covers both methods, focusing on the practical side of getting your A
 
 ## USB Video Capture: The Simple Approach
 
+<figure>
+  <img
+    src="/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-rear-inputs.jpg"
+    alt="Blackmagic Design ATEM Mini rear panel showing HDMI inputs and ports"
+    title="Blackmagic Design ATEM Mini"
+    width="999"
+    height="171"
+    loading="lazy"
+  />
+  <figcaption>Rear view of the Blackmagic Design ATEM Mini showing the full complement of HDMI inputs.</figcaption>
+</figure>
+
 The simplest way to connect the ATEM Mini to OBS is via the USB video feed. When you connect the ATEM Mini to your streaming PC via USB, it appears as a standard USB video device on your computer. OBS recognizes it just like it would a USB webcam.
 
 In OBS, create a new source and select "Video Capture Device." A dropdown menu will appear—choose the ATEM Mini from the list. OBS will immediately start displaying the video feed from your switcher. That's it. You don't need to install drivers or configure network settings. The USB connection carries both the video and the audio embedded in the ATEM Mini's output, so your stream has synchronized picture and sound right out of the box.
@@ -31,6 +44,18 @@ This approach has one limitation: USB can only handle so much bandwidth. If you'
 The upside of USB is that it's bulletproof. Your streaming PC can be anywhere in the church—in the back office, in the AV closet, even in a separate streaming room. The ATEM Mini connects via USB, and as long as you're using a good-quality USB cable (not a cheap charging cable), you'll have a rock-solid connection.
 
 ## Setting Up Scene Switching in OBS
+
+<figure>
+  <img
+    src="/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-studio-hero.jpg"
+    alt="Blackmagic Design ATEM Mini in a live studio production setup"
+    title="Blackmagic Design ATEM Mini"
+    width="1440"
+    height="736"
+    loading="lazy"
+  />
+  <figcaption>The Blackmagic Design ATEM Mini shown in a real studio production environment.</figcaption>
+</figure>
 
 Once your ATEM Mini is showing up as a video source in OBS, the typical next step is to add graphics, lower-thirds (the text overlays you see with names and titles), and your church logo to your scenes. Create a scene for your opening/announcements, another for singing, another for the sermon, and so on. In each scene, add the ATEM Mini video source as your base layer, then add text elements, images, and graphics on top.
 

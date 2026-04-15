@@ -1,6 +1,7 @@
 ---
 title: "Streaming to YouTube But Facebook Keeps Failing (or Vice Versa)"
 description: "Fix when one streaming platform connects but another fails. Covers RTMP servers, bandwidth splitting, and Restream alternatives."
+coverImage: "/images/products/multistream-one-platform-failing/cover.svg"
 symptom: "One streaming platform connects but the other fails consistently"
 affectedDevices: ["OBS Studio", "Restream", "Magewell Ultra Encode"]
 tags: ["streaming", "multistream", "platforms", "rtmp"]
@@ -34,6 +35,12 @@ If one platform is failing, the stream key might be expired or wrong:
 5. Confirm the key is very long (30+ characters)
 
 If either key looks old or short, regenerate a fresh one from the platform.
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/multistream-one-platform-failing/inline.svg" alt="Streaming to YouTube But Facebook Keeps Failing (or Vice Versa) — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Step 2: Check Your Upload Bandwidth
 

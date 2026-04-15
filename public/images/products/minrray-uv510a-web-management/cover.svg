@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"
+     role="img" aria-labelledby="t d">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="70%" stop-color="#13181F"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="accentBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#202a3d"/>
+      <stop offset="100%" stop-color="#141a27"/>
+    </linearGradient>
+    <marker id="arrow_7aa0ff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7aa0ff"/></marker>
+  </defs>
+  <title id="t">Minrray UV510A Web Interface</title>
+  <desc id="d">Five configuration sections inside the browser UI</desc>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="#1E2733" stroke-width="1" opacity="0.55">
+    <line x1="0" y1="225" x2="1600" y2="225"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="0" y1="675" x2="1600" y2="675"/>
+    <line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+  <rect x="0" y="0" width="1600" height="8" fill="url(#accentBar)"/>
+
+  <text x="60" y="70" fill="#3B82F6" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="20"
+        font-weight="700" letter-spacing="4">WORSHIPMETRICS</text>
+  <text x="60" y="135" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="52"
+        font-weight="700">Minrray UV510A Web Interface</text>
+  <text x="60" y="175" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22"
+        font-weight="400">Five configuration sections inside the browser UI</text>
+<rect x="260" y="280" width="1080" height="80" rx="14" ry="14" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2"/>
+<text x="290" y="330.0" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600">System</text>
+<text x="1310" y="330.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="19" text-anchor="end">firmware, time, reboot</text>
+<rect x="260" y="374" width="1080" height="80" rx="14" ry="14" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2"/>
+<text x="290" y="424.0" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600">Network</text>
+<text x="1310" y="424.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="19" text-anchor="end">DHCP / static IP / DNS</text>
+<rect x="260" y="468" width="1080" height="80" rx="14" ry="14" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2"/>
+<text x="290" y="518.0" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600">Video Output</text>
+<text x="1310" y="518.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="19" text-anchor="end">1080p59.94, HDMI / RTSP</text>
+<rect x="260" y="562" width="1080" height="80" rx="14" ry="14" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2"/>
+<text x="290" y="612.0" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600">PTZ Control</text>
+<text x="1310" y="612.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="19" text-anchor="end">pan, tilt, zoom, speed</text>
+<rect x="260" y="656" width="1080" height="80" rx="14" ry="14" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2"/>
+<text x="290" y="706.0" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600">Presets</text>
+<text x="1310" y="706.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="19" text-anchor="end">save / recall up to 255</text>
+
+
+  <text x="60" y="860" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif"
+        font-size="18">UV510A browser management layout</text>
+  <text x="1540" y="860" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif"
+        font-size="18" text-anchor="end">worshipmetrics.com</text>
+</svg>

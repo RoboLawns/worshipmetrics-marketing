@@ -1,6 +1,7 @@
 ---
 title: "Echo and Feedback on the Church Live Stream: Fix"
 description: "Eliminate echo and feedback loops from your church stream. Covers room mic isolation, OBS monitoring loops, and feedback suppressors."
+coverImage: "/images/products/echo-feedback-church-live-stream/cover.svg"
 symptom: "Stream audio has echo, reverb, or feedback loop"
 affectedDevices: ["Behringer X32", "Behringer XR18", "OBS Studio", "Yamaha TF1"]
 tags: ["audio", "feedback", "echo", "streaming"]
@@ -25,6 +26,12 @@ The most likely culprit is a **room microphone or broadcast speaker picking up t
 4. **Mute the stream's audio during service**: In OBS or your mixer, ensure the live stream audio *isn't* feeding into the room's speakers (only use it for online viewers, not for the in-person congregation)
 
 If the pastor is wearing a wireless mic and you're playing back the stream audio on a speaker in the sanctuary, the room mic will pick it up and cause feedback. **Solution:** Monitor the stream on headphones in the booth only, not on a room speaker.
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/echo-feedback-church-live-stream/inline.svg" alt="Echo and Feedback on the Church Live Stream: Fix — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Check OBS Monitoring Settings
 

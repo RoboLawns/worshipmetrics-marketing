@@ -1,6 +1,7 @@
 ---
 title: ATEM Mini + ProPresenter — Setting Up the Upstream Keyer
 description: Learn how to key graphics from ProPresenter over your camera feed using the ATEM Mini's upstream keyer with alpha keying and luma key techniques.
+coverImage: "/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-family-switchers-hero.jpg"
 deviceCategory: switcher
 brand: Blackmagic Design
 modelId: atem-mini
@@ -22,6 +23,18 @@ This guide focuses on getting your ProPresenter running on a dedicated graphics 
 
 ## The ProPresenter Setup
 
+<figure>
+  <img
+    src="/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-rear-inputs.jpg"
+    alt="Blackmagic Design ATEM Mini rear panel showing HDMI inputs and ports"
+    title="Blackmagic Design ATEM Mini"
+    width="999"
+    height="171"
+    loading="lazy"
+  />
+  <figcaption>Rear view of the Blackmagic Design ATEM Mini showing the full complement of HDMI inputs.</figcaption>
+</figure>
+
 ProPresenter runs on a separate PC (Windows or Mac) and outputs to HDMI. This HDMI output goes into one of the ATEM Mini's six HDMI inputs. Let's say it's input 5. ProPresenter doesn't need to be visible on your graphics operator's monitor—that monitor can show your master program output from the ATEM Mini, so the graphics operator sees exactly what the congregation sees and can position graphics accordingly.
 
 Set ProPresenter to output a resolution that matches your ATEM Mini's program output. If you're streaming at 1080p, set ProPresenter to 1080p as well. The refresh rate should match too—typically 30 or 60 frames per second. Consistency here prevents scaling issues and ensures your graphics look crisp.
@@ -29,6 +42,18 @@ Set ProPresenter to output a resolution that matches your ATEM Mini's program ou
 In ProPresenter, you'll typically use themes where your backgrounds are transparent or a specific color (often black or green). The ATEM Mini will key out that background color or transparency and composite your graphics over the camera feed. This is the essence of keying: replacing a specific color or transparent area with the camera's video underneath.
 
 ## Understanding Alpha Keying vs. Luma Keying
+
+<figure>
+  <img
+    src="/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-studio-hero.jpg"
+    alt="Blackmagic Design ATEM Mini in a live studio production setup"
+    title="Blackmagic Design ATEM Mini"
+    width="1440"
+    height="736"
+    loading="lazy"
+  />
+  <figcaption>The Blackmagic Design ATEM Mini shown in a real studio production environment.</figcaption>
+</figure>
 
 Alpha keying is the modern standard. When ProPresenter outputs video with transparent areas (indicated by an alpha channel), the ATEM Mini recognizes that transparency and composites only the visible parts of the graphics over your camera feed. This works beautifully for text, logos, and graphics that have clean edges.
 

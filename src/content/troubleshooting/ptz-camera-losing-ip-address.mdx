@@ -1,6 +1,7 @@
 ---
 title: "PTZ Camera Keeps Losing Its IP Address"
 description: "Fix a PTZ camera that changes IP addresses or becomes unreachable after restart. Set a static IP and prevent DHCP conflicts."
+coverImage: "/images/products/ptz-camera-losing-ip-address/cover.svg"
 symptom: "PTZ camera IP address changes or becomes unreachable after restart"
 affectedDevices: ["AVKANS PTZ", "Tenveo", "TONGVEO", "SMTAV", "FoMaKo"]
 tags: ["ptz", "network", "ip-address", "dhcp"]
@@ -24,6 +25,12 @@ Most PTZ cameras come configured for **DHCP**, which means they ask the router f
 - **Your control software:** Still looking for 100, can't find the camera
 
 **Solution:** Set the camera to use a **static IP** — one that doesn't change.
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/ptz-camera-losing-ip-address/inline.svg" alt="PTZ Camera Keeps Losing Its IP Address — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Step 1: Access the Camera's Web Interface
 

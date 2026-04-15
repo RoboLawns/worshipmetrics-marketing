@@ -1,6 +1,7 @@
 ---
 title: ATEM Mini Stream Dropping or Freezing — Fix for Churches
 description: Diagnose and resolve ATEM Mini streaming issues caused by USB bandwidth, encoder settings, network problems, and bitrate mismatches.
+coverImage: "/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-family-switchers-hero.jpg"
 deviceCategory: switcher
 brand: Blackmagic Design
 modelId: atem-mini
@@ -20,6 +21,18 @@ You're halfway through your Sunday service when the stream suddenly freezes. You
 
 ## Is It Your USB Connection or Your Network?
 
+<figure>
+  <img
+    src="/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-rear-inputs.jpg"
+    alt="Blackmagic Design ATEM Mini rear panel showing HDMI inputs and ports"
+    title="Blackmagic Design ATEM Mini"
+    width="999"
+    height="171"
+    loading="lazy"
+  />
+  <figcaption>Rear view of the Blackmagic Design ATEM Mini showing the full complement of HDMI inputs.</figcaption>
+</figure>
+
 The first step is pinpointing whether the problem is on the streaming PC side (USB, encoder settings) or on the internet side (network upload speed, ISP issues). To tell the difference, check what's happening at the moment the stream freezes.
 
 Open OBS and look at the Bitrate indicator while streaming. If your bitrate suddenly drops to zero while your stream is live, that's a network problem—your upload speed to YouTube or Facebook has tanked. But if your bitrate stays steady and the OBS interface remains responsive (you can still switch sources and adjust settings), the problem is likely USB bandwidth or CPU overload.
@@ -29,6 +42,18 @@ Look at your ATEM Mini's USB connection. Is the cable tightly plugged in on both
 Use a USB port on your motherboard directly, not a front-panel USB connection, if your PC has both. Motherboard USB ports usually have more stable power delivery. If you have multiple motherboard ports, try a different one to rule out a problem with a single port.
 
 ## USB Bandwidth and Video Resolution
+
+<figure>
+  <img
+    src="/images/products/_shared/blackmagic-atem-mini/blackmagic-atem-mini-studio-hero.jpg"
+    alt="Blackmagic Design ATEM Mini in a live studio production setup"
+    title="Blackmagic Design ATEM Mini"
+    width="1440"
+    height="736"
+    loading="lazy"
+  />
+  <figcaption>The Blackmagic Design ATEM Mini shown in a real studio production environment.</figcaption>
+</figure>
 
 The ATEM Mini outputs video at whatever resolution your program bus is set to. If you're streaming at 1080p60, you're sending 1080p60 over USB to your PC. USB 2.0 can theoretically handle this, but if your system is doing other heavy USB work (external hard drives, wireless receivers, etc.), you might be close to the bandwidth limit.
 

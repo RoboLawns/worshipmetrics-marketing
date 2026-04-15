@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"
+     role="img" aria-labelledby="t d">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="70%" stop-color="#13181F"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="accentBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#202a3d"/>
+      <stop offset="100%" stop-color="#141a27"/>
+    </linearGradient>
+    <marker id="arrow_7aa0ff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7aa0ff"/></marker>
+  </defs>
+  <title id="t">X-Air App Setup</title>
+  <desc id="d">iPad / Android control</desc>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="#1E2733" stroke-width="1" opacity="0.55">
+    <line x1="0" y1="225" x2="1600" y2="225"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="0" y1="675" x2="1600" y2="675"/>
+    <line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+  <rect x="0" y="0" width="1600" height="8" fill="url(#accentBar)"/>
+
+  <text x="60" y="70" fill="#3B82F6" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="20"
+        font-weight="700" letter-spacing="4">WORSHIPMETRICS</text>
+  <text x="60" y="135" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="52"
+        font-weight="700">X-Air App Setup</text>
+  <text x="60" y="175" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22"
+        font-weight="400">iPad / Android control</text>
+<rect x="60.0" y="460" width="240" height="150" rx="18" ry="18" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+<circle cx="98.0" cy="498" r="26" fill="#3B82F6"/><text x="98.0" y="506" fill="#0B0E14" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="800" text-anchor="middle">1</text>
+<text x="80.0" y="555" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22" font-weight="600">Install</text>
+<text x="80.0" y="585" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="16">X-Air app</text>
+<line x1="306.0" y1="535.0" x2="467.33333333333337" y2="535.0" stroke="#7aa0ff" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="473.33333333333337" y="460" width="240" height="150" rx="18" ry="18" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+<circle cx="511.33333333333337" cy="498" r="26" fill="#3B82F6"/><text x="511.33333333333337" y="506" fill="#0B0E14" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="800" text-anchor="middle">2</text>
+<text x="493.33333333333337" y="555" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22" font-weight="600">Connect</text>
+<text x="493.33333333333337" y="585" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="16">same WiFi</text>
+<line x1="719.3333333333334" y1="535.0" x2="880.6666666666667" y2="535.0" stroke="#7aa0ff" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="886.6666666666667" y="460" width="240" height="150" rx="18" ry="18" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+<circle cx="924.6666666666667" cy="498" r="26" fill="#3B82F6"/><text x="924.6666666666667" y="506" fill="#0B0E14" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="800" text-anchor="middle">3</text>
+<text x="906.6666666666667" y="555" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22" font-weight="600">Select</text>
+<text x="906.6666666666667" y="585" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="16">XR18 from list</text>
+<line x1="1132.6666666666667" y1="535.0" x2="1294.0" y2="535.0" stroke="#7aa0ff" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1300.0" y="460" width="240" height="150" rx="18" ry="18" fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+<circle cx="1338.0" cy="498" r="26" fill="#3B82F6"/><text x="1338.0" y="506" fill="#0B0E14" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="800" text-anchor="middle">4</text>
+<text x="1320.0" y="555" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22" font-weight="600">Adjust</text>
+<text x="1320.0" y="585" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="16">faders + FX</text>
+
+
+</svg>

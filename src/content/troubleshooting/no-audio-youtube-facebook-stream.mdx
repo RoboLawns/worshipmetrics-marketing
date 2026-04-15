@@ -1,6 +1,7 @@
 ---
 title: "No Audio on YouTube or Facebook Live Church Stream"
 description: "Fix missing audio on live streams. Covers audio source selection, track configuration, copyright muting, and mixer routing."
+coverImage: "/images/products/no-audio-youtube-facebook-stream/cover.svg"
 symptom: "Stream is live but viewers hear no audio"
 affectedDevices: ["OBS Studio", "ATEM Mini Pro", "Magewell Ultra Encode"]
 tags: ["audio", "streaming", "youtube", "facebook"]
@@ -24,6 +25,12 @@ First, check that OBS is even *capturing* audio:
 3. Watch the audio meters in OBS — do they show levels moving up and down?
 4. If meters are **completely flat** (no movement), OBS isn't capturing audio at all — go to step 2
 5. If meters are **moving**, OBS is capturing audio — skip to step 3
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/no-audio-youtube-facebook-stream/inline.svg" alt="No Audio on YouTube or Facebook Live Church Stream — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Step 2: Add or Select the Correct Audio Source
 

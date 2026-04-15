@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"
+     role="img" aria-labelledby="t d">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="70%" stop-color="#13181F"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="accentBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#202a3d"/>
+      <stop offset="100%" stop-color="#141a27"/>
+    </linearGradient>
+    <marker id="arrow_34d399" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#34d399"/></marker><marker id="arrow_5b7cff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b7cff"/></marker><marker id="arrow_7aa0ff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7aa0ff"/></marker><marker id="arrow_f472b6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f472b6"/></marker>
+  </defs>
+  <title id="t">Typical Church Deployment</title>
+  <desc id="d">Where this device sits in a production environment</desc>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="#1E2733" stroke-width="1" opacity="0.55">
+    <line x1="0" y1="225" x2="1600" y2="225"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="0" y1="675" x2="1600" y2="675"/>
+    <line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+  <rect x="0" y="0" width="1600" height="8" fill="url(#accentBar)"/>
+
+  <text x="60" y="70" fill="#3B82F6" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="20"
+        font-weight="700" letter-spacing="4">WORSHIPMETRICS</text>
+  <text x="60" y="135" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="52"
+        font-weight="700">Typical Church Deployment</text>
+  <text x="60" y="175" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22"
+        font-weight="400">Where this device sits in a production environment</text>
+<rect x="80" y="260" width="620" height="560" rx="18" ry="18" fill="#141a27" fill-opacity="0.65" stroke="#1E2733" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text x="98" y="290" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="16" font-weight="700" letter-spacing="2">SANCTUARY</text>
+<rect x="880" y="260" width="640" height="560" rx="18" ry="18" fill="#141a27" fill-opacity="0.65" stroke="#1E2733" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text x="898" y="290" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="16" font-weight="700" letter-spacing="2">PRODUCTION BOOTH</text>
+<line x1="380.0" y1="480.7" x2="460.0" y2="509.3" stroke="#34d399" stroke-width="4" marker-end="url(#arrow_34d399)" opacity="0.95"/>
+<line x1="380.0" y1="609.3" x2="460.0" y2="580.7" stroke="#34d399" stroke-width="4" marker-end="url(#arrow_34d399)" opacity="0.95"/>
+<line x1="660.0" y1="525.8" x2="980.0" y2="464.2" stroke="#5b7cff" stroke-width="4" marker-end="url(#arrow_5b7cff)" opacity="0.95"/>
+<line x1="1080.0" y1="490.0" x2="1080.0" y2="600.0" stroke="#f472b6" stroke-width="4" marker-end="url(#arrow_f472b6)" opacity="0.95"/>
+
+  <g>
+    <rect x="180" y="400" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="280.0" y="449.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">Source 1</text>
+    <text x="280.0" y="477.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">camera / mic</text>
+  </g>
+
+  <g>
+    <rect x="180" y="600" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="280.0" y="649.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">Source 2</text>
+    <text x="280.0" y="677.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">camera / mic</text>
+  </g>
+
+  <g>
+    <rect x="460" y="500" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="560.0" y="549.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">This Device</text>
+    <text x="560.0" y="577.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">under review</text>
+  </g>
+
+  <g>
+    <rect x="980" y="400" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="1080.0" y="449.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">Stream PC</text>
+    <text x="1080.0" y="477.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">OBS / vMix</text>
+  </g>
+
+  <g>
+    <rect x="980" y="600" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="1080.0" y="649.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">CDN</text>
+    <text x="1080.0" y="677.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">RTMP out</text>
+  </g>
+<g>
+<line x1="60" y1="805" x2="104" y2="805" stroke="#34d399" stroke-width="4" stroke-linecap="round"/>
+<text x="114" y="811" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="600">HDMI</text>
+<line x1="190" y1="805" x2="234" y2="805" stroke="#5b7cff" stroke-width="4" stroke-linecap="round"/>
+<text x="244" y="811" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="600">NDI</text>
+<line x1="309" y1="805" x2="353" y2="805" stroke="#f472b6" stroke-width="4" stroke-linecap="round"/>
+<text x="363" y="811" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="600">RTMP</text>
+</g>
+
+  <text x="60" y="860" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif"
+        font-size="18">Device in a typical church topology</text>
+  <text x="1540" y="860" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif"
+        font-size="18" text-anchor="end">worshipmetrics.com</text>
+</svg>

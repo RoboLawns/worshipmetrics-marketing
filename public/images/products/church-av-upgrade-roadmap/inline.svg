@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"
+     role="img" aria-labelledby="t d">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="70%" stop-color="#13181F"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="accentBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#202a3d"/>
+      <stop offset="100%" stop-color="#141a27"/>
+    </linearGradient>
+    <marker id="arrow_34d399" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#34d399"/></marker><marker id="arrow_5b7cff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b7cff"/></marker><marker id="arrow_7aa0ff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7aa0ff"/></marker>
+  </defs>
+  <title id="t">Typical Upgrade Path</title>
+  <desc id="d">From phone camera to NDI production over 3 phases</desc>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="#1E2733" stroke-width="1" opacity="0.55">
+    <line x1="0" y1="225" x2="1600" y2="225"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="0" y1="675" x2="1600" y2="675"/>
+    <line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+  <rect x="0" y="0" width="1600" height="8" fill="url(#accentBar)"/>
+
+  <text x="60" y="70" fill="#3B82F6" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="20"
+        font-weight="700" letter-spacing="4">WORSHIPMETRICS</text>
+  <text x="60" y="135" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="52"
+        font-weight="700">Typical Upgrade Path</text>
+  <text x="60" y="175" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22"
+        font-weight="400">From phone camera to NDI production over 3 phases</text>
+<line x1="328.0" y1="510.0" x2="458.66666666666663" y2="510.0" stroke="#34d399" stroke-width="4" marker-end="url(#arrow_34d399)"/>
+<line x1="734.6666666666666" y1="510.0" x2="865.3333333333333" y2="510.0" stroke="#34d399" stroke-width="4" marker-end="url(#arrow_34d399)"/>
+<line x1="1141.3333333333333" y1="510.0" x2="1272.0" y2="510.0" stroke="#5b7cff" stroke-width="4" marker-end="url(#arrow_5b7cff)"/>
+
+  <g>
+    <rect x="60.0" y="440" width="260" height="140" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="190.0" y="514.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">Phone + OBS</text>
+    <text x="190.0" y="542.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">phase 1</text>
+  </g>
+
+  <g>
+    <rect x="466.66666666666663" y="440" width="260" height="140" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="596.6666666666666" y="514.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">+ PTZ</text>
+    <text x="596.6666666666666" y="542.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">phase 2</text>
+  </g>
+
+  <g>
+    <rect x="873.3333333333333" y="440" width="260" height="140" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="1003.3333333333333" y="514.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">+ Switcher</text>
+    <text x="1003.3333333333333" y="542.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">phase 3</text>
+  </g>
+
+  <g>
+    <rect x="1280.0" y="440" width="260" height="140" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="1410.0" y="514.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">NDI network</text>
+    <text x="1410.0" y="542.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">phase 4</text>
+  </g>
+<g>
+<line x1="60" y1="805" x2="104" y2="805" stroke="#34d399" stroke-width="4" stroke-linecap="round"/>
+<text x="114" y="811" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="600">HDMI</text>
+<line x1="190" y1="805" x2="234" y2="805" stroke="#5b7cff" stroke-width="4" stroke-linecap="round"/>
+<text x="244" y="811" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="600">NDI</text>
+</g>
+
+  <text x="60" y="860" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif"
+        font-size="18">Typical signal chain at this budget tier</text>
+  <text x="1540" y="860" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif"
+        font-size="18" text-anchor="end">worshipmetrics.com</text>
+</svg>

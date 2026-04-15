@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"
+     role="img" aria-labelledby="t d">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="70%" stop-color="#13181F"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="accentBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#202a3d"/>
+      <stop offset="100%" stop-color="#141a27"/>
+    </linearGradient>
+    <marker id="arrow_5b7cff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b7cff"/></marker><marker id="arrow_7aa0ff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7aa0ff"/></marker>
+  </defs>
+  <title id="t">Tenveo NDI Network Configuration</title>
+  <desc id="d">Static IP + multicast on a dedicated camera subnet</desc>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="#1E2733" stroke-width="1" opacity="0.55">
+    <line x1="0" y1="225" x2="1600" y2="225"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="0" y1="675" x2="1600" y2="675"/>
+    <line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+  <rect x="0" y="0" width="1600" height="8" fill="url(#accentBar)"/>
+
+  <text x="60" y="70" fill="#3B82F6" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="20"
+        font-weight="700" letter-spacing="4">WORSHIPMETRICS</text>
+  <text x="60" y="135" fill="#f5f7fb" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="52"
+        font-weight="700">Tenveo NDI Network Configuration</text>
+  <text x="60" y="175" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="22"
+        font-weight="400">Static IP + multicast on a dedicated camera subnet</text>
+<rect x="80" y="260" width="620" height="560" rx="18" ry="18" fill="#141a27" fill-opacity="0.65" stroke="#1E2733" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text x="98" y="290" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="16" font-weight="700" letter-spacing="2">CAMERA SUBNET</text>
+<rect x="880" y="260" width="640" height="560" rx="18" ry="18" fill="#141a27" fill-opacity="0.65" stroke="#1E2733" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text x="898" y="290" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="16" font-weight="700" letter-spacing="2">PRODUCTION SUBNET</text>
+<line x1="330.0" y1="448.3" x2="430.0" y2="491.7" stroke="#5b7cff" stroke-width="4" marker-end="url(#arrow_5b7cff)" opacity="0.95"/>
+<line x1="330.0" y1="535.0" x2="430.0" y2="535.0" stroke="#5b7cff" stroke-width="4" marker-end="url(#arrow_5b7cff)" opacity="0.95"/>
+<line x1="330.0" y1="621.7" x2="430.0" y2="578.3" stroke="#5b7cff" stroke-width="4" marker-end="url(#arrow_5b7cff)" opacity="0.95"/>
+<line x1="630.0" y1="509.5" x2="940.0" y2="430.5" stroke="#7aa0ff" stroke-width="4" marker-end="url(#arrow_7aa0ff)" opacity="0.95"/>
+<line x1="1040.0" y1="450.0" x2="1040.0" y2="490.0" stroke="#5b7cff" stroke-width="4" marker-end="url(#arrow_5b7cff)" opacity="0.95"/>
+
+  <g>
+    <rect x="130" y="360" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="230.0" y="409.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">Tenveo NDI 1</text>
+    <text x="230.0" y="437.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">192.168.10.11</text>
+  </g>
+
+  <g>
+    <rect x="130" y="490" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="230.0" y="539.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">Tenveo NDI 2</text>
+    <text x="230.0" y="567.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">192.168.10.12</text>
+  </g>
+
+  <g>
+    <rect x="130" y="620" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="230.0" y="669.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">Tenveo NDI 3</text>
+    <text x="230.0" y="697.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">192.168.10.13</text>
+  </g>
+
+  <g>
+    <rect x="430" y="490" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="530.0" y="539.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">L2 Switch</text>
+    <text x="530.0" y="567.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">IGMP snooping</text>
+  </g>
+
+  <g>
+    <rect x="940" y="360" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="1040.0" y="409.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">Router</text>
+    <text x="1040.0" y="437.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">multicast ok</text>
+  </g>
+
+  <g>
+    <rect x="940" y="490" width="200" height="90" rx="14" ry="14"
+          fill="url(#nodeGrad)" stroke="#4361ee" stroke-width="2.5"/>
+    <text x="1040.0" y="539.0" fill="#f5f7fb"
+          font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif" font-size="26" font-weight="600"
+          text-anchor="middle">OBS / vMix</text>
+    <text x="1040.0" y="567.0" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="18" text-anchor="middle">192.168.20.5</text>
+  </g>
+<g>
+<line x1="60" y1="805" x2="104" y2="805" stroke="#5b7cff" stroke-width="4" stroke-linecap="round"/>
+<text x="114" y="811" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="600">NDI</text>
+<line x1="179" y1="805" x2="223" y2="805" stroke="#7aa0ff" stroke-width="4" stroke-linecap="round"/>
+<text x="233" y="811" fill="#94a3c4" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="600">Ethernet</text>
+</g>
+
+  <text x="60" y="860" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif"
+        font-size="18">Static IPs, one subnet per VLAN, IGMP on</text>
+  <text x="1540" y="860" fill="#94a3c4" font-family="'IBM Plex Sans', 'Outfit', system-ui, sans-serif"
+        font-size="18" text-anchor="end">worshipmetrics.com</text>
+</svg>

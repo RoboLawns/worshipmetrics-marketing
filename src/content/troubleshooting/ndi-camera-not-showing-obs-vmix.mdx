@@ -1,6 +1,7 @@
 ---
 title: "NDI Camera Not Showing Up in OBS or vMix: Fix"
 description: "Troubleshoot why your NDI PTZ camera isn't visible in OBS or vMix. Covers plugin installation, firewall, and network configuration."
+coverImage: "/images/products/ndi-camera-not-showing-obs-vmix/cover.svg"
 symptom: "NDI source from PTZ camera is not visible in OBS or vMix"
 affectedDevices: ["AVKANS PTZ", "SMTAV BX30N", "Kiloview N2", "ProPresenter NDI"]
 tags: ["ndi", "obs", "vmix", "network"]
@@ -24,6 +25,12 @@ First, confirm the camera is actually broadcasting NDI:
 3. Find the **NDI** option and verify it's **enabled** (not disabled or set to output-only)
 4. If NDI is off, enable it and reboot the camera
 5. Check the camera documentation for the exact NDI stream name — some cameras require you to name the output (e.g., "Church Pulpit Camera")
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/ndi-camera-not-showing-obs-vmix/inline.svg" alt="NDI Camera Not Showing Up in OBS or vMix: Fix — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Step 2: Install or Verify NDI Plugin
 

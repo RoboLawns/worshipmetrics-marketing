@@ -1,6 +1,7 @@
 ---
 title: "Camera Video Lagging Behind Audio on the Live Stream"
 description: "Fix A/V sync issues where video is out of sync with audio. Covers OBS sync offset, ATEM delay, and buffer settings."
+coverImage: "/images/products/camera-lagging-behind-audio-stream/cover.svg"
 symptom: "Video is out of sync with audio — either leading or trailing"
 affectedDevices: ["ATEM Mini", "OBS Studio", "vMix"]
 tags: ["audio", "video", "sync", "streaming"]
@@ -25,6 +26,12 @@ First, determine if the video is *ahead* of audio (audio lags) or *behind* audio
 4. Jot down which direction and roughly how much delay (0.5 second, 1 second, 2 seconds)
 
 The fix depends on the direction.
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/camera-lagging-behind-audio-stream/inline.svg" alt="Camera Video Lagging Behind Audio on the Live Stream — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Fix in OBS: Audio Sync Offset
 

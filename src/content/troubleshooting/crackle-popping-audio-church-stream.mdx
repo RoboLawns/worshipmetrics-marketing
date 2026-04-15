@@ -1,6 +1,7 @@
 ---
 title: "Crackling or Popping Audio on Church Live Stream"
 description: "Fix digital artifacts, crackling, and popping in your stream audio. Covers sample rate, buffer, and ground loop issues."
+coverImage: "/images/products/crackle-popping-audio-church-stream/cover.svg"
 symptom: "Stream audio has crackling, popping, or digital artifacts"
 affectedDevices: ["Behringer X32", "OBS Studio", "Magewell Ultra Encode"]
 tags: ["audio", "quality", "crackling", "streaming"]
@@ -35,6 +36,12 @@ The most common cause of crackling is different devices using different sample r
 5. Restart OBS after changing settings
 
 If a device is using 48kHz and another is using 44.1kHz, the audio engine has to resample on the fly, causing dropouts and crackling.
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/crackle-popping-audio-church-stream/inline.svg" alt="Crackling or Popping Audio on Church Live Stream — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Adjust USB Buffer Size
 

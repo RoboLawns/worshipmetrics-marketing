@@ -1,6 +1,7 @@
 ---
 title: "OBS Dropping Frames: Diagnose and Fix for Church Streams"
 description: "Understand dropped frames, rendering lag, and skipped frames in OBS. Learn to diagnose issues with the stats panel and implement fixes."
+coverImage: "/images/products/obs-dropping-frames-fix/cover.svg"
 app: obs
 articleType: troubleshooting
 tags: [troubleshooting, performance, encoding, cpu, frames]
@@ -20,6 +21,12 @@ OBS has three distinct sources of video problems, and they require different fix
 Rendering lag happens when your PC's graphics card is overwhelmed drawing scenes. If you have dozens of sources, complex transitions, or animation-heavy graphics, rendering lag means your scene preview is slow to update. This doesn't directly affect your stream (which is encoded from your canvas, not your preview), but it does affect your director's ability to switch scenes smoothly. It's a comfort problem, not a stream quality problem, unless lag is so severe that your director misses cue times.
 
 Skipped frames are the rarest issue. They occur when your CPU briefly spikes (due to disk activity, background updates, or other applications), and the encoder misses a frame deadline. Unlike dropped frames, skipped frames usually recover quickly. A few skipped frames in a 90-minute service are usually invisible to viewers.
+
+
+{/* inline-diagram */}
+<figure class="kb-figure">
+  <img src="/images/products/obs-dropping-frames-fix/inline.svg" alt="OBS Dropping Frames: Diagnose and Fix for Church Streams — inline diagram" loading="lazy" class="kb-inline-diagram" />
+</figure>
 
 ## Checking OBS's Stats Panel
 
