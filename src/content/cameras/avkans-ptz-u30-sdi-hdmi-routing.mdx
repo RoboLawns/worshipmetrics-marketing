@@ -30,6 +30,18 @@ HDMI (High-Definition Multimedia Interface) is a consumer and prosumer standard 
 
 For churches, the choice between SDI and HDMI usually comes down to your existing infrastructure and your production workflow. If you have a professional SDI switcher like a Grass Valley or similar broadcast-grade device, SDI makes sense. If you are using consumer-grade gear like ATEM Mini, Roland V-Mixer, or OBS with a capture card, HDMI is the practical choice.
 
+<figure>
+  <img
+    src="/images/products/avkans-ptz-u30-sdi-hdmi-routing/hdmi-sdi-signal-flow-diagram.svg"
+    alt="AVKANS PTZ-U30 HDMI signal flow diagram showing camera output through ATEM Mini switcher to OBS on a production computer"
+    title="AVKANS PTZ-U30 HDMI Signal Flow — Camera to ATEM Mini to OBS"
+    width="1200"
+    height="630"
+    loading="lazy"
+  />
+  <figcaption>The AVKANS PTZ-U30 sends video via HDMI to the Blackmagic ATEM Mini switcher, which then passes the switched program output over USB to OBS on your production computer for streaming or recording.</figcaption>
+</figure>
+
 ## Configure the PTZ-U30 for Your Chosen Output
 
 Access the camera's web UI and navigate to Video Output Settings. The camera typically allows you to select which output to use: SDI only, HDMI only, or simultaneous output on both.
