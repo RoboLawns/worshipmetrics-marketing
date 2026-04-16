@@ -26,7 +26,15 @@ const {
   structuredData: pageStructuredData = [],
 } = Astro.props;
 
-const canonicalUrl = canonical ? `${SITE_URL}${canonical}` : Astro.url.href;
+const normalizeCanonicalPath = (value: string) => {
+  if (value === '/') return '/';
+  if (/[?#]/.test(value) || /\.[a-z0-9]+$/i.test(value) || value.endsWith('/')) return value;
+  return `${value}/`;
+};
+
+const canonicalUrl = canonical
+  ? `${SITE_URL}${normalizeCanonicalPath(canonical)}`
+  : Astro.url.href;
 const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
 const pageTitle = `${title} | WorshipMetrics`;
 

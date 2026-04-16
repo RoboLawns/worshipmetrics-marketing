@@ -10,12 +10,22 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://worshipmetrics.com',
+  trailingSlash: 'always',
   output: 'server',
   adapter: cloudflare(),
   session: {
     driver: sessionDrivers.lruCache(),
   },
-  integrations: [mdx(), sitemap(), icon()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => ![
+        'https://worshipmetrics.com/kb/search/',
+        'https://worshipmetrics.com/pilot-program/thank-you/',
+      ].includes(page),
+    }),
+    icon(),
+  ],
   vite: {
     plugins: [tailwindcss()]
   }

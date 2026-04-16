@@ -31,7 +31,13 @@ const {
   breadcrumbItems = [],
 } = Astro.props;
 
-const canonicalUrl = canonical.startsWith('http') ? canonical : `${SITE_URL}${canonical}`;
+const normalizeCanonicalPath = (value: string) => {
+  if (value === '/') return '/';
+  if (/[?#]/.test(value) || /\.[a-z0-9]+$/i.test(value) || value.endsWith('/')) return value;
+  return `${value}/`;
+};
+
+const canonicalUrl = canonical.startsWith('http') ? canonical : `${SITE_URL}${normalizeCanonicalPath(canonical)}`;
 const ogImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
 const pageTitle = `${title} | WorshipMetrics Knowledge Base`;
 
