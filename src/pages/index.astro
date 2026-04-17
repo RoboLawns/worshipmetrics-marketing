@@ -17,12 +17,12 @@ const ANDREW_HEADSHOT = `${R2}/Andrew.jpg`;
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "WorshipMetrics",
+  name: "Tech Manager",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, iOS, Android",
   url: SITE_URL,
   image: `${R2NEW}/Stream%20Health.jpg`,
-  description: "Monitor your stream, map your AV rig, count your room, and ship your clips. WorshipMetrics is the AV operations platform built for church production teams.",
+  description: "Tech Manager lets your whole AV team contribute from the devices they already own. Stop running Sunday morning on one person's expertise. From WorshipMetrics.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -34,8 +34,9 @@ const structuredData = {
 ---
 
 <Layout
-  title="WorshipMetrics — AV Operations Platform for Churches"
-  description="Monitor your stream, map your AV rig, count your room, and ship your clips. WorshipMetrics is the AV operations platform built for church production teams."
+  title="Tech Manager — AV Operations Platform for Churches"
+  socialTitle="Tech Manager — The AV Operations Platform for Churches"
+  description="Tech Manager lets your whole AV team contribute from the devices they already own. Stop running Sunday morning on one person's expertise. From WorshipMetrics."
   canonical="/"
   ogImage={`${R2NEW}/Stream%20Health.jpg`}
   structuredData={structuredData}
@@ -105,7 +106,7 @@ const structuredData = {
 
   /* ── PAIN → PROMISE ────────────────────────────────── */
   .pain-grid {
-    display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem;
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
   }
   @media (max-width: 860px) { .pain-grid { grid-template-columns: 1fr; max-width: 36rem; margin: 0 auto; } }
 
@@ -135,6 +136,23 @@ const structuredData = {
     margin-bottom: 1rem;
   }
   .pain-icon svg { width: 1.3rem; height: 1.3rem; color: var(--primary); }
+
+  .how-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;
+  }
+  @media (max-width: 900px) { .how-grid { grid-template-columns: 1fr; } }
+  .how-card {
+    background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-card);
+    padding: 1.5rem; box-shadow: 0 10px 24px rgba(15,26,46,0.06);
+  }
+  .how-icon {
+    width: 2.75rem; height: 2.75rem; border-radius: 0.7rem; margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center; background: var(--primary-light); color: var(--primary);
+  }
+  .how-icon svg { width: 1.35rem; height: 1.35rem; }
+  .how-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; }
+  .how-card p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1rem; }
+  .how-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-decoration: none; }
 
   /* ── ECOSYSTEM GRID ────────────────────────────────── */
   .eco-grid {
@@ -305,11 +323,11 @@ const structuredData = {
 ════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="inner-sm">
-    <div class="hero-badge">The AV Operations Platform for Churches</div>
-    <h1>The AV operations platform for churches.</h1>
+    <div class="hero-badge">Tech Manager — From WorshipMetrics</div>
+    <h1>Stop running Sunday morning on one person's expertise.</h1>
     <p class="hero-sub">
-      We'll tell you the stream is down before your congregation does.<br/>
-      WorshipMetrics monitors your stream, maps your rig, counts your room, and ships your clips — built for the tech directors and AV volunteers who run Sunday morning.
+      Tech Manager is the AV operations platform that lets your whole team contribute from the devices they already own.<br/>
+      Monitor your stream. Map your rig. Count your room. Train new volunteers in 30 minutes. Built for the tech directors and AV leads who are tired of doing everything alone.
     </p>
     <div class="hero-ctas">
       <a href="/tech-manager" class="btn-primary">Download Tech Manager — free</a>
@@ -321,41 +339,42 @@ const structuredData = {
   <div class="hero-img-wrap">
     <img
       src={`${R2NEW}/Stream%20Health.jpg`}
-      alt="WorshipMetrics AV monitoring dashboard showing stream health and device status"
+      alt="Tech Manager dashboard showing AV system health and team collaboration"
       loading="eager" decoding="async" fetchpriority="high" width="1280" height="720"
     />
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     PROBLEM
+     THE REAL PROBLEM
 ════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="inner">
-    <h2 class="h2-center">Three problems every church AV team knows.</h2>
+    <h2 class="h2-center">The problem every church AV team knows.</h2>
+    <p class="sub-center">Most churches have one person who understands the AV system. One volunteer who knows the scenes. One tech director who can troubleshoot when the stream drops. That person is indispensable — and exhausted. When they go on vacation, get sick, or move on, the whole Sunday morning production is at risk.</p>
 
-    <div class="pain-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="pain-grid">
       {[
         {
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>`,
-          before: "Your stream goes down unnoticed.",
-          problem: "Twelve minutes in, someone texts you. Half your online congregation already gave up.",
-          after: "What WorshipMetrics does",
-          solution: "Real-time AV monitoring watches your stream, audio, cameras, and displays continuously. Your team gets an instant alert the moment something goes wrong — before anyone in the congregation notices.",
-        },
-        {
           icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v9A2.25 2.25 0 0118.75 16.5H13.5l-2.25 3-2.25-3H5.25A2.25 2.25 0 013 14.25v-9z"/>`,
-          before: "Nobody knows what's plugged into what.",
-          problem: "The volunteer who set up the rig left two years ago. Now when something breaks, we're guessing.",
-          after: "What WorshipMetrics does",
-          solution: "Tech Manager scans your network and builds a living map of every camera, encoder, display, and switch. Documentation survives volunteer turnover — and Luminos already knows your setup when something breaks.",
+          before: "One person knows the system.",
+          problem: "When your only expert is out, nobody else knows the scene names, the camera presets, or how to recover when OBS crashes.",
+          after: "How Tech Manager helps",
+          solution: "Tech Manager documents your AV system automatically — every device, every signal path, every scene — so the knowledge lives in the cloud, not in one volunteer's head.",
         },
         {
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75A2.25 2.25 0 014.5 4.5h15A2.25 2.25 0 0121.75 6.75v9A2.25 2.25 0 0119.5 18h-15a2.25 2.25 0 01-2.25-2.25v-9zM9 21h6"/>`,
-          before: "Your count is still on a notepad.",
-          problem: "Someone tallies attendance in a spiral notebook. It maybe gets entered into a spreadsheet. Maybe.",
-          after: "What WorshipMetrics does",
-          solution: "The cameras are already in the room. Let them count. WorshipMetrics uses computer vision to log attendance automatically, or one-tap for volunteer-led counting — with online and in-room unified in a single report.",
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 4.875A2.625 2.625 0 014.875 2.25h14.25A2.625 2.625 0 0121.75 4.875v8.25A2.625 2.625 0 0119.125 15.75H13.5l-3 3v-3H4.875A2.625 2.625 0 012.25 13.125v-8.25z"/>`,
+          before: "One person does five jobs.",
+          problem: "Cameras, switcher, audio, graphics, chat moderation. The same volunteer handles all of it, all at once, every Sunday.",
+          after: "How Tech Manager helps",
+          solution: "Tech Manager lets multiple volunteers log in from their own phones, tablets, and laptops. One runs PTZ cameras. Another handles slides. Another moderates chat. Everyone has exactly the controls they need.",
+        },
+        {
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m4-2a8 8 0 11-16 0 8 8 0 0116 0z"/>`,
+          before: "New volunteers never stick.",
+          problem: "Training takes six months. The control surface is overwhelming. New recruits give up before they ever feel useful.",
+          after: "How Tech Manager helps",
+          solution: "Role-based access means a new volunteer can learn one role — running one PTZ camera, say — and succeed at it by Sunday. They grow into bigger roles over time, not drown in them on day one.",
         },
       ].map(({ icon, before, problem, after, solution }) => (
         <div class="pain-card">
@@ -373,32 +392,31 @@ const structuredData = {
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     TECH MANAGER
+     HOW TECH MANAGER WORKS
 ════════════════════════════════════════════════════ -->
 <section class="section section-alt">
   <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Tech Manager</p>
-        <h2>The smartest thing in your AV booth isn't your switcher.</h2>
-        <p>Tech Manager is a free desktop app for Windows and Mac that runs silently on your production computer. It maps every device on your network, monitors your OBS health, documents your AV system, and feeds Luminos everything it needs to diagnose problems fast.</p>
-        <ul class="bullets">
-          <li>Auto-discovery — 80+ supported devices, mapped automatically</li>
-          <li>OBS monitoring — connection, logs, and stream health in real time</li>
-          <li>Self-healing — most problems fix themselves before you know they happened</li>
-          <li>Wiring diagram — a living map that documentation can't fake</li>
-        </ul>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/tech-manager" class="btn-primary">Download Tech Manager — free</a>
-          <a href="/tech-manager" class="btn-outline">See full feature list</a>
-        </div>
+    <p class="eyebrow eyebrow-center">How Tech Manager Works</p>
+    <h2 class="h2-center">One platform. Three jobs. Built for the booth.</h2>
+    <p class="sub-center">Tech Manager sits quietly on your production computer and in your volunteers' pockets. It does three things the current church AV stack doesn't do.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v9A2.25 2.25 0 0118.75 16.5H13.5l-2.25 3-2.25-3H5.25A2.25 2.25 0 013 14.25v-9z"/></svg></div>
+        <h3>Knows your rig.</h3>
+        <p>Tech Manager scans your network and maps every camera, encoder, switcher, and display automatically. When a new volunteer joins, they can see exactly what's plugged into what — without a three-ring binder.</p>
+        <a class="how-link" href="/tech-manager">See system documentation →</a>
       </div>
-      <div class="split-img">
-        <img
-          src={`${R2NEW}/Stream%20Health.jpg`}
-          alt="Tech Manager mapping AV devices and monitoring OBS health"
-          loading="lazy" width="800" height="540"
-        />
+      <div class="how-card">
+        <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5V4H2v16h5m10 0v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4m10 0H7m5-12a2 2 0 110 4 2 2 0 010-4z"/></svg></div>
+        <h3>Trains your team.</h3>
+        <p>Give a camera operator access to just the PTZ cameras. Give your slides volunteer access to displays. Give your director access to everything. Everyone contributes meaningfully without stepping on each other.</p>
+        <a class="how-link" href="/platform/operations">See role delegation →</a>
+      </div>
+      <div class="how-card">
+        <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l4.5-4.5 3 3L16.5 6l4.5 4.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 6H16v3.5"/></svg></div>
+        <h3>Watches your Sunday.</h3>
+        <p>Stream health, audio levels, camera status, display connectivity — all monitored continuously, with self-healing for common problems and Luminos AI diagnostics for the rest.</p>
+        <a class="how-link" href="/av-monitoring-for-houses-of-worship">See AV monitoring →</a>
       </div>
     </div>
   </div>
@@ -413,7 +431,7 @@ const structuredData = {
       <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">AV Monitoring</p>
         <h2>We'll tell you when your stream is down<br/>before your congregation does.</h2>
-        <p>Sunday morning should not start with a text from a concerned member. The WorshipMetrics platform watches your audio, video, cameras, and displays in real time — so your team knows the moment something goes wrong, not twelve minutes after.</p>
+        <p>Sunday morning should not start with a text from a concerned member. Tech Manager watches your audio, video, cameras, and displays in real time — so your team knows the moment something goes wrong, not twelve minutes after.</p>
         <ul class="bullets">
           <li>Real-time stream, audio, and display monitoring</li>
           <li>Instant alerts to your team's phones</li>
@@ -421,7 +439,7 @@ const structuredData = {
           <li>Remote OBS and vMix control — run a great service without being in the building</li>
           <li>Tech Manager maps your AV system, monitors every device, and gives Luminos what it needs to diagnose problems fast</li>
         </ul>
-        <p style="font-size:0.875rem;color:var(--text-muted);font-style:italic;">So your Sunday morning doesn't start with a text from a concerned member.</p>
+        <p style="font-size:0.875rem;color:var(--text-muted);font-style:italic;">So your Sunday morning doesn't start with a text from a concerned member — and your volunteers can troubleshoot together instead of one person fixing everything alone.</p>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
           <a href="/av-monitoring-for-houses-of-worship" class="btn-primary">See AV monitoring</a>
           <a href="/tech-manager" class="btn-outline">See Tech Manager</a>
@@ -430,7 +448,7 @@ const structuredData = {
       <div class="split-img">
         <img
           src={`${R2NEW}/Stream%20Health.jpg`}
-          alt="WorshipMetrics AV monitoring dashboard"
+          alt="Tech Manager AV monitoring dashboard"
           loading="lazy" width="800" height="540"
         />
       </div>
@@ -454,17 +472,49 @@ const structuredData = {
       <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">Computer Vision Attendance</p>
         <h2>The cameras are already in the room. Let them count.</h2>
-        <p>Stop asking volunteers to tally the room on a notepad. WorshipMetrics uses computer vision through the Hub to log attendance automatically — or one-tap counting on any phone or tablet when you want volunteers in the flow.</p>
+        <p>Stop asking volunteers to tally the room on a notepad. Tech Manager uses computer vision through the Hub to log attendance automatically — or one-tap counting on any phone or tablet when you want volunteers in the flow.</p>
         <ul class="bullets">
           <li>Fully automatic counting with the Hub — your camera does the work</li>
           <li>One-tap manual mode for phones, tablets, and laptops you already own</li>
           <li>Online + in-room unified in a single weekly report</li>
-          <li>Seat templates so volunteers confirm changes, not recount from zero</li>
+          <li>Historical data from day one, so you can actually see trends</li>
         </ul>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
           <a href="/platform/attendance" class="btn-primary">See attendance workflows</a>
           <a href="/appliance" class="btn-outline">See the Hub — $499</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TECH MANAGER DESKTOP
+════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="inner">
+    <div class="split">
+      <div class="split-text">
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Tech Manager Desktop</p>
+        <h2>The smartest thing in your AV booth isn't your switcher.</h2>
+        <p>Tech Manager is a free desktop app for Windows and Mac that runs silently on your production computer. It maps every device on your network, monitors your OBS health, documents your AV system, and gives your whole team cloud access to what's happening in the booth — without anyone having to be physically there.</p>
+        <ul class="bullets">
+          <li>Auto-discovery — 80+ supported devices, mapped automatically</li>
+          <li>OBS monitoring — connection, logs, and stream health in real time</li>
+          <li>Self-healing — most problems fix themselves before you know they happened</li>
+          <li>Team access — every authorized volunteer sees what they need, from anywhere</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="/tech-manager" class="btn-primary">Download Tech Manager — free</a>
+          <a href="/tech-manager" class="btn-outline">See full feature list</a>
+        </div>
+      </div>
+      <div class="split-img">
+        <img
+          src={`${R2NEW}/Stream%20Health.jpg`}
+          alt="Tech Manager desktop app monitoring booth health and team access"
+          loading="lazy" width="800" height="540"
+        />
       </div>
     </div>
   </div>
@@ -479,7 +529,7 @@ const structuredData = {
       <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">Worship Clips</p>
         <h2>Your best moments are already<br/>in the cloud before the last car leaves.</h2>
-        <p>Every service has a moment worth sharing. WorshipMetrics automatically identifies, clips, and formats your best moments for Reels, Shorts, TikTok, and Facebook. Built for the production team, not the social media intern — nothing posts without staff approval.</p>
+        <p>Every service has a moment worth sharing. Tech Manager automatically identifies, clips, and formats your best moments for Reels, Shorts, TikTok, and Facebook. Built for the production team, not the social media intern — nothing posts without staff approval.</p>
         <ul class="bullets">
           <li>AI clip detection — key quotes, worship peaks, sermon highlights</li>
           <li>Auto-formatted for every major social platform</li>
@@ -541,7 +591,7 @@ const structuredData = {
       <div>
         <p class="luminos-tag">Luminos AI</p>
         <h3>AV diagnostics that already know your rig.</h3>
-        <p>Luminos lives inside your WorshipMetrics dashboard and knows your exact hardware, your OBS state, your network health, and your support history. Ask it what broke, why, and how to fix it — in plain English.</p>
+        <p>Luminos lives inside Tech Manager and knows your exact hardware, your OBS state, your network health, and your support history. Ask it what broke, why, and how to fix it — in plain English. Helpful to the tech director; even more helpful to the volunteer who's never troubleshot this before.</p>
         <a href="/luminos-ai-assistant" class="btn-primary">See Luminos in action</a>
       </div>
       <div class="luminos-prompts">
@@ -550,7 +600,7 @@ const structuredData = {
           '"Which camera has been flaking out lately?"',
           '"What changed in our OBS setup this week?"',
           '"Is our Easter load-test ready?"',
-          '"Summarize this weekend\'s services for Monday staff meeting."',
+          '"Walk me through fixing this — I\'m new to the booth."',
         ].map(prompt => (
           <div class="luminos-prompt">{prompt}</div>
         ))}
@@ -587,7 +637,7 @@ const structuredData = {
       <div class="split-img">
         <img
           src={`${R2NEW}/Stream%20Health.jpg`}
-          alt="WorshipMetrics Hub monitoring AV health and automation"
+          alt="Tech Manager Hub monitoring AV health and automation"
           loading="lazy" width="800" height="540"
         />
       </div>
@@ -604,13 +654,13 @@ const structuredData = {
       <div class="split-text">
         <p class="eyebrow" style="margin-bottom:0.5rem;">The weekly rhythm</p>
         <h2>A four-step rhythm your AV team can run every Sunday.</h2>
-        <p>Built around the production booth, not the admin dashboard.</p>
+        <p>Built around the production booth — and built to be shared across your team.</p>
         <ol class="steps" style="max-width:none;margin:0;">
           {[
-            { n:"1", t:"Discover", b:"Tech Manager scans your network and builds your system map automatically. Every camera, encoder, display, and switch documented — without filling out a form." },
-            { n:"2", t:"Monitor", b:"Stream health, audio, video, and network watched continuously. Self-healing handles the common stuff. Luminos diagnoses the rest." },
-            { n:"3", t:"Count", b:"Computer vision logs the room through your existing cameras. Online viewers join the same unified report. Volunteers confirm, they don't tally." },
-            { n:"4", t:"Ship", b:"Clips auto-generated and queued for staff approval. Signage updated from anywhere. Monday morning digest ready before the staff meeting." },
+            { n:"1", t:"Document", b:"Tech Manager scans your network and builds your system map automatically. Every camera, encoder, display, and switch identified — so nobody has to reverse-engineer your rig on Sunday morning." },
+            { n:"2", t:"Delegate", b:"Role-based access means every volunteer has exactly the controls they need. Camera ops run cameras. Slides ops run slides. Directors run everything. Nobody drowns." },
+            { n:"3", t:"Monitor", b:"Stream health, audio, video, and network watched continuously. Self-healing handles the common stuff. Luminos diagnoses the rest — for the tech director and for the new volunteer who's troubleshooting for the first time." },
+            { n:"4", t:"Ship", b:"Clips auto-generated for staff approval. Signage updated from anywhere. Monday morning digest ready before the staff meeting." },
           ].map(({ n, t, b }) => (
             <li class="step">
               <span class="step-num">{n}</span>
@@ -642,7 +692,7 @@ const structuredData = {
         broadcast technologist — because they lived these problems firsthand.
       </p>
       <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
-        The question that started it all: why should the AV booth fly blind when the cameras already see the room?
+        The question that started it all: why should one volunteer carry the whole AV ministry alone, when the whole team wants to help?
         That question became this platform.
       </p>
       <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
@@ -723,9 +773,9 @@ const structuredData = {
      CTA
 ════════════════════════════════════════════════════ -->
 <div class="cta-band">
-  <h2>Install Tech Manager. Plug in the Hub. Sleep better on Saturday night.</h2>
+  <h2>Install Tech Manager. Invite your team. Sleep better on Saturday night.</h2>
   <p>
-    Tech Manager is free. The Hub is a one-time $499. Together they turn your AV booth into something that watches itself.
+    Tech Manager is free. The Hub is a one-time $499. Together they turn your AV booth from a one-person operation into a team that can actually grow.
   </p>
   <div class="cta-btns">
     <a href="/tech-manager" class="btn-white">Download Tech Manager — free</a>
