@@ -9,17 +9,17 @@ const year = new Date().getFullYear();
 const cols = [
   { heading: "Platform", links: [
     { label: "Attendance",        href: "/platform/attendance"  },
-    { label: "People & Follow-up",href: "/platform/people"      },
     { label: "Operations",        href: "/platform/operations"  },
+    { label: "Tech Manager",      href: "/tech-manager"         },
     { label: "Luminos AI",        href: "/luminos-ai-assistant" },
     { label: "Knowledge Base",    href: "/kb"                   },
     { label: "All Features",      href: "/platform"             },
   ]},
   { heading: "Solutions", links: [
     { label: "Worship Clips",      href: "/solutions/worship-clips"             },
-    { label: "Digital Engagement", href: "/solutions/digital-engagement"        },
-    { label: "Community Platform", href: "/solutions/church-community-platform" },
-    { label: "Outreach Services",  href: "/outreach-services"                   },
+    { label: "Tech Manager",       href: "/tech-manager"                        },
+    { label: "AV Monitoring",      href: "/av-monitoring-for-houses-of-worship" },
+    { label: "Digital Signage",    href: "/signage-display"                     },
     { label: "Pro Services",       href: "/professional-services"               },
   ]},
   { heading: "Hardware", links: [
@@ -125,10 +125,10 @@ const cols = [
     </div>
     <div class="footer-app-badges">
       <a href={IOS_APP_URL} aria-label="Download WorshipMetrics on the App Store">
-        <img src={APP_STORE_BADGE} alt="Download on the App Store" loading="lazy" decoding="async" />
+        <img src={APP_STORE_BADGE} alt="Download on the App Store" loading="lazy" decoding="async" width="120" height="40" />
       </a>
       <a href={ANDROID_APP_URL} aria-label="Get WorshipMetrics on Google Play">
-        <img src={GOOGLE_PLAY_BADGE} alt="Get it on Google Play" loading="lazy" decoding="async" />
+        <img src={GOOGLE_PLAY_BADGE} alt="Get it on Google Play" loading="lazy" decoding="async" width="646" height="250" />
       </a>
     </div>
   </div>
@@ -136,7 +136,7 @@ const cols = [
   <div class="footer-inner">
     <div class="brand-col">
       <a href="/" class="brand-logo">
-        <img src="/logo.png" alt="WorshipMetrics" />
+        <img src="/logo.png" alt="" width="28" height="28" />
         <span>WorshipMetrics</span>
       </a>
       <p class="brand-tag">Know who's in the room.<br/>Reach who isn't.</p>

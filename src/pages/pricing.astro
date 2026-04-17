@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const LUMINOS_PROFILE = `${R2}/Luminos/Luminos%20Profile.jpg`;
 const faqItems = [
   {
     question: "Does WorshipMetrics offer a free plan?",
@@ -61,8 +62,8 @@ const structuredData = [
 ---
 
 <Layout
-  title="Church Attendance Software Pricing"
-  description="See WorshipMetrics pricing for church attendance software, visitor follow-up tools, hardware, and ministry support services."
+  title="Church AV Operations Platform Pricing"
+  description="See WorshipMetrics pricing for church AV monitoring, camera-based attendance, remote production workflows, hardware, and support services."
   canonical="/pricing"
   structuredData={structuredData}
 >
@@ -89,16 +90,20 @@ const structuredData = [
             Pricing is easier when the value is visible.
           </h2>
           <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Luminos, Worship Clips, outreach tools, and team workflows are not abstract add-ons. They are part of the weekly ministry system your staff and volunteers actually use.
+            Luminos, Tech Manager, Worship Clips, and team workflows are not abstract add-ons. They are part of the weekly AV operating system your staff and volunteers actually use.
           </p>
         </div>
-        <img
-          src={`${R2}/homepage/Luminos.jpg`}
-          alt="Luminos AI interface included in WorshipMetrics paid plans"
-          loading="lazy"
-          decoding="async"
-          class="h-full w-full object-cover"
-        />
+        <div class="flex h-full items-center justify-center bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#eef2ff_58%,_#dbe5ff_100%)] p-10 sm:p-12">
+          <img
+            src={LUMINOS_PROFILE}
+            alt="Luminos profile illustration included in WorshipMetrics paid plans"
+            loading="lazy"
+            decoding="async"
+            width="320"
+            height="320"
+            class="aspect-square w-full max-w-[14rem] rounded-full border-4 border-white object-cover shadow-[0_18px_44px_rgba(67,97,238,0.2)] sm:max-w-[16rem]"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -169,7 +174,6 @@ const structuredData = [
               "Advanced reports and trend analysis",
               "Year-over-year comparisons",
               "Multi-user roles and permissions",
-              "Outreach tools and visitor follow-up",
               "Worship Clips — 1 sermon clip/week",
               "Unlimited digital signage screens",
               "One-Button Attendance — log your count from any device in seconds",
@@ -209,10 +213,8 @@ const structuredData = [
               "True 24/7 AV monitoring (requires Worship Metrics Hub — see below)",
               "Auto video upload and sermon clipping",
               "Podcast auto-export (coming soon)",
-              "Social media scheduling queue",
               "Multi-campus support and consolidated dashboards",
               "Unlimited Worship Clips",
-              "Social monitoring",
               "API access (coming soon)",
               "Priority support + 1-hour tech session/month",
               "Ticket system",
@@ -342,15 +344,9 @@ const structuredData = [
           <a href="/professional-services" class="mt-5 inline-block text-sm font-semibold text-indigo-600 hover:underline">Learn more →</a>
         </div>
         <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h3 class="text-lg font-bold text-slate-900">Outreach Services</h3>
+          <h3 class="text-lg font-bold text-slate-900">AV Workflow Consulting</h3>
           <p class="mt-1 text-sm font-medium text-indigo-600">Custom scoped</p>
-          <p class="mt-3 text-sm text-slate-600">Visitor follow-up campaigns, digital outreach strategy, and engagement programs.</p>
-          <a href="/outreach-services" class="mt-5 inline-block text-sm font-semibold text-indigo-600 hover:underline">Learn more →</a>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h3 class="text-lg font-bold text-slate-900">Community Platform Setup</h3>
-          <p class="mt-1 text-sm font-medium text-indigo-600">From $299</p>
-          <p class="mt-3 text-sm text-slate-600">Discord community setup, welcome automation, YouTube chat mirroring, and website integration.</p>
+          <p class="mt-3 text-sm text-slate-600">Production workflow design, monitoring rollout, volunteer booth training, and system audits for church AV teams.</p>
           <a href="/professional-services" class="mt-5 inline-block text-sm font-semibold text-indigo-600 hover:underline">Learn more →</a>
         </div>
       </div>

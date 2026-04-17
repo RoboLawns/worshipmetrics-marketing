@@ -5,23 +5,21 @@ const menus = [
   {
     key: "features",
     label: "Features",
-    overview: { href: "/platform", label: "Platform Overview", desc: "See how attendance, people, and operations fit together." },
+    overview: { href: "/platform", label: "Platform Overview", desc: "See how monitoring, production, attendance, and operations fit together." },
     items: [
       { href: "/platform/attendance",  label: "Attendance",   desc: "Count in-room and online in one workflow" },
-      { href: "/platform/people",      label: "People",       desc: "Guest capture, prayer routing, and member care" },
       { href: "/platform/operations",  label: "Operations",   desc: "Volunteer roles, devices, and multi-campus tools" },
+      { href: "/tech-manager",         label: "Tech Manager", desc: "Desktop monitoring, device discovery, and system documentation" },
       { href: "/luminos-ai-assistant", label: "Luminos AI",   desc: "Weekly ministry summaries in plain English" },
     ],
   },
   {
     key: "solutions",
     label: "Solutions",
-    overview: { href: "/platform", label: "Solutions Overview", desc: "Tools that extend ministry beyond Sunday morning." },
+    overview: { href: "/platform", label: "Solutions Overview", desc: "Tools built for the church AV booth and the team behind it." },
     items: [
       { href: "/solutions/worship-clips",             label: "Worship Clips",      desc: "Turn services into shareable social content" },
-      { href: "/solutions/digital-engagement",        label: "Digital Engagement", desc: "Welcome online visitors and route follow-up" },
-      { href: "/solutions/church-community-platform", label: "Community Platform", desc: "Discord-based digital campus with guided setup" },
-      { href: "/outreach-services",                   label: "Outreach Services",  desc: "Hands-on livestream engagement help" },
+      { href: "/tech-manager",                        label: "Tech Manager",       desc: "Free desktop software for AV monitoring, device discovery, and Luminos support" },
       { href: "/signage-display",                     label: "Digital Signage",    desc: "Lobby and hallway displays for every campus" },
     ],
   },
@@ -40,13 +38,11 @@ const menus = [
     overview: { href: "/professional-services", label: "Services Overview", desc: "Consulting, training, and workflow design." },
     items: [
       { href: "/professional-services", label: "Professional Services", desc: "Broadcast, workflow, and strategy support" },
-      { href: "/outreach-services",     label: "Outreach Services",     desc: "Livestream engagement and follow-up help" },
     ],
   },
 ];
 
 const simpleLinks = [
-  { href: "/tech-manager", label: "Tech Manager" },
   { href: "/kb", label: "Knowledge Base" },
 ];
 ---
@@ -235,7 +231,7 @@ const simpleLinks = [
   <div class="nav-inner">
     <!-- Logo -->
     <a href="/" class="logo">
-      <img src="/logo.png" alt="WorshipMetrics" />
+      <img src="/logo.png" alt="" width="32" height="32" />
       <span>WorshipMetrics</span>
     </a>
 

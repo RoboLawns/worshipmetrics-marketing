@@ -5,6 +5,7 @@ const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW   = `${R2}/homepage/new%20images`;
+const LUMINOS_PROFILE = `${R2}/Luminos/Luminos%20Profile.jpg`;
 const SIGNAGE_EXAMPLE_URL = "https://app.worshipmetrics.com/tv/00000000-0000-4000-8000-00000000de10";
 const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170";
 const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
@@ -21,7 +22,7 @@ const structuredData = {
   operatingSystem: "Web, iOS, Android",
   url: SITE_URL,
   image: `${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`,
-  description: "Congregation technology for AV monitoring, automatic attendance, free digital signage, and all-week engagement in one platform.",
+  description: "The AV operations platform for churches: monitor stream health, count the room with cameras, manage the booth, and get content out faster.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -33,12 +34,20 @@ const structuredData = {
 ---
 
 <Layout
-  title="Church Attendance Tracking Software and Digital Engagement"
-  description="WorshipMetrics helps churches track attendance, capture visitors, monitor livestream health, manage digital signage, and turn online engagement into follow-up."
+  title="The AV Operations Platform for Churches"
+  description="WorshipMetrics is the AV operations platform for churches: monitor stream health, count the room with cameras, manage production workflows, and get content out faster."
   canonical="/"
   ogImage={`${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`}
   structuredData={structuredData}
 >
+<link
+  slot="head"
+  rel="preload"
+  as="image"
+  href={`${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`}
+  imagesrcset={`${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`}
+  fetchpriority="high"
+/>
 <style>
   /* ── Shared rhythm ─────────────────────────────────── */
   .section      { padding: 5rem 1.5rem; }
@@ -186,6 +195,15 @@ const structuredData = {
     background: #eef2ff;
   }
   .eco-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .eco-card-media.profile {
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at top, #ffffff 0%, #eef2ff 58%, #dbe5ff 100%);
+  }
+  .eco-card-media.profile img {
+    width: 68%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;
+    border-radius: 999px; border: 4px solid #fff;
+    box-shadow: 0 12px 36px rgba(67,97,238,0.18);
+  }
   .eco-label {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--text-muted);
@@ -285,6 +303,11 @@ const structuredData = {
   }
   @media (max-width: 640px) { .luminos-band { grid-template-columns: 1fr; } }
   .luminos-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+  .luminos-profile {
+    width: 6rem; height: 6rem; margin-bottom: 1rem; border-radius: 999px;
+    overflow: hidden; border: 4px solid #fff; box-shadow: 0 16px 40px rgba(67,97,238,0.2);
+  }
+  .luminos-profile img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .luminos-band h3 { font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 0.6rem; line-height: 1.2; }
   .luminos-band p  { font-size: 0.9rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1.25rem; }
   .luminos-prompts { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -346,15 +369,13 @@ const structuredData = {
 ════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="inner-sm">
-    <div class="hero-badge">
-      The Complete Congregation Technology Platform
-    </div>
+    <div class="hero-badge">The AV operations platform for churches</div>
     <h1>
-      Where technology<br/>
-      <em>serves the mission.</em>
+      Keep the booth running.<br/>
+      <em>Keep the stream up.</em>
     </h1>
     <p class="hero-sub">
-      Reach every person. Every screen. Every service. — AV monitoring, automatic attendance, free digital signage, and tools that connect your congregation all week long.
+      WorshipMetrics is built for the tech director and volunteer AV lead: real-time monitoring, camera-based attendance, remote production control, digital signage, and faster content workflows for churches specifically.
     </p>
     <div class="hero-ctas">
       <a href={`${APP_URL}/sign-up`} class="btn-primary">Start free — no credit card</a>
@@ -372,10 +393,10 @@ const structuredData = {
       </div>
       <div class="hero-app-badges">
         <a href={IOS_APP_URL} aria-label="Download WorshipMetrics on the App Store">
-          <img src={APP_STORE_BADGE} alt="Download on the App Store" loading="eager" decoding="async" />
+          <img src={APP_STORE_BADGE} alt="Download on the App Store" loading="eager" decoding="async" width="120" height="40" fetchpriority="low" />
         </a>
         <a href={ANDROID_APP_URL} aria-label="Get WorshipMetrics on Google Play">
-          <img src={GOOGLE_PLAY_BADGE} alt="Get it on Google Play" loading="eager" decoding="async" />
+          <img src={GOOGLE_PLAY_BADGE} alt="Get it on Google Play" loading="eager" decoding="async" width="646" height="250" fetchpriority="low" />
         </a>
       </div>
     </div>
@@ -385,13 +406,13 @@ const structuredData = {
     <img
       src={`${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`}
       alt="WorshipMetrics — the church technology partner"
-      loading="eager" width="1280" height="720"
+      loading="eager" decoding="async" fetchpriority="high" width="1280" height="720"
     />
   </div>
 </section>
 
 <section class="social-proof-bar">
-  Trusted by congregations of every size — from 50 seats to 5,000.
+  Built for the people in the booth, from volunteer-led setups to multi-campus production teams.
 </section>
 
 <!-- ═══════════════════════════════════════════════════
@@ -515,7 +536,7 @@ const structuredData = {
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     ONLINE VIEWERSHIP & ENGAGEMENT
+     LIVESTREAM REPORTING
 ════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="inner">
@@ -523,22 +544,22 @@ const structuredData = {
       <div class="split-img">
         <img
           src={`${R2}/homepage/Online%20Attendance%20Older%20Woman.jpg`}
-          alt="Online congregation engagement through WorshipMetrics"
+          alt="Church livestream reporting in WorshipMetrics"
           loading="lazy" width="800" height="540"
         />
       </div>
       <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Online Viewership & Engagement</p>
-        <h2>Your online congregation deserves<br/>more than a view count.</h2>
-        <p>Every person watching your stream is a real person with a real need. WorshipMetrics captures online visitors, routes prayer requests, and gives your team a clear path to follow up — turning passive viewership into active community membership.</p>
+        <p class="eyebrow" style="margin-bottom:0.5rem;">Livestream reporting</p>
+        <h2>Know what your stream actually did<br/>after the service ends.</h2>
+        <p>WorshipMetrics keeps livestream reporting in the same weekly rhythm as the rest of your AV review. See live viewers, replay reach, and service-to-service changes without opening three different tools and guessing what happened.</p>
         <ul class="bullets">
-          <li>Online visitor capture with next-step prompts</li>
-          <li>Prayer request routing to the right team member</li>
-          <li>Return viewer tracking — know who keeps coming back</li>
-          <li>YouTube chat sync — someone is always in the room welcoming viewers</li>
+          <li>Track live viewers, replay reach, and combined attendance in one dashboard</li>
+          <li>See service-by-service trend lines without exporting reports manually</li>
+          <li>Give the booth a clearer record of what changed when a stream underperforms</li>
+          <li>Keep online reporting tied to the same weekly operations review as the rest of your AV stack</li>
         </ul>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/solutions/digital-engagement" class="btn-primary">See engagement tools</a>
+          <a href="/church-livestream-analytics" class="btn-primary">See livestream reporting</a>
         </div>
       </div>
     </div>
@@ -684,12 +705,12 @@ const structuredData = {
         { label:"Discovery", title:"LAN device discovery", desc:"Every camera, encoder, and display on your network mapped automatically so knowledge survives turnover.", href:"/your-av-partner", image:`${R2}/homepage/Team%20Collaboration%20hero.jpg`, alt:"WorshipMetrics AV system discovery" },
         { label:"Documentation", title:"Visual wiring diagram", desc:"A living map of your AV signal chain so troubleshooting starts with clarity instead of guesswork.", href:"/your-av-partner", image:`${R2}/homepage/Church%20Viewer.jpg`, alt:"WorshipMetrics visual system map" },
         { label:"Resilience", title:"Local signage hosting", desc:"Lobby screens stay live even when internet drops because Tech Manager keeps the local layer ready.", href:"/signage-display", image:`${R2NEW}/Worship%20Digital%20Signage%20System.jpg`, alt:"WorshipMetrics signage on a display" },
-        { label:"Knowledge", title:"AV system documentation", desc:"When something breaks on Sunday morning, Luminos already knows what is connected to what and where to start.", href:"/luminos-ai-assistant", image:`${R2}/homepage/Luminos.jpg`, alt:"Luminos AI assistant" },
+        { label:"Knowledge", title:"AV system documentation", desc:"When something breaks on Sunday morning, Luminos already knows what is connected to what and where to start.", href:"/luminos-ai-assistant", image:LUMINOS_PROFILE, alt:"Luminos profile illustration", round:true },
         { label:"Free", title:"Windows and Mac app", desc:"Free to download. Works with or without the Hub.", href:"/tech-manager", badge:"Free", image:`${R2}/homepage/1%20Worship%20Technology%20Assistance.jpg`, alt:"Worship technology assistance" },
-      ].map(({ label, title, desc, href, badge, image, alt }) => (
+      ].map(({ label, title, desc, href, badge, image, alt, round }) => (
         <a href={href} class="eco-card">
-          <div class="eco-card-media">
-            <img src={image} alt={alt} loading="lazy" decoding="async" />
+          <div class={`eco-card-media ${round ? 'profile' : ''}`}>
+            <img src={image} alt={alt} loading="lazy" decoding="async" width="800" height="500" />
           </div>
           <div class="eco-label">{label}</div>
           <div class="eco-title">{title} {badge && <span class="eco-badge">{badge}</span>}</div>
@@ -712,6 +733,9 @@ const structuredData = {
   <div class="inner-md">
     <div class="luminos-band">
       <div>
+        <div class="luminos-profile">
+          <img src={LUMINOS_PROFILE} alt="Luminos profile illustration" loading="lazy" decoding="async" width="320" height="320" />
+        </div>
         <p class="luminos-tag">Luminos AI</p>
         <h3>Walk into Monday already knowing what matters most.</h3>
         <p>Luminos lives inside your WorshipMetrics dashboard and answers the questions your team asks every Monday — in plain English, without digging through reports. It reads attendance data, AV health logs, online engagement, and your follow-up queue, then tells you where to focus first.</p>
@@ -816,14 +840,14 @@ const structuredData = {
       <div class="founders">
         <div class="founder">
           <div class="founder-avatar">
-            <img src={ANDREW_HEADSHOT} alt="Rev. Andrew Esqueda" loading="lazy"/>
+            <img src={ANDREW_HEADSHOT} alt="Rev. Andrew Esqueda" loading="lazy" decoding="async" width="80" height="80" />
           </div>
           <span class="founder-name">Rev. Andrew Esqueda</span>
           <span class="founder-title">Co-Founder · Worship Leader</span>
         </div>
         <div class="founder">
           <div class="founder-avatar">
-            <img src={PAUL_HEADSHOT} alt="Paul Richards" loading="lazy"/>
+            <img src={PAUL_HEADSHOT} alt="Paul Richards" loading="lazy" decoding="async" width="80" height="80" />
           </div>
           <span class="founder-name">Paul Richards</span>
           <span class="founder-title">Co-Founder · Technology Lead</span>

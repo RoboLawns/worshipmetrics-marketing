@@ -5,20 +5,18 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 ---
 
 <Layout
-  title="Church Management Platform for Attendance and Follow-Up"
-  description="Track church attendance, capture guests, coordinate volunteers, and surface pastoral follow-up insights in one connected platform."
+  title="AV Operations Platform for Churches"
+  description="Not ChMS. Not generic AV software. WorshipMetrics is the church AV operations platform for monitoring, production control, camera-based attendance, and booth workflows."
   canonical="/platform"
 >
   <!-- Hero -->
   <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center">
       <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Features</p>
-      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-        Track attendance. Understand your congregation.
-      </h1>
-      <p class="mt-4 text-lg text-slate-600">
-        One place to count the room, capture visitors, surface follow-up signals, and coordinate your team — without spreadsheets.
-      </p>
+        <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">The AV operations platform for churches.</h1>
+        <p class="mt-4 text-lg text-slate-600">
+          Not a ChMS. Not a streaming app. The system that keeps the booth working, the stream up, the cameras counting, and the weekly content workflow moving for church AV teams.
+        </p>
     </div>
 
     <!-- 3 pillars -->
@@ -26,18 +24,18 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
       {[
         {
           icon: "M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 8.25h3m-3 3.75h3m-3 3.75h3",
-          heading: "Works on any device",
-          body: "Phones, tablets, and laptops your team already owns.",
+          heading: "Built for the booth",
+          body: "Church AV workflows, church AV vocabulary, and church production realities.",
         },
         {
           icon: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z",
           heading: "Built for volunteers",
-          body: "Simple during service. Clear summaries after.",
+          body: "Simple enough for Sunday volunteers, useful enough for full-time tech staff.",
         },
         {
           icon: "M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z",
-          heading: "Privacy-conscious",
-          body: "Pastoral data belongs in responsible hands.",
+          heading: "Runs the weekly rhythm",
+          body: "Monitoring, production, attendance, signage, and reporting in one system.",
         },
       ].map(({ icon, heading, body }) => (
         <div class="rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm">
@@ -72,11 +70,11 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
             alt: "WorshipMetrics seat counting layout",
           },
           {
-            title: "Welcome capture without data entry",
-            body: "Scan cards and bring first-time guest details into the same system your staff already uses.",
-            href: "/platform/people",
-            src: `${R2}/tablet/Auto-Scan%20Welcome%20Cards.jpg`,
-            alt: "WorshipMetrics welcome card scanning",
+            title: "Tech Manager for the booth",
+            body: "Map devices, watch OBS health, and give Luminos the context it needs to troubleshoot with specificity.",
+            href: "/tech-manager",
+            src: `${R2}/homepage/1%20Worship%20Technology%20Assistance.jpg`,
+            alt: "WorshipMetrics Tech Manager workflow",
           },
           {
             title: "Role-based team workflows",
@@ -86,11 +84,11 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
             alt: "Team collaboration inside WorshipMetrics",
           },
           {
-            title: "Pastoral follow-up with context",
-            body: "See the attendance and people signals that matter before Monday conversations begin.",
-            href: "/platform/people",
-            src: `${R2}/tablet/Pastoral%20Care%202.jpg`,
-            alt: "Pastoral care workflow in WorshipMetrics",
+            title: "Luminos for weekly AV review",
+            body: "See what changed this week, what broke, and what needs attention before the next service.",
+            href: "/luminos-ai-assistant",
+            src: `${R2}/Luminos/Luminos%20Profile.jpg`,
+            alt: "Luminos profile illustration",
           },
         ].map(({ title, body, href, src, alt }) => (
           <a href={href} class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:border-indigo-300 hover:shadow-md">
@@ -116,7 +114,8 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
       <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {[
           { href: "/church-attendance-tracking-software", title: "Attendance tracking software", body: "A focused guide to church attendance workflows, volunteer counting, and online reporting." },
-          { href: "/church-visitor-follow-up-software", title: "Visitor follow-up software", body: "How guest capture, prayer requests, and follow-up fit together in one system." },
+          { href: "/av-monitoring-for-houses-of-worship", title: "AV monitoring for churches", body: "A focused guide to stream health, alerts, and what the booth needs before anyone notices a problem." },
+          { href: "/tech-manager", title: "Tech Manager", body: "How device discovery, system documentation, and desktop monitoring fit into the stack." },
           { href: "/church-check-in-tablet", title: "Church check-in tablet", body: "A dedicated guide to tablet-based check-in, attendance, and guest workflows." },
           { href: "/church-digital-signage-software", title: "Digital signage software", body: "How churches manage lobby displays and signage with less friction." },
         ].map(({ href, title, body }) => (
@@ -143,10 +142,10 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
             icon: "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z",
           },
           {
-            title: "People & Follow-up",
-            href: "/platform/people",
-            desc: "Guest capture, prayer routing, visitor records, and member insight.",
-            icon: "M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z",
+            title: "Tech Manager",
+            href: "/tech-manager",
+            desc: "Desktop monitoring, device discovery, and system documentation for the AV booth.",
+            icon: "M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v9A2.25 2.25 0 0118.75 16.5H13.5l-2.25 3-2.25-3H5.25A2.25 2.25 0 013 14.25v-9z",
           },
           {
             title: "Operations",
@@ -167,10 +166,10 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
             icon: "M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c0 .621-.504 1.125-1.125 1.125m0 1.5V14.25m0-2.625c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M9.75 14.25h1.5m4.875-9.375c0 .621-.504 1.125-1.125 1.125M15 5.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125",
           },
           {
-            title: "Digital Engagement",
-            href: "/solutions/digital-engagement",
-            desc: "Welcome online visitors and route conversations to the right people.",
-            icon: "M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418",
+            title: "Digital Signage",
+            href: "/signage-display",
+            desc: "Keep lobby displays updated without adding another disconnected tool.",
+            icon: "M2.25 6.75A2.25 2.25 0 014.5 4.5h15A2.25 2.25 0 0121.75 6.75v9A2.25 2.25 0 0119.5 18h-15a2.25 2.25 0 01-2.25-2.25v-9zM9 21h6",
           },
         ].map(({ title, href, desc, icon }) => (
           <a
@@ -199,18 +198,18 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
         {[
           {
             step: "01",
-            heading: "Count attendance inside the real seating layout",
-            body: "Templates stay familiar week to week. Volunteers confirm changes in 1–3 minutes.",
+            heading: "Monitor the system before service starts",
+            body: "Check stream health, devices, cameras, and alerts before the room fills up.",
           },
           {
             step: "02",
-            heading: "Capture guests and follow-up in one step",
-            body: "Welcome cards, QR codes, and online responses create real people records automatically.",
+            heading: "Run the service from one booth workflow",
+            body: "Attendance, PTZ control, OBS and vMix workflows, and signage stay in the same operating system.",
           },
           {
             step: "03",
-            heading: "Bring your whole team in with role-based access",
-            body: "Works across phones, tablets, and laptops. Permissions keep data in the right hands.",
+            heading: "Review what changed before next Sunday",
+            body: "Luminos and Tech Manager help the booth spot trends, failures, and follow-up tasks faster.",
           },
         ].map(({ step, heading, body }) => (
           <div class="flex flex-col">

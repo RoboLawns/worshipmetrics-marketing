@@ -65,7 +65,7 @@ const structuredData = [
       <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">A church guest follow-up system that helps your team move from first visit to real care.</h1>
       <p class="mt-6 text-lg text-slate-600 sm:text-xl">Keep guest capture, prayer routing, attendance context, and next steps together so your church can follow up consistently instead of reactively.</p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/platform/people" class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-700">See people workflows</a>
+        <a href="/platform" class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-700">See platform overview</a>
         <a href="/church-visitor-follow-up-software" class="rounded-xl border border-slate-300 px-8 py-3 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">See visitor follow-up guide</a>
       </div>
     </div>
@@ -93,9 +93,9 @@ const structuredData = [
   <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
       {[
-        { href: "/platform/people", title: "People and follow-up", body: "See the full people workflow behind guest follow-up inside WorshipMetrics." },
+          { href: "/platform", title: "Platform overview", body: "See how attendance, operations, Tech Manager, and Luminos fit together inside WorshipMetrics." },
         { href: "/church-visitor-follow-up-software", title: "Visitor follow-up software", body: "A related guide focused more specifically on guest capture and follow-up software." },
-        { href: "/solutions/digital-engagement", title: "Digital engagement", body: "Bring online inquiries and digital conversations into the same guest follow-up system." },
+          { href: "/church-livestream-analytics", title: "Livestream analytics", body: "See how online reporting fits into the same weekly service review without another disconnected tool." },
       ].map(({ href, title, body }) => (
         <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white"><h3 class="text-lg font-semibold text-slate-900">{title}</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p><span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span></a>
       ))}

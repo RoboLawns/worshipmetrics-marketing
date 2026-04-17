@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW = `${R2}/homepage/new%20images`;
+const LUMINOS_PROFILE = `${R2}/Luminos/Luminos%20Profile.jpg`;
 const OG_IMAGE = `${R2NEW}/Stream%20Health.jpg`;
 
 const faqItems = [
@@ -164,8 +165,8 @@ const structuredData = [
             <a href="/luminos-ai-assistant" class="rounded-xl border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">See Luminos AV support</a>
           </div>
         </div>
-        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-          <img src={`${R2}/homepage/Luminos.jpg`} alt="Luminos and Tech Manager support" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <div class="flex items-center justify-center overflow-hidden rounded-3xl border border-slate-200 bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#eef2ff_58%,_#dbe5ff_100%)] p-10 shadow-sm">
+          <img src={LUMINOS_PROFILE} alt="Luminos profile illustration" loading="lazy" decoding="async" width="320" height="320" class="aspect-square w-full max-w-[14rem] rounded-full border-4 border-white object-cover shadow-[0_18px_44px_rgba(67,97,238,0.2)] sm:max-w-[16rem]" />
         </div>
       </div>
     </div>
