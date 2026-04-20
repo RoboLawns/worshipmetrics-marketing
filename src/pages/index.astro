@@ -6,6 +6,10 @@ const SITE_URL = "https://worshipmetrics.com";
 const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW   = `${R2}/homepage/new%20images`;
 const LUMINOS_PROFILE = `${R2}/Luminos/Luminos%20Profile.jpg`;
+const TECH_MANAGER_DASHBOARD = `${R2}/Tech%20Manager/Worship%20Metrics%20Tech%20Manager%20Dashboard.jpg`;
+const TECH_MANAGER_DASHBOARD_CHECK = `${R2}/Tech%20Manager/Tech%20Manager%20Dashboard%20Check.jpg`;
+const TECH_MANAGER_VOLUNTEERS = `${R2}/Tech%20Manager/Volunteers%20with%20Worship%20Metrics%20Tech%20Manager.jpg`;
+const TECH_MANAGER_DEVICE_MAP = `${R2}/Tech%20Manager/WorshipMetrics%20Device%20Map.jpg`;
 const SIGNAGE_EXAMPLE_URL = "https://app.worshipmetrics.com/tv/00000000-0000-4000-8000-00000000de10";
 const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170";
 const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
@@ -21,7 +25,7 @@ const structuredData = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, iOS, Android",
   url: SITE_URL,
-  image: `${R2NEW}/Stream%20Health.jpg`,
+  image: TECH_MANAGER_DASHBOARD,
   description: "Tech Manager lets your whole AV team contribute from the devices they already own. Stop running Sunday morning on one person's expertise. From WorshipMetrics.",
   offers: {
     "@type": "Offer",
@@ -38,15 +42,15 @@ const structuredData = {
   socialTitle="Tech Manager — The AV Operations Platform for Churches"
   description="Tech Manager lets your whole AV team contribute from the devices they already own. Stop running Sunday morning on one person's expertise. From WorshipMetrics."
   canonical="/"
-  ogImage={`${R2NEW}/Stream%20Health.jpg`}
+  ogImage={TECH_MANAGER_DASHBOARD}
   structuredData={structuredData}
 >
 <link
   slot="head"
   rel="preload"
   as="image"
-  href={`${R2NEW}/Stream%20Health.jpg`}
-  imagesrcset={`${R2NEW}/Stream%20Health.jpg`}
+  href={TECH_MANAGER_DASHBOARD}
+  imagesrcset={TECH_MANAGER_DASHBOARD}
   fetchpriority="high"
 />
 <style>
@@ -336,9 +340,9 @@ const structuredData = {
     <p class="hero-fine">Free desktop app for Windows and Mac. Works with or without the Hub.</p>
   </div>
 
-  <div class="hero-img-wrap">
-    <img
-      src={`${R2NEW}/Stream%20Health.jpg`}
+    <div class="hero-img-wrap">
+      <img
+      src={TECH_MANAGER_DASHBOARD}
       alt="Tech Manager dashboard showing AV system health and team collaboration"
       loading="eager" decoding="async" fetchpriority="high" width="1280" height="720"
     />
@@ -404,18 +408,21 @@ const structuredData = {
         <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v9A2.25 2.25 0 0118.75 16.5H13.5l-2.25 3-2.25-3H5.25A2.25 2.25 0 013 14.25v-9z"/></svg></div>
         <h3>Knows your rig.</h3>
         <p>Tech Manager scans your network and maps every camera, encoder, switcher, and display automatically. When a new volunteer joins, they can see exactly what's plugged into what — without a three-ring binder.</p>
+        <img src={TECH_MANAGER_DEVICE_MAP} alt="Tech Manager device map showing connected booth gear" loading="lazy" decoding="async" width="800" height="500" style="width:100%;height:auto;border:1px solid var(--border);border-radius:0.875rem;margin:0.25rem 0 1rem;" />
         <a class="how-link" href="/tech-manager">See system documentation →</a>
       </div>
       <div class="how-card">
         <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5V4H2v16h5m10 0v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4m10 0H7m5-12a2 2 0 110 4 2 2 0 010-4z"/></svg></div>
         <h3>Trains your team.</h3>
         <p>Give a camera operator access to just the PTZ cameras. Give your slides volunteer access to displays. Give your director access to everything. Everyone contributes meaningfully without stepping on each other.</p>
+        <img src={TECH_MANAGER_VOLUNTEERS} alt="Volunteers using Tech Manager together in the church booth" loading="lazy" decoding="async" width="1200" height="675" style="width:100%;height:auto;border:1px solid var(--border);border-radius:0.875rem;margin:0.25rem 0 1rem;" />
         <a class="how-link" href="/platform/operations">See role delegation →</a>
       </div>
       <div class="how-card">
         <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l4.5-4.5 3 3L16.5 6l4.5 4.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 6H16v3.5"/></svg></div>
         <h3>Watches your Sunday.</h3>
         <p>Stream health, audio levels, camera status, display connectivity — all monitored continuously, with self-healing for common problems and Luminos AI diagnostics for the rest.</p>
+        <img src={TECH_MANAGER_DASHBOARD_CHECK} alt="Tech Manager booth dashboard checking stream and production health" loading="lazy" decoding="async" width="1400" height="788" style="width:100%;height:auto;border:1px solid var(--border);border-radius:0.875rem;margin:0.25rem 0 1rem;" />
         <a class="how-link" href="/av-monitoring-for-houses-of-worship">See AV monitoring →</a>
       </div>
     </div>
@@ -447,7 +454,7 @@ const structuredData = {
       </div>
       <div class="split-img">
         <img
-          src={`${R2NEW}/Stream%20Health.jpg`}
+          src={TECH_MANAGER_DASHBOARD_CHECK}
           alt="Tech Manager AV monitoring dashboard"
           loading="lazy" width="800" height="540"
         />
@@ -511,7 +518,7 @@ const structuredData = {
       </div>
       <div class="split-img">
         <img
-          src={`${R2NEW}/Stream%20Health.jpg`}
+          src={TECH_MANAGER_VOLUNTEERS}
           alt="Tech Manager desktop app monitoring booth health and team access"
           loading="lazy" width="800" height="540"
         />
@@ -636,7 +643,7 @@ const structuredData = {
       </div>
       <div class="split-img">
         <img
-          src={`${R2NEW}/Stream%20Health.jpg`}
+          src={TECH_MANAGER_DEVICE_MAP}
           alt="Tech Manager Hub monitoring AV health and automation"
           loading="lazy" width="800" height="540"
         />
@@ -671,7 +678,7 @@ const structuredData = {
       </div>
       <div class="split-img">
         <img
-          src={`${R2NEW}/Stream%20Health.jpg`}
+          src={TECH_MANAGER_VOLUNTEERS}
           alt="Production booth workflow and AV monitoring dashboard"
           loading="lazy" width="800" height="540"
         />
