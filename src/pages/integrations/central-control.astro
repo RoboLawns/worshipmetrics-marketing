@@ -1,0 +1,190 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const WEB_UI_PANELS_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
+const OG_IMAGE = WEB_UI_PANELS_IMAGE;
+
+const mappingRows = [
+  ["Services plan", "Central planning layer", "The service order, people assignments, and production intent begin in Worship Metrics."],
+  ["Rundown", "Execution sequence", "Service items move into a structured execution layer the room can run against."],
+  ["Cues", "Flex Macros", "Repeatable production moves can be authored once and triggered with more consistency."],
+  ["Positions", "Volunteer execution surfaces", "The right people get simpler interfaces for what they actually need to do live."],
+];
+
+const benefitCards = [
+  {
+    title: "Rundown sync",
+    body: "Turn the service plan into an execution-ready sequence instead of forcing the booth to re-translate the plan on Sunday morning.",
+  },
+  {
+    title: "Flex Macro automation",
+    body: "Automate repeatable production events so the room is less dependent on one operator remembering every move.",
+  },
+  {
+    title: "Volunteer execution surfaces",
+    body: "Let volunteers participate from simpler, role-specific interfaces instead of exposing the full control surface to everyone.",
+  },
+  {
+    title: "MCP-driven cue authoring",
+    body: "Move faster when building cues and automation logic for churches that want deeper production precision.",
+  },
+];
+
+const compatibility = [
+  "Central Control-supported switchers and production devices",
+  "Supported lighting consoles and playback environments",
+  "Streaming PCs and execution machines that fit the Central Control runtime model",
+  "Tablet-driven volunteer surfaces where WebPanels make sense operationally",
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "WorshipMetrics Central Control Integration",
+  url: `${SITE_URL}/integrations/central-control`,
+  description: "Technical overview of the WorshipMetrics automation layer powered by Central Control for churches evaluating paid-tier production execution.",
+};
+---
+
+<Layout
+  title="Central Control Integration"
+  description="Technical overview of the WorshipMetrics automation layer powered by Central Control for churches evaluating paid-tier production execution."
+  canonical="/integrations/central-control"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-12">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Technical integration</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Central Control inside the Worship Metrics automation layer.</h1>
+      <p class="mt-6 max-w-4xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+        This page is for technical buyers and production-heavy churches evaluating how Worship Metrics handles execution, not just planning. On primary marketing surfaces we lead with the workflow. Here we describe the engine behind the paid automation layer clearly and directly.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+      <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What it is</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">A production execution engine paired with Worship Metrics as the planning layer.</h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+          Central Control is the execution side of the automation story. Worship Metrics owns the service plan, people coordination, and high-level workflow. The paid tier uses Central Control to help move that plan into a live execution environment the booth can trust.
+        </p>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+          The integration is part of the paid Worship Metrics story and should be understood as a partnership with Sistine Control Systems, not as a separate standalone product you need to market around on first-touch pages.
+        </p>
+      </div>
+      <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why it matters</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">It closes the gap between planning a service and actually running it.</h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+          Many churches already know how to plan. The harder problem is turning that plan into repeatable execution without relying on one person&apos;s memory. This integration exists to solve that gap.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 pb-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+      <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+        <img src={WEB_UI_PANELS_IMAGE} alt="Central Control-style web UI panels integrated into WorshipMetrics execution workflows" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div class="rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What the paid layer looks like</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Web panels and simplified live surfaces for the people actually running Sunday.</h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+          This is where the technical story gets concrete. The point is not more complexity for its own sake. The point is that the right roles can interact with narrower, safer execution surfaces while the underlying automation handles the heavier production logic.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">How it works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Architecture in plain English.</h2>
+      </div>
+      <div class="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-slate-700">Worship Metrics concept</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Execution layer</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">What that means</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            {mappingRows.map(([wm, cc, body]) => (
+              <tr>
+                <td class="px-6 py-4 font-semibold text-slate-900">{wm}</td>
+                <td class="px-6 py-4 text-slate-700">{cc}</td>
+                <td class="px-6 py-4 text-slate-600">{body}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {benefitCards.map(({ title, body }) => (
+          <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <h2 class="text-xl font-semibold text-slate-900">{title}</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+      <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Hardware side</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">What runs where.</h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+          Worship Metrics handles cloud planning, team coordination, and service structure. Central Control runs in the execution environment where the production logic needs to live. Volunteer-facing surfaces can extend onto tablets and WebPanels where that makes operational sense.
+        </p>
+      </div>
+      <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Compatibility</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Designed for technical buyers who will ask the obvious questions.</h2>
+        <ul class="mt-6 space-y-3">
+          {compatibility.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base">
+              <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600">Final device-by-device compatibility should track Central Control&apos;s supported device list and the church&apos;s actual production environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-slate-950 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Pricing and rollout</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">This sits inside the Pro tier because it changes what the software actually does.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            We name Central Control explicitly on the pricing page because it justifies the paid upgrade. The technical story belongs here, where sophisticated buyers need enough detail to evaluate the fit honestly.
+          </p>
+        </div>
+        <div class="space-y-4">
+          <a href="/pricing" class="btn-primary">See pricing</a>
+          <a href="/discovery-call" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:#fff;">Book a production setup call</a>
+          <a href="/kb" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:#fff;">See technical guides in the Knowledge Base</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

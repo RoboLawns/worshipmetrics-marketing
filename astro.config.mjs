@@ -11,6 +11,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://worshipmetrics.com',
   trailingSlash: 'always',
+  redirects: {
+    '/platform/operations': '/volunteers',
+    '/features': '/platform',
+  },
   output: 'server',
   adapter: cloudflare(),
   session: {

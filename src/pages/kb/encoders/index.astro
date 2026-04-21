@@ -8,7 +8,9 @@ const allDevices = await getCollection('devices');
 const encoders = allDevices.filter(e => e.data.deviceCategory === 'encoder');
 const brands = [...new Set(encoders.map(e => e.data.brand))].sort();
 const brandCounts = Object.fromEntries(brands.map(b => [b, encoders.filter(e => e.data.brand === b).length]));
-const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+function brandSlug(b: string) {
+  return b.toLowerCase().replace(/[\s\/]+/g, '-');
+}
 ---
 <BaseLayout title="Hardware Encoder Knowledge Base for Churches" description="Setup guides, stream key configuration, SRT multi-campus setup, and troubleshooting for hardware encoders in church production." canonical="/kb/encoders">
   <section class="border-b border-border bg-bg px-6 py-16">

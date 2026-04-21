@@ -1,0 +1,312 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/homepage/Team%20Collaboration%20hero.jpg`;
+const PLAN_IMAGE = `${R2}/homepage/Invite%20Team%20Member.jpg`;
+const RUN_IMAGE = `${R2}/homepage/Church%20Viewer.jpg`;
+const TEAM_IMAGE = `${R2}/tablet/Sync%20with%20multiple%20tablets.jpg`;
+
+const views = [
+  {
+    title: "Plan view",
+    body: "Build the service order, duplicate forward from last week, and keep every item in one timeline your team can understand.",
+  },
+  {
+    title: "Production view",
+    body: "See every role, every timing cue, and every service item in the same operating picture instead of a stack of disconnected tools.",
+  },
+  {
+    title: "Run view",
+    body: "Move through Sunday live with confidence, with volunteers following the same order the team planned earlier in the week.",
+  },
+];
+
+const planningBullets = [
+  "Service items, notes, and attached production detail in one place",
+  "Templates and duplicate-forward workflows for recurring services",
+  "Planning that stays readable for pastors, tech directors, and volunteers",
+  "A free planning layer that is useful before you ever pay for automation",
+];
+
+const volunteerBullets = [
+  "Capability matching so the right people serve in the right positions",
+  "Availability, blackouts, and assignment visibility in one workflow",
+  "Faster replacement when somebody drops out late in the week",
+  "A direct path into the dedicated Volunteers page and future scheduling depth",
+];
+
+const runBullets = [
+  "Manual run mode that still feels like real software, not a stripped-down free plan",
+  "Clear timing, sequence, and next-up context for the booth",
+  "A shared service picture for staff and volunteers before doors open",
+  "A better handoff from planning to live execution on Sunday morning",
+];
+
+const automationBullets = [
+  "Rundown sync so the plan becomes the execution layer instead of another spreadsheet",
+  "Cue automation and macro-driven transitions for repeatable production moments",
+  "Volunteer-friendly execution surfaces that simplify live participation",
+  "Faster cue authoring for teams that want more than manual run-of-show management",
+];
+
+const serviceRows = [
+  ["Service planning", "Included", "Included", "Included"],
+  ["Duplicate-forward templates", "Included", "Included", "Included"],
+  ["Volunteer assignment", "Included", "Included", "Included"],
+  ["Live run mode", "Manual", "Manual + enhanced", "Automation-ready"],
+  ["Automation layer", "No", "No", "Included"],
+  ["Advanced cue workflows", "No", "No", "Included"],
+  ["Sales-assisted setup help", "No", "Optional", "Included"],
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics Services",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, iOS, Android",
+  url: `${SITE_URL}/services`,
+  image: HERO_IMAGE,
+  description: "Plan your Sunday, assign the team, run the service, and grow into automation from one connected workflow.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/pricing`,
+  },
+};
+---
+
+<Layout
+  title="Services"
+  socialTitle="Worship Metrics Services"
+  description="Plan your Sunday, assign the team, run the service, and grow into automation from one connected workflow."
+  canonical="/services"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={HERO_IMAGE} />
+  </Fragment>
+
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Services</p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Plan your Sunday. Run your Sunday. Know how your Sunday went.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Services is the workflow that turns a scattered Sunday into one connected system. Build the plan, assign the team, run the service live, and grow into automation when your church is ready.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="services_hero_get_started_free" data-wm-track-location="services_hero">Get started with Services free</a>
+          <a href="/pricing" class="btn-outline" data-wm-track="cta_click" data-wm-track-label="services_hero_see_pricing" data-wm-track-location="services_hero">See pricing</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Free makes you organized. Paid makes Sunday run itself.</p>
+      </div>
+
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="Services planning and team coordination view in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The three views</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One mental model from planning to production.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {views.map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Plan with your team</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Build the service once, then improve it every week.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Services is built around the reality that most churches are not starting from zero every week. Copy forward what worked, refine what changed, and keep the entire plan readable for the people actually showing up on Sunday.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {planningBullets.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base">
+              <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={PLAN_IMAGE} alt="Planning and assignment workflow in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={TEAM_IMAGE} alt="Volunteer coordination and device workflow inside WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Assign the right volunteers</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The people running Sunday deserve better tools than a group text.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Services gets stronger when volunteer coordination is built into the same workflow. Staff can assign positions with more confidence and volunteers can step into Sunday with clearer expectations.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {volunteerBullets.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base">
+              <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/volunteers" class="btn-outline">See the Volunteers workflow</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Run Sunday live</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A run-of-show that still works when you stay on the free tier.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The manual mode is not an afterthought. It gives smaller teams a better Sunday workflow immediately, then creates a clear path into the paid automation layer when your production complexity grows.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {runBullets.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base">
+              <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={RUN_IMAGE} alt="Live production and service execution view in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section id="automate" class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Automate your Sunday</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">This is where the paid tier stops organizing Sunday and starts running it.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            When the same church is planning the same service rhythms every week, the best software should do more than hold notes. It should turn the plan into an execution layer the booth can trust.
+          </p>
+          <ul class="mt-8 space-y-3">
+            {automationBullets.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-slate-200 sm:text-base">
+                <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-400"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">What changes when you automate</p>
+          <div class="mt-6 space-y-4">
+            {[
+              "The service plan becomes an execution-ready rundown instead of a reference document.",
+              "Volunteers interact with simpler surfaces built for what they need to do in the moment.",
+              "Repeatable production moves stop depending on one operator remembering every cue.",
+              "Your team spends less energy translating the plan and more energy running the room well.",
+            ].map((item) => (
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-slate-200">{item}</div>
+            ))}
+          </div>
+          <p class="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Powered by Central Control</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="/integrations/central-control" class="btn-outline" style="border-color:rgba(255,255,255,0.16);color:#fff;">Technical integration details</a>
+            <a href="/kb" class="btn-outline" style="border-color:rgba(255,255,255,0.16);color:#fff;">Setup guides in the KB</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Copy-forward magic</p>
+          <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Same as last week, but smarter.</h2>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            Most Sundays are not brand new productions. Services helps churches start with what worked last week, keep what should repeat, and surface what actually needs attention.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">After-action review</p>
+          <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Know how your Sunday went.</h2>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            The platform story does not end when the service ends. Services gives the team a cleaner record of what happened so next week is less guesswork and more improvement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Free vs paid</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Start free, then move into automation when it is worth it.</h2>
+      </div>
+      <div class="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-slate-700">Services capability</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Free</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Starter</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Pro</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            {serviceRows.map(([feature, free, starter, pro]) => (
+              <tr>
+                <td class="px-6 py-4 font-semibold text-slate-900">{feature}</td>
+                <td class="px-6 py-4 text-slate-600">{free}</td>
+                <td class="px-6 py-4 text-slate-600">{starter}</td>
+                <td class="px-6 py-4 text-slate-600">{pro}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Start with the plan your team can actually use.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Install Worship Metrics, invite the team, and build a service workflow that works before the room fills up.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="services_footer_get_started_free" data-wm-track-location="services_footer_cta">Get started with Services free</a>
+        <a href="/discovery-call" class="btn-outline" data-wm-track="cta_click" data-wm-track-label="services_footer_book_call" data-wm-track-location="services_footer_cta">Book a call</a>
+      </div>
+    </div>
+  </section>
+</Layout>

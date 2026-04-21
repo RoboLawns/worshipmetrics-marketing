@@ -1,0 +1,214 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/homepage/new%20images/Worship%20Volunteers%20Working%20Together.jpg`;
+const TEAM_IMAGE = `${R2}/homepage/Team%20Collaboration%20hero.jpg`;
+const INVITE_IMAGE = `${R2}/homepage/Invite%20Team%20Member.jpg`;
+
+const capabilityItems = [
+  "Skill tags so production, welcome, and ministry roles are assigned intentionally",
+  "Training checklists that make onboarding less dependent on one experienced volunteer",
+  "Role clarity that helps people grow into bigger responsibilities over time",
+  "A cleaner record of who is ready for what before the schedule gets built",
+];
+
+const scheduleItems = [
+  "Recurring availability and blackout windows in one place",
+  "Assignment workflows tied directly to the service plan",
+  "A clearer picture of who is overloaded and who can still step in",
+  "Less week-of scrambling and fewer last-minute text threads",
+];
+
+const replacementItems = [
+  "See who else can actually cover the role instead of mass-texting everyone",
+  "Move faster when someone drops out on Saturday night or Sunday morning",
+  "Keep volunteer confidence high by replacing chaos with a repeatable process",
+  "Protect the one person who usually gets every emergency message",
+];
+
+const reliabilityItems = [
+  {
+    title: "Service history",
+    body: "See who has served recently and who might need a lighter cadence before burnout shows up.",
+  },
+  {
+    title: "No-show patterns",
+    body: "Spot consistent reliability issues early instead of rediscovering them every month.",
+  },
+  {
+    title: "Training readiness",
+    body: "Know who is ready for the next position and who still needs a simpler first assignment.",
+  },
+  {
+    title: "Communication preferences",
+    body: "Email, SMS, and notification preferences stay attached to the actual volunteer record.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics Volunteers",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, iOS, Android",
+  url: `${SITE_URL}/volunteers`,
+  image: HERO_IMAGE,
+  description: "Volunteer capabilities, scheduling, communications, and replacement workflows built into the same system that runs Sunday.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/pricing`,
+  },
+};
+---
+
+<Layout
+  title="Volunteers"
+  socialTitle="Worship Metrics Volunteers"
+  description="Volunteer capabilities, scheduling, communications, and replacement workflows built into the same system that runs Sunday."
+  canonical="/volunteers"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Volunteers</p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          The people running Sunday deserve better tools than a group text and a spreadsheet.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Worship Metrics helps churches track capabilities, availability, reliability, and communication in the same workflow that builds the service plan. Better scheduling starts with better context.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary">Get started free</a>
+          <a href="/services" class="btn-outline">See how it fits Services</a>
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="Volunteers working together with WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Capabilities and training</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Know who can serve where before the schedule gets stressful.</h2>
+        <ul class="mt-8 space-y-3">
+          {capabilityItems.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base">
+              <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={INVITE_IMAGE} alt="Volunteer capability and invitation workflow in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={TEAM_IMAGE} alt="Volunteer scheduling and collaboration in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Availability and scheduling</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Build the volunteer plan with real availability, not guesses.</h2>
+        <ul class="mt-8 space-y-3">
+          {scheduleItems.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base">
+              <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-100 bg-indigo-50 p-8 shadow-sm sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Find a replacement</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The killer feature is not magical. It is just better than chaos.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            When somebody backs out, churches usually rely on one leader who knows everyone well enough to improvise. Worship Metrics turns that emergency into a repeatable workflow.
+          </p>
+        </div>
+        <div class="space-y-4">
+          {replacementItems.map((item) => (
+            <div class="rounded-2xl border border-white bg-white p-4 text-sm leading-relaxed text-slate-700 shadow-sm">{item}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Reliability and communications</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A healthier volunteer system is easier to lead.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {reliabilityItems.map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-slate-950 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">How it connects to Services</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Volunteer management is not a side tool. It is part of running Sunday well.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            The moment a church starts planning services with more intentionality, the people layer matters just as much as the item list. Volunteers exists to make that handoff smoother.
+          </p>
+        </div>
+        <div class="space-y-4">
+          {[
+            "Positions in the service plan connect directly to real people instead of generic placeholders.",
+            "The booth, the welcome team, and ministry leaders can work from the same picture of Sunday.",
+            "Scheduling decisions improve because the service workflow and volunteer workflow stop living in separate systems.",
+          ].map((item) => (
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-slate-200">{item}</div>
+          ))}
+        </div>
+      </div>
+      <div class="mt-8">
+        <a href="/services" class="btn-primary">See Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Give your team a better way to show up.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Start with the free workflow, then connect capabilities, scheduling, and service-day assignments in one system.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary">Get started free</a>
+        <a href="/pricing" class="btn-outline">Compare plans</a>
+      </div>
+    </div>
+  </section>
+</Layout>

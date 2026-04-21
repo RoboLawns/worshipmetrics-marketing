@@ -114,8 +114,8 @@ const structuredData = [
       gtag('js', new Date());
       gtag('config', 'AW-18048317342');
     </script>
-    <script is:inline define:vars={{ APP_URL, SIGN_UP_CONVERSION }}>
-      window.gtagReportSignUpConversion = function gtagReportSignUpConversion(url) {
+     <script is:inline define:vars={{ APP_URL, SIGN_UP_CONVERSION }}>
+       window.gtagReportSignUpConversion = function gtagReportSignUpConversion(url) {
         var navigated = false;
         var callback = function () {
           if (!navigated && typeof url !== 'undefined') {
@@ -136,9 +136,9 @@ const structuredData = [
         return false;
       };
 
-      document.addEventListener('click', function (event) {
-        var target = event.target;
-        if (!(target instanceof Element)) return;
+       document.addEventListener('click', function (event) {
+         var target = event.target;
+         if (!(target instanceof Element)) return;
 
         var link = target.closest('a[href]');
         if (!(link instanceof HTMLAnchorElement)) return;
@@ -146,10 +146,33 @@ const structuredData = [
         if (link.target === '_blank' || event.defaultPrevented) return;
         if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
-        event.preventDefault();
-        window.gtagReportSignUpConversion(link.href);
-      }, true);
-    </script>
+         event.preventDefault();
+         window.gtagReportSignUpConversion(link.href);
+       }, true);
+
+       document.addEventListener('click', function (event) {
+         var target = event.target;
+         if (!(target instanceof Element)) return;
+
+         var tracked = target.closest('[data-wm-track]');
+         if (!(tracked instanceof Element)) return;
+         if (event.defaultPrevented) return;
+
+         var eventName = tracked.getAttribute('data-wm-track') || 'cta_click';
+         var eventLabel = tracked.getAttribute('data-wm-track-label') || '';
+         var eventLocation = tracked.getAttribute('data-wm-track-location') || window.location.pathname;
+
+         if (typeof window.gtag === 'function') {
+           window.gtag('event', eventName, {
+             event_category: 'marketing_cta',
+             event_label: eventLabel,
+             page_location: window.location.href,
+             page_path: window.location.pathname,
+             cta_location: eventLocation,
+           });
+         }
+       }, true);
+     </script>
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col antialiased">

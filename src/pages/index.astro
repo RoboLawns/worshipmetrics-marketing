@@ -3,30 +3,76 @@ import Layout from "../layouts/Layout.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
-const R2      = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const R2NEW   = `${R2}/homepage/new%20images`;
-const LUMINOS_PROFILE = `${R2}/Luminos/Luminos%20Profile.jpg`;
-const TECH_MANAGER_DASHBOARD = `${R2}/Tech%20Manager/Worship%20Metrics%20Tech%20Manager%20Dashboard.jpg`;
-const TECH_MANAGER_DASHBOARD_CHECK = `${R2}/Tech%20Manager/Tech%20Manager%20Dashboard%20Check.jpg`;
-const TECH_MANAGER_VOLUNTEERS = `${R2}/Tech%20Manager/Volunteers%20with%20Worship%20Metrics%20Tech%20Manager.jpg`;
-const TECH_MANAGER_DEVICE_MAP = `${R2}/Tech%20Manager/WorshipMetrics%20Device%20Map.jpg`;
-const SIGNAGE_EXAMPLE_URL = "https://app.worshipmetrics.com/tv/00000000-0000-4000-8000-00000000de10";
-const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170";
-const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
-const APP_STORE_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Download_on_the_App_Store_Badge.svg.png";
-const GOOGLE_PLAY_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Google_Play_Store_badge_EN.svg.png";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/homepage/Team%20Collaboration%20hero.jpg`;
+const TECH_MANAGER_IMAGE = `${R2}/Tech%20Manager/Worship%20Metrics%20Tech%20Manager%20Dashboard.jpg`;
+const WORSHIP_CLIPS_IMAGE = `${R2}/homepage/Worship%20Clips%20Hero%202.jpg`;
+const ATTENDANCE_IMAGE = `${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`;
+const SIGNAGE_IMAGE = `${R2}/homepage/new%20images/Worship%20Digital%20Signage%20System.jpg`;
+const LUMINOS_IMAGE = `${R2}/Luminos/Luminos%20Profile.jpg`;
+const HUB_IMAGE = `${R2}/tablet/Worship%20Metrics%20Appliance%20Small.jpg`;
 const PAUL_HEADSHOT = `${R2}/paul.jpg`;
 const ANDREW_HEADSHOT = `${R2}/Andrew.jpg`;
+
+const problemCards = [
+  {
+    title: "Planning lives in five places",
+    body: "The service order, notes, volunteer asks, booth cues, and follow-up tasks all move on different tracks until Sunday gets harder than it needed to be.",
+    href: "/services",
+    cta: "See Services",
+  },
+  {
+    title: "One person always gets the emergency text",
+    body: "When the team depends on one expert, every change, replacement, and last-minute issue lands on the same person.",
+    href: "/volunteers",
+    cta: "See Volunteers",
+  },
+  {
+    title: "The booth has context, but no system",
+    body: "Tech directors and volunteers know the room, but the software stack still forces them to bridge planning, live execution, and troubleshooting manually.",
+    href: "/tech-manager",
+    cta: "See Tech Manager",
+  },
+  {
+    title: "Monday starts with guesswork",
+    body: "Attendance, clips, and what actually happened during the service are often reviewed in separate tools, if they are reviewed at all.",
+    href: "/pricing",
+    cta: "See the platform story",
+  },
+];
+
+const rhythm = [
+  {
+    step: "Plan",
+    body: "Build the service, keep the order clear, and stop translating Sunday across disconnected docs.",
+    href: "/services",
+  },
+  {
+    step: "Delegate",
+    body: "Assign the right people with better visibility into capabilities, availability, and training.",
+    href: "/volunteers",
+  },
+  {
+    step: "Run",
+    body: "Give the booth and the team a clearer operating picture while Tech Manager keeps the system grounded in reality.",
+    href: "/tech-manager",
+  },
+  {
+    step: "Ship",
+    body: "Carry Sunday forward into clips, reporting, signage, and next-week follow-up without starting over.",
+    href: "/solutions/worship-clips",
+  },
+];
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Tech Manager",
+  name: "WorshipMetrics",
   applicationCategory: "BusinessApplication",
-  operatingSystem: "Web, iOS, Android",
+  operatingSystem: "Web, Windows, Mac, iOS, Android",
   url: SITE_URL,
-  image: TECH_MANAGER_DASHBOARD,
-  description: "Tech Manager lets your whole AV team contribute from the devices they already own. Stop running Sunday morning on one person's expertise. From WorshipMetrics.",
+  image: HERO_IMAGE,
+  description: "WorshipMetrics is the operating system for your Sunday: plan services, coordinate volunteers, run production, and understand what happened after the room clears.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -38,760 +84,296 @@ const structuredData = {
 ---
 
 <Layout
-  title="Tech Manager — AV Operations Platform for Churches"
-  socialTitle="Tech Manager — The AV Operations Platform for Churches"
-  description="Tech Manager lets your whole AV team contribute from the devices they already own. Stop running Sunday morning on one person's expertise. From WorshipMetrics."
+  title="The Operating System for Your Sunday"
+  socialTitle="WorshipMetrics | The Operating System for Your Sunday"
+  description="Plan services, coordinate volunteers, run production, and understand what happened after the room clears. Free makes you organized. Paid makes Sunday run itself."
   canonical="/"
-  ogImage={TECH_MANAGER_DASHBOARD}
+  ogImage={HERO_IMAGE}
   structuredData={structuredData}
 >
-<link
-  slot="head"
-  rel="preload"
-  as="image"
-  href={TECH_MANAGER_DASHBOARD}
-  imagesrcset={TECH_MANAGER_DASHBOARD}
-  fetchpriority="high"
-/>
-<style>
-  /* ── Shared rhythm ─────────────────────────────────── */
-  .section      { padding: 5rem 1.5rem; }
-  .section-alt  { background: var(--bg-soft); }
-  .inner        { max-width: 72rem; margin: 0 auto; }
-  .inner-md     { max-width: 56rem; margin: 0 auto; }
-  .inner-sm     { max-width: 44rem; margin: 0 auto; }
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={HERO_IMAGE} />
+  </Fragment>
 
-  .eyebrow-center { text-align: center; margin-bottom: 0.4rem; }
-  .h2-center {
-    font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800;
-    color: var(--text); text-align: center; line-height: 1.15; margin-bottom: 0.75rem;
-  }
-  .sub-center {
-    text-align: center; color: var(--text-muted); font-size: 1rem;
-    max-width: 42rem; margin: 0 auto 3rem; line-height: 1.72;
-  }
-
-  /* ── HERO ──────────────────────────────────────────── */
-  .hero {
-    padding: 5.5rem 1.5rem 0;
-    text-align: center;
-    background: linear-gradient(175deg, #eef1fd 0%, #ffffff 60%);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    background: #fff; border: 1.5px solid var(--primary-border);
-    color: var(--primary); border-radius: 999px;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.28rem 0.9rem; margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(67,97,238,0.1);
-  }
-  .hero h1 {
-    font-size: clamp(2.4rem, 5.5vw, 4.25rem); font-weight: 800;
-    line-height: 1.08; letter-spacing: -0.03em; color: var(--text);
-    margin-bottom: 1.25rem;
-  }
-  .hero h1 em { font-style: normal; color: var(--primary); }
-  .hero-sub {
-    font-size: 1.1rem; color: var(--text-soft); max-width: 42rem;
-    margin: 0 auto 2.25rem; line-height: 1.75;
-  }
-  .hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 0.9rem; }
-  .hero-fine  { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 3rem; }
-
-  .hero-img-wrap {
-    max-width: 64rem; margin: 0 auto;
-    border-radius: 1rem 1rem 0 0; overflow: hidden;
-    border: 1px solid var(--border); border-bottom: none;
-    box-shadow: 0 -4px 40px rgba(67,97,238,0.06), 0 24px 64px rgba(15,26,46,0.1);
-  }
-  .hero-img-wrap img { display: block; width: 100%; height: auto; }
-
-  /* ── PAIN → PROMISE ────────────────────────────────── */
-  .pain-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
-  }
-  @media (max-width: 860px) { .pain-grid { grid-template-columns: 1fr; max-width: 36rem; margin: 0 auto; } }
-
-  .pain-card {
-    border: 1.5px solid var(--border); border-radius: var(--radius-card);
-    background: #fff; padding: 1.75rem; position: relative; overflow: hidden;
-    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-  }
-  .pain-card:hover { border-color: var(--primary-border); box-shadow: 0 8px 28px rgba(67,97,238,0.09); transform: translateY(-2px); }
-  .pain-before {
-    font-size: 0.75rem; font-weight: 700; color: #dc2626;
-    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem;
-    display: flex; align-items: center; gap: 0.35rem;
-  }
-  .pain-before::before { content: '✕'; font-size: 0.7rem; }
-  .pain-after {
-    font-size: 0.75rem; font-weight: 700; color: #16a34a;
-    letter-spacing: 0.08em; text-transform: uppercase; margin: 1rem 0 0.5rem;
-    display: flex; align-items: center; gap: 0.35rem;
-  }
-  .pain-after::before { content: '✓'; font-size: 0.7rem; }
-  .pain-problem { font-size: 0.925rem; color: var(--text-soft); line-height: 1.6; font-style: italic; }
-  .pain-solution { font-size: 0.925rem; color: var(--text); font-weight: 600; line-height: 1.6; }
-  .pain-icon {
-    width: 2.75rem; height: 2.75rem; border-radius: 0.625rem;
-    background: var(--primary-light); display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1rem;
-  }
-  .pain-icon svg { width: 1.3rem; height: 1.3rem; color: var(--primary); }
-
-  .how-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;
-  }
-  @media (max-width: 900px) { .how-grid { grid-template-columns: 1fr; } }
-  .how-card {
-    background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-card);
-    padding: 1.5rem; box-shadow: 0 10px 24px rgba(15,26,46,0.06);
-  }
-  .how-icon {
-    width: 2.75rem; height: 2.75rem; border-radius: 0.7rem; margin-bottom: 1rem;
-    display: flex; align-items: center; justify-content: center; background: var(--primary-light); color: var(--primary);
-  }
-  .how-icon svg { width: 1.35rem; height: 1.35rem; }
-  .how-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; }
-  .how-card p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1rem; }
-  .how-link { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-decoration: none; }
-
-  /* ── ECOSYSTEM GRID ────────────────────────────────── */
-  .eco-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem;
-  }
-  @media (max-width: 900px) { .eco-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 560px) { .eco-grid { grid-template-columns: 1fr; } }
-
-  .eco-card {
-    background: #fff; border: 1.5px solid var(--border);
-    border-radius: var(--radius-card); padding: 1.5rem;
-    text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-  .eco-card:hover { border-color: var(--primary-border); box-shadow: 0 8px 28px rgba(67,97,238,0.09); transform: translateY(-2px); }
-  .eco-card-media {
-    aspect-ratio: 16 / 10; overflow: hidden; border-radius: 0.9rem;
-    border: 1px solid var(--border); margin-bottom: 0.4rem;
-    background: #eef2ff;
-  }
-  .eco-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .eco-card-media.profile {
-    display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(circle at top, #ffffff 0%, #eef2ff 58%, #dbe5ff 100%);
-  }
-  .eco-card-media.profile img {
-    width: 68%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;
-    border-radius: 999px; border: 4px solid #fff;
-    box-shadow: 0 12px 36px rgba(67,97,238,0.18);
-  }
-  .eco-label {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--text-muted);
-  }
-  .eco-title { font-size: 1rem; font-weight: 700; color: var(--text); }
-  .eco-desc  { font-size: 0.825rem; color: var(--text-soft); line-height: 1.6; flex: 1; }
-  .eco-link  { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-top: 0.25rem; }
-  .eco-badge {
-    display: inline-block; font-size: 0.65rem; font-weight: 700;
-    padding: 0.2rem 0.55rem; border-radius: 999px;
-    background: #dcfce7; color: #15803d; align-self: flex-start;
-  }
-
-  /* ── SPLIT SECTION ─────────────────────────────────── */
-  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  @media (max-width: 768px) { .split { grid-template-columns: 1fr; gap: 2.5rem; } }
-  .split-img {
-    border-radius: 0.875rem; overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 40px rgba(15,26,46,0.09);
-  }
-  .split-img img { display: block; width: 100%; height: auto; }
-  .split-text h2 {
-    font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800;
-    color: var(--text); line-height: 1.2; margin-bottom: 0.75rem;
-  }
-  .split-text p   { color: var(--text-soft); line-height: 1.77; margin-bottom: 1.25rem; font-size: 0.95rem; }
-  .bullets { list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .bullets li {
-    display: flex; align-items: flex-start; gap: 0.65rem;
-    font-size: 0.9rem; color: var(--text-soft);
-  }
-  .bullets li::before {
-    content: ''; flex-shrink: 0; width: 6px; height: 6px;
-    border-radius: 50%; background: var(--primary); margin-top: 0.5rem;
-  }
-
-  /* ── AV / SIGNAGE highlight band ───────────────────── */
-  .highlight-band {
-    background: var(--primary); border-radius: 1.25rem;
-    padding: 2.5rem; display: flex; align-items: center; gap: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  @media (max-width: 640px) { .highlight-band { flex-direction: column; text-align: center; } }
-  .highlight-band-icon {
-    flex-shrink: 0; width: 3.5rem; height: 3.5rem;
-    background: rgba(255,255,255,0.15); border-radius: 0.875rem;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .highlight-band-icon svg { width: 1.75rem; height: 1.75rem; color: #fff; }
-  .highlight-band h3 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.35rem; }
-  .highlight-band p  { font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.65; margin: 0; }
-
-  /* ── ORIGIN / MISSION ──────────────────────────────── */
-  .mission-band {
-    background: var(--text); border-radius: 1.5rem;
-    padding: 3.5rem; text-align: center;
-  }
-  .mission-band h2 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; line-height: 1.2; }
-  .mission-band p  { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.75; max-width: 42rem; margin: 0 auto 2rem; }
-  .founders { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
-  .founder  {
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    width: 9rem;
-  }
-  .founder-avatar {
-    width: 5rem; height: 5rem; border-radius: 50%;
-    background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.2);
-    overflow: hidden; display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.4); font-size: 1.5rem;
-  }
-  .founder-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .founder-name  { font-size: 0.875rem; font-weight: 700; color: #fff; }
-  .founder-title { font-size: 0.75rem; color: rgba(255,255,255,0.55); text-align: center; }
-
-  /* ── LUMINOS BAND ──────────────────────────────────── */
-  .luminos-band {
-    background: linear-gradient(135deg, #f0f3fb 0%, #e8ecff 100%);
-    border: 1.5px solid var(--primary-border); border-radius: 1.25rem;
-    padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
-  }
-  @media (max-width: 640px) { .luminos-band { grid-template-columns: 1fr; } }
-  .luminos-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
-  .luminos-profile {
-    width: 6rem; height: 6rem; margin-bottom: 1rem; border-radius: 999px;
-    overflow: hidden; border: 4px solid #fff; box-shadow: 0 16px 40px rgba(67,97,238,0.2);
-  }
-  .luminos-profile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .luminos-band h3 { font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 0.6rem; line-height: 1.2; }
-  .luminos-band p  { font-size: 0.9rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1.25rem; }
-  .luminos-prompts { display: flex; flex-direction: column; gap: 0.5rem; }
-  .luminos-prompt {
-    background: #fff; border: 1px solid var(--border);
-    border-radius: 0.625rem; padding: 0.65rem 0.9rem;
-    font-size: 0.825rem; color: var(--text-soft); font-style: italic;
-  }
-  .luminos-prompt span { font-style: normal; font-weight: 700; color: var(--primary); }
-
-  /* ── STEPS ─────────────────────────────────────────── */
-  .steps { display: flex; flex-direction: column; gap: 1.75rem; max-width: 40rem; margin: 0 auto; }
-  .step  { display: flex; gap: 1.25rem; align-items: flex-start; }
-  .step-num {
-    flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%;
-    background: var(--primary); display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 0.9rem; color: #fff;
-    box-shadow: 0 4px 12px rgba(67,97,238,0.3);
-  }
-  .step-body h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
-  .step-body p  { font-size: 0.875rem; color: var(--text-soft); line-height: 1.65; }
-
-  /* ── CTA BAND ──────────────────────────────────────── */
-  .cta-band { background: var(--primary); padding: 5.5rem 1.5rem; text-align: center; }
-  .cta-band h2 { font-size: clamp(1.9rem, 3.5vw, 2.75rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; line-height: 1.15; }
-  .cta-band p  { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 2.25rem; max-width: 36rem; margin-left: auto; margin-right: auto; }
-  .cta-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 1.25rem; }
-  .btn-white {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1.75rem; border-radius: var(--radius-btn);
-    background: #fff; color: var(--primary); font-weight: 700; font-size: 0.9rem;
-    text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    transition: box-shadow 0.15s, transform 0.15s;
-  }
-  .btn-white:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.2); transform: translateY(-1px); }
-  .btn-ghost-white {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1.75rem; border-radius: var(--radius-btn);
-    border: 2px solid rgba(255,255,255,0.45); color: #fff; background: transparent;
-    font-weight: 700; font-size: 0.9rem; text-decoration: none;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .btn-ghost-white:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
-  .cta-note { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
-
-</style>
-
-<!-- ═══════════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="inner-sm">
-    <div class="hero-badge">Tech Manager — From WorshipMetrics</div>
-    <h1>Stop running Sunday morning on one person's expertise.</h1>
-    <p class="hero-sub">
-      Tech Manager is the AV operations platform that lets your whole team contribute from the devices they already own.<br/>
-      Monitor your stream. Map your rig. Count your room. Train new volunteers in 30 minutes. Built for the tech directors and AV leads who are tired of doing everything alone.
-    </p>
-    <div class="hero-ctas">
-      <a href="/tech-manager" class="btn-primary">Download Tech Manager — free</a>
-      <a href="/appliance" class="btn-outline">See the Hub — $499</a>
-    </div>
-    <p class="hero-fine">Free desktop app for Windows and Mac. Works with or without the Hub.</p>
-  </div>
-
-    <div class="hero-img-wrap">
-      <img
-      src={TECH_MANAGER_DASHBOARD}
-      alt="Tech Manager dashboard showing AV system health and team collaboration"
-      loading="eager" decoding="async" fetchpriority="high" width="1280" height="720"
-    />
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     THE REAL PROBLEM
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <h2 class="h2-center">The problem every church AV team knows.</h2>
-    <p class="sub-center">Most churches have one person who understands the AV system. One volunteer who knows the scenes. One tech director who can troubleshoot when the stream drops. That person is indispensable — and exhausted. When they go on vacation, get sick, or move on, the whole Sunday morning production is at risk.</p>
-
-    <div class="pain-grid">
-      {[
-        {
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v9A2.25 2.25 0 0118.75 16.5H13.5l-2.25 3-2.25-3H5.25A2.25 2.25 0 013 14.25v-9z"/>`,
-          before: "One person knows the system.",
-          problem: "When your only expert is out, nobody else knows the scene names, the camera presets, or how to recover when OBS crashes.",
-          after: "How Tech Manager helps",
-          solution: "Tech Manager documents your AV system automatically — every device, every signal path, every scene — so the knowledge lives in the cloud, not in one volunteer's head.",
-        },
-        {
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 4.875A2.625 2.625 0 014.875 2.25h14.25A2.625 2.625 0 0121.75 4.875v8.25A2.625 2.625 0 0119.125 15.75H13.5l-3 3v-3H4.875A2.625 2.625 0 012.25 13.125v-8.25z"/>`,
-          before: "One person does five jobs.",
-          problem: "Cameras, switcher, audio, graphics, chat moderation. The same volunteer handles all of it, all at once, every Sunday.",
-          after: "How Tech Manager helps",
-          solution: "Tech Manager lets multiple volunteers log in from their own phones, tablets, and laptops. One runs PTZ cameras. Another handles slides. Another moderates chat. Everyone has exactly the controls they need.",
-        },
-        {
-          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m4-2a8 8 0 11-16 0 8 8 0 0116 0z"/>`,
-          before: "New volunteers never stick.",
-          problem: "Training takes six months. The control surface is overwhelming. New recruits give up before they ever feel useful.",
-          after: "How Tech Manager helps",
-          solution: "Role-based access means a new volunteer can learn one role — running one PTZ camera, say — and succeed at it by Sunday. They grow into bigger roles over time, not drown in them on day one.",
-        },
-      ].map(({ icon, before, problem, after, solution }) => (
-        <div class="pain-card">
-          <div class="pain-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" set:html={icon}/>
-          </div>
-          <div class="pain-before">{before}</div>
-          <p class="pain-problem">"{problem}"</p>
-          <div class="pain-after">{after}</div>
-          <p class="pain-solution">{solution}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     HOW TECH MANAGER WORKS
-════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner">
-    <p class="eyebrow eyebrow-center">How Tech Manager Works</p>
-    <h2 class="h2-center">One platform. Three jobs. Built for the booth.</h2>
-    <p class="sub-center">Tech Manager sits quietly on your production computer and in your volunteers' pockets. It does three things the current church AV stack doesn't do.</p>
-    <div class="how-grid">
-      <div class="how-card">
-        <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v9A2.25 2.25 0 0118.75 16.5H13.5l-2.25 3-2.25-3H5.25A2.25 2.25 0 013 14.25v-9z"/></svg></div>
-        <h3>Knows your rig.</h3>
-        <p>Tech Manager scans your network and maps every camera, encoder, switcher, and display automatically. When a new volunteer joins, they can see exactly what's plugged into what — without a three-ring binder.</p>
-        <img src={TECH_MANAGER_DEVICE_MAP} alt="Tech Manager device map showing connected booth gear" loading="lazy" decoding="async" width="800" height="500" style="width:100%;height:auto;border:1px solid var(--border);border-radius:0.875rem;margin:0.25rem 0 1rem;" />
-        <a class="how-link" href="/tech-manager">See system documentation →</a>
-      </div>
-      <div class="how-card">
-        <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5V4H2v16h5m10 0v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4m10 0H7m5-12a2 2 0 110 4 2 2 0 010-4z"/></svg></div>
-        <h3>Trains your team.</h3>
-        <p>Give a camera operator access to just the PTZ cameras. Give your slides volunteer access to displays. Give your director access to everything. Everyone contributes meaningfully without stepping on each other.</p>
-        <img src={TECH_MANAGER_VOLUNTEERS} alt="Volunteers using Tech Manager together in the church booth" loading="lazy" decoding="async" width="1200" height="675" style="width:100%;height:auto;border:1px solid var(--border);border-radius:0.875rem;margin:0.25rem 0 1rem;" />
-        <a class="how-link" href="/platform/operations">See role delegation →</a>
-      </div>
-      <div class="how-card">
-        <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l4.5-4.5 3 3L16.5 6l4.5 4.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 6H16v3.5"/></svg></div>
-        <h3>Watches your Sunday.</h3>
-        <p>Stream health, audio levels, camera status, display connectivity — all monitored continuously, with self-healing for common problems and Luminos AI diagnostics for the rest.</p>
-        <img src={TECH_MANAGER_DASHBOARD_CHECK} alt="Tech Manager booth dashboard checking stream and production health" loading="lazy" decoding="async" width="1400" height="788" style="width:100%;height:auto;border:1px solid var(--border);border-radius:0.875rem;margin:0.25rem 0 1rem;" />
-        <a class="how-link" href="/av-monitoring-for-houses-of-worship">See AV monitoring →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     AV MONITORING
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">AV Monitoring</p>
-        <h2>We'll tell you when your stream is down<br/>before your congregation does.</h2>
-        <p>Sunday morning should not start with a text from a concerned member. Tech Manager watches your audio, video, cameras, and displays in real time — so your team knows the moment something goes wrong, not twelve minutes after.</p>
-        <ul class="bullets">
-          <li>Real-time stream, audio, and display monitoring</li>
-          <li>Instant alerts to your team's phones</li>
-          <li>Remote PTZ camera control from anywhere in the world</li>
-          <li>Remote OBS and vMix control — run a great service without being in the building</li>
-          <li>Tech Manager maps your AV system, monitors every device, and gives Luminos what it needs to diagnose problems fast</li>
-        </ul>
-        <p style="font-size:0.875rem;color:var(--text-muted);font-style:italic;">So your Sunday morning doesn't start with a text from a concerned member — and your volunteers can troubleshoot together instead of one person fixing everything alone.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/av-monitoring-for-houses-of-worship" class="btn-primary">See AV monitoring</a>
-          <a href="/tech-manager" class="btn-outline">See Tech Manager</a>
-        </div>
-      </div>
-      <div class="split-img">
-        <img
-          src={TECH_MANAGER_DASHBOARD_CHECK}
-          alt="Tech Manager AV monitoring dashboard"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     COMPUTER VISION ATTENDANCE
-════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner">
-    <div class="split">
-      <div class="split-img">
-        <img
-          src={`${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`}
-          alt="Computer vision attendance counting the room automatically"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Computer Vision Attendance</p>
-        <h2>The cameras are already in the room. Let them count.</h2>
-        <p>Stop asking volunteers to tally the room on a notepad. Tech Manager uses computer vision through the Hub to log attendance automatically — or one-tap counting on any phone or tablet when you want volunteers in the flow.</p>
-        <ul class="bullets">
-          <li>Fully automatic counting with the Hub — your camera does the work</li>
-          <li>One-tap manual mode for phones, tablets, and laptops you already own</li>
-          <li>Online + in-room unified in a single weekly report</li>
-          <li>Historical data from day one, so you can actually see trends</li>
-        </ul>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/platform/attendance" class="btn-primary">See attendance workflows</a>
-          <a href="/appliance" class="btn-outline">See the Hub — $499</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     TECH MANAGER DESKTOP
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Tech Manager Desktop</p>
-        <h2>The smartest thing in your AV booth isn't your switcher.</h2>
-        <p>Tech Manager is a free desktop app for Windows and Mac that runs silently on your production computer. It maps every device on your network, monitors your OBS health, documents your AV system, and gives your whole team cloud access to what's happening in the booth — without anyone having to be physically there.</p>
-        <ul class="bullets">
-          <li>Auto-discovery — 80+ supported devices, mapped automatically</li>
-          <li>OBS monitoring — connection, logs, and stream health in real time</li>
-          <li>Self-healing — most problems fix themselves before you know they happened</li>
-          <li>Team access — every authorized volunteer sees what they need, from anywhere</li>
-        </ul>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/tech-manager" class="btn-primary">Download Tech Manager — free</a>
-          <a href="/tech-manager" class="btn-outline">See full feature list</a>
-        </div>
-      </div>
-      <div class="split-img">
-        <img
-          src={TECH_MANAGER_VOLUNTEERS}
-          alt="Tech Manager desktop app monitoring booth health and team access"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     WORSHIP CLIPS
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Worship Clips</p>
-        <h2>Your best moments are already<br/>in the cloud before the last car leaves.</h2>
-        <p>Every service has a moment worth sharing. Tech Manager automatically identifies, clips, and formats your best moments for Reels, Shorts, TikTok, and Facebook. Built for the production team, not the social media intern — nothing posts without staff approval.</p>
-        <ul class="bullets">
-          <li>AI clip detection — key quotes, worship peaks, sermon highlights</li>
-          <li>Auto-formatted for every major social platform</li>
-          <li>Podcast audio extracted automatically from the sermon segment</li>
-          <li>Staff approves clips from the dashboard — nothing posts without your sign-off</li>
-        </ul>
-        <a href="/solutions/worship-clips" class="btn-primary">See Worship Clips</a>
-      </div>
-      <div class="split-img">
-        <img
-          src={`${R2}/homepage/Worship%20Clips%20Hero%202.jpg`}
-          alt="Worship Clips creating social content from sermons"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     DIGITAL SIGNAGE
-════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner">
-    <div class="split">
-      <div class="split-img">
-        <img
-          src={`${R2NEW}/Worship%20Digital%20Signage%20System.jpg`}
-          alt="Digital signage layout on a lobby display"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Digital Signage</p>
-        <h2>Your lobby TV shouldn't need a volunteer<br/>with the password.</h2>
-        <p>Start with 40+ beautiful templates for every major Christian holiday and year-round ministry use. Fill out your Brand Kit once, put the link on any smart TV, and manage your signage remotely from anywhere in the world. Free for every congregation, no Hub required.</p>
-        <ul class="bullets">
-          <li>40+ starting templates for Christmas, Easter, Good Friday, VBS, and more</li>
-          <li>Brand Kit once — colors, logo, and service details applied automatically</li>
-          <li>Full Screen and L-Bar layouts for the signage churches actually use most</li>
-          <li>Set the TV link once, then manage signage remotely for the future</li>
-          <li>Unlimited screens on paid plans — 1 screen free forever</li>
-        </ul>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/signage-display" class="btn-primary">Get free signage</a>
-          <a href={SIGNAGE_EXAMPLE_URL} target="_blank" rel="noopener noreferrer" class="btn-outline">See a live example</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     LUMINOS AI
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner-md">
-    <div class="luminos-band">
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
       <div>
-        <p class="luminos-tag">Luminos AI</p>
-        <h3>AV diagnostics that already know your rig.</h3>
-        <p>Luminos lives inside Tech Manager and knows your exact hardware, your OBS state, your network health, and your support history. Ask it what broke, why, and how to fix it — in plain English. Helpful to the tech director; even more helpful to the volunteer who's never troubleshot this before.</p>
-        <a href="/luminos-ai-assistant" class="btn-primary">See Luminos in action</a>
+        <p class="inline-flex rounded-full border border-indigo-200 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-indigo-700 shadow-sm">
+          Free makes you organized. Paid makes Sunday run itself.
+        </p>
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          The operating system for your Sunday.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Worship Metrics helps churches plan the service, coordinate the team, run the production, and know how Sunday actually went. It is built for buyers who need real software, not a patchwork of booth folklore and volunteer memory.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_hero_get_started_free" data-wm-track-location="home_hero">Get started free</a>
+          <a href="/services" class="btn-outline" data-wm-track="cta_click" data-wm-track-label="home_hero_see_services" data-wm-track-location="home_hero">See how Sunday runs</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Stop running Sunday on one person&apos;s expertise.</p>
       </div>
-      <div class="luminos-prompts">
-        {[
-          '"My stream went down at 10:47 — what happened and how do I fix it?"',
-          '"Which camera has been flaking out lately?"',
-          '"What changed in our OBS setup this week?"',
-          '"Is our Easter load-test ready?"',
-          '"Walk me through fixing this — I\'m new to the booth."',
-        ].map(prompt => (
-          <div class="luminos-prompt">{prompt}</div>
+
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="WorshipMetrics service planning and team workflow" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The Sunday problem</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The same chaos shows up in different clothes every week.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The language is still true: one person knows the system. The problem is bigger now than the booth. Planning chaos, volunteer coordination, live execution, and post-service follow-up all break when knowledge stays trapped in one person.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {problemCards.map(({ title, body, href, cta }) => (
+          <a href={href} class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 hover:bg-white hover:shadow-md">
+            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+            <span class="mt-5 inline-block text-sm font-semibold text-indigo-600">{cta} →</span>
+          </a>
         ))}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════════════════════
-     HUB
-════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">The Hub</p>
-        <h2>One device. Your entire congregation, connected.</h2>
-        <p>The Worship Metrics Hub is a cloud-connected appliance that plugs into your existing setup and runs your entire Established plan automatically — no computer, no configuration, no volunteer overhead.</p>
-        <ul class="bullets">
-          <li>Always-on monitoring that doesn't depend on your booth PC staying awake</li>
-          <li>Computer vision attendance — your camera counts the room automatically</li>
-          <li>AV health monitoring — stream, audio, video, and display status in real time</li>
-          <li>Remote PTZ camera control — pan, tilt, zoom from anywhere in the world</li>
-          <li>Remote OBS and vMix control — run a great service without being in the building</li>
-          <li>Auto video upload — sermon clips in the cloud before the last car leaves the parking lot</li>
-          <li>Digital signage — every display managed from your phone</li>
-        </ul>
-        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">No subscription required. One-time purchase. Plug it in and it works.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/appliance" class="btn-primary">See the Hub — $499</a>
-          <a href="/pricing" class="btn-outline">Compare plans</a>
-        </div>
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The weekly rhythm</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Plan. Delegate. Run. Ship.</h2>
       </div>
-      <div class="split-img">
-        <img
-          src={TECH_MANAGER_DEVICE_MAP}
-          alt="Tech Manager Hub monitoring AV health and automation"
-          loading="lazy" width="800" height="540"
-        />
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {rhythm.map(({ step, body, href }, index) => (
+          <a href={href} class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:border-indigo-300 hover:shadow-md">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{index + 1}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{step}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </a>
+        ))}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════════════════════
-     WEEKLY RHYTHM
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">The weekly rhythm</p>
-        <h2>A four-step rhythm your AV team can run every Sunday.</h2>
-        <p>Built around the production booth — and built to be shared across your team.</p>
-        <ol class="steps" style="max-width:none;margin:0;">
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Services</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The new flagship product story starts with the service itself.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Services turns Sunday into one connected workflow: plan the order, assign the team, run the room, and improve the next service with better context. It is the front door to the broader Worship Metrics platform.
+        </p>
+        <ul class="mt-8 space-y-3 text-sm text-slate-700 sm:text-base">
           {[
-            { n:"1", t:"Document", b:"Tech Manager scans your network and builds your system map automatically. Every camera, encoder, display, and switch identified — so nobody has to reverse-engineer your rig on Sunday morning." },
-            { n:"2", t:"Delegate", b:"Role-based access means every volunteer has exactly the controls they need. Camera ops run cameras. Slides ops run slides. Directors run everything. Nobody drowns." },
-            { n:"3", t:"Monitor", b:"Stream health, audio, video, and network watched continuously. Self-healing handles the common stuff. Luminos diagnoses the rest — for the tech director and for the new volunteer who's troubleshooting for the first time." },
-            { n:"4", t:"Ship", b:"Clips auto-generated for staff approval. Signage updated from anywhere. Monday morning digest ready before the staff meeting." },
-          ].map(({ n, t, b }) => (
-            <li class="step">
-              <span class="step-num">{n}</span>
-              <div class="step-body"><h3>{t}</h3><p>{b}</p></div>
-            </li>
+            "A planning layer that is genuinely useful on the free tier",
+            "A better handoff between pastors, staff, volunteers, and the booth",
+            "A clear path into paid automation when your team is ready for it",
+          ].map((item) => (
+            <li class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
           ))}
-        </ol>
-      </div>
-      <div class="split-img">
-        <img
-          src={TECH_MANAGER_VOLUNTEERS}
-          alt="Production booth workflow and AV monitoring dashboard"
-          loading="lazy" width="800" height="540"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     ORIGIN / MISSION
-════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner-md">
-    <div class="mission-band">
-      <h2>Built by people who believe in the mission.</h2>
-      <p>
-        WorshipMetrics was built by Rev. Andrew Esqueda and Paul Richards — a worship leader and a
-        broadcast technologist — because they lived these problems firsthand.
-      </p>
-      <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
-        The question that started it all: why should one volunteer carry the whole AV ministry alone, when the whole team wants to help?
-        That question became this platform.
-      </p>
-      <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;max-width:38rem;margin:0 auto 2rem;">
-        We build with the conviction that every congregation — regardless of size or budget — deserves technology
-        that respects the sacred work happening inside those walls.
-      </p>
-      <div class="founders">
-        <div class="founder">
-          <div class="founder-avatar">
-            <img src={ANDREW_HEADSHOT} alt="Rev. Andrew Esqueda" loading="lazy" decoding="async" width="80" height="80" />
-          </div>
-          <span class="founder-name">Rev. Andrew Esqueda</span>
-          <span class="founder-title">Co-Founder · Worship Leader</span>
-        </div>
-        <div class="founder">
-          <div class="founder-avatar">
-            <img src={PAUL_HEADSHOT} alt="Paul Richards" loading="lazy" decoding="async" width="80" height="80" />
-          </div>
-          <span class="founder-name">Paul Richards</span>
-          <span class="founder-title">Co-Founder · Technology Lead</span>
-        </div>
-      </div>
-      <a href="/about" class="btn-outline" style="border-color:rgba(255,255,255,0.3);color:#fff;">
-        Read our story
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     TESTIMONIAL
-════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="inner">
-    <p class="eyebrow eyebrow-center">Testimonials</p>
-    <h2 class="h2-center">What AV teams notice first</h2>
-    <div class="testimonial-single">
-      <p class="quote">"The AV monitoring piece changed everything. We used to find out the stream was down when someone texted us. Now we know before anyone else does."</p>
-      <p class="author">— AV Director, growing congregation, Midwest</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════
-     KNOWLEDGE BASE
-════════════════════════════════════════════════════ -->
-<section class="section section-alt">
-  <div class="inner">
-    <div class="split">
-      <div class="split-text">
-        <p class="eyebrow" style="margin-bottom:0.5rem;">Knowledge Base</p>
-        <h2>Answers to the church AV questions teams ask every week.</h2>
-        <p>Our AV Knowledge Base is built for production directors, booth volunteers, and technical teams who need practical help with streaming, PTZ cameras, OBS, signage, audio, and device management.</p>
-        <ul class="bullets">
-          <li>20 starter guides covering the most common church AV and operations questions</li>
-          <li>Categories for streaming, audio, displays, device management, video clipping, and operations</li>
-          <li>Built as a searchable editorial resource, not a generic blog</li>
-          <li>Designed to help teams solve real Sunday problems faster</li>
         </ul>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-          <a href="/kb" class="btn-primary">Explore the knowledge base</a>
+        <div class="mt-8">
+          <a href="/services" class="btn-primary">See Services</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={HERO_IMAGE} alt="Services workflow in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm lg:order-2">
+        <img src={TECH_MANAGER_IMAGE} alt="Tech Manager dashboard in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div class="lg:order-1">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Tech Manager</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The desktop app that powers your booth.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Tech Manager is still a major part of the platform. It maps the system, monitors the booth, feeds Luminos real context, and gives production teams a stronger operating picture. It just is no longer the whole product story by itself.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href="/tech-manager" class="btn-primary">See Tech Manager</a>
+          <a href="/services" class="btn-outline">See how it fits Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Automation</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Your Sunday, automated.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            The paid story is not just more dashboards. It is the moment the service plan becomes an execution layer the booth can trust. That is why the automation upgrade justifies the Pro tier.
+          </p>
+        </div>
+        <div class="space-y-4">
+          {[
+            "The service plan becomes a clearer rundown for the room.",
+            "Repeatable production moves stop depending on one operator remembering every detail.",
+            "Volunteer execution surfaces become simpler when the system knows what should happen next.",
+          ].map((item) => (
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-slate-200">{item}</div>
+          ))}
+          <div class="pt-2">
+            <a href="/services#automate" class="btn-primary">See the automation story</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Worship Clips</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Ship the moments worth sharing.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Worship Clips turns the service into usable social content without creating a Monday editing project for your staff. Free starts locally. Paid adds cloud sync and publishing workflows.
+        </p>
+        <div class="mt-8">
+          <a href="/solutions/worship-clips" class="btn-primary">See Worship Clips</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={WORSHIP_CLIPS_IMAGE} alt="Worship Clips workflow in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+          <img src={ATTENDANCE_IMAGE} alt="Attendance workflow on WorshipMetrics tablet" loading="lazy" decoding="async" class="aspect-[16/10] w-full rounded-2xl object-cover" />
+          <p class="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Attendance</p>
+          <h3 class="mt-3 text-2xl font-bold tracking-tight text-slate-900">Count the room without starting another system.</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">Manual and camera-assisted attendance stay connected to the same platform story instead of living in a separate Sunday ritual.</p>
+          <div class="mt-6"><a href="/platform/attendance" class="btn-outline">See Attendance</a></div>
+        </div>
+        <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+          <img src={SIGNAGE_IMAGE} alt="Digital signage in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full rounded-2xl object-cover" />
+          <p class="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Digital Signage</p>
+          <h3 class="mt-3 text-2xl font-bold tracking-tight text-slate-900">Keep lobby screens current without volunteer heroics.</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">One screen stays free. Paid tiers expand the footprint. Either way, signage becomes part of the same operating system.</p>
+          <div class="mt-6"><a href="/signage-display" class="btn-outline">See Digital Signage</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={LUMINOS_IMAGE} alt="Luminos AI in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Luminos AI</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A platform-wide assistant with real context.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Luminos still shines in the booth, but it belongs to the bigger platform story now. It helps teams understand what changed, what broke, and what needs attention with more specificity than generic AI prompts ever could.
+        </p>
+        <div class="mt-8"><a href="/luminos-ai-assistant" class="btn-primary">See Luminos</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Hardware</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Add the hardware layer when your workflow needs it.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The Worship Metrics Hub and Tablet stay part of the story. They are just framed correctly now: hardware that supports the operating system, not the product definition itself.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href="/appliance" class="btn-primary">See the Hub</a>
+          <a href="/hardware" class="btn-outline">Compare hardware</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={HUB_IMAGE} alt="Worship Metrics Hub hardware" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl rounded-[2rem] bg-slate-950 px-8 py-12 text-center shadow-2xl sm:px-12">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Built by people who believe in the mission.</h2>
+      <p class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
+        Worship Metrics was built by Rev. Andrew Esqueda and Paul Richards because they lived these problems firsthand. The question behind the platform is still the same: why should one volunteer carry the whole ministry alone when the whole team wants to help?
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-8">
+        <div class="flex flex-col items-center gap-3">
+          <img src={ANDREW_HEADSHOT} alt="Rev. Andrew Esqueda" loading="lazy" decoding="async" class="h-24 w-24 rounded-full border-4 border-white/10 object-cover" />
+          <div>
+            <p class="font-semibold text-white">Rev. Andrew Esqueda</p>
+            <p class="text-sm text-slate-400">Co-Founder · Worship Leader</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center gap-3">
+          <img src={PAUL_HEADSHOT} alt="Paul Richards" loading="lazy" decoding="async" class="h-24 w-24 rounded-full border-4 border-white/10 object-cover" />
+          <div>
+            <p class="font-semibold text-white">Paul Richards</p>
+            <p class="text-sm text-slate-400">Co-Founder · Technology Lead</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8"><a href="/about" class="btn-outline" style="border-color:rgba(255,255,255,0.25);color:#fff;">Read our story</a></div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Testimonials</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">What teams notice first</h2>
+      <div class="mt-8 rounded-[1.75rem] border border-slate-200 bg-white p-10 shadow-sm">
+        <p class="text-xl leading-relaxed text-slate-700 sm:text-2xl">“The first thing it changed was not the booth. It was the panic. We finally had a system the whole team could see.”</p>
+        <p class="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">AV Director, growing congregation, Midwest</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
+      <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Signal and Sanctuary</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">A content brand on the same channel, not a separate company story.</h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">Signal and Sanctuary will live inside the Worship Metrics ecosystem as the top-of-funnel content engine. The product site stays a product site. The content brand expands the audience without confusing the buyer.</p>
+        <div class="mt-8">
+          <a href="/signal-and-sanctuary" class="btn-outline">Visit Signal and Sanctuary</a>
+        </div>
+      </div>
+      <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Knowledge Base</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">Preserve the infrastructure. Expand the depth.</h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">The Knowledge Base stays part of the platform story and will grow to cover Services, volunteer workflows, and technical setup over time.</p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href="/kb" class="btn-primary">Explore the Knowledge Base</a>
           <a href="/kb/search" class="btn-outline">Search articles</a>
         </div>
       </div>
-      <div class="split-img">
-        <img
-          src={`${R2NEW}/Stream%20Health.jpg`}
-          alt="Church AV knowledge base and monitoring topics"
-          loading="lazy" width="800" height="540"
-        />
+    </div>
+  </section>
+
+  <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Install Worship Metrics. Invite your team. Sleep better on Saturday night.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
+        Start free with the workflow that gets your church more organized. Upgrade when your team is ready for deeper automation and a more production-aware Sunday.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="home_footer_get_started_free" data-wm-track-location="home_footer_cta">Get started free</a>
+        <a href="/discovery-call" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;" data-wm-track="cta_click" data-wm-track-label="home_footer_book_call" data-wm-track-location="home_footer_cta">Book a call</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     CTA
-════════════════════════════════════════════════════ -->
-<div class="cta-band">
-  <h2>Install Tech Manager. Invite your team. Sleep better on Saturday night.</h2>
-  <p>
-    Tech Manager is free. The Hub is a one-time $499. Together they turn your AV booth from a one-person operation into a team that can actually grow.
-  </p>
-  <div class="cta-btns">
-    <a href="/tech-manager" class="btn-white">Download Tech Manager — free</a>
-    <a href="/appliance" class="btn-ghost-white">See the Hub — $499</a>
-  </div>
-  <p style="margin:-0.25rem auto 1.25rem;font-size:0.92rem;max-width:none;">
-    <a href="/discovery-call" style="color:#fff;text-decoration:underline;text-underline-offset:3px;">Or book a call to talk through your setup</a>
-  </p>
-  <p class="cta-note">Available Monday–Friday · We respond within one business day</p>
-</div>
-
+  </section>
 </Layout>

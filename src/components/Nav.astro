@@ -1,54 +1,84 @@
 ---
 const APP_URL = "https://app.worshipmetrics.com";
 
-const menus = [
+const navItems = [
   {
-    key: "features",
-    label: "Features",
-    overview: { href: "/platform", label: "Platform Overview", desc: "See how monitoring, production, attendance, and operations fit together." },
+    type: "dropdown",
+    key: "platform",
+    label: "Platform",
+    overview: {
+      href: "/platform",
+      label: "Platform Overview",
+      desc: "See how Services, volunteers, booth software, clips, attendance, signage, and Luminos fit together.",
+    },
     items: [
-      { href: "/platform/attendance",  label: "Attendance",   desc: "Count in-room and online in one workflow" },
-      { href: "/platform/operations",  label: "Operations",   desc: "Volunteer roles, devices, and multi-campus tools" },
-      { href: "/tech-manager",         label: "Tech Manager", desc: "Desktop monitoring, device discovery, and system documentation" },
-      { href: "/luminos-ai-assistant", label: "Luminos AI",   desc: "Weekly ministry summaries in plain English" },
+      { href: "/services", label: "Services", desc: "Plan the service, assign the team, and run Sunday from one workflow" },
+      { href: "/volunteers", label: "Volunteers", desc: "Capabilities, scheduling, communications, and replacement workflows" },
+      { href: "/solutions/worship-clips", label: "Worship Clips", desc: "Turn the sermon into ready-to-publish clips without extra editing" },
+      { href: "/tech-manager", label: "Tech Manager", desc: "The desktop app that powers the booth and keeps your system mapped" },
+      { href: "/platform/attendance", label: "Attendance", desc: "Count in-room and online together without a separate reporting stack" },
+      { href: "/signage-display", label: "Digital Signage", desc: "Keep screens current from anywhere with one-screen-free signage" },
+      { href: "/luminos-ai-assistant", label: "Luminos AI", desc: "Diagnostics and weekly review with real context from your production system" },
     ],
   },
   {
-    key: "solutions",
-    label: "Solutions",
-    overview: { href: "/platform", label: "Solutions Overview", desc: "Tools built for the church AV booth and the team behind it." },
-    items: [
-      { href: "/solutions/worship-clips",             label: "Worship Clips",      desc: "Turn services into shareable social content" },
-      { href: "/tech-manager",                        label: "Tech Manager",       desc: "Free desktop software for AV monitoring, device discovery, and Luminos support" },
-      { href: "/signage-display",                     label: "Digital Signage",    desc: "Lobby and hallway displays for every campus" },
-    ],
-  },
-  {
+    type: "dropdown",
     key: "hardware",
     label: "Hardware",
-    overview: { href: "/hardware", label: "Hardware Overview", desc: "Purpose-built devices for churches." },
+    overview: {
+      href: "/hardware",
+      label: "Hardware Overview",
+      desc: "Purpose-built devices for always-on monitoring, tablets, and church production workflows.",
+    },
     items: [
-      { href: "/appliance", label: "WorshipMetrics Hub",    desc: "Auto attendance, signage, and production — $499" },
-      { href: "/tablet",    label: "WorshipMetrics Tablet", desc: "Volunteer check-in workflow — from $349" },
+      { href: "/appliance", label: "Worship Metrics Hub", desc: "Always-on hardware for monitoring, automation, and local reliability" },
+      { href: "/tablet", label: "Worship Metrics Tablet", desc: "Dedicated volunteer tablet for attendance, check-in, and service-day workflows" },
+      { href: "/hardware", label: "Compare Hardware", desc: "See which device fits your campus and team setup" },
     ],
   },
   {
-    key: "services",
-    label: "Services",
-    overview: { href: "/professional-services", label: "Services Overview", desc: "Consulting, training, and workflow design." },
+    type: "dropdown",
+    key: "resources",
+    label: "Resources",
+    overview: {
+      href: "/kb",
+      label: "Resources Overview",
+      desc: "Knowledge Base articles, rollout help, and direct support for church teams.",
+    },
     items: [
-      { href: "/professional-services", label: "Professional Services", desc: "Broadcast, workflow, and strategy support" },
+      { href: "/kb", label: "Knowledge Base", desc: "Guides, troubleshooting, comparisons, and setup help for church teams" },
+      { href: "/signal-and-sanctuary", label: "Signal and Sanctuary", desc: "Podcast conversations from the Worship Metrics team" },
+      { href: "/professional-services", label: "Professional Services", desc: "Consulting, training, installs, and production support" },
+      { href: "/pilot-program", label: "Pilot Program", desc: "Work closely with the team and shape the platform rollout" },
+    ],
+  },
+  {
+    type: "link",
+    href: "/pricing",
+    label: "Pricing",
+  },
+  {
+    type: "dropdown",
+    key: "company",
+    label: "Company",
+    overview: {
+      href: "/about",
+      label: "About Worship Metrics",
+      desc: "Who built it, why it exists, and how to talk with the team.",
+    },
+    items: [
+      { href: "/about", label: "About", desc: "Built by people who believe in the mission and know the booth" },
+      { href: "/contact", label: "Contact", desc: "Email, phone, and practical help for questions before you buy" },
+      { href: "/discovery-call", label: "Book a Call", desc: "Talk through your current workflow and what fits your church" },
     ],
   },
 ];
 
-const simpleLinks = [
-  { href: "/kb", label: "Knowledge Base" },
-];
+const dropdownMenus = navItems.filter((item) => item.type === "dropdown");
+const simpleLinks = navItems.filter((item) => item.type === "link");
 ---
 
 <style>
-  /* ── Topbar ─────────────────────────────────────────────── */
   .topbar {
     background: #f0f3fb;
     border-bottom: 1px solid #dde3f5;
@@ -68,7 +98,6 @@ const simpleLinks = [
   .topbar-sep { color: #c3cdf5; }
   @media (max-width: 1023px) { .topbar { display: none; } }
 
-  /* ── Main nav root ──────────────────────────────────────── */
   .nav-root {
     position: sticky; top: 0; z-index: 50;
     background: rgba(255,255,255,0.95);
@@ -86,7 +115,6 @@ const simpleLinks = [
   .logo img  { height: 2rem; width: 2rem; }
   .logo span { font-size: 1rem; font-weight: 700; color: #0f1a2e; }
 
-  /* ── Desktop nav ────────────────────────────────────────── */
   .desktop-nav { display: none; align-items: center; gap: 0.1rem; }
   @media (min-width: 1024px) { .desktop-nav { display: flex; } }
 
@@ -100,9 +128,8 @@ const simpleLinks = [
   .nav-btn:hover { color: #4361ee; background: #f0f3fb; }
   .nav-btn svg { width: 0.85rem; height: 0.85rem; opacity: 0.6; transition: transform 0.2s; }
 
-  /* ── Dropdowns ──────────────────────────────────────────── */
   .dropdown-wrap { position: relative; }
-  .dropdown-wrap::after { content:''; position:absolute; left:0; right:0; top:100%; height:0.6rem; }
+  .dropdown-wrap::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 0.6rem; }
   .dropdown {
     position: absolute; left: 0; top: calc(100% + 0.4rem);
     min-width: 44rem; background: #fff;
@@ -136,11 +163,9 @@ const simpleLinks = [
   .drop-item .il { font-size: 0.875rem; font-weight: 600; color: #0f1a2e; }
   .drop-item .id { font-size: 0.75rem; color: #8494b0; margin-top: 0.05rem; }
 
-  /* ── Desktop CTAs ───────────────────────────────────────── */
   .cta-area { display: none; align-items: center; gap: 0.5rem; }
   @media (min-width: 1024px) { .cta-area { display: flex; } }
 
-  /* ── Mobile toggle ──────────────────────────────────────── */
   .mobile-toggle {
     display: flex; align-items: center; justify-content: center;
     width: 2.4rem; height: 2.4rem; border-radius: 0.5rem;
@@ -149,13 +174,11 @@ const simpleLinks = [
   }
   @media (min-width: 1024px) { .mobile-toggle { display: none; } }
 
-  /* ── Mobile menu ────────────────────────────────────────── */
   .mobile-menu {
     display: none; flex-direction: column;
     padding: 0.75rem 1rem 1.25rem;
     border-top: 1px solid #e4e8f4;
     background: #fff;
-    /* Scroll on small screens */
     max-height: calc(100dvh - 4rem);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -163,7 +186,6 @@ const simpleLinks = [
   .mobile-menu.open { display: flex; }
   @media (min-width: 1024px) { .mobile-menu { display: none !important; } }
 
-  /* Accordion section */
   .mob-accordion { border-bottom: 1px solid #f0f3fb; }
   .mob-accordion:last-of-type { border-bottom: none; }
 
@@ -193,7 +215,6 @@ const simpleLinks = [
   .mob-link .ml { font-size: 0.875rem; font-weight: 600; color: #0f1a2e; }
   .mob-link .md { font-size: 0.75rem; color: #8494b0; }
 
-  /* Simple links section in mobile */
   .mob-simple { padding: 0.5rem 0 0; }
   .mob-simple-link {
     display: block; padding: 0.5rem 0.75rem; border-radius: 0.5rem;
@@ -202,7 +223,6 @@ const simpleLinks = [
   }
   .mob-simple-link:hover { background: #f0f3fb; }
 
-  /* Mobile contact row */
   .mob-contact {
     display: flex; flex-wrap: wrap; gap: 0.4rem 1rem;
     padding: 0.6rem 0.75rem 0;
@@ -214,7 +234,6 @@ const simpleLinks = [
   .mob-ctas { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid #e4e8f4; margin-top: 0.75rem; }
 </style>
 
-<!-- Utility topbar (desktop only) -->
 <div class="topbar">
   <div class="topbar-inner">
     <a href="/about">About</a>
@@ -229,72 +248,66 @@ const simpleLinks = [
 
 <header class="nav-root">
   <div class="nav-inner">
-    <!-- Logo -->
     <a href="/" class="logo">
       <img src="/logo.png" alt="" width="32" height="32" />
       <span>WorshipMetrics</span>
     </a>
 
-    <!-- Desktop nav -->
     <nav class="desktop-nav" aria-label="Main navigation">
-      {menus.map((menu) => (
-        <div class="dropdown-wrap">
-          <button class="nav-btn" type="button" aria-haspopup="true">
-            {menu.label}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class={`dropdown ${menu.key === "hardware" || menu.key === "services" ? "narrow" : ""}`}>
-            <a href={menu.overview.href} class="drop-overview">
-              <span class="over-label">{menu.label}</span>
-              <h3>{menu.overview.label}</h3>
-              <p>{menu.overview.desc}</p>
-            </a>
-            <div class="drop-items">
-              {menu.items.map((item) => (
-                <a href={item.href} class="drop-item">
-                  <div class="il">{item.label}</div>
-                  <div class="id">{item.desc}</div>
-                </a>
-              ))}
+      {navItems.map((item) => (
+        item.type === "dropdown" ? (
+          <div class="dropdown-wrap">
+            <button class="nav-btn" type="button" aria-haspopup="true">
+              {item.label}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class={`dropdown ${item.key === "hardware" || item.key === "resources" || item.key === "company" ? "narrow" : ""}`}>
+              <a href={item.overview.href} class="drop-overview">
+                <span class="over-label">{item.label}</span>
+                <h3>{item.overview.label}</h3>
+                <p>{item.overview.desc}</p>
+              </a>
+              <div class="drop-items">
+                {item.items.map((entry) => (
+                  <a href={entry.href} class="drop-item">
+                    <div class="il">{entry.label}</div>
+                    <div class="id">{entry.desc}</div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-      {simpleLinks.map((l) => (
-        <a href={l.href} class="nav-btn">{l.label}</a>
+        ) : (
+          <a href={item.href} class="nav-btn">{item.label}</a>
+        )
       ))}
     </nav>
 
-    <!-- Desktop CTAs -->
     <div class="cta-area">
-      <a href="/discovery-call" class="btn-outline" style="padding:0.45rem 1rem;font-size:0.82rem;">Book a call</a>
       <a href={`${APP_URL}/sign-in`} class="nav-btn">Sign in</a>
-      <a href={`${APP_URL}/sign-up`} class="btn-primary" style="padding:0.45rem 1rem;font-size:0.82rem;">Get started free</a>
+      <a href={`${APP_URL}/sign-up`} class="btn-primary" style="padding:0.45rem 1rem;font-size:0.82rem;" data-wm-track="cta_click" data-wm-track-label="nav_get_started_free" data-wm-track-location="nav">Get started free</a>
+      <a href="/discovery-call" class="btn-outline" style="padding:0.45rem 1rem;font-size:0.82rem;" data-wm-track="cta_click" data-wm-track-label="nav_book_call" data-wm-track-location="nav">Book a call</a>
     </div>
 
-    <!-- Mobile toggle -->
     <button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation" type="button">
       <svg id="icon-menu" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
       <svg id="icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" style="display:none">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
   </div>
 
-  <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu">
-
-    <!-- Accordion sections for each dropdown menu -->
-    {menus.map((menu) => (
+    {dropdownMenus.map((menu) => (
       <div class="mob-accordion" data-accordion>
         <button class="mob-acc-trigger" type="button" data-acc-trigger>
           <span class="mob-acc-trigger-label">{menu.label}</span>
           <svg class="mob-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
         <div class="mob-acc-body">
@@ -302,64 +315,57 @@ const simpleLinks = [
             <span class="ml">{menu.overview.label}</span>
             <span class="md">{menu.overview.desc}</span>
           </a>
-          {menu.items.map((item) => (
-            <a href={item.href} class="mob-link">
-              <span class="ml">{item.label}</span>
-              <span class="md">{item.desc}</span>
+          {menu.items.map((entry) => (
+            <a href={entry.href} class="mob-link">
+              <span class="ml">{entry.label}</span>
+              <span class="md">{entry.desc}</span>
             </a>
           ))}
         </div>
       </div>
     ))}
 
-    <!-- Simple links -->
     <div class="mob-simple">
-      {simpleLinks.map((l) => (
-        <a href={l.href} class="mob-simple-link">{l.label}</a>
+      {simpleLinks.map((item) => (
+        <a href={item.href} class="mob-simple-link">{item.label}</a>
       ))}
-      <a href="/about" class="mob-simple-link">About</a>
-      <a href="/pricing" class="mob-simple-link">Pricing</a>
     </div>
 
-    <!-- Contact info on mobile -->
     <div class="mob-contact">
       <a href="mailto:support@worshipmetrics.com">support@worshipmetrics.com</a>
       <a href="tel:+14107257500">(410) 725-7500</a>
     </div>
 
-    <!-- CTAs -->
     <div class="mob-ctas">
-      <a href={`${APP_URL}/sign-up`} class="btn-primary" style="justify-content:center">Get started free</a>
-      <a href="/discovery-call" class="btn-outline" style="justify-content:center">Book a discovery call</a>
+      <a href={`${APP_URL}/sign-in`} class="btn-outline" style="justify-content:center">Sign in</a>
+      <a href={`${APP_URL}/sign-up`} class="btn-primary" style="justify-content:center" data-wm-track="cta_click" data-wm-track-label="mobile_nav_get_started_free" data-wm-track-location="mobile_nav">Get started free</a>
+      <a href="/discovery-call" class="btn-outline" style="justify-content:center" data-wm-track="cta_click" data-wm-track-label="mobile_nav_book_call" data-wm-track-location="mobile_nav">Book a call</a>
     </div>
   </div>
 </header>
 
 <script>
-  // Main menu toggle
-  const toggle    = document.getElementById("mobile-nav-toggle")!;
-  const menu      = document.getElementById("mobile-menu")!;
-  const iconMenu  = document.getElementById("icon-menu")!;
+  const toggle = document.getElementById("mobile-nav-toggle")!;
+  const menu = document.getElementById("mobile-menu")!;
+  const iconMenu = document.getElementById("icon-menu")!;
   const iconClose = document.getElementById("icon-close")!;
 
   toggle.addEventListener("click", () => {
     const open = menu.classList.toggle("open");
-    iconMenu.style.display  = open ? "none" : "";
-    iconClose.style.display = open ? ""     : "none";
-    // Close all accordions when reopening menu
+    iconMenu.style.display = open ? "none" : "";
+    iconClose.style.display = open ? "" : "none";
+
     if (!open) {
-      document.querySelectorAll("[data-accordion]").forEach(acc => acc.classList.remove("open"));
+      document.querySelectorAll("[data-accordion]").forEach((acc) => acc.classList.remove("open"));
     }
   });
 
-  // Accordion sections
   document.querySelectorAll("[data-acc-trigger]").forEach((trigger) => {
     trigger.addEventListener("click", () => {
       const accordion = trigger.closest("[data-accordion]")!;
       const isOpen = accordion.classList.contains("open");
-      // Close all others
-      document.querySelectorAll("[data-accordion]").forEach(acc => acc.classList.remove("open"));
-      // Toggle this one
+
+      document.querySelectorAll("[data-accordion]").forEach((acc) => acc.classList.remove("open"));
       if (!isOpen) accordion.classList.add("open");
     });
   });

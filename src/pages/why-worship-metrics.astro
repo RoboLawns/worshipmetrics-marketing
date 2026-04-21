@@ -1,0 +1,135 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const OG_IMAGE = `${R2}/homepage/Team%20Collaboration%20hero.jpg`;
+
+const comparisons = [
+  {
+    title: "vs. Planning Center",
+    summary: "Planning Center is strong at service planning. Worship Metrics is what you add when the church also needs the production booth, volunteer execution, and the Sunday operating layer around the plan.",
+    bullets: [
+      "Planning Center excels at planning and church administration",
+      "Worship Metrics goes deeper into production execution and booth workflows",
+      "The fit is strongest when Sunday complexity is outgrowing planning-only software",
+    ],
+    href: "/services",
+  },
+  {
+    title: "vs. ProPresenter",
+    summary: "ProPresenter is excellent for slides. Worship Metrics is not trying to replace the presentation layer. It is the system around the service plan, volunteer coordination, cues, and broader Sunday workflow.",
+    bullets: [
+      "ProPresenter owns lyrics, graphics, and presentation output",
+      "Worship Metrics owns planning, coordination, execution context, and production flow",
+      "The two make more sense together than as direct substitutes",
+    ],
+    href: "/tech-manager",
+  },
+  {
+    title: "vs. spreadsheet and group text",
+    summary: "This is still the honest comparison for many churches. Worship Metrics replaces the fragile patchwork that breaks the moment one person is unavailable.",
+    bullets: [
+      "No more translating Sunday across docs, texts, and booth memory",
+      "A clearer picture of who is serving, what is planned, and what happened",
+      "A better system for churches that need more than improvised coordination",
+    ],
+    href: "/volunteers",
+  },
+  {
+    title: "vs. the status quo",
+    summary: "The default church workflow often depends on one expert carrying the whole ministry. That is workable until burnout, turnover, or growth makes it fail all at once.",
+    bullets: [
+      "The risk is not just technical failure, it is institutional fragility",
+      "Better software protects the team, not just the stream",
+      "Worship Metrics is built to spread context across staff and volunteers",
+    ],
+    href: "/pricing",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Why WorshipMetrics",
+  url: `${SITE_URL}/why-worship-metrics`,
+  description: "See how WorshipMetrics compares to Planning Center, ProPresenter, spreadsheets, and the status quo for churches running Sunday with growing complexity.",
+};
+---
+
+<Layout
+  title="Why Worship Metrics"
+  description="See how WorshipMetrics compares to Planning Center, ProPresenter, spreadsheets, and the status quo for churches running Sunday with growing complexity."
+  canonical="/why-worship-metrics"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why Worship Metrics</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">A clearer answer for churches that have outgrown the patchwork.</h1>
+      <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+        Worship Metrics is not trying to be every category of church software. It exists for churches that need service planning, volunteer coordination, booth awareness, and execution to feel like one connected operating system instead of four separate decisions.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl space-y-8">
+      {comparisons.map(({ title, summary, bullets, href }) => (
+        <div class="rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm sm:p-10">
+          <div class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Comparison</p>
+              <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">{title}</h2>
+              <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{summary}</p>
+            </div>
+            <div>
+              <ul class="space-y-3">
+                {bullets.map((item) => (
+                  <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base">
+                    <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-6">
+                <a href={href} class="btn-outline">Explore the related page</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-8 lg:grid-cols-3">
+        {[
+          {
+            title: "Choose Worship Metrics when",
+            body: "your church needs the service plan, volunteer system, and booth workflow to stop living in separate silos.",
+          },
+          {
+            title: "Wait if",
+            body: "you only need presentation software, or your team truly does not yet need a shared Sunday operating system.",
+          },
+          {
+            title: "Upgrade when",
+            body: "the church is ready for the paid automation layer and the reduction in Sunday friction is worth paying for directly.",
+          },
+        ].map(({ title, body }) => (
+          <div class="rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
+            <h2 class="text-xl font-semibold text-white">{title}</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-300">{body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+        <a href="/services" class="btn-primary">See Services</a>
+        <a href="/pricing" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:#fff;">Compare pricing</a>
+      </div>
+    </div>
+  </section>
+</Layout>

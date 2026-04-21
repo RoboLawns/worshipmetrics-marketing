@@ -5,22 +5,122 @@ const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const LUMINOS_PROFILE = `${R2}/Luminos/Luminos%20Profile.jpg`;
+const HUB_IMAGE = `${R2}/tablet/Worship%20Metrics%20Appliance%20Small.jpg`;
+const TABLET_IMAGE = `${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`;
+
+const plans = [
+  {
+    name: "Free",
+    price: "$0",
+    suffix: "/month",
+    tag: "Organize your Sunday",
+    body: "Start with the shared workflow: plan the service, coordinate volunteers, and prove the system before you pay.",
+    cta: "Get started free",
+    href: `${APP_URL}/sign-up`,
+    featured: false,
+    items: [
+      "Services planning",
+      "Volunteer management",
+      "Worship Clips local workflow",
+      "Digital Signage for 1 screen",
+      "Attendance basics",
+      "Tech Manager desktop app",
+      "Knowledge Base and community support",
+      "Mobile apps",
+    ],
+  },
+  {
+    name: "Starter",
+    price: "$29",
+    suffix: "/month",
+    tag: "Get your team in sync",
+    body: "Uncap the workflow and add the cloud, reporting, and support layers that make the free plan feel production-ready.",
+    cta: "Start with Starter",
+    href: `${APP_URL}/sign-up`,
+    featured: true,
+    items: [
+      "Everything in Free",
+      "Worship Clips cloud sync and auto-publish",
+      "Unlimited signage screens",
+      "Real-time AV alerts",
+      "Historical reports",
+      "Email support",
+      "Basic API access",
+    ],
+  },
+  {
+    name: "Pro",
+    price: "$99",
+    suffix: "/month",
+    tag: "Automate Sunday",
+    body: "This is where the paid tier gains its clearest upgrade reason: real execution automation powered by Central Control.",
+    cta: "Book a setup call",
+    href: "/discovery-call",
+    featured: false,
+    items: [
+      "Everything in Starter",
+      "Central Control integration",
+      "WebPanel volunteer execution",
+      "Rundown and Flex Macro automation",
+      "MCP-driven cue authoring",
+      "Priority support",
+    ],
+  },
+  {
+    name: "Premium",
+    price: "$249",
+    suffix: "/month",
+    tag: "For multi-campus churches",
+    body: "For churches with heavier production complexity, multiple locations, and more involved rollout needs.",
+    cta: "Talk to us",
+    href: "/discovery-call",
+    featured: false,
+    items: [
+      "Everything in Pro",
+      "Multi-campus support",
+      "White-label options",
+      "Phone support",
+      "Custom Central Control configuration",
+      "Dedicated integrator",
+    ],
+  },
+];
+
+const comparisonRows = [
+  ["Services planning", "Included", "Included", "Included", "Included"],
+  ["Volunteer management", "Included", "Included", "Included", "Included"],
+  ["Worship Clips", "Local workflow", "Cloud sync", "Cloud sync", "Cloud sync"],
+  ["Digital Signage", "1 screen", "Unlimited", "Unlimited", "Unlimited"],
+  ["Attendance", "Included", "Included", "Included", "Included"],
+  ["Tech Manager", "Included", "Included", "Included", "Included"],
+  ["Real-time AV alerts", "No", "Included", "Included", "Included"],
+  ["Historical reports", "No", "Included", "Included", "Included"],
+  ["Central Control automation", "No", "No", "Included", "Included"],
+  ["Multi-campus", "No", "No", "No", "Included"],
+  ["White-label", "No", "No", "No", "Included"],
+  ["Support", "Community", "Email", "Priority", "Phone + dedicated"],
+];
+
 const faqItems = [
   {
-    question: "Does WorshipMetrics offer a free plan?",
-    answer: "Yes. WorshipMetrics offers a free plan with unlimited users, unlimited data retention, and core attendance, digital signage, and reporting tools without a credit card or time limit.",
+    question: "Does Worship Metrics offer a free plan?",
+    answer: "Yes. The free plan is designed to get your church organized first: service planning, volunteer management, the Tech Manager desktop app, attendance basics, one signage screen, and the core workflow that proves the product before you pay.",
   },
   {
-    question: "Which plan includes church attendance automation?",
-    answer: "The Established plan includes the advanced automation features, and the Worship Metrics Hub is required for true 24/7 AV monitoring that runs independently of your production computer.",
+    question: "What makes the paid plans worth it?",
+    answer: "Starter removes caps and adds cloud workflows, alerts, and reporting. Pro is the bigger step change because it adds Central Control-powered Sunday automation: rundown sync, macro-driven cues, and volunteer execution surfaces that turn the plan into an execution layer.",
   },
   {
-    question: "Does the WorshipMetrics Tablet include software?",
-    answer: "Yes. The WorshipMetrics Tablet includes a free Essentials plan so churches can start using check-in, attendance, and guest capture workflows immediately.",
+    question: "Is hardware included in the subscription?",
+    answer: "No. The Worship Metrics Hub and Tablet are sold separately. They support the software platform, but they are not required to start using the core product story.",
   },
   {
-    question: "Can we talk with someone before choosing a plan?",
-    answer: "Yes. Churches can book a discovery call to compare plans, hardware, and services based on their real workflow and team size.",
+    question: "Do you offer annual pricing, nonprofit pricing, or multi-campus discounts?",
+    answer: "Yes. Churches with annual billing preferences, nonprofit constraints, or multi-campus needs should book a call so pricing can match the real rollout instead of forcing a one-size-fits-all decision.",
+  },
+  {
+    question: "Can we cancel or change plans later?",
+    answer: "Yes. Churches can start free, upgrade when the workflow justifies it, and talk with the team about the right timing for deeper rollout or hardware decisions.",
   },
 ];
 
@@ -32,10 +132,11 @@ const structuredData = [
     url: `${SITE_URL}/pricing`,
     itemListElement: [
       { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "Essentials", price: "19.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "Established", price: "49.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "WorshipMetrics Hub", price: "499", priceCurrency: "USD", url: `${SITE_URL}/appliance` },
-      { "@type": "Offer", name: "WorshipMetrics Tablet", price: "349", priceCurrency: "USD", url: `${SITE_URL}/tablet` },
+      { "@type": "Offer", name: "Starter", price: "29", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Pro", price: "99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Premium", price: "249", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Worship Metrics Hub", price: "499", priceCurrency: "USD", url: `${SITE_URL}/appliance` },
+      { "@type": "Offer", name: "Worship Metrics Tablet", price: "349", priceCurrency: "USD", url: `${SITE_URL}/tablet` },
     ],
   },
   {
@@ -62,41 +163,39 @@ const structuredData = [
 ---
 
 <Layout
-  title="Church AV Operations Platform Pricing"
-  description="See WorshipMetrics pricing for church AV monitoring, camera-based attendance, remote production workflows, hardware, and support services."
+  title="Pricing"
+  description="Free to start. Grows with your church. Compare WorshipMetrics plans for service planning, volunteers, production automation, and hardware."
   canonical="/pricing"
   structuredData={structuredData}
 >
-  <!-- Hero -->
-  <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Pricing</p>
-      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-        Simple pricing. Clear next steps.
-      </h1>
-      <p class="mt-4 text-lg text-slate-600">
-        Monthly or annual billing. Every paid plan includes a free onboarding session. Cancel anytime.
+  <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Pricing</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Free to start. Grows with your church.</h1>
+      <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+        Start with the workflow that gets your church more organized. Upgrade when your team needs deeper cloud workflows, reporting, and the automation layer that makes Sunday run with less friction.
       </p>
     </div>
   </section>
 
-  <!-- Pricing proof -->
   <section class="bg-white px-4 pb-8 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+    <div class="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
       <div class="grid items-center gap-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
         <div class="p-8 sm:p-10">
-          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Included in paid plans</p>
-          <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Pricing is easier when the value is visible.
-          </h2>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What makes paid worth it?</p>
+          <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Paid is not just more features. It is a different operating model.</h2>
           <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Luminos, Tech Manager, Worship Clips, and team workflows are not abstract add-ons. They are part of the weekly AV operating system your staff and volunteers actually use.
+            Starter adds the cloud and reporting layers that help your team stay in sync. Pro is where the upgrade reason becomes unmistakable: Services automation powered by Central Control. That is the moment the plan turns into an execution layer the booth can trust.
           </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/integrations/central-control" class="btn-outline">See the technical integration</a>
+            <a href="/services#automate" class="btn-primary">See the automation story</a>
+          </div>
         </div>
         <div class="flex h-full items-center justify-center bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#eef2ff_58%,_#dbe5ff_100%)] p-10 sm:p-12">
           <img
             src={LUMINOS_PROFILE}
-            alt="Luminos profile illustration included in WorshipMetrics paid plans"
+            alt="Luminos profile illustration"
             loading="lazy"
             decoding="async"
             width="320"
@@ -108,253 +207,116 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- Plan cards -->
   <section class="px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl">
-      <div class="grid items-stretch gap-8 md:grid-cols-3">
-
-        <!-- Free -->
-        <div class="relative flex flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <div>
-            <h2 class="text-lg font-bold text-slate-900">Free</h2>
-            <p class="mt-4 text-3xl font-extrabold text-slate-900">$0/month — forever</p>
-            <p class="mt-3 text-sm text-slate-600">For churches getting started with data</p>
+    <div class="mx-auto max-w-7xl">
+      <div class="grid items-stretch gap-8 lg:grid-cols-4">
+        {plans.map(({ name, price, suffix, tag, body, cta, href, featured, items }) => (
+          <div class:list={[
+            "relative flex flex-col rounded-[1.75rem] border p-8 shadow-sm",
+            featured ? "border-indigo-500 bg-indigo-600 shadow-lg shadow-indigo-200" : "border-slate-200 bg-white",
+          ]}>
+            {featured && (
+              <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-xs font-bold uppercase tracking-wider text-slate-900">
+                Most popular
+              </span>
+            )}
+            <div>
+              <p class:list={["text-sm font-semibold uppercase tracking-[0.16em]", featured ? "text-indigo-200" : "text-indigo-600"]}>{tag}</p>
+              <h2 class:list={["mt-3 text-2xl font-bold", featured ? "text-white" : "text-slate-900"]}>{name}</h2>
+              <p class:list={["mt-4 text-4xl font-extrabold tracking-tight", featured ? "text-white" : "text-slate-900"]}>{price}<span class:list={["text-base font-medium", featured ? "text-indigo-200" : "text-slate-500"]}>{suffix}</span></p>
+              <p class:list={["mt-4 text-sm leading-relaxed", featured ? "text-indigo-100" : "text-slate-600"]}>{body}</p>
+            </div>
+            <a href={href} class:list={[
+              "mt-8 block rounded-xl py-3 text-center text-sm font-semibold transition",
+              featured ? "bg-white text-indigo-700 hover:bg-indigo-50" : "bg-indigo-600 text-white hover:bg-indigo-700",
+            ]}>
+              {cta}
+            </a>
+            <ul class="mt-8 flex-1 space-y-3">
+              {items.map((item) => (
+                <li class="flex items-start gap-3 text-sm">
+                  <svg class:list={["mt-0.5 h-4 w-4 flex-shrink-0", featured ? "text-indigo-300" : "text-indigo-500"]} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class:list={[featured ? "text-indigo-100" : "text-slate-600"]}>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <a
-            href={`${APP_URL}/sign-up`}
-            class="mt-8 block rounded-xl bg-indigo-600 py-3 text-center text-sm font-semibold text-white transition hover:bg-indigo-700"
-          >
-            Start free
-          </a>
-          <ul class="mt-8 flex-1 space-y-3">
-            {[
-              "Unlimited users",
-              "Unlimited data retention",
-              "Luminos Tech Manager — system diagnostics, device detection, and remote monitoring alerts",
-              "Luminos AI chat (limited sessions/month)",
-              "Attendance, giving, salvations, volunteers, and custom tracking",
-              "Basic reports and dashboards",
-              "1 digital signage screen",
-              "Basic announcement templates",
-              "Online attendance tools",
-              "Community support",
-            ].map((f) => (
-              <li class="flex items-start gap-3 text-sm">
-                <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-600">{f}</span>
-              </li>
-            ))}
-          </ul>
-          <p class="mt-6 text-sm text-slate-500">No credit card required. No time limit. No catch.</p>
-        </div>
-
-        <!-- Essentials — highlighted -->
-        <div class="relative flex flex-col rounded-2xl border border-indigo-500 bg-indigo-600 p-8 shadow-lg shadow-indigo-200">
-          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-xs font-bold uppercase tracking-wider text-slate-900">
-            Most popular
-          </span>
-          <div>
-            <h2 class="text-lg font-bold text-white">Essentials ⭐</h2>
-            <p class="mt-4 text-3xl font-extrabold text-white">$19.99/month</p>
-            <p class="mt-1 text-sm text-indigo-200">or $190/year — saves $49.88</p>
-            <p class="mt-3 text-sm text-indigo-200">For churches ready to grow</p>
-          </div>
-          <a
-            href={`${APP_URL}/sign-up`}
-            class="mt-8 block rounded-xl bg-white py-3 text-center text-sm font-semibold text-indigo-700 transition hover:bg-indigo-50"
-          >
-            Start 30-day trial
-          </a>
-          <ul class="mt-8 flex-1 space-y-3">
-            {[
-              "Everything in Free, plus:",
-              "Luminos AI assistant (unlimited)",
-              "Advanced reports and trend analysis",
-              "Year-over-year comparisons",
-              "Multi-user roles and permissions",
-              "Worship Clips — 1 sermon clip/week",
-              "Unlimited digital signage screens",
-              "One-Button Attendance — log your count from any device in seconds",
-              "Email support + free onboarding session",
-            ].map((f) => (
-              <li class="flex items-start gap-3 text-sm">
-                <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-indigo-100">{f}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <!-- Established -->
-        <div class="relative flex flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <div>
-            <h2 class="text-lg font-bold text-slate-900">Established</h2>
-            <p class="mt-4 text-3xl font-extrabold text-slate-900">$49.99/month</p>
-            <p class="mt-1 text-sm text-slate-500">or $490/year — saves $109.88</p>
-            <p class="mt-3 text-sm text-slate-600">For ministries serious about automation</p>
-          </div>
-          <a
-            href={`${APP_URL}/sign-up`}
-            class="mt-8 block rounded-xl bg-indigo-600 py-3 text-center text-sm font-semibold text-white transition hover:bg-indigo-700"
-          >
-            Start 30-day trial
-          </a>
-          <ul class="mt-8 flex-1 space-y-3">
-            {[
-              "Everything in Essentials, plus:",
-              "Fully Automatic Attendance — your camera counts your congregation so you never have to",
-              "Remote PTZ camera control with saved presets",
-              "Remote OBS and vMix production control",
-              "AV health monitoring — stream, audio, video, and display status in real time",
-              "True 24/7 AV monitoring (requires Worship Metrics Hub — see below)",
-              "Auto video upload and sermon clipping",
-              "Podcast auto-export (coming soon)",
-              "Multi-campus support and consolidated dashboards",
-              "Unlimited Worship Clips",
-              "API access (coming soon)",
-              "Priority support + 1-hour tech session/month",
-              "Ticket system",
-            ].map((f) => (
-              <li class="flex items-start gap-3 text-sm">
-                <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-600">{f}</span>
-              </li>
-            ))}
-          </ul>
-          <p class="mt-6 text-sm text-slate-500">Established features run on your own computer, but true 24/7 AV monitoring requires the Worship Metrics Hub.</p>
-        </div>
-      </div>
-
-      <p class="mt-10 text-center text-sm text-slate-500">
-        Questions?{" "}
-        <a href="/contact" class="text-indigo-600 hover:underline">Contact us →</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Compare by workflow -->
-  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl">
-      <h2 class="text-center text-2xl font-bold text-slate-900 sm:text-3xl">Compare pricing by workflow, not just by plan.</h2>
-      <div class="mt-8 grid gap-6 md:grid-cols-3">
-        {[
-          {
-            href: "/platform/attendance",
-            title: "Attendance workflows",
-            body: "See how seat templates, Auto-Count, and livestream reporting fit into the plans.",
-          },
-          {
-            href: "/tablet",
-            title: "Tablet hardware",
-            body: "See the dedicated church tablet for check-in, counting, and guest capture.",
-          },
-          {
-            href: "/appliance",
-            title: "Hub automation",
-            body: "See the hardware option for automatic attendance, AV monitoring, and signage.",
-          },
-        ].map(({ href, title, body }) => (
-          <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
-            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
-            <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
-          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Hardware -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Compare the plans in one table.</h2>
+      </div>
+      <div class="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-slate-700">Capability</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Free</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Starter</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Pro</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Premium</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            {comparisonRows.map(([feature, free, starter, pro, premium]) => (
+              <tr>
+                <td class="px-6 py-4 font-semibold text-slate-900">{feature}</td>
+                <td class="px-6 py-4 text-slate-600">{free}</td>
+                <td class="px-6 py-4 text-slate-600">{starter}</td>
+                <td class="px-6 py-4 text-slate-600">{pro}</td>
+                <td class="px-6 py-4 text-slate-600">{premium}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
-      <h2 class="mb-2 text-center text-2xl font-bold text-slate-900 sm:text-3xl">The Worship Metrics Hub</h2>
-      <p class="mb-10 text-center text-slate-500">Required for true 24/7 AV monitoring</p>
-      <div class="grid gap-8 sm:grid-cols-2">
-
-        <!-- Hub -->
-        <div class="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <img
-            src={`${R2}/tablet/Worship%20Metrics%20Appliance%20Small.jpg`}
-            alt="WorshipMetrics Hub product image"
-            loading="lazy"
-            decoding="async"
-            class="-mx-8 -mt-8 mb-6 aspect-[16/10] w-[calc(100%+4rem)] object-cover"
-          />
-          <div class="flex items-start justify-between">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Hardware sold separately</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Add hardware where it helps the workflow.</h2>
+      </div>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2">
+        <div class="flex flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+          <img src={HUB_IMAGE} alt="Worship Metrics Hub product image" loading="lazy" decoding="async" class="-mx-8 -mt-8 mb-6 aspect-[16/10] w-[calc(100%+4rem)] object-cover" />
+          <div class="flex items-start justify-between gap-4">
             <div>
-              <h3 class="text-lg font-bold text-slate-900">The Worship Metrics Hub</h3>
+              <h3 class="text-xl font-bold text-slate-900">Worship Metrics Hub</h3>
               <p class="mt-1 text-2xl font-extrabold text-slate-900">$499 <span class="text-sm font-normal text-slate-400">one-time</span></p>
             </div>
-            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">No subscription required</span>
+            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">Optional hardware</span>
           </div>
-          <p class="mt-4 text-sm text-slate-600">Most AV monitoring runs on your church's Windows computer — which means if that computer sleeps, restarts, or gets turned off, monitoring stops too. The Worship Metrics Hub is a small always-on device that runs independently of your production PC. It keeps watching your network, cameras, and AV systems around the clock — even when everything else is off.</p>
-          <p class="mt-3 text-sm text-slate-500">Available as an add-on for Established plan members.</p>
-          <a
-            href="/appliance"
-            class="mt-6 block rounded-xl border border-indigo-600 py-3 text-center text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50"
-          >
-            See Hub details
-          </a>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Always-on hardware for churches that want local reliability, deeper monitoring resilience, and a system that does not depend on one booth PC staying awake.</p>
+          <a href="/appliance" class="mt-6 block rounded-xl border border-indigo-600 py-3 text-center text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50">See Hub details</a>
         </div>
 
-        <!-- Tablet -->
-        <div class="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <img
-            src={`${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`}
-            alt="WorshipMetrics Tablet product image"
-            loading="lazy"
-            decoding="async"
-            class="-mx-8 -mt-8 mb-6 aspect-[16/10] w-[calc(100%+4rem)] object-cover"
-          />
-          <div class="flex items-start justify-between">
+        <div class="flex flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+          <img src={TABLET_IMAGE} alt="Worship Metrics Tablet product image" loading="lazy" decoding="async" class="-mx-8 -mt-8 mb-6 aspect-[16/10] w-[calc(100%+4rem)] object-cover" />
+          <div class="flex items-start justify-between gap-4">
             <div>
-              <h3 class="text-lg font-bold text-slate-900">Worship Metrics Tablet</h3>
+              <h3 class="text-xl font-bold text-slate-900">Worship Metrics Tablet</h3>
               <p class="mt-1 text-2xl font-extrabold text-slate-900">From $349 <span class="text-sm font-normal text-slate-400">one-time</span></p>
             </div>
-            <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">Includes free Essentials plan</span>
+            <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">Volunteer workflow device</span>
           </div>
-          <p class="mt-4 text-sm text-slate-600">Dedicated welcome desk device for volunteer check-in, head counting, and visitor capture.</p>
-          <a
-            href="/tablet"
-            class="mt-6 block rounded-xl border border-indigo-600 py-3 text-center text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50"
-          >
-            See Tablet details
-          </a>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">A dedicated device for welcome desks, attendance workflows, and service-day roles that deserve something cleaner than a borrowed personal tablet.</p>
+          <a href="/tablet" class="mt-6 block rounded-xl border border-indigo-600 py-3 text-center text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50">See Tablet details</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section class="px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl">
-      <h2 class="mb-2 text-center text-2xl font-bold text-slate-900 sm:text-3xl">Professional Services</h2>
-      <p class="mb-10 text-center text-slate-500">Implementation and support options tailored to your church.</p>
-      <div class="grid gap-8 sm:grid-cols-3">
-        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h3 class="text-lg font-bold text-slate-900">Implementation &amp; Training</h3>
-          <p class="mt-1 text-sm font-medium text-indigo-600">Custom scoped</p>
-          <p class="mt-3 text-sm text-slate-600">Migration, onboarding, staff training, and ongoing strategic support.</p>
-          <a href="/professional-services" class="mt-5 inline-block text-sm font-semibold text-indigo-600 hover:underline">Learn more →</a>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h3 class="text-lg font-bold text-slate-900">AV Workflow Consulting</h3>
-          <p class="mt-1 text-sm font-medium text-indigo-600">Custom scoped</p>
-          <p class="mt-3 text-sm text-slate-600">Production workflow design, monitoring rollout, volunteer booth training, and system audits for church AV teams.</p>
-          <a href="/professional-services" class="mt-5 inline-block text-sm font-semibold text-indigo-600 hover:underline">Learn more →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl">
       <div class="text-center">
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">FAQ</p>
@@ -371,19 +333,14 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- Bottom CTA -->
   <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-3xl font-bold text-white">Need help choosing the right plan?</h2>
-      <p class="mt-4 text-indigo-200">
-        Get a free onboarding session and map out the best setup for your church's workflow and goals.
-      </p>
-      <a
-        href="/discovery-call"
-        class="mt-8 inline-block rounded-xl bg-white px-8 py-3 text-base font-semibold text-indigo-700 shadow transition hover:bg-indigo-50"
-      >
-        Book free onboarding
-      </a>
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Choose the plan that matches how your church actually works.</h2>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="pricing_footer_get_started_free" data-wm-track-location="pricing_footer_cta">Get started free</a>
+        <a href="/discovery-call" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;" data-wm-track="cta_click" data-wm-track-label="pricing_footer_book_call" data-wm-track-location="pricing_footer_cta">Book a call</a>
+        <a href="/services" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">See Services</a>
+      </div>
     </div>
   </section>
 </Layout>

@@ -7,7 +7,9 @@ import BreadcrumbNav from '../../../components/kb/BreadcrumbNav.astro';
 const allCameras = await getCollection('cameras');
 const brands = [...new Set(allCameras.map(e => e.data.brand))].sort();
 const brandCounts = Object.fromEntries(brands.map(b => [b, allCameras.filter(e => e.data.brand === b).length]));
-const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+function brandSlug(b: string) {
+  return b.toLowerCase().replace(/[\s\/]+/g, '-');
+}
 ---
 <BaseLayout title="PTZ Camera Knowledge Base for Churches" description="Setup guides, troubleshooting, and integration docs for every PTZ camera brand used in church production." canonical="/kb/cameras">
   <section class="border-b border-border bg-bg px-6 py-16">

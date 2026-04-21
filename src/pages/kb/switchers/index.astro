@@ -8,7 +8,9 @@ const allDevices = await getCollection('devices');
 const switchers = allDevices.filter(e => e.data.deviceCategory === 'switcher');
 const brands = [...new Set(switchers.map(e => e.data.brand))].sort();
 const brandCounts = Object.fromEntries(brands.map(b => [b, switchers.filter(e => e.data.brand === b).length]));
-const brandSlug = (b: string) => b.toLowerCase().replace(/[\s\/]+/g, '-');
+function brandSlug(b: string) {
+  return b.toLowerCase().replace(/[\s\/]+/g, '-');
+}
 ---
 <BaseLayout title="Video Switcher Knowledge Base for Churches" description="Setup guides, audio routing, NDI integration, and troubleshooting for ATEM Mini, Roland V-1HD, and every switcher used in church production." canonical="/kb/switchers">
   <section class="border-b border-border bg-bg px-6 py-16">

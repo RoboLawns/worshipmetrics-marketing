@@ -1,0 +1,228 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const PAUL_HEADSHOT = `${R2}/paul.jpg`;
+const OG_IMAGE = PAUL_HEADSHOT;
+const APPLE_PODCASTS_URL = import.meta.env.PUBLIC_SIGNAL_SANCTUARY_APPLE_URL || "#subscribe-links";
+const SPOTIFY_URL = import.meta.env.PUBLIC_SIGNAL_SANCTUARY_SPOTIFY_URL || "#subscribe-links";
+const YOUTUBE_URL = import.meta.env.PUBLIC_SIGNAL_SANCTUARY_YOUTUBE_URL || "#subscribe-links";
+const hasExternalPodcastLinks = [APPLE_PODCASTS_URL, SPOTIFY_URL, YOUTUBE_URL].some((url) => !url.startsWith('#'));
+
+const latestEpisode = {
+  title: "Signal and Sanctuary Trailer",
+  summary: "A new show about church production, Sunday systems, and the practical realities behind healthy technical ministry. Full episodes are launching soon.",
+  duration: "08:12",
+  status: "Launching soon",
+};
+
+const archive = [
+  {
+    title: "Signal and Sanctuary Trailer",
+    meta: "Trailer · Launching soon",
+    body: "The introduction to the show and the perspective behind the conversations to come.",
+  },
+  {
+    title: "Episode 001: The One-Person System",
+    meta: "Upcoming",
+    body: "Why so many churches are one volunteer away from operational fragility, and what healthier systems look like.",
+  },
+  {
+    title: "Episode 002: Booth Tools vs Sunday Systems",
+    meta: "Upcoming",
+    body: "The difference between solving one booth problem and building a platform that actually supports the whole Sunday workflow.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "PodcastSeries",
+    name: "Signal and Sanctuary",
+    url: `${SITE_URL}/signal-and-sanctuary`,
+    description: "A Worship Metrics podcast about church production, Sunday systems, and practical conversations for technical ministry leaders.",
+    image: OG_IMAGE,
+    author: {
+      "@type": "Organization",
+      name: "WorshipMetrics",
+      url: SITE_URL,
+    },
+    host: {
+      "@type": "Person",
+      name: "Paul Richards",
+      image: PAUL_HEADSHOT,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "PodcastEpisode",
+    partOfSeries: {
+      "@type": "PodcastSeries",
+      name: "Signal and Sanctuary",
+      url: `${SITE_URL}/signal-and-sanctuary`,
+    },
+    name: latestEpisode.title,
+    description: latestEpisode.summary,
+    timeRequired: latestEpisode.duration,
+    url: `${SITE_URL}/signal-and-sanctuary#latest-episode`,
+  },
+];
+---
+
+<Layout
+  title="Signal and Sanctuary"
+  description="A Worship Metrics podcast about church production, Sunday systems, and practical conversations for technical ministry leaders."
+  canonical="/signal-and-sanctuary"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.22)_0%,_rgba(30,41,59,0)_32%),linear-gradient(135deg,_#09090b_0%,_#111827_48%,_#1f2937_100%)] px-4 py-24 text-white sm:px-6 lg:px-8">
+    <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.03),transparent_30%,transparent_70%,rgba(255,255,255,0.02))]"></div>
+    <div class="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-amber-300">Podcast</p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Signal and Sanctuary</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+          Conversations about church production, Sunday systems, and the tension between technical excellence and pastoral reality. Made by the Worship Metrics team for the people who carry Sunday with them all week.
+        </p>
+        <div id="subscribe" class="mt-8 flex flex-wrap gap-3">
+          <a href={APPLE_PODCASTS_URL} class="inline-flex items-center rounded-full border border-white/15 bg-white/8 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/12" data-wm-track="cta_click" data-wm-track-label="podcast_subscribe_apple" data-wm-track-location="podcast_hero">Apple Podcasts</a>
+          <a href={SPOTIFY_URL} class="inline-flex items-center rounded-full border border-white/15 bg-white/8 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/12" data-wm-track="cta_click" data-wm-track-label="podcast_subscribe_spotify" data-wm-track-location="podcast_hero">Spotify</a>
+          <a href={YOUTUBE_URL} class="inline-flex items-center rounded-full border border-white/15 bg-white/8 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/12" data-wm-track="cta_click" data-wm-track-label="podcast_subscribe_youtube" data-wm-track-location="podcast_hero">YouTube</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-400">{hasExternalPodcastLinks ? "Listen on your preferred platform." : "Channel links are wired and ready for final launch URLs via public environment variables."}</p>
+      </div>
+
+      <div class="rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:p-8">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">Episode player</p>
+        <div class="mt-5 rounded-[1.5rem] border border-white/10 bg-black/25 p-6">
+          <div class="flex items-center gap-4">
+            <button type="button" class="flex h-14 w-14 items-center justify-center rounded-full bg-amber-400 text-slate-950 shadow-lg shadow-amber-900/30" aria-label="Play trailer preview">
+              <svg class="ml-1 h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5.14v13.72c0 .72.78 1.17 1.4.8l10.19-6.86a.93.93 0 000-1.52L9.4 4.34A.93.93 0 008 5.14z" />
+              </svg>
+            </button>
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.16em] text-amber-300">Latest episode</p>
+              <h2 class="mt-1 text-2xl font-bold text-white">{latestEpisode.title}</h2>
+              <p class="mt-2 text-sm text-slate-300">{latestEpisode.summary}</p>
+            </div>
+          </div>
+          <div class="mt-6 flex items-center justify-between gap-4 text-sm text-slate-400">
+            <span>{latestEpisode.duration}</span>
+            <span>{latestEpisode.status}</span>
+          </div>
+          <div class="mt-3 h-2 rounded-full bg-white/10">
+            <div class="h-2 w-1/3 rounded-full bg-amber-400"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="latest-episode" class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <div class="rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Latest episode</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{latestEpisode.title}</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{latestEpisode.summary}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="rounded-full bg-slate-900 px-4 py-1.5 text-sm font-semibold text-white">{latestEpisode.duration}</span>
+            <span class="rounded-full bg-amber-100 px-4 py-1.5 text-sm font-semibold text-amber-900">{latestEpisode.status}</span>
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] border border-slate-200 bg-slate-950 p-8 text-white shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">Why this exists</p>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            Signal and Sanctuary is the top-of-funnel content layer for Worship Metrics. It is not here to turn the product site into a media brand. It is here to build trust with technical ministry leaders and give them a better on-ramp into the product story.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">About the show</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Practical conversations, not hype.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {[
+          {
+            title: "Church production reality",
+            body: "The booth, the service plan, the volunteer system, and the weekly rhythm are all discussed as one operating challenge instead of isolated tips.",
+          },
+          {
+            title: "Specific, not generic",
+            body: "The tone matches the rest of the company: practical, credible, and grounded in the realities churches actually face.",
+          },
+          {
+            title: "Built to lead into product",
+            body: "Listeners should be able to move naturally from content into the software when the conversation reveals a clearer need.",
+          },
+        ].map(({ title, body }) => (
+          <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+            <h3 class="text-xl font-semibold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+        <img src={PAUL_HEADSHOT} alt="Paul Richards" loading="lazy" decoding="async" class="aspect-[4/5] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Host</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Paul Richards</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Paul hosts Signal and Sanctuary from the same place the product is built: real church production workflows, operational bottlenecks, and the question of how software should serve ministry instead of complicating it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Episode archive</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The archive starts here.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {archive.map(({ title, meta, body }) => (
+          <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{meta}</p>
+            <h3 class="mt-3 text-xl font-semibold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="subscribe-links" class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">Made by the Worship Metrics team</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">The content brand lives on the same channel for a reason.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            Signal and Sanctuary should feed the product story, not compete with it. The same navigation and footer stay in place so listeners can move naturally into Services, pricing, and the rest of the platform.
+          </p>
+        </div>
+        <div class="space-y-4">
+          <a href="/services" class="btn-primary">See the product</a>
+          <a href="/pricing" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:#fff;">See pricing</a>
+          <a href="/kb" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:#fff;">Explore the Knowledge Base</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

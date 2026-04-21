@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">vMix Complete Setup Guide for Church Live Production</title>
+  <desc id="d">Setup guide thumbnail showing vMix at the center of a church live production workflow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#08121C"/>
+      <stop offset="70%" stop-color="#121A26"/>
+      <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.30"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="#1E293B" stroke-width="1" opacity="0.55">
+    <line x1="0" y1="225" x2="1600" y2="225"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="0" y1="675" x2="1600" y2="675"/>
+    <line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+  <rect x="0" y="0" width="1600" height="8" fill="url(#accent)"/>
+
+  <text x="70" y="70" fill="#0EA5E9" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">WORSHIPMETRICS</text>
+  <text x="70" y="135" fill="#F8FAFC" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="50" font-weight="700">vMix Complete Setup Guide</text>
+  <text x="70" y="176" fill="#94A3B8" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="22">Inputs, outputs, recording, graphics, and operator flow</text>
+
+  <g transform="translate(140 280)">
+    <rect x="410" y="70" width="500" height="320" rx="22" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+    <rect x="440" y="106" width="440" height="42" rx="10" fill="#111C31"/>
+    <circle cx="468" cy="127" r="8" fill="#F87171"/>
+    <circle cx="494" cy="127" r="8" fill="#FBBF24"/>
+    <circle cx="520" cy="127" r="8" fill="#34D399"/>
+    <rect x="450" y="170" width="180" height="94" rx="14" fill="#111827" stroke="#334155"/>
+    <rect x="650" y="170" width="210" height="94" rx="14" fill="#111827" stroke="#334155"/>
+    <rect x="450" y="284" width="410" height="74" rx="14" fill="#111827" stroke="#334155"/>
+    <text x="655" y="226" fill="#F8FAFC" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="40" font-weight="700" text-anchor="middle">vMix</text>
+    <text x="655" y="325" fill="#94A3B8" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="22" text-anchor="middle">Live switch, record, stream, replay</text>
+
+    <rect x="0" y="0" width="280" height="120" rx="20" fill="#0F172A" stroke="#334155"/>
+    <text x="140" y="46" fill="#F8FAFC" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">Inputs</text>
+    <text x="140" y="84" fill="#94A3B8" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="20" text-anchor="middle">Cameras, lyrics, NDI, media</text>
+
+    <rect x="0" y="170" width="280" height="120" rx="20" fill="#0F172A" stroke="#334155"/>
+    <text x="140" y="216" fill="#F8FAFC" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">Performance</text>
+    <text x="140" y="254" fill="#94A3B8" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="20" text-anchor="middle">CPU, GPU, storage, network</text>
+
+    <rect x="1040" y="0" width="280" height="120" rx="20" fill="#0F172A" stroke="#334155"/>
+    <text x="1180" y="46" fill="#F8FAFC" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">Outputs</text>
+    <text x="1180" y="84" fill="#94A3B8" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="20" text-anchor="middle">Program, stream, aux, record</text>
+
+    <rect x="1040" y="170" width="280" height="120" rx="20" fill="#0F172A" stroke="#334155"/>
+    <text x="1180" y="216" fill="#F8FAFC" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">Workflow</text>
+    <text x="1180" y="254" fill="#94A3B8" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="20" text-anchor="middle">Scenes, shortcuts, volunteers</text>
+
+    <path d="M280 60h110" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
+    <path d="M280 230h110" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
+    <path d="M930 60h110" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
+    <path d="M930 230h110" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

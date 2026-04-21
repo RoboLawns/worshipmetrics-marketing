@@ -5,7 +5,8 @@ const SITE_URL = "https://worshipmetrics.com";
 const DISCOVERY_URL = "/discovery-call";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW = `${R2}/homepage/new%20images`;
-const OG_IMAGE = `${R2NEW}/Stream%20Health.jpg`;
+const TECH_MANAGER_PRO_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Pro.jpg`;
+const OG_IMAGE = TECH_MANAGER_PRO_IMAGE;
 
 const systemDocumentation = [
   "Computer name, operating system, version, and last update",
@@ -118,7 +119,7 @@ const supportTabs = [
 const faqItems = [
   {
     question: "What is Tech Manager?",
-    answer: "Tech Manager is a free desktop app for Windows and Mac that sits on your production computer, documents your AV system, monitors signals continuously, and gives Luminos the context it needs to diagnose issues fast.",
+    answer: "Tech Manager is a free desktop app for Windows and Mac that powers the booth inside the broader WorshipMetrics platform. It documents your AV system, monitors signals continuously, and gives Luminos the context it needs to diagnose issues fast.",
   },
   {
     question: "Does Tech Manager require the Hub?",
@@ -143,7 +144,7 @@ const structuredData = [
     operatingSystem: "Windows, Mac",
     url: `${SITE_URL}/tech-manager`,
     image: OG_IMAGE,
-    description: "Free desktop AV monitoring and system mapping for OBS health, device discovery, self-healing, PTZ control, and Luminos AV diagnostics.",
+  description: "Tech Manager is the desktop app that powers your booth with AV monitoring, system mapping, PTZ control, and Luminos diagnostics inside WorshipMetrics.",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -169,7 +170,7 @@ const structuredData = [
 
 <Layout
   title="Tech Manager"
-  description="Free desktop AV monitoring and system mapping for OBS health, device discovery, self-healing, PTZ control, and Luminos AV diagnostics."
+  description="Tech Manager is the desktop app that powers your booth with AV monitoring, system mapping, PTZ control, and Luminos diagnostics inside WorshipMetrics."
   canonical="/tech-manager"
   ogImage={OG_IMAGE}
   structuredData={structuredData}
@@ -178,25 +179,25 @@ const structuredData = [
     <div class="mx-auto max-w-4xl text-center">
       <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Tech Manager</p>
       <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-        The smartest thing in your AV booth<br />
-        isn't your switcher.
+        The desktop app that powers<br />
+        your booth.
       </h1>
       <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-        Tech Manager is a free desktop app for Windows and Mac that sits quietly on your production computer — watching every device, monitoring every signal, and giving Luminos everything it needs to diagnose and fix problems fast.
+        Tech Manager is a free desktop app for Windows and Mac that runs alongside Services inside WorshipMetrics. It maps your AV system, monitors the booth continuously, and gives Luminos the real context it needs to diagnose problems with specificity.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a href={DISCOVERY_URL} class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-500">
           Download free for Windows
         </a>
-        <a href={DISCOVERY_URL} class="rounded-xl border border-indigo-300 px-8 py-3 text-base font-semibold text-white transition hover:border-white">
-          Download free for Mac
+        <a href="/services" class="rounded-xl border border-indigo-300 px-8 py-3 text-base font-semibold text-white transition hover:border-white">
+          See how it fits Services
         </a>
       </div>
-      <p class="mt-4 text-sm text-slate-400">Free account required. Works on all plans. Beta access is provided through a discovery call.</p>
+        <p class="mt-4 text-sm text-slate-400">Free account required. Works on all plans. Tech Manager is one feature of the broader WorshipMetrics platform.</p>
     </div>
 
     <div class="mx-auto mt-16 max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl">
-      <img src={OG_IMAGE} alt="Tech Manager monitoring stream health" loading="lazy" decoding="async" class="w-full object-cover" />
+      <img src={TECH_MANAGER_PRO_IMAGE} alt="WorshipMetrics Tech Manager Pro interface" loading="lazy" decoding="async" class="w-full object-cover" />
     </div>
   </section>
 
@@ -204,7 +205,7 @@ const structuredData = [
     <div class="mx-auto max-w-4xl rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center shadow-sm sm:p-10">
       <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The one-line explanation</p>
       <p class="mt-4 text-lg leading-relaxed text-slate-700 sm:text-xl">
-        Tech Manager is the bridge between your physical AV system and the WorshipMetrics cloud. Without it, Luminos can answer questions about your attendance data. With it, Luminos knows your exact hardware, watches your stream in real time, and can fix problems before your congregation notices them.
+        Tech Manager is the desktop bridge between your physical AV system and the WorshipMetrics platform. It keeps the booth grounded in reality while Services runs the plan and Luminos understands what changed in the system.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href="/av-monitoring-for-houses-of-worship" class="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-indigo-700">See AV monitoring</a>
@@ -213,10 +214,25 @@ const structuredData = [
     </div>
   </section>
 
+  <section class="bg-white px-4 pb-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={TECH_MANAGER_PRO_IMAGE} alt="Tech Manager Pro dashboard showing booth system visibility" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What the booth actually sees</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One screen that makes the system legible.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          This view is the practical value of Tech Manager. Instead of keeping the booth state in one operator&apos;s head, the system map, device health, and production context are visible in software the rest of the platform can understand.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-5xl text-center">
       <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What it does</p>
-      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Runs silently. Works constantly. Tells Luminos everything.</h2>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Runs silently. Works constantly. Keeps the booth connected to the platform.</h2>
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
         Tech Manager runs in your system tray from the moment your production computer starts. You do not manage it. You do not interact with it. It just works — watching your system, feeding data to the cloud, and stepping in automatically when something goes wrong.
       </p>
@@ -366,7 +382,7 @@ const structuredData = [
             "OBS log file read in real time, with warnings surfaced early",
             "Scene collection backed up to cloud automatically",
             "Stream health overlay for bitrate, dropped frames, and encoder load",
-            "Remote OBS control via WorshipMetrics cloud on Established plans",
+            "Remote OBS control via WorshipMetrics cloud on Pro plans",
             "Luminos reads the full log, identifies the cause, and tells you what to fix",
           ].map((item) => (
             <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-500"></span><span>{item}</span></li>
@@ -455,8 +471,8 @@ const structuredData = [
             <tr>
               <th class="px-6 py-4 font-semibold text-slate-700">Feature</th>
               <th class="px-6 py-4 font-semibold text-slate-700">Free</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Essentials</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Established</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Starter</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Pro</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200 bg-white">
@@ -490,11 +506,11 @@ const structuredData = [
     <div class="mx-auto max-w-6xl mb-16">
       <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Related pages</h2>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
-        {[
-          { href: "/av-monitoring-for-houses-of-worship", title: "AV monitoring", body: "See how Tech Manager feeds the broader monitoring layer that watches your stream, audio, cameras, and displays." },
-          { href: "/luminos-ai-assistant", title: "Luminos AI", body: "See how Luminos uses Tech Manager context for hardware-specific diagnostics and support." },
-          { href: "/your-av-partner", title: "Your AV Partner", body: "See how remote onboarding and local installs wrap real support around the same system." },
-        ].map(({ href, title, body }) => (
+          {[
+            { href: "/services", title: "Services", body: "See how the service plan and live Sunday workflow sit upstream of the booth layer Tech Manager powers." },
+            { href: "/volunteers", title: "Volunteers", body: "See how stronger volunteer coordination reduces the pressure that usually lands on one booth expert." },
+            { href: "/luminos-ai-assistant", title: "Luminos AI", body: "See how Luminos uses Tech Manager context for hardware-specific diagnostics and support." },
+          ].map(({ href, title, body }) => (
           <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
             <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>

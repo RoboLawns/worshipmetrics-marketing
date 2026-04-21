@@ -1,0 +1,477 @@
+# Worship Metrics — Marketing Website Scope
+
+**Reposition the site from "Tech Manager, the AV operations tool" to "Worship Metrics, the operating system for your Sunday."**
+
+This document is the scope for a major marketing site overhaul. The site's current positioning is built around Tech Manager as the hero product. Our product strategy has evolved — Tech Manager is now one feature among several, and the paid-tier story centers on the new Services feature (service planning + production execution + Central Control integration) which does not exist on the site yet.
+
+This is not a polish pass. This is a repositioning. The information architecture, the hero, the pricing page, and the feature-page relationships all need to change. The visual system, the Knowledge Base infrastructure, the founder story, and the underlying tech stack can stay.
+
+---
+
+## 1. Strategic Context (so decisions make sense)
+
+### 1.1 What the product actually is now
+
+Worship Metrics is becoming the **operating system for church production**. It includes:
+
+- **Services** — service planning + production cue sheet + volunteer assignment + run-of-show execution. NEW. Free for planning, paid for Central Control-powered automation.
+- **Volunteers** — volunteer management: capabilities, training, availability, scheduling, communications. Foundation for Services.
+- **Worship Clips** — sermon clipping, free tier runs locally via Whisper in the desktop app, paid tier adds cloud sync, auto-publishing, social formatting.
+- **Tech Manager** — desktop app for AV monitoring, device discovery, system documentation, Luminos AI diagnostics. Still important. No longer the hero.
+- **Attendance** — computer vision + manual counting, in-room + online unified.
+- **Digital Signage** — 40+ templates, Brand Kit, TV link. Free tier stays strong.
+- **Luminos AI** — diagnostics inside Tech Manager, eventually throughout the platform.
+- **Hardware** — Hub ($499) and Tablet (from $349).
+- **Central Control integration** (paid tier) — Services feature integrates with Sistine's Central Control show control engine. Rundowns, Flex Macros, WebPanel-driven volunteer execution, MCP-driven cue authoring. The headline paid-tier capability.
+
+### 1.2 The monetization spine
+
+**Free makes you organized. Paid makes Sunday run itself.**
+
+- Free: service planning, volunteer management, clip generation (local), signage (1 screen), attendance, Tech Manager desktop app, Knowledge Base, community support.
+- Paid tiers layer on: cloud-synced clips with auto-publishing, unlimited signage screens, real-time monitoring with SMS alerts, Central Control integration (the big one), multi-campus, white-label.
+
+Every feature page must reflect this spine. What's free, what's paid, and why the paid layer is worth it.
+
+### 1.3 The buyer and the user
+
+- **Buyer**: church tech director, executive pastor, or church admin. They approve the subscription line item. They read pricing and ROI language. They want to see it's legitimate enterprise-grade software.
+- **User**: Sunday morning volunteers, staff, pastors. They use the tools. They rarely read the marketing site.
+
+The marketing site is primarily for buyers. Tone should be professional and confident, not hobbyist. "Geeks" vocabulary stays on the content brand (Signal and Sanctuary podcast), not on the product site.
+
+### 1.4 Signal and Sanctuary integration
+
+The podcast/content brand Signal and Sanctuary will live on the Worship Metrics channel — same domain, integrated into site navigation. It is the top-of-funnel content engine that drives audience into the product. Site must accommodate this without making the company feel like a podcast with a product attached.
+
+---
+
+## 2. What Stays, What Changes
+
+### 2.1 Keep as-is
+
+- Overall visual system, typography, color palette
+- Founder story section ("built by people who believed in the mission")
+- "One person knows the system" pain framing (the language is good)
+- Four-step rhythm section — update from "Document/Delegate/Monitor/Ship" to "Plan/Delegate/Run/Ship"
+- Knowledge Base infrastructure and article categories
+- Mobile app download section
+- Testimonials section structure (content may evolve)
+- Phone number, email, general contact strategy
+- The Hub and Tablet product pages (update pricing references where needed)
+
+### 2.2 Rewrite or rebuild
+
+- **Hero and top-of-page messaging** — zoom out from Tech Manager to the full platform
+- **Primary navigation** — restructure to surface Services as a first-class concept
+- **All feature pages** — reflect free/paid split; reposition Tech Manager as one feature not the flagship
+- **Pricing page** — new tier structure, clearer free/paid narrative
+- **Platform overview page** — needs to show how all the features fit together
+- **Footer** — reflect new IA
+
+### 2.3 Build new
+
+- **Services page** — the biggest gap; this is the new hero feature
+- **Volunteers page** — new product area, dedicated page
+- **Central Control integration page** — paid-tier value story, technical but accessible
+- **Signal and Sanctuary landing page** — the content brand's home on the site
+- **Why Worship Metrics page** — comparison/positioning against Planning Center, ProPresenter, and status quo (spreadsheets)
+
+---
+
+## 3. Information Architecture
+
+### 3.1 New primary navigation
+
+The nav needs fewer top-level items than today, with cleaner grouping. Proposed:
+
+**Platform** (dropdown)
+- Platform Overview (hub page explaining how everything fits together)
+- Services — plan, assign, run (NEW — featured)
+- Volunteers — capabilities, scheduling, communications (NEW)
+- Worship Clips
+- Tech Manager
+- Attendance
+- Digital Signage
+- Luminos AI
+
+**Integrations** (dropdown — NEW)
+- Central Control (the big paid-tier story)
+- Planning Center (if integration exists or is planned)
+- ProPresenter
+- OBS / vMix
+- View all integrations
+
+**Hardware** (dropdown)
+- Worship Metrics Hub
+- Worship Metrics Tablet
+- Compare hardware
+
+**Resources** (dropdown — renamed from Services to avoid conflict with the product feature)
+- Knowledge Base
+- Signal and Sanctuary (podcast) — NEW
+- Professional Services (consulting/training)
+- Pilot Program
+
+**Pricing** (top-level, not nested)
+
+**Company** (dropdown, right-aligned or footer-only)
+- About
+- Contact
+- Book a call
+
+CTAs: **Get started free** (primary), **Book a call** (secondary). Same as today, different hierarchy on the Services and Central Control pages where "Talk to us about your production setup" becomes more natural than "Get started free."
+
+### 3.2 Key IA decision: Services vs. Tech Manager
+
+Services is the new flagship. Tech Manager is important but secondary. The nav, hero, and home page all need to reflect this. Tech Manager continues to have a great dedicated page — it just stops being the first thing visitors see.
+
+### 3.3 Central Control integration positioning
+
+Central Control shows up in two places:
+
+1. **Integrations > Central Control** (standalone page explaining what it is, why it matters, and how the integration works)
+2. **Within the Services page** (as the paid-tier capability that makes Services feel like magic)
+
+The standalone integration page is important because tech-sophisticated buyers will search for "church production software with Central Control" and need a landing page that speaks their language.
+
+---
+
+## 4. Page-by-Page Scope
+
+### 4.1 Home page
+
+**New hero**
+
+Headline direction (agent to iterate, this is not final copy): *"The operating system for your Sunday."* with subhead about planning the service, coordinating the team, running the production, measuring what happened, and giving the one-person-who-knows-everything their life back.
+
+Hero visual should show the Services feature timeline (Plan view or Production view screenshot), not the Tech Manager dashboard. The Services UI is the new product face.
+
+Primary CTA: **Get started free**
+Secondary CTA: **See how Sunday runs** (links to Services page or a short product tour video)
+
+**Homepage sections in order**
+
+1. Hero (as above)
+2. **The Sunday problem** — reuse and update the "one person knows the system" framing. Expand to cover planning chaos, volunteer coordination, production execution, post-service follow-up. Four pain points, each linking to the feature that solves it.
+3. **What Worship Metrics does** — the four-step rhythm, updated to **Plan / Delegate / Run / Ship** (was Document/Delegate/Monitor/Ship). Each step links to the relevant feature page.
+4. **Services feature highlight** — prominent section showcasing Services (screenshot, three-bullet value prop, "See Services" CTA)
+5. **Tech Manager feature highlight** — preserves Tech Manager's existing content but now as one of several features, not the hero
+6. **Central Control integration teaser** — "Your Sunday, automated. Powered by Central Control." — links to the integration page
+7. **Worship Clips highlight** — existing content, repositioned
+8. **Attendance / Signage combined highlight** — condensed, freeing up home page real estate
+9. **Luminos AI** — existing, repositioned as platform-wide assistant (not Tech-Manager-only)
+10. **The Hub hardware** — existing, lightly updated
+11. **Founder story** — keep as-is
+12. **Signal and Sanctuary** — new section introducing the podcast/content brand
+13. **Knowledge Base** — existing
+14. **Final CTA** — "Install Worship Metrics. Invite your team. Sleep better on Saturday night."
+
+**What to cut from the home page**
+
+- The extended Tech Manager bullets in the "How Tech Manager Works" three-column section — that level of detail belongs on the Tech Manager page, not the home
+- The repeated Tech Manager dashboard screenshots — once is enough on the home page
+
+### 4.2 Services page (NEW)
+
+This is the most important new page on the site. Budget significant design and copy effort here.
+
+**Hero**: "Plan your Sunday. Run your Sunday. Know how your Sunday went." Primary visual should be the Services Plan view, annotated.
+
+**Sections**:
+
+1. Hero with primary visual
+2. **The three views** — Plan view, Production view, Run view, each explained with a screenshot. This is the feature's core mental model.
+3. **Plan with your team** — Service Items, slides, templates, duplicate-forward. How planning works.
+4. **Assign the right volunteers** — capability matching, find-a-replacement, notifications. Ties into Volunteers feature.
+5. **Run Sunday live** — Run view, timing, cue firing. Emphasizes free-tier manual mode.
+6. **Automate the whole thing** (paid tier, Central Control) — the big transition. Rundown sync, Flex Macros, WebPanels, MCP-driven cue authoring. Show-don't-tell with screenshots or short videos.
+7. **Copy-forward magic** — the "same as last week but smarter" story
+8. **Service analytics and After-Action** — what happened, who did what, what went well, what didn't
+9. **Free vs. Paid comparison table** — specific to Services
+10. **"Get started with Services free"** CTA
+
+Cross-links to: Volunteers page, Central Control integration page, Pricing.
+
+### 4.3 Volunteers page (NEW)
+
+Positioning: "The people running Sunday deserve better tools than a group text and a spreadsheet."
+
+**Sections**:
+
+1. Hero with primary visual (volunteer roster or capability matrix UI)
+2. **Capabilities and training** — skill tags, training checklists, proficiency levels
+3. **Availability and scheduling** — recurring availability, blackouts, assignment workflow
+4. **Find-a-replacement** — the killer feature. Highlight with a short story/scenario.
+5. **Reliability stats** — service history, no-shows, trends
+6. **Communications** — email, SMS, notification preferences
+7. **Integration with Services** — how volunteers get assigned to positions in a service plan
+8. Free vs. Paid differences (if any meaningful difference at volunteer layer)
+9. CTA
+
+Cross-links to: Services, Pricing.
+
+### 4.4 Tech Manager page (REWRITE but preserve)
+
+The existing page content is good. Two changes:
+
+1. Reposition in the nav and product narrative as one feature among several, not the hero
+2. Update the "Tech Manager is the AV operations platform" language to "Tech Manager is the desktop app that powers your booth" — correctly scoping it as a component of the Worship Metrics platform, not the whole platform
+3. Lightly update to reference Services where relevant ("Tech Manager runs alongside Services to power your Sunday")
+
+Do NOT rewrite this page from scratch. Its content is good; its positioning needs adjusting.
+
+### 4.5 Central Control integration page (NEW)
+
+This is a technical landing page for sophisticated buyers. Budget significant effort.
+
+**Sections**:
+
+1. Hero: "Your Sunday, automated." Subhead about Central Control being the production engine behind paid-tier Worship Metrics.
+2. **What is Central Control?** — brief, honest explanation for buyers who don't know the product. Acknowledge the partnership with Sistine Control Systems.
+3. **How the integration works** — architectural diagram showing Worship Metrics as the planning layer, Central Control as the execution engine, Service Items mapping to Rundown, Cues mapping to Flex Macros, Positions mapping to WebPanels.
+4. **What you get** — Rundown sync with GPU-rendered clocks, Flex Macro automation, WebPanel-driven volunteer execution, MCP-driven cue authoring. Each with a short description and screenshot.
+5. **The hardware side** — what runs where. Central Control on the streaming PC, WebPanels on tablets, Worship Metrics cloud for planning.
+6. **Pricing** — the NEO bundle inside the Worship Metrics paid tier. Link to pricing page.
+7. **Compatibility** — supported devices (reference Central Control's supported device list), supported switchers, supported lighting consoles.
+8. **Get started** CTA — "Book a production setup call" (not "sign up free" — this is a sales-assisted motion)
+
+### 4.6 Pricing page (REBUILD)
+
+The pricing page needs to reflect the new tier structure. Proposed tiers (agent to refine numbers with Paul's input):
+
+**Free** — "Organize your Sunday"
+- Service planning (Services feature)
+- Volunteer management
+- Worship Clips (local, capped)
+- Digital Signage (1 screen)
+- Attendance (manual + one-tap)
+- Tech Manager desktop app
+- Knowledge Base + community support
+- Mobile apps
+
+**Starter** (~$29/mo) — "Get your team in sync"
+- Everything in Free, uncapped
+- Worship Clips cloud sync + auto-publish
+- Real-time AV alerts
+- Historical reports
+- Email support
+- Basic API access
+
+**Pro** (~$79-99/mo) — "Automate Sunday with Central Control"
+- Everything in Starter
+- Central Control integration (NEO bundled)
+- WebPanel volunteer execution
+- Rundown + Flex Macro automation
+- MCP-driven cue authoring
+- Priority support
+
+**Premium** (~$199-299/mo) — "For multi-campus and production-heavy churches"
+- Everything in Pro
+- Multi-campus
+- White-label
+- Phone support
+- Custom Central Control configuration
+- Dedicated integrator
+
+**Hardware** — sold separately
+- Worship Metrics Hub, $499
+- Worship Metrics Tablet, from $349
+
+Pricing page structure:
+1. Hero: "Free to start. Grows with your church."
+2. Tier comparison table (prominently)
+3. "What makes paid worth it?" — short explainer of the Central Control automation upgrade
+4. Hardware section
+5. FAQ (annual vs. monthly, multi-church discounts, nonprofit pricing, cancellation, refund policy)
+6. CTA row: Get started free / Book a call / See a demo
+
+### 4.7 Platform Overview page (REWRITE)
+
+Becomes the "everything Worship Metrics does" hub. Should feel like an architecture diagram in prose and visuals — here's how the pieces fit together. Links to each feature page. Mentions free vs. paid throughout. The current page is fine structurally; it just needs updating to include Services, Volunteers, and Central Control.
+
+### 4.8 Signal and Sanctuary landing page (NEW)
+
+Not a separate domain, just a page on worshipmetrics.com. Sections:
+
+1. Hero: podcast branding, episode player, subscribe CTAs for Apple/Spotify/YouTube
+2. Latest episode
+3. About the show
+4. Host (Paul)
+5. Episode archive (as it builds)
+6. "Made by the Worship Metrics team" footer linking back into the product
+
+Design can be visually distinct from the rest of the site — this is a content brand, give it a show-feel — but should share navigation and footer so visitors can move into the product seamlessly.
+
+### 4.9 Why Worship Metrics page (NEW)
+
+Comparison/positioning page. Not hostile, but clear.
+
+- vs. Planning Center — PCO is great for service planning; Worship Metrics is what you add when you also need to run production and coordinate the booth
+- vs. ProPresenter — ProPresenter is great for the slides; Worship Metrics is what you add for the service plan, volunteers, and production cues around it
+- vs. spreadsheet + group text — the honest comparison most churches start from
+- vs. the status quo — what happens when your one person burns out
+
+Cross-links into relevant feature pages.
+
+### 4.10 Knowledge Base (PRESERVE, EXPAND)
+
+Structure is good. Content needs to grow to cover:
+- Services feature tutorials
+- Volunteer management workflows
+- Central Control integration setup guides
+- Troubleshooting common paid-tier issues
+
+Content work is a separate project, not this scope. Infrastructure stays as-is.
+
+---
+
+## 5. Copywriting Guidelines
+
+### 5.1 Voice
+
+- Confident, not cocky
+- Practical, not pitchy
+- Speaks to tech directors and pastors, not volunteers (volunteers don't read marketing sites)
+- Uses specific language — "your 10:47 stream drop" is better than "stream issues"
+- Avoids "AI" as a buzzword; use it when real, explain what it does
+- Never uses "empower," "unleash," or "revolutionize"
+
+### 5.2 Repeatable phrases to establish
+
+- "The operating system for your Sunday"
+- "Free makes you organized. Paid makes Sunday run itself."
+- "Stop running Sunday on one person's expertise." (existing, keep)
+- "Plan your Sunday. Run your Sunday. Know how your Sunday went."
+- "Powered by Central Control" (for the paid-tier branding)
+
+### 5.3 Visual language
+
+- Screenshots should show real UI, not illustrated abstractions
+- When showing paid features, subtle "Pro" or "Central Control" badges on relevant screenshots
+- Free features should not be apologetic — they should feel like real software, because they are
+
+---
+
+## 6. Technical Requirements
+
+### 6.1 Preserve
+
+- Existing tech stack and hosting
+- Knowledge Base infrastructure
+- Mobile app download flow
+- Authentication links (app.worshipmetrics.com/sign-in, /sign-up)
+- Existing image CDN (Cloudflare R2)
+- Phone, email, general contact mechanics
+
+### 6.2 Add
+
+- Open Graph / Twitter Card meta for new pages
+- Structured data (SoftwareApplication schema) for the main product pages
+- Pricing page structured data for search result richness
+- Podcast schema for Signal and Sanctuary page
+- Redirects from any deprecated URLs to their new homes
+
+### 6.3 Performance
+
+- Lighthouse score ≥90 on all new pages
+- Hero images served responsive, WebP where supported
+- No layout shift on load
+- Mobile-first design (current site is already good here)
+
+### 6.4 Analytics
+
+- Event tracking on primary CTAs per page
+- Conversion tracking for signup and discovery-call flows
+- Separate tracking for Signal and Sanctuary page (podcast listen-throughs if possible)
+
+---
+
+## 7. Build Sequence
+
+This is a big scope. Phase it. Don't try to ship everything at once.
+
+### Phase 1 — Positioning shift (ship in 2-3 weeks)
+
+1. Rewrite home page hero and top sections
+2. Update primary navigation
+3. Add Services page (core sections, can expand later)
+4. Add Volunteers page (core sections)
+5. Update Tech Manager page positioning
+6. Redirect and footer updates
+
+At the end of Phase 1, the site is repositioned. Paid-tier Central Control integration story is teased but not fully landed.
+
+### Phase 2 — Paid-tier depth (ship 2-3 weeks after Phase 1)
+
+1. Central Control integration page (full depth)
+2. Pricing page rebuild
+3. Why Worship Metrics page
+4. Platform Overview page update
+
+At the end of Phase 2, the paid-tier story is fully landed and the site can convert paid customers.
+
+### Phase 3 — Content and audience (ongoing)
+
+1. Signal and Sanctuary landing page
+2. Knowledge Base expansion (separate content project)
+3. Case studies from design-partner churches
+4. Blog or long-form editorial (separate content strategy)
+
+### Phase 4 — Optimization (continuous)
+
+1. A/B testing on hero and CTAs
+2. Conversion funnel analysis
+3. Page-level performance improvements
+4. Iterative copy refinement based on user behavior
+
+---
+
+## 8. Out of Scope
+
+- New visual identity / brand refresh (current system is good)
+- Mobile app redesign (separate product track)
+- In-app changes (this is the marketing site only)
+- Knowledge Base content authoring (separate content project)
+- Email marketing and drip campaigns (separate marketing track)
+- Paid advertising landing pages (separate, built when ads start running)
+
+---
+
+## 9. Success Criteria
+
+After Phase 2 ships:
+
+- Home page clearly communicates "operating system for Sunday" positioning
+- Services is findable, understandable, and visually prominent
+- Central Control integration has a dedicated page that tech-sophisticated buyers can evaluate
+- Pricing page makes the free/paid split obvious and the upgrade reason clear
+- Tech Manager remains strong but is correctly positioned as a feature
+- Overall site conveys a bigger, more cohesive product than it does today
+
+Conversion metrics to track (baseline against current):
+- Signup rate from home page
+- Discovery call requests from Services and Central Control pages
+- Pricing page exit rate (lower is better)
+- Session depth (higher is better — indicates the IA is working)
+
+---
+
+## 10. Open Questions for Paul
+
+- Final tier names and pricing numbers (current tiers are placeholders)
+- Whether Signal and Sanctuary launches alongside this site overhaul or later
+- Whether Planning Center integration is announced as planned or committed
+- Whether to announce Central Control partnership publicly before or after Joe signs a formal partnership agreement
+- Final decisions on multi-campus and white-label positioning — are these public-available tiers or custom/contact-sales?
+- Whether any existing Tech Manager marketing (landing pages, ads) needs to be sunset or updated in parallel
+
+---
+
+## 11. Build Directive
+
+Ship Phase 1 first. Don't wait for everything. Phase 1 alone — new hero, new nav, Services page, Volunteers page, Tech Manager reposition — meaningfully repositions the product and sets the stage for the paid-tier push in Phase 2.
+
+When in doubt between aggressive repositioning and incremental polish, choose aggressive. The current site sells a product that is one feature of what we're actually building. Every day it stays that way is a day we're undersold.
+
+Preserve what's working. Change what's wrong. Don't over-design. Let the product speak.
