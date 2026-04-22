@@ -14,6 +14,7 @@ export default defineConfig({
   redirects: {
     '/platform/operations': '/volunteers',
     '/features': '/platform',
+    '/integrations/central-control': '/services',
   },
   output: 'server',
   adapter: cloudflare(),

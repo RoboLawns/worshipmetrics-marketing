@@ -1,0 +1,199 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/homepage/new%20images/Worship%20Volunteers%20Working%20Together.jpg`;
+const PANEL_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
+const TABLET_IMAGE = `${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`;
+
+const practicalSteps = [
+  {
+    title: "1. Define the roles you actually need",
+    body: "Start smaller than your ambition. Camera operator. Slides operator. Stream monitor. Lighting cues. Pick the roles where a teenager can genuinely help without the whole room depending on advanced judgment too early.",
+  },
+  {
+    title: "2. Recruit where interest already exists",
+    body: "Ask youth group leaders, homeschool families, senior high small groups, and students who already like video, audio, design, streaming, or gaming. Do not wait for the perfect tech kid to appear. Invite interest first.",
+  },
+  {
+    title: "3. Match responsibility to age and maturity",
+    body: "A 14-year-old can run one camera well. A 17-year-old may be ready to lead a volunteer position or train someone younger. The point is not to hand everybody the same room-sized responsibility at once.",
+  },
+  {
+    title: "4. Train for one job, not the whole booth",
+    body: "The fastest path to confidence is one role with one clear interface. Worship Metrics makes that practical by letting each volunteer work from a narrower panel instead of the whole production surface.",
+  },
+  {
+    title: "5. Build mentorship into the schedule",
+    body: "Pair new members with experienced volunteers. Let older students mentor younger ones. That is how the team begins to grow itself instead of depending on one tech director for every training moment.",
+  },
+  {
+    title: "6. Recognize the work publicly",
+    body: "Celebrate the volunteers who made Sunday happen. Mention the students who ran cameras. Thank the team from stage sometimes. Recognition turns a task into belonging.",
+  },
+  {
+    title: "7. Give people a growth path",
+    body: "A great AV Club gives people somewhere to go next: camera to director, slides to service lead, volunteer to mentor. Every great tech director started somewhere. Start someone.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Start a Church AV Club",
+  url: `${SITE_URL}/av-club`,
+  description: "Learn how to start a Church AV Club that helps teenagers and new volunteers find meaningful places to serve while making Sunday easier to carry.",
+  image: HERO_IMAGE,
+};
+---
+
+<Layout
+  title="Start a Church AV Club"
+  description="Learn how to start a Church AV Club that helps teenagers and new volunteers find meaningful places to serve while making Sunday easier to carry."
+  canonical="/av-club"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">AV Club</p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Your AV booth could be a ministry, not just a necessity.</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Churches across the country need volunteers, and young people need meaningful places to belong. An AV Club gives them both: real responsibility, adult mentors, and a weekly reason to show up on Sunday. Worship Metrics is the platform that makes that possible.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary">Get started free</a>
+          <a href="/discovery-call" class="btn-outline">Talk to us about launching an AV Club</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="Church volunteers serving together in production" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl space-y-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The problem this solves</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Three different leaders feel this need for three different reasons.</h2>
+      </div>
+      <div class="grid gap-6 lg:grid-cols-3">
+        <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">For youth ministers</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Middle schoolers age out of programs. High schoolers want something real. Too many drift because nobody gave them meaningful responsibility. An AV Club gives them a place in the church with adult mentors, visible contribution, and a reason to keep showing up.</p>
+        </div>
+        <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">For tech directors</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">You need volunteers, but you do not have time to train a new expert every week. An AV Club builds a pipeline. Older students mentor newer ones, and the team begins to grow itself instead of burning you out.</p>
+        </div>
+        <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">For pastors</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">An engaged teenager is a church member for life. An AV Club is not just about filling shifts. It is a ministry pathway that keeps young people involved through high school and early adulthood while giving the church real production capability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={PANEL_IMAGE} alt="Role-based volunteer control panels in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">How it works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Give every volunteer a real role with a simple interface.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The reason most churches do not trust younger volunteers is not that students cannot help. It is that the tools assume too much too early. Worship Metrics fixes that by narrowing the interface for each role.
+        </p>
+        <ul class="mt-8 space-y-3 text-sm text-slate-700 sm:text-base">
+          {[
+            "Camera operator panel with large touch controls for pan, tilt, and zoom",
+            "Slides operator panel for advancing slides and lower-thirds",
+            "Lighting panel with simple scene buttons for service moments",
+            "Stream operator panel for countdowns, health checks, and transitions",
+            "Training mode for hints and confirmations on critical actions",
+            "Audit log so leaders can coach specific volunteers week by week",
+          ].map((item) => (
+            <li class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Starting an AV Club at your church</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A practical way to launch it well.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {practicalSteps.map(({ title, body }) => (
+          <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <h3 class="text-xl font-semibold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Safety and credibility</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Run the ministry safely, not casually.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Church leaders are right to ask hard questions here. Any ministry involving teenagers should follow the same child protection standards the church already uses elsewhere.
+        </p>
+        <ul class="mt-8 space-y-3 text-sm text-slate-700 sm:text-base">
+          {[
+            "Keep parent communication clear and active from the beginning.",
+            "Use adult supervision and mentoring structures that match your church&apos;s youth safety policies.",
+            "Define what responsibilities are appropriate by age and maturity.",
+            "Treat training, recognition, and accountability as part of discipleship, not just production.",
+          ].map((item) => (
+            <li class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={TABLET_IMAGE} alt="Tablet workflow for church volunteers in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-slate-950 p-8 shadow-2xl sm:p-12">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">What churches are doing</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">The first stories matter, even before the case studies are formal.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-slate-200">
+          <p class="text-lg leading-relaxed">“The 15-year-old running camera 2 does not need to become an AV expert on day one. She needs to look good doing one thing, Sunday after Sunday, until she wants to learn more.”</p>
+          <p class="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">Pilot church conversation</p>
+        </div>
+        <div class="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-slate-200">
+          <p class="text-lg leading-relaxed">“An AV Club is not about filling shifts. It is about giving young people a reason to belong.”</p>
+          <p class="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">Youth ministry framing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Ready to start?</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
+        Set up the team on Free Forever, define the first roles, and start building a Church AV Club that serves the ministry and grows the people in it.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);">Get started free</a>
+        <a href="/discovery-call" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Talk to us about launching an AV Club</a>
+      </div>
+    </div>
+  </section>
+</Layout>
