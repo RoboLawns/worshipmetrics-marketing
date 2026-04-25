@@ -142,6 +142,37 @@ const structuredData = {
     </div>
   </section>
 
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm sm:p-10">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Meet the seven roles</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">An AV Club grows faster when each volunteer has a real seat.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            The AV Club page explains why the ministry matters. The AV Team section shows how the structure works in practice: Service Director, Camera Operator, Audio Engineer, Lyrics Operator, Stream Operator, Lighting Operator, and Recording / Archivist.
+          </p>
+          <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+            <a href="/av-team" class="btn-primary">See the seven AV team roles</a>
+            <a href="/av-team/lyrics-operator" class="btn-outline">Start with the easiest first role</a>
+          </div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {[
+            "Service Director",
+            "Camera Operator",
+            "Audio Engineer",
+            "Lyrics Operator",
+            "Stream Operator",
+            "Lighting Operator",
+            "Recording / Archivist",
+          ].map((role) => (
+            <div class="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-semibold text-slate-700 shadow-sm">{role}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
       <div>
@@ -193,6 +224,7 @@ const structuredData = {
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
         <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);">Get started free</a>
         <a href="/discovery-call" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Talk to us about launching an AV Club</a>
+        <a href="/av-team" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">See the seven AV team roles</a>
       </div>
     </div>
   </section>

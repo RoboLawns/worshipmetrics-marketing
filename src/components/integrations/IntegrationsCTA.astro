@@ -1,0 +1,81 @@
+<style>
+  .cta-wrap {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+  }
+  .cta-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    background: var(--color-bg-dark);
+    color: var(--color-text-on-dark);
+    padding: 4rem 3rem;
+  }
+  .cta-glow {
+    position: absolute;
+    top: -11rem;
+    right: -11rem;
+    width: 600px;
+    height: 600px;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(212, 161, 74, 0.18) 0%, transparent 70%);
+  }
+  .cta-inner {
+    position: relative;
+    max-width: 44rem;
+  }
+  .cta-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    line-height: 0.98;
+    font-weight: 400;
+  }
+  .cta-title em {
+    font-style: italic;
+    color: var(--color-accent-gold-soft);
+  }
+  .cta-copy {
+    margin-top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    color: rgba(247, 244, 239, 0.82);
+  }
+  .cta-button {
+    display: inline-flex;
+    margin-top: 1.6rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--color-accent-gold);
+    color: #1c1410;
+    padding: 0.95rem 1.25rem;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform 0.18s, background 0.18s;
+  }
+  .cta-button:hover {
+    background: var(--color-accent-gold-soft);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 768px) {
+    .cta-panel { padding: 3rem 1.5rem; }
+  }
+</style>
+
+<div class="cta-wrap">
+  <div class="cta-panel">
+    <div class="cta-glow"></div>
+    <div class="cta-inner">
+      <h2 class="cta-title">Don&apos;t see your gear? <em>Ask us.</em></h2>
+      <p class="cta-copy">
+        If it runs on a standard protocol like OSC, MIDI, HTTP, NDI, or VISCA, chances are we can make it work. Book a 15-minute call and we&apos;ll map it for you.
+      </p>
+      <a href="/discovery-call" class="cta-button">Book a setup call →</a>
+    </div>
+  </div>
+</div>

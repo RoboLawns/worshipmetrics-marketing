@@ -1,0 +1,31 @@
+---
+import { getAVTeamNeighbors, getAVTeamRoleIndex, avTeamRoles } from "../data/avTeam";
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const { previous, current, next } = getAVTeamNeighbors(slug);
+const currentIndex = getAVTeamRoleIndex(slug) + 1;
+---
+
+<div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm shadow-sm sm:p-5">
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      {previous ? (
+        <a href={`/av-team/${previous.slug}`} class="font-semibold text-indigo-600 hover:text-indigo-700">← Previous: {previous.title}</a>
+      ) : (
+        <a href="/av-team" class="font-semibold text-indigo-600 hover:text-indigo-700">← Back to hub</a>
+      )}
+    </div>
+    <div class="font-semibold text-slate-600">{current?.title} · {currentIndex} of {avTeamRoles.length}</div>
+    <div class="sm:text-right">
+      {next ? (
+        <a href={`/av-team/${next.slug}`} class="font-semibold text-indigo-600 hover:text-indigo-700">Next: {next.title} →</a>
+      ) : (
+        <a href="/av-team" class="font-semibold text-indigo-600 hover:text-indigo-700">Back to hub →</a>
+      )}
+    </div>
+  </div>
+</div>

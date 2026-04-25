@@ -1,0 +1,83 @@
+---
+interface Props {
+  totalDevices: number;
+  totalCategories: number;
+}
+
+const { totalDevices, totalCategories } = Astro.props;
+---
+
+<style>
+  .hero-wrap {
+    background: var(--color-bg-page);
+    color: var(--color-text-primary);
+  }
+  .hero-shell {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 3rem;
+    text-align: center;
+  }
+  .hero-line {
+    width: 1px;
+    height: 56px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(to bottom, rgba(184,132,42,0), rgba(184,132,42,1), rgba(184,132,42,0));
+  }
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-gold);
+  }
+  .hero-title {
+    margin-top: 1rem;
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 0.95;
+    font-weight: 400;
+    color: var(--color-text-primary);
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--color-accent-gold);
+  }
+  .hero-copy {
+    max-width: 48rem;
+    margin: 1.5rem auto 0;
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+  }
+  .hero-stat {
+    margin-top: 1.5rem;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+  .hero-stat strong {
+    font-style: normal;
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+  @media (max-width: 768px) {
+    .hero-shell { padding: 4rem 1.5rem 2rem; }
+  }
+</style>
+
+<section class="hero-wrap">
+  <div class="hero-shell">
+    <div class="hero-line"></div>
+    <p class="hero-eyebrow">Integrations</p>
+    <h1 class="hero-title">Your booth, <em>connected.</em></h1>
+    <p class="hero-copy">
+      WorshipMetrics works with the ProAV gear you already run on Sunday morning through our integration with Central Control&apos;s show automation platform.
+    </p>
+    <p class="hero-stat"><strong>{totalDevices}</strong> supported devices across <strong>{totalCategories}</strong> categories</p>
+  </div>
+</section>

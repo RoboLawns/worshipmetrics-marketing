@@ -1,0 +1,123 @@
+---
+import type { IntegrationCategoryKey } from "../../data/integrations";
+
+interface CategoryItem {
+  key: IntegrationCategoryKey;
+  title: string;
+  count: number;
+}
+
+interface Props {
+  categories: CategoryItem[];
+  totalDevices: number;
+}
+
+const { categories, totalDevices } = Astro.props;
+---
+
+<style>
+  .search-wrap {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .search-card {
+    border: 1px solid var(--color-border);
+    border-radius: 1.5rem;
+    background: var(--color-bg-surface);
+    padding: 1rem;
+    box-shadow: 0 16px 32px rgba(28, 20, 16, 0.04);
+  }
+  .search-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+  }
+  .search-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 999px;
+    background: var(--color-bg-warm);
+    padding: 0.85rem 1rem;
+  }
+  .search-icon {
+    color: var(--color-accent-gold);
+    flex-shrink: 0;
+  }
+  .search-input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.96rem;
+    font-weight: 400;
+  }
+  .search-input::placeholder { color: var(--color-text-tertiary); }
+  .search-input:focus-visible { box-shadow: none; }
+  .search-input-wrap:focus-within {
+    box-shadow: 0 0 0 2px rgba(184, 132, 42, 0.3);
+  }
+  .search-count {
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+  }
+  .pill-row {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+  .pill {
+    border-radius: 999px;
+    border: 1px solid var(--color-border-strong);
+    background: transparent;
+    color: var(--color-text-primary);
+    padding: 0.72rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.18s, background 0.18s, color 0.18s, border-color 0.18s;
+  }
+  .pill:hover { transform: translateY(-2px); background: var(--color-bg-warm); }
+  .pill.active {
+    background: var(--color-bg-dark);
+    border-color: var(--color-bg-dark);
+    color: var(--color-text-on-dark);
+  }
+  .pill-count {
+    opacity: 0.64;
+    margin-left: 0.35rem;
+  }
+  @media (max-width: 768px) {
+    .search-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="search-wrap">
+  <div class="search-card">
+    <div class="search-row">
+      <label class="search-input-wrap">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M20 20l-3.5-3.5"></path>
+        </svg>
+        <input id="integrations-search" class="search-input" type="search" placeholder="Search brands and devices" />
+      </label>
+      <div class="search-count"><span id="integrations-visible-count">{totalDevices}</span> showing</div>
+    </div>
+    <div class="pill-row" id="integrations-pills">
+      <button class="pill active" type="button" data-filter="all">All <span class="pill-count">{totalDevices}</span></button>
+      {categories.map((category) => (
+        <button class="pill" type="button" data-filter={category.key}>{category.title}<span class="pill-count">{category.count}</span></button>
+      ))}
+    </div>
+  </div>
+</div>

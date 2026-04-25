@@ -1,16 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import IntegrationsBand from "../components/integrations/IntegrationsBand.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const HERO_IMAGE = `${R2}/homepage/new%20images/Worship%20Volunteers%20Working%20Together.jpg`;
+const HERO_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Hero.jpg`;
 const SERVICES_IMAGE = `${R2}/homepage/Team%20Collaboration%20hero.jpg`;
-const TECH_MANAGER_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Hero.jpg`;
+const TECH_MANAGER_IMAGE = `${R2}/homepage/new%20images/Worship%20Volunteers%20Working%20Together.jpg`;
 const VOLUNTEER_PANEL_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
 const WORSHIP_CLIPS_IMAGE = `${R2}/homepage/Worship%20Clips%20Hero%202.jpg`;
 const ATTENDANCE_IMAGE = `${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`;
 const SIGNAGE_IMAGE = `${R2}/homepage/new%20images/Worship%20Digital%20Signage%20System.jpg`;
+const STREAM_HEALTH_IMAGE = `${R2}/homepage/new%20images/Stream%20Health.jpg`;
 const PAUL_HEADSHOT = `${R2}/paul.jpg`;
 const ANDREW_HEADSHOT = `${R2}/Andrew.jpg`;
 
@@ -84,9 +86,9 @@ const structuredData = {
 ---
 
 <Layout
-  title="Let&apos;s Make Streaming Easy"
-  socialTitle="WorshipMetrics | Let&apos;s Make Streaming Easy"
-  description="Share the Sunday workload across your whole team. Give every volunteer the exact tools they need to contribute. Free forever, no credit card required."
+  title="Prove Your AV Is Serving the Mission"
+  socialTitle="WorshipMetrics | Prove Your AV Is Serving the Mission"
+  description="Start a 60-day pilot. We&apos;ll help you measure what&apos;s working so when it&apos;s time to invest in what&apos;s next, you&apos;ll know why."
   canonical="/"
   ogImage={HERO_IMAGE}
   structuredData={structuredData}
@@ -98,21 +100,20 @@ const structuredData = {
   <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
       <div>
-        <p class="inline-flex rounded-full border border-indigo-200 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-indigo-700 shadow-sm">
+        <p class="inline-flex rounded-full border border-slate-200 bg-slate-50 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm">
           Free forever, no credit card required
         </p>
         <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-          Let&apos;s make streaming easy.
+          Prove your AV is serving the mission.
         </h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-          Share the Sunday workload across your whole team. Give every volunteer, including the teenager who wants to help, the exact tools they need to contribute. Grow your AV ministry without growing the burden on one person.
+          Start a 60-day pilot. We&apos;ll help you measure what&apos;s working so when it&apos;s time to invest in what&apos;s next, you&apos;ll know why.
         </p>
-        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_hero_get_started_free" data-wm-track-location="home_hero">Get started free</a>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href="/pilot-program" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_hero_start_pilot" data-wm-track-location="home_hero">Start your pilot</a>
           <a href="/services" class="btn-outline" data-wm-track="cta_click" data-wm-track-label="home_hero_see_how_it_works" data-wm-track-location="home_hero">See how it works</a>
-          <a href="/av-club" class="btn-outline" data-wm-track="cta_click" data-wm-track-label="home_hero_av_club" data-wm-track-location="home_hero">Start an AV Club at your church</a>
         </div>
-        <p class="mt-4 text-sm text-slate-500">Your AV ministry should not depend on one person.</p>
+        <p class="mt-4 text-sm text-slate-500">Start by measuring what you already have.</p>
       </div>
 
       <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
@@ -175,6 +176,28 @@ const structuredData = {
             <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Measure first. Invest second.</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Most AV vendors lead with a quote. We lead with a question.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Is what you already have actually serving the mission? Our pilot helps you answer that, with real data on attendance, engagement, and system health. When the time comes to upgrade equipment or plan a full install, you&apos;ll have the metrics to justify it.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          And we&apos;ll be ready to help with that too, on your timeline, not ours.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href="/pilot-program" class="btn-primary">Start your pilot</a>
+          <a href="/your-av-partner" class="btn-outline">See AV partner services</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={STREAM_HEALTH_IMAGE} alt="Stream health dashboard in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
   </section>
@@ -290,6 +313,8 @@ const structuredData = {
       </div>
     </div>
   </section>
+
+  <IntegrationsBand />
 
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-5xl rounded-[2rem] bg-slate-950 px-8 py-12 text-center shadow-2xl sm:px-12">

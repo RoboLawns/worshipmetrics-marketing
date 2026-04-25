@@ -15,6 +15,7 @@ export default defineConfig({
     '/platform/operations': '/volunteers',
     '/features': '/platform',
     '/integrations/central-control': '/services',
+    '/av-team/build-your-av-team': '/av-team',
   },
   output: 'server',
   adapter: cloudflare(),

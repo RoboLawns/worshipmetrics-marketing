@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+import IntegrationsHero from "../components/integrations/IntegrationsHero.astro";
+import IntegrationsSearch from "../components/integrations/IntegrationsSearch.astro";
+import IntegrationsGrid from "../components/integrations/IntegrationsGrid.astro";
+import IntegrationsCTA from "../components/integrations/IntegrationsCTA.astro";
+import { integrationCategories, integrationTotals } from "../data/integrations";
+
+const SITE_URL = "https://worshipmetrics.com";
+const OG_IMAGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Integrations",
+  url: `${SITE_URL}/integrations`,
+  description:
+    "WorshipMetrics works with the ProAV gear your church already runs through its integration with Central Control's show automation platform.",
+  image: OG_IMAGE,
+};
+---
+
+<Layout
+  title="Integrations"
+  description="WorshipMetrics works with the ProAV gear your church already runs through its integration with Central Control's show automation platform."
+  canonical="/integrations"
+  ogImage={OG_IMAGE}
+  structuredData={structuredData}
+>
+  <IntegrationsHero totalDevices={integrationTotals.totalDevices} totalCategories={integrationTotals.totalCategories} />
+  <IntegrationsSearch categories={integrationCategories} totalDevices={integrationTotals.totalDevices} />
+  <IntegrationsGrid categories={integrationCategories} />
+  <IntegrationsCTA />
+
+  <script is:inline>
+    const search = document.getElementById('integrations-search');
+    const pills = Array.from(document.querySelectorAll('#integrations-pills [data-filter]'));
+    const cards = Array.from(document.querySelectorAll('[data-integration-card]'));
+    const sections = Array.from(document.querySelectorAll('[data-category-section]'));
+    const visibleCount = document.getElementById('integrations-visible-count');
+    const emptyState = document.getElementById('integrations-empty-state');
+
+    let activeFilter = 'all';
+
+    const update = () => {
+      const query = (search instanceof HTMLInputElement ? search.value : '').trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const category = card.getAttribute('data-category') || '';
+        const haystack = card.getAttribute('data-search') || '';
+        const matchesFilter = activeFilter === 'all' || category === activeFilter;
+        const matchesQuery = !query || haystack.includes(query);
+        const show = matchesFilter && matchesQuery;
+        card.style.display = show ? '' : 'none';
+        if (show) visible += 1;
+      });
+
+      sections.forEach((section) => {
+        const category = section.getAttribute('data-category-section');
+        const hasVisibleCards = cards.some((card) => card.getAttribute('data-category') === category && card.style.display !== 'none');
+        section.style.display = hasVisibleCards ? '' : 'none';
+      });
+
+      if (visibleCount) visibleCount.textContent = String(visible);
+      if (emptyState) emptyState.classList.toggle('visible', visible === 0);
+    };
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        activeFilter = pill.getAttribute('data-filter') || 'all';
+        pills.forEach((node) => node.classList.toggle('active', node === pill));
+        update();
+      });
+    });
+
+    if (search instanceof HTMLInputElement) {
+      search.addEventListener('input', update);
+    }
+
+    update();
+  </script>
+</Layout>
