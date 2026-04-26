@@ -9,6 +9,131 @@ const TECH_MANAGER_HERO_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Ma
 const TECH_MANAGER_PRO_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Pro.jpg`;
 const OG_IMAGE = TECH_MANAGER_HERO_IMAGE;
 
+const techManagerFeatureSections = [
+  {
+    eyebrow: "Feature 1 — AV inventory",
+    title: "Know what you own before you need to fix it.",
+    body: "Tech Manager keeps a living inventory of the gear in your production world so the booth is not depending on memory, screenshots, or one volunteer who knows where everything is.",
+    bullets: [
+      "Track cameras, switchers, displays, encoders, and booth computers in one place",
+      "Keep device names, locations, notes, and connection details together",
+      "Turn a messy rack into something the whole team can actually understand",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/AV%20Inventory%20-%20Device%20Management%20Worship%20Metrics%20Hero.jpg`, alt: "AV inventory and device management lifestyle view in WorshipMetrics" },
+      { src: `${R2}/Tech%20Manager/AV%20Inventory%20-%20Device%20Management%20Worship%20Metrics.jpg`, alt: "AV inventory and device management interface in WorshipMetrics" },
+    ],
+  },
+  {
+    eyebrow: "Feature 2 — System documentation",
+    title: "Document the system once. Keep the knowledge when volunteers change.",
+    body: "System documentation is not glamorous, but it is what keeps a ministry from starting over every time a volunteer leaves or a cable gets moved without a note.",
+    bullets: [
+      "Capture the shape of the system before something breaks",
+      "Store notes, network details, and production context with the actual device",
+      "Give new volunteers a faster path into a booth they did not build themselves",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/Tech%20Manager%20System%20Documentation%20-%20Hero%20Lifestyle.jpg`, alt: "System documentation lifestyle view in Tech Manager" },
+      { src: `${R2}/Tech%20Manager/Tech%20Manager%20System%20Documentation.jpg`, alt: "System documentation interface in Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 3 — Stream health",
+    title: "See stream problems while there is still time to respond.",
+    body: "Tech Manager watches the stream continuously so bitrate drops, encoder strain, and feed instability show up before the online congregation starts texting somebody in the booth.",
+    bullets: [
+      "Live visibility into OBS, vMix, and encoder health",
+      "A clearer picture of what changed before the stream went bad",
+      "One place to check the room before service starts",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/Worship%20Metrics%20-%20Stream%20Health%20Tech%20Manager.jpg`, alt: "Stream health interface in Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 4 — Dashboard check",
+    title: "Start Sunday with one quick dashboard check.",
+    body: "The dashboard is the practical heartbeat of the booth. One glance tells the team whether the system is healthy enough to trust before the room fills up.",
+    bullets: [
+      "See the status that matters without hunting through five utilities",
+      "Use the booth check as part of a repeatable Sunday routine",
+      "Give the team a shared operating picture before service starts",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/Tech%20Manager%20Dashboard%20Check.jpg`, alt: "Tech Manager dashboard check interface" },
+    ],
+  },
+  {
+    eyebrow: "Feature 5 — Manual seat count",
+    title: "Count the room with a workflow volunteers can actually run.",
+    body: "Not every church starts with camera-based attendance. Manual seat count still matters, and Tech Manager helps churches run that process with less friction and cleaner weekly reporting.",
+    bullets: [
+      "Simple counting workflows for volunteers on Sunday morning",
+      "A cleaner handoff into attendance reporting later",
+      "A practical bridge for churches not ready for automation yet",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/Tech%20Manager%20Manual%20Seat%20Count%20-%20Hero%20Lifestyle.jpg`, alt: "Manual seat count lifestyle view in Tech Manager" },
+      { src: `${R2}/Tech%20Manager/Tech%20Manager%20Manual%20Seat%20Count.jpg`, alt: "Manual seat count interface in Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 6 — Auto-attendance",
+    title: "Measure the room without putting more stress on the room.",
+    body: "When churches are ready for it, Auto-Attendance gives them a clearer way to understand the room with less manual effort and less guesswork in the weekly numbers.",
+    bullets: [
+      "A more scalable path than manual counting alone",
+      "Cleaner attendance data for leaders and follow-up teams",
+      "A better measurement layer before larger AV investments",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/Auto-Attendance%20Worship%20Metrics%20Tech%20Manager.jpg`, alt: "Auto-attendance interface in Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 7 — Remote switcher control",
+    title: "Keep critical controls reachable without staying chained to one station.",
+    body: "Remote video switcher control gives the booth more flexibility when the person who needs to make a change is not standing directly in front of the primary machine.",
+    bullets: [
+      "Control key switching actions from the wider Tech Manager workflow",
+      "Reduce dependence on one physical position in the room",
+      "Support teams that are sharing work across volunteers and devices",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/Worship%20Metrics%20Remote%20Video%20Switcher%20Control.jpg`, alt: "Remote video switcher control interface in Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 8 — Worship Clips local mode",
+    title: "Turn Sunday into clips before Monday becomes another editing job.",
+    body: "Worship Clips local mode keeps sermon clipping close to the booth so churches can publish faster without needing a second, separate content stack just to get started.",
+    bullets: [
+      "Import, transcribe, clip, and render from the local workflow",
+      "Give churches a usable content engine without waiting on cloud automation",
+      "Pair the booth workflow with the social workflow more naturally",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/WorshipClips%20Mobile%20Mode%20-%20Lifestyle%20Hero.jpg`, alt: "Worship Clips lifestyle view in Tech Manager" },
+      { src: `${R2}/Tech%20Manager/WorshipClips%20Local%20Mode.jpg`, alt: "Worship Clips local mode interface in Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 9 — Rundown UI",
+    title: "Give the room a cleaner way to move through the service.",
+    body: "The rundown UI helps the booth and the wider team follow the same order, see what is coming next, and stay calmer when the service does not unfold exactly as planned.",
+    bullets: [
+      "A clearer live sequence for the people actually running Sunday",
+      "Less translating the plan in the moment",
+      "A stronger handoff between planning and execution",
+    ],
+    images: [
+      { src: `${R2}/Tech%20Manager/WorshipMetrics%20Run%20Down%20UI%20-%20hero%20lifestyle.jpg`, alt: "Rundown UI lifestyle view in Tech Manager" },
+      { src: `${R2}/Tech%20Manager/WorshipMetrics%20Run%20Down%20UI.jpg`, alt: "Rundown UI interface in Tech Manager" },
+    ],
+  },
+];
+
 const systemDocumentation = [
   "Computer name, operating system, version, and last update",
   "Processor model, core count, clock speed, RAM, GPU, and storage",
@@ -311,126 +436,44 @@ const structuredData = [
     </div>
   </section>
 
-  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 1 — System documentation</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your AV system, fully documented. Automatically.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">The moment Tech Manager installs, it starts building a complete profile of your production environment without you filling out a single form.</p>
-        <p class="mt-6 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">What it captures automatically</p>
-        <div class="mt-4 grid gap-3 sm:grid-cols-2">
-          {systemDocumentation.map((item) => (
-            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 shadow-sm">{item}</div>
-          ))}
-        </div>
-        <p class="mt-6 text-sm leading-relaxed text-slate-600">You add the human details once: friendly names, physical locations, cable connections, input assignments, passwords, notes, and photos of physical hardware. The knowledge stays in the cloud even when a volunteer moves on.</p>
-        <a href="/your-av-partner" class="mt-8 inline-block rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-indigo-700">See the wiring diagram tool →</a>
-      </div>
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/1%20Worship%20Technology%20Assistance.jpg" alt="Worship technology assistance and AV documentation" loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" />
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 2 — AV monitoring</p>
-      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">We know something is wrong before you do.</h2>
-      <p class="mt-4 max-w-4xl text-base leading-relaxed text-slate-600 sm:text-lg">Tech Manager sends a health snapshot to the WorshipMetrics cloud every 30 seconds. Stream bitrate. Encoder CPU. Camera status. Display connectivity. Network speed. All of it, continuously.</p>
-      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {monitoringFeatures.map((item) => (
-          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm text-sm text-slate-700">{item}</div>
-        ))}
-      </div>
-      <p class="mt-8 text-sm leading-relaxed text-slate-600">When something goes wrong, Tech Manager attempts to fix it automatically first. If it cannot, Luminos opens a support ticket with a full 30-minute timeline of exactly what happened leading up to the issue.</p>
-    </div>
-  </section>
-
-  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 3 — Self-healing</p>
-      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Most problems fix themselves. You never know they happened.</h2>
-      <div class="mt-10 overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
-        <table class="w-full text-sm">
-          <thead class="bg-slate-50 text-left">
-            <tr>
-              <th class="px-6 py-4 font-semibold text-slate-700">What happened</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">What Tech Manager does</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-200 bg-white">
-            {selfHealingRows.map(([issue, action]) => (
-              <tr>
-                <td class="px-6 py-4 font-semibold text-slate-900">{issue}</td>
-                <td class="px-6 py-4 text-slate-600">{action}</td>
-              </tr>
+  {techManagerFeatureSections.map((section, index) => (
+    <section class:list={[index % 2 === 0 ? "bg-white" : "bg-slate-50", "px-4 py-20 sm:px-6 lg:px-8"]}>
+      <div class:list={[
+        "mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]",
+        index % 2 === 1 ? "lg:[&>div:first-child]:order-2 lg:[&>div:last-child]:order-1" : ""
+      ]}>
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">{section.eyebrow}</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{section.title}</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{section.body}</p>
+          <ul class="mt-6 space-y-3 text-sm text-slate-700 sm:text-base">
+            {section.bullets.map((item) => (
+              <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-500"></span><span>{item}</span></li>
             ))}
-          </tbody>
-        </table>
+          </ul>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          {section.images.length > 1 ? (
+            <div class="relative" data-tm-carousel>
+              <div class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth" data-tm-carousel-track style="scrollbar-width:none;-ms-overflow-style:none;">
+                {section.images.map((image) => (
+                  <figure class="min-w-full snap-center">
+                    <img src={image.src} alt={image.alt} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+                  </figure>
+                ))}
+              </div>
+              <div class="absolute inset-x-0 bottom-4 flex justify-center gap-3">
+                <button type="button" class="rounded-full bg-white/90 px-4 py-2 text-xs font-semibold text-slate-700 shadow transition hover:bg-white" data-tm-prev>Previous</button>
+                <button type="button" class="rounded-full bg-white/90 px-4 py-2 text-xs font-semibold text-slate-700 shadow transition hover:bg-white" data-tm-next>Next</button>
+              </div>
+            </div>
+          ) : (
+            <img src={section.images[0].src} alt={section.images[0].alt} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+          )}
+        </div>
       </div>
-      <p class="mt-6 text-sm leading-relaxed text-slate-600">Every self-healing action is logged silently in the background and included in your weekly health digest so you know what was handled on your behalf.</p>
-    </div>
-  </section>
-
-  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
-      <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 4 — OBS management</p>
-        <h2 class="mt-3 text-2xl font-bold text-slate-900">OBS support that actually knows your setup.</h2>
-        <ul class="mt-6 space-y-3 text-sm text-slate-700">
-          {[
-            "OBS connection status monitored continuously",
-            "OBS log file read in real time, with warnings surfaced early",
-            "Scene collection backed up to cloud automatically",
-            "Stream health overlay for bitrate, dropped frames, and encoder load",
-            "Remote OBS control via WorshipMetrics cloud on Pro plans",
-            "Luminos reads the full log, identifies the cause, and tells you what to fix",
-          ].map((item) => (
-            <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-500"></span><span>{item}</span></li>
-          ))}
-        </ul>
-      </div>
-      <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 5 — Local signage hosting</p>
-        <h2 class="mt-3 text-2xl font-bold text-slate-900">Your lobby screens stay live. Even when the internet doesn't.</h2>
-        <p class="mt-4 text-sm leading-relaxed text-slate-600">Tech Manager runs a local signage server on your production computer. Displays on your network load from the local server — faster, more reliable, and immune to internet outages.</p>
-        <ul class="mt-6 space-y-3 text-sm text-slate-700">
-          {[
-            "Playlist synced from WorshipMetrics cloud when online",
-            "Full playlist cached locally so screens never go black",
-            "Multiple displays managed independently on the same network",
-            "Free Forever: 1 local screen. Paid plans: unlimited",
-          ].map((item) => (
-            <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-500"></span><span>{item}</span></li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Feature 6 — PTZ camera control</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your cameras, controlled from anywhere.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Tech Manager bridges your PTZ cameras to the WorshipMetrics cloud. Point, tilt, zoom, and recall presets from the local dashboard or from your phone on the other side of the world.</p>
-        <ul class="mt-6 space-y-3 text-sm text-slate-700">
-          {[
-            "ONVIF-compatible PTZ cameras discovered automatically",
-            "Pan, tilt, zoom controls in Tech Manager",
-            "Save and recall presets like Wide, Pulpit, Worship Band, and Choir",
-            "Remote cloud control without a VPN or port forwarding",
-            "Pre-service preset support for congregation-wide attendance capture",
-          ].map((item) => (
-            <li class="flex items-start gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-indigo-500"></span><span>{item}</span></li>
-          ))}
-        </ul>
-      </div>
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={`${R2}/tablet/Sync%20with%20multiple%20tablets.jpg`} alt="Remote control and connected device workflows" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
-    </div>
-  </section>
+    </section>
+  ))}
 
   <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-5xl text-center">
@@ -562,6 +605,22 @@ const structuredData = [
 
       tabs.forEach((tab) => {
         tab.addEventListener('click', () => setActive(tab.getAttribute('data-tech-tab')));
+      });
+
+      const carousels = Array.from(document.querySelectorAll('[data-tm-carousel]'));
+      carousels.forEach((carousel) => {
+        const track = carousel.querySelector('[data-tm-carousel-track]');
+        const prev = carousel.querySelector('[data-tm-prev]');
+        const next = carousel.querySelector('[data-tm-next]');
+        if (!(track instanceof HTMLElement)) return;
+
+        const move = (direction) => {
+          const amount = track.clientWidth * direction;
+          track.scrollBy({ left: amount, behavior: 'smooth' });
+        };
+
+        prev?.addEventListener('click', () => move(-1));
+        next?.addEventListener('click', () => move(1));
       });
     })();
   </script>

@@ -13,9 +13,9 @@ const plans = [
     name: "Free Forever",
     price: "$0",
     suffix: "/mo",
-    tag: "Start with the whole team",
+    tag: "Prove the system before you pay",
     badge: "No credit card",
-    body: "Prove the system before you pay. Free Forever includes the full Services planning workflow and the volunteer foundation most churches need first.",
+    body: "Everything a single operator needs to run services locally. The full production toolkit, without the cloud layer.",
     cta: "Get started free",
     href: `${APP_URL}/sign-up`,
     featured: false,
@@ -23,26 +23,26 @@ const plans = [
     supportBody: "Community support",
     supportBandClass: "bg-slate-200 text-slate-700",
     items: [
-      "Service Planning with unlimited services and templates",
-      "Volunteer Management with scheduling and find-a-replacement",
-      "Worship Clips local workflow",
+      "Service Planning with unlimited services, templates, 17 item types, and live run mode",
+      "Tech Manager desktop app with Onboarding Wizard",
+      "Stream Health Monitoring with live metrics for OBS, vMix, and ATEM",
+      "Switcher Control with scene preview and output",
+      "AV Device Inventory and Signal Map",
+      "PTZ Camera Control with VISCA and ONVIF",
       "Digital Signage for 1 screen",
-      "Attendance manual and one-tap counting",
-      "AV Management and system mapping",
-      "Stream Health Monitoring for OBS and vMix",
-      "Remote switcher control for OBS and vMix",
-      "Slides with NDI output",
-      "Tech Manager desktop app",
+      "Attendance with manual counting",
+      "Worship Clips local workflow",
       "Luminos AI daily troubleshooting allowance",
-      "Mobile apps and community support",
+      "Brand Kit stored locally",
+      "Community support",
     ],
   },
   {
     name: "Starter",
-    price: "$29",
+    price: "$9.99",
     suffix: "/mo",
-    tag: "Get your team fully in sync",
-    body: "Add cloud workflows, alerts, analytics, and support so the free system becomes the center of your week.",
+    tag: "Connect your booth to the cloud",
+    body: "The cloud layer that makes everything smarter. For many churches, the sermon-to-YouTube pipeline alone can justify Starter.",
     cta: "Start with Starter",
     href: `${APP_URL}/sign-up`,
     featured: false,
@@ -51,83 +51,96 @@ const plans = [
     supportBandClass: "bg-blue-600 text-white",
     items: [
       "Everything in Free Forever",
-      "Worship Clips cloud sync and auto-publish",
+      "Cloud device pairing and sync",
+      "Worship Clips cloud sync, sermon agent auto-upload, and YouTube publish",
       "Unlimited digital signage screens",
-      "Real-time AV alerts by SMS and email",
-      "Historical reports with 90-day retention",
-      "Stream scheduling and automated countdowns",
-      "Luminos AI with unlimited queries",
-      "Email support and basic API access",
+      "Auto-Attendance with cloud computer vision",
+      "Stream Health historical reports with 90-day retention",
+      "Brand Kit cloud sync across devices",
+      "Device health monitoring with cloud anomaly reporting",
+      "Scheduled recording and streaming start/stop",
+      "Luminos AI unlimited queries",
+      "Email and ticket support",
     ],
   },
   {
     name: "Pro",
-    price: "$99",
+    price: "$29.99",
     suffix: "/mo",
     tag: "Automate Sunday",
-    body: "This is where Sunday starts to run smoother. Pro adds the production engine, volunteer control panels, and cue workflow that help more people serve well.",
+    body: "This is where Sunday runs itself. Everything that fires without human intervention or enables a more distributed team starts here.",
     cta: "Book a demo",
     href: "/discovery-call",
     featured: true,
     supportLabel: "Email + Tickets + Phone",
-    supportBody: "Email, tickets, and phone support",
+    supportBody: "Priority support across email, tickets, and phone",
     supportBandClass: "bg-amber-400 text-slate-950",
     items: [
       "Everything in Starter",
-      "Automated production engine",
-      "Volunteer control panels for any device",
+      "Self-healing engine with stream, encoder, and recording recovery",
+      "Automated cue firing for camera and lighting on service item advance",
+      "Remote control via cloud for scenes, audio, PTZ, streaming, and recording",
+      "Real-time AV alerts by SMS and email",
       "Natural-language cue authoring with AI",
       "Production intercom for volunteer teams",
-      "Automated macro and cue firing",
+      "Volunteer control panels with mobile-accessible operator views",
       "Extended data retention for 1 year",
-      "Priority email support",
+      "Priority support with email, tickets, and phone",
     ],
   },
   {
     name: "Multi-Site",
     price: "Custom",
     suffix: "",
-    tag: "For networks of 2+ campuses",
-    body: "Pro for every campus, centralized admin, and partner-level support for ministries growing across multiple locations.",
+    tag: "Pro for every campus",
+    body: "Everything in Pro for every location, with centralized admin and partner-level support for networks of 2+ campuses.",
     cta: "Talk to sales",
     href: "/discovery-call",
     featured: false,
     supportLabel: "Dedicated Account Manager",
-    supportBody: "Dedicated account manager",
+    supportBody: "Dedicated account management and onboarding",
     supportBandClass: "bg-purple-700 text-white",
     items: [
-      "Everything in Pro",
-      "Pro features for every campus",
+      "Everything in Pro for every campus",
       "Centralized admin across campuses",
-      "Custom service templates built by our team",
+      "Custom service templates built by the team",
       "Dedicated onboarding specialist",
-      "Partner-level support and planning",
       "Quarterly strategy review",
       "Unlimited data retention",
+      "Dedicated account manager",
     ],
   },
 ];
 
+const lifetimePro = {
+  price: "$999",
+  updates: "$99/year",
+  body: "Pay once and get Pro for life for your church. You get everything in Pro with realistic Worship Clips Cloud limits, plus onboarding and an installation session.",
+};
+
 const comparisonRows = [
   ["Service Planning", "Included", "Included", "Included", "Included"],
-  ["Volunteer Management", "Included", "Included", "Included", "Included"],
-  ["Worship Clips", "Local", "Cloud + auto-publish", "Cloud + auto-publish", "Cloud + auto-publish"],
+  ["Tech Manager", "Included", "Included", "Included", "Included"],
+  ["Worship Clips", "Local workflow", "Cloud sync + sermon agent + YouTube publish", "Cloud sync + sermon agent + YouTube publish", "Cloud sync + sermon agent + YouTube publish"],
   ["Digital Signage", "1 screen", "Unlimited", "Unlimited", "Unlimited"],
-  ["Attendance", "Included", "Included", "Included", "Included"],
-  ["AV Management", "Included", "Included", "Included", "Included"],
-  ["Stream Health Monitoring", "Included", "Alerts + reports", "Alerts + reports", "Alerts + reports"],
-  ["Remote Switcher Control", "Included", "Included", "Included", "Included"],
-  ["Stream Scheduling", "No", "Included", "Included", "Included"],
+  ["Attendance", "Manual counting", "Auto-Attendance + manual", "Auto-Attendance + manual", "Auto-Attendance + manual"],
+  ["AV Device Inventory and Signal Map", "Included", "Included", "Included", "Included"],
+  ["Stream Health Monitoring", "Live metrics", "Historical reports", "Historical reports + real-time alerts", "Historical reports + real-time alerts"],
+  ["Switcher and PTZ Control", "Included", "Included", "Included", "Included"],
+  ["Scheduled recording and streaming", "No", "Included", "Included", "Included"],
   ["Volunteer control panels", "No", "No", "Included", "Included"],
-  ["Automated production engine", "No", "No", "Included", "Included"],
+  ["Automated cue firing", "No", "No", "Included", "Included"],
+  ["Self-healing engine", "No", "No", "Included", "Included"],
+  ["Cloud remote control", "No", "No", "Included", "Included"],
   ["Production intercom", "No", "No", "Included", "Included"],
   ["Support", "Community", "Email + Tickets", "Email + Tickets + Phone", "Dedicated Account Manager"],
 ];
 
 const faqItems = [
-  { question: "Is Free Forever really free forever?", answer: "Yes. No credit card, no trial timer, and no forced expiration. Churches can start with the whole team and prove the system before they ever pay." },
+  { question: "Is Free Forever really free forever?", answer: "Yes. No credit card, no trial timer, and no forced expiration. Churches can start with the full local toolkit and prove the system before they ever pay." },
   { question: "Can I upgrade and downgrade?", answer: "Yes. You can move between plans anytime as your ministry grows or your needs change." },
-  { question: "What kind of support comes with each tier?", answer: "Free Forever is community-supported. Starter includes email and ticket support. Pro adds phone support alongside email and tickets. Multi-Site includes a dedicated account manager and partner-level support." },
+  { question: "Do you offer a one-time Pro purchase?", answer: "Yes. Churches can pay $999 one-time for Pro for life. It includes onboarding and an installation session. Updates are $99 per year. Reach out to learn more about the realistic Worship Clips Cloud limits." },
+  { question: "What kind of support comes with each tier?", answer: "Free Forever is community-supported. Starter includes email and ticket support. Pro adds phone support alongside email and tickets. Multi-Site includes a dedicated account manager and onboarding support." },
   { question: "Do you offer a nonprofit discount?", answer: "Yes. Contact us and we will talk through the right fit for your ministry and budget." },
   { question: "Do you offer a multi-church discount?", answer: "Yes. Multi-campus and multi-church organizations should talk with us directly so pricing can match the real rollout." },
   { question: "What happens to my data if I cancel?", answer: "Your data stays exportable. We will help you make sure your ministry can keep what it needs." },
@@ -142,8 +155,9 @@ const structuredData = [
     url: `${SITE_URL}/pricing`,
     itemListElement: [
       { "@type": "Offer", name: "Free Forever", price: "0", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "Starter", price: "29", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "Pro", price: "99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Starter", price: "9.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Pro", price: "29.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Pro for Life", price: "999", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
       { "@type": "Offer", name: "Worship Metrics Hub", price: "499", priceCurrency: "USD", url: `${SITE_URL}/appliance` },
       { "@type": "Offer", name: "Worship Metrics Tablet", price: "349", priceCurrency: "USD", url: `${SITE_URL}/tablet` },
     ],
@@ -162,7 +176,7 @@ const structuredData = [
 
 <Layout
   title="Pricing"
-  description="Free to start. Grows with your ministry. Compare WorshipMetrics plans for Services, volunteers, production automation, and hardware."
+  description="Free to start. Grows with your ministry. Compare WorshipMetrics plans for local production, cloud sync, Sunday automation, and multi-site support."
   canonical="/pricing"
   structuredData={structuredData}
 >
@@ -171,7 +185,7 @@ const structuredData = [
       <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Pricing</p>
       <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Free to start. Grows with your ministry.</h1>
       <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-        Start with the whole team on Free Forever. Upgrade when your ministry needs cloud workflows, stronger alerts, and the production engine that makes Sunday easier to share.
+        Start with the full local toolkit on Free Forever. Add cloud sync on Starter, automation on Pro, and campus-wide coordination on Multi-Site.
       </p>
     </div>
   </section>
@@ -218,6 +232,27 @@ const structuredData = [
   </section>
 
   <section class="bg-white px-4 pb-6 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-amber-200 bg-amber-50 p-8 shadow-sm sm:p-10">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-amber-700">One-time option</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Own Pro for life.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{lifetimePro.body}</p>
+        </div>
+        <div class="rounded-[1.5rem] border border-amber-200 bg-white p-6 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-amber-700">Pro for life</p>
+          <p class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900">{lifetimePro.price}<span class="ml-2 text-base font-medium text-slate-500">one-time</span></p>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">Updates are {lifetimePro.updates}. Reach out to learn more about the Worship Clips Cloud limits and whether this is the right fit for your church.</p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a href="/discovery-call" class="btn-primary">Ask about Pro for life</a>
+            <a href="/contact" class="btn-outline">Reach out to learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 pb-6 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm sm:p-10">
       <div class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <div>
@@ -229,9 +264,9 @@ const structuredData = [
         </div>
         <div class="grid gap-4 sm:grid-cols-2">
           {[
-            "Free Forever gives smaller churches a low-risk way to start with community help.",
-            "Starter gives growing teams a reliable email and ticket path when the workflow starts to matter every week.",
-            "Pro adds phone access because live production issues do not always wait for async support.",
+            "Free Forever gives a single operator the full local toolkit before the church pays for cloud infrastructure.",
+            "Starter connects the booth to the cloud so clips, signage, attendance, and sync become smarter across devices.",
+            "Pro adds the automation and alerting layer because live production issues do not always wait for manual intervention.",
             "Multi-Site gets partner-level help because cross-campus rollout is a different kind of operational challenge.",
           ].map((item) => (
             <div class="rounded-[1.5rem] border border-slate-200 bg-white p-5 text-sm leading-relaxed text-slate-600">{item}</div>
@@ -248,11 +283,11 @@ const structuredData = [
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What you get with Pro</p>
           <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">The room gets easier to run because more people can carry it well.</h2>
           <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Pro adds the automation workflow, volunteer control panels, and cue-building tools that help directors, students, and first-time volunteers all contribute in the same service with less chaos.
+            Pro adds the self-healing, cue automation, remote control, and team workflows that help directors, students, and first-time volunteers all contribute in the same service with less chaos.
           </p>
           <div class="mt-6 space-y-3 text-sm text-slate-700">
             {[
-              "Timeline-synced show control keeps key moments moving together.",
+              "Self-healing keeps streams and recordings alive when the room would otherwise stop.",
               "Volunteer control panels work on any device with only the controls that role needs.",
               "Natural-language cue authoring helps teams build production moments faster.",
             ].map((item) => (
