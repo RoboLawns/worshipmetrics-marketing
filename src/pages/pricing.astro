@@ -181,7 +181,7 @@ const structuredData = [
       <div class="grid items-stretch gap-8 lg:grid-cols-4">
         {plans.map(({ name, price, suffix, tag, badge, body, cta, href, featured, items, supportLabel, supportBody, supportBandClass }) => (
           <div class:list={[
-            "relative flex flex-col overflow-hidden rounded-[1.75rem] border p-8 shadow-sm",
+            "relative flex flex-col rounded-[1.75rem] border p-8 shadow-sm",
             featured ? "border-indigo-500 bg-indigo-600 shadow-lg shadow-indigo-200" : "border-slate-200 bg-white",
           ]}>
             {featured && <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-xs font-bold uppercase tracking-wider text-slate-900">Most popular</span>}
