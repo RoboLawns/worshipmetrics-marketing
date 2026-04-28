@@ -111,6 +111,9 @@ const cols = [
   .brand-logo span { font-size: 0.95rem; font-weight: 700; color: #0f1a2e; }
   .brand-tag  { font-size: 0.82rem; color: #8494b0; line-height: 1.6; max-width: 18rem; }
   .brand-btns { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem; }
+  .brand-support { font-size: 0.78rem; color: #5a6a8a; line-height: 1.6; max-width: 18rem; }
+  .brand-support a { color: #4361ee; text-decoration: none; font-weight: 600; }
+  .brand-support a:hover { color: #3651db; }
 
   .col-heading { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4361ee; margin-bottom: 0.75rem; }
   .col-links   { display: flex; flex-direction: column; gap: 0.45rem; }
@@ -159,6 +162,7 @@ const cols = [
         <a href={`${APP_URL}/sign-up`} class="btn-primary" style="justify-content:center;font-size:0.8rem;padding:0.5rem 1rem;" data-wm-track="cta_click" data-wm-track-label="footer_get_started_free" data-wm-track-location="footer">Get started free</a>
         <a href="/discovery-call" class="btn-outline" style="justify-content:center;font-size:0.8rem;padding:0.5rem 1rem;" data-wm-track="cta_click" data-wm-track-label="footer_book_call" data-wm-track-location="footer">Book a call</a>
       </div>
+      <p class="brand-support">Need help? Submit a ticket, start a chat, or call <a href="tel:+19109677447">910-WORSHIP</a> and talk to a real person who knows the product.</p>
     </div>
 
     {cols.map(({ heading, links }) => (
