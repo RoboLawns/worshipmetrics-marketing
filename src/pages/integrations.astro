@@ -1,36 +1,295 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import IntegrationsHero from "../components/integrations/IntegrationsHero.astro";
 import IntegrationsSearch from "../components/integrations/IntegrationsSearch.astro";
 import IntegrationsGrid from "../components/integrations/IntegrationsGrid.astro";
-import IntegrationsCTA from "../components/integrations/IntegrationsCTA.astro";
 import { integrationCategories, integrationTotals } from "../data/integrations";
 
 const SITE_URL = "https://worshipmetrics.com";
-const OG_IMAGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const OG_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
+const HERO_IMAGE = `${R2}/homepage/1%20Worship%20Technology%20Assistance.jpg`;
+
+const territories = [
+  { label: "Southeastern Pennsylvania", desc: "Philadelphia suburbs, Chester County, Montgomery County, and surrounding areas" },
+  { label: "Northern Delaware", desc: "Wilmington, New Castle County, and nearby communities" },
+  { label: "Eastern Shore Maryland", desc: "Cecil County, Kent County, and the Delmarva corridor" },
+  { label: "McKinney, Texas", desc: "North Dallas corridor — our Texas-based team ready to serve customers in the region" },
+];
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Integrations",
+  name: "Integrations & AV Services",
   url: `${SITE_URL}/integrations`,
-  description:
-    "WorshipMetrics works with the ProAV gear your church already runs through its integration with Central Control's show automation platform.",
+  description: "WorshipMetrics offers AV integration support, on-site installation, technical support, and a platform that works with the ProAV gear your church already owns.",
   image: OG_IMAGE,
 };
 ---
 
 <Layout
-  title="Integrations"
-  description="WorshipMetrics works with the ProAV gear your church already runs through its integration with Central Control's show automation platform."
+  title="Integrations &amp; AV Services"
+  description="WorshipMetrics offers AV integration support, on-site installation, technical services, and a platform that works with the ProAV gear your church already owns."
   canonical="/integrations"
   ogImage={OG_IMAGE}
   structuredData={structuredData}
 >
-  <IntegrationsHero totalDevices={integrationTotals.totalDevices} totalCategories={integrationTotals.totalCategories} />
+  <style>
+    .ih-wrap { background: var(--color-bg-page); color: var(--color-text-primary); }
+    .ih-shell { max-width: 72rem; margin: 0 auto; padding: 5rem 1.5rem 3rem; }
+    .ih-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 3rem; align-items: center; }
+    .ih-line { width: 1px; height: 56px; margin: 0 0 1.5rem; background: linear-gradient(to bottom, rgba(184,132,42,0), rgba(184,132,42,1), rgba(184,132,42,0)); }
+    .ih-eyebrow { font-family: var(--font-sans); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-gold); }
+    .ih-title { margin-top: 1rem; font-family: var(--font-serif); font-size: clamp(2.6rem, 4.5vw, 4.4rem); line-height: 0.96; font-weight: 400; color: var(--color-text-primary); }
+    .ih-title em { font-style: italic; color: var(--color-accent-gold); }
+    .ih-copy { margin-top: 1.25rem; font-family: var(--font-sans); font-size: 1.05rem; line-height: 1.8; font-weight: 300; color: var(--color-text-secondary); max-width: 44rem; }
+    .ih-hero-img { border-radius: 1.5rem; overflow: hidden; border: 1px solid var(--color-border); box-shadow: 0 20px 48px rgba(28,20,16,0.08); }
+    .ih-hero-img img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+    .ih-ctas { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .ih-btn-primary { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: var(--color-accent-gold); color: #1c1410; padding: 0.95rem 1.5rem; text-decoration: none; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; transition: background 0.18s, transform 0.18s; }
+    .ih-btn-primary:hover { background: var(--color-accent-gold-soft); transform: translateY(-2px); }
+    .ih-btn-outline { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid var(--color-border-strong); background: transparent; color: var(--color-text-primary); padding: 0.95rem 1.5rem; text-decoration: none; font-family: var(--font-sans); font-size: 0.92rem; font-weight: 500; transition: background 0.18s, border-color 0.18s, transform 0.18s; }
+    .ih-btn-outline:hover { background: var(--color-bg-warm); border-color: rgba(184,132,42,0.35); transform: translateY(-2px); }
+    @media (max-width: 768px) { .ih-grid { grid-template-columns: 1fr; } .ih-shell { padding: 3rem 1.5rem 2rem; } }
+
+    .section-wrap { max-width: 80rem; margin: 0 auto; padding: 5rem 1.5rem; }
+    .section-wrap-tight { padding: 3rem 1.5rem 5rem; }
+    .section-head { max-width: 48rem; }
+    .section-head-center { max-width: 48rem; margin: 0 auto; text-align: center; }
+    .sec-eyebrow { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-gold); margin-bottom: 0.75rem; }
+    .sec-title { font-family: var(--font-serif); font-size: clamp(2.2rem, 3.8vw, 3.4rem); font-weight: 400; line-height: 0.98; color: var(--color-text-primary); }
+    .sec-title em { font-style: italic; color: var(--color-accent-gold); }
+    .sec-copy { margin-top: 1rem; font-family: var(--font-sans); font-size: 1rem; line-height: 1.8; font-weight: 300; color: var(--color-text-secondary); }
+
+    .diff-grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+    .diff-card { border: 1px solid var(--color-border); border-radius: 1.5rem; background: var(--color-bg-surface); padding: 2rem; transition: border-color 0.18s, box-shadow 0.18s; }
+    .diff-card:hover { border-color: rgba(184,132,42,0.3); box-shadow: 0 12px 32px rgba(28,20,16,0.04); }
+    .diff-card-num { font-family: var(--font-serif); font-size: 1.5rem; font-style: italic; color: var(--color-accent-gold); margin-bottom: 0.75rem; }
+    .diff-card-title { font-family: var(--font-sans); font-size: 1.1rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.5rem; }
+    .diff-card-desc { font-family: var(--font-sans); font-size: 0.92rem; line-height: 1.7; font-weight: 300; color: var(--color-text-secondary); }
+    @media (max-width: 768px) { .diff-grid { grid-template-columns: 1fr; } }
+
+    .svc-grid { margin-top: 2.5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; }
+    .svc-card { border: 1px solid var(--color-border); border-radius: 1.5rem; background: var(--color-bg-surface); padding: 2rem; }
+    .svc-card-highlight { background: var(--color-bg-dark); color: var(--color-text-on-dark); border-color: rgba(255,255,255,0.08); }
+    .svc-icon { width: 2.5rem; height: 2.5rem; border-radius: 0.75rem; background: rgba(184,132,42,0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+    .svc-icon span { font-size: 1.3rem; }
+    .svc-card-title { font-family: var(--font-sans); font-size: 1.15rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.5rem; }
+    .svc-card-highlight .svc-card-title { color: #fff; }
+    .svc-price { font-family: var(--font-serif); font-size: 2.2rem; font-weight: 400; color: var(--color-accent-gold); margin: 0.75rem 0 0.5rem; }
+    .svc-card-desc { font-family: var(--font-sans); font-size: 0.92rem; line-height: 1.7; font-weight: 300; color: var(--color-text-secondary); }
+    .svc-card-highlight .svc-card-desc { color: rgba(247,244,239,0.82); }
+    .svc-card-features { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .svc-feature { display: flex; align-items: flex-start; gap: 0.5rem; font-family: var(--font-sans); font-size: 0.88rem; line-height: 1.6; color: var(--color-text-secondary); }
+    .svc-card-highlight .svc-feature { color: rgba(247,244,239,0.82); }
+    .svc-feature-bullet { color: var(--color-accent-gold); margin-top: 0.15rem; flex-shrink: 0; font-size: 1rem; }
+    @media (max-width: 768px) { .svc-grid { grid-template-columns: 1fr; } }
+
+    .territory-grid { margin-top: 2rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    .territory-card { border: 1px solid var(--color-border); border-radius: 1rem; background: var(--color-bg-surface); padding: 1.25rem; text-align: center; }
+    .territory-label { font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600; color: var(--color-text-primary); }
+    .territory-desc { font-family: var(--font-sans); font-size: 0.74rem; line-height: 1.5; color: var(--color-text-tertiary); margin-top: 0.3rem; }
+    @media (max-width: 900px) { .territory-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .territory-grid { grid-template-columns: 1fr; } }
+
+    .tm-grid { margin-top: 2.5rem; display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 3rem; align-items: center; }
+    .tm-image-wrap { border-radius: 1.5rem; overflow: hidden; border: 1px solid var(--color-border); }
+    .tm-image-wrap img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+    .tm-features { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .tm-feature { display: flex; align-items: flex-start; gap: 0.6rem; font-family: var(--font-sans); font-size: 0.95rem; line-height: 1.6; color: var(--color-text-secondary); }
+    .tm-bullet { color: var(--color-accent-gold); font-weight: 700; flex-shrink: 0; }
+    @media (max-width: 768px) { .tm-grid { grid-template-columns: 1fr; } }
+
+    .catalog-divider { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+    .catalog-divider-line { border: none; border-top: 1px solid var(--color-border); }
+    .catalog-head { max-width: 80rem; margin: 0 auto; padding: 4rem 1.5rem 2rem; text-align: center; }
+    .catalog-eyebrow { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-gold); margin-bottom: 0.75rem; }
+    .catalog-title { font-family: var(--font-serif); font-size: clamp(2.2rem, 3.8vw, 3.4rem); font-weight: 400; line-height: 0.98; color: var(--color-text-primary); }
+    .catalog-title em { font-style: italic; color: var(--color-accent-gold); }
+    .catalog-copy { max-width: 40rem; margin: 1rem auto 0; font-family: var(--font-sans); font-size: 1rem; line-height: 1.8; font-weight: 300; color: var(--color-text-secondary); }
+
+    .cta-wrap { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+    .cta-panel { position: relative; overflow: hidden; border-radius: 2rem; background: var(--color-bg-dark); color: var(--color-text-on-dark); padding: 4rem 3rem; }
+    .cta-glow { position: absolute; top: -11rem; right: -11rem; width: 600px; height: 600px; pointer-events: none; background: radial-gradient(circle, rgba(212,161,74,0.18) 0%, transparent 70%); }
+    .cta-inner { position: relative; max-width: 44rem; }
+    .cta-title { font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 3.8rem); line-height: 0.98; font-weight: 400; }
+    .cta-title em { font-style: italic; color: var(--color-accent-gold-soft); }
+    .cta-copy { margin-top: 1rem; font-family: var(--font-sans); font-size: 1rem; line-height: 1.8; font-weight: 300; color: rgba(247,244,239,0.82); }
+    .cta-button { display: inline-flex; margin-top: 1.6rem; align-items: center; justify-content: center; border-radius: 999px; background: var(--color-accent-gold); color: #1c1410; padding: 0.95rem 1.5rem; text-decoration: none; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; transition: background 0.18s, transform 0.18s; }
+    .cta-button:hover { background: var(--color-accent-gold-soft); transform: translateY(-2px); }
+    @media (max-width: 768px) { .cta-panel { padding: 3rem 1.5rem; } }
+  </style>
+
+  <!-- Hero -->
+  <section class="ih-wrap">
+    <div class="ih-shell">
+      <div class="ih-grid">
+        <div>
+          <div class="ih-line"></div>
+          <p class="ih-eyebrow">Integrations &amp; AV Services</p>
+          <h1 class="ih-title">More than a platform.<br/><em>Your long-term AV partner.</em></h1>
+          <p class="ih-copy">
+            We start with software that helps your team document, manage, and automate the gear you already own. When you need more than software, we&apos;re the AV integration partner that shows up with on-site support and installation services — built for churches, not for enterprise budgets.
+          </p>
+          <div class="ih-ctas">
+            <a href="/discovery-call" class="ih-btn-primary">Talk about your setup</a>
+            <a href="/tech-manager" class="ih-btn-outline">Download Tech Manager</a>
+          </div>
+        </div>
+        <div class="ih-hero-img">
+          <img src={HERO_IMAGE} alt="WorshipMetrics tech support and AV integration" loading="eager" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We're Different -->
+  <section style="background:#fff;">
+    <div class="section-wrap">
+      <div class="section-head-center">
+        <p class="sec-eyebrow">What makes us different</p>
+        <h2 class="sec-title">A standard AV integrator sells you gear.<br/><em>We build the system around your team.</em></h2>
+        <p class="sec-copy">
+          Most ProAV integration companies write a quote, install the equipment, and move on. Worship Metrics takes a fundamentally different approach — we put your team&apos;s ability to run Sunday first, build tools that make the booth manageable, and only recommend hardware when it actually serves the mission.
+        </p>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-card-num">01</div>
+          <div class="diff-card-title">Software comes first</div>
+          <div class="diff-card-desc">
+            Tech Manager is free and gives your team documentation, remote management, and automation before you spend a dollar on hardware. We believe churches should be organized before they are upgraded.
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-card-num">02</div>
+          <div class="diff-card-title">Built for church budgets</div>
+          <div class="diff-card-desc">
+            We know churches operate on constrained budgets. That&apos;s why we built a free tier that is genuinely useful and offer AV technical support starting at $100/hour — not the $200+ rates that lock smaller churches out.
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-card-num">03</div>
+          <div class="diff-card-title">We stay after the install</div>
+          <div class="diff-card-desc">
+            Most integrators disappear once the invoice is paid. We stick around because our platform is the operating system your team uses every Sunday. When something breaks, we pick up the phone — not a call center.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services & Coverage -->
+  <section class="ih-wrap">
+    <div class="section-wrap">
+      <div class="section-head-center">
+        <p class="sec-eyebrow">Services &amp; coverage</p>
+        <h2 class="sec-title">AV support that <em>shows up.</em></h2>
+        <p class="sec-copy">
+          Whether you need remote troubleshooting, an on-site install, or someone to train your volunteers, we offer services that scale to your church&apos;s size and budget.
+        </p>
+      </div>
+
+      <div class="svc-grid">
+        <div class="svc-card svc-card-highlight">
+          <div class="svc-icon"><span>&#x1F527;</span></div>
+          <div class="svc-card-title">AV Technical Support</div>
+          <div class="svc-price">$100<span style="font-size:1rem;font-family:var(--font-sans);font-weight:300;">/hour</span></div>
+          <div class="svc-card-desc">
+            Remote and on-site technical support for your ProAV systems. Our team knows the gear because we built the platform that controls it.
+          </div>
+          <div class="svc-card-features">
+            <div class="svc-feature"><span class="svc-feature-bullet">&check;</span> System troubleshooting and diagnostics</div>
+            <div class="svc-feature"><span class="svc-feature-bullet">&check;</span> Remote configuration and setup assistance</div>
+            <div class="svc-feature"><span class="svc-feature-bullet">&check;</span> Stream health and network diagnostics</div>
+            <div class="svc-feature"><span class="svc-feature-bullet">&check;</span> Volunteer training on your equipment</div>
+          </div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><span>&#x1F3D7;&#xFE0F;</span></div>
+          <div class="svc-card-title">On-Site Installation</div>
+          <div class="svc-card-desc">
+            Full-service AV installation for churches in our service territories. We design, install, configure, and train — then stay with you through the Sundays that follow.
+          </div>
+          <div class="svc-card-features">
+            <div class="svc-feature"><span class="svc-feature-bullet">&check;</span> System design and equipment specification</div>
+            <div class="svc-feature"><span class="svc-feature-bullet">&check;</span> Professional installation and cable management</div>
+            <div class="svc-feature"><span class="svc-feature-bullet">&check;</span> Full system configuration and integration with Tech Manager</div>
+            <div class="svc-feature"><span class="svc-feature-bullet">&check;</span> Hands-on volunteer and staff training</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem; text-align: center;">
+        <p class="sec-eyebrow">Where we work</p>
+        <p style="margin-top: 0.5rem; font-family: var(--font-sans); font-size: 0.95rem; line-height: 1.7; font-weight: 300; color: var(--color-text-secondary); max-width: 40rem; margin-inline: auto;">
+          Our primary team operates out of Southeastern Pennsylvania and serves the Mid-Atlantic region. We also have team members in McKinney, Texas who can assist customers in the Dallas-Fort Worth area and beyond. We&apos;re willing to travel for the right projects.
+        </p>
+        <div class="territory-grid">
+          {territories.map(({ label, desc }) => (
+            <div class="territory-card">
+              <div class="territory-label">{label}</div>
+              <div class="territory-desc">{desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Manager: The Foundation -->
+  <section style="background:#fff;">
+    <div class="section-wrap">
+      <div class="tm-grid">
+        <div>
+          <p class="sec-eyebrow">The foundation</p>
+          <h2 class="sec-title">Tech Manager makes your system <em>manageable</em> before you spend on anything else.</h2>
+          <p class="sec-copy">
+            Tech Manager is the free desktop application that sits at the center of everything we do. It documents your ProAV gear, maps your signal flow, monitors stream health, and gives your team a single surface for controlling the equipment that runs Sunday. This is what makes Worship Metrics different — we built the software layer first, and every integration service we offer builds on top of it.
+          </p>
+          <div class="tm-features">
+            <div class="tm-feature"><span class="tm-bullet">&rarr;</span> System documentation and device inventory so your team knows what you have and how it connects</div>
+            <div class="tm-feature"><span class="tm-bullet">&rarr;</span> Remote management and control through Central Control&apos;s show automation platform</div>
+            <div class="tm-feature"><span class="tm-bullet">&rarr;</span> Stream health monitoring, camera control, and automated macros that reduce live pressure on your operators</div>
+            <div class="tm-feature"><span class="tm-bullet">&rarr;</span> Always listening and building — our team uses real church feedback to shape what comes next</div>
+          </div>
+          <div style="margin-top: 1.75rem;">
+            <a href="/tech-manager" class="ih-btn-outline">See Tech Manager &rarr;</a>
+          </div>
+        </div>
+        <div class="tm-image-wrap">
+          <img src={OG_IMAGE} alt="Tech Manager control panels in WorshipMetrics" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vendor Catalog -->
+  <div class="catalog-divider"><hr class="catalog-divider-line" /></div>
+
+  <div class="catalog-head">
+    <p class="catalog-eyebrow">Supported gear</p>
+    <h2 class="catalog-title">Works with the gear <em>you already own.</em></h2>
+    <p class="catalog-copy">
+      WorshipMetrics integrates with over {integrationTotals.totalDevices} devices across {integrationTotals.totalCategories} categories of ProAV equipment through Central Control&apos;s show automation platform. If your church already invested in quality gear, we help you get more out of it.
+    </p>
+  </div>
+
   <IntegrationsSearch categories={integrationCategories} totalDevices={integrationTotals.totalDevices} />
   <IntegrationsGrid categories={integrationCategories} />
-  <IntegrationsCTA />
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <div class="cta-panel">
+      <div class="cta-glow"></div>
+      <div class="cta-inner">
+        <h2 class="cta-title">Let&apos;s talk about <em>your booth.</em></h2>
+        <p class="cta-copy">
+          Whether you need remote support, an on-site install, or just want to understand what your current setup can actually do — we&apos;ll listen first and recommend second. No pressure, no enterprise pricing, no quota to hit.
+        </p>
+        <a href="/discovery-call" class="cta-button">Book a discovery call &rarr;</a>
+      </div>
+    </div>
+  </div>
 
   <script is:inline>
     const search = document.getElementById('integrations-search');

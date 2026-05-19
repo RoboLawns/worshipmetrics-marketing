@@ -8,43 +8,60 @@ const year = new Date().getFullYear();
 
 const cols = [
   {
-    heading: "Platform",
+    heading: "Produce",
     links: [
-      { label: "Services", href: "/services" },
-      { label: "Volunteers", href: "/volunteers" },
-      { label: "AV Team", href: "/av-team" },
-      { label: "Tech Manager", href: "/tech-manager" },
       { label: "Worship Clips", href: "/solutions/worship-clips" },
-      { label: "Attendance", href: "/platform/attendance" },
-      { label: "Digital Signage", href: "/signage-display" },
-      { label: "Luminos AI", href: "/luminos-ai-assistant" },
+      { label: "Slides & Signage", href: "/signage-display" },
     ],
   },
   {
-    heading: "Hardware",
+    heading: "People",
     links: [
+      { label: "Volunteers", href: "/volunteers" },
+      { label: "AV Team", href: "/av-team" },
+      { label: "Team Chat", href: "/team-chat" },
+      { label: "AV Club", href: "/av-club" },
+    ],
+  },
+  {
+    heading: "Plan",
+    links: [
+      { label: "Services", href: "/services" },
+    ],
+  },
+  {
+    heading: "Pulse",
+    links: [
+      { label: "Attendance", href: "/platform/attendance" },
+      { label: "AV Monitoring", href: "/av-monitoring" },
+    ],
+  },
+  {
+    heading: "System",
+    links: [
+      { label: "Tech Manager", href: "/tech-manager" },
       { label: "Integrations", href: "/integrations" },
       { label: "Worship Metrics Tablet", href: "/tablet" },
       { label: "Compare Hardware", href: "/hardware" },
     ],
   },
   {
-    heading: "Resources",
+    heading: "Support",
     links: [
+      { label: "Luminos AI", href: "/luminos-ai-assistant" },
       { label: "Knowledge Base", href: "/kb" },
-      { label: "AV Club", href: "/av-club" },
-      { label: "Signal and Sanctuary", href: "/signal-and-sanctuary" },
       { label: "Professional Services", href: "/professional-services" },
-      { label: "Pilot Program", href: "/pilot-program" },
+      { label: "Contact / 910-WORSHIP", href: "/contact" },
     ],
   },
   {
-    heading: "Company",
+    heading: "Connect",
     links: [
-      { label: "Pricing", href: "/pricing" },
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
+      { label: "Signal and Sanctuary", href: "/signal-and-sanctuary" },
+      { label: "Pilot Program", href: "/pilot-program" },
       { label: "Book a Call", href: "/discovery-call" },
+      { label: "About", href: "/about" },
+      { label: "Pricing", href: "/pricing" },
     ],
   },
   {
@@ -94,16 +111,22 @@ const cols = [
   .footer-inner {
     max-width: 80rem; margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.5fr repeat(5, 1fr);
+    grid-template-columns: 1.4fr repeat(8, 1fr);
     gap: 2rem;
+  }
+  @media (max-width: 1200px) {
+    .footer-inner { grid-template-columns: 1fr repeat(4, 1fr); }
+    .brand-col { grid-column: 1 / -1; }
   }
   @media (max-width: 900px) {
     .footer-app-band { grid-template-columns: 1fr; }
     .footer-app-badges { justify-content: flex-start; }
+    .footer-inner { grid-template-columns: repeat(4, 1fr); }
   }
-  @media (max-width: 1023px) { .footer-inner { grid-template-columns: repeat(3, 1fr); } .brand-col { grid-column: 1 / -1; } }
-  @media (max-width: 639px)  { .footer-inner { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 639px)  { .footer-app-badges img { height: 3rem; } }
+  @media (max-width: 639px) {
+    .footer-inner { grid-template-columns: repeat(2, 1fr); }
+    .footer-app-badges img { height: 3rem; }
+  }
 
   .brand-col { display: flex; flex-direction: column; gap: 0.75rem; }
   .brand-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
