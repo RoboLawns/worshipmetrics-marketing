@@ -27,10 +27,13 @@ import Layout from "../../layouts/Layout.astro";
         >
           Start for free
         </a>
-        <a href="/pricing" class="text-base font-semibold text-indigo-600 hover:text-indigo-700">
-          See pricing &rarr;
+        <a href="/tech-manager" class="text-base font-semibold text-indigo-600 hover:text-indigo-700">
+          Download Tech Manager (free) &rarr;
         </a>
       </div>
+      <p class="mx-auto mt-4 max-w-2xl text-sm text-slate-500">
+        Unlimited AI-assisted clips on Tech Manager, free. Cloud plans from the pricing page.
+      </p>
     </div>
   </section>
 
@@ -106,12 +109,12 @@ import Layout from "../../layouts/Layout.astro";
     <div class="mx-auto max-w-4xl">
       <dl class="grid grid-cols-1 gap-8 sm:grid-cols-3 text-center">
         <div>
-          <dt class="text-4xl font-extrabold text-indigo-600">52 clips/year</dt>
-          <dd class="mt-2 text-sm font-medium text-slate-600">with Starter</dd>
+          <dt class="text-4xl font-extrabold text-indigo-600">Unlimited clips</dt>
+          <dd class="mt-2 text-sm font-medium text-slate-600">on Tech Manager, free</dd>
         </div>
         <div>
-          <dt class="text-4xl font-extrabold text-indigo-600">Unlimited clips</dt>
-          <dd class="mt-2 text-sm font-medium text-slate-600">with Pro and above</dd>
+          <dt class="text-4xl font-extrabold text-indigo-600">AI-assisted</dt>
+          <dd class="mt-2 text-sm font-medium text-slate-600">auto-identify sermon moments</dd>
         </div>
         <div>
           <dt class="text-4xl font-extrabold text-indigo-600">3 formats</dt>
@@ -187,27 +190,43 @@ import Layout from "../../layouts/Layout.astro";
     </div>
   </section>
 
-  <!-- Plans -->
+  <!-- Pricing -->
   <section class="bg-white px-6 py-20">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-10">
-        Included on paid plans.
+    <div class="mx-auto max-w-5xl">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
+        Free on Tech Manager. Cloud plans for anywhere access.
       </h2>
-      <div class="grid gap-6 sm:grid-cols-2 text-left mb-10">
-        <div class="rounded-2xl border border-slate-200 p-8">
-          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-2">Starter</p>
-          <p class="text-3xl font-extrabold text-slate-900 mb-1">$9.99<span class="text-base font-normal text-slate-500">/month</span></p>
-          <p class="mt-4 text-slate-700 font-medium">1 clip/week — 52 clips/year</p>
-        </div>
+      <p class="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-slate-600">
+        Worship Clips is included free with Tech Manager — the desktop app that powers the booth. Use it to create unlimited AI-assisted sermon clips right from your local machine. If you want to access Worship Clips in the cloud from anywhere, we offer affordable plans.
+      </p>
+      <div class="grid gap-8 sm:grid-cols-2">
         <div class="rounded-2xl border border-indigo-200 bg-indigo-50 p-8">
-          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-2">Pro</p>
-          <p class="text-3xl font-extrabold text-slate-900 mb-1">$29.99<span class="text-base font-normal text-slate-500">/month</span></p>
-          <p class="mt-4 text-slate-700 font-medium">Unlimited clips</p>
+          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-2">Free on Tech Manager</p>
+          <p class="text-3xl font-extrabold text-slate-900 mb-1">$0<span class="text-base font-normal text-slate-500">/forever</span></p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-indigo-600 font-bold">&check;</span> Unlimited AI-assisted clips</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-indigo-600 font-bold">&check;</span> Social formatting (vertical, square, horizontal)</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-indigo-600 font-bold">&check;</span> Local clip library</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-indigo-600 font-bold">&check;</span> No credit card required</li>
+          </ul>
+          <div class="mt-6">
+            <a href="/tech-manager" class="inline-block rounded-lg bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700">Download Tech Manager &rarr;</a>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-8">
+          <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-2">Cloud plans</p>
+          <p class="text-lg font-semibold text-slate-900 mb-1">Starting at $9.99<span class="text-base font-normal text-slate-500">/month</span></p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-indigo-600 font-bold">&check;</span> Access clips from anywhere</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-indigo-600 font-bold">&check;</span> Cloud video archival</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-indigo-600 font-bold">&check;</span> Team collaboration on clips</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-indigo-600 font-bold">&check;</span> Technical support included</li>
+          </ul>
+          <div class="mt-6">
+            <a href="/pricing" class="inline-block rounded-lg border border-indigo-200 bg-white px-6 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm transition hover:bg-indigo-50">See all plans &rarr;</a>
+          </div>
         </div>
       </div>
-      <a href="/pricing" class="text-base font-semibold text-indigo-600 hover:text-indigo-700">
-        See all pricing &rarr;
-      </a>
     </div>
   </section>
 
@@ -234,15 +253,18 @@ import Layout from "../../layouts/Layout.astro";
   <section class="bg-indigo-600 px-6 py-20">
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-        Turn this Sunday's service into content.
+        Unlimited AI-assisted clips, free in Tech Manager.
       </h2>
-      <p class="mt-4 text-lg text-indigo-100">No video editing. No extra equipment. Just your message, reaching further.</p>
-      <div class="mt-8">
+      <p class="mt-4 text-lg text-indigo-100">No video editing. No extra equipment. Just your message, reaching further — free forever on your booth computer, or anywhere with a cloud plan.</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
           href="https://app.worshipmetrics.com/sign-up"
           class="rounded-lg bg-white px-8 py-3 text-base font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 transition"
         >
           Start for free
+        </a>
+        <a href="/pricing" class="rounded-lg border border-indigo-300 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-indigo-500">
+          See cloud plans
         </a>
       </div>
     </div>
