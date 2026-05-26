@@ -9,20 +9,20 @@ const CHAT_IMAGE = `${R2}/homepage/Team%20Chat%20with%20Members.jpg`;
 
 const features = [
   {
-    title: "Real-time booth communication",
-    body: "Chat flows alongside your service workflow so the team stays in sync without switching apps. Operators, directors, and volunteers all see the same conversation.",
+    title: "Private & group messaging",
+    body: "Send direct messages to individual team members or create group conversations with the exact people who need to be in the loop. Private, focused, and built for production teams.",
   },
   {
-    title: "Role-based channels",
-    body: "Production, audio, lighting, and welcome teams each get their own space. Conversations stay relevant and nobody gets flooded with messages they don't need.",
+    title: "Public & private channels",
+    body: "Create open channels for your whole production team or locked channels for specific roles. Audio gets its own space. Lighting gets its own space. Nobody gets flooded with messages they don&apos;t need.",
   },
   {
-    title: "Production intercom",
-    body: "When Pro is active, chat becomes an intercom layer that travels with the live service. Cue confirmations, timing checks, and quick fixes happen in the same surface the team is already watching.",
+    title: "File sharing",
+    body: "Share run-of-show docs, lyric sheets, stage plots, and setlists directly in the channel where the team is already talking. No more hunting through email threads or shared drives.",
   },
   {
-    title: "Ministry-wide messaging",
-    body: "Beyond Sunday, chat keeps staff, volunteers, and ministry leads connected during the week. Plan changes, scheduling updates, and prayer requests don't need a separate group text.",
+    title: "Team member profiles",
+    body: "Every volunteer and staff member gets a profile tied to their role. Know who is on audio this week, who is running cameras, and who to message when something changes.",
   },
 ];
 
@@ -34,7 +34,7 @@ const structuredData = {
   operatingSystem: "Web, iOS, Android",
   url: `${SITE_URL}/team-chat`,
   image: HERO_IMAGE,
-  description: "Real-time team communication built into the same platform that runs Sunday. Chat flows alongside your service workflow so nobody has to switch apps mid-service.",
+  description: "A fully featured team collaboration tool built for church production. Private messages, group chats, public and private channels, file sharing — everything your team needs to stay in sync before, during, and after every service.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -48,7 +48,7 @@ const structuredData = {
 <Layout
   title="Team Chat"
   socialTitle="WorshipMetrics Team Chat"
-  description="Real-time team communication built into the same platform that runs Sunday. Chat flows alongside your service workflow so nobody has to switch apps mid-service."
+  description="A fully featured team collaboration tool built for church production. Private messages, group chats, public and private channels, file sharing — everything your team needs to stay in sync before, during, and after every service."
   canonical="/team-chat"
   ogImage={HERO_IMAGE}
   structuredData={structuredData}
@@ -62,17 +62,17 @@ const structuredData = {
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Team Chat</p>
         <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-          Communication that lives inside the workflow, not outside it.
+          A fully featured team collaboration tool built for church production.
         </h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-          Most church teams run Sunday on a pile of group texts, Discord servers, and hallway conversations. Team Chat brings communication into the same platform that plans the service and runs the room.
+          Private messages, group chats, public and private channels, and file sharing — all inside the same platform that plans the service and runs the room. Keep your production team in sync before, during, and after every Sunday.
         </p>
         <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="team_chat_hero_get_started_free" data-wm-track-location="team_chat_hero">Get started free</a>
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="team_chat_hero_get_started_free" data-wm-track-location="team_chat_hero">Sign up free</a>
           <a href="/services" class="btn-outline">See Services</a>
           <a href="/av-team" class="btn-outline">See the AV Team panels</a>
         </div>
-        <p class="mt-4 text-sm text-slate-500">Free Forever includes team chat. No separate tool required.</p>
+        <p class="mt-4 text-sm text-slate-500">Free Forever includes full team chat. No separate tool required.</p>
       </div>
 
       <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
@@ -84,10 +84,10 @@ const structuredData = {
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why it matters</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Communication built for the booth, not the office.</h2>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What's included</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Everything your team needs to collaborate, free forever.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          General-purpose chat tools were designed for desk workers who can look at a screen all day. Church production teams need communication that understands the Sunday cadence and does not ask volunteers to juggle another app.
+          Most church teams cobble together communication across group texts, Discord servers, and hallway conversations. Team Chat brings private messaging, group collaboration, channels, and file sharing into one place that already knows your service workflow.
         </p>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2">
@@ -104,17 +104,18 @@ const structuredData = {
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
       <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Without switching apps</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Chat where the service runs, not somewhere else.</h2>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Channels for every team</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Public or private. Every role gets the right space.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          When a camera feed flickers or a lyric slide is out of order, the fix starts in the booth. With Team Chat inside WorshipMetrics, the conversation happens in the same surface the team is already working from. No app-switching. No missed notifications.
+          Create public channels where the whole production team can see updates, or private channels for audio, lighting, and camera teams to coordinate without cross-talk. Each channel keeps its conversations focused and every team member knows exactly where to look.
         </p>
         <ul class="mt-8 space-y-3">
           {[
-            "Chat lives inside the service workflow, not in a separate browser tab",
-            "Production intercom travels with the live run-of-show on Pro",
-            "Volunteers only see the channels relevant to their role",
-            "Ministry-wide conversations stay available between Sundays",
+            "Public channels for announcements, service plans, and team-wide updates",
+            "Private channels for role-specific coordination without noise",
+            "Direct messages for one-on-one communication between team members",
+            "Group messages for quick coordination among a few people",
+            "File sharing directly in channels — no more digging through email",
           ].map((item) => (
             <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
           ))}
@@ -125,7 +126,7 @@ const structuredData = {
         </div>
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={CHAT_IMAGE} alt="Team chat and collaboration in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={CHAT_IMAGE} alt="Team channels and member chat in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
   </section>
@@ -133,19 +134,19 @@ const structuredData = {
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={CHAT_IMAGE} alt="Intercom and live communication in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={CHAT_IMAGE} alt="Production intercom and live communication in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Production intercom</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A production intercom that runs on a tablet.</h2>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Intercom for live production, available on Pro.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          On Pro, chat becomes a production intercom that carries timing cues, confirmations, and quick adjustments through the live service. Operators, directors, and volunteers communicate without yelling across the booth.
+          When Pro is active, chat adds a production intercom layer that travels with the live service. Cue confirmations, timing checks, and quick adjustments happen in the same surface the team is already watching — no separate intercom hardware stack required.
         </p>
         <ul class="mt-8 space-y-3">
           {[
             "Cue confirmations travel with the service timeline",
-            "Volunteer control panels include chat for the roles they're assigned",
-            "Nobody needs a separate intercom hardware stack",
+            "Volunteer control panels include intercom for assigned roles",
+            "Operators, directors, and volunteers communicate without yelling across the booth",
             "Channels stay organized by production area so messages are actionable",
           ].map((item) => (
             <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
@@ -161,17 +162,17 @@ const structuredData = {
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Built for ministry teams</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Group texts are not a communication strategy.</h2>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Before, during & after</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Stay in sync through the entire week, not just Sunday morning.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          When the plan changes on Thursday night or a volunteer drops out on Saturday, the whole team should know without a chain of forwarded messages. Team Chat gives every ministry team a single shared space that stays current.
+          When the plan changes on Thursday night or a volunteer drops out on Saturday, the whole team knows without a chain of forwarded messages. Team Chat keeps every ministry team connected through planning, rehearsals, the live service, and the debrief that follows.
         </p>
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { title: "Sunday crew", body: "Everyone serving this Sunday sees the same channel. Updates reach the whole team at once." },
-          { title: "Ministry leads", body: "Staff and key volunteers stay connected during the week for planning, changes, and prayer." },
-          { title: "AV Club", body: "Youth volunteers and mentors communicate in their own space without mixing with the full team." },
+          { title: "Before Sunday", body: "Share service plans, coordinate rehearsals, and confirm assignments. Everyone walks in prepared." },
+          { title: "During Sunday", body: "Production intercom keeps the booth in sync. Quick fixes, cue confirmations, and timing checks in real time." },
+          { title: "After Sunday", body: "Debrief what worked, share clips, and start planning next week while it&apos;s still fresh." },
         ].map(({ title, body }) => (
           <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
             <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
@@ -184,12 +185,12 @@ const structuredData = {
 
   <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Stop running Sunday through text messages.</h2>
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Stop running Sunday through a pile of text messages.</h2>
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-        Give your team communication that lives inside the workflow they're already using. Team Chat is included on Free Forever.
+        Give your team private messaging, group chats, channels, and file sharing — all inside the workflow they&apos;re already using. Team Chat is included on Free Forever.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
-        <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="team_chat_footer_get_started_free" data-wm-track-location="team_chat_footer_cta">Get started free</a>
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="team_chat_footer_get_started_free" data-wm-track-location="team_chat_footer_cta">Sign up free</a>
         <a href="/discovery-call" class="btn-outline" data-wm-track="cta_click" data-wm-track-label="team_chat_footer_book_call" data-wm-track-location="team_chat_footer_cta">Book a demo</a>
         <a href="/services" class="btn-outline">See Services</a>
       </div>
