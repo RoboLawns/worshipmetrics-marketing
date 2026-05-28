@@ -1,0 +1,228 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/Tech%20Manager/Tech%20Manager%20System%20Documentation%20-%20Hero%20Lifestyle.jpg`;
+const DEVICE_IMAGE = `${R2}/homepage/System%20Documentation/Church%20AV%20Device%20Management.jpg`;
+const WIRING_IMAGE = `${R2}/homepage/System%20Documentation/Device%20Management%20for%20Church%20AV.jpg`;
+
+const features = [
+  {
+    title: "Guided system wizard",
+    body: "Walk through a simple step-by-step process that asks the right questions about your setup. No AV engineering background required — describe your system in plain language and we build the diagram for you.",
+  },
+  {
+    title: "Automatic wiring diagrams",
+    body: "As you add devices, an intelligent wiring diagram builds itself. Every connection, every port, every signal path is visualized so your team knows exactly what is plugged into what.",
+  },
+  {
+    title: "Device library with 200+ known products",
+    body: "Select from a growing library of pre-loaded ProAV devices. When you add a Behringer Wing or a Blackmagic ATEM Mini, we already know how many ports it has, what protocols it supports, and how it connects.",
+  },
+  {
+    title: "Professional printouts & cable labeling",
+    body: "Generate clean, professional wiring diagrams ready for print. Label every cable, every port, and every connection so that when something goes wrong, anyone on your team can trace the signal path.",
+  },
+];
+
+const capabilities = [
+  {
+    title: "Organize by device type",
+    body: "View just your audio system, just your cameras, or just your lighting rig. Filter by device type so you only see the gear relevant to the question you're answering.",
+  },
+  {
+    title: "Organize by room",
+    body: "Group devices into rooms — lobby, front stage, balcony booth, overflow room. Manage each space independently or see the full system map across your entire campus.",
+  },
+  {
+    title: "Syncs with Luminos AI",
+    body: "The better you document your system, the smarter Luminos becomes. When something breaks, the AI already knows your signal chain, your device models, and your room layout — so troubleshooting starts in seconds, not hours.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics System Documentation",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, Windows, Mac, iOS, Android",
+  url: `${SITE_URL}/system-documentation`,
+  image: HERO_IMAGE,
+  description: "Document your church AV system with a guided wizard that builds automatic wiring diagrams. Organize devices by type and room, generate professional printouts for cable labeling, and sync everything with Luminos AI for smarter troubleshooting.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/pricing`,
+  },
+};
+---
+
+<Layout
+  title="System Documentation"
+  socialTitle="WorshipMetrics System Documentation"
+  description="Document your church AV system with a guided wizard that builds automatic wiring diagrams. Organize devices by type and room, and sync with Luminos AI for smarter troubleshooting."
+  canonical="/system-documentation"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={HERO_IMAGE} />
+  </Fragment>
+
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">System Documentation</p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Never wonder which cable goes where again.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Walk through a guided wizard that asks about your AV setup in plain language and automatically builds a detailed wiring diagram of your entire system. No AV engineering degree required.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="system_docs_hero_sign_up_free" data-wm-track-location="system_docs_hero">Sign up free</a>
+          <a href="/tech-manager" class="btn-outline">Download Tech Manager</a>
+          <a href="/luminos-ai-assistant" class="btn-outline">See Luminos AI</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">System documentation is included in Tech Manager, free.</p>
+      </div>
+
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="System documentation wizard in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">How it works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Build a professional AV system map in minutes, not days.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Most churches either have no documentation at all, or a dusty PDF that hasn&apos;t been updated since the last install. System Documentation gives you a living map of every device, every connection, and every signal path — kept current and shared with your team.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {features.map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Device library</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">200+ devices pre-loaded. No guesswork.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          When you add a device to your system, we already know the specs. Select a Behringer Wing and the port count, protocols, and connection options populate automatically. The same goes for Blackmagic switchers, PTZ cameras, audio mixers, encoders, and hundreds more.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "Pre-loaded specs for 200+ ProAV devices and counting",
+            "Automatic port mapping — no more counting XLR jacks on a spec sheet",
+            "Protocol detection so you know what talks to what",
+            "Device library grows as manufacturers release new gear",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/integrations" class="btn-outline">See supported devices</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={DEVICE_IMAGE} alt="Church AV device management in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={WIRING_IMAGE} alt="Device management and room organization in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Organize by type & room</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">See the system the way your team thinks about it.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Your audio team doesn&apos;t need to see the lighting rig. Your lighting operator doesn&apos;t need to scroll past the cameras. System Documentation lets you organize devices by type or by room so every person sees exactly what they need.
+        </p>
+        <div class="mt-8 grid gap-6 sm:grid-cols-3">
+          {capabilities.map(({ title, body }) => (
+            <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+              <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Professional printouts</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Cable labels. Wiring diagrams. Ready to print.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Generate clean, professional wiring diagrams suitable for framing in the booth or handing to an installer. Label every cable and port so that when something fails mid-service, anyone on the team can find the problem without tracing cables through a dark rack.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "Full system wiring diagrams with port-level detail",
+            "Cable labeling exports so every connection is identified",
+            "Room-by-room views for targeted troubleshooting",
+            "Shareable documentation that stays current as your system evolves",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/tech-manager" class="btn-primary">Download Tech Manager</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={HERO_IMAGE} alt="System documentation wiring diagram in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-indigo-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-100 bg-white p-8 shadow-sm sm:p-12">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Luminos AI integration</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The better you document, the smarter Luminos gets.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          System Documentation isn&apos;t just a pretty diagram — it&apos;s the knowledge base that powers Luminos AI. When something breaks on Sunday, Luminos already knows your signal chain, your device models, your room layout, and your connection paths. Troubleshooting starts in seconds instead of hours, and every system upgrade recommendation is based on your actual gear, not a generic checklist.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+          <a href="/luminos-ai-assistant" class="btn-primary">See Luminos AI</a>
+          <a href={`${APP_URL}/sign-up`} class="btn-outline" data-wm-track="cta_click" data-wm-track-label="system_docs_luminos_sign_up_free" data-wm-track-location="system_docs_luminos">Sign up free</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Document your system once. Keep it current forever.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Stop relying on memory and sticky notes. Build a living map of your AV system that your entire team can reference, print, and trust — included free in Tech Manager.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="system_docs_footer_sign_up_free" data-wm-track-location="system_docs_footer">Sign up free</a>
+        <a href="/tech-manager" class="btn-outline">Download Tech Manager</a>
+        <a href="/discovery-call" class="btn-outline">Book a demo</a>
+      </div>
+    </div>
+  </section>
+</Layout>
