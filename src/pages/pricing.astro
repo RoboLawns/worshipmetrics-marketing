@@ -112,10 +112,9 @@ const plans = [
   },
 ];
 
-const lifetimePro = {
-  price: "$999",
-  updates: "$99/year",
-  body: "Pay once and get Pro for life for your church. You get everything in Pro with realistic Worship Clips Cloud limits, plus onboarding and an installation session.",
+const supportServicePlans = {
+  headline: "Get a support plan that matches how your team works.",
+  body: "WorshipMetrics offers technical support service plans for churches that want more than standard support. From extended phone coverage to dedicated onboarding and priority response, we tailor a plan to your church's production needs.",
 };
 
 const comparisonRows = [
@@ -139,7 +138,6 @@ const comparisonRows = [
 const faqItems = [
   { question: "Is Free Forever really free forever?", answer: "Yes. No credit card, no trial timer, and no forced expiration. Churches can start with the full local toolkit and prove the system before they ever pay." },
   { question: "Can I upgrade and downgrade?", answer: "Yes. You can move between plans anytime as your ministry grows or your needs change." },
-  { question: "Do you offer a one-time Pro purchase?", answer: "Yes. Churches can pay $999 one-time for Pro for life. It includes onboarding and an installation session. Updates are $99 per year. Reach out to learn more about the realistic Worship Clips Cloud limits." },
   { question: "What kind of support comes with each tier?", answer: "Free Forever is community-supported. Starter includes email and ticket support. Pro adds phone support alongside email and tickets. Multi-Site includes a dedicated account manager and onboarding support." },
   { question: "Do you offer a nonprofit discount?", answer: "Yes. Contact us and we will talk through the right fit for your ministry and budget." },
   { question: "Do you offer a multi-church discount?", answer: "Yes. Multi-campus and multi-church organizations should talk with us directly so pricing can match the real rollout." },
@@ -157,7 +155,6 @@ const structuredData = [
       { "@type": "Offer", name: "Free Forever", price: "0", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
       { "@type": "Offer", name: "Starter", price: "9.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
       { "@type": "Offer", name: "Pro", price: "29.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "Pro for Life", price: "999", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
       { "@type": "Offer", name: "Worship Metrics Tablet", price: "349", priceCurrency: "USD", url: `${SITE_URL}/tablet` },
     ],
   },
@@ -230,21 +227,34 @@ const structuredData = [
     </div>
   </section>
 
+  <!-- Tech Support Service Plans -->
   <section class="bg-white px-4 pb-6 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl rounded-[2rem] border border-amber-200 bg-amber-50 p-8 shadow-sm sm:p-10">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-200 bg-indigo-50 p-8 shadow-sm sm:p-10">
       <div class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
         <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-amber-700">One-time option</p>
-          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Own Pro for life.</h2>
-          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{lifetimePro.body}</p>
-        </div>
-        <div class="rounded-[1.5rem] border border-amber-200 bg-white p-6 shadow-sm">
-          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-amber-700">Pro for life</p>
-          <p class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900">{lifetimePro.price}<span class="ml-2 text-base font-medium text-slate-500">one-time</span></p>
-          <p class="mt-3 text-sm leading-relaxed text-slate-600">Updates are {lifetimePro.updates}. Reach out to learn more about the Worship Clips Cloud limits and whether this is the right fit for your church.</p>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Tech Support Service Plans</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{supportServicePlans.headline}</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{supportServicePlans.body}</p>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            Whether you need extended phone hours, dedicated onboarding for new volunteers, or priority response during live service windows, we build a plan around your church. Call <a href="tel:+19109677447" class="font-semibold text-indigo-600 hover:text-indigo-800">910-WORSHIP</a> and talk to Paul or Noah about what makes sense for your team.
+          </p>
           <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a href="/discovery-call" class="btn-primary">Ask about Pro for life</a>
-            <a href="/contact" class="btn-outline">Reach out to learn more</a>
+            <a href="/discovery-call" class="btn-primary">Get a support plan quote</a>
+            <a href="/contact" class="btn-outline">Contact us about support plans</a>
+          </div>
+        </div>
+        <div class="grid gap-4">
+          <div class="rounded-[1.5rem] border border-indigo-200 bg-white p-6 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Extended phone support</p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Coverage beyond standard hours for churches running midweek services or multi-campus schedules.</p>
+          </div>
+          <div class="rounded-[1.5rem] border border-indigo-200 bg-white p-6 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Dedicated onboarding</p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Hands-on setup sessions for your team, tailored to your actual AV system and volunteer structure.</p>
+          </div>
+          <div class="rounded-[1.5rem] border border-indigo-200 bg-white p-6 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Priority live-service response</p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">If something breaks during service, you get a human immediately who knows your system and can help right now.</p>
           </div>
         </div>
       </div>
