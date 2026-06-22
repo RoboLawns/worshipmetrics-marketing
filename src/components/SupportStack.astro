@@ -1,0 +1,63 @@
+---
+const cards = [
+  {
+    title: "Diagnose",
+    href: "/av-monitoring",
+    promise: "Know exactly what is happening in your booth — before the congregation does.",
+    proof: "Most churches find out their stream dropped when someone watching at home texts the booth. AV Monitoring surfaces every device, every signal, and every stream in one dashboard so you catch problems first.",
+  },
+  {
+    title: "Document",
+    href: "/system-documentation",
+    promise: "Your system, mapped — not trapped in one head.",
+    proof: "When a volunteer leaves, their knowledge should not leave with them. System Documentation captures your entire signal chain, device inventory, and wiring so the whole team can understand the booth.",
+  },
+  {
+    title: "Troubleshoot with AI",
+    href: "/luminos-ai-assistant",
+    promise: "Expert help, trained on your exact setup — not a forum thread.",
+    proof: "Luminos knows your hardware, your OBS version, your network topology, and your support history. It diagnoses problems with specificity and proposes fixes grounded in your actual system.",
+  },
+  {
+    title: "Real support",
+    href: "/professional-services",
+    promise: "When you need a human, you get one who knows church production.",
+    proof: "Paul and Noah pick up the phone at 910-WORSHIP. No call center, no ticket queue — just people who have run church AV and can help you fix whatever is breaking.",
+  },
+];
+---
+
+<section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The support stack</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Detect &rarr; Understand &rarr; Diagnose &rarr; Resolve.
+      </h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+        No other church tool closes the whole loop.
+      </p>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {cards.map(({ title, href, promise, proof }) => (
+        <a
+          href={href}
+          class="group flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white hover:shadow-md"
+        >
+          <span class="inline-flex self-start rounded-full bg-indigo-600 px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-white">
+            {title}
+          </span>
+          <p class="mt-4 text-sm font-semibold leading-snug text-slate-900">
+            {promise}
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">
+            {proof}
+          </p>
+          <span class="mt-auto pt-4 text-sm font-semibold text-indigo-600 group-hover:underline">
+            Learn more &rarr;
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

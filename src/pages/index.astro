@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SupportStack from "../components/SupportStack.astro";
 import IntegrationsBand from "../components/integrations/IntegrationsBand.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
@@ -34,7 +35,7 @@ const structuredData = {
   operatingSystem: "Web, Windows, Mac, iOS, Android",
   url: SITE_URL,
   image: HERO_IMAGE,
-  description: "WorshipMetrics gets your whole volunteer crew on one run of show, documents how your system actually works, and puts AI help and real tech support one tap away. Works with the gear you already own. Free to start.",
+  description: "WorshipMetrics gives you real-time monitoring, system mapping, AI trained on your specific setup, and support staffed by people who actually run church production. Works with the gear you already own. Free to start.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -46,9 +47,9 @@ const structuredData = {
 ---
 
 <Layout
-  title="Run Sunday Like a Pro"
-  socialTitle="WorshipMetrics | Run Sunday Like a Pro"
-  description="WorshipMetrics gets your whole volunteer crew on one run of show, documents how your system actually works, and puts AI help and real tech support one tap away. Works with the gear you already own. Free to start."
+  title="Worship Tech Support That Catches Problems First"
+  socialTitle="WorshipMetrics | Worship Tech Support That Catches Problems First"
+  description="WorshipMetrics gives you real-time monitoring, system mapping, AI trained on your specific setup, and support staffed by people who actually run church production. Works with the gear you already own. Free to start."
   canonical="/"
   ogImage={HERO_IMAGE}
   structuredData={structuredData}
@@ -57,6 +58,7 @@ const structuredData = {
     <link rel="preload" as="image" href={HERO_IMAGE} />
   </Fragment>
 
+  <!-- Hero -->
   <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
       <div>
@@ -64,10 +66,13 @@ const structuredData = {
           Free forever — no credit card required
         </p>
         <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-          Run Sunday like a pro — even when half your team is new.
+          Know first. Fix faster.
         </h1>
+        <p class="mt-3 text-base font-semibold text-indigo-500 sm:text-lg">
+          The support team for your church&rsquo;s AV.
+        </p>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-          WorshipMetrics gets your whole volunteer crew on one run of show, documents how your system actually works, and puts AI help and real tech support one tap away. Works with the gear you already own. Free to start.
+          WorshipMetrics gives you real-time monitoring, system mapping, AI trained on your specific setup, and support staffed by people who actually run church production. Works with the gear you already own. Free to start.
         </p>
         <div class="mt-8 flex flex-col items-start gap-3">
           <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="home_hero_sign_up_free" data-wm-track-location="home_hero">Sign up free</a>
@@ -81,6 +86,10 @@ const structuredData = {
     </div>
   </section>
 
+  <!-- Support Stack -->
+  <SupportStack />
+
+  <!-- Included free -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
@@ -101,105 +110,7 @@ const structuredData = {
     </div>
   </section>
 
-  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Optional cloud add-ons</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Cloud AI features when you&apos;re ready.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Want AI sermon clipping in the cloud, cloud video archival, advanced analytics or multi-campus management? We offer affordable pro plans with included technical support. Everything else is free.
-        </p>
-        <div class="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a href="/pricing" class="btn-outline">Compare plans</a>
-          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_addons_sign_up_free" data-wm-track-location="home_addons">Sign up free</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
-      <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Produce</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Reach further than your sanctuary.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Livestream that actually works. Sermon clips ready to publish before the parking lot empties. Digital signage that updates from a phone. Every Sunday becomes content that finds the people who weren&apos;t there.
-        </p>
-      </div>
-      <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">People</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Build the team that makes it possible.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Role-based control panels for every job in the booth. Volunteer scheduling that doesn&apos;t depend on one exhausted coordinator. Training-friendly workflows so a teenager can run a camera with confidence. One person can&apos;t carry Sunday, and shouldn&apos;t have to.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
-      <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
-        <img src={TECH_MANAGER_CARD_IMAGE} alt="Tech Manager hero" loading="lazy" decoding="async" class="mb-6 aspect-[16/10] w-full rounded-2xl object-cover" />
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Tech Manager</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The desktop app that powers the booth.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Map your system, monitor your stream, control your cameras, and turn every Sunday into ready-to-publish clips without leaving the room.
-        </p>
-        <p class="mt-5 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
-          Worship Clips local workflow is included free.
-        </p>
-        <div class="mt-8">
-          <a href="/tech-manager" class="btn-outline">Learn more</a>
-        </div>
-      </div>
-      <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
-        <img src={PLATFORM_CARD_IMAGE} alt="Worship Metrics platform hero" loading="lazy" decoding="async" class="mb-6 aspect-[16/10] w-full rounded-2xl object-cover" />
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Platform</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The Worship Metrics Platform</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          The cloud platform behind the ministry. Plan the service, share the load with your team, count attendance in-room and online, and walk into Monday already knowing who needs follow-up.
-        </p>
-        <div class="mt-8">
-          <a href="/platform" class="btn-outline">Learn more</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">How it works</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Plan. Run. Know.</h2>
-      </div>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {[
-          {
-            title: "Plan",
-            body: "Build the service in a format pastors, volunteers, and the booth can all understand.",
-            href: "/services",
-          },
-          {
-            title: "Run",
-            body: "Keep the room steady with booth tools, role panels, and a clearer live workflow.",
-            href: "/tech-manager",
-          },
-          {
-            title: "Know",
-            body: "Walk into Monday with clearer attendance, healthier follow-up, and better visibility into what really happened.",
-            href: "/platform/attendance",
-          },
-        ].map(({ title, body, href }, index) => (
-          <a href={href} class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm transition hover:border-indigo-300 hover:bg-white hover:shadow-md">
-            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{index + 1}</span>
-            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
+  <!-- Pulse / Diagnose -->
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
       <div>
@@ -222,74 +133,38 @@ const structuredData = {
     </div>
   </section>
 
+  <!-- Tech Manager / System (Document) -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Build a ministry, not just a production team</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your AV booth could be where new volunteers find their place.</h2>
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
+      <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <img src={TECH_MANAGER_CARD_IMAGE} alt="Tech Manager hero" loading="lazy" decoding="async" class="mb-6 aspect-[16/10] w-full rounded-2xl object-cover" />
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Tech Manager</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The desktop app that powers the booth.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Churches need volunteers. Youth ministries need meaningful next steps for students who are ready for real responsibility. Worship Metrics brings those two needs together.
+          Map your system, monitor your stream, control your cameras, and turn every Sunday into ready-to-publish clips without leaving the room. Tech Manager powers the Diagnose and Document pillars of your support stack.
         </p>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          With role-based interfaces, simpler control panels, and training-friendly workflows, you can invite more people into Sunday without throwing them into the deep end. That is how an AV Club becomes a ministry, not just a staffing fix.
+        <p class="mt-5 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          Worship Clips local workflow is included free.
         </p>
-        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_avclub_sign_up_free" data-wm-track-location="home_avclub">Sign up free</a>
-          <a href="/av-club" class="btn-outline">Learn more</a>
+        <div class="mt-8">
+          <a href="/tech-manager" class="btn-outline">Learn more</a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={VOLUNTEER_PANEL_IMAGE} alt="Volunteer-friendly control panels in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Plan</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Plan the service. Share the work. Make Sunday easier.</h2>
+      <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <img src={PLATFORM_CARD_IMAGE} alt="Worship Metrics platform hero" loading="lazy" decoding="async" class="mb-6 aspect-[16/10] w-full rounded-2xl object-cover" />
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Platform</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The Worship Metrics Platform</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Services is where the whole church gets on the same page. It gives staff, volunteers, and the booth one service workflow instead of a pile of disconnected notes and texts.
+          The cloud platform behind the ministry. Plan the service, share the load with your team, count attendance in-room and online, and walk into Monday already knowing who needs follow-up.
         </p>
-        <ul class="mt-8 space-y-3 text-sm text-slate-700 sm:text-base">
-          {[
-            "Free Forever gets the whole team into the same service plan",
-            "Paid tiers add the production engine that makes live Sunday smoother",
-            "Every role becomes easier to share with new volunteers and younger team members",
-          ].map((item) => (
-            <li class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
-          ))}
-        </ul>
-        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_plan_sign_up_free" data-wm-track-location="home_plan">Sign up free</a>
-          <a href="/services" class="btn-outline">Learn more</a>
-        </div>
-      </div>
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={SERVICES_IMAGE} alt="Services workflow in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-slate-50 p-8 shadow-sm sm:p-12">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">About us</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Church metrics built by people who&apos;ve actually run the service.</h2>
-        <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-          WorshipMetrics is the analytics and live production platform built by a pastor, an engineer, and a 20-year AV educator — because the three of us couldn&apos;t find church tech that worked the way ministry actually works.
-        </p>
-        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
-          <a href="/about" class="btn-primary">Meet the team</a>
-          <a href={`${APP_URL}/sign-up`} class="btn-outline">Sign up free</a>
+        <div class="mt-8">
+          <a href="/platform" class="btn-outline">Learn more</a>
         </div>
       </div>
     </div>
   </section>
 
-  <IntegrationsBand />
-
+  <!-- Support (humans) -->
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
       <div class="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
@@ -323,6 +198,150 @@ const structuredData = {
     </div>
   </section>
 
+  <!-- How it works -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">How it works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Plan. Run. Know.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {[
+          {
+            title: "Plan",
+            body: "Build the service in a format pastors, volunteers, and the booth can all understand.",
+            href: "/services",
+          },
+          {
+            title: "Run",
+            body: "Keep the room steady with booth tools, role panels, and a clearer live workflow.",
+            href: "/tech-manager",
+          },
+          {
+            title: "Know",
+            body: "Catch issues before the congregation does with stream health monitoring, attendance data, and system observability.",
+            href: "/platform/attendance",
+          },
+        ].map(({ title, body, href }, index) => (
+          <a href={href} class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm transition hover:border-indigo-300 hover:bg-white hover:shadow-md">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{index + 1}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Produce / People (secondary) -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
+      <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Produce</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Reach further than your sanctuary.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Livestream that actually works. Sermon clips ready to publish before the parking lot empties. Digital signage that updates from a phone. Every Sunday becomes content that finds the people who weren&apos;t there.
+        </p>
+      </div>
+      <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">People</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Build the team that makes it possible.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Role-based control panels for every job in the booth. Volunteer scheduling that doesn&apos;t depend on one exhausted coordinator. Training-friendly workflows so a teenager can run a camera with confidence. One person can&apos;t carry Sunday, and shouldn&apos;t have to.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plan -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Plan</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Plan the service. Share the work. Make Sunday easier.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Services is where the whole church gets on the same page. It gives staff, volunteers, and the booth one service workflow instead of a pile of disconnected notes and texts.
+        </p>
+        <ul class="mt-8 space-y-3 text-sm text-slate-700 sm:text-base">
+          {[
+            "Free Forever gets the whole team into the same service plan",
+            "Paid tiers add the production engine that makes live Sunday smoother",
+            "Every role becomes easier to share with new volunteers and younger team members",
+          ].map((item) => (
+            <li class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_plan_sign_up_free" data-wm-track-location="home_plan">Sign up free</a>
+          <a href="/services" class="btn-outline">Learn more</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={SERVICES_IMAGE} alt="Services workflow in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Build a ministry / AV Club -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Build a ministry, not just a production team</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your AV booth could be where new volunteers find their place.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Churches need volunteers. Youth ministries need meaningful next steps for students who are ready for real responsibility. Worship Metrics brings those two needs together.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          With role-based interfaces, simpler control panels, and training-friendly workflows, you can invite more people into Sunday without throwing them into the deep end. That is how an AV Club becomes a ministry, not just a staffing fix.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_avclub_sign_up_free" data-wm-track-location="home_avclub">Sign up free</a>
+          <a href="/av-club" class="btn-outline">Learn more</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={VOLUNTEER_PANEL_IMAGE} alt="Volunteer-friendly control panels in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Cloud add-ons -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Optional cloud add-ons</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Cloud AI features when you&apos;re ready.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Want AI sermon clipping in the cloud, cloud video archival, advanced analytics or multi-campus management? We offer affordable pro plans with included technical support. Everything else is free.
+        </p>
+        <div class="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="/pricing" class="btn-outline">Compare plans</a>
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="home_addons_sign_up_free" data-wm-track-location="home_addons">Sign up free</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About us -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-slate-50 p-8 shadow-sm sm:p-12">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">About us</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Church metrics built by people who&apos;ve actually run the service.</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          WorshipMetrics is the analytics and live production platform built by a pastor, an engineer, and a 20-year AV educator — because the three of us couldn&apos;t find church tech that worked the way ministry actually works.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+          <a href="/about" class="btn-primary">Meet the team</a>
+          <a href={`${APP_URL}/sign-up`} class="btn-outline">Sign up free</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <IntegrationsBand />
+
+  <!-- Final CTA -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl rounded-[2rem] border border-slate-200 bg-slate-50 p-10 text-center shadow-sm sm:p-12">
       <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Start free. Upgrade when you&apos;re ready.</h2>
