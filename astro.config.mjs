@@ -16,6 +16,7 @@ export default defineConfig({
     '/features': '/platform',
     '/integrations/central-control': '/services',
     '/av-team/build-your-av-team': '/av-team',
+    '/welcome': 'https://app.worshipmetrics.com',
   },
   output: 'server',
   adapter: cloudflare(),
