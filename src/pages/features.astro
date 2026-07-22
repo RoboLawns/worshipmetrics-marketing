@@ -6,6 +6,27 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 
 const featureGroups = [
   {
+    category: "Live Streaming & Production",
+    items: [
+      {
+        title: "Multi-destination streaming",
+        description: "Send one feed to WorshipMetrics and fan out to YouTube, Facebook, your website embed, and any custom RTMP destination.",
+      },
+      {
+        title: "Automatic recordings library",
+        description: "Every service is recorded automatically — trim, clip, or publish it after the stream ends.",
+      },
+      {
+        title: "Live & post-service clipping",
+        description: "Mark moments during the service or cut from the recording after. Sermon clips are ready before Monday.",
+      },
+      {
+        title: "Stream health monitoring & alerts",
+        description: "Bitrate, dropped frames, and encoder load watched in real time, with alerts the moment anything drops.",
+      },
+    ],
+  },
+  {
     category: "Attendance",
     items: [
       {
@@ -89,8 +110,8 @@ const featureGroups = [
 ---
 
 <Layout
-  title="Church Attendance, Follow-Up, and Analytics Features"
-  description="Explore WorshipMetrics features for church attendance tracking, guest follow-up, analytics, hardware, digital engagement, and volunteer workflows."
+  title="Church Live Streaming, Attendance, and Analytics Features"
+  description="Explore WorshipMetrics features for live streaming and re-streaming, sermon clips, church attendance tracking, guest follow-up, analytics, hardware, and volunteer workflows."
   canonical="/features"
 >
   <!-- Page hero -->
@@ -100,7 +121,7 @@ const featureGroups = [
         Features
       </h1>
       <p class="mt-4 text-lg text-slate-600">
-        Everything you need to run a healthy, connected congregation — in one simple platform.
+        Your live stream, handled &mdash; plus everything a healthy, connected congregation needs around it, in one platform.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
@@ -197,6 +218,7 @@ const featureGroups = [
       </div>
       <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {[
+          { href: "/live-streaming", title: "Church live streaming platform", body: "One feed in, every Sunday out — destinations, recordings, clips, and monitoring in one place." },
           { href: "/free-church-attendance-software", title: "Free church attendance software", body: "A conversion-focused page for churches ready to start tracking attendance without paying first." },
           { href: "/free-church-digital-signage", title: "Free church digital signage", body: "A conversion-focused page for churches that want to manage lobby screens without monthly fees." },
           { href: "/church-attendance-tracking-software", title: "Church attendance tracking software", body: "How churches track in-person and online attendance with one connected workflow." },

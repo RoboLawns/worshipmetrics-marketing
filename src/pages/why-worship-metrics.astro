@@ -7,6 +7,16 @@ const OG_IMAGE = `${R2}/homepage/Team%20Collaboration%20hero.jpg`;
 
 const comparisons = [
   {
+    title: "vs. your streaming provider",
+    summary: "BoxCast, Resi, and Restream give you a pipe from the booth to the internet. Worship Metrics is the streaming destination that also carries the plan, the people, the presentation, and the monitoring around the stream — with humans on call seven days a week.",
+    bullets: [
+      "One feed in — fan-out to YouTube, Facebook, your website, and custom RTMP",
+      "Automatic recordings and clips, live during the service or after",
+      "The only streaming platform where support answers the phone 7 days a week",
+    ],
+    href: "/replace-your-stack",
+  },
+  {
     title: "vs. Planning Center",
     summary: "Planning Center is strong at service planning. Worship Metrics is what you add when the church also needs the production booth, volunteer execution, and the Sunday operating layer around the plan.",
     bullets: [
@@ -18,11 +28,11 @@ const comparisons = [
   },
   {
     title: "vs. ProPresenter",
-    summary: "ProPresenter is excellent for slides. Worship Metrics is not trying to replace the presentation layer. It is the system around the service plan, volunteer coordination, cues, and broader Sunday workflow.",
+    summary: "ProPresenter is excellent for slides. Worship Metrics builds presentation from the service plan itself — songs, lyrics, and stage display come straight from what the team already planned, with no re-typing the setlist.",
     bullets: [
-      "ProPresenter owns lyrics, graphics, and presentation output",
-      "Worship Metrics owns planning, coordination, execution context, and production flow",
-      "The two make more sense together than as direct substitutes",
+      "Slides, lyrics, and stage display generated from the same service plan",
+      "Worship Metrics also owns planning, coordination, and production flow around the screen",
+      "Keep ProPresenter if your team loves it — Worship Metrics works alongside or replaces it",
     ],
     href: "/tech-manager",
   },
@@ -53,23 +63,23 @@ const structuredData = {
   "@type": "WebPage",
   name: "Why WorshipMetrics",
   url: `${SITE_URL}/why-worship-metrics`,
-  description: "See how WorshipMetrics compares to Planning Center, ProPresenter, spreadsheets, and the status quo for churches running Sunday with growing complexity.",
+  description: "See how WorshipMetrics compares to streaming providers, Planning Center, ProPresenter, spreadsheets, and the status quo — one platform that handles the live stream and everything around it.",
 };
 ---
 
 <Layout
   title="Why Worship Metrics"
-  description="See how WorshipMetrics compares to Planning Center, ProPresenter, spreadsheets, and the status quo for churches running Sunday with growing complexity."
+  description="See how WorshipMetrics compares to streaming providers, Planning Center, ProPresenter, spreadsheets, and the status quo — one platform that handles the live stream and everything around it."
   canonical="/why-worship-metrics"
   ogImage={OG_IMAGE}
   structuredData={structuredData}
 >
   <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why Worship Metrics</p>
-      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">A clearer answer for churches that have outgrown the patchwork.</h1>
+      <p class="eyebrow">Why Worship Metrics</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">We handle the stream. And everything around it.</h1>
       <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-        Worship Metrics is not trying to be every category of church software. It exists for churches that need service planning, volunteer coordination, booth awareness, and execution to feel like one connected operating system instead of four separate decisions.
+        Worship Metrics is the streaming destination that also carries the rest of Sunday &mdash; the plan, the volunteers, the presentation, the booth, and the monitoring &mdash; as one connected platform instead of five separate subscriptions. Backed by real humans, seven days a week.
       </p>
     </div>
   </section>
@@ -113,7 +123,7 @@ const structuredData = {
           },
           {
             title: "Wait if",
-            body: "you only need presentation software, or your team truly does not yet need a shared Sunday operating system.",
+            body: "your team truly does not yet stream or need a shared Sunday operating system — a single-room service with no online congregation may not need us yet.",
           },
           {
             title: "Upgrade when",
