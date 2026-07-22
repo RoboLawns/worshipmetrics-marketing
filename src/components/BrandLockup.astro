@@ -1,0 +1,44 @@
+---
+/**
+ * Worship Metrics primary lockup — Brand Kit v1.0 (Lockup M2 + thin beat icon).
+ * Geometry is locked artwork from the brand kit; never re-type the wordmark.
+ * Renditions: "on-light" (default, ink + blue) and "on-dark" (near-white + blue).
+ * Min rendered width per brand guide: 140px.
+ */
+interface Props {
+  variant?: "on-light" | "on-dark";
+  width?: number;
+  class?: string;
+}
+
+const { variant = "on-light", width = 150, class: className } = Astro.props;
+
+const BLUE = "#2B7FF0";
+const worshipFill = variant === "on-dark" ? "#E9EEF4" : "#0B0D10";
+const height = Math.round(width * (72 / 320));
+---
+
+<svg
+  viewBox="0 14 320 72"
+  width={width}
+  height={height}
+  role="img"
+  aria-label="Worship Metrics"
+  class={className}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text
+    x="139" y="59" text-anchor="end"
+    font-family="Archivo, sans-serif" font-size="34" font-weight="800" letter-spacing="-1"
+    fill={worshipFill}
+  >worship</text>
+  <path
+    d="M145 48 H151 L158.6 27.8 L167.8 64.6 L175.4 48 H181"
+    fill="none" stroke={BLUE} stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+  />
+  <text
+    x="187" y="59" text-anchor="start"
+    font-family="Archivo, sans-serif" font-size="34" font-weight="800" letter-spacing="-1"
+    fill={BLUE}
+  >metrics</text>
+</svg>
