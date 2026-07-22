@@ -25,5 +25,8 @@
     "astro-icon": "^1.1.5",
     "pagefind": "^1.5.2",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
   }
 }
