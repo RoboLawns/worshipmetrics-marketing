@@ -30,22 +30,18 @@ const sections = [
     title: "7. Limitation of Liability",
     body: "WorshipMetrics is provided as-is. We are not liable for losses beyond your subscription fees paid in the prior 12 months. We make no warranties, expressed or implied, beyond what is stated here.",
   },
-  {
-    title: "8. Contact",
-    body: "Questions about these terms? Email support@worshipmetrics.com",
-  },
 ];
 ---
 
 <Layout
   title="Terms of Service"
-  description="WorshipMetrics Terms of Service."
+  description="WorshipMetrics Terms of Service, including SMS/text messaging terms and AI voice disclosures."
   canonical="/terms"
 >
   <section class="bg-white px-6 py-20">
     <div class="mx-auto max-w-3xl">
       <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 mb-4">Terms of Service</h1>
-      <p class="text-sm text-slate-500 mb-4">Last updated: January 1, 2025</p>
+      <p class="text-sm text-slate-500 mb-4">Last updated: July 22, 2026</p>
       <p class="text-slate-600 leading-relaxed mb-10">
         By using WorshipMetrics, you agree to these terms.
       </p>
@@ -54,23 +50,108 @@ const sections = [
         {sections.map((section) => (
           <div>
             <h2 class="text-xl font-bold text-slate-900 mb-3">{section.title}</h2>
-            <p class="text-slate-600 leading-relaxed">
-              {section.title === "8. Contact" ? (
-                <>
-                  Questions about these terms? Email{" "}
-                  <a
-                    href="mailto:support@worshipmetrics.com"
-                    class="text-indigo-600 hover:text-indigo-700 underline"
-                  >
-                    support@worshipmetrics.com
-                  </a>
-                </>
-              ) : (
-                section.body
-              )}
-            </p>
+            <p class="text-slate-600 leading-relaxed">{section.body}</p>
           </div>
         ))}
+
+        <div id="messaging">
+          <h2 class="text-xl font-bold text-slate-900 mb-3">8. SMS/Text Messaging Terms</h2>
+          <div class="space-y-4 text-slate-600 leading-relaxed">
+            <p>
+              WorshipMetrics offers SMS/text messaging as part of the service. Messages may include
+              account and security notifications, AV system and livestream alerts, service and
+              support updates, and — for congregations using our engagement tools — guest follow-up,
+              volunteer scheduling, and ministry communications sent by your church through the
+              platform.
+            </p>
+            <p>
+              <strong class="text-slate-900">Opt-in.</strong> You will only receive text messages
+              from WorshipMetrics if you have opted in. Opt-in may occur through a web form (for
+              example, checking a consent box when providing your phone number during signup, guest
+              check-in, or in your notification settings), verbally to church staff, via a paper
+              form, by scanning a QR code, or by texting a keyword such as START to a WorshipMetrics
+              number. Consent to receive text messages is not a condition of any purchase.
+            </p>
+            <p>
+              <strong class="text-slate-900">Message frequency.</strong> Message frequency varies
+              based on your notification settings and your church's activity.
+            </p>
+            <p>
+              <strong class="text-slate-900">Message and data rates may apply.</strong> Standard
+              message and data rates from your mobile carrier may apply to messages you send and
+              receive.
+            </p>
+            <p>
+              <strong class="text-slate-900">Opt-out.</strong> You can cancel text messages at any
+              time by replying <strong class="text-slate-900">STOP</strong>. After you reply STOP,
+              we will send one final message confirming that you have been unsubscribed, and you
+              will receive no further messages. To rejoin, sign up again through any opt-in method
+              above or reply START.
+            </p>
+            <p>
+              <strong class="text-slate-900">Help.</strong> Reply{" "}
+              <strong class="text-slate-900">HELP</strong> to any message for assistance, or contact
+              us at{" "}
+              <a
+                href="mailto:support@worshipmetrics.com"
+                class="text-indigo-600 hover:text-indigo-700 underline"
+              >
+                support@worshipmetrics.com
+              </a>.
+            </p>
+            <p>
+              Carriers are not liable for delayed or undelivered messages. See our{" "}
+              <a href="/privacy" class="text-indigo-600 hover:text-indigo-700 underline">
+                Privacy Policy
+              </a>{" "}
+              for how we handle your mobile number and messaging data. Mobile numbers and text
+              messaging opt-in data will not be shared with third parties or affiliates for
+              marketing or promotional purposes.
+            </p>
+          </div>
+        </div>
+
+        <div id="ai-voice">
+          <h2 class="text-xl font-bold text-slate-900 mb-3">9. AI Voice and AI-Assisted Communications</h2>
+          <div class="space-y-4 text-slate-600 leading-relaxed">
+            <p>
+              Some communications from WorshipMetrics may be generated or assisted by artificial
+              intelligence, including our AI assistant, Luminos. This may include AI-composed text
+              messages and AI voice calls that use an artificial or prerecorded voice.
+            </p>
+            <p>
+              When you receive an AI voice call, the call will identify itself as automated or
+              AI-assisted at the start of the call. You may request to speak with a human at any
+              time, and you can opt out of AI voice calls by saying so during a call, replying STOP
+              to a related text message, or contacting{" "}
+              <a
+                href="mailto:support@worshipmetrics.com"
+                class="text-indigo-600 hover:text-indigo-700 underline"
+              >
+                support@worshipmetrics.com
+              </a>.
+            </p>
+            <p>
+              Calls may be recorded or transcribed for quality, support, and service improvement
+              where permitted by law, and you will be notified when a call is being recorded. AI
+              responses are provided for convenience and may contain errors; they do not replace
+              professional advice.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-slate-900 mb-3">10. Contact</h2>
+          <p class="text-slate-600 leading-relaxed">
+            Questions about these terms? Email{" "}
+            <a
+              href="mailto:support@worshipmetrics.com"
+              class="text-indigo-600 hover:text-indigo-700 underline"
+            >
+              support@worshipmetrics.com
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   </section>
