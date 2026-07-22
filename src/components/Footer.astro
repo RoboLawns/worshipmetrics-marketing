@@ -1,4 +1,6 @@
 ---
+import BrandLockup from "./BrandLockup.astro";
+
 const APP_URL = "https://app.worshipmetrics.com";
 const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170";
 const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
@@ -8,8 +10,9 @@ const year = new Date().getFullYear();
 
 const cols = [
   {
-    heading: "Produce",
+    heading: "Stream",
     links: [
+      { label: "Live Streaming", href: "/live-streaming" },
       { label: "Worship Clips", href: "/solutions/worship-clips" },
       { label: "Slides & Signage", href: "/signage-display" },
     ],
@@ -78,8 +81,8 @@ const cols = [
 
 <style>
   footer {
-    border-top: 1px solid #e4e8f4;
-    background: #f7f8fc;
+    border-top: 1px solid var(--border);
+    background: var(--bg-soft);
     padding: 3.5rem 1.5rem 2rem;
   }
   .footer-app-band {
@@ -88,13 +91,14 @@ const cols = [
     align-items: center;
     padding: 1.5rem 1.75rem;
     border-radius: 1.5rem;
-    border: 1px solid rgba(129, 140, 248, 0.18);
-    background: linear-gradient(135deg, #0f172a 0%, #312e81 55%, #0f172a 100%);
-    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(43, 127, 240, 0.25);
+    background: linear-gradient(135deg, #0B0D10 0%, #1C4685 55%, #0B0D10 100%);
+    box-shadow: 0 12px 36px rgba(11, 13, 16, 0.08);
   }
   .footer-app-copy p:first-child {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(165, 180, 252, 0.92); margin-bottom: 0.5rem;
+    font-family: var(--font-mono-brand);
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #9CC6F8; margin-bottom: 0.5rem;
   }
   .footer-app-copy h3 {
     font-size: clamp(1.35rem, 2.4vw, 2rem); font-weight: 800; line-height: 1.15;
@@ -130,28 +134,26 @@ const cols = [
   }
 
   .brand-col { display: flex; flex-direction: column; gap: 0.75rem; }
-  .brand-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
-  .brand-logo img  { height: 1.75rem; width: 1.75rem; }
-  .brand-logo span { font-size: 0.95rem; font-weight: 700; color: #0f1a2e; }
+  .brand-logo { display: flex; align-items: center; text-decoration: none; }
   .brand-tag  { font-size: 0.82rem; color: #8494b0; line-height: 1.6; max-width: 18rem; }
   .brand-btns { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem; }
   .brand-support { font-size: 0.78rem; color: #5a6a8a; line-height: 1.6; max-width: 18rem; }
-  .brand-support a { color: #4361ee; text-decoration: none; font-weight: 600; }
-  .brand-support a:hover { color: #3651db; }
+  .brand-support a { color: var(--primary); text-decoration: none; font-weight: 600; }
+  .brand-support a:hover { color: var(--primary-dark); }
 
-  .col-heading { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4361ee; margin-bottom: 0.75rem; }
+  .col-heading { font-family: var(--font-mono-brand); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
   .col-links   { display: flex; flex-direction: column; gap: 0.45rem; }
   .col-links a { font-size: 0.82rem; color: #8494b0; text-decoration: none; transition: color 0.15s; }
-  .col-links a:hover { color: #4361ee; }
+  .col-links a:hover { color: var(--primary); }
 
   .footer-bottom {
     max-width: 80rem; margin: 2.5rem auto 0;
-    padding-top: 1.5rem; border-top: 1px solid #e4e8f4;
+    padding-top: 1.5rem; border-top: 1px solid var(--border);
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem;
   }
   .footer-bottom p { font-size: 0.75rem; color: #8494b0; }
   .footer-bottom a { color: #8494b0; text-decoration: none; }
-  .footer-bottom a:hover { color: #4361ee; }
+  .footer-bottom a:hover { color: var(--primary); }
   .footer-phone-wrap { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; }
   .footer-phone-note { color: #9aa8bf; }
 </style>
@@ -177,11 +179,10 @@ const cols = [
 
   <div class="footer-inner">
     <div class="brand-col">
-      <a href="/" class="brand-logo">
-        <img src="/logo.png" alt="" width="28" height="28" />
-        <span>WorshipMetrics</span>
+      <a href="/" class="brand-logo" aria-label="WorshipMetrics home">
+        <BrandLockup width={142} />
       </a>
-      <p class="brand-tag">Catch problems first. Document your system. Get real help.</p>
+      <p class="brand-tag">Your live stream, handled. Real humans, seven days a week.</p>
       <div class="brand-btns">
         <a href={`${APP_URL}/sign-up`} class="btn-primary" style="justify-content:center;font-size:0.8rem;padding:0.5rem 1rem;" data-wm-track="cta_click" data-wm-track-label="footer_get_started_free" data-wm-track-location="footer">Get started free</a>
         <a href="/discovery-call" class="btn-outline" style="justify-content:center;font-size:0.8rem;padding:0.5rem 1rem;" data-wm-track="cta_click" data-wm-track-label="footer_book_call" data-wm-track-location="footer">Book a call</a>

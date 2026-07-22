@@ -1,0 +1,196 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SITE_URL = "https://worshipmetrics.com";
+const APP_URL = "https://app.worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const STREAM_HEALTH_IMAGE = `${R2}/homepage/new%20images/Stream%20Health.jpg`;
+
+const destinations = [
+  { name: "YouTube", desc: "Scheduled broadcasts, go live, end, and history — handled end to end." },
+  { name: "Facebook", desc: "Simulcast to your page without touching a second encoder." },
+  { name: "Your website", desc: "A clean player embed for your church site — no platform branding." },
+  { name: "Custom RTMP", desc: "Any destination that takes a stream key. Point us at it once." },
+];
+
+const clipFeatures = [
+  {
+    title: "Chop clips live",
+    body: "Mark moments during the service — the worship set, the sermon point, the baptism — and they're clips before the service ends.",
+  },
+  {
+    title: "Trim from the recording",
+    body: "Every service lands in your recordings library automatically. Trim the full service, cut the sermon, and hand highlights straight to Worship Clips.",
+  },
+  {
+    title: "Publish-ready by Monday",
+    body: "Captioned, rendered, and formatted for the platforms your congregation actually scrolls. The sermon finds people who weren't in the room.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Do we have to change our encoder or software?",
+    answer: "No. Point vMix, OBS, or any RTMP encoder at your WorshipMetrics ingest once. Everything downstream — destinations, recordings, clips, monitoring — happens on our side.",
+  },
+  {
+    question: "What happens if the stream drops mid-service?",
+    answer: "We're watching it live. The moment bitrate drops or the feed dies, you get an alert — and support is on it seven days a week, including Sunday morning. You find out from us, not from a text from someone watching at home.",
+  },
+  {
+    question: "Can we still stream directly to YouTube?",
+    answer: "Yes. WorshipMetrics manages your YouTube broadcasts end to end — scheduling, visibility, go-live, and history — while also fanning the same feed out everywhere else you want it.",
+  },
+  {
+    question: "Where do the recordings live?",
+    answer: "In your recordings library, automatically, after every stream. Trim them, clip them, or publish them — they're yours.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "WorshipMetrics Live Streaming",
+    serviceType: "Church live streaming and re-streaming platform",
+    provider: { "@type": "Organization", name: "WorshipMetrics", url: SITE_URL },
+    description:
+      "Send one feed to WorshipMetrics and stream to YouTube, Facebook, your website, and any custom destination — with automatic recordings, live clipping, stream health monitoring, and 7-day human support.",
+    url: `${SITE_URL}/live-streaming`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  },
+];
+---
+
+<Layout
+  title="Church Live Streaming — One Feed In, Every Sunday Out"
+  socialTitle="WorshipMetrics Live Streaming | One feed in. Every Sunday out."
+  description="WorshipMetrics is your church's streaming destination. Send one feed — we stream it to YouTube, Facebook, your website, and any custom destination, record it, clip it live, and watch it with you seven days a week."
+  canonical="/live-streaming"
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="eyebrow inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 shadow-sm">
+        Live streaming &middot; Re-streaming &middot; Recordings &middot; Clips
+      </p>
+      <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        One feed in. Every Sunday out.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+        WorshipMetrics is your streaming destination. Point your encoder at us once &mdash; we fan the stream out to every platform, record it, clip it, and watch its health the whole time. With a human on call seven days a week.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="streaming_hero_sign_up_free" data-wm-track-location="streaming_hero">Start streaming free</a>
+        <a href="/discovery-call" class="btn-outline">Book a call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Re-streaming</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Stop juggling stream keys.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          One feed reaches everyone, everywhere. Add or drop a destination in a click &mdash; your encoder settings never change.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {destinations.map(({ name, desc }) => (
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <h3 class="text-lg font-bold text-slate-900">{name}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Watched live -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
+      <div>
+        <p class="eyebrow">Stream health</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Sunday has a pulse. We watch it.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Encoder load, dropped frames, bitrate history, per-event logs &mdash; live, on a dashboard, with alerts the moment anything drops. Your congregation should never know about a problem before you do.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          And when something does go wrong, you're not alone: call 910-WORSHIP any day of the week and a person who runs church production answers &mdash; with your system's live health data already in front of them.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href="/av-monitoring" class="btn-primary">See stream monitoring</a>
+          <a href="tel:+19109677447" class="btn-outline">Call 910-WORSHIP</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={STREAM_HEALTH_IMAGE} alt="Live stream health monitoring in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Recordings & clips -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Recordings &amp; clips</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Sunday doesn&apos;t end at noon.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {clipFeatures.map(({ title, body }, index) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{index + 1}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/solutions/worship-clips" class="btn-outline">See Worship Clips</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <div class="text-center">
+        <p class="eyebrow">Questions</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Streaming questions, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-6">
+        {faqs.map(({ question, answer }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6">
+            <h3 class="text-lg font-bold text-slate-900">{question}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl rounded-[2rem] border border-slate-200 bg-slate-50 p-10 text-center shadow-sm sm:p-12">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your live stream, handled.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Point your encoder at WorshipMetrics this week and stop thinking about streaming infrastructure on Sunday morning.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="streaming_footer_sign_up_free" data-wm-track-location="streaming_footer">Start streaming free</a>
+        <a href="/discovery-call" class="btn-outline text-sm">Book a call</a>
+      </div>
+    </div>
+  </section>
+</Layout>

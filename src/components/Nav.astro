@@ -1,18 +1,21 @@
 ---
+import BrandLockup from "./BrandLockup.astro";
+
 const APP_URL = "https://app.worshipmetrics.com";
 
 const navItems = [
   {
     type: "dropdown",
-    key: "produce",
-    label: "Produce",
+    key: "stream",
+    label: "Stream",
     icon: "/images/nav/produce.png",
     overview: {
-      href: "/solutions/worship-clips",
-      label: "Produce Overview",
-      desc: "Create and publish content that extends the reach of every Sunday.",
+      href: "/live-streaming",
+      label: "Streaming Overview",
+      desc: "One feed in — every destination, recordings, and clips out.",
     },
     items: [
+      { href: "/live-streaming", label: "Live Streaming", desc: "Stream to YouTube, Facebook, your website, and any custom destination from one feed" },
       { href: "/solutions/worship-clips", label: "Worship Clips", desc: "Turn the sermon into ready-to-publish clips without extra editing" },
       { href: "/signage-display", label: "Slides & Signage", desc: "Digital signage that updates from a phone and keeps the campus informed" },
     ],
@@ -106,8 +109,8 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
 
 <style>
   .topbar {
-    background: #f0f3fb;
-    border-bottom: 1px solid #dde3f5;
+    background: var(--bg-card-alt);
+    border-bottom: 1px solid var(--border);
     font-size: 0.75rem;
     color: #5a6a8a;
   }
@@ -120,8 +123,8 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     color: #5a6a8a; text-decoration: none; font-weight: 500;
     transition: color 0.15s;
   }
-  .topbar a:hover { color: #4361ee; }
-  .topbar-sep { color: #c3cdf5; }
+  .topbar a:hover { color: var(--primary); }
+  .topbar-sep { color: var(--primary-border); }
   @media (max-width: 1023px) { .topbar { display: none; } }
 
   .nav-root {
@@ -129,7 +132,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid #e4e8f4;
+    border-bottom: 1px solid var(--border);
     box-shadow: 0 1px 4px rgba(15,26,46,0.06);
   }
   .nav-inner {
@@ -137,9 +140,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     padding: 0 1.5rem; height: 4rem;
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   }
-  .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; flex-shrink: 0; }
-  .logo img  { height: 2rem; width: 2rem; }
-  .logo span { font-size: 1rem; font-weight: 700; color: #0f1a2e; }
+  .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
 
   .desktop-nav { display: none; align-items: center; gap: 0.1rem; }
   @media (min-width: 1024px) { .desktop-nav { display: flex; } }
@@ -151,7 +152,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     background: none; border: none; cursor: pointer;
     text-decoration: none; transition: color 0.15s, background 0.15s;
   }
-  .nav-btn:hover { color: #4361ee; background: #f0f3fb; }
+  .nav-btn:hover { color: var(--primary); background: var(--bg-card-alt); }
   .nav-btn svg { width: 0.85rem; height: 0.85rem; opacity: 0.6; transition: transform 0.2s; }
   .nav-btn-icon { width: 1.15rem; height: 1.15rem; opacity: 0.7; flex-shrink: 0; }
 
@@ -160,7 +161,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
   .dropdown {
     position: absolute; left: 0; top: calc(100% + 0.4rem);
     min-width: 44rem; background: #fff;
-    border: 1px solid #e4e8f4; border-radius: 1rem;
+    border: 1px solid var(--border); border-radius: 1rem;
     padding: 1rem;
     box-shadow: 0 16px 48px rgba(15,26,46,0.12);
     display: none; grid-template-columns: 1.1fr 2fr; gap: 0.75rem;
@@ -171,14 +172,14 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
   .dropdown-wrap:focus-within .dropdown { display: grid; }
 
   .drop-overview {
-    background: #f0f3fb; border: 1px solid #c3cdf5;
+    background: var(--bg-card-alt); border: 1px solid var(--primary-border);
     border-radius: 0.75rem; padding: 1rem;
     text-decoration: none; display: flex; flex-direction: column; gap: 0.2rem;
     transition: border-color 0.15s, background 0.15s;
   }
-  .drop-overview:hover { background: #e6eaf9; border-color: #4361ee; }
-  .drop-overview .over-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4361ee; }
-  .drop-overview h3 { font-size: 0.9rem; font-weight: 700; color: #0f1a2e; margin: 0.2rem 0 0; }
+  .drop-overview:hover { background: #DFECFD; border-color: var(--primary); }
+  .drop-overview .over-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); }
+  .drop-overview h3 { font-size: 0.9rem; font-weight: 700; color: var(--text); margin: 0.2rem 0 0; }
   .drop-overview p  { font-size: 0.78rem; color: #8494b0; line-height: 1.5; margin: 0; }
 
   .drop-items { display: flex; flex-direction: column; gap: 0.15rem; }
@@ -187,8 +188,8 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     border-radius: 0.5rem; text-decoration: none;
     transition: background 0.15s;
   }
-  .drop-item:hover { background: #f0f3fb; }
-  .drop-item .il { font-size: 0.875rem; font-weight: 600; color: #0f1a2e; }
+  .drop-item:hover { background: var(--bg-card-alt); }
+  .drop-item .il { font-size: 0.875rem; font-weight: 600; color: var(--text); }
   .drop-item .id { font-size: 0.75rem; color: #8494b0; margin-top: 0.05rem; }
 
   .cta-area { display: none; align-items: center; gap: 0.5rem; }
@@ -197,15 +198,15 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
   .mobile-toggle {
     display: flex; align-items: center; justify-content: center;
     width: 2.4rem; height: 2.4rem; border-radius: 0.5rem;
-    border: 1.5px solid #e4e8f4; background: #f7f8fc;
-    color: #0f1a2e; cursor: pointer;
+    border: 1.5px solid var(--border); background: #f7f8fc;
+    color: var(--text); cursor: pointer;
   }
   @media (min-width: 1024px) { .mobile-toggle { display: none; } }
 
   .mobile-menu {
     display: none; flex-direction: column;
     padding: 0.75rem 1rem 1.25rem;
-    border-top: 1px solid #e4e8f4;
+    border-top: 1px solid var(--border);
     background: #fff;
     max-height: calc(100dvh - 4rem);
     overflow-y: auto;
@@ -214,7 +215,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
   .mobile-menu.open { display: flex; }
   @media (min-width: 1024px) { .mobile-menu { display: none !important; } }
 
-  .mob-accordion { border-bottom: 1px solid #f0f3fb; }
+  .mob-accordion { border-bottom: 1px solid var(--bg-card-alt); }
   .mob-accordion:last-of-type { border-bottom: none; }
 
   .mob-acc-trigger {
@@ -226,10 +227,10 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
   .mob-acc-trigger-icon { width: 1.15rem; height: 1.15rem; opacity: 0.7; flex-shrink: 0; }
   .mob-acc-trigger-label {
     font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #4361ee;
+    text-transform: uppercase; color: var(--primary);
   }
   .mob-acc-chevron {
-    width: 1rem; height: 1rem; color: #4361ee; opacity: 0.7;
+    width: 1rem; height: 1rem; color: var(--primary); opacity: 0.7;
     transition: transform 0.2s; flex-shrink: 0;
   }
   .mob-accordion.open .mob-acc-chevron { transform: rotate(180deg); }
@@ -241,17 +242,17 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     display: flex; flex-direction: column; padding: 0.4rem 0.75rem;
     border-radius: 0.5rem; text-decoration: none; transition: background 0.15s;
   }
-  .mob-link:hover { background: #f0f3fb; }
-  .mob-link .ml { font-size: 0.875rem; font-weight: 600; color: #0f1a2e; }
+  .mob-link:hover { background: var(--bg-card-alt); }
+  .mob-link .ml { font-size: 0.875rem; font-weight: 600; color: var(--text); }
   .mob-link .md { font-size: 0.75rem; color: #8494b0; }
 
   .mob-simple { padding: 0.5rem 0 0; }
   .mob-simple-link {
     display: block; padding: 0.5rem 0.75rem; border-radius: 0.5rem;
-    text-decoration: none; font-size: 0.875rem; font-weight: 600; color: #0f1a2e;
+    text-decoration: none; font-size: 0.875rem; font-weight: 600; color: var(--text);
     transition: background 0.15s;
   }
-  .mob-simple-link:hover { background: #f0f3fb; }
+  .mob-simple-link:hover { background: var(--bg-card-alt); }
 
   .mob-contact {
     display: flex; flex-wrap: wrap; gap: 0.4rem 1rem;
@@ -259,9 +260,9 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     font-size: 0.78rem;
   }
   .mob-contact a { color: #5a6a8a; text-decoration: none; font-weight: 500; }
-  .mob-contact a:hover { color: #4361ee; }
+  .mob-contact a:hover { color: var(--primary); }
 
-  .mob-ctas { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid #e4e8f4; margin-top: 0.75rem; }
+  .mob-ctas { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border); margin-top: 0.75rem; }
 </style>
 
 <div class="topbar">
@@ -272,15 +273,14 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     <span class="topbar-sep">|</span>
     <a href="mailto:support@worshipmetrics.com">support@worshipmetrics.com</a>
     <span class="topbar-sep">|</span>
-    <a href="tel:+19109677447">910-WORSHIP (910-967-7447)</a>
+    <a href="tel:+19109677447">910-WORSHIP (910-967-7447) &middot; 7 days a week</a>
   </div>
 </div>
 
 <header class="nav-root">
   <div class="nav-inner">
-    <a href="/" class="logo">
-      <img src="/logo.png" alt="" width="32" height="32" />
-      <span>WorshipMetrics</span>
+    <a href="/" class="logo" aria-label="WorshipMetrics home">
+      <BrandLockup width={150} />
     </a>
 
     <nav class="desktop-nav" aria-label="Main navigation">
