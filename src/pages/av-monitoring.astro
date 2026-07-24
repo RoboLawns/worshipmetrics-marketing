@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const HERO_IMAGE = `${R2}/homepage/new%20images/Stream%20Health.jpg`;
-const MONITOR_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
+const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-pulse-system-health.jpg`;
+const MONITOR_IMAGE = `${R2}/app-2026/lifestyle/system-health-monitoring.jpg`;
 
 const features = [
   {
@@ -32,6 +33,8 @@ const observabilityItems = [
   "Historical health data so you can spot patterns across Sundays",
   "Alerts when stream quality degrades below thresholds you set",
   "Integration with Central Control for ProAV gear monitoring",
+  "A live Alerts feed — device offline, resource criticals, stream drops — with full history",
+  "Service Metrics that tie system health to each individual service",
   "One dashboard that replaces the pile of separate monitoring tools",
 ];
 
@@ -222,4 +225,5 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <TechManagerCTA />
 </Layout>

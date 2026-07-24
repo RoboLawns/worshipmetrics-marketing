@@ -1,0 +1,269 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-phone-support-journey.jpg`;
+const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/phone-support.jpg`;
+const LUMINOS_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-luminos-ai-chat.jpg`;
+const SIGNAL_MAP_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-signal-map.jpg`;
+
+const supportModel = [
+  {
+    step: "1",
+    title: "Really good AI answers first",
+    body: "Luminos in the app, Journey on the phone — one intelligence, fully integrated. It answers instantly, any hour, any day, and starts diagnosing before a human queue would have picked up.",
+  },
+  {
+    step: "2",
+    title: "Tech Manager gives it eyes",
+    body: "Because Tech Manager runs on your booth PC, the AI isn't asking you to describe the problem — it's looking at it: encoder load, dropped frames, device status, network health, and your documented signal chain, live.",
+  },
+  {
+    step: "3",
+    title: "Cable Labels make it precise",
+    body: "We ask every church to label its cables to match the Signal Map. That's how support gets specific: not \"check your connections\" — but \"reseat the cable labeled SDI-002 on the back of the switcher.\"",
+  },
+  {
+    step: "4",
+    title: "A human, patched in when it matters",
+    body: "When AI can't close it, you're patched through to a real production engineer — with the AI's full diagnosis already in their hands. Sunday-critical issues jump the queue during service windows.",
+  },
+];
+
+const whyAI = [
+  "It holds your entire system in view at once — every device, port, and past fix — something no human on a first call can do",
+  "It answers in seconds at 7:58 AM on Sunday, when a human queue would still be ringing",
+  "It never asks you to explain your setup again — Tech Manager and your docs already told it",
+  "AI fixes are always free — ticket credits are only used when a human case opens",
+  "And it knows its limits: escalation to a human is built into the system, not a dead end",
+];
+
+const guardrails = [
+  "Every call is logged with a transcript, summary, and outcome you can review in the app",
+  "Escalated calls and voicemails automatically open a support case — with Journey's summary attached",
+  "AI never changes your system without explicit approval — proposed fixes wait for your click",
+  "Registered team numbers are greeted by name; everyone else uses your church's 6-digit code",
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "WorshipMetrics Tech Support",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, Windows, Mac, iOS, Android",
+    url: `${SITE_URL}/phone-support`,
+    image: HERO_IMAGE,
+    description: "Church AV tech support: call 910-WORSHIP anytime. AI that sees your actual system through Tech Manager answers first, and real production engineers are patched in when needed.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      { "@type": "Question", name: "How do I get tech support for my church AV system?", acceptedAnswer: { "@type": "Answer", text: "Call 910-WORSHIP (910-967-7447) any time. Journey, the WorshipMetrics phone AI, answers immediately with your church's live system data in front of it. If AI can't resolve the issue, you're patched through to a real production engineer." } },
+      { "@type": "Question", name: "Is the AI support actually good?", acceptedAnswer: { "@type": "Answer", text: "Church AV systems have become complicated enough that AI with live system context often outperforms first-line human support: it sees your whole signal chain at once through Tech Manager, references your cable labels, and answers instantly at any hour. Humans remain part of the system for the cases that need them." } },
+      { "@type": "Question", name: "Does tech support cost extra?", acceptedAnswer: { "@type": "Answer", text: "AI fixes are always free, on every plan, and the first help session is free on every tier. Ticket credits are only used when a human case opens. Enhanced support plans — Care, Sunday Assurance, and Managed — add dedicated human coverage." } },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Church AV Tech Support — Call 910-WORSHIP Anytime"
+  socialTitle="WorshipMetrics Tech Support — 910-WORSHIP"
+  description="Modernize your church AV and get instant tech support. Call 910-WORSHIP anytime — AI that sees your actual system answers first, real production engineers patch in when needed. Call now and hear the difference."
+  canonical="/phone-support"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={HERO_IMAGE} />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Tech Support &middot; 910-WORSHIP</p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Modernize your AV. Get a number you can actually call.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Connect Tech Manager, and your church gets what most churches have never had: instant tech support that already sees your system. We catch issues before frustration starts &mdash; and when something does break, help is one phone call away, any time.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href="tel:+19109677447" class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="support_hero_call" data-wm-track-location="support_hero">Call 910-WORSHIP right now</a>
+          <a href="/tech-manager" class="btn-outline">Download Tech Manager &mdash; free</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Seriously &mdash; call right now and see how good church tech support can be. The first help session is free on every tier.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={LIFESTYLE_IMAGE} alt="Church tech director on the phone with 910-WORSHIP support" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- The support model -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Exactly how we support you</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The first line of defense is really good AI.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          We&apos;ll say it plainly: church AV systems have gotten complicated enough that AI with real system context is often <em>better</em> than first-line human support. So that&apos;s how we built it &mdash; AI up front with full view of your booth, humans fully integrated behind it.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {supportModel.map(({ step, title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{step}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cable labels + signal map -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Cable Labels &middot; Signal Map</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">"Reseat SDI-002." Not "check your connections."</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Every cable in your Signal Map carries a label &mdash; SDI-002, DANTE-001, ETH-007. Put matching Cable Labels on the physical cables, and support stops being generic. The AI can point a volunteer to the exact cable on the exact port, and the fix that used to take an hour of tracing takes a minute.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "The Signal Map documents every device, port, and cable run in your system",
+            "Physical labels match the map, so anyone can find any cable — even their first Sunday",
+            "Suggestions reference labels directly: precise, checkable, volunteer-proof",
+            "Knowledge stops living in one person's head and starts living in the system",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/system-documentation" class="btn-outline">See the Signal Map</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={SIGNAL_MAP_IMAGE} alt="Signal Map with labeled cable runs like SDI-002 and DANTE-001 in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Why AI-first -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Our honest take</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Why AI-first beats hold music.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            Modern church AV is a network: digital consoles, NDI cameras, encoders, switchers, signage, and a stream &mdash; all interconnected. No first-line human can hold all of that on a cold call. AI with Tech Manager&apos;s live view can. That&apos;s not a cost-cutting story; it&apos;s a better-support story.
+          </p>
+          <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+            <a href="tel:+19109677447" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="support_whyai_call" data-wm-track-location="support_whyai">Put it to the test — call now</a>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">What AI-with-context does that a call center can't</p>
+          <ul class="mt-6 space-y-3">
+            {whyAI.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-slate-200 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-400"></span><span>{item}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Luminos + Journey, fully integrated -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={LUMINOS_IMAGE} alt="Luminos AI chat diagnosing a livestream issue with live system data" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Fully integrated, chat to phone</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Luminos in the app. Journey on the phone. One brain.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Luminos Chat and Journey aren&apos;t two support products &mdash; they&apos;re one intelligence, fully integrated into the platform. Chat from the dashboard while looking at your stream health, or call from the booth with your hands full of cable. Both see the same live system, the same docs, the same history.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Explain your setup once &mdash; to either of them &mdash; and both remember, forever. That&apos;s next-level detailed AV support no ticket queue can match.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+          <a href="/luminos-ai-assistant" class="btn-outline">Meet Luminos</a>
+          <a href={`${APP_URL}/sign-up`} class="btn-outline">Sign up free</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accountability -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Accountable by design</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every call logged. Every fix approved. Nothing hidden.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Register your team&apos;s numbers &mdash; tech director, pastor, volunteers, office &mdash; and calls are greeted by name and tied to your church automatically. The whole history lives in the app, right beside your alerts.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {guardrails.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={HERO_IMAGE} alt="Phone support workspace with registered numbers, church code, and call history in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Support add-ons tie-in -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-200 bg-indigo-50 p-8 shadow-sm sm:p-10">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Want more human?</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Enhanced support stacks on any plan.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Care adds a weekday support pro and monthly system reviews. Sunday Assurance puts a production pro on call and watching every Sunday with a pre-service check. Managed is the fully-handled production partnership.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="/pricing" class="btn-primary">See support add-ons</a>
+          <a href="/discovery-call" class="btn-outline">Talk through the right level</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA — pick up the phone -->
+  <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-200">No demo form. No callback window.</p>
+      <h2 class="mt-3 text-3xl font-bold text-white sm:text-4xl">Want to know how good our tech support is? Call it.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
+        910-WORSHIP answers right now &mdash; ask it anything about your AV system and judge for yourself. Then download Tech Manager, connect your booth, and give it eyes.
+      </p>
+      <a href="tel:+19109677447" class="mt-8 inline-block rounded-2xl bg-white px-10 py-4 text-2xl font-extrabold tracking-tight text-indigo-700 shadow-lg transition hover:bg-indigo-50" data-wm-track="cta_click" data-wm-track-label="support_footer_call" data-wm-track-location="support_footer_cta">📞 910-WORSHIP</a>
+      <p class="mt-3 text-sm text-indigo-200">(910) 967-7447 &middot; any time, any day</p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/tech-manager" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Download Tech Manager — free</a>
+        <a href={`${APP_URL}/sign-up`} class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Sign up free</a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -4,145 +4,134 @@ import Layout from "../layouts/Layout.astro";
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const PANELS_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
+const PANELS_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-production-dashboard.jpg`;
 const HUB_IMAGE = `${R2}/tablet/Worship%20Metrics%20Appliance%20Small.jpg`;
 const TABLET_IMAGE = `${R2}/tablet/New%20Worship%20Metrics%20Tablet%20Hero.jpg`;
 
-const plans = [
+// AXIS 1 — THE PLATFORM
+const platformPlans = [
   {
-    name: "Free Forever",
+    name: "Free",
     price: "$0",
-    suffix: "/mo",
-    tag: "Prove the system before you pay",
+    suffix: "/mo forever",
+    tag: "The pledge, free forever",
     badge: "No credit card",
-    body: "Everything a single operator needs to run services locally. The full production toolkit, without the cloud layer.",
+    body: "Watching, the map, and the alerts are free forever. Unlimited users, so the whole volunteer team lives in it.",
     cta: "Get started free",
     href: `${APP_URL}/sign-up`,
     featured: false,
-    supportLabel: "Community",
-    supportBody: "Community support",
-    supportBandClass: "bg-slate-200 text-slate-700",
     items: [
-      "Service Planning with unlimited services, templates, 17 item types, and live run mode",
-      "Tech Manager desktop app with Onboarding Wizard",
-      "Stream Health Monitoring with live metrics for OBS, vMix, and ATEM",
-      "Switcher Control with scene preview and output",
-      "AV Device Inventory and Signal Map",
-      "PTZ Camera Control with VISCA and ONVIF",
-      "Digital Signage for 1 screen",
-      "Attendance with manual counting",
-      "Worship Clips local workflow",
-      "Luminos AI daily troubleshooting allowance",
-      "Brand Kit stored locally",
-      "Community support",
+      "24/7 watching, the living Signal Map, and instant alerts — free forever",
+      "Unlimited users — the whole volunteer team lives in it",
+      "Core planning, presentation, and people tools (practical limits on storage, clips, 1 signage screen)",
+      "AI support in your alerts, plus one full help session free",
+      "Every free church is a live demo",
     ],
   },
   {
-    name: "Starter",
-    price: "$9.99",
+    name: "Assist",
+    price: "$49",
     suffix: "/mo",
-    tag: "Connect your booth to the cloud",
-    body: "The cloud layer that makes everything smarter. For many churches, the sermon-to-YouTube pipeline alone can justify Starter.",
-    cta: "Start with Starter",
+    tag: "Expert help on tap",
+    body: "The full suite unlocked, with unlimited AI support that knows your exact system. For churches that stream elsewhere — or not at all — but want an expert on call.",
+    cta: "Start with Assist",
     href: `${APP_URL}/sign-up`,
     featured: false,
-    supportLabel: "Email + Tickets",
-    supportBody: "Email + ticket support",
-    supportBandClass: "bg-blue-600 text-white",
     items: [
-      "Everything in Free Forever",
-      "Cloud device pairing and sync",
-      "Worship Clips cloud sync, sermon agent auto-upload, and YouTube publish",
-      "Unlimited digital signage screens",
-      "Auto-Attendance with cloud computer vision",
-      "Stream Health historical reports with 90-day retention",
-      "Brand Kit cloud sync across devices",
-      "Device health monitoring with cloud anomaly reporting",
-      "Scheduled recording and streaming start/stop",
-      "Luminos AI unlimited queries",
-      "Email and ticket support",
+      "Everything in Free, with the practical limits removed",
+      "Unlimited 24/7 AI support that knows your system — Luminos in the app, Journey on 910-WORSHIP",
+      "PCO sync, unlimited signage screens, and cloud Reels — AI clips from anywhere",
+      "Full media and song libraries, no storage caps",
+      "For churches that stream elsewhere or not at all",
     ],
   },
   {
-    name: "Pro",
-    price: "$29.99",
-    suffix: "/mo",
-    tag: "Automate Sunday",
-    body: "This is where Sunday runs itself. Everything that fires without human intervention or enables a more distributed team starts here.",
-    cta: "Book a demo",
-    href: "/discovery-call",
+    name: "Stream",
+    price: "$99",
+    suffix: "/mo per campus",
+    tag: "Cancel your streaming bill",
+    body: "Everything in Assist, plus cloud live streaming that runs like the expensive platforms — for less than you pay today, with no encoder box to buy.",
+    cta: "Start streaming",
+    href: `${APP_URL}/sign-up`,
     featured: true,
-    supportLabel: "Email + Tickets + Phone",
-    supportBody: "Priority support across email, tickets, and phone",
-    supportBandClass: "bg-amber-400 text-slate-950",
     items: [
-      "Everything in Starter",
-      "Self-healing engine with stream, encoder, and recording recovery",
-      "Automated cue firing for camera and lighting on service item advance",
-      "Remote control via cloud for scenes, audio, PTZ, streaming, and recording",
-      "Real-time AV alerts by SMS and email",
-      "Natural-language cue authoring with AI",
-      "Production intercom for volunteer teams",
-      "Volunteer control panels with mobile-accessible operator views",
-      "Extended data retention for 1 year",
-      "Priority support with email, tickets, and phone",
-    ],
-  },
-  {
-    name: "Multi-Site",
-    price: "Custom",
-    suffix: "",
-    tag: "Pro for every campus",
-    body: "Everything in Pro for every location, with centralized admin and partner-level support for networks of 2+ campuses.",
-    cta: "Talk to sales",
-    href: "/discovery-call",
-    featured: false,
-    supportLabel: "Dedicated Account Manager",
-    supportBody: "Dedicated account management and onboarding",
-    supportBandClass: "bg-purple-700 text-white",
-    items: [
-      "Everything in Pro for every campus",
-      "Centralized admin across campuses",
-      "Custom service templates built by the team",
-      "Dedicated onboarding specialist",
-      "Quarterly strategy review",
-      "Unlimited data retention",
-      "Dedicated account manager",
+      "Everything in Assist, plus cloud live streaming",
+      "Resilient ingest from the Tech Manager encoder — no $1,500 box",
+      "Multi-destination delivery: YouTube, Facebook, and an embeddable player with a hosted watch page",
+      "Cloud DVR and archive, plus stream-health monitoring wired into your alerts",
+      "Reels cut automatically from every service and online attendance analytics",
+      "Each campus is its own $99 with its own included usage",
     ],
   },
 ];
 
-const supportServicePlans = {
-  headline: "910-WORSHIP. Seven days a week. A person answers.",
-  body: "Every WorshipMetrics plan is backed by humans who run church production, seven days a week — including Sunday morning. For churches that want even more, our technical support service plans add extended coverage, dedicated onboarding, and priority response during live service windows.",
-};
+// AXIS 2 — ENHANCED SUPPORT (add-on, stacks on any platform tier)
+const supportAddons = [
+  {
+    name: "Care",
+    price: "+$199",
+    suffix: "/mo",
+    body: "A real support pro on weekdays, a priority queue, and a monthly system review.",
+  },
+  {
+    name: "Sunday Assurance",
+    price: "+$499",
+    suffix: "/mo",
+    body: "A production pro on call and watching every Sunday, guaranteed fast response, and a pre-service check.",
+  },
+  {
+    name: "Managed",
+    price: "+$1,299",
+    suffix: "/mo",
+    body: "The fully-handled production partnership. Includes the Stream platform tier for every campus under management.",
+    highlight: true,
+  },
+];
+
+// WHAT REAL CHURCHES ACTUALLY BUY
+const exampleStacks = [
+  { church: "75-person church, volunteer-run", stack: "Assist", monthly: "$49", compare: "An unanswered forum post" },
+  { church: "200-person church streaming on Resi today", stack: "Stream", monthly: "$99", compare: "$300+ they pay now — for streaming alone" },
+  { church: "Growing church that cannot risk Sunday", stack: "Stream + Sunday Assurance", monthly: "$598", compare: "$1,500+/mo part-time hire" },
+  { church: "Three-campus church, fully handled", stack: "Managed (3 campuses)", monthly: "$1,299", compare: "$3,300–5,800/mo full-time hire" },
+];
+
+// STREAM TIER — FAIR USE & OVERAGES
+const fairUseRows = [
+  { included: "Live stream hours (1080p, all destinations simultaneously)", allowance: "20 hours", overage: "$2 per additional hour" },
+  { included: "Viewer hours on the embedded player / watch page (YouTube and Facebook viewers are never metered)", allowance: "2,500 viewer-hours", overage: "$3 per additional 100 viewer-hours" },
+  { included: "Cloud archive retention (recordings, DVR, clip sources)", allowance: "120 days", overage: "Extended archive (1 year): +$19/mo" },
+  { included: "Simultaneous destinations", allowance: "Unlimited", overage: "—" },
+];
 
 const comparisonRows = [
-  ["Service Planning", "Included", "Included", "Included", "Included"],
-  ["Tech Manager", "Included", "Included", "Included", "Included"],
-  ["Worship Clips", "Local workflow", "Cloud sync + sermon agent + YouTube publish", "Cloud sync + sermon agent + YouTube publish", "Cloud sync + sermon agent + YouTube publish"],
-  ["Digital Signage", "1 screen", "Unlimited", "Unlimited", "Unlimited"],
-  ["Attendance", "Manual counting", "Auto-Attendance + manual", "Auto-Attendance + manual", "Auto-Attendance + manual"],
-  ["AV Device Inventory and Signal Map", "Included", "Included", "Included", "Included"],
-  ["Stream Health Monitoring", "Live metrics", "Historical reports", "Historical reports + real-time alerts", "Historical reports + real-time alerts"],
-  ["Switcher and PTZ Control", "Included", "Included", "Included", "Included"],
-  ["Scheduled recording and streaming", "No", "Included", "Included", "Included"],
-  ["Volunteer control panels", "No", "No", "Included", "Included"],
-  ["Automated cue firing", "No", "No", "Included", "Included"],
-  ["Self-healing engine", "No", "No", "Included", "Included"],
-  ["Cloud remote control", "No", "No", "Included", "Included"],
-  ["Production intercom", "No", "No", "Included", "Included"],
-  ["Support", "Community", "Email + Tickets", "Email + Tickets + Phone", "Dedicated Account Manager"],
+  ["Price", "$0 forever", "$49/mo", "$99/mo per campus"],
+  ["24/7 watching, Signal Map & alerts", "Included", "Included", "Included"],
+  ["Users", "Unlimited", "Unlimited", "Unlimited"],
+  ["Planning, presentation & people", "Core (practical limits)", "Full", "Full"],
+  ["Storage caps", "Practical limits", "None", "None"],
+  ["Digital signage screens", "1", "Unlimited", "Unlimited"],
+  ["Reels (AI clipping)", "Local workflow in Tech Manager", "Cloud Reels", "Auto from every service"],
+  ["PCO sync", "—", "Included", "Included"],
+  ["Luminos + Journey AI support", "In alerts + 1 free session", "Unlimited", "Unlimited"],
+  ["Cloud live streaming", "—", "—", "Included"],
+  ["Multi-destination + hosted watch page", "—", "—", "Included"],
+  ["Cloud DVR & archive", "—", "—", "120 days (extendable)"],
+  ["Stream-health monitoring in alerts", "—", "—", "Included"],
+  ["Online attendance analytics", "—", "—", "Included"],
+  ["First help session", "Free", "Free", "Free"],
 ];
 
 const faqItems = [
-  { question: "Is Free Forever really free forever?", answer: "Yes. No credit card, no trial timer, and no forced expiration. Churches can start with the full local toolkit and prove the system before they ever pay." },
-  { question: "Can I upgrade and downgrade?", answer: "Yes. You can move between plans anytime as your ministry grows or your needs change." },
-  { question: "What kind of support comes with each tier?", answer: "Free Forever is community-supported. Starter includes email and ticket support. Pro adds phone support alongside email and tickets. Multi-Site includes a dedicated account manager and onboarding support." },
-  { question: "Do you offer a nonprofit discount?", answer: "Yes. Contact us and we will talk through the right fit for your ministry and budget." },
-  { question: "Do you offer a multi-church discount?", answer: "Yes. Multi-campus and multi-church organizations should talk with us directly so pricing can match the real rollout." },
+  { question: "Is the Free tier really free forever?", answer: "Yes. No credit card, no trial timer, no expiration. Watching, the living Signal Map, and instant alerts are free forever — that is the pledge, and it never changes. The whole volunteer team can live in it with unlimited users." },
+  { question: "How do the two axes work together?", answer: "Pick a platform tier (Free, Assist, or Stream) for what the software does, then optionally add an enhanced-support add-on (Care, Sunday Assurance, or Managed) for how much human stands behind it. Any platform tier combines with any support add-on." },
+  { question: "Why is Stream priced per campus?", answer: "Each campus gets its own encoder, its own Signal Map, its own stream, and its own included usage — so each campus is its own $99. It matches how multi-site churches already buy, without the per-site markup the expensive platforms charge. Network and denomination deals are handled inside Managed." },
+  { question: "Do I need to buy a hardware encoder to stream?", answer: "No. The encoder is Tech Manager, the desktop app running on a PC your church already owns — a $0 replacement for the $1,500+ hardware box the expensive streaming platforms require." },
+  { question: "What happens if I go over the Stream allowances?", answer: "We never stop a live service over a quota. If you blow through an allowance mid-stream, the stream keeps running and the overage shows up on the bill — never on the screen. Usage alerts fire at 80% of any allowance, and overage pricing is published, flat, and cheap." },
+  { question: "Is Reels included, or is it extra?", answer: "Reels — our AI clipping tool, formerly Worship Clips — has a free local workflow inside Tech Manager on every tier. Using Reels in the cloud (access from anywhere, cloud archival, team collaboration) requires the Assist plan or higher, and on Stream, Reels are cut automatically from every service." },
+  { question: "Do you offer annual billing?", answer: "Yes. Billed monthly or annually, and annual billing includes 2 months free — you pay 10-month pricing for the year. The first help session is free on every tier." },
+  { question: "Do you offer a nonprofit or multi-church discount?", answer: "Yes. Contact us and we will talk through the right fit for your ministry and budget. Multi-campus and denomination rollouts are handled directly inside Managed." },
   { question: "What happens to my data if I cancel?", answer: "Your data stays exportable. We will help you make sure your ministry can keep what it needs." },
-  { question: "Do you offer annual billing?", answer: "Yes. Annual billing includes 2 months free, which means you pay 10-month pricing for the year." },
 ];
 
 const structuredData = [
@@ -152,10 +141,12 @@ const structuredData = [
     name: "WorshipMetrics Pricing",
     url: `${SITE_URL}/pricing`,
     itemListElement: [
-      { "@type": "Offer", name: "Free Forever", price: "0", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "Starter", price: "9.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "Pro", price: "29.99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
-      { "@type": "Offer", name: "Worship Metrics Tablet", price: "349", priceCurrency: "USD", url: `${SITE_URL}/tablet` },
+      { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Assist", price: "49", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Stream", price: "99", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Care (enhanced support)", price: "199", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Sunday Assurance (enhanced support)", price: "499", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+      { "@type": "Offer", name: "Managed (enhanced support)", price: "1299", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
     ],
   },
   {
@@ -172,33 +163,51 @@ const structuredData = [
 
 <Layout
   title="Pricing"
-  description="Free to start. Grows with your ministry. Compare WorshipMetrics plans for local production, cloud sync, Sunday automation, and multi-site support."
+  description="Cancel your streaming bill and keep the difference. Free forever monitoring, $49 Assist, $99 Stream per campus — plus enhanced human support that stacks on any tier."
   canonical="/pricing"
   structuredData={structuredData}
 >
+  <!-- Hero -->
   <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-center">
       <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Pricing</p>
-      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Free to start. Grows with your ministry.</h1>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Cancel your streaming bill. Keep the difference.</h1>
       <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-        Start with the full local toolkit on Free Forever. Add cloud sync on Starter, automation on Pro, and campus-wide coordination on Multi-Site.
+        Streaming that runs like the expensive platforms — for less than you pay today — and it brings monitoring, AI support, planning, presentation, signage, people, and clips with it. Watching, the map, and the alerts stay free forever.
+      </p>
+      <div class="mx-auto mt-8 max-w-2xl rounded-2xl border border-indigo-200 bg-indigo-50 px-6 py-4">
+        <p class="text-lg font-semibold text-indigo-900 sm:text-xl">&ldquo;Cancel Resi. Pay us $99. Keep the difference — and get everything else.&rdquo;</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two axes explainer -->
+  <section class="px-4 pt-12 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Two axes that stack</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Pick a platform tier. Add the support you want.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        One axis is what the software does. The other is how much human stands behind it. Any platform tier combines with any support add-on — and the free pledge is untouched either way.
       </p>
     </div>
   </section>
 
+  <!-- AXIS 1 — Platform -->
   <section class="px-4 py-12 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <div class="grid items-stretch gap-8 lg:grid-cols-4">
-        {plans.map(({ name, price, suffix, tag, badge, body, cta, href, featured, items, supportLabel, supportBody, supportBandClass }) => (
+    <div class="mx-auto max-w-6xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Axis 1 — The platform</p>
+      <h3 class="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Three ways to run the platform.</h3>
+      <div class="mt-8 grid items-stretch gap-8 lg:grid-cols-3">
+        {platformPlans.map(({ name, price, suffix, tag, badge, body, cta, href, featured, items }) => (
           <div class:list={[
             "relative flex flex-col rounded-[1.75rem] border p-8 shadow-sm",
             featured ? "border-indigo-500 bg-indigo-600 shadow-lg shadow-indigo-200" : "border-slate-200 bg-white",
           ]}>
-            {featured && <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-xs font-bold uppercase tracking-wider text-slate-900">Most popular</span>}
+            {featured && <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-xs font-bold uppercase tracking-wider text-slate-900">The tier that sells the company</span>}
             {badge && <span class:list={["mb-4 inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em]", featured ? "bg-white/15 text-white" : "bg-indigo-50 text-indigo-700"]}>{badge}</span>}
             <div>
               <p class:list={["text-sm font-semibold uppercase tracking-[0.16em]", featured ? "text-indigo-200" : "text-indigo-600"]}>{tag}</p>
-              <h2 class:list={["mt-3 text-2xl font-bold", featured ? "text-white" : "text-slate-900"]}>{name}</h2>
+              <h4 class:list={["mt-3 text-2xl font-bold", featured ? "text-white" : "text-slate-900"]}>{name}</h4>
               <p class:list={["mt-4 text-4xl font-extrabold tracking-tight", featured ? "text-white" : "text-slate-900"]}>{price}<span class:list={["text-base font-medium", featured ? "text-indigo-200" : "text-slate-500"]}>{suffix}</span></p>
               <p class:list={["mt-4 text-sm leading-relaxed", featured ? "text-indigo-100" : "text-slate-600"]}>{body}</p>
             </div>
@@ -211,157 +220,242 @@ const structuredData = [
                 </li>
               ))}
             </ul>
-            <div class:list={["mt-8 -mx-8 -mb-8 border-t border-white/10 px-6 py-5", supportBandClass]}>
-              <div class="flex min-h-[7.5rem] flex-col justify-between">
-                <div>
-                  <p class="text-[11px] font-bold uppercase tracking-[0.18em]">Support</p>
-                  <p class="mt-2 text-base font-bold leading-tight">{supportLabel}</p>
-                  <p class:list={["mt-2 text-sm leading-relaxed", featured ? "text-slate-800/85" : "opacity-95"]}>{supportBody}</p>
-                </div>
-                <div class:list={["mt-4 h-1.5 w-full rounded-full", featured ? "bg-white/35" : "bg-black/10"]}></div>
-              </div>
-            </div>
           </div>
         ))}
       </div>
+      <p class="mt-6 text-center text-sm text-slate-500">Billed monthly or annually — annual billing includes 2 months free. The first help session is free on every tier.</p>
     </div>
   </section>
 
-  <!-- Tech Support Service Plans -->
-  <section class="bg-white px-4 pb-6 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-200 bg-indigo-50 p-8 shadow-sm sm:p-10">
-      <div class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
-        <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Tech Support Service Plans</p>
-          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{supportServicePlans.headline}</h2>
-          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{supportServicePlans.body}</p>
-          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-            Whether you need extended phone hours, dedicated onboarding for new volunteers, or priority response during live service windows, we build a plan around your church. Call <a href="tel:+19109677447" class="font-semibold text-indigo-600 hover:text-indigo-800">910-WORSHIP</a> and talk to Paul or Noah about what makes sense for your team.
-          </p>
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a href="/discovery-call" class="btn-primary">Get a support plan quote</a>
-            <a href="/contact" class="btn-outline">Contact us about support plans</a>
+  <!-- AXIS 2 — Enhanced support -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Axis 2 — Enhanced support</p>
+      <h3 class="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Support stacks on top of any platform tier.</h3>
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Of every hundred issues, roughly seventy die in monitoring, twenty-two die in AI, seven reach a weekday human, and one needs a Sunday pro. These add-ons decide how much human is standing by — attach one to whichever platform tier you run.
+      </p>
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        {supportAddons.map(({ name, price, suffix, body, highlight }) => (
+          <div class:list={[
+            "flex flex-col rounded-[1.5rem] border p-8 shadow-sm",
+            highlight ? "border-indigo-300 bg-white ring-1 ring-indigo-200" : "border-slate-200 bg-white",
+          ]}>
+            <h4 class="text-xl font-bold text-slate-900">{name}</h4>
+            <p class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900">{price}<span class="text-base font-medium text-slate-500">{suffix}</span></p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
-        </div>
-        <div class="grid gap-4">
-          <div class="rounded-[1.5rem] border border-indigo-200 bg-white p-6 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Extended phone support</p>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">Coverage beyond standard hours for churches running midweek services or multi-campus schedules.</p>
-          </div>
-          <div class="rounded-[1.5rem] border border-indigo-200 bg-white p-6 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Dedicated onboarding</p>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">Hands-on setup sessions for your team, tailored to your actual AV system and volunteer structure.</p>
-          </div>
-          <div class="rounded-[1.5rem] border border-indigo-200 bg-white p-6 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Priority live-service response</p>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">If something breaks during service, you get a human immediately who knows your system and can help right now.</p>
-          </div>
-        </div>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="/discovery-call" class="btn-primary">Talk through the right support level</a>
+        <a href="/contact" class="btn-outline">Contact us about support</a>
       </div>
     </div>
   </section>
 
-  <section class="bg-white px-4 pb-6 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm sm:p-10">
-      <div class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-        <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why support is part of the product</p>
-          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Church production software should not leave the team alone on Sunday.</h2>
-          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-            WorshipMetrics is not just software you buy and figure out in isolation. Support is part of the value because churches need different levels of help as their production grows from one operator to a real team.
-          </p>
-          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-            That means real support channels: tickets, chat, and a phone line at <a href="tel:+19109677447" class="font-semibold text-indigo-600 hover:text-indigo-800">910-WORSHIP</a> when your team needs a real person.
-          </p>
-        </div>
-        <div class="grid gap-4 sm:grid-cols-2">
-          {[
-            "Free Forever gives a single operator the full local toolkit before the church pays for cloud infrastructure.",
-            "Starter connects the booth to the cloud so clips, signage, attendance, and sync become smarter across devices.",
-            "Pro adds the automation and alerting layer because live production issues do not always wait for manual intervention.",
-            "Multi-Site gets partner-level help because cross-campus rollout is a different kind of operational challenge.",
-          ].map((item) => (
-            <div class="rounded-[1.5rem] border border-slate-200 bg-white p-5 text-sm leading-relaxed text-slate-600">{item}</div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- What real churches actually buy -->
   <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
-      <div class="grid items-center gap-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-        <div class="p-8 sm:p-10">
-          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What you get with Pro</p>
-          <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">The room gets easier to run because more people can carry it well.</h2>
-          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Pro adds the self-healing, cue automation, remote control, and team workflows that help directors, students, and first-time volunteers all contribute in the same service with less chaos.
-          </p>
-          <div class="mt-6 space-y-3 text-sm text-slate-700">
-            {[
-              "Self-healing keeps streams and recordings alive when the room would otherwise stop.",
-              "Volunteer control panels work on any device with only the controls that role needs.",
-              "Natural-language cue authoring helps teams build production moments faster.",
-            ].map((item) => (
-              <div class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></div>
-            ))}
-          </div>
-          <p class="mt-6 text-sm text-slate-500">Includes role-based volunteer control panels, which is part of what makes AV Clubs possible.</p>
-          <div class="mt-4">
-            <a href="/av-team" class="btn-outline">See the AV Team roles</a>
-          </div>
-        </div>
-        <div class="overflow-hidden border-l border-slate-200 bg-slate-50">
-          <img src={PANELS_IMAGE} alt="Volunteer control panels on tablets in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] h-full w-full object-cover" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
+    <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Compare the plans in one table.</h2>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What real churches actually buy</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every combination makes sense.</h2>
       </div>
       <div class="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
         <table class="w-full text-sm">
           <thead class="bg-slate-50 text-left">
             <tr>
-              <th class="px-6 py-4 font-semibold text-slate-700">Capability</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Free Forever</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Starter</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Pro</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Multi-Site</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Church</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Stack</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Monthly</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Compare against</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200 bg-white">
-            {comparisonRows.map(([feature, free, starter, pro, premium]) => (
-              <tr class:list={[feature === "Support" ? "bg-slate-50" : ""]}>
-                <td class="px-6 py-4 font-semibold text-slate-900">{feature}</td>
-                <td class="px-6 py-4 text-slate-600">{free}</td>
-                <td class="px-6 py-4 text-slate-600">{starter}</td>
-                <td class="px-6 py-4 text-slate-600">{pro}</td>
-                <td class="px-6 py-4 text-slate-600">{premium}</td>
+            {exampleStacks.map(({ church, stack, monthly, compare }) => (
+              <tr>
+                <td class="px-6 py-4 font-semibold text-slate-900">{church}</td>
+                <td class="px-6 py-4 text-slate-600">{stack}</td>
+                <td class="px-6 py-4 font-bold text-indigo-600">{monthly}</td>
+                <td class="px-6 py-4 text-slate-500">{compare}</td>
               </tr>
             ))}
-            <tr class="border-t-2 border-slate-300 bg-slate-950 text-white">
-              <td class="px-6 py-4 font-semibold">Support band</td>
-              <td class="px-6 py-4"><span class="inline-flex rounded-full bg-slate-200 px-3 py-1 text-xs font-semibold text-slate-700">Community</span></td>
-              <td class="px-6 py-4"><span class="inline-flex rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">Email + Tickets</span></td>
-              <td class="px-6 py-4"><span class="inline-flex rounded-full bg-amber-400 px-3 py-1 text-xs font-semibold text-slate-950">Email + Tickets + Phone</span></td>
-              <td class="px-6 py-4"><span class="inline-flex rounded-full bg-purple-700 px-3 py-1 text-xs font-semibold text-white">Dedicated Account Manager</span></td>
-            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
+  <!-- Streaming savings comparison -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The streaming math</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Stream for less than you pay today — box included, because there is no box.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">What a streaming church pays today</p>
+          <ul class="mt-5 space-y-3 text-sm text-slate-600">
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>Resi-class streaming: typically ~$250&ndash;350+/mo, plus a $1,500+ hardware encoder</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>BoxCast-class streaming: typically ~$149&ndash;249/mo, plus an encoder</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>Planning, presentation, and signage tools bought separately — with no support layer at all</span></li>
+          </ul>
+        </div>
+        <div class="rounded-[1.75rem] border border-indigo-200 bg-indigo-600 p-8 text-white shadow-lg shadow-indigo-200">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-200">With WorshipMetrics</p>
+          <ul class="mt-5 space-y-3 text-sm text-indigo-50">
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span><span class="font-semibold text-white">Stream: $99/mo per campus</span></span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>Encoder: Tech Manager on the PC you already own — <span class="font-semibold text-white">$0</span></span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>Planning, presentation, signage, people, and clips — included</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>24/7 AI support that knows your system — included</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-4 text-center text-xs text-slate-400">Competitor figures are typical ranges as of mid-2026 for comparable resilient-streaming tiers and may vary — check current published pricing.</p>
+    </div>
+  </section>
+
+  <!-- Stream fair use & overages -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Stream tier — fair use &amp; overages</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Generous by default. Honest at the edges.</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          Allowances are sized so a typical church — two services a week plus a midweek gathering — never sees an overage line in its life. Usage alerts fire at 80% of any allowance, and overage pricing is published, flat, and cheap.
+        </p>
+      </div>
+      <div class="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-slate-700">Included per campus, per month</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Allowance</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Overage</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            {fairUseRows.map(({ included, allowance, overage }) => (
+              <tr>
+                <td class="px-6 py-4 font-semibold text-slate-900">{included}</td>
+                <td class="px-6 py-4 text-slate-600">{allowance}</td>
+                <td class="px-6 py-4 text-slate-600">{overage}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-8 rounded-[1.75rem] border border-indigo-200 bg-indigo-50 p-8 text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">A promise that matters on Sunday</p>
+        <p class="mx-auto mt-3 max-w-3xl text-lg font-semibold leading-relaxed text-slate-900">
+          We never stop a live service over a quota. If you blow through an allowance mid-stream, the stream keeps running and the overage shows up on the bill — never on the screen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why support is part of the product -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why support is part of the product</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">910-WORSHIP. Seven days a week. A person answers.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            Every WorshipMetrics plan is backed by humans who run church production, seven days a week — including Sunday morning. The enhanced-support add-ons layer on real people who watch your Sunday, respond fast, and already know your system.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            That means real channels: tickets, chat, and a phone line at <a href="tel:+19109677447" class="font-semibold text-indigo-600 hover:text-indigo-800">910-WORSHIP</a> when your team needs a real person.
+          </p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {[
+            "Free gets a whole church into the same plan, watched around the clock, before it pays a dime.",
+            "Assist unlocks the full suite and unlimited AI support — Luminos in the app, Journey on the phone.",
+            "Stream turns Tech Manager into a cloud encoder and streams every campus for less than a single competitor bill.",
+            "Care, Sunday Assurance, and Managed decide how much human stands behind Sunday when it counts.",
+          ].map((item) => (
+            <div class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-sm leading-relaxed text-slate-600">{item}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stream production visual -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+      <div class="grid items-center gap-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <div class="p-8 sm:p-10">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The encoder you already own</p>
+          <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Tech Manager is the encoder — no $1,500 box on the rack.</h2>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            Stream runs on Tech Manager, the desktop app on a PC your church already owns. Resilient ingest, multi-destination delivery, cloud DVR, and stream-health alerts — the capability the expensive platforms sell as hardware, running as software you already have.
+          </p>
+          <div class="mt-6 space-y-3 text-sm text-slate-700">
+            {[
+              "One feed in — YouTube, Facebook, your embed, and a hosted watch page out.",
+              "Stream-health monitoring wired straight into your alerts.",
+              "Reels cut automatically from every service, ready before the parking lot empties.",
+            ].map((item) => (
+              <div class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></div>
+            ))}
+          </div>
+          <div class="mt-6">
+            <a href="/live-streaming" class="btn-outline">See how streaming works</a>
+          </div>
+        </div>
+        <div class="overflow-hidden border-l border-slate-200 bg-slate-50">
+          <img src={PANELS_IMAGE} alt="Production dashboard with audio mix, video, and stream health in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] h-full w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Compare the platform tiers.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Enhanced support — Care, Sunday Assurance, and Managed — stacks on top of whichever tier you choose.
+        </p>
+      </div>
+      <div class="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-slate-700">Capability</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Free</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Assist</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Stream</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            {comparisonRows.map(([feature, free, assist, stream]) => (
+              <tr class:list={[feature === "Price" ? "bg-slate-50" : ""]}>
+                <td class="px-6 py-4 font-semibold text-slate-900">{feature}</td>
+                <td class="px-6 py-4 text-slate-600">{free}</td>
+                <td class="px-6 py-4 text-slate-600">{assist}</td>
+                <td class="px-6 py-4 text-slate-600">{stream}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hardware -->
   <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Hardware sold separately</p>
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Add hardware where it helps the workflow.</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          Streaming needs no encoder box — Tech Manager runs on a PC you already own. These optional devices are for the welcome desk and the booth, not the stream.
+        </p>
       </div>
       <div class="mt-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
         <div class="flex flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
@@ -388,6 +482,7 @@ const structuredData = [
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl">
       <div class="text-center">
@@ -405,11 +500,12 @@ const structuredData = [
     </div>
   </section>
 
+  <!-- Final CTA -->
   <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl font-bold text-white sm:text-4xl">Still not sure which tier fits? Book a 15-minute call.</h2>
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Stream your services for less than you pay today.</h2>
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
-        We will help you choose the right level for your team, your current workflow, and the kind of support your ministry actually needs.
+        Watching, the map, and the alerts are free forever. When you are ready to stream, cancel the expensive box and keep the difference — with real humans on call seven days a week.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
         <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="pricing_footer_get_started_free" data-wm-track-location="pricing_footer_cta">Get started free</a>

@@ -1,34 +1,64 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-present-slides.jpg`;
+const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/presentation.jpg`;
 
 const features = [
   {
-    title: "Slides from the service plan",
-    body: "Songs, lyrics, and announcements flow straight from the plan your team already built in Services. No re-typing the setlist into a second program on Saturday night.",
+    title: "A real slide editor",
+    body: "Full 1920×1080 slide editing with templates, layers, and text tools. Section labels carry identity colors — Verse, Chorus, Bridge, Tag, Vamp — so the operator always knows where the song is going.",
   },
   {
-    title: "Lyrics that follow the arrangement",
-    body: "Verses, choruses, and bridges follow the arrangement and key the worship leader picked — change the plan, and the slides change with it.",
+    title: "Scripture to slides in seconds",
+    body: "Type a reference, pick a translation, and the passage becomes clean slides. Save it as a re-editable presentation in your library, or append it to the live show mid-service.",
   },
   {
-    title: "Stage display for the platform",
-    body: "A separate stage output with editable layouts gives the band and vocalists lyrics, timers, and cues — without mirroring the audience screen.",
+    title: "A media bin that behaves",
+    body: "Images, videos, and gradients with fit modes, crop, trim, fades, loop, and end-of-video behaviors — loop, fade, or hold. Organized in folders, ready on click.",
   },
   {
-    title: "Backgrounds and layers",
-    body: "Media backgrounds, text layers, and clean layouts that a volunteer can run confidently after one walkthrough.",
+    title: "Timers, clocks & countdowns",
+    body: "Countdown, count-up, and countdown-to-time with warning and overrun colors, plus time-of-day clocks. Pre-service countdowns and sermon timers, built in.",
   },
   {
-    title: "One operator, or a team",
-    body: "Present runs from the booth alongside Tech Manager, and slides advance with a click — simple enough for a first-time volunteer on a busy Sunday.",
+    title: "Overlays & lower thirds",
+    body: "Lower thirds, messages, logo bugs, and timer overlays with auto-hide — layered over any slide or background without interrupting the show.",
   },
   {
-    title: "Connected to the rest of Sunday",
-    body: "Because Present lives in the same platform as planning, streaming, and monitoring, the lyrics operator sees the same plan as the stream operator and the band.",
+    title: "Macros for big moments",
+    body: "One click fires a named sequence: change the background, jump to a playlist, show an overlay, start audio, wait, clear. Complex transitions become a single button.",
   },
+  {
+    title: "Audio, routed right",
+    body: "An audio bin with tracks, loops, volume and groups — and output-device routing so walk-in music lands on the right speakers, not the operator's laptop.",
+  },
+  {
+    title: "Your brand, everywhere",
+    body: "Church brand colors, fonts, and logo flow through templates and themes, so every slide looks like your church without a volunteer designing under pressure.",
+  },
+  {
+    title: "Playlists built for Sunday",
+    body: "ProPresenter-style playlists mixing songs, presentations, announcements, countdowns, and media — with per-item backgrounds and section colors.",
+  },
+];
+
+const protocolItems = [
+  "OSC over the network for lighting consoles",
+  "RossTalk for Ross production switchers",
+  "HTTP requests for anything with an API",
+  "MIDI for the gear that speaks it",
+];
+
+const importItems = [
+  "ProPresenter files (.pro4, .pro5, .pro6)",
+  "OpenLyrics libraries",
+  "SongSelect files",
+  "The WorshipMetrics Songs library — already connected",
 ];
 
 const structuredData = {
@@ -38,7 +68,8 @@ const structuredData = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, Windows, Mac",
   url: `${SITE_URL}/present`,
-  description: "Church presentation software built from the service plan: slides, lyrics, backgrounds, and stage display in the same platform as streaming, planning, and monitoring.",
+  image: HERO_IMAGE,
+  description: "Church presentation software built from the service plan: a full slide editor, scripture-to-slides, media bin, timers, overlays, macros, stage display, second-screen output from the browser, and OSC/RossTalk/HTTP/MIDI triggers.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -52,42 +83,79 @@ const structuredData = {
 <Layout
   title="Church Presentation Software — Slides, Lyrics & Stage Display"
   socialTitle="WorshipMetrics Present | Lyrics up. Stage covered."
-  description="Slides, lyrics, backgrounds, and stage display built straight from the service plan — in the same platform that streams, monitors, and supports your Sunday."
+  description="A full presentation engine built from the service plan — slide editor, scripture-to-slides, media bin, timers, overlays, macros, stage display, and second-screen output straight from the browser."
   canonical="/present"
+  ogImage={HERO_IMAGE}
   structuredData={structuredData}
 >
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={HERO_IMAGE} />
+  </Fragment>
+
   <!-- Hero -->
   <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-4xl text-center">
-      <p class="eyebrow inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 shadow-sm">
-        Present &middot; Slides &middot; Lyrics &middot; Stage display
-      </p>
-      <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-        Lyrics up. Stage covered.
-      </h1>
-      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-        Present builds slides, lyrics, and the stage display straight from the service plan your team already made &mdash; in the same platform that streams your service and watches the booth.
-      </p>
-      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="present_hero_sign_up_free" data-wm-track-location="present_hero">Sign up free</a>
-        <a href="/services" class="btn-outline">See service planning</a>
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="eyebrow inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 shadow-sm">
+          Present &middot; Slides &middot; Lyrics &middot; Stage display
+        </p>
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Lyrics up. Stage covered.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Present is a full presentation engine &mdash; slide editor, scripture, media, timers, overlays, and stage display &mdash; built straight from the service plan your team already made, in the same platform that streams your service and watches the booth.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="present_hero_sign_up_free" data-wm-track-location="present_hero">Sign up free</a>
+          <a href="/services" class="btn-outline">See service planning</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Core presentation is free forever. The full suite unlocks with Assist.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="Present slide grid with playlists, backgrounds library, and live program output in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
   </section>
 
-  <!-- Features -->
+  <!-- Plan → Present -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">Plan &rarr; Present</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The plan is the presentation.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Every other presentation tool starts from a blank deck and a volunteer re-typing the setlist on Saturday night. Present projects the service plan into a ready playlist &mdash; songs in the right key and arrangement, announcements, and media, in order.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "The service plan becomes a playlist automatically — no re-typing",
+            "The plan changes on Thursday? The playlist re-syncs live, in seconds",
+            "Operator tweaks during the service are preserved, not overwritten",
+            "Lyrics follow the arrangement and key the worship leader picked in Songs",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/songs" class="btn-outline">See the Songs library</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={LIFESTYLE_IMAGE} alt="Volunteer running lyrics and slides with WorshipMetrics Present" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
         <p class="eyebrow">What Present does</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The plan is the presentation.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Every other presentation tool starts from a blank deck. Present starts from the service your team already planned.
-        </p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A full presentation engine, not a slide viewer.</h2>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {features.map(({ title, body }) => (
-          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <h3 class="text-lg font-bold text-slate-900">{title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
@@ -96,17 +164,77 @@ const structuredData = {
     </div>
   </section>
 
-  <!-- ProPresenter positioning -->
+  <!-- Outputs: audience + stage -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Program &amp; stage outputs</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Two screens. One click. No capture card.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Pick a monitor and Present opens a borderless, fullscreen output on it &mdash; straight from the browser. The projector gets the program feed; the platform gets a stage display with lyrics, timers, and cues on its own layout. Fade to black, logo, and clear are one button each.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+        {[
+          { title: "Program out", body: "The audience screen: slides, lyrics, media, and overlays, fullscreen on any connected display or projector." },
+          { title: "Stage out", body: "The confidence monitor: current and next lyrics, live timers, and clocks on a separate editable layout — never mirrored from the audience screen." },
+          { title: "From the browser or the booth", body: "Web output needs no install — pick the screen and go. The Tech Manager desktop app drives outputs the same way in the booth." },
+        ].map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Protocol triggers -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Slides that run the room</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">When the slide goes live, the room follows.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            Attach protocol actions to slides and playlists, and going live fires them across the network &mdash; lights shift for worship, the switcher takes the sermon camera, the stream overlay updates. One volunteer advancing slides quietly runs the whole moment.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Speaks the booth's languages</p>
+          <ul class="mt-6 space-y-3">
+            {protocolItems.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-slate-200 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-400"></span><span>{item}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ProPresenter positioning + import -->
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-4xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10 text-center">
-      <p class="eyebrow">Already on ProPresenter?</p>
-      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Keep it, or replace it. Your call.</h2>
-      <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-        If your team loves its current presentation software, WorshipMetrics works alongside it &mdash; the plan, stream, and monitoring still connect. When you&apos;re ready to stop re-typing the setlist into a second program, Present is here.
-      </p>
-      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/why-worship-metrics" class="btn-outline">See how we compare</a>
-        <a href="/kb/articles/propresenter-7-advanced-setup/" class="btn-outline">ProPresenter guides in our KB</a>
+    <div class="mx-auto max-w-6xl grid gap-8 lg:grid-cols-2">
+      <div class="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
+        <p class="eyebrow">Already on ProPresenter?</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Keep it, or replace it. Your call.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600">
+          If your team loves its current presentation software, WorshipMetrics works alongside it &mdash; the plan, stream, and monitoring still connect. When you&apos;re ready to stop re-typing the setlist into a second program, Present is here.
+        </p>
+        <div class="mt-6 flex flex-col items-start gap-3 sm:flex-row">
+          <a href="/why-worship-metrics" class="btn-outline">See how we compare</a>
+          <a href="/kb/articles/propresenter-7-advanced-setup/" class="btn-outline">ProPresenter guides in our KB</a>
+        </div>
+      </div>
+      <div class="rounded-[2rem] border border-indigo-200 bg-indigo-50 p-8 shadow-sm sm:p-10">
+        <p class="eyebrow">Bring your library</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Import what you&apos;ve already built.</h2>
+        <ul class="mt-6 space-y-3">
+          {importItems.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm text-slate-500">Years of song files and presentations come with you — not left behind.</p>
       </div>
     </div>
   </section>
@@ -124,4 +252,5 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <TechManagerCTA />
 </Layout>

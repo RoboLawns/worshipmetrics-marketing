@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const OG_IMAGE = `${R2}/Luminos/Luminos%20Profile.jpg`;
+const OG_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-luminos-ai-chat.jpg`;
 
 const ministryPrompts = [
   '"Who has missed multiple services and may need a check-in?"',
@@ -199,7 +200,7 @@ const structuredData = [
         </div>
         <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
           <h3 class="text-xl font-bold text-slate-900">Fix problems remotely</h3>
-          <p class="mt-4 text-sm leading-relaxed text-slate-600">On Pro and Premium plans, Luminos can take action on your system with confirmation: adjust OBS bitrate, restart OBS, switch scenes, move PTZ cameras, restart the Hub, or run a network diagnostic.</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">On Assist and Stream, Luminos can take action on your system with confirmation: adjust OBS bitrate, restart OBS, switch scenes, move PTZ cameras, restart the Hub, or run a network diagnostic. It never changes anything without your explicit approval.</p>
         </div>
         <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
           <h3 class="text-xl font-bold text-slate-900">Alert your team before they notice</h3>
@@ -308,4 +309,5 @@ const structuredData = [
       </div>
     </div>
   </section>
+  <TechManagerCTA />
 </Layout>

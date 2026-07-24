@@ -6,11 +6,12 @@ import IntegrationsBand from "../components/integrations/IntegrationsBand.astro"
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const HERO_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Hero.jpg`;
-const TECH_MANAGER_CARD_IMAGE = `${R2}/Tech%20Manager/Tech%20Manager%20Hero.jpg`;
-const PLATFORM_CARD_IMAGE = `${R2}/homepage/WorshipMetrics%20Hero%20New.jpg`;
-const SERVICES_IMAGE = `${R2}/homepage/Team%20Collaboration%20hero.jpg`;
-const STREAM_HEALTH_IMAGE = `${R2}/homepage/new%20images/Stream%20Health.jpg`;
+const HERO_IMAGE = `${R2}/app-2026/lifestyle/tech-manager-hero.jpg`;
+const TECH_MANAGER_CARD_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-production-dashboard.jpg`;
+const PLATFORM_CARD_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-services-planning.jpg`;
+const SERVICES_IMAGE = `${R2}/app-2026/lifestyle/services-overview.jpg`;
+const STREAM_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-live-stream.jpg`;
+const PULSE_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-pulse-system-health.jpg`;
 const VOLUNTEER_PANEL_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
 
 const freeFeatures = [
@@ -157,7 +158,7 @@ const structuredData = {
         </div>
       </div>
       <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={STREAM_HEALTH_IMAGE} alt="Live stream health and destinations in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={STREAM_IMAGE} alt="Live stream destinations, connections, and events in WorshipMetrics Publish" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
   </section>
@@ -292,7 +293,7 @@ const structuredData = {
         </div>
       </div>
       <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={STREAM_HEALTH_IMAGE} alt="Stream health dashboard in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={PULSE_IMAGE} alt="Pulse system health dashboard monitoring every machine in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
   </section>
@@ -308,7 +309,7 @@ const structuredData = {
           Map your system, monitor your stream, control your cameras, and turn every Sunday into ready-to-publish clips without leaving the room. Tech Manager powers the Diagnose and Document pillars of your support stack.
         </p>
         <p class="mt-5 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
-          Worship Clips local workflow is included free.
+          Reels local workflow is included free.
         </p>
         <div class="mt-8">
           <a href="/tech-manager" class="btn-outline">Learn more</a>

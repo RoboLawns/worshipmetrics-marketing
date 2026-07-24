@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -16,6 +17,7 @@ const capabilityItems = [
 ];
 
 const scheduleItems = [
+  "Serving teams with defined positions per service — the schedule starts from real roles, not a blank list",
   "Recurring availability and blackout windows in one place",
   "Assignment workflows tied directly to the service plan",
   "A clearer picture of who is overloaded and who can still step in",
@@ -177,4 +179,5 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <TechManagerCTA />
 </Layout>

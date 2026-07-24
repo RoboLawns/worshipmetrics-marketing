@@ -6,18 +6,17 @@ const APP_URL = "https://app.worshipmetrics.com";
 const navItems = [
   {
     type: "dropdown",
-    key: "stream",
-    label: "Stream",
-    icon: "/images/nav/produce.png",
+    key: "plan",
+    label: "Plan",
+    icon: "/images/nav/plan.png",
     overview: {
-      href: "/live-streaming",
-      label: "Streaming Overview",
-      desc: "One feed in — every destination, recordings, and clips out.",
+      href: "/services",
+      label: "Plan Overview",
+      desc: "Service prep, songs, and team assignments before Sunday starts.",
     },
     items: [
-      { href: "/live-streaming", label: "Live Streaming", desc: "Stream to YouTube, Facebook, your website, and any custom destination from one feed" },
-      { href: "/solutions/worship-clips", label: "Worship Clips", desc: "Turn the sermon into ready-to-publish clips without extra editing" },
-      { href: "/signage-display", label: "Slides & Signage", desc: "Digital signage that updates from a phone and keeps the campus informed" },
+      { href: "/services", label: "Services", desc: "Plan the service, assign the team, schedule volunteers, and run Sunday from one workflow" },
+      { href: "/songs", label: "Songs", desc: "Your song library — CCLI, keys, arrangements, and chord charts that transpose live" },
     ],
   },
   {
@@ -26,29 +25,69 @@ const navItems = [
     label: "People",
     icon: "/images/nav/people.png",
     overview: {
-      href: "/volunteers",
+      href: "/people",
       label: "People Overview",
-      desc: "Build and empower the humans who make Sunday happen.",
+      desc: "The congregation, the volunteers, and the team that carries Sunday.",
     },
     items: [
+      { href: "/people", label: "People", desc: "Members, regulars, and visitors in one directory with households and follow-up" },
       { href: "/volunteers", label: "Volunteers", desc: "Capabilities, scheduling, communications, and replacement workflows" },
-      { href: "/av-team", label: "AV Team", desc: "Seven role-based control panels that turn one operator into a real team" },
       { href: "/team-chat", label: "Team Chat", desc: "Real-time communication built for the booth, not a separate app" },
+      { href: "/av-team", label: "AV Team", desc: "Seven role-based control panels that turn one operator into a real team" },
       { href: "/av-club", label: "AV Club", desc: "How churches build volunteer and youth ministry through production roles" },
     ],
   },
   {
+    type: "link",
+    key: "present",
+    label: "Present",
+    href: "/present",
+  },
+  {
     type: "dropdown",
-    key: "plan",
-    label: "Plan",
-    icon: "/images/nav/plan.png",
+    key: "produce",
+    label: "Produce",
+    icon: "/images/nav/system.png",
     overview: {
-      href: "/services",
-      label: "Plan Overview",
-      desc: "Service prep, scheduling, and team assignments before Sunday starts.",
+      href: "/tech-manager",
+      label: "Produce Overview",
+      desc: "Run the booth: switcher, cameras, audio, and volunteer panels.",
     },
     items: [
-      { href: "/services", label: "Services", desc: "Plan the service, assign the team, schedule volunteers, and run Sunday from one workflow" },
+      { href: "/tech-manager", label: "Tech Manager", desc: "The desktop app that powers the booth — and the $0 streaming encoder" },
+      { href: "/tablet", label: "Worship Metrics Tablet", desc: "Dedicated volunteer tablet for attendance, check-in, and service-day workflows" },
+      { href: "/hardware", label: "Compare Hardware", desc: "Compare hardware options for your church's setup" },
+    ],
+  },
+  {
+    type: "dropdown",
+    key: "publish",
+    label: "Publish",
+    icon: "/images/nav/produce.png",
+    overview: {
+      href: "/live-streaming",
+      label: "Publish Overview",
+      desc: "One feed in — every destination, Reels, and signage out.",
+    },
+    items: [
+      { href: "/live-streaming", label: "Live Streaming", desc: "Stream to YouTube, Facebook, your website, and any custom destination from one feed" },
+      { href: "/church-livestream-analytics", label: "Stream Health", desc: "Live encoder telemetry on air, and a scored report after every stream" },
+      { href: "/solutions/worship-clips", label: "Reels", desc: "Turn Sunday's service into shareable clips — we find the moments, you approve them" },
+      { href: "/signage-display", label: "Slides & Signage", desc: "Digital signage that updates from a phone and keeps the campus informed" },
+    ],
+  },
+  {
+    type: "dropdown",
+    key: "patch",
+    label: "Patch",
+    overview: {
+      href: "/system-documentation",
+      label: "Patch Overview",
+      desc: "Every device, wire, and signal path — documented and alive.",
+    },
+    items: [
+      { href: "/system-documentation", label: "System Documentation", desc: "Device inventory, the living Signal Map, and patch sheets that survive volunteer turnover" },
+      { href: "/integrations", label: "Integrations", desc: "See the ProAV gear WorshipMetrics works with through Central Control" },
     ],
   },
   {
@@ -57,31 +96,13 @@ const navItems = [
     label: "Pulse",
     icon: "/images/nav/pulse.png",
     overview: {
-      href: "/platform/attendance",
+      href: "/av-monitoring",
       label: "Pulse Overview",
-      desc: "Health, metrics, and visibility into your services and AV systems.",
+      desc: "Watching, alerts, and attendance in real time — free forever.",
     },
     items: [
+      { href: "/av-monitoring", label: "AV Monitoring", desc: "System health, device status, and booth observability with instant alerts" },
       { href: "/platform/attendance", label: "Attendance", desc: "Count in-room and online together without a separate reporting stack" },
-      { href: "/av-monitoring", label: "AV Monitoring / Stream Health", desc: "Monitor stream health, device status, and booth observability in real time" },
-    ],
-  },
-  {
-    type: "dropdown",
-    key: "system",
-    label: "System",
-    icon: "/images/nav/system.png",
-    overview: {
-      href: "/tech-manager",
-      label: "System Overview",
-      desc: "The booth, your infrastructure, and the hardware that powers the room.",
-    },
-    items: [
-      { href: "/tech-manager", label: "Tech Manager", desc: "The desktop app that powers the booth and keeps your system mapped" },
-      { href: "/system-documentation", label: "System Documentation", desc: "Guided wizard that builds wiring diagrams and manages every device in your AV system" },
-      { href: "/integrations", label: "Integrations", desc: "See the ProAV gear WorshipMetrics works with through Central Control" },
-      { href: "/tablet", label: "Worship Metrics Tablet", desc: "Dedicated volunteer tablet for attendance, check-in, and service-day workflows" },
-      { href: "/hardware", label: "Compare Hardware", desc: "Compare hardware options for your church's setup" },
     ],
   },
   {
@@ -95,10 +116,11 @@ const navItems = [
       desc: "Help, training, and success resources for your church team.",
     },
     items: [
-      { href: "/luminos-ai-assistant", label: "Luminos AI", desc: "AI assistant that helps your team work smarter" },
+      { href: "/phone-support", label: "Phone Support — 910-WORSHIP", desc: "Journey answers around the clock with your system in front of it" },
+      { href: "/luminos-ai-assistant", label: "Luminos AI", desc: "The in-app AI that diagnoses from your live system, not a script" },
       { href: "/kb", label: "Knowledge Base", desc: "Guides, troubleshooting, comparisons, and setup help for church teams" },
       { href: "/professional-services", label: "Professional Services", desc: "Consulting, training, installs, and production support" },
-      { href: "/contact", label: "Contact / 910-WORSHIP", desc: "Email, phone, and practical help when you need it" },
+      { href: "/contact", label: "Contact", desc: "Email, phone, and practical help when you need it" },
     ],
   },
 ];
@@ -294,7 +316,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div class={`dropdown ${item.key === "plan" || item.key === "pulse" ? "narrow" : ""} ${item.key === "system" || item.key === "support" ? "right" : ""}`}>
+            <div class={`dropdown ${item.key === "plan" || item.key === "patch" || item.key === "pulse" ? "narrow" : ""} ${item.key === "patch" || item.key === "pulse" || item.key === "support" ? "right" : ""}`}>
               <a href={item.overview.href} class="drop-overview">
                 <span class="over-label">{item.label}</span>
                 <h3>{item.overview.label}</h3>

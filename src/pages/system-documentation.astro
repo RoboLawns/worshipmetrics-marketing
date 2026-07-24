@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const HERO_IMAGE = `${R2}/Tech%20Manager/Tech%20Manager%20System%20Documentation%20-%20Hero%20Lifestyle.jpg`;
-const DEVICE_IMAGE = `${R2}/homepage/System%20Documentation/Church%20AV%20Device%20Management.jpg`;
-const WIRING_IMAGE = `${R2}/homepage/System%20Documentation/Device%20Management%20for%20Church%20AV.jpg`;
+const HERO_IMAGE = `${R2}/app-2026/lifestyle/av-device-system-layout.jpg`;
+const DEVICE_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-devices-inventory.jpg`;
+const WIRING_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-signal-map.jpg`;
 
 const features = [
   {
@@ -24,6 +25,10 @@ const features = [
   {
     title: "Professional printouts & cable labeling",
     body: "Generate clean, professional wiring diagrams ready for print. Label every cable, every port, and every connection so that when something goes wrong, anyone on your team can trace the signal path.",
+  },
+  {
+    title: "Patches & signal routing",
+    body: "Beyond the map, Patches documents how signals route through the system — which input feeds which bus, which output feeds which screen — so re-patching after a special event takes minutes, not a rehearsal.",
   },
 ];
 
@@ -191,7 +196,7 @@ const structuredData = {
         </div>
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={HERO_IMAGE} alt="System documentation wiring diagram in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={`${R2}/app-2026/lifestyle/device-map.jpg`} alt="Church tech director reviewing the AV signal map" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
   </section>
@@ -225,4 +230,5 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <TechManagerCTA />
 </Layout>

@@ -1,16 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const STREAM_HEALTH_IMAGE = `${R2}/homepage/new%20images/Stream%20Health.jpg`;
+const STREAM_HEALTH_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-live-stream.jpg`;
 
 const destinations = [
   { name: "YouTube", desc: "Scheduled broadcasts, go live, end, and history — handled end to end." },
   { name: "Facebook", desc: "Simulcast to your page without touching a second encoder." },
   { name: "Your website", desc: "A clean player embed for your church site — no platform branding." },
   { name: "Custom RTMP", desc: "Any destination that takes a stream key. Point us at it once." },
+  { name: "The Stream console", desc: "Encoders, connections, and scheduled events in one console — sync to vMix and go live in two clicks." },
 ];
 
 const clipFeatures = [
@@ -20,7 +22,7 @@ const clipFeatures = [
   },
   {
     title: "Trim from the recording",
-    body: "Every service lands in your recordings library automatically. Trim the full service, cut the sermon, and hand highlights straight to Worship Clips.",
+    body: "Every service lands in your recordings library automatically. Trim the full service, cut the sermon, and hand highlights straight to Reels.",
   },
   {
     title: "Publish-ready by Monday",
@@ -157,7 +159,7 @@ const structuredData = [
         ))}
       </div>
       <div class="mt-8 text-center">
-        <a href="/solutions/worship-clips" class="btn-outline">See Worship Clips</a>
+        <a href="/solutions/worship-clips" class="btn-outline">See Reels</a>
       </div>
     </div>
   </section>
@@ -218,4 +220,5 @@ const structuredData = [
       </div>
     </div>
   </section>
+  <TechManagerCTA />
 </Layout>

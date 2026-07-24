@@ -5,8 +5,8 @@ const SITE_URL = "https://worshipmetrics.com";
 const DISCOVERY_URL = "/discovery-call";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW = `${R2}/homepage/new%20images`;
-const TECH_MANAGER_HERO_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Hero.jpg`;
-const TECH_MANAGER_PRO_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Pro.jpg`;
+const TECH_MANAGER_HERO_IMAGE = `${R2}/app-2026/lifestyle/tech-manager-hero.jpg`;
+const TECH_MANAGER_PRO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-production-dashboard.jpg`;
 const OG_IMAGE = TECH_MANAGER_HERO_IMAGE;
 
 const techManagerFeatureSections = [
@@ -105,17 +105,17 @@ const techManagerFeatureSections = [
     ],
   },
   {
-    eyebrow: "Feature 8 — Worship Clips local mode",
+    eyebrow: "Feature 8 — Reels local mode",
     title: "Turn Sunday into clips before Monday becomes another editing job.",
-    body: "Worship Clips local mode keeps sermon clipping close to the booth so churches can publish faster without needing a second, separate content stack just to get started.",
+    body: "Reels local mode keeps sermon clipping close to the booth so churches can publish faster without needing a second, separate content stack just to get started.",
     bullets: [
       "Import, transcribe, clip, and render from the local workflow",
       "Give churches a usable content engine without waiting on cloud automation",
       "Pair the booth workflow with the social workflow more naturally",
     ],
     images: [
-      { src: `${R2}/Tech%20Manager/WorshipClips%20Mobile%20Mode%20-%20Lifestyle%20Hero.jpg`, alt: "Worship Clips lifestyle view in Tech Manager" },
-      { src: `${R2}/Tech%20Manager/WorshipClips%20Local%20Mode.jpg`, alt: "Worship Clips local mode interface in Tech Manager" },
+      { src: `${R2}/Tech%20Manager/WorshipClips%20Mobile%20Mode%20-%20Lifestyle%20Hero.jpg`, alt: "Reels lifestyle view in Tech Manager" },
+      { src: `${R2}/Tech%20Manager/WorshipClips%20Local%20Mode.jpg`, alt: "Reels local mode interface in Tech Manager" },
     ],
   },
   {
@@ -167,14 +167,14 @@ const selfHealingRows = [
 
 const tierRows = [
   ["System documentation", "Full", "Full", "Full"],
-  ["OBS monitoring", "Basic", "Full", "Full + Luminos AI"],
-  ["Cloud monitoring", "On-demand", "Continuous", "Continuous 24/7"],
-  ["Self-healing", "Yes", "Yes", "Yes"],
-  ["Luminos AV diagnostics", "Basic", "Full", "Full + remote action"],
+  ["24/7 watching, Signal Map & alerts", "Included — the pledge", "Included", "Included"],
+  ["OBS monitoring", "Basic", "Full + Luminos AI", "Full + Luminos AI"],
+  ["Luminos AV diagnostics", "In alerts + 1 free session", "Unlimited + remote action", "Unlimited + remote action"],
   ["Local signage hosting", "1 screen", "Unlimited", "Unlimited"],
-  ["PTZ camera control", "No", "Yes", "Yes + remote cloud"],
-  ["Stream health alerts", "No", "Email", "Push + phone"],
-  ["Remote OBS control", "No", "No", "Yes"],
+  ["PTZ camera control", "Local", "Local + remote cloud", "Local + remote cloud"],
+  ["Reels (AI clipping)", "Local workflow", "Cloud Reels", "Auto from every service"],
+  ["Cloud live streaming (encoder built in)", "No", "No", "Included — per campus"],
+  ["Stream-health alerts wired to your stream", "No", "No", "Included"],
 ];
 
 const supportTabs = [
@@ -342,7 +342,7 @@ const structuredData = [
   <section class="bg-white px-4 pb-16 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={TECH_MANAGER_PRO_IMAGE} alt="Tech Manager Pro dashboard showing booth system visibility" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={TECH_MANAGER_PRO_IMAGE} alt="Production dashboard in Tech Manager showing booth system visibility" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
       <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What the booth actually sees</p>
@@ -513,9 +513,9 @@ const structuredData = [
           <thead class="bg-slate-50 text-left">
             <tr>
               <th class="px-6 py-4 font-semibold text-slate-700">Feature</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Free Forever</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Starter</th>
-              <th class="px-6 py-4 font-semibold text-slate-700">Pro</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Free</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Assist</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Stream</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200 bg-white">

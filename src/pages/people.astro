@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-people-directory.jpg`;
+const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/people-management.jpg`;
+const SCHEDULE_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-my-schedule.jpg`;
+
+const features = [
+  {
+    title: "A directory that stays current",
+    body: "Every member, regular, and visitor in one searchable place — with contact info, photos, join dates, and age-aware profiles for adults and youth. Filter by status, type, or campus in a click.",
+  },
+  {
+    title: "Households, not just rows",
+    body: "Group people into households with a head of household, adults, and children — so families are visible as families, and follow-up reaches the right person.",
+  },
+  {
+    title: "CSV in, CSV out",
+    body: "Import your existing people list with the guided CSV wizard. Export exactly what's on screen — filters and selections applied — whenever leadership needs a list.",
+  },
+  {
+    title: "Archive, don't delete",
+    body: "People move away and seasons change. Archiving keeps records restorable instead of gone, and bulk actions make cleanup a five-minute job instead of a Saturday.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics People",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, iOS, Android",
+  url: `${SITE_URL}/people`,
+  image: HERO_IMAGE,
+  description: "Church people directory with member, regular, and visitor statuses, households, CSV import and export, serving assignments with follow-up tracking, and unlimited users free.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/pricing`,
+  },
+};
+---
+
+<Layout
+  title="Church People Directory & Member Management"
+  socialTitle="WorshipMetrics People"
+  description="Members, regulars, and visitors in one directory — households, CSV import/export, serving assignments with follow-up tracking, and unlimited users free forever."
+  canonical="/people"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={HERO_IMAGE} />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">People</p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Know your congregation. Not just your volunteers.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Members, regulars, and first-time visitors in one living directory &mdash; with households, serving assignments, and follow-up built in. Unlimited users on every plan, so the whole team lives in it.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="people_hero_sign_up_free" data-wm-track-location="people_hero">Sign up free</a>
+          <a href="/volunteers" class="btn-outline">See Volunteers</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Unlimited users, free forever. Import your existing list by CSV in minutes.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="Church people directory with statuses, types, and filters in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What's included</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">People management that ministry actually uses.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {features.map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Serving assignments -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">From the directory to the schedule</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every profile connects to how someone serves.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Open a profile and see the person, not just the record: contact details, household, and their serving assignments &mdash; confirmed, declined, or flagged for follow-up. Message anyone directly through Team Chat without leaving the page.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "Serving assignments with confirmed, declined, and follow-up statuses",
+            "Volunteers accept or decline requests from My Schedule, with unavailable dates leaders can see",
+            "One-tap message to any person through Team Chat",
+            "Multi-campus filtering appears automatically when you have more than one site",
+            "Changes sync live across every device — no refresh, no stale lists",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/volunteers" class="btn-outline">See volunteer scheduling</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={SCHEDULE_IMAGE} alt="My Schedule serving requests and unavailable dates in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Lifestyle band -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={LIFESTYLE_IMAGE} alt="Church staff member managing the congregation directory with WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why it lives here</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The directory that already knows your Sunday.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Standalone church management software doesn&apos;t know who ran the sound board last week or which visitor showed up through a livestream. WorshipMetrics does &mdash; because People sits beside Plan, attendance, and the booth in one platform.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          A visitor becomes a regular, a regular becomes a volunteer, a volunteer becomes a leader &mdash; and the whole journey happens in one system your church already runs on Sunday morning.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href="/platform/attendance" class="btn-outline">See Attendance</a>
+          <a href="/team-chat" class="btn-outline">See Team Chat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Bring your whole congregation into one place.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Import your list by CSV, invite unlimited users, and give every ministry the same source of truth &mdash; free forever.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="people_footer_sign_up_free" data-wm-track-location="people_footer_cta">Sign up free</a>
+        <a href="/discovery-call" class="btn-outline">Book a demo</a>
+        <a href="/pricing" class="btn-outline">See pricing</a>
+      </div>
+    </div>
+  </section>
+  <TechManagerCTA />
+</Layout>

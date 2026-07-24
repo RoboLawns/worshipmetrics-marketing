@@ -1,0 +1,173 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-songs-library.jpg`;
+const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/song-management.jpg`;
+
+const features = [
+  {
+    title: "One library, every detail",
+    body: "Title, artist, authors, CCLI number, copyright, BPM, meter, themes, and album art — every song your church sings, organized and searchable across titles, authors, CCLI numbers, and themes.",
+  },
+  {
+    title: "Arrangements & keys",
+    body: "Keep multiple arrangements per song, each with its own named keys. Mark a default arrangement so planning always starts from the version your team actually plays.",
+  },
+  {
+    title: "Chord charts that transpose live",
+    body: "A chords-over-lyrics ChordPro editor with live preview. View any chart in any key instantly, then export a clean PDF for the music stand.",
+  },
+  {
+    title: "Files where the team needs them",
+    body: "Attach chord charts, lead sheets, and audio to a song, an arrangement, or a specific key. Streaming links from Spotify, YouTube, and Apple Music are detected automatically.",
+  },
+];
+
+const importFormats = [
+  "ChordPro (.cho, .crd, .chopro)",
+  "OpenLyrics & OpenSong (.xml)",
+  "SongSelect files (.usr)",
+  "ProPresenter (.pro4–6)",
+  "Plain pasted lyrics",
+  "Planning Center import",
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics Songs",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, Windows, Mac, iOS, Android",
+  url: `${SITE_URL}/songs`,
+  image: HERO_IMAGE,
+  description: "Church song library software with CCLI tracking, arrangements and keys, a live-transposing ChordPro chord chart editor, PDF export, and imports from Planning Center, SongSelect files, OpenLyrics, and ProPresenter.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/pricing`,
+  },
+};
+---
+
+<Layout
+  title="Church Song Library & Chord Chart Software"
+  socialTitle="WorshipMetrics Songs"
+  description="Every song your church sings — CCLI, BPM, keys, arrangements, and a chord chart editor that transposes live. Import from Planning Center, SongSelect files, OpenLyrics, and ProPresenter."
+  canonical="/songs"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={HERO_IMAGE} />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Plan &middot; Songs</p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Every song your church sings, in one library.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          CCLI numbers, BPM, keys, themes, and arrangements &mdash; with a chord chart editor that transposes live and a schedule history that shows when each song was last sung. Built into the same plan your whole team runs on Sunday.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="songs_hero_sign_up_free" data-wm-track-location="songs_hero">Sign up free</a>
+          <a href="/services" class="btn-outline">See service planning</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Core song tools are free. Full song and media libraries with no storage caps unlock on Assist.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="Song library with CCLI, BPM, keys, and schedule history in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What's included</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A song library that carries the whole music workflow.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {features.map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Import + lifestyle -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Bring your library with you</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Import the songs you already have.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Paste lyrics, upload the files your team has collected for years, or pull your library straight from Planning Center. Duplicate detection matches on CCLI number first, so imports don&apos;t clutter the library you&apos;re trying to clean up.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {importFormats.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm text-slate-500">Public-domain hymns come pre-loaded in a shared library, ready to schedule.</p>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={LIFESTYLE_IMAGE} alt="Worship leader managing songs and chord charts with WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Planning tie-in -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Songs meet the service plan</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Scheduled once, remembered forever.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Every time a song lands in a service plan, the library remembers &mdash; how many times it&apos;s been used, and when it was last scheduled. No more singing the same four songs on repeat without realizing it.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          { title: "Plan the set", body: "Drop songs into the order of service with keys and arrangements attached. The band sees the same chart in the same key." },
+          { title: "Run it live", body: "Lyrics flow to Present and the stage display from the same plan — no re-typing, no version drift." },
+          { title: "Review the history", body: "See when each song was last sung and how often, so setlists stay fresh and intentional." },
+        ].map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Give your music team one source of truth.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        The song library lives inside the same platform that plans the service, schedules the team, and puts lyrics on screen. Start free — bring your library when you&apos;re ready.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="songs_footer_sign_up_free" data-wm-track-location="songs_footer_cta">Sign up free</a>
+        <a href="/pricing" class="btn-outline">See pricing</a>
+        <a href="/present" class="btn-outline">See Present</a>
+      </div>
+    </div>
+  </section>
+  <TechManagerCTA />
+</Layout>
