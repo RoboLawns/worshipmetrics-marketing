@@ -69,7 +69,10 @@ const structuredData = [
   ogImage="/legacy-images/seat-counting-hero.jpg"
   structuredData={structuredData}
 >
-  <style>
+  <style is:global>
+    /* Global (not Astro-scoped) because most of the seat demo's DOM — seats,
+       rows, chips — is created at runtime by the script below, and JS-created
+       elements never receive Astro's scoping attribute. */
     .seat-demo-shell {
       overflow: hidden;
       border: 1px solid rgb(15 23 42 / 0.08);
@@ -514,10 +517,10 @@ const structuredData = [
               Live sanctuary total
             </p>
             <p class="mt-4 seat-demo-total">
-              <span id="seat-demo-total-count">107</span>
+              <span id="seat-demo-total-count">100</span>
               <span class="text-2xl font-semibold text-indigo-200 sm:text-3xl">of 160</span>
             </p>
-            <p id="seat-demo-total-percent" class="seat-demo-total-sub">67% of your saved layout</p>
+            <p id="seat-demo-total-percent" class="seat-demo-total-sub">63% of your saved layout</p>
 
             <div class="mt-8 space-y-3">
               <button type="button" class="seat-demo-section-button is-active" data-seat-demo-section="left">
@@ -590,7 +593,7 @@ const structuredData = [
                   </p>
                 </div>
                 <div class="rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700">
-                  <span id="seat-demo-active-count">27/40</span>
+                  <span id="seat-demo-active-count">23/40</span>
                   <span class="text-indigo-500">seats filled</span>
                 </div>
               </div>
