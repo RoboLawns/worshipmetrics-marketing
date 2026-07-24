@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-services-planning.jpg`;
+const HERO_LIFESTYLE = `${R2}/app-2026/lifestyle/services-overview.jpg`;
 const PLAN_IMAGE = `${R2}/homepage/Invite%20Team%20Member.jpg`;
 const RUN_IMAGE = `${R2}/homepage/Church%20Viewer.jpg`;
 const TEAM_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
@@ -99,9 +101,13 @@ const structuredData = {
         <p class="mt-4 text-sm text-slate-500">Free Forever gets the whole team into the workflow before you pay.</p>
       </div>
 
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-        <img src={HERO_IMAGE} alt="Services planning and team coordination view in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
+      <ImageCarousel
+        eager
+        slides={[
+          { src: HERO_LIFESTYLE, alt: "Church team planning Sunday together with WorshipMetrics", kind: "lifestyle" },
+          { src: HERO_IMAGE, alt: "Services planning and team coordination view in WorshipMetrics" },
+        ]}
+      />
     </div>
   </section>
 

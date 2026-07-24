@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
@@ -72,9 +73,13 @@ const structuredData = [
   </section>
 
   <section class="bg-white px-4 pb-8 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"><img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/screenshots/worship-metrics-stream-health.jpg" alt="Stream Health dashboard with live encoder telemetry and scored stream reports" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" /></div>
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"><img src="https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/lifestyle/stream-health.jpg" alt="Church tech team reviewing stream health reports" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" /></div>
+    <div class="mx-auto max-w-5xl">
+      <ImageCarousel
+        slides={[
+          { src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/lifestyle/stream-health.jpg", alt: "Church tech team reviewing stream health reports", kind: "lifestyle" },
+          { src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/screenshots/worship-metrics-stream-health.jpg", alt: "Stream Health dashboard with live encoder telemetry and scored stream reports" },
+        ]}
+      />
     </div>
   </section>
 

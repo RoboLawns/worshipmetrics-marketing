@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const STREAM_HEALTH_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-live-stream.jpg`;
+const STREAM_LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/av-stream-connections.jpg`;
 
 const destinations = [
   { name: "YouTube", desc: "Scheduled broadcasts, go live, end, and history — handled end to end." },
@@ -136,9 +138,12 @@ const structuredData = [
           <a href="tel:+19109677447" class="btn-outline">Call 910-WORSHIP</a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={STREAM_HEALTH_IMAGE} alt="Live stream health monitoring in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
+      <ImageCarousel
+        slides={[
+          { src: STREAM_LIFESTYLE_IMAGE, alt: "Church booth streaming a service with WorshipMetrics", kind: "lifestyle" },
+          { src: STREAM_HEALTH_IMAGE, alt: "Live Stream console with destinations, connections, and events in WorshipMetrics" },
+        ]}
+      />
     </div>
   </section>
 

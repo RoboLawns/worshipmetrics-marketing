@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
@@ -111,9 +112,13 @@ const structuredData = {
         </div>
         <p class="mt-4 text-sm text-slate-500">Core presentation is free forever. The full suite unlocks with Assist.</p>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-        <img src={HERO_IMAGE} alt="Present slide grid with playlists, backgrounds library, and live program output in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
+      <ImageCarousel
+        eager
+        slides={[
+          { src: LIFESTYLE_IMAGE, alt: "Volunteer running lyrics and slides with WorshipMetrics Present", kind: "lifestyle" },
+          { src: HERO_IMAGE, alt: "Present slide grid with playlists, backgrounds library, and live program output in WorshipMetrics" },
+        ]}
+      />
     </div>
   </section>
 

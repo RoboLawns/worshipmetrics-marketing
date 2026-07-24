@@ -75,7 +75,7 @@ const platformCards = [
       <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {platformCards.map(({ title, href, desc, src }) => (
           <a href={href} class="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm transition hover:border-indigo-300 hover:shadow-md">
-            <img src={src} alt={title} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+            <img src={src} alt={title} loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
             <div class="p-6">
               <h2 class="text-xl font-semibold text-slate-900 group-hover:text-indigo-700">{title}</h2>
               <p class="mt-3 text-sm leading-relaxed text-slate-600">{desc}</p>

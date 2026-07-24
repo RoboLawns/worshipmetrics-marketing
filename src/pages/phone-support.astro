@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -106,9 +107,13 @@ const structuredData = [
         </div>
         <p class="mt-4 text-sm text-slate-500">Seriously &mdash; call right now and see how good church tech support can be. The first help session is free on every tier.</p>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-        <img src={LIFESTYLE_IMAGE} alt="Church tech director on the phone with 910-WORSHIP support" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
+      <ImageCarousel
+        eager
+        slides={[
+          { src: LIFESTYLE_IMAGE, alt: "Church tech director on the phone with 910-WORSHIP support", kind: "lifestyle" },
+          { src: HERO_IMAGE, alt: "Phone support workspace with registered numbers and call history in WorshipMetrics" },
+        ]}
+      />
     </div>
   </section>
 
@@ -158,7 +163,7 @@ const structuredData = [
         </div>
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={SIGNAL_MAP_IMAGE} alt="Signal Map with labeled cable runs like SDI-002 and DANTE-001 in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={SIGNAL_MAP_IMAGE} alt="Signal Map with labeled cable runs like SDI-002 and DANTE-001 in WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
       </div>
     </div>
   </section>
@@ -193,7 +198,7 @@ const structuredData = [
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={LUMINOS_IMAGE} alt="Luminos AI chat diagnosing a livestream issue with live system data" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={LUMINOS_IMAGE} alt="Luminos AI chat diagnosing a livestream issue with live system data" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
       </div>
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Fully integrated, chat to phone</p>
@@ -228,7 +233,7 @@ const structuredData = [
         </ul>
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={HERO_IMAGE} alt="Phone support workspace with registered numbers, church code, and call history in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={HERO_IMAGE} alt="Phone support workspace with registered numbers, church code, and call history in WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
       </div>
     </div>
   </section>

@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ImageCarousel from "../../components/ImageCarousel.astro";
 import TechManagerCTA from "../../components/TechManagerCTA.astro";
 ---
 
@@ -49,40 +50,16 @@ import TechManagerCTA from "../../components/TechManagerCTA.astro";
         their message active all week.
       </p>
 
-      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {[
-          {
-            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/screenshots/worship-metrics-reels-editor.jpg",
-            alt: "Reels trim editor with transcript, moment bands, and clip timeline",
-            wide: true,
-          },
-          {
-            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/screenshots/worship-metrics-reels-moments.jpg",
-            alt: "AI-found moments tagged as sermon points, songs, and key moments in Reels",
-          },
-          {
-            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/screenshots/worship-metrics-reels-library.jpg",
-            alt: "Reels library organized by service with clips made and posted",
-          },
-          {
-            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/lifestyle/clipping-services.jpg",
-            alt: "Church media volunteer creating Reels from Sunday's service",
-          },
-          {
-            src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/lifestyle/worship-metrics-reels.jpg",
-            alt: "Sharing church Reels to social media",
-          },
-        ].map(({ src, alt, wide }) => (
-          <figure class:list={["overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm", wide && "sm:col-span-2 lg:col-span-2"]}>
-            <img
-              src={src}
-              alt={alt}
-              loading="lazy"
-              decoding="async"
-              class="h-full w-full object-cover"
-            />
-          </figure>
-        ))}
+      <div class="mx-auto mt-10 max-w-5xl">
+        <ImageCarousel
+          slides={[
+            { src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/lifestyle/clipping-services.jpg", alt: "Church media volunteer creating Reels from Sunday's service", kind: "lifestyle" },
+            { src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/screenshots/worship-metrics-reels-editor.jpg", alt: "Reels trim editor with transcript, moment bands, and clip timeline", label: "Trim editor" },
+            { src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/screenshots/worship-metrics-reels-moments.jpg", alt: "AI-found moments tagged as sermon points, songs, and key moments in Reels", label: "AI moments" },
+            { src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/screenshots/worship-metrics-reels-library.jpg", alt: "Reels library organized by service with clips made and posted", label: "Library" },
+            { src: "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/app-2026/lifestyle/worship-metrics-reels.jpg", alt: "Sharing church Reels to social media", kind: "lifestyle", label: "Share it" },
+          ]}
+        />
       </div>
 
       <div class="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">

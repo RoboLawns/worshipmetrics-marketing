@@ -5,6 +5,7 @@ import TechManagerCTA from "../components/TechManagerCTA.astro";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const OG_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-luminos-ai-chat.jpg`;
+const PROFILE_IMAGE = `${R2}/Luminos/Luminos%20Profile.jpg`;
 
 const ministryPrompts = [
   '"Who has missed multiple services and may need a check-in?"',
@@ -99,7 +100,7 @@ const structuredData = [
     <div class="mx-auto max-w-3xl text-center">
       <div class="mx-auto mb-6 h-28 w-28 overflow-hidden rounded-full border-4 border-white shadow-[0_18px_48px_rgba(67,97,238,0.18)] sm:h-32 sm:w-32">
         <img
-          src={OG_IMAGE}
+          src={PROFILE_IMAGE}
           alt="Luminos profile illustration"
           loading="eager"
           decoding="async"

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
@@ -84,9 +85,13 @@ const structuredData = {
         </div>
         <p class="mt-4 text-sm text-slate-500">Core song tools are free. Full song and media libraries with no storage caps unlock on Assist.</p>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-        <img src={HERO_IMAGE} alt="Song library with CCLI, BPM, keys, and schedule history in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
+      <ImageCarousel
+        eager
+        slides={[
+          { src: LIFESTYLE_IMAGE, alt: "Worship leader managing songs and chord charts with WorshipMetrics", kind: "lifestyle" },
+          { src: HERO_IMAGE, alt: "Song library with CCLI, BPM, keys, and schedule history in WorshipMetrics" },
+        ]}
+      />
     </div>
   </section>
 

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
@@ -96,9 +97,14 @@ const structuredData = {
         <p class="mt-4 text-sm text-slate-500">System documentation is included in Tech Manager, free.</p>
       </div>
 
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-        <img src={HERO_IMAGE} alt="System documentation wizard in WorshipMetrics" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
+      <ImageCarousel
+        eager
+        slides={[
+          { src: HERO_IMAGE, alt: "Church AV system laid out and documented", kind: "lifestyle" },
+          { src: DEVICE_IMAGE, alt: "Device inventory with every piece of AV gear in WorshipMetrics", label: "Device inventory" },
+          { src: WIRING_IMAGE, alt: "Signal Map with labeled cable runs in WorshipMetrics", label: "Signal Map" },
+        ]}
+      />
     </div>
   </section>
 
@@ -145,7 +151,7 @@ const structuredData = {
         </div>
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={DEVICE_IMAGE} alt="Church AV device management in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={DEVICE_IMAGE} alt="Church AV device management in WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
       </div>
     </div>
   </section>
@@ -153,7 +159,7 @@ const structuredData = {
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={WIRING_IMAGE} alt="Device management and room organization in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={WIRING_IMAGE} alt="Device management and room organization in WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
       </div>
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Organize by type & room</p>
