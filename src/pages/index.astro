@@ -9,10 +9,15 @@ const APP_URL = "https://app.worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const HERO_IMAGE = `${R2}/app-2026/lifestyle/tech-manager-hero-v2.jpg`;
 const TECH_MANAGER_CARD_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-production-dashboard.jpg`;
-const PLATFORM_CARD_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-services-planning.jpg`;
+const PLATFORM_CARD_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-people-directory.jpg`;
 const SERVICES_IMAGE = `${R2}/app-2026/lifestyle/services-overview.jpg`;
+const SERVICES_SHOT = `${R2}/app-2026/screenshots/worship-metrics-services-planning.jpg`;
 const STREAM_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-live-stream.jpg`;
+const STREAM_LIFESTYLE = `${R2}/app-2026/lifestyle/av-stream-connections.jpg`;
+const STREAM_HEALTH_SHOT = `${R2}/app-2026/screenshots/worship-metrics-stream-health.jpg`;
 const PULSE_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-pulse-system-health.jpg`;
+const PULSE_LIFESTYLE = `${R2}/app-2026/lifestyle/system-health-monitoring.jpg`;
+const SCHEDULE_SHOT = `${R2}/app-2026/screenshots/worship-metrics-my-schedule.jpg`;
 const VOLUNTEER_PANEL_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
 
 const freeFeatures = [
@@ -104,7 +109,7 @@ const structuredData = {
         eager
         slides={[
           { src: HERO_IMAGE, alt: "Church volunteers working together with WorshipMetrics", kind: "lifestyle", label: "Sunday in the room" },
-          { src: TECH_MANAGER_CARD_IMAGE, alt: "Production dashboard with audio, video, and stream health in WorshipMetrics", label: "The booth in the app" },
+          { src: STREAM_IMAGE, alt: "Live Stream console with destinations, connections, and events in WorshipMetrics", label: "Streaming in the app" },
         ]}
       />
     </div>
@@ -162,9 +167,12 @@ const structuredData = {
           <a href={`${APP_URL}/sign-up`} class="btn-outline">Sign up free</a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={STREAM_IMAGE} alt="Live stream destinations, connections, and events in WorshipMetrics Publish" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
-      </div>
+      <ImageCarousel
+        slides={[
+          { src: STREAM_LIFESTYLE, alt: "Church booth streaming a service with WorshipMetrics", kind: "lifestyle" },
+          { src: STREAM_HEALTH_SHOT, alt: "Stream Health with live encoder telemetry and scored reports in WorshipMetrics" },
+        ]}
+      />
     </div>
   </section>
 
@@ -297,9 +305,12 @@ const structuredData = {
           <a href="/av-monitoring" class="btn-outline">Learn more</a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={PULSE_IMAGE} alt="Pulse system health dashboard monitoring every machine in WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
-      </div>
+      <ImageCarousel
+        slides={[
+          { src: PULSE_LIFESTYLE, alt: "Church tech director monitoring system health with WorshipMetrics", kind: "lifestyle" },
+          { src: PULSE_IMAGE, alt: "Pulse system health dashboard monitoring every machine in WorshipMetrics" },
+        ]}
+      />
     </div>
   </section>
 
@@ -307,7 +318,7 @@ const structuredData = {
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
       <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
-        <img src={TECH_MANAGER_CARD_IMAGE} alt="Tech Manager hero" loading="lazy" decoding="async" class="mb-6 aspect-video w-full rounded-2xl object-cover" />
+        <img src={TECH_MANAGER_CARD_IMAGE} alt="Production dashboard with audio mix, video, and stream health in Tech Manager" loading="lazy" decoding="async" class="mb-6 aspect-video w-full rounded-2xl object-cover" />
         <p class="eyebrow">Tech Manager</p>
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The desktop app that powers the booth.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
@@ -321,7 +332,7 @@ const structuredData = {
         </div>
       </div>
       <div class="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
-        <img src={PLATFORM_CARD_IMAGE} alt="Worship Metrics platform hero" loading="lazy" decoding="async" class="mb-6 aspect-video w-full rounded-2xl object-cover" />
+        <img src={PLATFORM_CARD_IMAGE} alt="People directory with members, visitors, and households in WorshipMetrics" loading="lazy" decoding="async" class="mb-6 aspect-video w-full rounded-2xl object-cover" />
         <p class="eyebrow">Platform</p>
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The Worship Metrics Platform</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
@@ -357,9 +368,12 @@ const structuredData = {
           <a href="/services" class="btn-outline">Learn more</a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={SERVICES_IMAGE} alt="Services workflow in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
+      <ImageCarousel
+        slides={[
+          { src: SERVICES_IMAGE, alt: "Church team planning Sunday together with WorshipMetrics", kind: "lifestyle" },
+          { src: SERVICES_SHOT, alt: "Services planning dashboard with attendance and upcoming services in WorshipMetrics" },
+        ]}
+      />
     </div>
   </section>
 
@@ -380,9 +394,12 @@ const structuredData = {
           <a href="/av-club" class="btn-outline">Learn more</a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={VOLUNTEER_PANEL_IMAGE} alt="Volunteer-friendly control panels in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
-      </div>
+      <ImageCarousel
+        slides={[
+          { src: SCHEDULE_SHOT, alt: "My Schedule with serving requests a volunteer can accept or decline in WorshipMetrics", label: "My Schedule" },
+          { src: VOLUNTEER_PANEL_IMAGE, alt: "Volunteer-friendly control panels in WorshipMetrics", label: "Volunteer panels" },
+        ]}
+      />
     </div>
   </section>
 
