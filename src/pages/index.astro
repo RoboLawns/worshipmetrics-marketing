@@ -35,13 +35,13 @@ const freeFeatures = [
 ];
 
 const platformPillars = [
-  { label: "Plan", title: "Plan the service", body: "Order of service, songs, keys, and chord charts — run it live with timers.", href: "/services" },
-  { label: "People", title: "Schedule the team", body: "Volunteers, positions, invites, and team chat that lives where the work is.", href: "/volunteers" },
-  { label: "Present", title: "Put it on screen", body: "Slides, lyrics, and stage display built from the same plan.", href: "/present" },
-  { label: "Produce", title: "Run the booth", body: "Switcher control, PTZ cameras, audio meters, and booth health in one window.", href: "/tech-manager" },
-  { label: "Publish", title: "Stream it everywhere", body: "One feed in — every destination, recordings, and clips out.", href: "/live-streaming" },
-  { label: "Pulse", title: "Watch everything", body: "Fleet monitoring, stream health, alerts, and attendance in real time.", href: "/av-monitoring" },
-  { label: "Patch", title: "Know your gear", body: "Device inventory, signal map, and patch sheets that survive volunteer turnover.", href: "/system-documentation" },
+  { label: "Plan", icon: "/images/nav/pillars/plan.png", title: "Plan the service", body: "Order of service, songs, keys, and chord charts — run it live with timers.", href: "/services" },
+  { label: "People", icon: "/images/nav/pillars/people.png", title: "Schedule the team", body: "Volunteers, positions, invites, and team chat that lives where the work is.", href: "/volunteers" },
+  { label: "Present", icon: "/images/nav/pillars/present.png", title: "Put it on screen", body: "Slides, lyrics, and stage display built from the same plan.", href: "/present" },
+  { label: "Produce", icon: "/images/nav/pillars/produce.png", title: "Run the booth", body: "Switcher control, PTZ cameras, audio meters, and booth health in one window.", href: "/tech-manager" },
+  { label: "Publish", icon: "/images/nav/pillars/publish.png", title: "Stream it everywhere", body: "One feed in — every destination, recordings, and clips out.", href: "/live-streaming" },
+  { label: "Pulse", icon: "/images/nav/pillars/pulse.png", title: "Watch everything", body: "Fleet monitoring, stream health, alerts, and attendance in real time.", href: "/av-monitoring" },
+  { label: "Patch", icon: "/images/nav/pillars/patch.png", title: "Know your gear", body: "Device inventory, signal map, and patch sheets that survive volunteer turnover.", href: "/system-documentation" },
 ];
 
 const stackRows = [
@@ -221,9 +221,9 @@ const structuredData = {
         </p>
       </div>
       <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {platformPillars.map(({ label, title, body, href }) => (
+        {platformPillars.map(({ label, title, body, href, icon }) => (
           <a href={href} class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:shadow-md">
-            <p class="eyebrow">{label}</p>
+            <p class="eyebrow flex items-center gap-2"><img src={icon} alt="" class="h-7 w-7 rounded-lg" /> {label}</p>
             <h3 class="mt-2 text-lg font-bold text-slate-900">{title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
           </a>

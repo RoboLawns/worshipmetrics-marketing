@@ -8,7 +8,7 @@ const navItems = [
     type: "dropdown",
     key: "plan",
     label: "Plan",
-    icon: "/images/nav/plan.png",
+    icon: "/images/nav/pillars/plan.png",
     overview: {
       href: "/services",
       label: "Plan Overview",
@@ -23,7 +23,7 @@ const navItems = [
     type: "dropdown",
     key: "people",
     label: "People",
-    icon: "/images/nav/people.png",
+    icon: "/images/nav/pillars/people.png",
     overview: {
       href: "/people",
       label: "People Overview",
@@ -41,13 +41,14 @@ const navItems = [
     type: "link",
     key: "present",
     label: "Present",
+    icon: "/images/nav/pillars/present.png",
     href: "/present",
   },
   {
     type: "dropdown",
     key: "produce",
     label: "Produce",
-    icon: "/images/nav/system.png",
+    icon: "/images/nav/pillars/produce.png",
     overview: {
       href: "/tech-manager",
       label: "Produce Overview",
@@ -63,7 +64,7 @@ const navItems = [
     type: "dropdown",
     key: "publish",
     label: "Publish",
-    icon: "/images/nav/produce.png",
+    icon: "/images/nav/pillars/publish.png",
     overview: {
       href: "/live-streaming",
       label: "Publish Overview",
@@ -80,6 +81,7 @@ const navItems = [
     type: "dropdown",
     key: "patch",
     label: "Patch",
+    icon: "/images/nav/pillars/patch.png",
     overview: {
       href: "/system-documentation",
       label: "Patch Overview",
@@ -94,7 +96,7 @@ const navItems = [
     type: "dropdown",
     key: "pulse",
     label: "Pulse",
-    icon: "/images/nav/pulse.png",
+    icon: "/images/nav/pillars/pulse.png",
     overview: {
       href: "/av-monitoring",
       label: "Pulse Overview",
@@ -176,7 +178,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
   }
   .nav-btn:hover { color: var(--primary); background: var(--bg-card-alt); }
   .nav-btn svg { width: 0.85rem; height: 0.85rem; opacity: 0.6; transition: transform 0.2s; }
-  .nav-btn-icon { width: 1.15rem; height: 1.15rem; opacity: 0.7; flex-shrink: 0; }
+  .nav-btn-icon { width: 1.15rem; height: 1.15rem; border-radius: 0.3rem; flex-shrink: 0; }
 
   .dropdown-wrap { position: relative; }
   .dropdown-wrap::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 0.6rem; }
@@ -246,7 +248,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
     padding: 0.65rem 0.5rem; text-align: left;
   }
   .mob-acc-trigger-left { display: flex; align-items: center; gap: 0.5rem; }
-  .mob-acc-trigger-icon { width: 1.15rem; height: 1.15rem; opacity: 0.7; flex-shrink: 0; }
+  .mob-acc-trigger-icon { width: 1.15rem; height: 1.15rem; border-radius: 0.3rem; flex-shrink: 0; }
   .mob-acc-trigger-label {
     font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--primary);
@@ -333,7 +335,10 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
             </div>
           </div>
         ) : (
-          <a href={item.href} class="nav-btn">{item.label}</a>
+          <a href={item.href} class="nav-btn">
+            {item.icon && <img src={item.icon} alt="" class="nav-btn-icon" width="18" height="18" />}
+            {item.label}
+          </a>
         )
       ))}
     </nav>
@@ -382,7 +387,10 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
 
     <div class="mob-simple">
       {simpleLinks.map((item) => (
-        <a href={item.href} class="mob-simple-link">{item.label}</a>
+        <a href={item.href} class="mob-simple-link" style="display:flex;align-items:center;gap:0.5rem;">
+          {item.icon && <img src={item.icon} alt="" width="18" height="18" style="border-radius:0.3rem;" />}
+          {item.label}
+        </a>
       ))}
     </div>
 
