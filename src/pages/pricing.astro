@@ -25,7 +25,7 @@ const platformPlans = [
       "Unlimited users — the whole volunteer team lives in it",
       "Core planning, presentation, and people tools (practical limits on storage, clips, 1 signage screen)",
       "AI support in your alerts, plus one full help session free",
-      "Every free church is a live demo",
+      "No trial clock, no credit card — free means free",
     ],
   },
   {
@@ -42,7 +42,7 @@ const platformPlans = [
       "Unlimited 24/7 AI support that knows your system — Luminos in the app, Journey on 910-WORSHIP",
       "PCO sync, unlimited signage screens, and cloud Reels — AI clips from anywhere",
       "Full media and song libraries, no storage caps",
-      "For churches that stream elsewhere or not at all",
+      "Keep streaming wherever you stream today — Assist works alongside it",
     ],
   },
   {
@@ -124,7 +124,7 @@ const comparisonRows = [
 
 const faqItems = [
   { question: "Is the Free tier really free forever?", answer: "Yes. No credit card, no trial timer, no expiration. Watching, the living Signal Map, and instant alerts are free forever — that is the pledge, and it never changes. The whole volunteer team can live in it with unlimited users." },
-  { question: "How do the two axes work together?", answer: "Pick a platform tier (Free, Assist, or Stream) for what the software does, then optionally add an enhanced-support add-on (Care, Sunday Assurance, or Managed) for how much human stands behind it. Any platform tier combines with any support add-on." },
+  { question: "How do platform tiers and support add-ons combine?", answer: "Pick the platform tier that fits how your church runs Sunday — Free, Assist, or Stream. Then, if you want a person standing behind your team, add Care, Sunday Assurance, or Managed on top. Any tier combines with any add-on, and you can add or drop support anytime." },
   { question: "Why is Stream priced per campus?", answer: "Each campus gets its own encoder, its own Signal Map, its own stream, and its own included usage — so each campus is its own $99. It matches how multi-site churches already buy, without the per-site markup the expensive platforms charge. Network and denomination deals are handled inside Managed." },
   { question: "Do I need to buy a hardware encoder to stream?", answer: "No. The encoder is Tech Manager, the desktop app running on a PC your church already owns — a $0 replacement for the $1,500+ hardware box the expensive streaming platforms require." },
   { question: "What happens if I go over the Stream allowances?", answer: "We never stop a live service over a quota. If you blow through an allowance mid-stream, the stream keeps running and the overage shows up on the bill — never on the screen. Usage alerts fire at 80% of any allowance, and overage pricing is published, flat, and cheap." },
@@ -184,10 +184,10 @@ const structuredData = [
   <!-- Two axes explainer -->
   <section class="px-4 pt-12 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Two axes that stack</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">How pricing works</p>
       <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Pick a platform tier. Add the support you want.</h2>
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-        One axis is what the software does. The other is how much human stands behind it. Any platform tier combines with any support add-on — and the free pledge is untouched either way.
+        One choice is the software your team runs. The other is how much human help stands behind your Sundays. Any platform tier combines with any support add-on — and the free pledge never changes either way.
       </p>
     </div>
   </section>
@@ -195,7 +195,7 @@ const structuredData = [
   <!-- AXIS 1 — Platform -->
   <section class="px-4 py-12 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Axis 1 — The platform</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Step 1 — Pick your platform</p>
       <h3 class="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Three ways to run the platform.</h3>
       <div class="mt-8 grid items-stretch gap-8 lg:grid-cols-3">
         {platformPlans.map(({ name, price, suffix, tag, badge, body, cta, href, featured, items }) => (
@@ -203,7 +203,7 @@ const structuredData = [
             "relative flex flex-col rounded-[1.75rem] border p-8 shadow-sm",
             featured ? "border-indigo-500 bg-indigo-600 shadow-lg shadow-indigo-200" : "border-slate-200 bg-white",
           ]}>
-            {featured && <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-xs font-bold uppercase tracking-wider text-slate-900">The tier that sells the company</span>}
+            {featured && <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-xs font-bold uppercase tracking-wider text-slate-900">Most popular — pays for itself</span>}
             {badge && <span class:list={["mb-4 inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em]", featured ? "bg-white/15 text-white" : "bg-indigo-50 text-indigo-700"]}>{badge}</span>}
             <div>
               <p class:list={["text-sm font-semibold uppercase tracking-[0.16em]", featured ? "text-indigo-200" : "text-indigo-600"]}>{tag}</p>
@@ -230,10 +230,10 @@ const structuredData = [
   <!-- AXIS 2 — Enhanced support -->
   <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Axis 2 — Enhanced support</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Step 2 — Add human support, if you want it</p>
       <h3 class="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Support stacks on top of any platform tier.</h3>
       <p class="mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-        Of every hundred issues, roughly seventy die in monitoring, twenty-two die in AI, seven reach a weekday human, and one needs a Sunday pro. These add-ons decide how much human is standing by — attach one to whichever platform tier you run.
+        Most weeks your team never opens a ticket: monitoring quietly clears about seventy of every hundred issues before anyone notices, AI resolves most of the rest, and a real person steps in for the few that need hands. These add-ons decide how much human is standing by for your church — attach one to whichever platform tier you run.
       </p>
       <div class="mt-8 grid gap-6 lg:grid-cols-3">
         {supportAddons.map(({ name, price, suffix, body, highlight }) => (
