@@ -49,7 +49,7 @@ const platformPlans = [
     name: "Stream",
     price: "$99",
     suffix: "/mo per campus",
-    tag: "Cancel your streaming bill",
+    tag: "Streaming, included",
     body: "Everything in Assist, plus cloud live streaming that runs like the expensive platforms — for less than you pay today, with no encoder box to buy.",
     cta: "Start streaming",
     href: `${APP_URL}/sign-up`,
@@ -90,8 +90,8 @@ const supportAddons = [
 
 // WHAT REAL CHURCHES ACTUALLY BUY
 const exampleStacks = [
-  { church: "75-person church, volunteer-run", stack: "Assist", monthly: "$49", compare: "An unanswered forum post" },
-  { church: "200-person church streaming on Resi today", stack: "Stream", monthly: "$99", compare: "$300+ they pay now — for streaming alone" },
+  { church: "75-person church, volunteer-run", stack: "Assist", monthly: "$49", compare: "Figuring it out alone" },
+  { church: "200-person church that already streams", stack: "Stream", monthly: "$99", compare: "Often less than they pay today — for streaming alone" },
   { church: "Growing church that cannot risk Sunday", stack: "Stream + Sunday Assurance", monthly: "$598", compare: "$1,500+/mo part-time hire" },
   { church: "Three-campus church, fully handled", stack: "Managed (3 campuses)", monthly: "$1,299", compare: "$3,300–5,800/mo full-time hire" },
 ];
@@ -163,7 +163,7 @@ const structuredData = [
 
 <Layout
   title="Pricing"
-  description="Cancel your streaming bill and keep the difference. Free forever monitoring, $49 Assist, $99 Stream per campus — plus enhanced human support that stacks on any tier."
+  description="Streaming, monitoring, planning, presentation, and real support in one platform. Free forever monitoring, $49 Assist, $99 Stream per campus — plus human support that stacks on any tier."
   canonical="/pricing"
   structuredData={structuredData}
 >
@@ -171,12 +171,12 @@ const structuredData = [
   <section class="bg-gradient-to-b from-indigo-50 to-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-center">
       <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Pricing</p>
-      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Cancel your streaming bill. Keep the difference.</h1>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Stream for less. Get everything else included.</h1>
       <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
         Streaming that runs like the expensive platforms — for less than you pay today — and it brings monitoring, AI support, planning, presentation, signage, people, and clips with it. Watching, the map, and the alerts stay free forever.
       </p>
       <div class="mx-auto mt-8 max-w-2xl rounded-2xl border border-indigo-200 bg-indigo-50 px-6 py-4">
-        <p class="text-lg font-semibold text-indigo-900 sm:text-xl">&ldquo;Cancel Resi. Pay us $99. Keep the difference — and get everything else.&rdquo;</p>
+        <p class="text-lg font-semibold text-indigo-900 sm:text-xl">&ldquo;$99 a month streams your services — and brings monitoring, planning, presentation, and support with it.&rdquo;</p>
       </div>
     </div>
   </section>
@@ -295,10 +295,9 @@ const structuredData = [
       </div>
       <div class="mt-10 grid gap-6 lg:grid-cols-2">
         <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
-          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">What a streaming church pays today</p>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">What churches often piece together today</p>
           <ul class="mt-5 space-y-3 text-sm text-slate-600">
-            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>Resi-class streaming: typically ~$250&ndash;350+/mo, plus a $1,500+ hardware encoder</span></li>
-            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>BoxCast-class streaming: typically ~$149&ndash;249/mo, plus an encoder</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>A dedicated streaming service: often ~$150&ndash;350+/mo, plus a $1,500+ hardware encoder</span></li>
             <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>Planning, presentation, and signage tools bought separately — with no support layer at all</span></li>
           </ul>
         </div>
@@ -312,7 +311,7 @@ const structuredData = [
           </ul>
         </div>
       </div>
-      <p class="mt-4 text-center text-xs text-slate-400">Competitor figures are typical ranges as of mid-2026 for comparable resilient-streaming tiers and may vary — check current published pricing.</p>
+      <p class="mt-4 text-center text-xs text-slate-400">Typical market ranges as of mid-2026 — individual services vary.</p>
     </div>
   </section>
 
@@ -391,7 +390,7 @@ const structuredData = [
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The encoder you already own</p>
           <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Tech Manager is the encoder — no $1,500 box on the rack.</h2>
           <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Stream runs on Tech Manager, the desktop app on a PC your church already owns. Resilient ingest, multi-destination delivery, cloud DVR, and stream-health alerts — the capability the expensive platforms sell as hardware, running as software you already have.
+            Stream runs on Tech Manager, the desktop app on a PC your church already owns. Resilient ingest, multi-destination delivery, cloud DVR, and stream-health alerts — capability that usually requires dedicated hardware, running as software on a computer you already have.
           </p>
           <div class="mt-6 space-y-3 text-sm text-slate-700">
             {[
