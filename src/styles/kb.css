@@ -1,4 +1,4 @@
-@import '@fontsource/dm-serif-display/400.css';
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap');
 @import '@fontsource/ibm-plex-sans/400.css';
 @import '@fontsource/ibm-plex-sans/500.css';
 @import '@fontsource/ibm-plex-sans/600.css';
@@ -16,8 +16,8 @@
   --color-muted: #64748B;
   --color-border: #1E2733;
 
-  --font-display: 'DM Serif Display', serif;
-  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-display: 'Archivo', sans-serif;
+  --font-sans: 'Archivo', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
 
@@ -34,8 +34,14 @@ html {
 body.kb-body {
   background: #0b0e14;
   color: #f1f5f9;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Archivo', sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Brand type spec: display/headline weight and tracking match the main site */
+.font-display {
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .kb-prose {
@@ -44,7 +50,9 @@ body.kb-body {
 
 .kb-prose :where(h2, h3, h4) {
   color: #0f172a;
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .kb-prose :where(code) {

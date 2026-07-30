@@ -1,15 +1,13 @@
 ---
 import SearchBar from './SearchBar.astro';
+import BrandLockup from '../BrandLockup.astro';
 ---
 
 <header class="border-b border-border bg-bg/95 backdrop-blur">
   <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
     <a href="/kb" class="flex items-center gap-3 text-white">
-      <img src="/logo.png" alt="WorshipMetrics" class="h-9 w-9 rounded-lg" />
-      <div>
-        <p class="font-display text-xl leading-none">Knowledge Base</p>
-        <p class="text-xs uppercase tracking-[0.18em] text-muted">Church AV</p>
-      </div>
+      <BrandLockup variant="on-dark" width={150} />
+      <span class="rounded-full border border-slate-700 bg-slate-800/70 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-slate-300">Knowledge Base</span>
     </a>
     <nav class="flex items-center gap-5 text-sm text-slate-300">
       <a href="/kb" class="transition hover:text-white">Home</a>

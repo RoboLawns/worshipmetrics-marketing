@@ -13,8 +13,8 @@ export default {
         muted: '#64748B',
       },
       fontFamily: {
-        display: ['"DM Serif Display"', 'serif'],
-        sans: ['"IBM Plex Sans"', 'sans-serif'],
+        display: ['"Archivo"', 'sans-serif'],
+        sans: ['"Archivo"', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'monospace'],
       },
     },
