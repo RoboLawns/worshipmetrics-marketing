@@ -16,107 +16,42 @@ const { categories, totalDevices } = Astro.props;
 ---
 
 <style>
-  .search-wrap {
-    max-width: 80rem;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .search-card {
-    border: 1px solid var(--color-border);
-    border-radius: 1.5rem;
-    background: var(--color-bg-surface);
-    padding: 1rem;
-    box-shadow: 0 16px 32px rgba(28, 20, 16, 0.04);
-  }
-  .search-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 1rem;
-    align-items: center;
-  }
-  .search-input-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    border-radius: 999px;
-    background: var(--color-bg-warm);
-    padding: 0.85rem 1rem;
-  }
-  .search-icon {
-    color: var(--color-accent-gold);
-    flex-shrink: 0;
-  }
-  .search-input {
-    width: 100%;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    color: var(--color-text-primary);
-    font-family: var(--font-sans-editorial);
-    font-size: 0.96rem;
-    font-weight: 400;
-  }
-  .search-input::placeholder { color: var(--color-text-tertiary); }
-  .search-input:focus-visible { box-shadow: none; }
-  .search-input-wrap:focus-within {
-    box-shadow: 0 0 0 2px rgba(184, 132, 42, 0.3);
-  }
-  .search-count {
-    font-family: var(--font-sans-editorial);
-    font-size: 0.86rem;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    white-space: nowrap;
-  }
-  .pill-row {
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-  }
   .pill {
     border-radius: 999px;
-    border: 1px solid var(--color-border-strong);
+    border: 1px solid var(--border);
     background: transparent;
-    color: var(--color-text-primary);
-    padding: 0.72rem 1rem;
-    font-family: var(--font-sans-editorial);
-    font-size: 0.84rem;
-    font-weight: 500;
+    color: var(--text-soft);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.18s, background 0.18s, color 0.18s, border-color 0.18s;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
   }
-  .pill:hover { transform: translateY(-2px); background: var(--color-bg-warm); }
+  .pill:hover { border-color: var(--primary-border); color: var(--primary); }
   .pill.active {
-    background: var(--color-bg-dark);
-    border-color: var(--color-bg-dark);
-    color: var(--color-text-on-dark);
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #fff;
   }
-  .pill-count {
-    opacity: 0.64;
-    margin-left: 0.35rem;
-  }
-  @media (max-width: 768px) {
-    .search-row { grid-template-columns: 1fr; }
-  }
+  .pill .pill-count { opacity: 0.6; margin-left: 0.35rem; }
 </style>
 
-<div class="search-wrap">
-  <div class="search-card">
-    <div class="search-row">
-      <label class="search-input-wrap">
-        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="11" cy="11" r="7"></circle>
-          <path d="M20 20l-3.5-3.5"></path>
+<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+  <div class="card p-4">
+    <div class="flex flex-wrap items-center gap-4">
+      <label class="flex min-w-0 flex-1 basis-60 items-center gap-3 rounded-[0.625rem] border border-slate-200 bg-slate-50 px-4 py-3">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="flex-shrink-0 text-indigo-600">
+          <circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" />
         </svg>
-        <input id="integrations-search" class="search-input" type="search" placeholder="Search brands and devices" />
+        <input id="integrations-search" type="search" placeholder="Search brands and devices" class="w-full border-0 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400" />
       </label>
-      <div class="search-count"><span id="integrations-visible-count">{totalDevices}</span> showing</div>
+      <p class="eyebrow whitespace-nowrap"><span id="integrations-visible-count">{totalDevices}</span> showing</p>
     </div>
-    <div class="pill-row" id="integrations-pills">
-      <button class="pill active" type="button" data-filter="all">All <span class="pill-count">{totalDevices}</span></button>
-      {categories.map((category) => (
-        <button class="pill" type="button" data-filter={category.key}>{category.title}<span class="pill-count">{category.count}</span></button>
+    <div id="integrations-pills" class="mt-4 flex flex-wrap gap-2">
+      <button type="button" class="pill active" data-filter="all">All <span class="pill-count">{totalDevices}</span></button>
+      {categories.map(({ key, title, count }) => (
+        <button type="button" class="pill" data-filter={key}>{title} <span class="pill-count">{count}</span></button>
       ))}
     </div>
   </div>

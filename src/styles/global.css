@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 
 /* ── Brand Kit v1.0 → Tailwind theme ──────────────────────
@@ -69,27 +68,6 @@
   /* Fonts */
   --font-ui:   "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono-brand: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-
-  /* Integrations editorial system */
-  --color-bg-page: #f7f4ef;
-  --color-bg-surface: #ffffff;
-  --color-bg-warm: #ede5d8;
-  --color-bg-dark: #1c1410;
-  --color-bg-gold-light: rgba(184, 132, 42, 0.12);
-
-  --color-text-primary: #1c1410;
-  --color-text-secondary: #5a4a3e;
-  --color-text-tertiary: #8a7868;
-  --color-text-on-dark: #f7f4ef;
-
-  --color-accent-gold: #b8842a;
-  --color-accent-gold-soft: #d4a14a;
-
-  --color-border: rgba(28, 20, 16, 0.08);
-  --color-border-strong: rgba(28, 20, 16, 0.16);
-
-  --font-serif-editorial: "Cormorant Garamond", Georgia, serif;
-  --font-sans-editorial: "Outfit", system-ui, sans-serif;
 }
 
 /* ── Base ─────────────────────────────────────────────── */
@@ -174,6 +152,63 @@ h2, h3 { letter-spacing: -0.01em; }
   background: var(--primary-light);
   border-color: var(--primary);
 }
+
+/* Dark-surface + Knowledge Base button treatments (Design System v1.0).
+   These previously existed as repeated Tailwind utility strings; named here
+   so the site has one button vocabulary. */
+.btn-ghost-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+  cursor: pointer;
+}
+.btn-ghost-dark:hover { border-color: #9CC6F8; color: #C5DDFB; }
+
+.btn-kb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  background: #3B82F6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border: none;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.btn-kb:hover { background: #4292F2; color: #fff; }
+
+.btn-kb-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid #1E2733;
+  background: transparent;
+  color: #E2E8F0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+  cursor: pointer;
+}
+.btn-kb-outline:hover { border-color: #6AA9F4; color: #fff; }
 
 /* ── Section divider ──────────────────────────────────── */
 .section-divider {

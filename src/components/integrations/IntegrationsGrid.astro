@@ -22,180 +22,42 @@ interface Props {
 const { categories } = Astro.props;
 ---
 
-<style>
-  .grid-wrap {
-    max-width: 80rem;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 5rem;
-  }
-  .category-section + .category-section { margin-top: 4rem; }
-  .category-head {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 1rem;
-    align-items: end;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--color-border-strong);
-  }
-  .category-index {
-    font-family: var(--font-sans-editorial);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-accent-gold);
-    padding-bottom: 0.35rem;
-  }
-  .category-title {
-    font-family: var(--font-serif-editorial);
-    font-size: 2rem;
-    line-height: 1;
-    font-weight: 400;
-    color: var(--color-text-primary);
-  }
-  .category-tagline {
-    margin-top: 0.25rem;
-    font-family: var(--font-serif-editorial);
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--color-text-tertiary);
-  }
-  .card-grid {
-    margin-top: 1.5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-  .integration-card {
-    display: flex;
-    min-height: 170px;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 1.25rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-bg-surface);
-    padding: 1.1rem;
-    transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
-  }
-  .integration-card:hover {
-    border-color: rgba(184, 132, 42, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 14px 24px rgba(28, 20, 16, 0.06);
-  }
-  .card-brand {
-    font-family: var(--font-sans-editorial);
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-text-tertiary);
-  }
-  .card-logo {
-    max-height: 30px;
-    max-width: 140px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-  }
-  .card-name {
-    margin-top: 0.75rem;
-    font-family: var(--font-serif-editorial);
-    font-size: 1.35rem;
-    font-weight: 500;
-    line-height: 1.1;
-    color: var(--color-text-primary);
-  }
-  .card-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    margin-top: 1.25rem;
-    font-family: var(--font-sans-editorial);
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-  }
-  .status-dot {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 999px;
-    background: #2d8f4a;
-    box-shadow: 0 0 8px rgba(45, 143, 74, 0.4);
-    flex-shrink: 0;
-  }
-  .empty-state {
-    display: none;
-    max-width: 42rem;
-    margin: 2rem auto 0;
-    text-align: center;
-    border: 1px solid var(--color-border);
-    border-radius: 1.5rem;
-    background: var(--color-bg-surface);
-    padding: 2.5rem 1.5rem;
-  }
-  .empty-state.visible { display: block; }
-  .empty-title {
-    font-family: var(--font-serif-editorial);
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--color-text-primary);
-  }
-  .empty-copy {
-    margin-top: 0.75rem;
-    font-family: var(--font-sans-editorial);
-    font-size: 1rem;
-    line-height: 1.8;
-    font-weight: 300;
-    color: var(--color-text-secondary);
-  }
-  .empty-button {
-    display: inline-flex;
-    margin-top: 1.5rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    background: var(--color-bg-dark);
-    color: var(--color-text-on-dark);
-    padding: 0.9rem 1.2rem;
-    text-decoration: none;
-    font-family: var(--font-sans-editorial);
-    font-size: 0.92rem;
-    font-weight: 500;
-  }
-  @media (max-width: 768px) {
-    .grid-wrap { padding: 1.5rem 1.5rem 4rem; }
-    .category-head { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="grid-wrap" id="integrations-grid-root">
+<div class="mx-auto max-w-6xl px-4 pb-20 pt-6 sm:px-6 lg:px-8" id="integrations-grid-root">
   {categories.map((category, index) => (
-    <section class="category-section" data-category-section={category.key}>
-      <div class="category-head">
-        <div class="category-index">{String(index + 1).padStart(2, "0")}</div>
+    <section class="pt-12" data-category-section={category.key}>
+      <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+        <p class="eyebrow">{String(index + 1).padStart(2, "0")}</p>
         <div>
-          <h2 class="category-title">{category.title}</h2>
-          <p class="category-tagline">{category.tagline}</p>
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">{category.title}</h2>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600">{category.tagline}</p>
         </div>
       </div>
-      <div class="card-grid">
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {category.items.map((item) => (
-          <article class="integration-card" data-integration-card data-category={category.key} data-search={`${item.brand} ${item.name}`.toLowerCase()}>
+          <article
+            class="card flex min-h-[170px] flex-col justify-between p-6"
+            data-integration-card
+            data-category={category.key}
+            data-search={`${item.brand} ${item.name}`.toLowerCase()}
+          >
             <div>
-              {item.logoUrl ? <img src={item.logoUrl} alt={item.brand} class="card-logo" loading="lazy" decoding="async" /> : <p class="card-brand">{item.brand}</p>}
-              {item.logoUrl && <p class="card-brand" style="margin-top:0.7rem;">{item.brand}</p>}
-              <h3 class="card-name">{item.name}</h3>
+              {item.logoUrl && <img src={item.logoUrl} alt={item.brand} loading="lazy" decoding="async" class="mb-3 block h-auto max-h-[30px] w-auto max-w-[140px] object-contain" />}
+              <p class="eyebrow !text-slate-400">{item.brand}</p>
+              <h3 class="mt-2 text-lg font-bold leading-snug tracking-tight text-slate-900">{item.name}</h3>
             </div>
-            <div class="card-status"><span class="status-dot"></span><span>Live integration</span></div>
+            <p class="mt-5 inline-flex items-center gap-2 text-[0.8rem] font-medium text-slate-600">
+              <span class="h-2 w-2 flex-shrink-0 rounded-full bg-emerald-500"></span>
+              <span>Live integration</span>
+            </p>
           </article>
         ))}
       </div>
     </section>
   ))}
 
-  <div class="empty-state" id="integrations-empty-state">
-    <h2 class="empty-title">We don&apos;t have that one yet.</h2>
-    <p class="empty-copy">If you run a piece of gear we haven&apos;t listed, tell us. Central Control ships new device integrations regularly, and your request moves the list.</p>
-    <a href="/contact" class="empty-button">Request an integration →</a>
+  <div class="empty-state mx-auto mt-12 hidden max-w-2xl rounded-2xl border border-slate-200 bg-slate-50 p-10 text-center [&.visible]:block" id="integrations-empty-state">
+    <h2 class="text-2xl font-bold tracking-tight text-slate-900">We don&apos;t have that one yet.</h2>
+    <p class="mt-3 text-base leading-relaxed text-slate-600">If you run a piece of gear we haven&apos;t listed, tell us. Central Control ships new device integrations regularly, and your request moves the list.</p>
+    <a href="/contact" class="btn-primary mt-6">Request an integration &rarr;</a>
   </div>
 </div>

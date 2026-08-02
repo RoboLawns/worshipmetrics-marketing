@@ -2,82 +2,31 @@
 interface Props {
   totalDevices: number;
   totalCategories: number;
+  heroImage: string;
 }
-
-const { totalDevices, totalCategories } = Astro.props;
+const { totalDevices, totalCategories, heroImage } = Astro.props;
 ---
 
-<style>
-  .hero-wrap {
-    background: var(--color-bg-page);
-    color: var(--color-text-primary);
-  }
-  .hero-shell {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 6rem 1.5rem 3rem;
-    text-align: center;
-  }
-  .hero-line {
-    width: 1px;
-    height: 56px;
-    margin: 0 auto 1.5rem;
-    background: linear-gradient(to bottom, rgba(184,132,42,0), rgba(184,132,42,1), rgba(184,132,42,0));
-  }
-  .hero-eyebrow {
-    font-family: var(--font-sans-editorial);
-    font-size: 0.74rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-accent-gold);
-  }
-  .hero-title {
-    margin-top: 1rem;
-    font-family: var(--font-serif-editorial);
-    font-size: clamp(3rem, 5vw, 5rem);
-    line-height: 0.95;
-    font-weight: 400;
-    color: var(--color-text-primary);
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--color-accent-gold);
-  }
-  .hero-copy {
-    max-width: 48rem;
-    margin: 1.5rem auto 0;
-    font-family: var(--font-sans-editorial);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    font-weight: 300;
-    color: var(--color-text-secondary);
-  }
-  .hero-stat {
-    margin-top: 1.5rem;
-    font-family: var(--font-serif-editorial);
-    font-size: 1.4rem;
-    font-style: italic;
-    color: var(--color-text-secondary);
-  }
-  .hero-stat strong {
-    font-style: normal;
-    color: var(--color-text-primary);
-    font-weight: 600;
-  }
-  @media (max-width: 768px) {
-    .hero-shell { padding: 4rem 1.5rem 2rem; }
-  }
-</style>
-
-<section class="hero-wrap">
-  <div class="hero-shell">
-    <div class="hero-line"></div>
-    <p class="hero-eyebrow">Integrations</p>
-    <h1 class="hero-title">Your booth, <em>connected.</em></h1>
-    <p class="hero-copy">
-      WorshipMetrics works with the ProAV gear you already run on Sunday morning through our integration with Central Control&apos;s show automation platform.
-    </p>
-    <p class="hero-stat"><strong>{totalDevices}</strong> supported devices across <strong>{totalCategories}</strong> categories</p>
+<section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+    <div>
+      <p class="eyebrow inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 shadow-sm">
+        Integrations &amp; AV services
+      </p>
+      <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        The gear you own, <span class="title-accent">connected.</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+        We start with software that helps your team document, manage, and automate the gear you already own. When you need more than software, we&apos;re the AV integration partner that shows up &mdash; built for churches, not for enterprise budgets.
+      </p>
+      <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+        <a href="/discovery-call" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="integrations_hero_call" data-wm-track-location="integrations_hero">Talk about your setup</a>
+        <a href="/tech-manager" class="btn-outline">Download Tech Manager</a>
+      </div>
+      <p class="eyebrow mt-6">{totalDevices}+ devices &middot; {totalCategories} categories &middot; Central Control</p>
+    </div>
+    <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+      <img src={heroImage} alt="WorshipMetrics tech support and AV integration" loading="eager" decoding="async" class="aspect-[4/3] w-full object-cover" />
+    </div>
   </div>
 </section>
