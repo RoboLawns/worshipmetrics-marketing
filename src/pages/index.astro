@@ -5,6 +5,7 @@ import ImageCarousel from "../components/ImageCarousel.astro";
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/app-2026/lifestyle/tech-manager-hero-v2.jpg`;
 const SUPPORT_IMAGE = `${R2}/homepage/Worship%20Metrics%20Church%20AV%20Tech%20Support.jpg`;
 const SCHEDULE_SHOT = `${R2}/app-2026/screenshots/worship-metrics-my-schedule.jpg`;
 const VOLUNTEER_PANEL_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
@@ -32,7 +33,7 @@ const pillars = [
     href: "/tech-manager",
     linkLabel: "See Tech Manager",
     slides: [
-      { src: `${R2}/app-2026/lifestyle/tech-manager-hero-v2.jpg`, alt: "Church volunteers running production from tablets in the sanctuary", kind: "lifestyle" },
+      { src: `${R2}/app-2026/lifestyle/team-collaboration.jpg`, alt: "Church production team working together in the booth", kind: "lifestyle" },
       { src: `${R2}/app-2026/screenshots/worship-metrics-production-dashboard.jpg`, alt: "Production dashboard with audio mix, video, and stream health in WorshipMetrics" },
     ],
   },
@@ -130,23 +131,31 @@ const structuredData = {
   canonical="/"
   structuredData={structuredData}
 >
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={HERO_IMAGE} />
+  </Fragment>
   <!-- Hero -->
-  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-24 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-4xl text-center">
-      <p class="eyebrow inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 shadow-sm">
-        The church AV &amp; worship platform
-      </p>
-      <h1 class="mt-6 text-5xl font-extrabold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
-        Wired for Worship.
-      </h1>
-      <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-        Every wire, every screen, every Sunday. Let&apos;s make your AV bullet-proof and provide opportunities for young people to serve your mission more effectively. WorshipMetrics is the platform that helps you plan your service, run the booth, stream your message, and monitor your AV &mdash; with tech support that already knows your system.
-      </p>
-      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="home_hero_get_started" data-wm-track-location="home_hero">Get started free</a>
-        <a href="tel:+19109677447" class="btn-outline text-base px-8 py-3.5">Call 910-WORSHIP</a>
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div>
+        <p class="eyebrow inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 shadow-sm">
+          The church AV &amp; worship platform
+        </p>
+        <h1 class="mt-6 text-5xl font-extrabold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+          Wired for Worship.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Every wire, every screen, every Sunday. Let&apos;s make your AV bullet-proof and provide opportunities for young people to serve your mission more effectively. WorshipMetrics is the platform that helps you plan your service, run the booth, stream your message, and monitor your AV &mdash; with tech support that already knows your system.
+        </p>
+        <div class="mt-10 flex flex-col items-start gap-4 sm:flex-row">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="home_hero_get_started" data-wm-track-location="home_hero">Get started free</a>
+          <a href="tel:+19109677447" class="btn-outline text-base px-8 py-3.5">Call 910-WORSHIP</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">AV monitoring, the Signal Map, and alerts are free forever. No credit card.</p>
       </div>
-      <p class="mt-4 text-sm text-slate-500">AV monitoring, the Signal Map, and alerts are free forever. No credit card.</p>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="Two young volunteers running the church livestream and booth from tablets during worship" loading="eager" decoding="async" fetchpriority="high" class="w-full object-cover" />
+      </div>
     </div>
   </section>
 
