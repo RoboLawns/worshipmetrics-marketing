@@ -5,39 +5,6 @@ const APP_URL = "https://app.worshipmetrics.com";
 
 const navItems = [
   {
-    type: "dropdown",
-    key: "plan",
-    label: "Plan",
-    icon: "/images/nav/pillars/plan.png",
-    overview: {
-      href: "/services",
-      label: "Plan Overview",
-      desc: "Service prep, songs, and team assignments before Sunday starts.",
-    },
-    items: [
-      { href: "/services", label: "Services", desc: "Plan the service, assign the team, schedule volunteers, and run Sunday from one workflow" },
-      { href: "/songs", label: "Songs", desc: "Your song library — CCLI, keys, arrangements, and chord charts that transpose live" },
-    ],
-  },
-  {
-    type: "dropdown",
-    key: "people",
-    label: "People",
-    icon: "/images/nav/pillars/people.png",
-    overview: {
-      href: "/people",
-      label: "People Overview",
-      desc: "The congregation, the volunteers, and the team that carries Sunday.",
-    },
-    items: [
-      { href: "/people", label: "People", desc: "Members, regulars, and visitors in one directory with households and follow-up" },
-      { href: "/volunteers", label: "Volunteers", desc: "Capabilities, scheduling, communications, and replacement workflows" },
-      { href: "/team-chat", label: "Team Chat", desc: "Real-time communication built for the booth, not a separate app" },
-      { href: "/av-team", label: "AV Team", desc: "Seven role-based control panels that turn one operator into a real team" },
-      { href: "/av-club", label: "AV Club", desc: "How churches build volunteer and youth ministry through production roles" },
-    ],
-  },
-  {
     type: "link",
     key: "present",
     label: "Present",
@@ -61,6 +28,21 @@ const navItems = [
   },
   {
     type: "dropdown",
+    key: "plan",
+    label: "Plan",
+    icon: "/images/nav/pillars/plan.png",
+    overview: {
+      href: "/services",
+      label: "Plan Overview",
+      desc: "Service prep, songs, and team assignments before Sunday starts.",
+    },
+    items: [
+      { href: "/services", label: "Services", desc: "Plan the service, assign the team, schedule volunteers, and run Sunday from one workflow" },
+      { href: "/songs", label: "Songs", desc: "Your song library — CCLI, keys, arrangements, and chord charts that transpose live" },
+    ],
+  },
+  {
+    type: "dropdown",
     key: "publish",
     label: "Publish",
     icon: "/images/nav/pillars/publish.png",
@@ -74,20 +56,6 @@ const navItems = [
       { href: "/church-livestream-analytics", label: "Stream Health", desc: "Live encoder telemetry on air, and a scored report after every stream" },
       { href: "/solutions/worship-clips", label: "Reels", desc: "Turn Sunday's service into shareable clips — we find the moments, you approve them" },
       { href: "/signage-display", label: "Slides & Signage", desc: "Digital signage that updates from a phone and keeps the campus informed" },
-    ],
-  },
-  {
-    type: "dropdown",
-    key: "patch",
-    label: "Patch",
-    icon: "/images/nav/pillars/patch.png",
-    overview: {
-      href: "/system-documentation",
-      label: "Patch Overview",
-      desc: "Every device, wire, and signal path — documented and alive.",
-    },
-    items: [
-      { href: "/system-documentation", label: "System Documentation", desc: "Device inventory, the living Signal Map, and patch sheets that survive volunteer turnover" },
     ],
   },
   {
@@ -106,10 +74,36 @@ const navItems = [
     ],
   },
   {
-    type: "link",
-    key: "pricing",
-    label: "Pricing",
-    href: "/pricing",
+    type: "dropdown",
+    key: "patch",
+    label: "Patch",
+    icon: "/images/nav/pillars/patch.png",
+    overview: {
+      href: "/system-documentation",
+      label: "Patch Overview",
+      desc: "Every device, wire, and signal path — documented and alive.",
+    },
+    items: [
+      { href: "/system-documentation", label: "System Documentation", desc: "Device inventory, the living Signal Map, and patch sheets that survive volunteer turnover" },
+    ],
+  },
+  {
+    type: "dropdown",
+    key: "people",
+    label: "People",
+    icon: "/images/nav/pillars/people.png",
+    overview: {
+      href: "/people",
+      label: "People Overview",
+      desc: "The congregation, the volunteers, and the team that carries Sunday.",
+    },
+    items: [
+      { href: "/people", label: "People", desc: "Members, regulars, and visitors in one directory with households and follow-up" },
+      { href: "/volunteers", label: "Volunteers", desc: "Capabilities, scheduling, communications, and replacement workflows" },
+      { href: "/team-chat", label: "Team Chat", desc: "Real-time communication built for the booth, not a separate app" },
+      { href: "/av-team", label: "AV Team", desc: "Seven role-based control panels that turn one operator into a real team" },
+      { href: "/av-club", label: "AV Club", desc: "How churches build volunteer and youth ministry through production roles" },
+    ],
   },
   {
     type: "dropdown",
@@ -128,6 +122,12 @@ const navItems = [
       { href: "/professional-services", label: "Professional Services", desc: "Consulting, training, installs, and production support" },
       { href: "/contact", label: "Contact", desc: "Email, phone, and practical help when you need it" },
     ],
+  },
+  {
+    type: "link",
+    key: "pricing",
+    label: "Pricing",
+    href: "/pricing",
   },
 ];
 
@@ -322,7 +322,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div class={`dropdown ${item.key === "plan" || item.key === "patch" || item.key === "pulse" ? "narrow" : ""} ${item.key === "patch" || item.key === "pulse" || item.key === "support" ? "right" : ""}`}>
+            <div class={`dropdown ${item.key === "produce" || item.key === "plan" || item.key === "patch" || item.key === "pulse" ? "narrow" : ""} ${item.key === "pulse" || item.key === "patch" || item.key === "people" || item.key === "support" ? "right" : ""}`}>
               <a href={item.overview.href} class="drop-overview">
                 <span class="over-label">{item.label}</span>
                 <h3>{item.overview.label}</h3>
