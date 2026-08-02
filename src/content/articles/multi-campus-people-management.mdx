@@ -1,0 +1,87 @@
+---
+title: "Multi-Campus People Management: Time Zones, Roles, and Scoped Lists"
+description: "How to structure a multi-site directory in WorshipMetrics — campuses with their own time zones, per-user campus roles, campus-scoped import and export, and patterns for shared versus campus-specific teams."
+category: "operations"
+tags: ["multi-campus", "people", "campuses", "administration"]
+difficulty: "intermediate"
+publishedAt: "2026-08-03"
+featured: false
+productCTA: true
+---
+
+## The moment one directory becomes two congregations
+
+The transition from one campus to two is one of the most operationally disruptive things a church can do — and almost none of the disruption shows up where you expect it. The stage gets built, the lease gets signed, the launch team gets commissioned. Then someone on staff asks a question nobody planned for: *"Can I get a list of just our North Campus people?"*
+
+Suddenly every assumption baked into a single-campus directory starts to creak. Reports mix congregations. An export meant for the East Campus welcome team includes four hundred names from the original location. And if the campuses sit in different time zones, "Sunday at 9:00 AM" quietly stops meaning one thing.
+
+This article walks through how WorshipMetrics models multi-site churches — campuses with their own time zones, roles assigned per user per campus, and a directory, import, and export pipeline that all understand campus boundaries — plus the organizational patterns that decide whether a team should live at one campus or float across all of them.
+
+## Creating campuses: one real time zone each
+
+In WorshipMetrics, a campus is a first-class object, and each campus carries its own IANA time zone — `America/Chicago`, `America/Indiana/Indianapolis`, `Pacific/Honolulu`, whatever is true for that building.
+
+If you have not run into IANA zone names before, they are the industry-standard way of naming time zones by *place* rather than by *offset*, and the distinction matters more than it looks. A raw offset like "UTC−6" is a snapshot; an IANA zone is a rulebook. `America/Chicago` knows that Chicago observes daylight saving time and exactly which Sunday it springs forward. `America/Phoenix` knows that Arizona does not observe it at all. A church with campuses in El Paso and Phoenix is one hour apart for part of the year and zero hours apart for the rest — a fixed offset gets that wrong twice annually, and a place-based zone never does.
+
+This is why per-campus time zones belong on the campus record and not buried in a global org setting. When each campus knows where it physically is:
+
+- Service times mean what the people in that room think they mean, year-round.
+- A multi-state church never has to do the "okay, so 9 AM their time is 10 AM our time, except in March..." arithmetic by hand.
+- Anything time-anchored downstream — schedules, reminders, reports — inherits the correct local clock per site instead of one campus living in another campus's time.
+
+Practical advice when you create your campuses: pick the *most specific* IANA zone that matches the building, not the nearest big city you recognize. Indiana, Arizona, and parts of several other states have counties with their own zone entries precisely because their DST behavior differs from their neighbors. Five seconds of care here prevents a decade of off-by-one-hour confusion.
+
+## Every person belongs somewhere: campus on the profile
+
+Each person's profile in the WorshipMetrics directory carries a campus alongside the fields you'd expect — name, preferred name, labeled contact methods, birthday, join date, photo, member type, and status. That single field is what makes everything else in this article possible: because campus lives on the person, the directory can be filtered by it, imports can assign it, and exports can respect it.
+
+A worthwhile discipline as you launch a new site: decide *before* launch Sunday who is moving. Walk your launch-team list and set each person's campus as a deliberate pass, rather than waiting for attendance data to sort people organically. The directory becomes your source of truth for "who is a North Campus person" on day one — exactly when your new campus pastor needs that answer most.
+
+## Per-user campus roles: the same person, different hats
+
+Multi-site people are rarely tidy. Your worship pastor might lead at the broadcast campus and coach the team at the new site. A retired schoolteacher might coordinate greeters at one campus and simply attend the other when visiting grandkids.
+
+WorshipMetrics models this by assigning roles per user, per campus, rather than forcing one flat role across the whole organization. The same person can carry different responsibilities at different sites, and the system keeps track of which hat they are wearing where. This is the piece that lets a multi-site church answer the two questions flat role systems can't:
+
+1. **"What does this person do *here*?"** — as opposed to somewhere in the org.
+2. **"Who are the leaders *at this campus*?"** — without a spreadsheet on the side.
+
+Campus roles pair naturally with how logins work in WorshipMetrics generally: organizations are invite-only, administrators invite teammates by email with a role, and each login links deterministically to one directory person. If you are setting up staff and key volunteers across several sites, it is worth reading [how logins link to directory people](/kb/articles/link-logins-to-directory-people/) first — getting the login-to-person link right is the foundation the campus roles sit on.
+
+## The campus filter that knows when to disappear
+
+Here is a small design decision we think matters a great deal: **if your church has one campus, you will never see a campus filter.**
+
+The People list, like the rest of the platform, only shows the campus filter when there is more than one campus to filter by. A single-campus church — which is most churches — gets a directory with no phantom dropdown, no "All Campuses (1)" selector, no vocabulary borrowed from an org chart it doesn't have. The moment a second campus exists, the filter appears where it belongs.
+
+This sounds cosmetic. It isn't. Church software is overwhelmingly operated by volunteers, and every control on screen is something a volunteer has to decide to ignore. Self-hiding scope controls mean the two-campus church gets multi-site power and the one-campus church gets simplicity, from the same product, with nobody configuring anything.
+
+For the multi-site church, the filter is also where day-to-day campus operations actually happen: filter the directory to a campus, and you are looking at that congregation. Combine it with the directory's other filters and bulk tools — checkbox-select a filtered set for bulk archive, restore, or export — and "do something for everyone at East Campus" becomes a two-click operation instead of a data request.
+
+## Campus-scoped import and export
+
+The directory's import and export pipeline is campus-aware end to end, which matters in two very common multi-site moments.
+
+**Importing.** When you bring people in through the CSV import wizard — with its header auto-mapping, preview step, and skip/update/create duplicate strategies — campus is part of the story, so a launch-team spreadsheet can land at the right site rather than arriving as an undifferentiated pile to re-sort by hand. Duplicate protection matters double in multi-site imports: families that attended the original campus for years will absolutely appear on the new campus's launch list, and the import's dedup keys (email, then phone, then exact name) are what keep the Hendersons from existing twice, once per campus. The full column vocabulary, alias matching rules, and strategy details live in the [member CSV import guide](/kb/articles/church-member-csv-import-guide/).
+
+**Exporting.** Exports from the People list honor exactly what is on screen — the filtered, selected rows, not the whole database. Filter to a campus, select, export, and the file contains that campus. This is partly convenience and partly pastoral care: the file you hand a campus welcome-team lead should contain *their* people, and a scoped export means the rest of the congregation's contact information never rides along in an attachment it didn't need to be in. Export also round-trips losslessly through the same field set as import, so a campus-scoped export is immediately usable as a campus-scoped import elsewhere.
+
+## Shared versus campus-specific teams: three patterns that work
+
+Campus structure in software is the easy half; deciding how your *teams* map onto campuses is the half that generates staff-meeting debates. Three patterns cover most churches:
+
+**1. Campus-specific teams (the default).** Greeters, nursery, parking, hospitality — anything where the serving happens in one building for the people of that building. Build these per campus, staff them from that campus's directory (filter the campus, and you're looking at your recruiting pool), and let each site's coordinator own their roster. This should be your starting assumption; only promote a team out of it for a reason.
+
+**2. Shared teams that travel.** Many multi-site churches run one worship or production team that rotates across sites, especially in the first year of a new campus when the talent pool is thin. Keep this team org-wide rather than duplicating it per campus, and lean on scheduling rather than structure to express "who is where this Sunday." The rhythm for staffing this well — building rosters ahead instead of week-to-week scrambling — is covered in [scheduling volunteers a month at a time](/kb/articles/scheduling-volunteers-month-at-a-time/).
+
+**3. Central teams with campus liaisons.** Finance, communications, and often the technical arts team live centrally, with one identified person per campus. This is where per-user campus roles earn their keep: the central team stays one team, while each member's campus role records which site they cover. Your AV team will recognize this shape — it is the same hub-and-spoke pattern that works for equipment, covered from the hardware side in [managing AV devices across multiple campuses](/kb/articles/managing-av-devices-multi-campus/).
+
+Whichever mix you choose, resist the temptation to mirror your org chart perfectly into the software on day one. Start with campus-specific teams, share only what genuinely travels, and revisit after your first quarter of multi-site Sundays — the reality of who actually drives between campuses will overrule the launch plan anyway.
+
+## One directory, honestly shared
+
+A final encouragement: multi-campus done well is still *one church*. Campuses, scoped lists, and per-site roles are not walls between congregations — they let each site see its own people clearly while the whole body stays one directory, one household model, one set of records. Because that directory is live-synced (edits made anywhere appear everywhere in about fifty milliseconds, on web and desktop alike), a family moving from the broadcast campus to the new site is one field change — not an export, an email, and a re-import between two systems that have already started to disagree.
+
+## How WorshipMetrics handles this
+
+Multi-campus support is built into the People pillar rather than bolted on: campuses each carry their own IANA time zone, roles are assigned per user per campus, the directory, CSV import, and export are all campus-scoped, and the campus filter hides itself entirely for single-campus churches — so the product grows into multi-site the Sunday you do, and stays simple until then. The directory, households, bulk tools, and duplicate protection that make it work — for unlimited people, on every plan — are covered on the [People page](/people/).

@@ -48,13 +48,13 @@ Here is what shows up once WorshipMetrics can see your switches port by port.
 
 ### Auto-inferred Ethernet wires
 
-The sync reads the controller's per-port client tables and writes actual Ethernet connections into your signal map — this camera into port 7 of the stage-left switch, that access point into port 16. Each inferred wire gets a network cable ID in the same `NET-001`-style numbering scheme the platform uses for every cable, so the wires the network discovered sit right alongside the SDI and Dante runs you drew by hand, on the same map and the same [Patches cable schedule](/kb/cable-labeling-system-that-survives/).
+The sync reads the controller's per-port client tables and writes actual Ethernet connections into your signal map — this camera into port 7 of the stage-left switch, that access point into port 16. Each inferred wire gets a network cable ID in the same `NET-001`-style numbering scheme the platform uses for every cable, so the wires the network discovered sit right alongside the SDI and Dante runs you drew by hand, on the same map and the same [Patches cable schedule](/kb/articles/cable-labeling-system-that-survives/).
 
 This matters because Ethernet runs are precisely the cables teams document worst. An SDI run gets drawn because someone consciously installed it; network patches accumulate in ones and twos over years, and nobody remembers which port the confidence monitor's media player landed on. Auto-inference means the least-documented layer of your rig becomes the *best*-documented layer — witnessed by the switch itself.
 
 ### Live PoE draw, port by port
 
-If you have read our guide to [PoE classes for church AV](/kb/poe-classes-church-av-guide/), you know the difference between what a device *negotiates* (its class allocation) and what it actually *pulls* (its live draw). Port-precise sync shows the live wattage on every PoE port, which turns two chronic mysteries into thirty-second checks:
+If you have read our guide to [PoE classes for church AV](/kb/articles/poe-classes-church-av-guide/), you know the difference between what a device *negotiates* (its class allocation) and what it actually *pulls* (its live draw). Port-precise sync shows the live wattage on every PoE port, which turns two chronic mysteries into thirty-second checks:
 
 - **Is that camera actually being powered by this switch?** A port showing 0.0 W with a link light tells you the device is running on a local power brick — useful truth when you are deciding whether a switch reboot will take the camera down.
 - **How close is this switch to its PoE budget?** Summing live draws across ports tells you how much real headroom remains before you add the next access point — and whether a device is drawing suspiciously more than its documented class suggests, which is often the first sign of a heater kicking in or a failing device.
@@ -65,7 +65,7 @@ Because the WorshipMetrics device catalog records PoE class and wattage expectat
 
 This is the sleeper feature, and in our experience the one that finds real problems fastest. The sync records a port's negotiated speed *separately* from its maximum capability — so a gigabit port that silently fell back to 100 Mb/s is visible at a glance instead of hiding behind a green link light.
 
-Why does gigabit fall back to 100M? Almost always the cable: a marginal termination, one damaged pair, a run that got pinched during a stage rebuild. Gigabit Ethernet needs all four pairs; 100 Mb/s needs only two, so a cable with one bad pair "works" — right up until you push an NDI feed or a Dante network through it and things get strange. If you run [AV signals over your network switches](/kb/av-signals-that-survive-network-switch/), a port stuck at 100M is a Sunday incident waiting for its moment. Seeing negotiated-vs-maximum in your documentation means you find that cable on a Tuesday instead.
+Why does gigabit fall back to 100M? Almost always the cable: a marginal termination, one damaged pair, a run that got pinched during a stage rebuild. Gigabit Ethernet needs all four pairs; 100 Mb/s needs only two, so a cable with one bad pair "works" — right up until you push an NDI feed or a Dante network through it and things get strange. If you run [AV signals over your network switches](/kb/articles/av-signals-that-survive-network-switch/), a port stuck at 100M is a Sunday incident waiting for its moment. Seeing negotiated-vs-maximum in your documentation means you find that cable on a Tuesday instead.
 
 ## Letting network truth check your signal map
 
@@ -75,7 +75,7 @@ Your hand-drawn map records intent — what the system was designed to be. The U
 
 The rest of the platform reinforces the habit. Device cards carry live health indicators on a 90-second offline threshold — three missed heartbeats and the dot changes — so the map you use for planning is also the map you glance at when something dies mid-service. And the signal map's automated wiring audits (duplicate cables, direction conflicts, connector mismatches, and more) keep the human-drawn side of the documentation honest while the network sync keeps the Ethernet side honest.
 
-If you are still building out the network side of your AV system, our guide to [church networks for AV and streaming](/kb/church-network-av-streaming/) covers VLANs, switch selection, and the design decisions that make this kind of telemetry most useful.
+If you are still building out the network side of your AV system, our guide to [church networks for AV and streaming](/kb/articles/church-network-av-streaming/) covers VLANs, switch selection, and the design decisions that make this kind of telemetry most useful.
 
 ## Setup notes and good practices
 

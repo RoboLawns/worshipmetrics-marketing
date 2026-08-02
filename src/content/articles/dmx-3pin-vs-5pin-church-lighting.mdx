@@ -23,7 +23,7 @@ DMX512 is the control protocol behind almost every stage light made in the last 
 
 Electrically, DMX is EIA-485 (often called RS-485): a differential data signal running over a shielded twisted pair. Data flows in **one direction only**, from the console outward, and devices connect in a **daisy chain**: console output to the first fixture's DMX IN, that fixture's DMX THRU to the next fixture's IN, and so on down the line. The last fixture in the chain gets a terminator (more on that below).
 
-That's the whole topology. No hubs, no Y-cables, no star wiring — one line, one direction, one chain.
+No hubs, no Y-cables, no star wiring — one line, one direction, one chain.
 
 ## 3-pin vs 5-pin: what the standard says, and what manufacturers ship
 
@@ -36,7 +36,7 @@ The DMX512 standard specifies a **5-pin XLR** connector:
 
 So in practice, a 5-pin DMX cable carries the same three active conductors as a 3-pin cable, plus two pins that usually connect to nothing. Manufacturers of budget and entry-level fixtures noticed this decades ago and started shipping 3-pin XLR jacks instead — the connectors are cheaper, and 3-pin cables are everywhere. It technically departs from the standard, but electrically it's the identical signal.
 
-That's why real-world church rigs are almost always mixed: a 5-pin console, some 5-pin professional fixtures, and a batch of 3-pin LED bars from the same order. This is fine. It is not a compatibility problem — it's an adapter problem, and passive adapters solve it completely.
+That's why real-world church rigs are almost always mixed: a 5-pin console, some 5-pin professional fixtures, a batch of 3-pin LED bars. This is fine. It's not a compatibility problem — it's an adapter problem, and passive adapters solve it completely.
 
 Why did the standard choose 5-pin at all? Partly for that never-used second data pair, but largely for a very practical reason: **a 5-pin connector physically cannot plug into audio equipment.** Which brings us to the most important safety point in this article.
 
@@ -74,18 +74,18 @@ One historical wrinkle: a handful of older fixture lines shipped with **reversed
 
 An EIA-485 line needs to be **terminated**: a 120 Ω resistor across pins 2 and 3 at the far end of the chain, absorbing the signal so it doesn't reflect back up the line. You can buy a DMX terminator plug for a few dollars, solder a resistor into a spare XLR shell, or flip the termination switch that many fixtures include on the rear panel.
 
-An unterminated chain often works — right up until it doesn't. Short chains are forgiving; longer chains produce the same ghost-flicker symptoms as wrong cable. And if your rig uses RDM (Remote Device Management, which sends data *back* up the line for fixture configuration), clean termination matters even more, because the line now carries traffic in both directions.
+An unterminated chain often works — right up until it doesn't. Short chains are forgiving; longer chains produce the same ghost-flicker symptoms as wrong cable. And if your rig uses RDM (Remote Device Management, which sends data *back* up the line), clean termination matters even more, because the line now carries traffic both directions.
 
 Two chain rules complete the picture:
 
 - **Never split a DMX line with a Y-cable.** EIA-485 doesn't tolerate passive branches. When you need two runs — say, stage left and stage right — use a powered **DMX splitter** (ideally optically isolated), which regenerates the signal on each output and protects the console from faults on any one leg.
-- **Keep chains modest.** The electrical spec allows up to 32 unit loads per line, but well before that you'll usually want a splitter anyway for cable-routing sanity and fault isolation.
+- **Keep chains modest.** The electrical spec allows up to 32 unit loads per line, but you'll usually want a splitter well before that for routing sanity and fault isolation.
 
 ## Where Art-Net and sACN nodes fit
 
-Once a rig grows past a couple of universes — or the console lives in a booth a long way from the stage — churches move DMX onto the network. **Art-Net** and **sACN (E1.31)** both wrap DMX universes in IP packets, which means they travel over ordinary Ethernet: through switches, across VLANs, over the existing structured wiring in the building.
+Once a rig grows past a couple of universes — or the console lives a long way from the stage — churches move DMX onto the network. **Art-Net** and **sACN (E1.31)** both wrap DMX universes in IP packets, which means they travel over ordinary Ethernet: through switches, across VLANs, over the building's existing structured wiring.
 
-The architecture is simple: the console (or lighting software) sends Art-Net or sACN onto the network, and **nodes** — small boxes mounted near the fixtures — convert it back to physical 5-pin DMX ports. Instead of one long fragile daisy chain snaking from the booth across the ceiling, you run short local DMX chains from a node at each stage position. Many nodes power themselves over PoE, which makes placement even easier ([here's how PoE classes and budgets work](/kb/articles/poe-classes-church-av-guide/)).
+The architecture is simple: the console (or lighting software) sends Art-Net or sACN onto the network, and **nodes** — small boxes mounted near the fixtures — convert it back to physical DMX ports. Instead of one long fragile daisy chain snaking across the ceiling, you run short local DMX chains from a node at each stage position. Many nodes power themselves over PoE, which makes placement even easier ([here's how PoE classes and budgets work](/kb/articles/poe-classes-church-av-guide/)).
 
 Two network notes worth knowing:
 

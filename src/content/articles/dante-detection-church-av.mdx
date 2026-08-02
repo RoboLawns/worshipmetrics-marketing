@@ -17,7 +17,7 @@ That isn't magic, and it isn't guesswork. It's two independent detection paths t
 
 ## A sixty-second Dante refresher
 
-Dante, from Audinate, moves uncompressed multichannel audio as ordinary IP traffic over standard gigabit Ethernet. Every Dante device gets an IP address, audio flows as UDP packets, and devices stay sample-locked to a shared clock elected via PTP. Because it's real network traffic, it rides switches and VLANs — with the usual care around QoS, IGMP snooping, and disabling Energy Efficient Ethernet that we cover in [which AV signals survive a network switch](/kb/articles/av-signals-that-survive-network-switch/).
+Dante, from Audinate, moves uncompressed multichannel audio as ordinary IP traffic over standard gigabit Ethernet. Every Dante device gets an IP address, audio flows as UDP packets, and devices stay sample-locked to a shared clock elected via PTP. Because it's real network traffic, it rides switches and VLANs — with the care around QoS, IGMP snooping, and Energy Efficient Ethernet we cover in [which AV signals survive a network switch](/kb/articles/av-signals-that-survive-network-switch/).
 
 The piece that matters most here: Dante devices *announce themselves*, using standard mDNS/DNS-SD — the same zero-configuration service advertisement that Bonjour printers and AirPlay speakers use. That design decision is what makes third-party awareness of Dante possible at all.
 
@@ -25,8 +25,8 @@ The piece that matters most here: Dante devices *announce themselves*, using sta
 
 Dante Virtual Soundcard (DVS) turns an ordinary computer into a Dante endpoint — typically 64×64 channels into and out of your streaming or recording machine with nothing but a network cable. On Windows, DVS runs in one of two driver modes, and the difference matters enormously for detection:
 
-- **WDM mode** presents DVS as standard Windows audio devices. They show up in the Sound control panel, and any application can use them.
-- **ASIO mode** presents DVS only through the ASIO driver model. ASIO-aware applications — DAWs, vMix, multitrack recorders — see it and get low-latency access to the full channel count. The Windows Sound panel sees *nothing*.
+- **WDM mode** presents DVS as standard Windows audio devices: visible in the Sound control panel, usable by any application.
+- **ASIO mode** presents DVS only through the ASIO driver model. ASIO-aware applications — DAWs, vMix, multitrack recorders — get low-latency access to the full channel count. The Windows Sound panel sees *nothing*.
 
 That second mode is the trap for any monitoring tool that only enumerates audio endpoints the normal way. A booth PC running DVS in ASIO mode looks, to standard endpoint enumeration, like a computer with no Dante on it at all — even while 64 channels of worship audio are flowing through it.
 
