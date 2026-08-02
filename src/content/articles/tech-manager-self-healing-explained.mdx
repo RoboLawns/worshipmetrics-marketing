@@ -1,0 +1,105 @@
+---
+title: "Self-Healing in the Booth: What Tech Manager Fixes Before You Notice"
+description: "A plain-language tour of Tech Manager's self-healing rules — stream restarts, bitrate step-downs, recording recovery, disk cleanup, and network-aware queueing — and why every action lands in your support history."
+category: "operations"
+tags: ["self-healing", "Tech Manager", "reliability", "streaming"]
+difficulty: "beginner"
+publishedAt: "2026-08-02"
+featured: false
+productCTA: true
+---
+
+## What "self-healing" actually means
+
+Every church tech booth has a short list of problems that happen over and over: the stream drops, the recording quietly stops, the drive fills up, the internet blips for forty-five seconds during the second song. None of these are hard to fix. What makes them painful is *when* they happen — mid-service, while the one person who knows the fix is also running lyrics, mixing a monitor send, and answering a text from the pastor.
+
+Self-healing is the simple idea that a computer sitting in the booth can watch for those specific, well-understood failures and apply the specific, well-understood fix — immediately, without waiting for a human to notice. It is not artificial intelligence guessing at solutions. It is a small set of explicit rules, each one doing exactly what an experienced volunteer would do if they had been staring at the encoder at the moment things went wrong.
+
+Tech Manager, the WorshipMetrics booth application, ships with a handful of these rules. This article walks through each one in plain language: what it watches, when it acts, what it does, and — just as important — what it deliberately refuses to do. And it ends with the philosophy that holds the whole thing together: **every action is logged to your support history. Nothing happens silently.**
+
+## Rule 1: Stream drop — restart after 30 seconds
+
+**What it watches:** whether your stream output is actually running and sending.
+
+**When it acts:** if the stream has been down for more than 30 seconds.
+
+**What it does:** restarts the stream.
+
+Why the 30-second wait? Because live streaming over the public internet has hiccups that resolve themselves. Encoders retry, connections re-establish, and a two-second stall usually recovers on its own. Restarting the stream instantly on every wobble would make things worse — each restart is itself a brief interruption. Thirty seconds is long enough to be confident the stream is genuinely down, and short enough that most of your online congregation experiences it as a buffering pause rather than an outage.
+
+If you have ever worked the manual version of this — noticing the "reconnecting" badge, deciding how long to wait, finally clicking stop and start again — you know the hardest part is that nobody is usually watching the encoder at the moment it matters. The rule simply removes the "nobody was watching" failure mode. For what to do when a drop *does* get past every safety net, keep the [dropped-stream recovery playbook](/kb/articles/church-stream-dropped-mid-service/) handy.
+
+## Rule 2: Low bitrate — step the resolution down
+
+**What it watches:** the actual bitrate your encoder is achieving, compared to what a healthy stream looks like.
+
+**When it acts:** when the bitrate sags low enough that the stream is struggling.
+
+**What it does:** reduces the output resolution so the stream can stay up within the bandwidth that is actually available.
+
+This is the same triage a seasoned streaming operator performs by hand: when the upload can't sustain the stream, a lower resolution that plays smoothly beats a higher resolution that stutters and drops. Viewers forgive softness; they do not forgive freezing. Sagging bitrate is almost always a network story — congestion on the building's connection, an ISP having a rough morning, a backup job that picked the wrong time to run — and the right response in the moment is to shrink the stream's appetite, not to fight physics.
+
+The step-down keeps you live through the rough patch. Afterward, the underlying cause is worth chasing down properly — our guide to [church network design for AV and streaming](/kb/articles/church-network-av-streaming/) covers how to isolate streaming traffic so Sunday-morning guest WiFi can't starve your encoder in the first place.
+
+## Rule 3: Recording stopped — start it again
+
+**What it watches:** whether your recording is running when it should be.
+
+**When it acts:** the moment a recording that should be rolling is found stopped.
+
+**What it does:** restarts the recording.
+
+Of all the booth failures, the silently stopped recording is the cruelest, because you discover it *after* the service — when the sermon your pastor wanted to clip, or the archive copy a homebound member was waiting for, simply doesn't exist. There is no mid-service symptom. The stream looks fine, the room sounds fine, and the loss is invisible until Monday.
+
+That is exactly the kind of failure automation is best at, because the check is trivial for a computer and nearly impossible for a busy human: "is the recording still running?" asked continuously, all service long. If the answer ever becomes no, the fix is applied in seconds instead of being discovered in regret.
+
+## Rule 4: Disk filling up — clean the cache and tell you
+
+**What it watches:** free space on the booth machine's storage.
+
+**When it acts:** when free space falls below 10%.
+
+**What it does:** deletes the oldest cached digital-signage files to reclaim space — and raises an alert so you know it happened and can address the underlying trend.
+
+A full disk is a slow-motion emergency. Recordings fail, software misbehaves, and the machine that was fine for months suddenly isn't — usually on a Sunday, because Sundays are when the big files get written. The cleanup rule buys you headroom automatically by removing only *cached* signage content, which is safe to delete because it can be re-fetched. Your recordings, media, and project files are never touched.
+
+Notice the second half of the rule, though: the alert. Automatic cleanup treats the symptom; the alert makes sure a human looks at the cause. If the drive keeps flirting with 10%, the real fix is a storage plan — something a regular [AV inventory and maintenance rhythm](/kb/articles/av-inventory-maintenance/) should surface long before it becomes urgent.
+
+## Rule 5: Network drop — queue the restart, don't thrash
+
+**What it watches:** the booth's network connection itself.
+
+**When it acts and what it does — two cases:**
+
+- **Outage shorter than 60 seconds:** Tech Manager queues a stream restart and fires it the moment the network recovers. It does not blindly hammer reconnect attempts into a dead connection; it waits for the network to actually come back, then acts once, cleanly.
+- **Outage longer than 60 seconds:** it alerts you instead. At that point the problem is bigger than a blip — a router reboot, an ISP outage, a cable someone bumped — and a human decision is needed: hotspot failover, an announcement to the online congregation, or a call for help.
+
+This split is the most "experienced operator" behavior in the whole set. Anyone who has streamed for a while knows the difference between a hiccup you ride out and an outage you escalate — and knows that frantic retry-clicking during the hiccup only prolongs the recovery. Encoding that judgment into a rule means the calm response happens even when the person in the booth is brand new. (It pairs well with [training your volunteer AV team](/kb/articles/training-volunteer-av-teams/) — automation handles the reflexes so training can focus on judgment.)
+
+## What self-healing deliberately does *not* do
+
+A reliability system earns trust as much by its restraint as by its actions. Two boundaries matter here:
+
+**A crashed encoder is reported, not silently relaunched.** If OBS crashes outright, Tech Manager reports it and escalates to a human rather than auto-restarting the application. That is a deliberate choice: a crash can mean a corrupted scene collection, a dying capture card, or a driver problem, and blindly relaunching could compound the damage or mask a hardware failure that needs attention. Restarting a stream output is routine; resurrecting a crashed application is a decision a person should make.
+
+**It heals what you configured, nothing more.** In vMix booths, Tech Manager monitors and heals through polling against the source you configured — it is not roaming your machine making judgment calls about software it was never asked to watch. The same monitoring works across OBS, vMix, and ATEM-based booths, with each rule scoped to what that setup actually exposes.
+
+The pattern across both: **automate the reversible, escalate the ambiguous.** Every self-healing rule handles a failure whose fix is safe, well-understood, and easily undone. Anything that requires diagnosis gets a human.
+
+## Nothing is silent: every action in your support history
+
+Here is the part that makes self-healing trustworthy rather than spooky: **every attempt is logged to a self-healing log in your support history.** Every stream restart, every resolution step-down, every recording recovery, every cache cleanup, every queued network reconnect — timestamped and recorded, whether it succeeded or not.
+
+That matters for three reasons:
+
+1. **You can audit your own booth.** If the stream restarted itself at 10:42 last Sunday, you'll see it — even though nobody in the room noticed anything. Over weeks, the log becomes a health record: a booth that self-heals once a quarter is fine; one that self-heals every service is telling you something about your network or hardware that deserves a real fix.
+2. **Support starts with the facts.** When you do call for help, the history of what was tried automatically — and when, and whether it worked — is already there. You skip the "so what happened?" archaeology and go straight to diagnosis.
+3. **Trust requires visibility.** A system that quietly changes your stream settings would be unsettling no matter how good its intentions. A system that acts *and shows its work* is a teammate.
+
+Silent automation breeds mystery. Logged automation builds a paper trail that makes both you and your tools smarter every week.
+
+## How WorshipMetrics handles this
+
+All five rules in this article are built into [Tech Manager](/tech-manager/), the WorshipMetrics booth application for Windows. It runs quietly in the system tray with a health-dot badge, launches automatically at login, and watches your booth whether it's built on OBS, vMix, or an ATEM — restarting dropped streams after 30 seconds, stepping down resolution when bitrate sags, restarting stopped recordings, cleaning cached signage when disk space runs low, and queueing reconnects through short network drops while alerting you on long ones.
+
+Everything it does feeds the same live picture your team sees in [AV monitoring](/av-monitoring/) — bitrate, dropped frames, and encoder load tracked continuously — and every self-healing action lands in your support history, where it's already on screen if you call [910-WORSHIP](/phone-support/) for the problems automation shouldn't solve alone. The goal isn't a booth that never has problems. It's a booth where the routine problems fix themselves, the real problems reach a human fast, and nothing — ever — happens silently.

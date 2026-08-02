@@ -14,12 +14,14 @@ const platformPlans = [
     suffix: "/mo forever",
     tag: "The pledge, free forever",
     badge: "No credit card",
-    body: "Watching, the map, and the alerts are free forever. Unlimited users, so the whole volunteer team lives in it.",
+    body: "AV monitoring, the Signal Map, and the alerts are free forever. Unlimited users, so the whole volunteer team lives in it.",
     cta: "Get started free",
     href: `${APP_URL}/sign-up`,
     featured: false,
     items: [
-      "24/7 watching, the living Signal Map, and instant alerts — free forever",
+      "24/7 AV monitoring, the living Signal Map, and instant alerts — free forever",
+      "Control your PTZ cameras and switcher from anywhere in the world",
+      "Tech Manager booth app: production dashboard, camera presets, and self-healing included",
       "Unlimited users — the whole volunteer team lives in it",
       "Core planning, presentation, and people tools (practical limits on storage, clips, 1 signage screen)",
       "AI support in your alerts, plus one full help session free",
@@ -39,7 +41,8 @@ const platformPlans = [
       "Everything in Free, with the practical limits removed",
       "Unlimited 24/7 AI support that knows your system — Luminos in the app, Journey on 910-WORSHIP",
       "PCO sync, unlimited signage screens, and cloud Reels — AI clips from anywhere",
-      "Full media and song libraries, no storage caps",
+      "The full Present suite: multi-screen output, stage displays with transposed chord charts",
+      "Full media and song libraries with per-key PDF chord charts, no storage caps",
       "Keep streaming wherever you stream today — Assist works alongside it",
     ],
   },
@@ -54,9 +57,10 @@ const platformPlans = [
     featured: true,
     items: [
       "Everything in Assist, plus cloud live streaming",
-      "Resilient ingest from the Tech Manager encoder — no $1,500 box",
-      "Multi-destination delivery: YouTube, Facebook, and an embeddable player with a hosted watch page",
-      "Cloud DVR and archive, plus stream-health monitoring wired into your alerts",
+      "Resilient SRT and RTMPS ingest from the Tech Manager encoder — no $1,500 box",
+      "Up to 10 simultaneous destinations: YouTube, Facebook, and an embeddable player with a hosted watch page",
+      "Cloud DVR and archive, plus a scored stream-health report wired into your alerts",
+      "Lossless FLAC audio archive of every service",
       "Reels cut automatically from every service and online attendance analytics",
       "Each campus is its own $99 with its own included usage",
     ],
@@ -104,7 +108,8 @@ const fairUseRows = [
 
 const comparisonRows = [
   ["Price", "$0 forever", "$49/mo", "$99/mo per campus"],
-  ["24/7 watching, Signal Map & alerts", "Included", "Included", "Included"],
+  ["24/7 AV monitoring, Signal Map & alerts", "Included", "Included", "Included"],
+  ["Remote PTZ camera & switcher control — from anywhere", "Included", "Included", "Included"],
   ["Users", "Unlimited", "Unlimited", "Unlimited"],
   ["Planning, presentation & people", "Core (practical limits)", "Full", "Full"],
   ["Storage caps", "Practical limits", "None", "None"],
@@ -121,7 +126,7 @@ const comparisonRows = [
 ];
 
 const faqItems = [
-  { question: "Is the Free tier really free forever?", answer: "Yes. No credit card, no trial timer, no expiration. Watching, the living Signal Map, and instant alerts are free forever — that is the pledge, and it never changes. The whole volunteer team can live in it with unlimited users." },
+  { question: "Is the Free tier really free forever?", answer: "Yes. No credit card, no trial timer, no expiration. AV monitoring, the living Signal Map, and instant alerts are free forever — that is the pledge, and it never changes. The whole volunteer team can live in it with unlimited users." },
   { question: "How do platform tiers and support add-ons combine?", answer: "Pick the platform tier that fits how your church runs Sunday — Free, Assist, or Stream. Then, if you want a person standing behind your team, add Care, Sunday Assurance, or Managed on top. Any tier combines with any add-on, and you can add or drop support anytime." },
   { question: "Why is Stream priced per campus?", answer: "Each campus gets its own encoder, its own Signal Map, its own stream, and its own included usage — so each campus is its own $99. It matches how multi-site churches already buy, without the per-site markup the expensive platforms charge. Network and denomination deals are handled inside Managed." },
   { question: "Do I need to buy a hardware encoder to stream?", answer: "No. The encoder is Tech Manager, the desktop app running on a PC your church already owns — a $0 replacement for the $1,500+ hardware box the expensive streaming platforms require." },
@@ -171,7 +176,7 @@ const structuredData = [
       <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Pricing</p>
       <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">Stream for less. Get everything else included.</h1>
       <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-        Streaming that runs like the expensive platforms — for less than you pay today — and it brings monitoring, AI support, planning, presentation, signage, people, and clips with it. Watching, the map, and the alerts stay free forever.
+        Streaming that runs like the expensive platforms — for less than you pay today — and it brings monitoring, AI support, planning, presentation, signage, people, and clips with it. AV monitoring, the Signal Map, and the alerts stay free forever.
       </p>
       <div class="mx-auto mt-8 max-w-2xl rounded-2xl border border-indigo-200 bg-indigo-50 px-6 py-4">
         <p class="text-lg font-semibold text-indigo-900 sm:text-xl">&ldquo;$99 a month streams your services — and brings monitoring, planning, presentation, and support with it.&rdquo;</p>
@@ -468,7 +473,7 @@ const structuredData = [
     <div class="mx-auto max-w-4xl text-center">
       <h2 class="text-3xl font-bold text-white sm:text-4xl">Stream your services for less than you pay today.</h2>
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
-        Watching, the map, and the alerts are free forever. When you are ready to stream, cancel the expensive box and keep the difference — with real humans on call seven days a week.
+        AV monitoring, the Signal Map, and the alerts are free forever. When you are ready to stream, the whole platform is already here — for less than most churches pay today, with real humans on call seven days a week.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
         <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="pricing_footer_get_started_free" data-wm-track-location="pricing_footer_cta">Get started free</a>
