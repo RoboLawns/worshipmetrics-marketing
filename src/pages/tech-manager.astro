@@ -339,6 +339,61 @@ const structuredData = [
     </div>
   </section>
 
+  <!-- What's inside — ranked -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">What&apos;s inside</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Everything the booth does, in one app.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {[
+          {
+            title: "The production dashboard",
+            body: "Live scene thumbnails you can cut to Program with a click, per-input play/pause, overlay toggles, an enlargeable program view, and audio meters for every bus — beside stream health sparklines for bitrate, dropped frames, and CPU.",
+          },
+          {
+            title: "Real switcher control",
+            body: "Transitions with adjustable duration — cuts, fades, wipes, zooms, even stingers — a hands-on T-bar, overlay 1–4 control, and bus audio mute and volume. Deep vMix integration, OBS scene control, and Blackmagic ATEM status at a glance.",
+          },
+          {
+            title: "PTZ camera control",
+            body: "Drive cameras with a virtual joystick, a physical gamepad, or the pointer: drag a box to frame a shot, click to center a subject. Nine thumbnail presets per camera, autofocus zones, and cross-brand image adjustment — exposure, white balance, color — under one UI.",
+          },
+          {
+            title: "Self-healing, logged",
+            body: "A dropped stream restarts itself after 30 seconds; a starving bitrate steps down resolution; a stopped recording restarts; a filling disk cleans itself up. Every action is logged to your support history — nothing happens silently.",
+          },
+          {
+            title: "The booth's black box",
+            body: "Full hardware telemetry — CPU, GPU, temperatures, RAM, disks, displays, audio devices — plus event-driven USB tracking and a software-and-driver inventory. When something changes in the booth, the record shows exactly what and when.",
+          },
+          {
+            title: "Volunteer remote & Live Run",
+            body: "A QR code opens a volunteer console on any phone on the booth's network — secured with rotating session tokens. The Live Run rundown advances the service from any device, no cloud round-trip required.",
+          },
+          {
+            title: "Attendance, two ways",
+            body: "A manual seat counter volunteers actually use, and camera Auto-Count that tallies the room from an RTSP camera or webcam — on a schedule or on demand.",
+          },
+          {
+            title: "Reels, rendered locally",
+            body: "Whisper transcription runs on the booth PC, AI analysis finds the moments, and bundled FFmpeg renders vertical, square, and widescreen clips with burned-in captions and your branded intro — no upload required.",
+          },
+          {
+            title: "NDI, three ways",
+            body: "Send slides as an NDI source, receive NDI cameras as live media, and publish Present output with a true alpha channel — a clean key for your switcher, no chroma keying.",
+          },
+        ].map(({ title, body }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="bg-white px-4 pb-16 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
@@ -559,6 +614,34 @@ const structuredData = [
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
             <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
           </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="mx-auto mb-20 max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Technical details</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">For the person who reads the spec sheet.</h2>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        {[
+          ["Platform", "Native desktop app for Windows 10/11 (64-bit, x64 and ARM), installed or portable, signed with an EV certificate and kept current by automatic updates"],
+          ["Production software", "OBS Studio (WebSocket v5), vMix (HTTP + TCP APIs), Blackmagic ATEM status, and HyperDeck control"],
+          ["Audio metering", "Real-time vMix master and bus meters at ~30 fps over a persistent TCP connection — the same numbers vMix shows, beside your other tiles"],
+          ["Camera protocols", "VISCA-over-IP (UDP 52381) with a command watchdog that stops runaway cameras, ONVIF fallback, and HTTP control for supported brands — image adjustment adapters for Sony, BirdDog, and generic VISCA cameras"],
+          ["NDI", "NDI send (slides), NDI receive (cameras as live slide media), and alpha-channel NDI output from Present for clean keys"],
+          ["Protocol relay", "Fires OSC, RossTalk, RTP-MIDI, HTTP, Q-SYS QRC, and PJLink onto the booth network on behalf of the cloud — browsers can't open those sockets; Tech Manager can"],
+          ["Telemetry", "Hardware snapshots every heartbeat: CPU, GPU, temperatures, memory, storage, displays, audio devices, USB (event-driven), network — plus hourly software and driver inventory"],
+          ["Cloud link", "Outbound-only encrypted WebSocket — no port forwarding, no firewall changes, works behind church networks; booth pairing uses one-time, admin-issued enrollment codes that expire in 30 minutes"],
+          ["Self-healing", "Stream restart after a 30-second drop, bitrate step-down under strain, recording restart, and low-disk cleanup — every action logged to your support history"],
+          ["Volunteer remote", "LAN mobile console served from the booth on a QR link, secured with per-session rotating tokens — volunteers' phones never need accounts"],
+          ["Reels engine", "Local Whisper transcription (five model sizes up to large-v3), bundled FFmpeg rendering at 1080×1920, 1080×1080, and 1920×1080, with caption burn-in and branded intros"],
+          ["Every feature, every plan", "Tech Manager's booth features aren't tier-gated — download it free and the whole booth toolkit comes with it"],
+        ].map(([term, detail], index) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
         ))}
       </div>
     </div>

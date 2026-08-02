@@ -12,53 +12,57 @@ const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/presentation.jpg`;
 const features = [
   {
     title: "A real slide editor",
-    body: "Full 1920×1080 slide editing with templates, layers, and text tools. Section labels carry identity colors — Verse, Chorus, Bridge, Tag, Vamp — so the operator always knows where the song is going.",
+    body: "Full 1920×1080 editing with layered items, per-church themes, shrink-to-fit text, and six lyric layouts from Centered Classic to Lower-Third. Section labels carry identity colors — Verse, Chorus, Bridge — so the operator always knows where the song is going.",
+  },
+  {
+    title: "Live video on your slides",
+    body: "Capture cards and NDI cameras drop onto slides like any other media — so IMAG, picture-in-picture teaching, and camera-behind-lyrics looks are just another slide, not another system.",
   },
   {
     title: "Scripture to slides in seconds",
-    body: "Type a reference, pick a translation, and the passage becomes clean slides. Save it as a re-editable presentation in your library, or append it to the live show mid-service.",
+    body: "Type a reference and the passage becomes clean slides — six translations included (KJV, ASV, WEB, YLT, Darby, BBE), with verses-per-slide and reference display options. Save it, or append it to the live show mid-service.",
   },
   {
     title: "A media bin that behaves",
-    body: "Images, videos, and gradients with fit modes, crop, trim, fades, loop, and end-of-video behaviors — loop, fade, or hold. Organized in folders, ready on click.",
+    body: "Images and video with fit modes, crop, trim, fades, loop, and per-use audio gain. Up to 250 MB per video upload, organized in folders, with a relink flow when files move.",
   },
   {
-    title: "Timers, clocks & countdowns",
-    body: "Countdown, count-up, and countdown-to-time with warning and overrun colors, plus time-of-day clocks. Pre-service countdowns and sermon timers, built in.",
-  },
-  {
-    title: "Overlays & lower thirds",
-    body: "Lower thirds, messages, logo bugs, and timer overlays with auto-hide — layered over any slide or background without interrupting the show.",
+    title: "Data-driven overlays",
+    body: "Lower thirds, messages, logo bugs, and timer overlays — and overlay fields can bind to a CSV, JSON, or XML source, so names and rosters update themselves row by row.",
   },
   {
     title: "Macros for big moments",
-    body: "One click fires a named sequence: change the background, jump to a playlist, show an overlay, start audio, wait, clear. Complex transitions become a single button.",
+    body: "One click fires a named sequence: change the background, jump to a playlist, show an overlay, start audio, wait, clear — even fire the booth's control protocols. Complex transitions become a single button.",
   },
   {
-    title: "Audio, routed right",
-    body: "An audio bin with tracks, loops, volume and groups — and output-device routing so walk-in music lands on the right speakers, not the operator's laptop.",
+    title: "Playlists synced to the plan",
+    body: "The service plan projects straight into a Present playlist — songs, announcements, countdowns, and media in order, with presentations auto-built from the plan. Arrangements and keys stay in lockstep with the Songs library.",
+  },
+  {
+    title: "Timers, clocks & countdowns",
+    body: "Countdown, count-up, and countdown-to-time with warning and overrun colors, plus timezone-aware clocks. Pre-service countdowns and sermon timers, built in.",
   },
   {
     title: "Your brand, everywhere",
-    body: "Church brand colors, fonts, and logo flow through templates and themes, so every slide looks like your church without a volunteer designing under pressure.",
-  },
-  {
-    title: "Playlists built for Sunday",
-    body: "ProPresenter-style playlists mixing songs, presentations, announcements, countdowns, and media — with per-item backgrounds and section colors.",
+    body: "Church brand colors, fonts, and logo flow through templates and themes — and 'Clear to Logo' is always one button away. Every slide looks like your church without a volunteer designing under pressure.",
   },
 ];
 
 const protocolItems = [
-  "OSC over the network for lighting consoles",
+  "OSC over the network for lighting and media servers",
   "RossTalk for Ross production switchers",
+  "MIDI — local devices or network MIDI",
   "HTTP requests for anything with an API",
-  "MIDI for the gear that speaks it",
+  "OBS Studio via WebSocket, and Q-SYS via QRC",
+  "Presets for vMix, Companion, Resolume, ProPresenter, X32/M32, QLab, and disguise",
 ];
 
 const importItems = [
-  "ProPresenter files (.pro4, .pro5, .pro6)",
-  "OpenLyrics libraries",
-  "SongSelect files",
+  "ProPresenter 4–7 (.pro4, .pro5, .pro6, and .pro)",
+  "ChordPro charts (.cho, .crd, .chopro)",
+  "OpenLyrics and OpenSong libraries",
+  "CCLI SongSelect files (.usr)",
+  "Plain text — paste and go",
   "The WorshipMetrics Songs library — already connected",
 ];
 
@@ -181,9 +185,9 @@ const structuredData = {
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-3">
         {[
-          { title: "Program out", body: "The audience screen: slides, lyrics, media, and overlays, fullscreen on any connected display or projector." },
-          { title: "Stage out", body: "The confidence monitor: current and next lyrics, live timers, and clocks on a separate editable layout — never mirrored from the audience screen." },
-          { title: "From the browser or the booth", body: "Web output needs no install — pick the screen and go. The Tech Manager desktop app drives outputs the same way in the booth." },
+          { title: "Program out", body: "The audience screen: slides, lyrics, media, and overlays, fullscreen on any connected display or projector — each output with its own look and resolution." },
+          { title: "Stage out", body: "The confidence monitor: current and next lyrics, notes, live timers, song key — even the chord chart, transposed to the key you're playing in. Its own editable layout, never a mirror." },
+          { title: "Browser, booth, or network", body: "Web output needs no install — pick the screen and go. Tech Manager adds NDI output in the booth, and Network Display sends video to remote screens over WebRTC." },
         ].map(({ title, body }) => (
           <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
             <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
@@ -240,6 +244,36 @@ const structuredData = {
           ))}
         </ul>
         <p class="mt-6 text-sm text-slate-500">Years of song files and presentations come with you — not left behind.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical details -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Technical details</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">For the person who reads the spec sheet.</h2>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200">
+        {[
+          ["Authoring canvas", "1920×1080 with layered media, slide, prop, and announcement layers rendered by one engine across editor, program, and stage"],
+          ["Output resolutions", "1280×720, 1920×1080, 1920×1200, 4K UHD (3840×2160), portrait 1080×1920, or custom — with fit, fill, and stretch screen modes"],
+          ["Multi-display output", "Multiple program and stage outputs across connected monitors — each with its own look, stage layout, resolution, and audio device"],
+          ["Live video inputs", "Capture cards and NDI sources placed on slides as live media for IMAG and picture-in-picture"],
+          ["NDI & Network Display", "NDI program output with alpha via the Tech Manager desktop app; Network Display publishes to auto-discovered network screens over WebRTC (H.264, up to 60 fps)"],
+          ["Media formats", "Images: JPG, PNG, WebP, GIF, AVIF, SVG, BMP · Video: MP4, WebM, MOV, M4V, MKV · up to 250 MB per video upload, with crop, trim, fade, loop, and gain per use"],
+          ["Scripture", "KJV, ASV, WEB, YLT, Darby, and BBE included, with verses-per-slide, verse numbers, and five reference display modes"],
+          ["Imports", "ProPresenter 4–7, ChordPro, OpenLyrics, OpenSong, CCLI SongSelect (.usr), and plain text"],
+          ["Control protocols", "OSC, RossTalk, MIDI (device and network), HTTP, OBS WebSocket, and Q-SYS QRC — fired from slides or macros, relayed through Tech Manager in the booth"],
+          ["Offline resilience", "Edits journal locally and reconcile automatically when the connection returns — a dropped network doesn't drop the service"],
+          ["Runs in", "Any Chromium-based browser (Chrome, Edge); multi-monitor output uses the Window Management API"],
+        ].map(([term, detail], index) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>

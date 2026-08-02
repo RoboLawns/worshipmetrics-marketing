@@ -12,24 +12,44 @@ const WIRING_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-signal-map.jpg`
 
 const features = [
   {
-    title: "Guided system wizard",
-    body: "Walk through a simple step-by-step process that asks the right questions about your setup. No AV engineering background required — describe your system in plain language and we build the diagram for you.",
+    title: "A map that draws like a CAD tool",
+    body: "A snap-to-grid canvas with drag-from-port wiring and smart orthogonal cable routing — bundles fan symmetrically, lines jump at crossings, and the whole layout stays legible as the system grows.",
   },
   {
-    title: "Automatic wiring diagrams",
-    body: "As you add devices, an intelligent wiring diagram builds itself. Every connection, every port, every signal path is visualized so your team knows exactly what is plugged into what.",
+    title: "Every cable gets a permanent ID",
+    body: "Draw a connection and it's labeled the moment it exists — SDI-001, DANTE-002, NET-014 — and never renumbered. Delete SDI-001 and SDI-002 keeps its name forever. Those IDs key the patch sheet, the printed diagram, and every support conversation.",
   },
   {
-    title: "Device library with 200+ known products",
-    body: "Select from a growing library of pre-loaded ProAV devices. When you add a Behringer Wing or a Blackmagic ATEM Mini, we already know how many ports it has, what protocols it supports, and how it connects.",
+    title: "400+ devices with factory port maps",
+    body: "Add a Behringer WING or an ATEM and its real rear panel arrives already documented — over 2,000 factory port presets across 114 manufacturers, down to PoE class and wattage budgets.",
   },
   {
-    title: "Professional printouts & cable labeling",
-    body: "Generate clean, professional wiring diagrams ready for print. Label every cable, every port, and every connection so that when something goes wrong, anyone on your team can trace the signal path.",
+    title: "AI research for unknown gear",
+    body: "Gear the library doesn't know gets researched on demand: AI confirms the real port complement with live web search, flags its confidence, and is always visually distinct from human-verified entries.",
   },
   {
-    title: "Patches & signal routing",
-    body: "Beyond the map, Patches documents how signals route through the system — which input feeds which bus, which output feeds which screen — so re-patching after a special event takes minutes, not a rehearsal.",
+    title: "Verified against the live network",
+    body: "Connect your UniFi controller and the map checks itself against reality: port-precise topology, live PoE draw per port, and negotiated versus maximum link speed — so a gigabit port stuck at 100 Mb is visible, not mysterious.",
+  },
+  {
+    title: "Seven automated wiring audits",
+    body: "Duplicate cables, self-loops, out-to-out direction conflicts, unmapped signals, connector mismatches, port-less endpoints, and duplicate device names — each finding jumps you straight to the offending cable.",
+  },
+  {
+    title: "It knows AES50 dies at a switch",
+    body: "The compatibility engine separates network signals that can ride a switch — Dante, AES67, NDI, Art-Net — from point-to-point links that can't, like AES50, Ultranet, and HDBaseT. The classic snake-into-the-switch disaster is prevented in the vocabulary itself.",
+  },
+  {
+    title: "Import the integrator's drawing",
+    body: "Upload the installer's schematic or proposal as a PDF or photo, and AI vision extracts the devices and wiring into your map — nothing writes until a human reviews and approves it.",
+  },
+  {
+    title: "Patch sheets & vector PDF diagrams",
+    body: "The patch sheet prints portrait or landscape, in color or mono-laser black-and-white, with your church logo and per-room sections. The wiring diagram exports as a true vector PDF in integrator-proposal style.",
+  },
+  {
+    title: "Documentation the AI actually reads",
+    body: "Every Luminos chat and 910-WORSHIP call loads your live inventory — and can pull the full signal map with cable and port labels on demand. Documenting your system is what makes support this specific.",
   },
 ];
 
@@ -132,7 +152,7 @@ const structuredData = {
     <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Device library</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">200+ devices pre-loaded. No guesswork.</h2>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">400+ devices pre-loaded. No guesswork.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
           When you add a device to your system, we already know the specs. Select a Behringer Wing and the port count, protocols, and connection options populate automatically. The same goes for Blackmagic switchers, PTZ cameras, audio mixers, encoders, and hundreds more.
         </p>
@@ -236,5 +256,35 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <!-- Technical details -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Technical details</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">For the person who reads the spec sheet.</h2>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200">
+        {[
+          ["Documentation surfaces", "Devices (inventory), Signal Map (canvas editor), and Patches (cable schedule) — identical on the cloud web app and the booth's desktop app"],
+          ["Device library", "422 make/model entries across 114 manufacturers with 2,000+ factory port presets — updated live, with human-verified entries always distinguished from AI-researched ones"],
+          ["Connector taxonomy", "76 physical connector types in 8 groups; SDI generations HD through 12G; link speeds 10 Mb to 100 Gb; MADI and Optocore fiber transports"],
+          ["Signal model", "Switchable network signals (Dante, AES67, NDI, Art-Net, sACN) modeled separately from point-to-point links (AES50, Ultranet, dSNAKE, HDBaseT) — the map won't let a snake pretend to be Ethernet"],
+          ["Cable identification", "Per-signal-type IDs (SDI-001, DANTE-002, NET-014), zero-padded and permanently stable; wireless links tracked as associations and kept off the cable sheets"],
+          ["Port data model", "Every port carries connector type, direction, signal format, VLAN and IP configuration, PoE class and wattage, and per-NIC MAC addresses"],
+          ["Network verification", "UniFi controller sync (API key or local admin) with port-precise topology, live PoE draw per port, and negotiated-versus-maximum link speed"],
+          ["Wiring audits", "Seven continuous checks — duplicate cable, self-loop, direction conflict, unmapped signal, connector mismatch, port-less endpoint, duplicate room name — each jump-focusing its finding"],
+          ["AI assistance", "On-demand device research with live web search (confidence-flagged) and schematic import from integrator PDFs and photos — with mandatory human review before anything writes"],
+          ["Printable outputs", "Patch sheet in portrait or landscape, color or mono-laser, with church logo and per-room sections; wiring diagram as a single-page vector PDF"],
+          ["AI grounding", "Support loads your live inventory — up to 200 devices with make, model, room, and status — plus the signal map with cable and port labels, in every chat and phone conversation"],
+        ].map(([term, detail], index) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <TechManagerCTA />
 </Layout>

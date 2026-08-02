@@ -12,20 +12,44 @@ const SCHEDULE_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-my-schedule.j
 
 const features = [
   {
-    title: "A directory that stays current",
-    body: "Every member, regular, and visitor in one searchable place — with contact info, photos, join dates, and age-aware profiles for adults and youth. Filter by status, type, or campus in a click.",
+    title: "One directory, your vocabulary",
+    body: "Members, guests, and attenders — plus unlimited custom types your church defines. Every profile carries labeled contact methods, photo, birthday with auto-computed age, join date, anniversary, and campus.",
   },
   {
     title: "Households, not just rows",
-    body: "Group people into households with a head of household, adults, and children — so families are visible as families, and follow-up reaches the right person.",
+    body: "People group into households with a designated head, shared address, and family visibility — and removing a household never removes its people. Follow-up reaches the right person, not just an address.",
   },
   {
-    title: "CSV in, CSV out",
-    body: "Import your existing people list with the guided CSV wizard. Export exactly what's on screen — filters and selections applied — whenever leadership needs a list.",
+    title: "CSV in, CSV out — safely",
+    body: "A 16-field import wizard auto-maps your old system's headers, previews before writing, and handles duplicates your way: skip, update, or create — deduping on email, phone, or exact name. Exports round-trip losslessly.",
   },
   {
-    title: "Archive, don't delete",
-    body: "People move away and seasons change. Archiving keeps records restorable instead of gone, and bulk actions make cleanup a five-minute job instead of a Saturday.",
+    title: "Team Chat, built in",
+    body: "Public channels that auto-join the whole org, invite-only private channels, and one-click DMs — with typing indicators, presence, @mentions, reactions, pinning, file sharing, and polls. Live over WebSocket, everywhere.",
+  },
+  {
+    title: "A serving lifecycle, not a signup sheet",
+    body: "Assignments move through unfilled, invited, confirmed, declined, no-show, and completed. A decline instantly re-opens the vacancy and tells the team's leaders — not just whoever clicked invite.",
+  },
+  {
+    title: "My Schedule, self-service",
+    body: "Volunteers see their upcoming serves, respond inline or straight from the email — no login required — and manage their own unavailable dates, which leaders see as warnings at assign time, never hard blocks.",
+  },
+  {
+    title: "Emails that close the loop",
+    body: "Invites with accept/decline buttons, day-before reminders that can't double-send, cancellation notices, and unfilled-position nudges days before Sunday. The no-show loop closes itself.",
+  },
+  {
+    title: "QR check-in that never duplicates",
+    body: "A shareable check-in link and printable QR code for the lobby. Returning attenders match their existing record — by email, then phone, then name and birthday — while true first-timers land in the directory automatically.",
+  },
+  {
+    title: "Public registration with capacity",
+    body: "Per-service registration links with their own QR codes enforce real capacity against party sizes, and send confirmation emails with your own wording.",
+  },
+  {
+    title: "Live everywhere, instantly",
+    body: "Every edit reaches every open screen in about 50 milliseconds — web and desktop — with bulk archive/restore, filtered exports, and a duplicate detector that flags likely pairs for review.",
   },
 ];
 
@@ -37,7 +61,7 @@ const structuredData = {
   operatingSystem: "Web, iOS, Android",
   url: `${SITE_URL}/people`,
   image: HERO_IMAGE,
-  description: "Church people directory with member, regular, and visitor statuses, households, CSV import and export, serving assignments with follow-up tracking, and unlimited users free.",
+  description: "Church people directory with members, guests, attenders, and custom types — households, CSV import and export, serving assignments with follow-up tracking, and unlimited users free.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -51,7 +75,7 @@ const structuredData = {
 <Layout
   title="Church People Directory & Member Management"
   socialTitle="WorshipMetrics People"
-  description="Members, regulars, and visitors in one directory — households, CSV import/export, serving assignments with follow-up tracking, and unlimited users free forever."
+  description="Members, guests, and attenders in one directory — households, CSV import/export, serving assignments with follow-up tracking, and unlimited users free forever."
   canonical="/people"
   ogImage={HERO_IMAGE}
   structuredData={structuredData}
@@ -172,5 +196,37 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <!-- Technical details -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Technical details</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">For the person who reads the spec sheet.</h2>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        {[
+          ["Directory model", "Built-in types Member / Guest / Attender plus unlimited custom types; Active/Inactive statuses; labeled multi-value contact methods (home, work, mobile × email, phone, address) and social handles"],
+          ["Households", "Optional head-of-household, shared address and contact details, archive flag — removing a household never removes its people"],
+          ["CSV import/export", "16-field vocabulary with alias auto-mapping and a preview step; duplicate strategies skip / update / create with dedup on email, phone, or exact name; lossless export round-trip"],
+          ["Serving lifecycle", "Six assignment statuses; tokenized email accept/decline that works without login; per-position needed counts; per-service-time coverage math"],
+          ["Volunteer self-service", "My Schedule with inline responses and self-managed unavailable date ranges — surfaced to leaders as warnings, never hard blocks"],
+          ["Scheduling emails", "Invites, day-before reminders on a 15-minute idempotent sweep, cancellation notices, decline alerts routed to team leaders, and unfilled-position nudges"],
+          ["Team Chat transport", "WebSocket delivery with typing indicators and presence; REST fallback; org-scoped live updates so every open surface stays current"],
+          ["Chat file sharing", "Private cloud storage with direct uploads, a 25 MB cap, a safe-format allowlist (images, video, audio, PDF, Office, text), and expiring signed download links"],
+          ["Chat polls", "2–10 options, single or multiple choice, vote-change semantics, double-vote-proof by design"],
+          ["Auth & team invites", "Invite-only organizations on Clerk authentication; role-carrying email invites with cryptographically random tokens and 7-day expiry"],
+          ["Public QR flows", "Org-wide check-in and per-service registration links with print-ready QR codes, rate-limited server-side; returning-attender matching tiers: email, then phone, then name + birthday"],
+          ["Multi-campus", "Campuses with their own time zones and per-user campus roles; campus-scoped lists, imports, and exports — the filter hides itself for single-campus churches"],
+          ["Users & pricing", "Unlimited users and unlimited people on every plan, including Free — the whole volunteer team lives in it"],
+        ].map(([term, detail], index) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <TechManagerCTA />
 </Layout>

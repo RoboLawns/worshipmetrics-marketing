@@ -11,20 +11,44 @@ const MONITOR_IMAGE = `${R2}/app-2026/lifestyle/system-health-monitoring.jpg`;
 
 const features = [
   {
-    title: "Stream health monitoring",
-    body: "See your livestream bitrate, frame drops, and connection stability in real time. Know before the congregation notices that something is wrong.",
+    title: "Full-machine telemetry",
+    body: "Every booth PC reports CPU load and temperature, RAM, every disk with its model, GPU and driver version, every display with resolution and refresh rate, audio endpoints with volume and mute state, USB peripherals, and WiFi signal strength.",
   },
   {
-    title: "System status dashboard",
-    body: "Every connected device, camera, and integration reports its status to one dashboard. No more walking around the booth checking each piece of gear individually.",
+    title: "Heartbeats every 15 seconds",
+    body: "A light telemetry beat lands every 15 seconds and a full snapshot every minute, so the fleet view is seconds-fresh. A machine earns its offline badge after just three missed beats.",
   },
   {
-    title: "Booth observability",
-    body: "Track what is happening across your entire AV system from a single surface. When something fails, you know what and where without tracing cables.",
+    title: "Watching that needs no watcher",
+    body: "A server-side fleet watcher scans continuously whether or not anyone has a page open. An outage alerts exactly once per incident — and a dropped connection is caught in about a minute.",
   },
   {
-    title: "Attendance + engagement metrics",
-    body: "Pair stream health data with attendance numbers to understand how your online reach correlates with technical quality. Better data for better decisions.",
+    title: "Red lines that don't cry wolf",
+    body: "CPU at 90%, RAM at 90%, disk under 5% free, or CPU at 95°C trips a critical alert. Recovery requires genuinely cooling off, and re-alerts are capped — a flapping machine sends one email, not forty.",
+  },
+  {
+    title: "Stream drop alerts",
+    body: "Heartbeats carry bitrate versus target, dropped frames, encoder load, and fps — plus network latency, jitter, and packet loss, and audio silence and clipping detection. If the stream dies mid-service, the alert beats the congregation's text messages.",
+  },
+  {
+    title: "AV gear health, multi-witnessed",
+    body: "Cameras, consoles, and switchers flagged for monitoring only alarm when every telemetry machine on the network agrees they're unreachable — one booth's bad network path can never page your whole team falsely.",
+  },
+  {
+    title: "Alerts that reach your phone",
+    body: "Real OS notifications by web push — including iPhones with the home-screen app — with email as the guaranteed channel and an in-app feed that never misses. You choose channels per alert type.",
+  },
+  {
+    title: "The machine's timeline",
+    body: "USB plugged and unplugged, displays changed, software and drivers installed or updated, network up and down, sustained CPU spikes, and every remote action — merged into one filterable per-machine history.",
+  },
+  {
+    title: "Pulse Insights",
+    body: "Pattern detection across the whole org surfaces what no single event shows: packet loss over 20%, latency running twice a device's own baseline, the same alert flapping four times in a day, machines gone quiet.",
+  },
+  {
+    title: "Service Metrics & attendance",
+    body: "Each week's plan pairs with its recap: in-room attendance from a seat-map counter with reusable templates or a camera auto-count, and online viewers rolled in automatically from the stream.",
   },
 ];
 
@@ -247,5 +271,36 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <!-- Technical details -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Technical details</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">For the person who reads the spec sheet.</h2>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        {[
+          ["Telemetry cadence", "Light heartbeat every 15 s over an encrypted WebSocket (HTTPS fallback), full hardware snapshot every 60 s, adaptive on-machine polling between beats"],
+          ["Offline thresholds", "Online badge flips after 90 s (three missed beats); alert email after 5 minutes of silence; a dropped connection is caught in ~60 s; signage screens alert at 30 minutes"],
+          ["Resource red lines", "CPU ≥ 90%, RAM ≥ 90%, disk ≤ 5% free, CPU temp ≥ 95°C — with hysteresis recovery (85% / 85% / 8% / 92°C) and a 30-minute re-alert cooldown per machine"],
+          ["Alert types", "Device offline, AV device offline, resource critical, audio state, and livestream drop — three severities across six filterable areas (Hardware, System, Stream, Audio, Network, Other)"],
+          ["Delivery channels", "Email (guaranteed), web push notifications — including iOS 16.4+ home-screen app — in-app feed, desktop toast, and live page updates"],
+          ["Machine telemetry", "CPU load/temp/clocks, RAM, per-disk storage with drive model, GPU and driver version, displays (resolution, refresh, HDR, rotation), audio endpoints, USB peripherals, network adapters and WiFi signal"],
+          ["Stream telemetry", "Bitrate vs target, dropped-frame %, encoder load, fps, scene, resolution, reconnect count — plus upload/download, latency, jitter, packet loss, and audio silence/clipping flags"],
+          ["AV device health", "Multi-observer rollup with online / degraded / stale / offline / unknown states — offline requires every fresh observer to agree, so one bad network path never false-alarms"],
+          ["Anti-spam mechanics", "One alert per outage by atomic claim, re-armed on recovery; hysteresis margins, per-machine cooldowns, and fan-out caps keep a flapping device to a single page"],
+          ["Software inventory", "Hourly software and driver collection from the system registry, with graphics-driver currency checked daily"],
+          ["History retention", "Alert history 90 days, raw telemetry 30 days, hardware and health events 90 days"],
+          ["Attendance counting", "Seat-map counter with reusable templates (sections, rows, member-assignable seats) and camera auto-count from RTSP or webcam — schedulable, or triggered remotely from the web"],
+        ].map(([term, detail], index) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <TechManagerCTA />
 </Layout>
