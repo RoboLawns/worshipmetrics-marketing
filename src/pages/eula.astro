@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const UPDATED = "August 7, 2026";
+
+const sections = [
+  {
+    title: "1. What This Agreement Covers",
+    body: "This End User License Agreement (\"EULA\") governs your use of the WorshipMetrics software: the Tech Manager desktop application, the WorshipMetrics web application, our mobile applications, and their updates (together, \"the Software\"). It works alongside our Terms of Service and Privacy Policy — by installing or using the Software, you agree to all three. If you are accepting on behalf of a church or organization, you confirm you have authority to bind that organization.",
+  },
+  {
+    title: "2. Your License",
+    body: "We grant your organization a limited, non-exclusive, non-transferable license to install and use the Software on devices your organization owns or controls, for your organization's internal ministry purposes. Booth machines enroll to exactly one organization; enrollment codes are issued by your administrators and bind the machine's telemetry and control to your organization alone. This is a license, not a sale — you're licensing the Software, and we continue to own it.",
+  },
+  {
+    title: "3. What You May Not Do",
+    body: "Please don't: copy, resell, rent, sublicense, or host the Software for anyone outside your organization; reverse engineer, decompile, or disassemble it except where the law expressly permits; remove or alter copyright or trademark notices; circumvent enrollment, authentication, security, or usage measurement; use the Software to build a competing product; or use it for anything unlawful. Multi-site churches, networks, and denominations are welcome — each campus simply runs under its plan.",
+  },
+  {
+    title: "4. Updates",
+    body: "The Software checks for and installs digitally signed updates automatically so your booth stays current, secure, and compatible with the cloud platform. Update installers are code-signed; we recommend staying on the stable release channel. Some features require the current version to function correctly.",
+  },
+  {
+    title: "5. Telemetry and Monitoring",
+    body: "Monitoring is what the Software is for: with your organization's enrollment, Tech Manager collects system health telemetry — hardware status, connected AV device health, software and driver inventory, and stream health metrics — and sends it to your organization's WorshipMetrics account over an outbound, encrypted connection. This data powers your dashboards, alerts, and support, and is handled per our Privacy Policy. You can see what a machine reports at any time in its telemetry view.",
+  },
+  {
+    title: "6. Automatic Actions (Self-Healing)",
+    body: "With the Software running, limited corrective actions can happen automatically — for example, restarting a dropped stream, restarting a stopped recording, stepping down a struggling bitrate, or clearing cached files when a disk runs critically low. Every automatic action is logged to your organization's support history. Beyond these, changes to your system require explicit approval from your team.",
+  },
+  {
+    title: "7. AI Features",
+    body: "Luminos (in-app chat) and Journey (910-WORSHIP phone support) provide guidance informed by your documented system and live telemetry. AI guidance is informational: it can be wrong, and it is not a substitute for your team's judgment. Proposed AI actions on your system wait for your confirmation, except the logged self-healing actions described above. Always verify critical settings before a service, and never rely on AI guidance for matters of physical or electrical safety.",
+  },
+  {
+    title: "8. Your Content and Media Licensing",
+    body: "Your services, recordings, media, songs, and data belong to your organization. You grant us the limited rights needed to operate the features you use — for example, to ingest, transcode, deliver, record, transcribe, and clip your streams. You are responsible for holding the rights to the content you present and stream, including music licensing (such as CCLI and streaming licenses), and for complying with the terms of the platforms you restream to.",
+  },
+  {
+    title: "9. Third-Party Components",
+    body: "The Software includes open-source and third-party components licensed under their own terms, which are available within the application or on request. Nothing in this EULA limits your rights under those licenses.",
+  },
+  {
+    title: "10. Ownership and Feedback",
+    body: "WorshipMetrics retains all right, title, and interest in the Software, the platform, and our branding. If you send us feedback or suggestions, you grant us a perpetual, royalty-free license to use them to improve the product — that's how a lot of good features start.",
+  },
+  {
+    title: "11. Term and Termination",
+    body: "This EULA applies for as long as you use the Software. It ends automatically if your organization's account closes or if the license terms are materially violated; when it ends, uninstall the Software. Sections on ownership, your content, warranty disclaimers, and liability limits survive termination. Your data remains yours — export options are described in our Terms of Service and Returns Policy.",
+  },
+  {
+    title: "12. Warranty Disclaimer",
+    body: "The Software is provided \"as is\" and \"as available.\" We work hard to make Sundays reliable — monitoring, alerts, and self-healing exist for exactly that reason — but we cannot warrant uninterrupted or error-free operation. Live production depends on your hardware, network, power, and third-party platforms, which are outside our control. To the maximum extent permitted by law, we disclaim all implied warranties, including merchantability, fitness for a particular purpose, and non-infringement.",
+  },
+  {
+    title: "13. Limitation of Liability",
+    body: "To the maximum extent permitted by law, WorshipMetrics is not liable for indirect, incidental, special, consequential, or punitive damages — including lost data, lost donations, or interrupted broadcasts — arising from use of the Software. Our total liability for any claim is limited to the subscription fees your organization paid in the twelve months before the claim. Some jurisdictions don't allow certain limits, so parts of this section may not apply to you.",
+  },
+  {
+    title: "14. Changes to This EULA",
+    body: "If we make material changes, we'll update this page and note the new effective date above. Continued use of the Software after changes take effect means you accept them. We won't reduce your organization's rights to its own data through a EULA change.",
+  },
+  {
+    title: "15. Contact",
+    body: "Questions about this EULA? Email support@worshipmetrics.com or call 910-WORSHIP (910-967-7447). We're real people and we actually answer.",
+  },
+];
+---
+
+<Layout
+  title="End User License Agreement (EULA)"
+  description="The WorshipMetrics End User License Agreement covering the Tech Manager desktop application, web application, and mobile apps — license scope, updates, telemetry, AI features, and your content."
+  canonical="/eula"
+  robots="index,follow"
+>
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">Legal</p>
+      <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">End User License Agreement</h1>
+      <p class="mt-4 text-base leading-relaxed text-slate-600">
+        Effective {UPDATED}. This agreement covers the WorshipMetrics software — including the Tech Manager desktop app — and works together with our
+        <a href="/terms" class="font-semibold text-indigo-600 hover:text-indigo-800">Terms of Service</a> and
+        <a href="/privacy" class="font-semibold text-indigo-600 hover:text-indigo-800">Privacy Policy</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl space-y-8">
+      {sections.map(({ title, body }) => (
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">{title}</h2>
+          <p class="mt-2 text-base leading-relaxed text-slate-600">{body}</p>
+        </div>
+      ))}
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+        <p class="text-sm leading-relaxed text-slate-600">
+          Plain-English summary (not a substitute for the sections above): you license our software for your church&apos;s ministry, we keep improving it with signed updates, it reports system health to your own account so monitoring and support work, your content and data stay yours, and please hold the right music licenses for what you stream.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
