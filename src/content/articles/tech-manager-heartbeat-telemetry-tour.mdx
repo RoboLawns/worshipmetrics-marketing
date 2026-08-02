@@ -1,0 +1,90 @@
+---
+title: "What Tech Manager Actually Sends: A Tour of the Booth Heartbeat"
+description: "A transparent, field-by-field tour of the Tech Manager telemetry payloads — the 15-second light beat, the 60-second full snapshot, what stays local, and why the connection is outbound-only."
+category: "device-management"
+tags: ["telemetry", "Tech Manager", "heartbeat", "monitoring"]
+difficulty: "advanced"
+publishedAt: "2026-08-03"
+featured: false
+productCTA: true
+---
+
+## Why we're showing you the payload
+
+Any software that sits in your booth and phones home deserves one blunt question from your tech team: *what exactly are you sending?* It's a fair question. Church AV computers live close to sensitive things — sermon recordings, congregational media, the network everything else runs on — and "trust us, it's just telemetry" is not an answer a careful tech director should accept from anyone.
+
+So this article is the answer in full. It's a field-by-field tour of what the Tech Manager desktop app transmits from your booth to the cloud, on what schedule, over what kind of connection, and — just as important — what never leaves the room. If you've ever wanted to explain to a board member or a security-minded volunteer exactly what this thing on the production PC is doing, this is the page to send them.
+
+The short version: Tech Manager sends **measurements and inventory, never media**. Everything in the payloads below is a number, a name, or a status. No video frames, no audio content, no screen captures, no keystrokes — none of those exist anywhere in the schema.
+
+## Two beats, two jobs
+
+Tech Manager sends telemetry on two layered cadences, each sized for its job:
+
+| Beat | Interval | Contents | Purpose |
+|---|---|---|---|
+| Light beat | Every **15 seconds** | CPU load, RAM, CPU temperature, uptime | Keeps the online badge honest, seconds-fresh |
+| Full heartbeat | Every **60 seconds** | Complete hardware snapshot + AV device probe results + stream telemetry | The deep picture behind the Pulse dashboards |
+
+The light beat travels over a persistent WebSocket the booth holds open to the cloud, with an HTTPS fallback (at a gentler ~45-second cadence) if something on your network blocks the socket. It's deliberately tiny — four vital signs — because its only job is answering "is this machine alive and breathing?" The shared online threshold is 90 seconds, which means a machine flips to *offline* in the fleet view after exactly three missed light beats. The server and the dashboard read the same constant, so they can never disagree about who's up.
+
+The full heartbeat is where the substance rides. Once a minute, the booth packages everything below and sends it up. What happens to that data on the other side — the thresholds, the alerts, the phone notifications — is covered in the [Pulse alert thresholds reference](/kb/articles/pulse-alert-thresholds-reference/); this article stays on the sending side.
+
+## The hardware snapshot, field by field
+
+The 60-second heartbeat carries a full machine snapshot. Here is everything in it:
+
+**Processor.** Overall CPU load, per-core load, current clock speeds, CPU temperature, and the processor brand string. Temperature matters more than most teams expect — a booth PC in a sealed cabinet announces its failing fan weeks in advance through this one number.
+
+**Memory.** Total and used RAM.
+
+**Storage.** Every disk individually, with the drive model and whether it's NVMe or SATA SSD, plus free space per volume. This is what powers early warnings before a recording drive fills mid-service.
+
+**GPU.** Model, VRAM size, and the installed driver version and date. (Note what's *not* here: Tech Manager doesn't report GPU utilization percentages — it tracks what hardware you have and whether the driver is current, which is what actually matters for troubleshooting.)
+
+**Displays.** Every connected display with resolution, refresh rate, HDR state, bit depth, color space, rotation, DPI scale, and connection type (HDMI or DisplayPort). If someone bumps a projector feed from 60 Hz to 30 Hz on Wednesday, this is how you find out before Sunday.
+
+**Audio endpoints.** Every input and output device the OS sees, with live volume level, mute state, and sample rate. This is what enables the pre-service "your main output is muted" warning. The booth also enumerates installed ASIO drivers from the Windows registry — which is how a Dante Virtual Soundcard shows up even though it's invisible to normal endpoint enumeration — and discovers physical Dante hardware on the network via mDNS.
+
+**Network.** All network adapters, including unplugged NICs with their MAC addresses (useful when documenting which port goes where), and for WiFi: the SSID, signal strength in dBm, and band. If a booth machine that should be on wired Ethernet quietly fails over to the guest WiFi, the heartbeat tells on it — and our guide to [church network design for AV](/kb/articles/church-network-av-streaming/) covers why that distinction matters so much.
+
+**System.** OS version and build, plus uptime.
+
+## USB and software inventory
+
+Two inventory layers ride along with the telemetry, and both are built to be *stable* rather than chatty.
+
+**USB devices** aren't polled on a timer — Tech Manager subscribes to Windows Plug-and-Play device creation and deletion events and identifies each device by its stable PnP device ID. That design choice matters: polling-based USB monitoring is notorious for "phantom flaps," where a device appears to disconnect and reconnect because a poll caught it mid-enumeration. Event-driven tracking with stable IDs means when your timeline says the presentation clicker receiver disconnected at 9:47, it actually did. Every plug and unplug lands in the machine's event log with a timestamp.
+
+**Software inventory** is collected hourly from the Windows uninstall registry — the same list you'd see in Settings, captured programmatically. Driver inventory is collected the same way (Windows only), and a daily cloud-side job checks NVIDIA's latest published driver so the fleet view can show "update available" without you visiting a vendor site. The practical payoff: when a volunteer installs something on the booth PC, or an encoder silently updates itself the week before a problem starts, the install shows up in the timeline right next to the symptoms. It turns "what changed?" from an interrogation into a lookup.
+
+## Stream and AV device telemetry
+
+When a stream is running, the heartbeat carries the encoder's vitals: bitrate versus target (kbps), dropped-frames percentage, encoder load percentage, frames per second, the current scene, output resolution, the destination, and reconnect attempts. Alongside those ride network measurements — upload and download throughput, latency, jitter, and packet-loss percentage — plus audio silence and clipping flags. These are the raw inputs behind the composite number explained in [reading your stream health score](/kb/articles/reading-your-stream-health-score/), and they're what let a drop alert go out while you can still do something about it.
+
+Monitored AV gear — cameras, consoles, switchers, anything you've flagged for watching — is probed on its own rhythm: health sweeps every 20 to 60 seconds. Here the design goal is efficiency without staleness. Each sweep result is hashed on its salient fields, and results are only transmitted when something actually changed, with a forced keepalive every 5 minutes so silence is never ambiguous. On the cloud side, an observer that goes quiet for 10 minutes is demoted to an honest "stale" state rather than a frozen "online." Your network never carries redundant traffic, and the dashboard never shows you a fossil.
+
+## What stays local
+
+Just as important as what's sent is what isn't. Several of Tech Manager's most bandwidth-hungry functions are deliberately local-only:
+
+- **Media never leaves through telemetry.** The heartbeat schema contains measurements, names, and states — there is no field anywhere in it for video frames, program audio, or recordings.
+- **Audio metering stays in the room.** The high-rate meter data driving the local mixer view (roughly 30 updates per second from the switcher) never crosses the internet; remote views receive small snapshots at a much lower rate instead.
+- **The volunteer remote runs on your LAN.** When a volunteer drives the service rundown from a phone, that traffic goes phone-to-booth over your local network with a per-session rotating token — no cloud round-trip, which is also why it keeps working if your internet hiccups mid-service.
+- **AI clip processing can run entirely on the booth machine.** Local transcription and rendering mean sermon media can be processed without uploading source video at all.
+
+And on the cloud side, retention is bounded, not indefinite: raw telemetry observations and AV device metrics are kept 30 days, hardware and device health events 90 days, and alert history 90 days.
+
+## The connection model: outbound only
+
+The last piece of the trust picture is *how* all this travels.
+
+Tech Manager makes **outbound connections only** — a persistent encrypted WebSocket (WSS) to the cloud, kept alive with a ping every 25 seconds, plus a provisioning pull every 5 minutes. You never open an inbound port, never configure port forwarding, never touch NAT. From your firewall's point of view, the booth PC behaves like a web browser.
+
+Remote control works over that same outbound socket, with several deliberate constraints. A machine binds to exactly one organization at pairing time, using a one-time admin-issued code that expires after 30 minutes. Every command from the web travels through authenticated, organization-checked routes, and the booth only honors actions on an explicit allowlist — there is no general "run anything" channel. Commands carry a 30-second correlation timeout, and if the booth is offline, the request fails immediately and honestly rather than queueing silently. Every remote action lands in the same per-machine timeline as the hardware events, so the audit trail is complete — the same visibility philosophy behind [how Tech Manager's self-healing shows its work](/kb/articles/tech-manager-self-healing-explained/).
+
+That's the whole payload, end to end. No mystery fields, no media, no listening ports. If your team ever wants to verify any of it, the per-machine telemetry pages show you exactly what your own booth reported, beat by beat.
+
+## How WorshipMetrics handles this
+
+Everything in this tour is the day-to-day work of [Tech Manager](/tech-manager/), the WorshipMetrics booth application for Windows. It sits in the system tray with a health-dot badge, sends its 15-second light beats and 60-second snapshots automatically, and needs no firewall changes to do it. The receiving end is [AV monitoring with Pulse](/av-monitoring/), where those payloads become the live machine grid, the alert feed, per-machine timelines, and the stream-health view your whole team — including the pastor with a phone — can read at a glance. If something in your telemetry ever looks wrong, that same data is already on screen when you reach a human through [phone support](/phone-support/), so the conversation starts at the diagnosis, not the archaeology.

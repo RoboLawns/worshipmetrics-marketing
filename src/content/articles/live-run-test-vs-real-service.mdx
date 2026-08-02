@@ -1,0 +1,89 @@
+---
+title: "Test Runs vs the Real Thing: How Live Run Protects Your Service History"
+description: "How the live plan runner tells a Thursday walkthrough from a Sunday service — draft vs committed runs, the 12-hour auto-classification window, locked timings, and how to recover from an accidental start."
+category: "operations"
+tags: ["live run", "service planning", "run of show", "timing"]
+difficulty: "beginner"
+publishedAt: "2026-08-03"
+featured: false
+productCTA: true
+---
+
+## The Thursday walkthrough problem
+
+Every church that runs its service from a plan eventually hits the same quiet data problem. On Thursday night the band rehearses, the tech team walks the transitions, and somebody presses **Start** on the run-of-show to practice the flow. On Sunday morning, somebody presses Start again — this time for real.
+
+If your planning tool treats those two button presses the same way, your service history slowly fills with noise. The "average sermon length" report includes a Thursday where the pastor talked for ninety seconds and said "then I'll preach here." Your song usage data counts every tech check as a performance. And the timing record from an actual Sunday — the one you'd want when planning Easter, or when a [CCLI report](/kb/articles/ccli-reporting-from-actual-services/) asks what was actually sung — is buried in a pile of rehearsals that look identical to it.
+
+The fix isn't discipline ("everyone remember to delete the test runs"). The fix is a runner that knows the difference between a test and the real thing, mostly without being told. This article explains how the WorshipMetrics live runner makes that call: the two kinds of runs, the 12-hour window that classifies walkthroughs automatically, why completed service timings lock forever, and what to do when someone starts a run they didn't mean to.
+
+## Two kinds of runs: draft and committed
+
+In WorshipMetrics, every performance of a plan is its own **run** — a separate record with its own start time, its own item-by-item actuals, and its own outcome. A plan is the forecast; a run is one specific time you executed it.
+
+Runs come in exactly two kinds:
+
+- **Draft runs** are tests: rehearsals, walkthroughs, tech checks, training sessions with new volunteers. They behave exactly like the real thing while you're in them — items advance, timers tick, variance updates — but they're understood to be practice. Any unfinished draft can be discarded or restarted without ceremony, and drafts never contaminate your service history or your song-usage evidence.
+- **Committed runs** are the real service. A committed run is the record of what actually happened on Sunday: when each item started, how long the sermon really ran, what got skipped. Committed runs are the source of truth that reports, timing trends, and "performed" song evidence are built from.
+
+This split is what makes test runs *safe*. New volunteers can practice the runner as many times as they like — a habit worth building deliberately, as our guide to [training volunteer AV teams](/kb/articles/training-volunteer-av-teams/) covers — because a walkthrough is structurally incapable of overwriting a real Sunday.
+
+## The 12-hour window: walkthroughs classify themselves
+
+The obvious weakness of a draft/committed split is the human step: someone has to pick the right one, and Thursday-night volunteers won't. So the runner decides for them.
+
+Every plan carries scheduled service times — the 9 AM gathering, the 11 AM gathering. When someone presses Start, the runner compares the moment of the press to the service time it's aimed at. **A start more than 12 hours outside the service window is automatically classified as a test.** No prompt, no checkbox, no reliance on anyone remembering the rule.
+
+In practice, this means:
+
+- **Thursday, 7 PM**, rehearsing for Sunday's 9 AM service → more than 12 hours out → **draft**, automatically.
+- **Saturday afternoon** tech check for Sunday morning → still outside the window → **draft**.
+- **Sunday, 8:45 AM**, fifteen minutes before the 9 AM service → inside the window → treated as **the real thing**.
+
+The 12-hour window is deliberately generous in the direction that matters. It's wide enough that a Saturday-evening service or an early-morning soundcheck close to the service time is treated as real, and tight enough that no midweek rehearsal ever sneaks into your history as a service. Your tech team doesn't need to be trained on any of this — the classification happens because of *when* they pressed the button, which is the one thing rehearsals and services reliably disagree about.
+
+## Why completed service timings lock forever
+
+Here's the rule that surprises people, and then quickly becomes the rule they're most grateful for: **once a committed run completes, its timings are read-only. Permanently.**
+
+Nobody — not an admin, not the person who ran it — can go back and edit the actuals from a finished service. And if someone presses Start on that same plan and service time again after the real run has completed, the new run is **forced to draft**. The completed record cannot be run over.
+
+Why so strict? Because a service history you can edit is a service history you can't trust:
+
+- **Monday cleanup can't rewrite Sunday.** It's natural to tidy a plan after the weekend — fix a typo, reorder something for next week's template. None of that touches what the record says happened, because the record isn't editable.
+- **Timing trends stay honest.** "Our sermons average 34 minutes" is only useful if nobody smoothed the outliers afterward. Locked actuals mean your averages describe reality, not reality after review.
+- **Song evidence stays defensible.** A committed run is the strongest evidence tier in [CCLI reporting](/kb/articles/ccli-reporting-from-actual-services/) — "performed" beats "scheduled" precisely because it can't be retouched.
+
+The same protection extends *into* the run itself. When a run starts, the planned durations are **snapshotted** at that moment. If someone edits the plan mid-service — stretches the offering, trims a song — the targets the runner is measuring against don't shift under your feet. Variance is always "actual versus what we planned when we started," not "actual versus whatever the plan says now."
+
+## 9 and 11 AM never collide: a run lane per service time
+
+Multi-service churches have a second history-protection problem: the same plan happens twice in one morning. If your tool keeps one set of actuals per plan, the 11 AM service silently overwrites the 9 AM timings, and you lose exactly the comparison you wanted — did the transitions tighten up the second time through?
+
+WorshipMetrics keys every run to a **plan and a service time**, so each service time gets its own run lane. The 9 AM committed run and the 11 AM committed run are separate records that never touch each other. Both lock independently when they complete. A rehearsal time on the same plan gets its own lane too.
+
+The lanes pair naturally with per-time overrides: the same plan can carry a shorter 9 AM sermon slot and a longer 11 AM one, and each lane's variance is measured against its own targets. And if you're worried this double-counts songs for reporting — it doesn't. Usage is deduplicated per song per plan, so a two-service Sunday still counts each song once.
+
+## Live variance you can trust mid-service
+
+While a run is live, the runner shows a running variance — "+2:10 over" — so the producer knows whether to tighten announcements or let the moment breathe. Two design details keep that number honest:
+
+- **Only finished items count.** Variance is computed from items that actually completed, so an in-progress sermon doesn't get scored against its target while the pastor is mid-point. You're never being told you're "over" by an item that isn't done.
+- **Timing follows what's actually on screen.** With auto-advance, the runner moves when [Present](/kb/articles/present-protocol-triggers-setup/) changes what the congregation sees, and a timing cascade sorts out which item each minute belongs to. A 25-minute sermon gets recorded as a 25-minute sermon — not absorbed into the worship song nobody remembered to advance past.
+
+## Recovering from an accidental start
+
+Accidental starts happen — a curious volunteer, a phone in a pocket, a producer testing one transition. The recovery story depends on when it happened, and in every case your real history survives:
+
+| What happened | What the runner did | What you do |
+|---|---|---|
+| Someone pressed Start on Tuesday | Auto-classified as a **draft** (outside the 12-hour window) | Nothing urgent — discard it whenever |
+| Started Sunday's run at 8:40 AM by accident | Treated as the real thing, but **unfinished** | Discard or restart it — nothing locks until a committed run *completes* |
+| Started the run again after the real service ended | **Forced to draft** — the completed run is untouchable | Discard the stray draft; the record was never at risk |
+| Started the 11 AM lane during the 9 AM service | Wrong lane, but lanes are independent | End or discard it; the 9 AM lane is unaffected |
+
+The two rules doing the work here are worth restating: **unfinished runs are always disposable**, and **completed committed runs are always untouchable**. Between those two guarantees there is no sequence of stray button presses — from the booth or from the tokenized mobile run-control page — that destroys a real Sunday's record.
+
+## How WorshipMetrics handles this
+
+The live runner is part of [service planning in WorshipMetrics](/services/): build the order of service, add your service times, and press Start on Sunday — draft-versus-committed classification, per-time run lanes, snapshot timing, and permanent actuals all come along automatically. Pair it with [Present](/present/) for auto-advance that keeps your timings synced to what's actually on screen, and your service history becomes something you can plan from with confidence.

@@ -1,0 +1,93 @@
+---
+title: "Setting Up QR Check-In: From Lobby Poster to Clean Directory"
+description: "How to print org-wide and per-service check-in QR codes, understand the three-tier matching that keeps returning attenders from duplicating, and run a lobby workflow any volunteer can manage."
+category: "operations"
+tags: ["check-in", "QR codes", "guests", "directory"]
+difficulty: "beginner"
+publishedAt: "2026-08-03"
+featured: false
+productCTA: true
+---
+
+## Why a QR Code Beats a Clipboard
+
+Most churches already track attendance somehow — a clipboard by the door, a head count from the balcony, a connect card that may or may not make it back to the office. All of those methods share the same weakness: a human has to transcribe them later, and transcription is where names get misspelled, guests get lost, and the same person ends up in the directory three times.
+
+QR check-in removes the transcription step entirely. The person types their own name on their own phone, the record lands directly in your directory, and attendance is logged at the same moment. Nobody in the office retypes anything on Monday.
+
+The catch — and the reason this article exists — is that a self-service check-in page is only as good as its matching logic. If Sarah checks in every week and the system creates a new "Sarah" every week, you have traded a messy clipboard for a messy database. So we will cover the setup in ten minutes, then spend real time on how returning attenders are matched, how first-timers land, and what a volunteer-friendly lobby routine looks like.
+
+## Two Kinds of QR Codes
+
+WorshipMetrics gives every church two flavors of public check-in code, and it is worth deciding up front which one goes where.
+
+**The org-wide code** points to your church's own check-in page. Because the address belongs to your church rather than to any single event, the poster you print in August still works in December. This is the code for the permanent fixtures: the framed lobby poster, the welcome-desk tent card, the slide in your pre-service loop.
+
+**Per-service codes** are variants tied to a particular gathering. Use these when you run multiple services and want attendance attributed cleanly — a 9:00 AM code and an 11:00 AM code, or a dedicated code for a midweek study or a special event. Each service can also enable a public registration link with its own print-ready QR code and per-service capacity limits, which is the right tool when you need people to reserve a spot ahead of time (Christmas Eve, a marriage conference, a limited-seating class) rather than check in at the door.
+
+A simple rule of thumb: **permanent signage gets the org-wide code; anything date-specific gets a per-service code.**
+
+### Printing tips that make scans reliable
+
+The codes are generated print-ready, but a few physical-world habits help:
+
+- **Size for distance.** A QR code should be roughly one-tenth as wide as the farthest distance you expect someone to scan it from. A code on an 8.5×11 poster scans comfortably from a few feet away; a code on a projection screen needs to be much larger than feels natural.
+- **Contrast matters more than color.** Dark code on a light background, with generous white space (the "quiet zone") around all four edges. Resist the urge to print it over a photo.
+- **Matte over glossy.** Lobby lighting reflects off glossy lamination and can defeat a phone camera. Matte paper or matte lamination scans more reliably.
+- **Test with both major phone platforms** before you print fifty copies. Stand where an attender would stand, under the actual lobby lights.
+
+## What Happens When Someone Scans
+
+The check-in page is a standalone, mobile-first web page. There is no app to install and no account to create — an attender scans, the page opens in their phone's browser, they enter their details, and they tap check in. That "no login" property is the whole reason this works with first-time guests: you are asking for thirty seconds of typing, not a sign-up.
+
+Behind that simple form, two very different things can happen, and understanding both is what keeps your directory clean.
+
+## The Three Matching Tiers: Email, Then Phone, Then Name + Birthday
+
+When a check-in comes in, WorshipMetrics tries to match it to a person who already exists in your directory before it ever considers creating someone new. The matching runs in tiers, strongest signal first:
+
+1. **Email.** If the email address entered matches an existing person's email, that is the match. Email is the strongest identifier because it is unique to an individual in almost every case.
+2. **Phone.** If there is no email match, the phone number is checked next. Phone is nearly as strong, with one caveat worth knowing: some households share a phone number, which is why phone sits below email in the order.
+3. **Name plus birthday.** If neither contact method matches, the system looks for an exact name combined with a matching birthday. Name alone is never enough — your church almost certainly has two people who share a name — but name *and* birthday together is a reliable fingerprint.
+
+The practical takeaway for your lobby signage and your volunteers: **gently encourage people to include their email when they check in.** A returning attender who enters the same email every week will match their existing record every single time, and their attendance history accumulates on one profile. Someone who enters only a name may still match via the birthday tier, but you are giving the system less to work with.
+
+This tiered design is also why the check-in page never duplicates a person who gives consistent information. The failure mode to watch for is *inconsistent* information — the attender who used their work email in March and their personal email in June. The duplicate review tools described below exist for exactly that case.
+
+## How First-Timers Land in the Directory
+
+When none of the three tiers finds a match, the system concludes this is a genuine first-time guest — and creates them as a **Guest** in your directory, with their attendance recorded automatically for that service.
+
+This matters pastorally, not just administratively. The guest who scanned a poster on their first nervous Sunday is now a real record your follow-up team can see, with a real timestamp. Guest is one of the built-in person types (alongside Member and Attender, plus any custom types your church defines), so you can filter the directory to "Guests added this month" and hand your hospitality team an actual list instead of a stack of half-legible connect cards.
+
+Because every people change syncs live across the platform, a staff member with the People page open in the office sees new check-ins appear within moments — no refresh, no export. Some churches use this during the service itself: by the time the sermon starts, the office already knows who is new today.
+
+If you are setting up check-in at the same time as migrating an existing directory, do the migration first — the matching tiers can only match against records that exist. Our [CSV import guide](/kb/articles/church-member-csv-import-guide/) walks through bringing your current directory in cleanly, and if your records also live in Planning Center, see [connecting Planning Center to WorshipMetrics](/kb/articles/connect-planning-center-worshipmetrics/).
+
+## Rate Limiting: The Guardrail You Will Probably Never Notice
+
+Any public web form needs protection from bots and abuse, and check-in is no exception. Public check-in and registration submissions are rate-limited to **300 submissions per 10 minutes, per IP address, per organization**.
+
+Here is why that number is friendly to real congregations:
+
+- **Phones on cellular data** each arrive from their own IP address, so a lobby full of people scanning at once are not counted against each other at all.
+- **Phones on your guest Wi-Fi** typically share one public IP address — and even then, 300 check-ins in a ten-minute window is a very large lobby. A church processing more than that through one connection is likely running multiple services anyway, which spreads the load across time.
+- **A volunteer-operated tablet** at the welcome desk is a single IP, and 300 per ten minutes is far beyond what one volunteer can type.
+
+The limit exists so that a script cannot flood your directory with junk records. For humans holding phones, it is effectively invisible.
+
+## A Lobby Workflow Volunteers Can Run
+
+Here is a simple Sunday routine that works with one or two greeters and requires no technical background:
+
+1. **Before the first service:** confirm the poster is up, scan it once with your own phone to verify the page loads, and open the check-in page on a welcome-desk tablet as a backup for anyone without a phone.
+2. **As people arrive:** greeters point first-timers to the poster with one sentence — "If you scan that, we'll know you were here and won't lose track of you." Regulars need no prompting after the second week.
+3. **For anyone who prefers not to scan:** the greeter checks them in on the tablet, asking for name and email. The same matching tiers apply, so a regular checked in by a volunteer still lands on their existing record.
+4. **The one habit to coach:** encourage email at check-in. It is the top matching tier, and consistent email is what keeps one person on one profile.
+5. **Monday, in the office:** open the duplicate review queue. The detector flags likely pairs — a shared email or phone is high-confidence, a matching name or nickname is flagged for review — and a human makes the merge-or-dismiss call. Those decisions persist, so a dismissed pair will not nag you again next week. Then pull the list of new Guests and route it to your follow-up team.
+
+That last step is the "clean directory" half of this article's title. QR check-in gets data in accurately; a five-minute Monday review keeps it accurate. Churches that skip step five for six months end up doing an afternoon of merging instead — the same discipline argument we make about [training volunteer teams](/kb/articles/training-volunteer-av-teams/): small weekly habits beat occasional heroic cleanups.
+
+## How WorshipMetrics Handles This
+
+Everything above is built into [WorshipMetrics People](/people/): the shareable check-in link and printable QR code every organization gets, per-service code variants, the email → phone → name-plus-birthday matching tiers, automatic Guest creation with attendance recorded, rate limiting on the public endpoints, and the duplicate review queue for Monday mornings. Per-service registration with capacity limits and confirmation emails lives alongside your service plans in [Services](/services/), and if you want the check-in code on a lobby screen instead of paper, [Signage Display](/signage-display/) can put it in your rotation. The directory itself — unlimited people, on the free tier — means there is no per-member math standing between your church and a clean record of who was actually in the room.
