@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import PatchCableLabel from "../components/diagrams/PatchCableLabel.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -194,6 +195,24 @@ const structuredData = {
               <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram: the label that makes support specific -->
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl border-t border-slate-200 pt-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Why the labels matter</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One cable ID, from the map to the phone call.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Every connection you draw gets a permanent ID. Put that same ID on the physical cable, and troubleshooting stops being a scavenger hunt &mdash; because support can name the exact cable instead of describing a category of cable.
+        </p>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <PatchCableLabel />
         </div>
       </div>
     </div>

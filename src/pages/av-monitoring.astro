@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import PulseEscalation from "../components/diagrams/PulseEscalation.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -160,6 +161,24 @@ const structuredData = {
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
         <img src={MONITOR_IMAGE} alt="System monitoring and control panels in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram: where a hundred issues go -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Where the problems go</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Most issues never reach a human. That&apos;s the point.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Monitoring isn&apos;t there to give your team more alerts to read &mdash; it&apos;s there to make most problems disappear before Sunday, and to hand the rest to someone who already knows what happened.
+        </p>
+      </div>
+      <div class="mt-12 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <PulseEscalation />
+        </div>
       </div>
     </div>
   </section>

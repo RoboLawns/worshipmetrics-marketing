@@ -1,0 +1,70 @@
+---
+/**
+ * Pulse — where a hundred issues actually go.
+ * Proportional bar across the top; four fixed label columns below, so the
+ * narrow segments still get readable labels without colliding.
+ */
+const stages = [
+  {
+    x: 20, w: 630, col: 20, fill: "#2B7FF0", label: "#2B7FF0",
+    count: "~70", title: "Caught by monitoring",
+    lines: ["Alerts and self-healing clear it", "before anyone in the room notices."],
+  },
+  {
+    x: 654, w: 198, col: 258, fill: "#6AA9F4", label: "#1D66D6",
+    count: "~22", title: "Answered by AI",
+    lines: ["Luminos and Journey resolve it", "with your live system in view."],
+  },
+  {
+    x: 856, w: 63, col: 496, fill: "#C5DDFB", label: "#1C53AC",
+    count: "~7", title: "A weekday human",
+    lines: ["A support pro picks it up with", "the full diagnosis attached."],
+  },
+  {
+    x: 923, w: 37, col: 734, fill: "#0B0D10", label: "#0B0D10",
+    count: "~1", title: "A Sunday pro",
+    lines: ["The rare one that needs hands", "on Sunday morning."],
+  },
+];
+const COL_W = 228;
+---
+
+<svg
+  viewBox="0 0 980 300"
+  width="100%"
+  role="img"
+  aria-label="Proportional diagram of one hundred AV issues: about seventy are caught by monitoring and self-healing, about twenty-two are answered by AI with live system context, about seven reach a weekday human, and about one needs a Sunday production pro."
+  class="h-auto w-full"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" letter-spacing="1.6" fill="#78828F">100 ISSUES IN A TYPICAL SEASON</text>
+
+  <!-- Proportional bar -->
+  {stages.map(({ x, w, fill }) => (
+    <rect x={x} y={42} width={w} height={44} rx="6" fill={fill} />
+  ))}
+
+  <!-- Connectors from each segment to its label column -->
+  {stages.map(({ x, w, col }) => (
+    <path
+      d={`M${x + w / 2} 90 C ${x + w / 2} 108, ${col + COL_W / 2} 108, ${col + COL_W / 2} 126`}
+      fill="none"
+      stroke="#E3E7ED"
+      stroke-width="1.5"
+      stroke-linecap="round"
+    />
+  ))}
+
+  <!-- Label columns -->
+  {stages.map(({ col, label, count, title, lines }) => (
+    <g transform={`translate(${col}, 134)`}>
+      <text x="0" y="30" font-family="Archivo, sans-serif" font-size="30" font-weight="800" letter-spacing="-1" fill={label}>{count}</text>
+      <text x="0" y="58" font-family="Archivo, sans-serif" font-size="15" font-weight="700" fill="#0B0D10">{title}</text>
+      <text x="0" y="82" font-family="Archivo, sans-serif" font-size="12.5" fill="#78828F">{lines[0]}</text>
+      <text x="0" y="100" font-family="Archivo, sans-serif" font-size="12.5" fill="#78828F">{lines[1]}</text>
+    </g>
+  ))}
+
+  <!-- Footnote -->
+  <text x="20" y="284" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">Your team never sees most of them &mdash; and the ones they do arrive already diagnosed.</text>
+</svg>
