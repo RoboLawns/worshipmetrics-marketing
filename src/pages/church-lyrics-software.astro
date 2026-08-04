@@ -1,0 +1,200 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PresentLayerStack from "../components/diagrams/PresentLayerStack.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-present-slides.jpg`;
+const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/song-management.jpg`;
+
+const features = [
+  {
+    title: "The arrangement drives the slides",
+    body: "Lyrics follow the arrangement the worship leader actually chose — verse, chorus, bridge, tag, in the order this Sunday needs. Change the arrangement in Songs and the slides follow.",
+  },
+  {
+    title: "Sections you can see coming",
+    body: "Every section carries an identity color — Verse, Chorus, Bridge, Tag, Vamp — so the operator reads the shape of the song at a glance instead of guessing where the repeat lands.",
+  },
+  {
+    title: "Text that always fits",
+    body: "Shrink-to-fit sizing keeps a long verse on one slide without a volunteer hand-tuning font sizes on Saturday night.",
+  },
+  {
+    title: "Six layouts, your brand",
+    body: "From Centered Classic to Lower-Third, each layout inherits your church's colors, fonts, and logo through themes — so lyrics look like your church without anyone designing under pressure.",
+  },
+  {
+    title: "Lyrics over anything",
+    body: "Words sit on their own layer above stills, motion backgrounds, or live camera — so you can change the background mid-set without touching a single lyric slide.",
+  },
+  {
+    title: "Bring your existing library",
+    body: "Import from ProPresenter 4 through 7, ChordPro, OpenLyrics, OpenSong, CCLI SongSelect, or plain pasted text. Your catalog comes with you.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics Lyrics",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, Windows, Mac",
+  url: `${SITE_URL}/church-lyrics-software`,
+  image: HERO_IMAGE,
+  description: "Church lyrics software that builds worship song slides from your arrangements — section colors, shrink-to-fit text, branded layouts, and imports from ProPresenter, ChordPro, OpenLyrics, and SongSelect.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/pricing`,
+  },
+};
+---
+
+<Layout
+  title="Church Lyrics Software for Worship Songs"
+  socialTitle="WorshipMetrics | Lyrics that follow the arrangement."
+  description="Church lyrics software that builds song slides straight from your arrangements — section colors, shrink-to-fit text, branded layouts, and imports from ProPresenter, ChordPro, OpenLyrics, and SongSelect."
+  canonical="/church-lyrics-software"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 shadow-sm">
+          <img src="/images/nav/pillars/present.png" alt="" class="h-7 w-7 rounded-md" /> Present &middot; Lyrics
+        </p>
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Nobody should retype the setlist.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Your song library already knows the words, the arrangement, and the key. Lyrics slides build themselves from it &mdash; in your church&apos;s colors, with sections the operator can read at a glance.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="lyrics_hero_sign_up" data-wm-track-location="lyrics_hero">Sign up free</a>
+          <a href="/present" class="btn-outline">See the full presentation suite</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Core presentation is free forever. Bring your existing song library with you.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={LIFESTYLE_IMAGE} alt="Worship leader preparing song lyrics and arrangements" loading="eager" decoding="async" class="aspect-video w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Songs → lyrics -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">Songs &rarr; slides</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One library. Every screen it needs to reach.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The same song record feeds the projection screens, the stage monitor&apos;s chord chart, and the CCLI report at the end of the year. Update the arrangement once and every one of those follows &mdash; because they were never separate copies to begin with.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "Arrangements stay in lockstep between Songs and Present",
+            "Named keys — the same song in E for one leader, G for another",
+            "Chord charts transpose at render time, so one chart serves every key",
+            "What was actually sung feeds your CCLI reporting automatically",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+          <a href="/songs" class="btn-primary">See the Songs library</a>
+          <a href="/kb/articles/chordpro-worship-team-reference/" class="btn-outline">ChordPro guide</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={HERO_IMAGE} alt="Song slides with section labels in the Present workspace" loading="lazy" decoding="async" class="aspect-video w-full bg-slate-950 object-contain" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">What makes it easy on Sunday</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Built for whoever is running it this week.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {features.map(({ title, body }) => (
+          <div class="card p-8">
+            <p class="eyebrow">{title}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Layer stack -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Why backgrounds never break lyrics</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Words live on their own layer.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Media, lyrics, props, and announcements stack independently. Swap the motion background between songs and the words stay exactly where they were &mdash; and a lower third can appear over both without disturbing either.
+        </p>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <PresentLayerStack />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical details -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Technical details</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">For the person migrating the library.</h2>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        {[
+          ["Import formats", "ProPresenter 4–7 (.pro4, .pro5, .pro6, .pro), ChordPro (.cho, .crd, .chopro), OpenLyrics and OpenSong (.xml), CCLI SongSelect (.usr), and plain pasted text"],
+          ["Lyric layouts", "Six templates including Centered Classic and Lower-Third, each themeable with church colors, fonts, and logo"],
+          ["Section identity", "Verse, Chorus, Bridge, Tag, and Vamp carry consistent colors across the slide grid, the playlist, and the stage display"],
+          ["Text handling", "Shrink-to-fit sizing on a 1920×1080 authoring canvas, with per-run typography control when you want it"],
+          ["Arrangements & keys", "Shared two-way with the Songs library; named keys per arrangement with starting key, ending key, and capo"],
+          ["Clean key output", "Lyrics can be sent with an alpha channel over NDI for a clean key into your switcher, no chroma required"],
+        ].map(([term, detail], i) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.3fr)_minmax(0,0.7fr)] sm:gap-6 ${i % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mx-auto mt-6 max-w-4xl text-center text-sm text-slate-500">
+        Moving a library over? The <a href="/kb/articles/migrate-propresenter-song-library/" class="font-semibold text-indigo-600 hover:text-indigo-800">migration guide</a> walks through what carries across and what to check first.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Put the words up without the Saturday-night scramble.</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Lyrics are part of Present, in the same platform that plans the service, runs the booth, and streams the message.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5">Sign up free</a>
+        <a href="/stage-display-software" class="btn-outline">See stage display</a>
+      </div>
+    </div>
+  </section>
+
+  <TechManagerCTA />
+</Layout>

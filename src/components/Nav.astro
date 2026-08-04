@@ -5,11 +5,19 @@ const APP_URL = "https://app.worshipmetrics.com";
 
 const navItems = [
   {
-    type: "link",
+    type: "dropdown",
     key: "present",
     label: "Present",
     icon: "/images/nav/pillars/present.png",
-    href: "/present",
+    overview: {
+      href: "/present",
+      label: "Present Overview",
+      desc: "Worship presentation software — slides, lyrics, scripture, and stage display.",
+    },
+    items: [
+      { href: "/church-lyrics-software", label: "Lyrics", desc: "Song slides built from your arrangements, with section colors and your church's brand" },
+      { href: "/stage-display-software", label: "Stage Display", desc: "Current and next slide, chord charts in the right key, timers, and messages from the booth" },
+    ],
   },
   {
     type: "dropdown",
@@ -323,7 +331,7 @@ const simpleLinks = navItems.filter((item) => item.type === "link");
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div class={`dropdown ${item.key === "produce" || item.key === "plan" || item.key === "patch" || item.key === "pulse" ? "narrow" : ""} ${item.key === "pulse" || item.key === "patch" || item.key === "people" || item.key === "support" ? "right" : ""}`}>
+            <div class={`dropdown ${item.key === "present" || item.key === "produce" || item.key === "plan" || item.key === "patch" || item.key === "pulse" ? "narrow" : ""} ${item.key === "pulse" || item.key === "patch" || item.key === "people" || item.key === "support" ? "right" : ""}`}>
               <a href={item.overview.href} class="drop-overview">
                 <span class="over-label">{item.label}</span>
                 <h3>{item.overview.label}</h3>

@@ -1,0 +1,181 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PresentStageDisplay from "../components/diagrams/PresentStageDisplay.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-present-slides.jpg`;
+const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/presentation.jpg`;
+
+const sources = [
+  { title: "The words they're singing now", body: "Current slide text, big and legible from the back of the platform — the single thing every stage monitor exists to show." },
+  { title: "What's coming next", body: "The next slide, so a worship leader knows whether the bridge repeats before the band gets there." },
+  { title: "Section labels, ahead of time", body: "Current and next section — Verse 2, Chorus, Bridge, Tag — so the arrangement is visible instead of remembered." },
+  { title: "Chord charts, in the right key", body: "The chart transposed to the key this arrangement is actually played in, pulled from the Songs library." },
+  { title: "Notes for this moment", body: "Current and next slide notes — the transition cue, the scripture reference, the reminder to hold after the last chorus." },
+  { title: "Clocks and timers", body: "Time of day, a countdown to service, or the sermon timer — with warning and overrun colors when it's running long." },
+  { title: "A message from the booth", body: "The stage message: “two minutes,” “mic is hot,” “skip the last verse.” Typed in the booth, read on the platform." },
+  { title: "A mirror of the program", body: "When it helps, mirror exactly what the congregation sees — useful for a speaker who wants the room's view." },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "WorshipMetrics Stage Display",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, Windows, Mac",
+  url: `${SITE_URL}/stage-display-software`,
+  image: HERO_IMAGE,
+  description: "Stage display and confidence monitor software for churches: current and next slide, section labels, transposed chord charts, notes, timers, and booth messages — laid out however your platform needs.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/pricing`,
+  },
+};
+---
+
+<Layout
+  title="Stage Display & Confidence Monitor Software"
+  socialTitle="WorshipMetrics | Stage display, built for the platform."
+  description="Church stage display software: current and next slide, section labels, transposed chord charts, notes, countdown timers, and messages from the booth — on a layout you design yourself."
+  canonical="/stage-display-software"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div>
+        <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1 shadow-sm">
+          <img src="/images/nav/pillars/present.png" alt="" class="h-7 w-7 rounded-md" /> Present &middot; Stage display
+        </p>
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          The monitor that keeps the platform calm.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          A stage display should answer the three questions every worship leader has mid-song: what words are up, what&apos;s coming next, and how much time is left. Ours answers all three &mdash; plus the chord chart in the right key, and whatever the booth needs to tell you.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary" data-wm-track="cta_click" data-wm-track-label="stage_hero_sign_up" data-wm-track-location="stage_hero">Sign up free</a>
+          <a href="/present" class="btn-outline">See the full presentation suite</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Runs from the browser on any spare screen &mdash; no second computer required.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={LIFESTYLE_IMAGE} alt="Worship team reading the stage display during a service" loading="eager" decoding="async" class="aspect-video w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Anatomy diagram -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Anatomy</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every region is something you chose to put there.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The stage layout is built in the same slide editor you already use &mdash; so the monitor shows what your platform actually needs, not a fixed template someone else designed.
+        </p>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <PresentStageDisplay />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">What you can put on it</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Nine live sources, in any arrangement.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {sources.map(({ title, body }) => (
+          <div class="card p-8">
+            <p class="eyebrow">{title}</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Per-screen -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">One layout per screen</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The drummer doesn&apos;t need the chord chart.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Each output carries its own stage layout, so the monitor at the keys can show chords and the next section while the one at the back of the room shows a countdown and the current lyric. Same service, different screens, no compromise.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "A separate layout per stage output, saved with your church's themes",
+            "Program mirror when a speaker wants exactly what the room sees",
+            "Timers with warning and overrun colors that read from across the platform",
+            "Booth messages that appear instantly without touching the program output",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+          <a href="/songs" class="btn-outline">See the Songs library</a>
+          <a href="/kb/articles/present-multi-screen-output-setup/" class="btn-outline">Multi-screen setup guide</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img src={HERO_IMAGE} alt="Present workspace with stage output configured in WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-contain bg-slate-950" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical details -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Technical details</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">For the person who sets it up.</h2>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        {[
+          ["Bindable sources", "Current and next slide text, current and next notes, section label and next section label, song title, slide count, stage message, transposed chord chart, song key, clocks, and timers"],
+          ["Layout editor", "The same 1920×1080 slide editor used for program slides — regions are placed, sized, and themed like any other item"],
+          ["Per-output layouts", "Each stage output holds its own layout and role, so different platform positions see different information"],
+          ["How it opens", "A borderless fullscreen browser window on the display you choose, synced live to the program — Chromium-based browsers on Windows and Mac"],
+          ["Chord charts", "Rendered from the arrangement's named key, including capo renditions, straight from the Songs library"],
+          ["Program mirror", "Any stage output can mirror the program feed instead of showing stage content"],
+        ].map(([term, detail], i) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.3fr)_minmax(0,0.7fr)] sm:gap-6 ${i % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Give the platform what it needs to see.</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Stage display is part of Present, in the same platform that plans the service, runs the booth, and streams the message.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5">Sign up free</a>
+        <a href="/present" class="btn-outline">Explore Present</a>
+      </div>
+    </div>
+  </section>
+
+  <TechManagerCTA />
+</Layout>
