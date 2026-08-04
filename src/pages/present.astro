@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
+import PresentLayerStack from "../components/diagrams/PresentLayerStack.astro";
+import PresentOutputRouting from "../components/diagrams/PresentOutputRouting.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
@@ -169,6 +171,42 @@ const structuredData = {
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram: the layer stack -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">How a slide is built</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Four layers, painted in order.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Present doesn&apos;t flatten your service into pictures. Every frame is composed live from four independent layers &mdash; so the background can change without touching the lyrics, and an announcement can appear over anything without rebuilding a slide.
+        </p>
+      </div>
+      <div class="mt-12 overflow-x-auto">
+        <div class="min-w-[720px]">
+          <PresentLayerStack />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram: one plan, every screen -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">One plan, every screen</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The same service, told differently on each screen.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          One browser tab drives them all. The projector gets the full picture, the platform gets the words and chords, the lobby gets announcements, and the booth gets a clean key &mdash; each output painting only the layers it should.
+        </p>
+      </div>
+      <div class="mt-12 overflow-x-auto">
+        <div class="min-w-[720px]">
+          <PresentOutputRouting />
+        </div>
       </div>
     </div>
   </section>
