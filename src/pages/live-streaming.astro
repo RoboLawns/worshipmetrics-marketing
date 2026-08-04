@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import PublishFanOut from "../components/diagrams/PublishFanOut.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
@@ -96,6 +97,24 @@ const structuredData = [
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="streaming_hero_sign_up_free" data-wm-track-location="streaming_hero">Start streaming free</a>
         <a href="/discovery-call" class="btn-outline">Book a call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram: one feed, everywhere -->
+  <section class="bg-white px-4 pt-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">How the feed travels</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Connect once. We handle the rest.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Your encoder points at WorshipMetrics one time. From there the same feed reaches every destination at once &mdash; and lands in your archive on the way past.
+        </p>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <PublishFanOut />
+        </div>
       </div>
     </div>
   </section>

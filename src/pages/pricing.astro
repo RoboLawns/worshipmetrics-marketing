@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PricingTwoAxis from "../components/diagrams/PricingTwoAxis.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -192,6 +193,15 @@ const structuredData = [
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
         One choice is the software your team runs. The other is how much human help stands behind your Sundays. Any platform tier combines with any support add-on — and the free pledge never changes either way.
       </p>
+    </div>
+  </section>
+
+  <!-- Diagram: the two choices -->
+  <section class="px-4 pb-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl overflow-x-auto">
+      <div class="min-w-[760px]">
+        <PricingTwoAxis />
+      </div>
     </div>
   </section>
 

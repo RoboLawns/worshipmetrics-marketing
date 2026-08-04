@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
+import PulseEscalation from "../components/diagrams/PulseEscalation.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -114,6 +115,21 @@ const structuredData = [
           { src: HERO_IMAGE, alt: "Phone support workspace with registered numbers and call history in WorshipMetrics" },
         ]}
       />
+    </div>
+  </section>
+
+  <!-- Diagram: where a hundred issues go -->
+  <section class="bg-white px-4 pt-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">What actually reaches a person</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Four tiers, and most issues stop at the first.</h2>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <PulseEscalation />
+        </div>
+      </div>
     </div>
   </section>
 

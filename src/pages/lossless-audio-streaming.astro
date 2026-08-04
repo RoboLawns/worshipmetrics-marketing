@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import LosslessRenditions from "../components/diagrams/LosslessRenditions.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -120,6 +121,21 @@ const structuredData = [
       </div>
       <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
         <img src={LIFESTYLE_IMAGE} alt="Church tech team reviewing a lossless worship stream" loading="eager" decoding="async" class="aspect-video w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram: two renditions, one stream -->
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl border-t border-slate-200 pt-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">The signal path</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Two renditions, travelling together.</h2>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <LosslessRenditions />
+        </div>
       </div>
     </div>
   </section>
