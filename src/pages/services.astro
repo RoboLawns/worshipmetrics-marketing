@@ -344,8 +344,7 @@ const structuredData = {
           ["CCLI export", "One CSV line per use — Date, Title, Authors, Copyright, CCLI Number, Confirmation, Plan — deduplicated per song per service date over a trailing-year window"],
           ["Planning Center sync", "PCO Services API v2 with a Personal Access Token, credentials encrypted at rest (AES-256-GCM); full import on connect, then a five-minute delta sync"],
           ["Real-time sync", "Changes reach every open browser in ~50 ms over Server-Sent Events; the booth's Tech Manager stays current over its WebSocket bridge; editing different services never conflicts"],
-          ["Mobile run control", "Tokenized session link — no sign-in, four-hour expiry — with start, advance, skip, and end transport from any phone"],
-        ].map(([term, detail], index) => (
+                  ].map(([term, detail], index) => (
           <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
             <p class="text-sm font-semibold text-slate-900">{term}</p>
             <p class="text-sm leading-relaxed text-slate-600">{detail}</p>

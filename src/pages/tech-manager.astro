@@ -140,7 +140,7 @@ const systemDocumentation = [
   "OBS version, plugin list, startup programs, and power-plan health",
   "Wired vs WiFi status, internet speed, upload, latency, and jitter",
   "Every camera, encoder, switcher, and display on the network",
-  "PTZ cameras discovered and mapped automatically via ONVIF",
+  "PTZ cameras discovered on the network and mapped into your inventory",
 ];
 
 const monitoringFeatures = [
@@ -370,7 +370,7 @@ const structuredData = [
           },
           {
             title: "Volunteer remote & Live Run",
-            body: "A QR code opens a volunteer console on any phone on the booth's network — secured with rotating session tokens. The Live Run rundown advances the service from any device, no cloud round-trip required.",
+            body: "A QR code opens a volunteer console on any phone on the booth's network — secured with rotating session tokens. The Live Run rundown advances the service from any device on that network.",
           },
           {
             title: "Attendance, two ways",
@@ -630,7 +630,7 @@ const structuredData = [
           ["Audio metering", "Real-time vMix master and bus meters at ~30 fps over a persistent TCP connection — the same numbers vMix shows, beside your other tiles"],
           ["Camera protocols", "VISCA-over-IP (UDP 52381) with a command watchdog that stops runaway cameras, ONVIF fallback, and HTTP control for supported brands — image adjustment adapters for Sony, BirdDog, and generic VISCA cameras"],
           ["NDI", "NDI send (slides), NDI receive (cameras as live slide media), and alpha-channel NDI output from Present for clean keys"],
-          ["Protocol relay", "Fires OSC, RossTalk, RTP-MIDI, HTTP, Q-SYS QRC, and PJLink onto the booth network on behalf of the cloud — browsers can't open those sockets; Tech Manager can"],
+          ["Protocol relay", "Fires OSC, RossTalk, RTP-MIDI, HTTP, and Q-SYS QRC onto the booth network on behalf of the cloud — browsers can't open those sockets; Tech Manager can. PJLink projectors are monitored for power, lamp, and error state"],
           ["Telemetry", "Hardware snapshots every heartbeat: CPU, GPU, temperatures, memory, storage, displays, audio devices, USB (event-driven), network — plus hourly software and driver inventory"],
           ["Cloud link", "Outbound-only encrypted WebSocket — no port forwarding, no firewall changes, works behind church networks; booth pairing uses one-time, admin-issued enrollment codes that expire in 30 minutes"],
           ["Self-healing", "Stream restart after a 30-second drop, bitrate step-down under strain, recording restart, and low-disk cleanup — every action logged to your support history"],

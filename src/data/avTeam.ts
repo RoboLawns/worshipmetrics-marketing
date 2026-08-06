@@ -13,7 +13,6 @@ export interface AVTeamRole {
   metaDescription: string;
   heroHeading: string;
   heroSubheading: string;
-  intercomPriority: string;
   skillLevel: string;
   typicalAge: string;
   roleSentence: string;
@@ -27,7 +26,6 @@ export interface AVTeamRole {
   compatibilityIntro: string;
   compatibilityGroups: RoleSectionGroup[];
   tabletBody: string;
-  intercomBody: string;
   teamPlacement: string;
 }
 
@@ -44,7 +42,6 @@ export const avTeamRoles: AVTeamRole[] = [
     heroHeading: "The Service Director",
     heroSubheading:
       "The person who calls the show. One tap moves the service forward so cameras, lyrics, audio, lighting, and the team stay together.",
-    intercomPriority: "Always active",
     skillLevel: "Advanced",
     typicalAge: "17+ or experienced adult volunteer",
     roleSentence:
@@ -92,8 +89,6 @@ export const avTeamRoles: AVTeamRole[] = [
     ],
     tabletBody:
       "This role works especially well on a tablet because the director can move through cues, view the rundown, and keep the service flowing without being chained to one control surface.",
-    intercomBody:
-      "The Director always has intercom. This is the seat most likely to be talking because the rest of the team is listening for cues and corrections in real time.",
     teamPlacement:
       "The Director is the senior role. New volunteers usually spend time on Lyrics, Camera, or Recording first, then grow into this seat once they know the shape of a service well enough to lead it.",
   },
@@ -109,7 +104,6 @@ export const avTeamRoles: AVTeamRole[] = [
     heroHeading: "The Camera Operator",
     heroSubheading:
       "One seat per camera. A live preview, one-tap presets, and simple manual control make this one of the strongest early roles on the team.",
-    intercomPriority: "Usually active on the pastor camera",
     skillLevel: "Intermediate",
     typicalAge: "14+",
     roleSentence:
@@ -153,8 +147,6 @@ export const avTeamRoles: AVTeamRole[] = [
     ],
     tabletBody:
       "This role works well on a tablet because volunteers can hold the panel in their lap, see the live shot, and stay in position without a separate monitor.",
-    intercomBody:
-      "Intercom is optional per camera seat. Many churches keep at least one camera hot so the Director can coach movement in real time when the pastor or worship leader shifts position.",
     teamPlacement:
       "Camera is a strong second role after Lyrics. It teaches volunteers to think visually about the service and often becomes the path toward the Director seat later.",
   },
@@ -170,7 +162,6 @@ export const avTeamRoles: AVTeamRole[] = [
     heroHeading: "The Audio Engineer",
     heroSubheading:
       "The person with the best ears on the team. Pastor mic control, scene recalls, and stream mix awareness stay visible and close at hand.",
-    intercomPriority: "Recommended when staffed as its own seat",
     skillLevel: "Intermediate to advanced",
     typicalAge: "16+",
     roleSentence:
@@ -219,8 +210,6 @@ export const avTeamRoles: AVTeamRole[] = [
     ],
     tabletBody:
       "A tablet keeps the most important audio actions visible and accessible without forcing a volunteer to learn the entire console interface at once.",
-    intercomBody:
-      "Intercom is strongly recommended when Audio is its own seat. The engineer needs to hear upcoming transitions and the Director needs fast feedback when something fails.",
     teamPlacement:
       "Audio is usually a deeper-skill role than Camera or Lyrics. Volunteers often spend time in other seats first, then move here as their confidence and judgment grow.",
   },
@@ -236,7 +225,6 @@ export const avTeamRoles: AVTeamRole[] = [
     heroHeading: "The Lyrics Operator",
     heroSubheading:
       "Advance slides, cue sermon graphics, and keep the words moving. This is the best first seat for brand-new volunteers and younger students.",
-    intercomPriority: "Usually active",
     skillLevel: "Beginner",
     typicalAge: "12+",
     roleSentence:
@@ -278,8 +266,6 @@ export const avTeamRoles: AVTeamRole[] = [
     ],
     tabletBody:
       "This role is perfect for a tablet because a volunteer can sit wherever they have the clearest view of the stage without needing a complicated booth station.",
-    intercomBody:
-      "Intercom is usually active for Lyrics because slide timing corrections are one of the most common real-time coaching moments in a live service.",
     teamPlacement:
       "Lyrics is the front door. New volunteers start here, learn the rhythm of a service, and then graduate into Camera or another seat after a season or two.",
   },
@@ -295,7 +281,6 @@ export const avTeamRoles: AVTeamRole[] = [
     heroHeading: "The Stream Operator",
     heroSubheading:
       "The person responsible for the online service. Start the stream, monitor health, run broadcast-specific graphics, and catch problems before the online congregation feels them.",
-    intercomPriority: "Strongly recommended",
     skillLevel: "Intermediate",
     typicalAge: "15+",
     roleSentence:
@@ -338,8 +323,6 @@ export const avTeamRoles: AVTeamRole[] = [
     ],
     tabletBody:
       "A tablet means the Stream Operator can sit with the team and still watch stream health without being chained to the streaming PC.",
-    intercomBody:
-      "Intercom is strongly recommended. The Stream Operator needs the Director's timing cues, and the Director needs instant warning when the stream becomes unstable.",
     teamPlacement:
       "This role often becomes the Director-in-training seat. Volunteers who master the stream seat learn both service flow and technical broadcast judgment.",
   },
@@ -355,7 +338,6 @@ export const avTeamRoles: AVTeamRole[] = [
     heroHeading: "The Lighting Operator",
     heroSubheading:
       "Sets the mood of the room with a single tap. Worship, sermon, prayer, and altar call each get a look that changes smoothly instead of abruptly.",
-    intercomPriority: "Optional",
     skillLevel: "Intermediate",
     typicalAge: "14+",
     roleSentence:
@@ -395,8 +377,6 @@ export const avTeamRoles: AVTeamRole[] = [
     ],
     tabletBody:
       "A tablet is useful here because volunteers can walk the room during setup or rehearsal and judge the look from where people actually sit.",
-    intercomBody:
-      "Intercom is optional. Larger churches with a dedicated lighting seat often use it, while smaller teams often fold this role into the Director's responsibilities.",
     teamPlacement:
       "Lighting is a creative-track role. Volunteers who love it often stay in it for years and become the people who shape how the room feels.",
   },
@@ -412,7 +392,6 @@ export const avTeamRoles: AVTeamRole[] = [
     heroHeading: "The Recording / Archivist",
     heroSubheading:
       "The insurance policy. Make sure every service is being recorded cleanly, mark key moments for the edit team, and save moments worth clipping later.",
-    intercomPriority: "Optional or listen-only",
     skillLevel: "Beginner to intermediate",
     typicalAge: "13+",
     roleSentence:
@@ -455,8 +434,6 @@ export const avTeamRoles: AVTeamRole[] = [
     ],
     tabletBody:
       "A tablet lets this volunteer keep capture health, markers, and notes in one place without demanding a full booth workstation.",
-    intercomBody:
-      "Intercom is optional here and often becomes listen-only when the church has limited hot seats. The role still matters even when it is quieter.",
     teamPlacement:
       "Recording is a great entry seat for detail-oriented students and a strong support seat for veterans who want to serve without carrying the full live pressure of the Director chair.",
   },

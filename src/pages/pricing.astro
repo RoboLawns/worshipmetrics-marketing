@@ -58,11 +58,11 @@ const platformPlans = [
     featured: true,
     items: [
       "Everything in Assist, plus cloud live streaming",
-      "Resilient SRT and RTMPS ingest from the Tech Manager encoder — no $1,500 box",
+      "Resilient SRT and RTMPS ingest straight from OBS or vMix — no encoder hardware to buy",
       "Up to 10 simultaneous destinations: YouTube, Facebook, and an embeddable player with a hosted watch page",
       "Cloud DVR and archive, plus a scored stream-health report wired into your alerts",
       "Lossless CD-quality FLAC audio — on the roadmap, no extra charge when it lands",
-      "Reels cut automatically from every service and online attendance analytics",
+      "Reels from any service in a click, plus online attendance analytics",
       "Each campus is its own $99 with its own included usage",
     ],
   },
@@ -101,9 +101,9 @@ const exampleStacks = [
 
 // STREAM TIER — FAIR USE & OVERAGES
 const fairUseRows = [
-  { included: "Live stream hours (1080p, all destinations simultaneously)", allowance: "20 hours", overage: "$2 per additional hour" },
-  { included: "Viewer hours on the embedded player / watch page (YouTube and Facebook viewers are never metered)", allowance: "2,500 viewer-hours", overage: "$3 per additional 100 viewer-hours" },
-  { included: "Cloud archive retention (recordings, DVR, clip sources)", allowance: "120 days", overage: "Extended archive (1 year): +$19/mo" },
+  { included: "Live stream hours (1080p, all destinations simultaneously)", allowance: "20 hours", overage: "Generous — a typical church never reaches it" },
+  { included: "Viewer hours on the embedded player / watch page (YouTube and Facebook viewers are never metered)", allowance: "2,500 viewer-hours", overage: "Generous — a typical church never reaches it" },
+  { included: "Cloud archive retention (recordings, DVR, clip sources)", allowance: "120 days", overage: "—" },
   { included: "Simultaneous destinations", allowance: "Up to 10", overage: "—" },
 ];
 
@@ -132,7 +132,7 @@ const faqItems = [
   { question: "Why is Stream priced per campus?", answer: "Each campus gets its own encoder, its own Signal Map, its own stream, and its own included usage — so each campus is its own $99. It matches how multi-site churches already buy, without the per-site markup the expensive platforms charge. Network and denomination deals are handled inside Managed." },
   { question: "Do I need to buy a hardware encoder to stream?", answer: "No. The encoder is Tech Manager, the desktop app running on a PC your church already owns — a $0 replacement for the $1,500+ hardware box the expensive streaming platforms require." },
   { question: "What happens if I go over the Stream allowances?", answer: "We never stop a live service over a quota. If you blow through an allowance mid-stream, the stream keeps running and the overage shows up on the bill — never on the screen. Usage alerts fire at 80% of any allowance, and overage pricing is published, flat, and cheap." },
-  { question: "Is Reels included, or is it extra?", answer: "Reels — our AI clipping tool, formerly Worship Clips — has a free local workflow inside Tech Manager on every tier. Using Reels in the cloud (access from anywhere, cloud archival, team collaboration) requires the Assist plan or higher, and on Stream, Reels are cut automatically from every service." },
+  { question: "Is Reels included, or is it extra?", answer: "Reels — our AI clipping tool, formerly Worship Clips — has a free local workflow inside Tech Manager on every tier. Using Reels in the cloud (access from anywhere, cloud archival, team collaboration) requires the Assist plan or higher, and Stream adds cloud recordings for every service, ready to clip." },
   { question: "Do you offer annual billing?", answer: "Yes. Billed monthly or annually, and annual billing includes 2 months free — you pay 10-month pricing for the year. The first help session is free on every tier." },
   { question: "Do you offer a nonprofit or multi-church discount?", answer: "Yes. Contact us and we will talk through the right fit for your ministry and budget. Multi-campus and denomination rollouts are handled directly inside Managed." },
   { question: "What happens to my data if I cancel?", answer: "Your data stays exportable. We will help you make sure your ministry can keep what it needs." },
@@ -425,7 +425,7 @@ const structuredData = [
             {[
               "One feed in — YouTube, Facebook, your embed, and a hosted watch page out.",
               "Stream-health monitoring wired straight into your alerts.",
-              "Reels cut automatically from every service, ready before the parking lot empties.",
+              "Turn any service into clips in a click, ready before the parking lot empties.",
             ].map((item) => (
               <div class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></div>
             ))}

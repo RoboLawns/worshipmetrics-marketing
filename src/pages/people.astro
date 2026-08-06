@@ -21,11 +21,11 @@ const features = [
   },
   {
     title: "CSV in, CSV out — safely",
-    body: "A 16-field import wizard auto-maps your old system's headers, previews before writing, and handles duplicates your way: skip, update, or create — deduping on email, phone, or exact name. Exports round-trip losslessly.",
+    body: "A 16-field import wizard auto-maps your old system's headers, previews before writing, and handles duplicates your way: skip, update, or create — deduping on email, phone, or exact name. Full exports carry every field.",
   },
   {
     title: "Team Chat, built in",
-    body: "Public channels that auto-join the whole org, invite-only private channels, and one-click DMs — with typing indicators, presence, @mentions, reactions, pinning, file sharing, and polls. Live over WebSocket, everywhere.",
+    body: "Public channels that auto-join the whole org, invite-only private channels, and one-click DMs — with typing indicators, presence, reactions, pinning, file sharing, and polls. Live over WebSocket, everywhere.",
   },
   {
     title: "A serving lifecycle, not a signup sheet",
@@ -206,14 +206,14 @@ const structuredData = {
         {[
           ["Directory model", "Built-in types Member / Guest / Attender plus unlimited custom types; Active/Inactive statuses; labeled multi-value contact methods (home, work, mobile × email, phone, address) and social handles"],
           ["Households", "Optional head-of-household, shared address and contact details, archive flag — removing a household never removes its people"],
-          ["CSV import/export", "16-field vocabulary with alias auto-mapping and a preview step; duplicate strategies skip / update / create with dedup on email, phone, or exact name; lossless export round-trip"],
+          ["CSV import/export", "16-field vocabulary with alias auto-mapping and a preview step; duplicate strategies skip / update / create with dedup on email, phone, or exact name; full server-side export carries every field"],
           ["Serving lifecycle", "Six assignment statuses; tokenized email accept/decline that works without login; per-position needed counts; per-service-time coverage math"],
           ["Volunteer self-service", "My Schedule with inline responses and self-managed unavailable date ranges — surfaced to leaders as warnings, never hard blocks"],
           ["Scheduling emails", "Invites, day-before reminders on a 15-minute idempotent sweep, cancellation notices, decline alerts routed to team leaders, and unfilled-position nudges"],
           ["Team Chat transport", "WebSocket delivery with typing indicators and presence; REST fallback; org-scoped live updates so every open surface stays current"],
           ["Chat file sharing", "Private cloud storage with direct uploads, a 25 MB cap, a safe-format allowlist (images, video, audio, PDF, Office, text), and expiring signed download links"],
           ["Chat polls", "2–10 options, single or multiple choice, vote-change semantics, double-vote-proof by design"],
-          ["Auth & team invites", "Invite-only organizations on Clerk authentication; role-carrying email invites with cryptographically random tokens and 7-day expiry"],
+          ["Auth & team invites", "Role-carrying email invites with cryptographically random tokens and 7-day expiry; joining an existing church always requires an invite"],
           ["Public QR flows", "Org-wide check-in with print-ready QR codes, rate-limited server-side; returning-attender matching tiers: email, then phone, then name + birthday"],
           ["Campuses", "Each person record carries a campus, so multi-site churches keep their directory organized in one place"],
           ["Users & pricing", "Unlimited users and unlimited people on every plan, including Free — the whole volunteer team lives in it"],
