@@ -8,8 +8,7 @@ const OG_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-luminos-ai-chat.jpg
 const PROFILE_IMAGE = `${R2}/Luminos/Luminos%20Profile.jpg`;
 
 const ministryPrompts = [
-  '"Who has missed multiple services and may need a check-in?"',
-  '"Which guests still haven\'t heard from us this week?"',
+  '"How did attendance trend across the last eight weeks?"',
   '"Give me a summary before Monday staff meeting."',
   '"What changed this week that deserves our attention first?"',
   '"How does this Sunday compare to the same Sunday last year?"',
@@ -24,7 +23,7 @@ const avPrompts = [
 ];
 
 const knowsWithTechManager = [
-  "Your production computer: processor, GPU, RAM, OBS version, plugin list",
+  "Your production computer: processor, GPU, RAM, disks, and displays",
   "Your network: upload speed, connection type, latency, router",
   "Your cameras: every PTZ on the network, model, firmware, current status",
   "Your stream: current bitrate, dropped frames, encoder load, scene",
@@ -36,7 +35,7 @@ const knowsWithTechManager = [
 const faqItems = [
   {
     question: "Does Luminos work without Tech Manager?",
-    answer: "Yes. Luminos works on all plans for ministry intelligence: attendance insights, guest follow-up, and congregation data questions. Tech Manager unlocks the AV intelligence layer: real-time monitoring, hardware-specific diagnostics, remote actions, and proactive alerts.",
+    answer: "Yes. Luminos works on all plans for ministry intelligence: attendance insights and congregation data questions. Tech Manager unlocks the AV intelligence layer: real-time monitoring, hardware-specific diagnostics, remote actions, and proactive alerts.",
   },
   {
     question: "What computer does Tech Manager run on?",
@@ -138,13 +137,13 @@ const structuredData = [
         <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Mode 1 — Ministry intelligence</p>
           <p class="mt-2 text-sm font-semibold text-slate-500">Available on all plans. No Tech Manager required.</p>
-          <p class="mt-4 text-sm leading-relaxed text-slate-600">Luminos reads your attendance data, guest records, engagement history, and follow-up queue — and tells your team exactly what needs attention in plain English without digging through reports.</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Luminos reads your attendance history and service data — and answers in plain English, so leadership gets the picture without anyone building a report.</p>
           <div class="mt-6 space-y-3">
             {ministryPrompts.map((prompt) => (
               <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">{prompt}</div>
             ))}
           </div>
-          <p class="mt-6 text-sm text-slate-500">Role-aware, confirmation-required, and built for pastoral care — not data analysis.</p>
+          <p class="mt-6 text-sm text-slate-500">Confirmation-required, and built for the questions leadership actually asks — not data analysis.</p>
         </div>
         <div class="rounded-3xl border border-indigo-200 bg-indigo-50 p-8 shadow-sm">
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Mode 2 — AV intelligence</p>

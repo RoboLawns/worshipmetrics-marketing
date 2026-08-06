@@ -44,8 +44,8 @@ const features = [
     body: "A shareable check-in link and printable QR code for the lobby. Returning attenders match their existing record — by email, then phone, then name and birthday — while true first-timers land in the directory automatically.",
   },
   {
-    title: "Public registration with capacity",
-    body: "Per-service registration links with their own QR codes enforce real capacity against party sizes, and send confirmation emails with your own wording.",
+    title: "QR check-in that knows returning faces",
+    body: "Print an org-wide QR code for the lobby and returning attenders are matched automatically — on email, then phone, then name and birthday — so first-timers land in the directory without a volunteer typing anything.",
   },
   {
     title: "Live everywhere, instantly",
@@ -143,7 +143,6 @@ const structuredData = {
             "Serving assignments with confirmed, declined, and follow-up statuses",
             "Volunteers accept or decline requests from My Schedule, with unavailable dates leaders can see",
             "One-tap message to any person through Team Chat",
-            "Multi-campus filtering appears automatically when you have more than one site",
             "Changes sync live across every device — no refresh, no stale lists",
           ].map((item) => (
             <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
@@ -215,8 +214,8 @@ const structuredData = {
           ["Chat file sharing", "Private cloud storage with direct uploads, a 25 MB cap, a safe-format allowlist (images, video, audio, PDF, Office, text), and expiring signed download links"],
           ["Chat polls", "2–10 options, single or multiple choice, vote-change semantics, double-vote-proof by design"],
           ["Auth & team invites", "Invite-only organizations on Clerk authentication; role-carrying email invites with cryptographically random tokens and 7-day expiry"],
-          ["Public QR flows", "Org-wide check-in and per-service registration links with print-ready QR codes, rate-limited server-side; returning-attender matching tiers: email, then phone, then name + birthday"],
-          ["Multi-campus", "Campuses with their own time zones and per-user campus roles; campus-scoped lists, imports, and exports — the filter hides itself for single-campus churches"],
+          ["Public QR flows", "Org-wide check-in with print-ready QR codes, rate-limited server-side; returning-attender matching tiers: email, then phone, then name + birthday"],
+          ["Campuses", "Each person record carries a campus, so multi-site churches keep their directory organized in one place"],
           ["Users & pricing", "Unlimited users and unlimited people on every plan, including Free — the whole volunteer team lives in it"],
         ].map(([term, detail], index) => (
           <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>

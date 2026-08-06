@@ -182,7 +182,7 @@ const supportTabs = [
     id: "ptz-cameras",
     label: "PTZ Cameras",
     title: "Your PTZ cameras, discovered and pre-configured.",
-    body: "Tech Manager supports the full range of PTZ cameras found in congregations today, from broadcast-grade Sony and Panasonic units to the most common Amazon-native brands. When a camera is found on your network, Tech Manager pre-fills the RTSP stream URL, VISCA control port, and PTZ settings automatically.",
+    body: "Tech Manager discovers and documents the PTZ cameras found in congregations today, from broadcast-grade Sony and Panasonic units to the most common Amazon-native brands — with direct pan, tilt, zoom, and preset control on VISCA-family and BirdDog cameras. When a camera is found on your network, Tech Manager pre-fills the RTSP stream URL, VISCA control port, and PTZ settings automatically.",
     supported: [
       "PTZOptics", "SMTAV", "Avkans", "Minrray", "Zowietek", "Birddog", "BZBGEAR", "Wivien", "Nelopes", "Glocom", "Aferiy", "Zcvideo", "Intelix", "Sony", "Panasonic", "Marshall", "Vaddio", "Aver", "OBSBOT", "Axis", "Hikvision", "Amcrest", "Dahua", "Reolink", "Foscam"
     ],
@@ -201,7 +201,7 @@ const supportTabs = [
     id: "switchers-encoders",
     label: "Switchers & Encoders",
     title: "Production hardware that already belongs in your booth.",
-    body: "Tech Manager recognizes the switching and encoding gear congregations actually use, from the Blackmagic ATEM family to Roland, Ross, Epiphan, AJA, Magewell, Kiloview, Teradek, and LiveU.",
+    body: "Tech Manager recognizes and monitors the switching and encoding gear congregations actually use, from the Blackmagic ATEM family to Roland, Ross, Epiphan, AJA, Magewell, Kiloview, Teradek, and LiveU. Direct switching control covers vMix, OBS, and the ATEM family.",
     supported: [
       "Blackmagic ATEM Mini", "ATEM Mini Pro", "ATEM Mini Extreme", "ATEM Television Studio HD", "ATEM 4 M/E", "Blackmagic HyperDeck", "Blackmagic Smart Videohub", "Roland V-8HD", "Roland V-160HD", "vMix", "Ross Video Carbonite", "Kramer VS series", "Epiphan Pearl Nano", "Epiphan Pearl-2", "AJA HELO", "AJA Ki Pro Ultra", "Magewell Pro Convert", "Magewell Ultra Encode", "Teradek VidiU Pro", "Teradek Cube 655", "Kiloview E1", "Kiloview N2", "LiveU Solo"
     ],
@@ -210,7 +210,7 @@ const supportTabs = [
     id: "audio-dante",
     label: "Audio & Dante",
     title: "Audio consoles, wireless, and Dante-aware discovery.",
-    body: "Tech Manager supports the digital consoles and Dante-connected devices congregations rely on every week, including Yamaha, Behringer, PreSonus, Allen & Heath, QSC, Shure, Crown, Mackie, Focusrite, and RME.",
+    body: "Tech Manager discovers and monitors the digital consoles and Dante-connected devices congregations rely on every week, including Yamaha, Behringer, PreSonus, Allen & Heath, QSC, Shure, Crown, Mackie, Focusrite, and RME. Direct control covers Behringer X32 and Midas M32 over OSC, plus Q-SYS Cores.",
     supported: [
       "Yamaha DM3", "Yamaha TF1", "Yamaha MG10XU", "Behringer X32", "Behringer XR18", "Behringer X18", "PreSonus StudioLive 32SX", "PreSonus StudioLive 16", "Allen & Heath SQ-5", "Allen & Heath dLive", "DiGiCo SD11", "QSC Q-SYS Core", "Shure ULXD / QLXD / Axient", "Crown DCi-D", "Mackie DL32R", "Focusrite RedNet", "RME Dante interfaces", "Any Dante-enabled device"
     ],
@@ -225,7 +225,7 @@ const supportTabs = [
     id: "control-ndi-network",
     label: "Control, NDI & Network",
     title: "Control systems, NDI sources, and the network gear around them.",
-    body: "Tech Manager also recognizes the control and network layer around your production chain, including Crestron, Extron, WolfVision, Atlona, Ross openGear, NDI broadcasters, Ubiquiti UniFi, TP-Link Omada, Netgear ProSafe, and managed switch environments.",
+    body: "Tech Manager also discovers the control and network layer around your production chain, including Crestron, Extron, WolfVision, Atlona, Ross openGear, NDI broadcasters, Ubiquiti UniFi, TP-Link Omada, Netgear ProSafe, and managed switch environments. UniFi goes further with port-precise topology and live PoE readings.",
     supported: [
       "Crestron CP4N", "Crestron DM-NVX", "Extron IP Link Pro", "Extron SMP Streaming Processor", "Kramer Protocol 3000 devices", "WolfVision Cynap Pro", "Atlona OmniStream", "Ross Video openGear / DashBoard", "OBS NDI Output plugin", "Birddog PTZ cameras", "Kiloview N2", "Magewell Pro Convert", "OBSBOT Tail Air", "PTZOptics Link 4K", "Ubiquiti UniFi", "TP-Link Omada", "Netgear ProSafe"
     ],
@@ -245,7 +245,7 @@ const supportTabs = [
 const faqItems = [
   {
     question: "What is Tech Manager?",
-    answer: "Tech Manager is a free desktop app for Windows and Mac that powers the booth inside the broader WorshipMetrics platform. It documents your AV system, monitors signals continuously, and gives Luminos the context it needs to diagnose issues fast.",
+    answer: "Tech Manager is a free desktop app for Windows that powers the booth inside the broader WorshipMetrics platform. It documents your AV system, monitors signals continuously, and gives Luminos the context it needs to diagnose issues fast.",
   },
   {
     question: "Does Tech Manager require any special hardware?",
@@ -423,8 +423,8 @@ const structuredData = [
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-4xl text-center">
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Auto-discovery</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">80+ supported devices across the production chain.</h2>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Tech Manager recognizes the gear congregations actually use. Scan your network and your AV inventory builds itself — from PTZ cameras and encoders to Dante devices, NDI sources, and managed switches.</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Recognizes hundreds of devices. Directly controls the ones that matter live.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Scan your network and your AV inventory builds itself — PTZ cameras, encoders, Dante devices, NDI sources, and managed switches are discovered, documented, and monitored. A focused set goes further with direct control: <strong>vMix, OBS, Blackmagic ATEM, PTZOptics and Sony VISCA cameras, BirdDog, Behringer X32 and Midas M32, Q-SYS, and UniFi</strong>.</p>
       </div>
 
       <div class="mt-10 flex flex-wrap justify-center gap-3" role="tablist" aria-label="Supported device groups">
@@ -590,11 +590,11 @@ const structuredData = [
 
   <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Free Forever. No credit card. Works on Windows and Mac.</h2>
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Free Forever. No credit card. Runs on Windows.</h2>
       <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Tech Manager installs in under five minutes. Connect your WorshipMetrics account, let it scan your network, and your system is documented, monitored, and cloud-connected before the next service.</p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a href={DISCOVERY_URL} class="rounded-xl bg-indigo-600 px-8 py-3 text-base font-semibold text-white shadow transition hover:bg-indigo-700">Download for Windows</a>
-        <a href={DISCOVERY_URL} class="rounded-xl border border-slate-300 px-8 py-3 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">Download for Mac</a>
+        <a href={DISCOVERY_URL} class="rounded-xl border border-slate-300 px-8 py-3 text-base font-semibold text-slate-700 transition hover:border-indigo-400 hover:text-indigo-600">Ask about Mac support</a>
       </div>
       <p class="mt-4 text-sm text-slate-500">Requires a WorshipMetrics account. Beta download links are shared during a discovery call.</p>
     </div>
@@ -626,7 +626,7 @@ const structuredData = [
       <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white">
         {[
           ["Platform", "Native desktop app for Windows 10/11 (64-bit, x64 and ARM), installed or portable, signed with an EV certificate and kept current by automatic updates"],
-          ["Production software", "OBS Studio (WebSocket v5), vMix (HTTP + TCP APIs), Blackmagic ATEM status, and HyperDeck control"],
+          ["Production software", "OBS Studio (WebSocket v5), vMix (HTTP + TCP APIs), Blackmagic ATEM cut/preview/program control, and HyperDeck status monitoring"],
           ["Audio metering", "Real-time vMix master and bus meters at ~30 fps over a persistent TCP connection — the same numbers vMix shows, beside your other tiles"],
           ["Camera protocols", "VISCA-over-IP (UDP 52381) with a command watchdog that stops runaway cameras, ONVIF fallback, and HTTP control for supported brands — image adjustment adapters for Sony, BirdDog, and generic VISCA cameras"],
           ["NDI", "NDI send (slides), NDI receive (cameras as live slide media), and alpha-channel NDI output from Present for clean keys"],

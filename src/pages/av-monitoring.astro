@@ -17,7 +17,7 @@ const features = [
   },
   {
     title: "Heartbeats every 15 seconds",
-    body: "A light telemetry beat lands every 15 seconds and a full snapshot every minute, so the fleet view is seconds-fresh. A machine earns its offline badge after just three missed beats.",
+    body: "A light telemetry beat lands every 15 seconds and a full snapshot every minute, so the fleet view is seconds-fresh. A machine earns its offline badge after 90 seconds without one.",
   },
   {
     title: "Monitoring that needs no watcher",
@@ -309,7 +309,7 @@ const structuredData = {
           ["AV device health", "Multi-observer rollup with online / degraded / stale / offline / unknown states — offline requires every fresh observer to agree, so one bad network path never false-alarms"],
           ["Anti-spam mechanics", "One alert per outage by atomic claim, re-armed on recovery; hysteresis margins, per-machine cooldowns, and fan-out caps keep a flapping device to a single page"],
           ["Software inventory", "Hourly software and driver collection from the system registry, with graphics-driver currency checked daily"],
-          ["History retention", "Alert history 90 days, raw telemetry 30 days, hardware and health events 90 days"],
+          ["History retention", "Alert history 90 days, device metrics 30 days, observations and timeline non-events 7 days"],
           ["Attendance counting", "Seat-map counter with reusable templates (sections, rows, member-assignable seats) and camera auto-count from RTSP or webcam — schedulable, or triggered remotely from the web"],
         ].map(([term, detail], index) => (
           <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>

@@ -133,7 +133,6 @@ export const avTeamRoles: AVTeamRole[] = [
       "Zoom fader for smooth adjustment",
       "Speed toggle for live and off-air movement",
       "Tally indicator for live, preview, or idle state",
-      "Optional intercom push-to-talk",
     ],
     behavior:
       "Preset buttons are labeled in plain English, on-air moves can be guarded while tally is red, and camera standards stay consistent because admins maintain the presets instead of each volunteer improvising them.",
@@ -194,7 +193,6 @@ export const avTeamRoles: AVTeamRole[] = [
       "Scene recall buttons for worship, sermon, and video playback",
       "Broadcast master fader and live metering for the stream send",
       "Guarded phantom power and backstage talkback controls",
-      "Intercom push-to-talk for coordination",
     ],
     behavior:
       "Live mute state reflects the actual mixer, scene recalls are guarded, and stream metering stays visible so the online audience is not an afterthought.",
@@ -261,7 +259,6 @@ export const avTeamRoles: AVTeamRole[] = [
       "Song library and active song context",
       "Scripture quick-recall and lower-third triggers",
       "Countdown timers and stage display toggle",
-      "Intercom push-to-talk",
     ],
     behavior:
       "Next Slide is huge and always where the volunteer expects it. Current slide state stays visible, risky actions are guarded, and the panel is designed so a beginner can contribute without getting lost.",
@@ -321,7 +318,6 @@ export const avTeamRoles: AVTeamRole[] = [
       "Broadcast scene buttons for pre-service, live, and post-service states",
       "Online-specific lower-thirds and prompts",
       "Chat monitor access",
-      "Recording control and intercom push-to-talk",
     ],
     behavior:
       "Health data never hides behind tabs. Warning thresholds escalate visually, risky actions are guarded, and broadcast state stays obvious at a glance.",
@@ -380,7 +376,6 @@ export const avTeamRoles: AVTeamRole[] = [
       "Look buttons for pre-service, worship, sermon, prayer, altar call, announcements, and post-service",
       "Manual house lights and stage wash faders",
       "Emergency blackout with a confirm guard",
-      "Optional intercom push-to-talk",
     ],
     behavior:
       "Looks crossfade over programmed durations, safe ranges keep volunteers from making room-breaking mistakes, and the visual language stays consistent even when the house style evolves.",
@@ -440,7 +435,6 @@ export const avTeamRoles: AVTeamRole[] = [
       "Chapter markers for worship, sermon, altar call, and custom moments",
       "Voice-friendly notes for edit and content teams",
       "Snapshot frame capture for weekly recap or social use",
-      "Optional intercom push-to-talk",
     ],
     behavior:
       "Recording health dominates the screen, markers feed directly into the service record, storage warnings escalate clearly, and snapshots save valuable context for the week after the service.",
