@@ -2,10 +2,6 @@
 import BrandLockup from "./BrandLockup.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
-const IOS_APP_URL = "https://apps.apple.com/us/app/worship-metrics/id6754773170";
-const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.worshipmetrics.kiosk";
-const APP_STORE_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Download_on_the_App_Store_Badge.svg.png";
-const GOOGLE_PLAY_BADGE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/homepage/Google_Play_Store_badge_EN.svg.png";
 const year = new Date().getFullYear();
 
 const cols = [
@@ -158,24 +154,6 @@ const cols = [
 </style>
 
 <footer>
-  <div class="footer-app-band">
-    <div class="footer-app-copy">
-      <p>WorshipMetrics apps</p>
-      <h3>Keep your team aligned from anywhere your Sunday depends on.</h3>
-      <p>
-        Download the mobile apps for attendance workflows, volunteer coordination, and the service-day tasks that should not stay trapped at one booth computer.
-      </p>
-    </div>
-    <div class="footer-app-badges">
-      <a href={IOS_APP_URL} aria-label="Download WorshipMetrics on the App Store">
-        <img src={APP_STORE_BADGE} alt="Download on the App Store" loading="lazy" decoding="async" width="120" height="40" />
-      </a>
-      <a href={ANDROID_APP_URL} aria-label="Get WorshipMetrics on Google Play">
-        <img src={GOOGLE_PLAY_BADGE} alt="Get it on Google Play" loading="lazy" decoding="async" width="646" height="250" />
-      </a>
-    </div>
-  </div>
-
   <div class="footer-inner">
     <div class="brand-col">
       <a href="/" class="brand-logo" aria-label="WorshipMetrics home">
