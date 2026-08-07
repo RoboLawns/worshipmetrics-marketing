@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import LuminosContextDemo from "../components/diagrams/LuminosContextDemo.astro";
+import LuminosMemoryTimeline from "../components/diagrams/LuminosMemoryTimeline.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
@@ -123,6 +125,40 @@ const structuredData = [
         <a href="/tech-manager" class="rounded-lg border border-slate-300 px-7 py-3 text-base font-semibold text-slate-700 hover:border-indigo-400 hover:text-indigo-700 transition">
           Download Tech Manager to unlock AV support
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive: one question, and everything behind the answer -->
+  <section class="bg-white px-6 py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">See it work</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One ordinary question. Everything standing behind the answer.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Pick a question a real church would ask. Watch what Luminos already knows before anyone types a word &mdash; then read the answer that used it.
+        </p>
+      </div>
+      <div class="mt-10">
+        <LuminosContextDemo />
+      </div>
+    </div>
+  </section>
+
+  <!-- The turnover story -->
+  <section class="bg-white px-6 pb-20">
+    <div class="mx-auto max-w-6xl border-t border-slate-200 pt-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why it keeps working</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Volunteers move away. What they knew shouldn&apos;t.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Most churches lose their AV knowledge one departure at a time. Every fix, every label, and every hard-won answer stays with the church instead.
+        </p>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <LuminosMemoryTimeline />
+        </div>
       </div>
     </div>
   </section>
