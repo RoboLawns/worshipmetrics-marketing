@@ -1,0 +1,98 @@
+---
+/**
+ * How the context gets there: booth gear → Tech Manager → Luminos → the answer.
+ * Drawn in the same visual language as the Signal Map, because that is
+ * exactly what it is — a signal path, carrying knowledge instead of video.
+ */
+const devices = [
+  { y: 84,  label: "PTZ cameras" },
+  { y: 128, label: "Audio console" },
+  { y: 172, label: "Switcher" },
+  { y: 216, label: "Booth PC" },
+];
+
+const strands = [
+  { y: 108, label: "MACHINE TELEMETRY", note: "every 15 seconds" },
+  { y: 152, label: "DEVICE HEALTH",     note: "reachable or not" },
+  { y: 196, label: "STREAM METRICS",    note: "bitrate · dropped frames" },
+  { y: 240, label: "SIGNAL MAP & DOCS", note: "ports · cable labels" },
+];
+---
+
+<svg
+  viewBox="0 0 980 400"
+  width="100%"
+  role="img"
+  aria-label="Signal-path diagram: cameras, audio console, switcher, and booth PC report into Tech Manager, which carries machine telemetry, device health, stream metrics, and the Signal Map up to Luminos. Your church's history and past fixes feed in as well, and the answer comes back in the app or on the phone."
+  class="h-auto w-full"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- column labels -->
+  <text x="20" y="44" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">IN YOUR BUILDING</text>
+  <text x="240" y="44" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">THE BOOTH APP</text>
+  <text x="640" y="44" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#2B7FF0">THE AI</text>
+  <text x="830" y="44" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">YOU ASK</text>
+
+  <!-- device chips -->
+  {devices.map(({ y, label }) => (
+    <g>
+      <rect x="20" y={y} width="170" height="36" rx="8" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <circle cx="40" cy={y + 18} r="4" fill="#2B7FF0" />
+      <text x="56" y={y + 22} font-family="Archivo, sans-serif" font-size="12" font-weight="600" fill="#3F4854">{label}</text>
+      <path d={`M190 ${y + 18} H 240`} fill="none" stroke="#C5DDFB" stroke-width="1.8" stroke-linecap="round" />
+    </g>
+  ))}
+
+  <!-- Tech Manager -->
+  <rect x="240" y="80" width="150" height="176" rx="16" fill="#0B0D10" />
+  <path d="M268 138 h9 l13-31 l15 58 l13-27 h9" fill="none" stroke="#2B7FF0" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="315" y="176" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Tech Manager</text>
+  <text x="315" y="196" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" font-weight="600" letter-spacing="0.7" fill="#6AA9F4">FREE · RUNS IN THE BOOTH</text>
+  <text x="315" y="228" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" fill="#9CC6F8">Watches. Documents. Reports.</text>
+
+  <!-- labeled strands -->
+  {strands.map(({ y, label, note }) => (
+    <g>
+      <path d={`M390 168 C 460 168, 470 ${y}, 640 ${y}`} fill="none" stroke="#C5DDFB" stroke-width="2" stroke-linecap="round" />
+      <path d={`M632 ${y - 5} L640 ${y} L632 ${y + 5}`} fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <rect x="452" y={y - 15} width="168" height="24" rx="6" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.2" />
+      <text x="462" y={y - 4} font-family="IBM Plex Mono, monospace" font-size="8" font-weight="600" letter-spacing="0.7" fill="#1D66D6">{label}</text>
+      <text x="462" y={y + 5} font-family="Archivo, sans-serif" font-size="8.5" fill="#78828F">{note}</text>
+    </g>
+  ))}
+
+  <!-- Luminos -->
+  <rect x="640" y="80" width="150" height="176" rx="16" fill="#EFF6FE" stroke="#2B7FF0" stroke-width="2" />
+  <circle cx="715" cy="132" r="24" fill="#0B0D10" />
+  <path d="M700 138 h5 l7-17 l8 32 l7-15 h5" fill="none" stroke="#2B7FF0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="715" y="180" text-anchor="middle" font-family="Archivo, sans-serif" font-size="14" font-weight="800" fill="#0B0D10">Luminos</text>
+  <text x="715" y="200" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" fill="#3F4854">Reads all of it</text>
+  <text x="715" y="216" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" fill="#3F4854">before you finish typing</text>
+
+  <!-- church memory, feeding up -->
+  <rect x="596" y="300" width="238" height="56" rx="12" fill="#ffffff" stroke="#C5DDFB" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="715" y="322" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" font-weight="600" letter-spacing="0.8" fill="#1D66D6">YOUR CHURCH'S MEMORY</text>
+  <text x="715" y="340" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" fill="#3F4854">30 days of history · every past fix that worked</text>
+  <path d="M715 300 V 262" fill="none" stroke="#C5DDFB" stroke-width="2" stroke-linecap="round" />
+  <path d="M710 270 L715 260 L720 270" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- outputs -->
+  <path d="M790 168 H 824" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M818 162 L826 168 L818 174" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <g transform="translate(830, 96)">
+    <rect width="130" height="60" rx="12" fill="#ffffff" stroke="#C5DDFB" stroke-width="1.8" />
+    <rect x="16" y="18" width="70" height="7" rx="3.5" fill="#E3E7ED" />
+    <rect x="16" y="32" width="94" height="7" rx="3.5" fill="#E3E7ED" />
+    <text x="16" y="52" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" letter-spacing="0.7" fill="#1D66D6">CHAT IN THE APP</text>
+  </g>
+  <g transform="translate(830, 178)">
+    <rect width="130" height="60" rx="12" fill="#0B0D10" />
+    <path d="M18 28 c 0 -5 4 -9 9 -9 h6 l5 12 l-6 4 c 4 7 10 13 17 17 l4 -6 l12 5 v6 c 0 5 -4 9 -9 9 C 38 66 18 46 18 28 z" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linejoin="round" />
+    <text x="74" y="34" font-family="Archivo, sans-serif" font-size="10.5" font-weight="800" fill="#ffffff">910-</text>
+    <text x="74" y="46" font-family="Archivo, sans-serif" font-size="10.5" font-weight="800" fill="#ffffff">WORSHIP</text>
+  </g>
+
+  <!-- footnote -->
+  <text x="20" y="384" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">Same path every time &mdash; which is why the answer already knows where things are and what was tried before.</text>
+</svg>

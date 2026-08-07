@@ -1,280 +1,246 @@
 ---
 /**
- * Interactive: one ordinary question, and everything standing behind the answer.
- * Pick a question, watch the context assemble, read the answer that used it.
- * No-JS: everything renders expanded. Reduced motion: no stagger.
+ * Interactive connection graph: one question, and the wires that feed the answer.
+ * Sources light up and pulse toward Luminos; the output switches between chat and phone.
+ * No-JS: the first scenario renders lit. Reduced motion: no pulse.
  */
 
-const contextCards = [
-  {
-    id: "machines",
-    label: "Your machines",
-    detail: "Every booth computer reports in every 15 seconds — processor load and temperature, memory, disk space, displays, and network.",
-  },
-  {
-    id: "devices",
-    label: "Your devices",
-    detail: "Cameras, consoles, switchers, and encoders — whether each one is reachable right now, confirmed by every machine on the network.",
-  },
-  {
-    id: "map",
-    label: "Your Signal Map",
-    detail: "What is plugged into what, down to the port — and the label printed on the actual cable, so an instruction can name it.",
-  },
-  {
-    id: "timeline",
-    label: "The last 30 minutes",
-    detail: "The half hour of system health leading up to whatever just happened, kept so the question can be answered after the fact.",
-  },
-  {
-    id: "history",
-    label: "30 days of history",
-    detail: "Stream quality for every service, which problems repeated, and what the system quietly fixed on its own.",
-  },
-  {
-    id: "tickets",
-    label: "Every past fix",
-    detail: "What broke before, what your team tried, and what actually worked — kept with the church, not in one volunteer's memory.",
-  },
+const sources = [
+  { id: "machines",  y: 20,  label: "Your machines",      meta: "CPU · RAM · DISK · EVERY 15s" },
+  { id: "devices",   y: 72,  label: "Your devices",       meta: "CAMERAS · CONSOLES · SWITCHERS" },
+  { id: "map",       id2: "", y: 124, label: "Your Signal Map", meta: "PORTS · LABELED CABLE RUNS" },
+  { id: "timeline",  y: 176, label: "The last 30 minutes", meta: "HEALTH BEFORE IT BROKE" },
+  { id: "history",   y: 228, label: "30 days of history",  meta: "EVERY SERVICE · EVERY SCORE" },
+  { id: "tickets",   y: 280, label: "Every past fix",      meta: "WHAT WAS TRIED · WHAT WORKED" },
 ];
 
 const scenarios = [
   {
     id: "drops",
-    who: "Tech director, Sunday 11:04am",
+    who: "Tech director · Sunday, 11:04am",
     q: "Why does our stream keep dropping?",
     uses: ["machines", "timeline", "history", "tickets"],
+    out: "chat",
     answer: {
       lead: "Your encoder PC climbs to 88% processor load about twelve minutes into each service.",
-      detail: "That is the same pattern as the three drops last month. In March, pre-converting the 4K bumper video to 1080p fixed it and the drops stopped for six weeks. That file is back at 4K in this week&rsquo;s plan.",
-      tag: "Answered in chat, 4 seconds",
+      detail: "Same pattern as the three drops last month. In March, pre-converting the 4K bumper to 1080p fixed it &mdash; and that file is back at 4K in this week&rsquo;s plan.",
+      tag: "Answered in chat · 4 seconds",
     },
   },
   {
     id: "camera",
-    who: "Volunteer, Thursday rehearsal",
+    who: "Volunteer · Thursday rehearsal",
     q: "Camera 2 isn't showing up. What do I check?",
     uses: ["devices", "map", "timeline"],
+    out: "phone",
     answer: {
-      lead: "Camera 2 &mdash; the stage-wide PTZ &mdash; last responded Thursday at 4:12pm.",
-      detail: "It runs on the cable labeled <strong>SDI-002</strong> into switcher input 2, and it is powered from port 7 on the rack switch. That port is reporting no power draw. Check the port first &mdash; the camera itself was healthy right up until power stopped.",
-      tag: "Answered on the phone, before rehearsal ended",
+      lead: "Camera 2 last responded Thursday at 4:12pm.",
+      detail: "It runs on the cable labeled <strong>SDI-002</strong> into switcher input 2, powered from rack switch port 7 &mdash; and that port reports no draw. Check the port first; the camera was healthy until power stopped.",
+      tag: "Answered on the phone · before rehearsal ended",
     },
   },
   {
     id: "turnover",
-    who: "Pastor, the week after",
-    q: "Our AV volunteer just moved away. Where do we even start?",
+    who: "Pastor · the week after",
+    q: "Our AV volunteer moved away. Where do we start?",
     uses: ["map", "devices", "history", "tickets"],
+    out: "chat",
     answer: {
       lead: "Everything he documented is still here.",
-      detail: "34 devices, 41 labeled cable runs, and the notes from every fix he made over two years. The three things that have failed before are all on the Sunday checklist he left behind &mdash; and if any of them happen again, the answer that worked last time comes with the alert.",
-      tag: "The knowledge stayed with the church",
+      detail: "34 devices, 41 labeled cable runs, and the notes from every fix he made. The three things that have failed before are on the checklist he left &mdash; and the answer that worked comes with the alert.",
+      tag: "Two years of context · nobody had to hand it over",
     },
   },
 ];
+
+const NODE_W = 236;
+const HUB_X = 430, HUB_Y = 128, HUB_W = 156, HUB_H = 104;
+const OUT_X = 672;
 ---
 
-<div class="lcd" data-luminos-demo>
+<div class="lcd" data-luminos-demo data-active="drops">
   <!-- Question picker -->
   <div class="lcd-pills" role="tablist" aria-label="Choose a question">
     {scenarios.map((s, i) => (
-      <button
-        type="button"
-        class:list={["lcd-pill", i === 0 && "is-active"]}
-        role="tab"
-        aria-selected={i === 0 ? "true" : "false"}
-        data-lcd-pick={s.id}
-      >{s.q}</button>
+      <button type="button" class:list={["lcd-pill", i === 0 && "is-active"]} role="tab"
+        aria-selected={i === 0 ? "true" : "false"} data-lcd-pick={s.id}>{s.q}</button>
     ))}
   </div>
 
+  <!-- Who is asking -->
   {scenarios.map((s, i) => (
-    <div class:list={["lcd-scene", i !== 0 && "is-hidden"]} data-lcd-scene={s.id}>
-      <!-- The question -->
-      <div class="lcd-ask">
-        <p class="lcd-who">{s.who}</p>
-        <div class="lcd-bubble lcd-bubble-q">{s.q}</div>
-      </div>
+    <p class:list={["lcd-who", i !== 0 && "is-hidden"]} data-lcd-who={s.id}>{s.who}</p>
+  ))}
 
-      <p class="lcd-step">What Luminos already knows &darr;</p>
+  <!-- The connection graph -->
+  <div class="lcd-graph">
+    <svg viewBox="0 0 980 340" width="100%" role="img"
+      aria-label="Connection diagram: six sources of context — your machines, devices, Signal Map, the last thirty minutes, thirty days of history, and every past fix — feed into Luminos, which answers in chat or on the phone. The sources used for the selected question are highlighted."
+      xmlns="http://www.w3.org/2000/svg">
 
-      <!-- Context -->
-      <div class="lcd-grid">
-        {contextCards.map((c, ci) => (
-          <div
-            class:list={["lcd-card", s.uses.includes(c.id) && "is-used"]}
-            data-lcd-card={c.id}
-            style={`--i:${ci}`}
-          >
-            <div class="lcd-card-top">
-              <span class="lcd-dot" aria-hidden="true"></span>
-              <p class="lcd-card-label">{c.label}</p>
-              {s.uses.includes(c.id) && <span class="lcd-used" aria-label="Used in this answer">used</span>}
-            </div>
-            <p class="lcd-card-detail">{c.detail}</p>
-          </div>
-        ))}
-      </div>
+      <!-- wires (drawn first, behind nodes) -->
+      {sources.map((s) => (
+        <path
+          class="lcd-wire"
+          data-wire={s.id}
+          d={`M${20 + NODE_W} ${s.y + 20} C ${330} ${s.y + 20}, ${360} ${HUB_Y + HUB_H / 2}, ${HUB_X} ${HUB_Y + HUB_H / 2}`}
+          fill="none" stroke-linecap="round"
+        />
+      ))}
+      <!-- hub to output -->
+      <path class="lcd-wire lcd-wire-out" d={`M${HUB_X + HUB_W} ${HUB_Y + HUB_H / 2} H ${OUT_X - 10}`} fill="none" stroke-linecap="round" />
+      <path class="lcd-arrow" d={`M${OUT_X - 16} ${HUB_Y + HUB_H / 2 - 6} L${OUT_X - 6} ${HUB_Y + HUB_H / 2} L${OUT_X - 16} ${HUB_Y + HUB_H / 2 + 6}`} fill="none" stroke-linecap="round" stroke-linejoin="round" />
 
-      <!-- The answer -->
-      <div class="lcd-answer" aria-live="polite">
-        <div class="lcd-bubble lcd-bubble-a">
+      <!-- source nodes -->
+      {sources.map((s) => (
+        <g class="lcd-node" data-node={s.id} transform={`translate(20, ${s.y})`}>
+          <rect width={NODE_W} height="40" rx="9" />
+          <circle class="lcd-node-dot" cx="18" cy="20" r="4.5" />
+          <text class="lcd-node-label" x="34" y="17">{s.label}</text>
+          <text class="lcd-node-meta" x="34" y="31">{s.meta}</text>
+        </g>
+      ))}
+
+      <!-- Luminos hub -->
+      <g transform={`translate(${HUB_X}, ${HUB_Y})`}>
+        <rect width={HUB_W} height={HUB_H} rx="16" fill="#0B0D10" />
+        <path d="M34 54 h9 l13-31 l15 58 l13-27 h9" fill="none" stroke="#2B7FF0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        <text x={HUB_W / 2} y="86" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Luminos</text>
+      </g>
+
+      <!-- outputs: chat + phone, one active at a time -->
+      <g class="lcd-out" data-out="chat" transform={`translate(${OUT_X}, 116)`}>
+        <rect width="288" height="128" rx="14" fill="#ffffff" stroke="#C5DDFB" stroke-width="2" />
+        <rect x="20" y="22" width="150" height="10" rx="5" fill="#E3E7ED" />
+        <rect x="20" y="42" width="210" height="10" rx="5" fill="#E3E7ED" />
+        <rect x="20" y="62" width="120" height="10" rx="5" fill="#E3E7ED" />
+        <rect x="20" y="92" width="120" height="20" rx="10" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.2" />
+        <text x="32" y="106" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" letter-spacing="0.8" fill="#1D66D6">IN THE APP</text>
+      </g>
+      <g class="lcd-out" data-out="phone" transform={`translate(${OUT_X}, 116)`}>
+        <rect width="288" height="128" rx="14" fill="#0B0D10" />
+        <path d="M30 44 c 0 -8 6 -14 14 -14 h10 l8 20 l-9 7 c 6 12 16 22 28 28 l7 -9 l20 8 v10 c 0 8 -6 14 -14 14 C 60 108 30 78 30 44 z" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linejoin="round" />
+        <text x="130" y="58" font-family="Archivo, sans-serif" font-size="15" font-weight="800" fill="#ffffff">910-WORSHIP</text>
+        <text x="130" y="78" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" letter-spacing="0.8" fill="#9CC6F8">ALREADY KNOWS YOUR SYSTEM</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- The answer -->
+  <div class="lcd-answers" aria-live="polite">
+    {scenarios.map((s, i) => (
+      <div class:list={["lcd-answer", i !== 0 && "is-hidden"]} data-lcd-answer={s.id}>
+        <div class="lcd-bubble">
           <p class="lcd-a-lead" set:html={s.answer.lead} />
           <p class="lcd-a-detail" set:html={s.answer.detail} />
         </div>
         <p class="lcd-tag">{s.answer.tag}</p>
       </div>
-    </div>
-  ))}
+    ))}
+  </div>
 </div>
 
 <style>
-  .lcd { --lcd-stagger: 90ms; }
-
-  .lcd-pills {
-    display: flex; flex-wrap: wrap; gap: 0.5rem;
-    justify-content: center; margin-bottom: 2rem;
-  }
+  .lcd-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
   .lcd-pill {
-    border: 1px solid var(--border);
-    background: #fff; color: var(--text-soft);
+    border: 1px solid var(--border); background: #fff; color: var(--text-soft);
     border-radius: 999px; padding: 0.55rem 1.1rem;
     font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600;
     cursor: pointer; transition: border-color .15s, background .15s, color .15s;
-    max-width: 100%;
   }
   .lcd-pill:hover { border-color: var(--primary-border); color: var(--primary); }
   .lcd-pill.is-active { background: var(--primary); border-color: var(--primary); color: #fff; }
 
-  .lcd-scene.is-hidden { display: none; }
-
-  .lcd-ask { text-align: center; }
   .lcd-who {
+    text-align: center; margin-top: 1.5rem;
     font-family: var(--font-mono-brand); font-size: 0.68rem; font-weight: 600;
     letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted);
-    margin-bottom: 0.6rem;
   }
+  .is-hidden { display: none; }
+
+  .lcd-graph { margin-top: 1rem; overflow-x: auto; }
+  .lcd-graph svg { min-width: 720px; height: auto; }
+
+  /* nodes */
+  .lcd-node rect { fill: #fff; stroke: var(--border); stroke-width: 1.5; transition: stroke .3s, fill .3s; }
+  .lcd-node-dot { fill: #E3E7ED; transition: fill .3s; }
+  .lcd-node-label { font-family: Archivo, sans-serif; font-size: 12px; font-weight: 700; fill: #78828F; transition: fill .3s; }
+  .lcd-node-meta { font-family: "IBM Plex Mono", monospace; font-size: 7.5px; font-weight: 600; letter-spacing: 0.7px; fill: #B6BECB; transition: fill .3s; }
+  .lcd-node.is-used rect { stroke: var(--primary); fill: #F7FBFF; }
+  .lcd-node.is-used .lcd-node-dot { fill: var(--primary); }
+  .lcd-node.is-used .lcd-node-label { fill: #0B0D10; }
+  .lcd-node.is-used .lcd-node-meta { fill: #1D66D6; }
+
+  /* wires */
+  .lcd-wire { stroke: #E3E7ED; stroke-width: 1.5; transition: stroke .3s, stroke-width .3s; }
+  .lcd-wire.is-used { stroke: #9CC6F8; stroke-width: 2.5; }
+  .lcd-wire-out, .lcd-arrow { stroke: var(--primary); stroke-width: 2.5; }
+  .lcd-arrow { stroke-width: 2.5; }
+
+  .lcd.is-live .lcd-wire.is-used {
+    stroke-dasharray: 9 190;
+    animation: lcd-flow 1.6s linear infinite;
+  }
+  @keyframes lcd-flow { to { stroke-dashoffset: -199; } }
+
+  /* outputs */
+  .lcd-out { opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .lcd-out.is-shown { opacity: 1; }
+
+  /* answer */
+  .lcd-answers { margin-top: 1.5rem; text-align: center; }
   .lcd-bubble {
-    display: inline-block; text-align: left;
-    border-radius: 1.1rem; padding: 0.9rem 1.25rem;
-    font-size: 1rem; line-height: 1.55; max-width: 44rem;
+    display: inline-block; text-align: left; max-width: 46rem;
+    background: #0B0D10; border-radius: 1.1rem; padding: 1rem 1.35rem;
   }
-  .lcd-bubble-q {
-    background: var(--bg-card-alt); color: var(--text);
-    border: 1px solid var(--border); font-weight: 600;
-  }
-
-  .lcd-step {
-    text-align: center; margin: 1.5rem 0 1rem;
-    font-family: var(--font-mono-brand); font-size: 0.68rem; font-weight: 600;
-    letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary);
-  }
-
-  .lcd-grid {
-    display: grid; gap: 0.75rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-  .lcd-card {
-    border: 1px solid var(--border); border-radius: 1rem;
-    background: #fff; padding: 1rem 1.1rem;
-    transition: border-color .25s, box-shadow .25s, opacity .25s, transform .25s;
-  }
-  .lcd-card.is-used {
-    border-color: var(--primary-border);
-    box-shadow: 0 8px 26px rgba(43,127,240,0.10);
-  }
-  .lcd-card-top { display: flex; align-items: center; gap: 0.5rem; }
-  .lcd-dot {
-    width: 0.5rem; height: 0.5rem; border-radius: 999px;
-    background: var(--border); flex-shrink: 0; transition: background .25s;
-  }
-  .lcd-card.is-used .lcd-dot { background: var(--primary); }
-  .lcd-card-label { font-size: 0.88rem; font-weight: 700; color: var(--text); margin: 0; }
-  .lcd-used {
-    margin-left: auto; font-family: var(--font-mono-brand);
-    font-size: 0.58rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--primary); background: var(--primary-light);
-    border-radius: 999px; padding: 0.15rem 0.45rem;
-  }
-  .lcd-card-detail {
-    margin: 0.5rem 0 0; font-size: 0.8rem; line-height: 1.6; color: var(--text-muted);
-  }
-
-  .lcd-answer { margin-top: 1.75rem; text-align: center; }
-  .lcd-bubble-a {
-    background: #0B0D10; color: #fff; border: 1px solid #0B0D10;
-  }
-  .lcd-a-lead { margin: 0; font-weight: 700; font-size: 1.02rem; }
-  .lcd-a-detail { margin: 0.55rem 0 0; font-size: 0.94rem; color: #C5DDFB; }
+  .lcd-a-lead { margin: 0; font-weight: 700; font-size: 1.02rem; color: #fff; line-height: 1.5; }
+  .lcd-a-detail { margin: 0.55rem 0 0; font-size: 0.94rem; color: #C5DDFB; line-height: 1.6; }
   .lcd-tag {
     margin-top: 0.75rem;
     font-family: var(--font-mono-brand); font-size: 0.65rem; font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted);
   }
 
-  /* Staged reveal — only applied once JS takes over */
-  .lcd.is-staged .lcd-card { opacity: 0; transform: translateY(6px); }
-  .lcd.is-staged .lcd-answer { opacity: 0; transform: translateY(6px); }
-  .lcd.is-staged .lcd-scene.is-playing .lcd-card {
-    animation: lcd-in .42s ease forwards;
-    animation-delay: calc(var(--i) * var(--lcd-stagger));
-  }
-  .lcd.is-staged .lcd-scene.is-playing .lcd-answer {
-    animation: lcd-in .5s ease forwards;
-    animation-delay: calc(6 * var(--lcd-stagger) + 160ms);
-  }
-  @keyframes lcd-in { to { opacity: 1; transform: none; } }
-
   @media (prefers-reduced-motion: reduce) {
-    .lcd.is-staged .lcd-card,
-    .lcd.is-staged .lcd-answer { opacity: 1; transform: none; animation: none; }
+    .lcd.is-live .lcd-wire.is-used { animation: none; stroke-dasharray: none; }
   }
 </style>
 
 <script>
   const root = document.querySelector<HTMLElement>("[data-luminos-demo]");
   if (root) {
+    const USES: Record<string, string[]> = {
+      drops: ["machines", "timeline", "history", "tickets"],
+      camera: ["devices", "map", "timeline"],
+      turnover: ["map", "devices", "history", "tickets"],
+    };
+    const OUT: Record<string, string> = { drops: "chat", camera: "phone", turnover: "chat" };
+
     const pills = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-lcd-pick]"));
-    const scenes = Array.from(root.querySelectorAll<HTMLElement>("[data-lcd-scene]"));
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const nodes = Array.from(root.querySelectorAll<SVGGElement>("[data-node]"));
+    const wires = Array.from(root.querySelectorAll<SVGPathElement>("[data-wire]"));
+    const outs = Array.from(root.querySelectorAll<SVGGElement>("[data-out]"));
+    const whos = Array.from(root.querySelectorAll<HTMLElement>("[data-lcd-who]"));
+    const answers = Array.from(root.querySelectorAll<HTMLElement>("[data-lcd-answer]"));
 
-    // Only stage the reveal when JS is present, so no-JS readers see everything.
-    root.classList.add("is-staged");
+    root.classList.add("is-live");
 
-    const play = (id: string) => {
-      scenes.forEach((s) => {
-        const match = s.dataset.lcdScene === id;
-        s.classList.toggle("is-hidden", !match);
-        s.classList.remove("is-playing");
-        if (match && !reduce) {
-          // restart the CSS animation
-          void s.offsetWidth;
-          s.classList.add("is-playing");
-        } else if (match) {
-          s.classList.add("is-playing");
-        }
-      });
+    const show = (id: string) => {
+      const used = USES[id] || [];
+      nodes.forEach((n) => n.classList.toggle("is-used", used.includes(n.dataset.node!)));
+      wires.forEach((w) => w.classList.toggle("is-used", used.includes(w.dataset.wire!)));
+      outs.forEach((o) => o.classList.toggle("is-shown", o.dataset.out === OUT[id]));
+      whos.forEach((w) => w.classList.toggle("is-hidden", w.dataset.lcdWho !== id));
+      answers.forEach((a) => a.classList.toggle("is-hidden", a.dataset.lcdAnswer !== id));
       pills.forEach((p) => {
         const on = p.dataset.lcdPick === id;
         p.classList.toggle("is-active", on);
         p.setAttribute("aria-selected", on ? "true" : "false");
       });
+      root.dataset.active = id;
     };
 
-    pills.forEach((p) => p.addEventListener("click", () => play(p.dataset.lcdPick!)));
-
-    // Play the first scenario when it scrolls into view
-    let started = false;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && !started) {
-          started = true;
-          play(scenes[0].dataset.lcdScene!);
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.25 });
-    io.observe(root);
+    pills.forEach((p) => p.addEventListener("click", () => show(p.dataset.lcdPick!)));
+    show("drops");
   }
 </script>

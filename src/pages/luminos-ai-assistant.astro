@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import LuminosContextFlow from "../components/diagrams/LuminosContextFlow.astro";
 import LuminosContextDemo from "../components/diagrams/LuminosContextDemo.astro";
 import LuminosMemoryTimeline from "../components/diagrams/LuminosMemoryTimeline.astro";
 
@@ -125,6 +126,24 @@ const structuredData = [
         <a href="/tech-manager" class="rounded-lg border border-slate-300 px-7 py-3 text-base font-semibold text-slate-700 hover:border-indigo-400 hover:text-indigo-700 transition">
           Download Tech Manager to unlock AV support
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How the context gets there -->
+  <section class="bg-slate-50 px-6 py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">How it works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">It&apos;s a signal path. It just carries knowledge instead of video.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Your gear reports to Tech Manager in the booth. Tech Manager carries what it sees up to Luminos. Your church&apos;s history rides along. By the time anyone asks a question, the answer is already informed.
+        </p>
+      </div>
+      <div class="mt-10 overflow-x-auto">
+        <div class="min-w-[760px]">
+          <LuminosContextFlow />
+        </div>
       </div>
     </div>
   </section>
