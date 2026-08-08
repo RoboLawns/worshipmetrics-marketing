@@ -19,10 +19,20 @@ const { currentSlug, heading, compact = false } = Astro.props;
       <a
         href={`/av-team/${role.slug}`}
         class:list={[
-          "group rounded-[1.5rem] border p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md",
+          "group overflow-hidden rounded-[1.5rem] border shadow-sm transition hover:-translate-y-0.5 hover:shadow-md",
           active ? "border-slate-900 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-900",
         ]}
       >
+        <img
+          src={role.image}
+          alt={`A church volunteer serving as ${role.title}`}
+          width="1600"
+          height="900"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[16/9] w-full object-cover"
+        />
+        <div class="p-6">
         <div class="flex items-start justify-between gap-4">
           <span class:list={["text-3xl font-extrabold", active ? "text-white" : "" ]} style={!active ? `color:${role.accentColor}` : undefined}>{index + 1}</span>
           {active && <span class="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-200">Current role</span>}
@@ -31,6 +41,7 @@ const { currentSlug, heading, compact = false } = Astro.props;
         <h3 class="mt-2 text-xl font-bold">{role.title}</h3>
         <p class:list={["mt-3 text-sm leading-relaxed", active ? "text-slate-300" : "text-slate-600"]}>{role.oneLine}</p>
         <span class:list={["mt-5 inline-block text-sm font-semibold", active ? "text-white" : "text-indigo-600"]}>Learn more →</span>
+        </div>
       </a>
     );
   })}

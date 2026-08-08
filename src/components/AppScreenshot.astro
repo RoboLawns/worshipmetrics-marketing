@@ -1,0 +1,42 @@
+---
+import type { AppScreenshot } from "../data/appScreenshots";
+
+interface Props {
+  shot: AppScreenshot;
+  /** Small uppercase label above the frame. */
+  label?: string;
+  /** Load immediately instead of lazily — only for above-the-fold use. */
+  eager?: boolean;
+  /** Darker framing for use on slate-950 sections. */
+  variant?: "light" | "dark";
+}
+
+const { shot, label, eager = false, variant = "light" } = Astro.props;
+
+const surface =
+  variant === "dark"
+    ? { frame: "border-white/10 bg-slate-900/70", label: "text-slate-300", caption: "text-slate-400" }
+    : { frame: "border-slate-200 bg-white", label: "text-indigo-600", caption: "text-slate-500" };
+---
+
+<figure class="mx-auto max-w-4xl">
+  {label && (
+    <figcaption class={`mb-3 text-center text-sm font-semibold uppercase tracking-[0.16em] ${surface.label}`}>
+      {label}
+    </figcaption>
+  )}
+  <div class={`overflow-hidden rounded-3xl border shadow-lg ${surface.frame}`}>
+    <img
+      src={shot.src}
+      alt={shot.alt}
+      width={shot.width}
+      height={shot.height}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+      class="block w-full"
+    />
+  </div>
+  <figcaption class={`mt-4 text-center text-sm leading-relaxed ${surface.caption}`}>
+    {shot.caption}
+  </figcaption>
+</figure>

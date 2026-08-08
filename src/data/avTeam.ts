@@ -6,6 +6,8 @@ export interface RoleSectionGroup {
 export interface AVTeamRole {
   slug: string;
   title: string;
+  /** Role portrait shown on the role page, the carousel cards, and the AV Club page. */
+  image: string;
   subtitle: string;
   accentColor: string;
   oneLine: string;
@@ -32,6 +34,7 @@ export interface AVTeamRole {
 export const avTeamRoles: AVTeamRole[] = [
   {
     slug: "service-director",
+    image: "/images/roles/av-role-service-director.jpg",
     title: "Service Director",
     subtitle: "The Quarterback",
     accentColor: "#1E3A5F",
@@ -94,6 +97,7 @@ export const avTeamRoles: AVTeamRole[] = [
   },
   {
     slug: "camera-operator",
+    image: "/images/roles/av-role-camera-operator.jpg",
     title: "Camera Operator",
     subtitle: "The Shot Framer",
     accentColor: "#2E7D5F",
@@ -152,6 +156,7 @@ export const avTeamRoles: AVTeamRole[] = [
   },
   {
     slug: "audio-engineer",
+    image: "/images/roles/av-role-audio-engineer.jpg",
     title: "Audio Engineer",
     subtitle: "The Ears",
     accentColor: "#8B4A6F",
@@ -215,6 +220,7 @@ export const avTeamRoles: AVTeamRole[] = [
   },
   {
     slug: "lyrics-operator",
+    image: "/images/roles/av-role-lyrics-operator.jpg",
     title: "Lyrics Operator",
     subtitle: "The Story Keeper",
     accentColor: "#B86A2E",
@@ -271,6 +277,7 @@ export const avTeamRoles: AVTeamRole[] = [
   },
   {
     slug: "stream-operator",
+    image: "/images/roles/av-role-stream-operator.jpg",
     title: "Stream Operator",
     subtitle: "The Broadcaster",
     accentColor: "#C93A3A",
@@ -328,6 +335,7 @@ export const avTeamRoles: AVTeamRole[] = [
   },
   {
     slug: "lighting-operator",
+    image: "/images/roles/av-role-lighting-operator.jpg",
     title: "Lighting Operator",
     subtitle: "The Atmosphere",
     accentColor: "#7A4AA8",
@@ -382,6 +390,7 @@ export const avTeamRoles: AVTeamRole[] = [
   },
   {
     slug: "recording-archivist",
+    image: "/images/roles/av-role-recording-archivist.jpg",
     title: "Recording / Archivist",
     subtitle: "The Historian",
     accentColor: "#4A6B7A",

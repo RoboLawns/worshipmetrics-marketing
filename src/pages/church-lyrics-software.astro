@@ -2,11 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import PresentLayerStack from "../components/diagrams/PresentLayerStack.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import AppScreenshot from "../components/AppScreenshot.astro";
+import { slideEditor, lyricsSlides } from "../data/appScreenshots";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-present-slides.jpg`;
+const HERO_IMAGE = "/images/app/worship-metrics-lyrics-slides.jpg";
 const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/song-management.jpg`;
 
 const features = [
@@ -113,7 +115,20 @@ const structuredData = {
         </div>
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={HERO_IMAGE} alt="Song slides with section labels in the Present workspace" loading="lazy" decoding="async" class="aspect-video w-full bg-slate-950 object-contain" />
+        <img src={LIFESTYLE_IMAGE} alt="Worship leader working through song arrangements before a service" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
+      </div>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-6xl border-t border-slate-200 pt-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">What the operator sees</p>
+        <h3 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">The whole song, on one screen, before it starts.</h3>
+        <p class="mt-4 text-base leading-relaxed text-slate-600">
+          Nothing about running lyrics should be a surprise. Every slide in the arrangement is visible at once, in order, so the person clicking through knows what is coming next instead of discovering it a beat late.
+        </p>
+      </div>
+      <div class="mt-10">
+        <AppScreenshot shot={lyricsSlides} />
       </div>
     </div>
   </section>
@@ -150,6 +165,9 @@ const structuredData = {
         <div class="min-w-[760px]">
           <PresentLayerStack />
         </div>
+      </div>
+      <div class="mt-14">
+        <AppScreenshot shot={slideEditor} label="The same layers, in the editor" />
       </div>
     </div>
   </section>

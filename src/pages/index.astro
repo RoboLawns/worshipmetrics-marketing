@@ -2,14 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import FoundersStrip from "../components/FoundersStrip.astro";
+import SaturdayCheckIn from "../components/SaturdayCheckIn.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const HERO_IMAGE = `${R2}/app-2026/lifestyle/tech-manager-hero-v2.jpg`;
+const HERO_IMAGE = "/images/lifestyle/church-av-booth-hero.jpg";
 const SUPPORT_IMAGE = `${R2}/homepage/Worship%20Metrics%20Church%20AV%20Tech%20Support.jpg`;
 const SCHEDULE_SHOT = `${R2}/app-2026/screenshots/worship-metrics-my-schedule.jpg`;
-const VOLUNTEER_PANEL_IMAGE = `${R2}/Tech%20Manager/WorshipMetrics%20Tech%20Manager%20Web-UI%20Panels.jpg`;
+const VOLUNTEER_PANEL_IMAGE = "/images/app/worship-metrics-video-switcher.jpg";
 
 const pillars = [
   {
@@ -112,7 +113,7 @@ const structuredData = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, Windows, Mac",
   url: SITE_URL,
-  image: `${R2}/app-2026/lifestyle/tech-manager-hero-v2.jpg`,
+  image: `${SITE_URL}/images/lifestyle/church-av-booth-hero.jpg`,
   slogan: "Wired for Worship.",
   description: "WorshipMetrics is the church platform that plans your service, runs the booth, streams your message, and monitors your AV — with tech support that already knows your system.",
   offers: {
@@ -195,7 +196,7 @@ const structuredData = {
       <ImageCarousel
         slides={[
           { src: SCHEDULE_SHOT, alt: "My Schedule with serving requests a volunteer can accept or decline", label: "My Schedule" },
-          { src: VOLUNTEER_PANEL_IMAGE, alt: "Volunteer-friendly production controls in WorshipMetrics", label: "Booth controls" },
+          { src: VOLUNTEER_PANEL_IMAGE, alt: "Switcher control with preview and program in WorshipMetrics", label: "Booth controls" },
         ]}
       />
     </div>
@@ -243,6 +244,9 @@ const structuredData = {
     </div>
   </section>
 
+  <!-- Saturday-night check-in -->
+  <SaturdayCheckIn href="/luminos-ai-assistant" linkLabel="See how Luminos works" />
+
   <!-- Pricing teaser -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-200 bg-indigo-50 p-8 text-center shadow-sm sm:p-10">
@@ -262,7 +266,7 @@ const structuredData = {
   <FoundersStrip
     variant="tint"
     heading="Three of us. Eleven kids between us. One booth we wanted them to have."
-    body="WorshipMetrics is built by a pastor, an engineer, and an AV educator who spent twelve years in other churches' booths before building this one. We made the platform we kept wishing existed — and an on-ramp for the young people who kept asking to help."
+    body="WorshipMetrics is built by a pastor, an engineer, and an AV educator with more than forty years of worship technology between them, most of it spent in other churches' booths. We made the platform we kept wishing existed — and an on-ramp for the young people who kept asking to help."
     linkLabel="Read how WorshipMetrics started"
   />
 

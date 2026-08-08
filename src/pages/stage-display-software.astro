@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import PresentStageDisplay from "../components/diagrams/PresentStageDisplay.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import AppScreenshot from "../components/AppScreenshot.astro";
+import { stageDisplay } from "../data/appScreenshots";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -86,6 +88,9 @@ const structuredData = {
         <div class="min-w-[760px]">
           <PresentStageDisplay />
         </div>
+      </div>
+      <div class="mt-14">
+        <AppScreenshot shot={stageDisplay} label="Building that layout" />
       </div>
     </div>
   </section>

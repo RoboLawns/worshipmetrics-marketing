@@ -5,13 +5,56 @@ const SITE_URL = "https://worshipmetrics.com";
 const DISCOVERY_URL = "/discovery-call";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW = `${R2}/homepage/new%20images`;
-const TECH_MANAGER_HERO_IMAGE = `${R2}/app-2026/lifestyle/tech-manager-hero-v2.jpg`;
-const TECH_MANAGER_PRO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-production-dashboard.jpg`;
+const TECH_MANAGER_HERO_IMAGE = "/images/lifestyle/tech-manager-hero.jpg";
+const PTZ_GAMEPAD_IMAGE = "/images/lifestyle/church-ptz-camera-operator.jpg";
+const TECH_MANAGER_PRO_IMAGE = "/images/app/worship-metrics-production-dashboard.jpg";
 const OG_IMAGE = TECH_MANAGER_HERO_IMAGE;
 
 const techManagerFeatureSections = [
   {
-    eyebrow: "Feature 1 — AV inventory",
+    eyebrow: "Feature 1 — Present",
+    title: "The presentation engine is in the app, not a second program.",
+    body: "Present runs inside Tech Manager, so lyrics, scripture, slides, and the stage display come from the same window that watches your gear — no separate presentation machine, and no retyping the setlist on Saturday night.",
+    bullets: [
+      "A full 1920×1080 slide editor with layered items and per-church themes",
+      "Scripture to slides from six translations, straight into the live playlist",
+      "Program and stage outputs to any connected screen, each with its own layout",
+    ],
+    images: [
+      { src: "/images/lifestyle/church-presentation-volunteer.jpg", alt: "Volunteer running lyrics and slides during a church service" },
+      { src: "/images/app/worship-metrics-present-editor.jpg", alt: "The Present slide editor inside WorshipMetrics Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 2 — Support chat",
+    title: "Ask Luminos, and it already knows what your booth looks like.",
+    body: "Luminos lives in the app with your live system in view — every device, connection, and stream. That is the difference between generic troubleshooting advice and a specific answer about the machine actually in front of you.",
+    bullets: [
+      "Chat support that reads your real device list, not a generic help article",
+      "Precise, checkable steps a volunteer can follow under pressure",
+      "Escalations carry the diagnosis with them, so nothing gets re-explained",
+    ],
+    images: [
+      { src: "/images/lifestyle/church-ai-chat-support.jpg", alt: "Church volunteer getting AI chat support in the booth" },
+      { src: "/images/app/worship-metrics-luminos-chat.jpg", alt: "Luminos AI chat support inside WorshipMetrics Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 3 — Phone support",
+    title: "Call 910-WORSHIP and skip the part where you describe your setup.",
+    body: "Once Tech Manager is running, the phone line sees the same live system the app does. Journey answers any hour with your system already documented, and a real human is patched in when it matters.",
+    bullets: [
+      "Support that opens with your system already on screen",
+      "No re-explaining the room every time someone new picks up",
+      "A free onboarding call gets you documented so support is this good from day one",
+    ],
+    images: [
+      { src: "/images/lifestyle/church-phone-support.jpg", alt: "Church tech volunteer on a support call from the booth" },
+      { src: "/images/app/worship-metrics-phone-support.jpg", alt: "Phone support view with live system context in WorshipMetrics" },
+    ],
+  },
+  {
+    eyebrow: "Feature 4 — AV inventory",
     title: "Know what you own before you need to fix it.",
     body: "Tech Manager keeps a living inventory of the gear in your production world so the booth is not depending on memory, screenshots, or one volunteer who knows where everything is.",
     bullets: [
@@ -20,12 +63,12 @@ const techManagerFeatureSections = [
       "Turn a messy rack into something the whole team can actually understand",
     ],
     images: [
-      { src: `${R2}/Tech%20Manager/AV%20Inventory%20-%20Device%20Management%20Worship%20Metrics%20Hero.jpg`, alt: "AV inventory and device management lifestyle view in WorshipMetrics" },
-      { src: `${R2}/Tech%20Manager/AV%20Inventory%20-%20Device%20Management%20Worship%20Metrics.jpg`, alt: "AV inventory and device management interface in WorshipMetrics" },
+      { src: "/images/lifestyle/church-av-device-layout.jpg", alt: "AV inventory and device management lifestyle view in WorshipMetrics" },
+      { src: "/images/app/worship-metrics-device-inventory.jpg", alt: "AV inventory and device management interface in WorshipMetrics" },
     ],
   },
   {
-    eyebrow: "Feature 2 — System documentation",
+    eyebrow: "Feature 5 — System documentation",
     title: "Document the system once. Keep the knowledge when volunteers change.",
     body: "System documentation is not glamorous, but it is what keeps a ministry from starting over every time a volunteer leaves or a cable gets moved without a note.",
     bullets: [
@@ -34,25 +77,12 @@ const techManagerFeatureSections = [
       "Give new volunteers a faster path into a booth they did not build themselves",
     ],
     images: [
-      { src: `${R2}/Tech%20Manager/Tech%20Manager%20System%20Documentation%20-%20Hero%20Lifestyle.jpg`, alt: "System documentation lifestyle view in Tech Manager" },
-      { src: `${R2}/Tech%20Manager/Tech%20Manager%20System%20Documentation.jpg`, alt: "System documentation interface in Tech Manager" },
+      { src: "/images/lifestyle/church-av-device-map.jpg", alt: "System documentation lifestyle view in Tech Manager" },
+      { src: "/images/app/worship-metrics-signal-map.jpg", alt: "System documentation interface in Tech Manager" },
     ],
   },
   {
-    eyebrow: "Feature 3 — Stream health",
-    title: "See stream problems while there is still time to respond.",
-    body: "Tech Manager watches the stream continuously so bitrate drops, encoder strain, and feed instability show up before the online congregation starts texting somebody in the booth.",
-    bullets: [
-      "Live visibility into OBS, vMix, and encoder health",
-      "A clearer picture of what changed before the stream went bad",
-      "One place to check the room before service starts",
-    ],
-    images: [
-      { src: `${R2}/Tech%20Manager/Worship%20Metrics%20-%20Stream%20Health%20Tech%20Manager.jpg`, alt: "Stream health interface in Tech Manager" },
-    ],
-  },
-  {
-    eyebrow: "Feature 4 — Dashboard check",
+    eyebrow: "Feature 6 — Dashboard check",
     title: "Start Sunday with one quick dashboard check.",
     body: "The dashboard is the practical heartbeat of the booth. One glance tells the team whether the system is healthy enough to trust before the room fills up.",
     bullets: [
@@ -61,34 +91,8 @@ const techManagerFeatureSections = [
       "Give the team a shared operating picture before service starts",
     ],
     images: [
-      { src: `${R2}/Tech%20Manager/Tech%20Manager%20Dashboard%20Check.jpg`, alt: "Tech Manager dashboard check interface" },
-    ],
-  },
-  {
-    eyebrow: "Feature 5 — Manual seat count",
-    title: "Count the room with a workflow volunteers can actually run.",
-    body: "Not every church starts with camera-based attendance. Manual seat count still matters, and Tech Manager helps churches run that process with less friction and cleaner weekly reporting.",
-    bullets: [
-      "Simple counting workflows for volunteers on Sunday morning",
-      "A cleaner handoff into attendance reporting later",
-      "A practical bridge for churches not ready for automation yet",
-    ],
-    images: [
-      { src: `${R2}/Tech%20Manager/Tech%20Manager%20Manual%20Seat%20Count%20-%20Hero%20Lifestyle.jpg`, alt: "Manual seat count lifestyle view in Tech Manager" },
-      { src: `${R2}/Tech%20Manager/Tech%20Manager%20Manual%20Seat%20Count.jpg`, alt: "Manual seat count interface in Tech Manager" },
-    ],
-  },
-  {
-    eyebrow: "Feature 6 — Auto-attendance",
-    title: "Measure the room without putting more stress on the room.",
-    body: "When churches are ready for it, Auto-Attendance gives them a clearer way to understand the room with less manual effort and less guesswork in the weekly numbers.",
-    bullets: [
-      "A more scalable path than manual counting alone",
-      "Cleaner attendance data for leaders and follow-up teams",
-      "A better measurement layer before larger AV investments",
-    ],
-    images: [
-      { src: `${R2}/Tech%20Manager/Auto-Attendance%20Worship%20Metrics%20Tech%20Manager.jpg`, alt: "Auto-attendance interface in Tech Manager" },
+      { src: "/images/lifestyle/church-production-booth.jpg", alt: "Church production booth before a Sunday service" },
+      { src: "/images/app/worship-metrics-production-dashboard.jpg", alt: "Tech Manager dashboard check interface" },
     ],
   },
   {
@@ -101,11 +105,26 @@ const techManagerFeatureSections = [
       "Support teams that are sharing work across volunteers and devices",
     ],
     images: [
-      { src: `${R2}/Tech%20Manager/Worship%20Metrics%20Remote%20Video%20Switcher%20Control.jpg`, alt: "Remote video switcher control interface in Tech Manager" },
+      { src: "/images/lifestyle/church-video-switcher-operator.jpg", alt: "Volunteer running the video switcher from a laptop in the booth" },
+      { src: "/images/app/worship-metrics-video-switcher.jpg", alt: "Remote video switcher control interface in Tech Manager" },
     ],
   },
   {
-    eyebrow: "Feature 8 — Reels local mode",
+    eyebrow: "Feature 8 — Stream health",
+    title: "See stream problems while there is still time to respond.",
+    body: "Tech Manager watches the stream continuously so bitrate drops, encoder strain, and feed instability show up before the online congregation starts texting somebody in the booth.",
+    bullets: [
+      "Live visibility into OBS, vMix, and encoder health",
+      "A clearer picture of what changed before the stream went bad",
+      "One place to check the room before service starts",
+    ],
+    images: [
+      { src: "/images/lifestyle/church-stream-health-monitoring.jpg", alt: "Church tech director watching stream health during a service" },
+      { src: "/images/app/worship-metrics-stream-health.jpg", alt: "Stream health interface in Tech Manager" },
+    ],
+  },
+  {
+    eyebrow: "Feature 9 — Reels local mode",
     title: "Turn Sunday into clips before Monday becomes another editing job.",
     body: "Reels local mode keeps sermon clipping close to the booth so churches can publish faster without needing a second, separate content stack just to get started.",
     bullets: [
@@ -114,22 +133,8 @@ const techManagerFeatureSections = [
       "Pair the booth workflow with the social workflow more naturally",
     ],
     images: [
-      { src: `${R2}/Tech%20Manager/WorshipClips%20Mobile%20Mode%20-%20Lifestyle%20Hero.jpg`, alt: "Reels lifestyle view in Tech Manager" },
-      { src: `${R2}/Tech%20Manager/WorshipClips%20Local%20Mode.jpg`, alt: "Reels local mode interface in Tech Manager" },
-    ],
-  },
-  {
-    eyebrow: "Feature 9 — Rundown UI",
-    title: "Give the room a cleaner way to move through the service.",
-    body: "The rundown UI helps the booth and the wider team follow the same order, see what is coming next, and stay calmer when the service does not unfold exactly as planned.",
-    bullets: [
-      "A clearer live sequence for the people actually running Sunday",
-      "Less translating the plan in the moment",
-      "A stronger handoff between planning and execution",
-    ],
-    images: [
-      { src: `${R2}/Tech%20Manager/WorshipMetrics%20Run%20Down%20UI%20-%20hero%20lifestyle.jpg`, alt: "Rundown UI lifestyle view in Tech Manager" },
-      { src: `${R2}/Tech%20Manager/WorshipMetrics%20Run%20Down%20UI.jpg`, alt: "Rundown UI interface in Tech Manager" },
+      { src: "/images/lifestyle/church-worship-reels.jpg", alt: "Reels lifestyle view in Tech Manager" },
+      { src: "/images/app/worship-metrics-reels-clipping.jpg", alt: "Reels local mode interface in Tech Manager" },
     ],
   },
 ];
@@ -416,6 +421,43 @@ const structuredData = [
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
         Tech Manager runs in your system tray from the moment your production computer starts. You do not manage it. You do not interact with it. It just works — watching your system, feeding data to the cloud, and stepping in automatically when something goes wrong.
       </p>
+    </div>
+  </section>
+
+  <!-- Camera control -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img
+          src={PTZ_GAMEPAD_IMAGE}
+          alt="A volunteer running four PTZ cameras from a laptop with a game controller during a service"
+          width="1920"
+          height="907"
+          loading="lazy"
+          decoding="async"
+          class="w-full object-cover"
+        />
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Camera control</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Give a volunteer a controller they already know how to hold.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Driving a PTZ camera well is a motor skill, and most churches hand the job to someone who does it one Sunday a month. So Camera Control offers more than one way in &mdash; a virtual joystick, the keyboard, or a physical gamepad plugged straight into the laptop.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "Target — click the picture and the camera centers on that spot",
+            "Frame — drag a box and the camera reframes and zooms to match it",
+            "Search — recenter with a wide pull to recover a shot that got lost",
+            "Presets stored with a thumbnail, so volunteers recall shots by picture instead of by number",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/kb/articles/visca-over-ip-ptz-control-guide/" class="btn-outline">How VISCA-over-IP control works &rarr;</a>
+        </div>
+      </div>
     </div>
   </section>
 

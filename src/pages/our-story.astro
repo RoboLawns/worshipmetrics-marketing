@@ -47,7 +47,7 @@ const founders = [
     name: "Paul Richards",
     role: "Educator & Onboarding Lead",
     photo: PAUL_HEADSHOT,
-    line: "Twelve years of church booths, several books on church production, and a deep conviction that the person running the stream deserves a backup.",
+    line: "Twelve years of church booths at PTZOptics, several books on church production, and a deep conviction that the person running the stream deserves a backup.",
     kids: "Three children",
   },
   {
@@ -87,14 +87,14 @@ const structuredData = {
   name: "Our Story — How WorshipMetrics Started",
   url: "https://worshipmetrics.com/our-story/",
   description:
-    "The story behind WorshipMetrics: twelve years in church AV booths, a friendship formed over live streaming, a pandemic that changed everything, and three fathers building an on-ramp for the next generation.",
+    "The story behind WorshipMetrics: forty years of combined worship technology experience, a friendship formed over live streaming, a pandemic that changed everything, and three fathers building an on-ramp for the next generation.",
   publisher: { "@type": "Organization", name: "WorshipMetrics" },
 };
 ---
 
 <Layout
   title="Our Story"
-  description="Twelve years in church booths around the world, a friendship formed over live streaming, and three fathers with eleven kids between them. This is how WorshipMetrics started."
+  description="Forty years of combined worship technology experience, a friendship formed over live streaming, and three fathers with eleven kids between them. This is how WorshipMetrics started."
   canonical="/our-story"
   structuredData={structuredData}
 >
@@ -103,7 +103,7 @@ const structuredData = {
     <div class="mx-auto max-w-3xl text-center">
       <span class="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">Our Story</span>
       <h1 class="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl">
-        We spent twelve years helping other churches. Then we went home.
+        Forty years of Sundays between us. Then we went home.
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">
         WorshipMetrics did not start in a boardroom. It started in the back of a sanctuary, at a folding table with a laptop on it, watching one volunteer hold an entire broadcast together by themselves — and realizing that nobody was coming to help them.
@@ -122,7 +122,7 @@ const structuredData = {
       <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">Same building, different country, identical problem</h2>
       <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-700">
         <p>
-          Paul Richards started at PTZOptics in 2014, and for the next twelve years the job took him into more church booths than he can count. Multi-site campuses with a full-time production staff. One-room congregations where the sound board and the thermostat shared a shelf. Churches on the other side of the world where he needed a translator to explain what an SDI cable does.
+          Between the three of us there is more than forty years of worship technology experience &mdash; Seth leading worship and running production long before any of this had a name, Andrew in ministry, and Paul on the road. Paul Richards started at PTZOptics in 2014, and for the next twelve years the job took him into more church booths than he can count. Multi-site campuses with a full-time production staff. One-room congregations where the sound board and the thermostat shared a shelf. Churches on the other side of the world where he needed a translator to explain what an SDI cable does.
         </p>
         <p>
           The buildings were never the same. The problem always was.
@@ -135,12 +135,56 @@ const structuredData = {
         </p>
       </div>
 
+      <figure class="my-12">
+        <img
+          src="/images/story/paul-richards-ptzoptics.jpg"
+          alt="Paul Richards presenting church live streaming workflows during his years at PTZOptics"
+          width="1024"
+          height="683"
+          loading="lazy"
+          decoding="async"
+          class="w-full rounded-2xl border border-slate-200 shadow-sm"
+        />
+        <figcaption class="mt-3 text-sm leading-relaxed text-slate-500">
+          Twelve years at PTZOptics, most of them spent explaining the same workflow to a different room.
+        </figcaption>
+      </figure>
+
       <figure class="my-12 border-l-4 border-indigo-400 bg-indigo-50/60 py-6 pl-6 pr-4 sm:pl-8">
         <blockquote class="text-xl font-medium leading-relaxed text-slate-800 sm:text-2xl">
-          &ldquo;Every church I visited had the same single point of failure, and it was a human being who had never asked to be one.&rdquo;
+          &ldquo;Every church has tech support issues. I tried my best to help train folks, but with the constant churn of new volunteers, church production technology just kept getting more complex.&rdquo;
         </blockquote>
         <figcaption class="mt-3 text-sm font-semibold text-indigo-700">Paul Richards</figcaption>
       </figure>
+
+      <div class="my-14 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 sm:p-8">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">It was not just us</p>
+        <h3 class="mt-3 text-2xl font-bold tracking-tight text-slate-900">The research says the same thing.</h3>
+        <p class="mt-4 text-base leading-relaxed text-slate-600">
+          In June 2026, <em>Church Production Magazine</em> published the first results of its &ldquo;Then vs. Now&rdquo; research project, comparing where church production teams are today against two years ago. The numbers describe the exact problem we had been watching from the road.
+        </p>
+        <dl class="mt-8 grid gap-6 sm:grid-cols-3">
+          {[
+            { stat: "57%", label: "name training and skill development their top operational challenge — up 20 points, now ahead of volunteer recruitment" },
+            { stat: "72%", label: "run production mostly on volunteers, up 7 points — and 79% at churches under 500" },
+            { stat: "+15pp", label: "growth in churches citing system complexity as a core operational challenge, now 38%" },
+          ].map(({ stat, label }) => (
+            <div>
+              <dt class="text-3xl font-extrabold tracking-tight text-indigo-600 sm:text-4xl">{stat}</dt>
+              <dd class="mt-2 text-sm leading-relaxed text-slate-600">{label}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="mt-8 text-base leading-relaxed text-slate-600">
+          Two more findings pointed the same direction. Volunteer training rose 24 points as a stated production priority, from 52% to 76%. And when churches evaluate technology now, <strong>reliability</strong> has climbed 23 points to 73% while <strong>ease of use for volunteers</strong> is up 15 points to 65% &mdash; cost has fallen from the top criterion to third.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600">
+          That is the whole thesis of this company, written in someone else&apos;s data: churches do not need more capability. They need what they already own to be operable by the people who actually show up on Sunday.
+        </p>
+        <p class="mt-6 text-xs leading-relaxed text-slate-400">
+          Source: Church Production Magazine, &ldquo;Then vs. Now: How Church Production Is Shifting,&rdquo; Research Series, June 2026.
+        </p>
+      </div>
 
       <!-- Chapter 2 -->
       <p class="mt-16 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">2019 &mdash; The book</p>
@@ -149,6 +193,20 @@ const structuredData = {
         <p>
           In 2019 Paul wrote it all down. <em>Helping Your Church Live Stream</em> was meant to be the thing he could hand to a church instead of scheduling another two-hour phone call &mdash; the whole workflow, in plain language, for people who had never produced anything in their lives.
         </p>
+        <figure class="my-10">
+          <img
+            src="/images/story/helping-your-church-live-stream-book.jpg"
+            alt="The cover of Helping Your Church Live Stream by Paul Richards"
+            width="889"
+            height="622"
+            loading="lazy"
+            decoding="async"
+            class="w-full rounded-2xl border border-slate-200 shadow-sm"
+          />
+          <figcaption class="mt-3 text-sm leading-relaxed text-slate-500">
+            <em>Helping Your Church Live Stream</em>, 2019 &mdash; the book that started the conversation with Seth.
+          </figcaption>
+        </figure>
         <p>
           While the book was making the rounds, Paul reached out to a producer he had been watching for a while: <strong>Seth Haberman</strong>, better known online as the Digital Pastor. Seth had served at several churches, including Gateway Church in McKinney, Texas, and he was the rare kind of church video producer who kept going well past &ldquo;good enough for a Sunday.&rdquo;
         </p>
@@ -252,7 +310,7 @@ const structuredData = {
     <div class="mx-auto max-w-3xl">
       <div class="text-center">
         <span class="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">The short version</span>
-        <h2 class="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Twelve years, in order</h2>
+        <h2 class="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">How it happened, in order</h2>
       </div>
 
       <ol class="mt-14 space-y-0">
@@ -278,7 +336,7 @@ const structuredData = {
       <span class="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">The three of us</span>
       <h2 class="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A pastor, an engineer, and an educator &mdash; and eleven kids between them.</h2>
       <p class="mt-6 text-lg leading-relaxed text-slate-600">
-        Most church software is built by engineers who have never led a service, or by ministry leaders who cannot ship software. We ended up with one of each, plus somebody whose whole job for twelve years was making sure churches actually succeeded after the box was opened.
+        Most church software is built by engineers who have never led a service, or by ministry leaders who cannot ship software. We ended up with one of each, plus somebody whose whole job for twelve years was making sure churches actually succeeded after the box was opened &mdash; more than forty years of worship technology between the three of us.
       </p>
     </div>
 

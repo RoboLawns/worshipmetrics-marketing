@@ -1,0 +1,37 @@
+---
+import LuminosPhoneCheckin from "./diagrams/LuminosPhoneCheckin.astro";
+
+interface Props {
+  /** Section background so it can alternate with whatever sits around it. */
+  variant?: "white" | "slate";
+  /** Show a link out to the full Luminos page — used when this runs as a teaser. */
+  href?: string | null;
+  linkLabel?: string;
+}
+
+const { variant = "white", href = null, linkLabel = "See how Luminos works" } = Astro.props;
+
+const bg = variant === "slate" ? "bg-slate-50" : "bg-white";
+---
+
+<section class={`px-6 py-20 ${bg}`}>
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Saturday night, from anywhere</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">&ldquo;How is everything looking for Sunday?&rdquo;</h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+        The question every tech director asks themselves the night before &mdash; usually with no way to answer it except driving over. Ask it from your phone instead, and something that has been watching all week answers.
+      </p>
+    </div>
+    <div class="mt-10 overflow-x-auto">
+      <div class="min-w-[760px]">
+        <LuminosPhoneCheckin />
+      </div>
+    </div>
+    {href && (
+      <div class="mt-10 text-center">
+        <a href={href} class="btn-outline" data-wm-track="cta_click" data-wm-track-label="home_luminos_checkin" data-wm-track-location="home_luminos">{linkLabel} &rarr;</a>
+      </div>
+    )}
+  </div>
+</section>
