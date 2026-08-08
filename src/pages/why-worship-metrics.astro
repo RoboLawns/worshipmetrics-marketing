@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FoundersStrip from "../components/FoundersStrip.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
@@ -142,4 +143,12 @@ const structuredData = {
       </div>
     </div>
   </section>
+
+  <!-- The honest version of "why us" -->
+  <FoundersStrip
+    variant="light"
+    eyebrow="The honest version"
+    heading="We are not the biggest option, and we are not trying to be."
+    body="WorshipMetrics is three people who met over church live streaming and spent years watching the same problems repeat in booth after booth. We are building the platform our own congregations needed, which is a narrow mission and a deliberate one."
+  />
 </Layout>

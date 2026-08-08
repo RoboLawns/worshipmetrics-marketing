@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FoundersStrip from "../components/FoundersStrip.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -214,6 +215,15 @@ const structuredData = {
       </div>
     </div>
   </section>
+
+  <!-- Why this page exists -->
+  <FoundersStrip
+    variant="tint"
+    eyebrow="Why this page exists"
+    heading="We have eleven kids between the three of us."
+    body="Paul has three. Seth has five. Andrew has three. Every one of them has grown up watching a service get produced, and not one of them had an obvious way in. The AV Club is the on-ramp we wanted for our own children — and for the students in your church who keep hovering near the booth without being asked."
+    linkLabel="Read how WorshipMetrics started"
+  />
 
   <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-center">

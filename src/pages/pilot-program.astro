@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FoundersStrip from "../components/FoundersStrip.astro";
 ---
 
 <Layout
@@ -98,6 +99,14 @@ import Layout from "../layouts/Layout.astro";
       </ul>
     </div>
   </section>
+
+  <!-- Who is on the other end of a pilot -->
+  <FoundersStrip
+    variant="light"
+    eyebrow="Who you would be piloting with"
+    heading="A pilot means you get us, not an account manager."
+    body="We are a small team on purpose, so early churches work directly with the people building the product. If something does not fit the way your church actually runs Sunday, tell us — that feedback is most of how this gets built."
+  />
 
   <!-- Request form -->
   <section class="bg-slate-50 px-6 py-20">

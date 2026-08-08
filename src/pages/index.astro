@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
+import FoundersStrip from "../components/FoundersStrip.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
@@ -256,6 +257,14 @@ const structuredData = {
       </div>
     </div>
   </section>
+
+  <!-- Who is behind this -->
+  <FoundersStrip
+    variant="tint"
+    heading="Three of us. Eleven kids between us. One booth we wanted them to have."
+    body="WorshipMetrics is built by a pastor, an engineer, and an AV educator who spent twelve years in other churches' booths before building this one. We made the platform we kept wishing existed — and an on-ramp for the young people who kept asking to help."
+    linkLabel="Read how WorshipMetrics started"
+  />
 
   <!-- Final CTA -->
   <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">

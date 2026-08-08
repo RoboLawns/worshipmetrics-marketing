@@ -1,0 +1,95 @@
+---
+import { founders } from "../data/founders";
+
+interface Props {
+  /** Small uppercase label above the heading. */
+  eyebrow?: string;
+  /** The page-specific promise this strip is backing up. */
+  heading: string;
+  /** One or two sentences tying the founders to what this page is asking for. */
+  body: string;
+  /** Surface treatment so the strip can sit on any page without clashing. */
+  variant?: "light" | "tint" | "dark";
+  /** Link text to the full story. Set to null to hide the link. */
+  linkLabel?: string | null;
+}
+
+const {
+  eyebrow = "Who is behind this",
+  heading,
+  body,
+  variant = "tint",
+  linkLabel = "Read our story",
+} = Astro.props;
+
+const surface = {
+  light: {
+    section: "bg-white",
+    card: "border-slate-200 bg-slate-50",
+    heading: "text-slate-900",
+    body: "text-slate-600",
+    name: "text-slate-900",
+    role: "text-indigo-600",
+    line: "text-slate-600",
+    ring: "ring-white",
+    link: "text-indigo-600 hover:text-indigo-800",
+  },
+  tint: {
+    section: "bg-indigo-50",
+    card: "border-indigo-100 bg-white",
+    heading: "text-slate-900",
+    body: "text-slate-600",
+    name: "text-slate-900",
+    role: "text-indigo-600",
+    line: "text-slate-600",
+    ring: "ring-indigo-50",
+    link: "text-indigo-600 hover:text-indigo-800",
+  },
+  dark: {
+    section: "bg-slate-950",
+    card: "border-slate-800 bg-slate-900",
+    heading: "text-white",
+    body: "text-slate-300",
+    name: "text-white",
+    role: "text-indigo-300",
+    line: "text-slate-400",
+    ring: "ring-slate-900",
+    link: "text-indigo-300 hover:text-indigo-200",
+  },
+}[variant];
+---
+
+<section class={`px-4 py-16 sm:px-6 lg:px-8 ${surface.section}`}>
+  <div class={`mx-auto max-w-5xl rounded-[2rem] border p-8 shadow-sm sm:p-10 ${surface.card}`}>
+    <div class="text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">{eyebrow}</p>
+      <h2 class={`mt-3 text-2xl font-bold tracking-tight sm:text-3xl ${surface.heading}`}>{heading}</h2>
+      <p class={`mx-auto mt-4 max-w-2xl text-base leading-relaxed ${surface.body}`}>{body}</p>
+    </div>
+
+    <ul class="mt-10 grid gap-8 sm:grid-cols-3">
+      {founders.map(({ name, role, photo, line }) => (
+        <li class="text-center">
+          <img
+            src={photo}
+            alt={name}
+            loading="lazy"
+            decoding="async"
+            width="96"
+            height="96"
+            class={`mx-auto h-24 w-24 rounded-full object-cover shadow-md ring-4 ${surface.ring}`}
+          />
+          <p class={`mt-4 font-semibold ${surface.name}`}>{name}</p>
+          <p class={`mt-0.5 text-sm font-medium ${surface.role}`}>{role}</p>
+          <p class={`mt-3 text-sm leading-relaxed ${surface.line}`}>{line}</p>
+        </li>
+      ))}
+    </ul>
+
+    {linkLabel && (
+      <p class="mt-10 text-center">
+        <a href="/our-story" class={`text-sm font-semibold ${surface.link}`}>{linkLabel} &rarr;</a>
+      </p>
+    )}
+  </div>
+</section>

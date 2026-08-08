@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FoundersStrip from "../components/FoundersStrip.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 ---
@@ -112,4 +113,12 @@ const APP_URL = "https://app.worshipmetrics.com";
       </div>
     </div>
   </section>
+
+  <!-- Who you are reaching -->
+  <FoundersStrip
+    variant="light"
+    eyebrow="Who you are reaching"
+    heading="A small company, on purpose."
+    body="WorshipMetrics is built by three people who met over church live streaming and never stopped talking about it. When you email or call, you are reaching the people who make the decisions about what gets built next."
+  />
 </Layout>

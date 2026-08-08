@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import PulseEscalation from "../components/diagrams/PulseEscalation.astro";
+import FoundersStrip from "../components/FoundersStrip.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -296,6 +297,14 @@ const structuredData = [
       </div>
     </div>
   </section>
+
+  <!-- The humans behind the AI -->
+  <FoundersStrip
+    variant="light"
+    eyebrow="And when a human steps in"
+    heading="The reason we can promise this is that we have all been the person in the booth."
+    body="Journey and Luminos handle the first tier so that when a human picks up, it is someone who has actually run a service under pressure. Twelve years of church booths, a worship leader turned engineer, and a working pastor — that is the whole company."
+  />
 
   <!-- Final CTA — pick up the phone -->
   <section class="bg-indigo-600 px-4 py-20 sm:px-6 lg:px-8">

@@ -1,0 +1,341 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { founders as founderData } from "../data/founders";
+
+const [PAUL_HEADSHOT, SETH_HEADSHOT, ANDREW_HEADSHOT] = founderData.map((f) => f.photo);
+
+const timeline = [
+  {
+    year: "2014",
+    title: "The road begins",
+    body: "Paul Richards joins PTZOptics and starts helping churches around the world get their services on camera and online.",
+  },
+  {
+    year: "2019",
+    title: "A book and an introduction",
+    body: "Helping Your Church Live Stream is published. Paul reaches out to Seth Haberman — the Digital Pastor — and a friendship starts.",
+  },
+  {
+    year: "2020",
+    title: "The doors close",
+    body: "COVID makes live streaming essential overnight. Thousands of churches, hundreds of webinars, and the Churches That Live Stream community.",
+  },
+  {
+    year: "2023",
+    title: "Coming home",
+    body: "Paul turns toward his own congregation, First Presbyterian Church in West Chester, and starts thinking about an AV club for the kids.",
+  },
+  {
+    year: "2024",
+    title: "The idea gets a name",
+    body: "Paul and Seth start designing the platform they kept wishing existed. It becomes WorshipMetrics.",
+  },
+  {
+    year: "2025",
+    title: "The third voice",
+    body: "Rev. Andrew Esqueda is called as senior pastor at First Presbyterian — a technology-forward pastor who becomes the ministry conscience of the product.",
+  },
+  {
+    year: "2026",
+    title: "All in",
+    body: "After twelve years, Paul leaves PTZOptics to build WorshipMetrics full time. The platform launches in September.",
+  },
+];
+
+const founders = [
+  {
+    name: "Paul Richards",
+    role: "Educator & Onboarding Lead",
+    photo: PAUL_HEADSHOT,
+    line: "Twelve years of church booths, several books on church production, and a deep conviction that the person running the stream deserves a backup.",
+    kids: "Three children",
+  },
+  {
+    name: "Seth Haberman",
+    role: "CTO & Digital Pastor",
+    photo: SETH_HEADSHOT,
+    line: "The engineer who has actually done the job — worship leader, camera operator, and the guy asking hard questions at the vMix booth.",
+    kids: "Five children",
+  },
+  {
+    name: "Rev. Andrew Esqueda",
+    role: "Pastor & Visionary",
+    photo: ANDREW_HEADSHOT,
+    line: "An active senior pastor who pressure-tests every feature against one question: does this actually help a local church?",
+    kids: "Three children",
+  },
+];
+
+const beliefs = [
+  {
+    title: "The booth should be a doorway",
+    body: "A church camera is one of the few places a fourteen-year-old can be handed real responsibility on a Sunday morning. That is worth building for.",
+  },
+  {
+    title: "One volunteer is not a plan",
+    body: "When the stream depends on one person never getting sick, that is not a failure of the volunteer. It is a gap in the tools, and it is a fixable one.",
+  },
+  {
+    title: "Small churches deserve good tools",
+    body: "Nothing about running Sunday well should require a broadcast budget. The tools that make it easier should reach the 80-seat sanctuary too.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "Our Story — How WorshipMetrics Started",
+  url: "https://worshipmetrics.com/our-story/",
+  description:
+    "The story behind WorshipMetrics: twelve years in church AV booths, a friendship formed over live streaming, a pandemic that changed everything, and three fathers building an on-ramp for the next generation.",
+  publisher: { "@type": "Organization", name: "WorshipMetrics" },
+};
+---
+
+<Layout
+  title="Our Story"
+  description="Twelve years in church booths around the world, a friendship formed over live streaming, and three fathers with eleven kids between them. This is how WorshipMetrics started."
+  canonical="/our-story"
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-slate-50 px-4 py-24 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">Our Story</span>
+      <h1 class="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl">
+        We spent twelve years helping other churches. Then we went home.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">
+        WorshipMetrics did not start in a boardroom. It started in the back of a sanctuary, at a folding table with a laptop on it, watching one volunteer hold an entire broadcast together by themselves — and realizing that nobody was coming to help them.
+      </p>
+    </div>
+    <div class="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-indigo-200 opacity-20 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-violet-300 opacity-20 blur-3xl"></div>
+  </section>
+
+  <!-- Narrative -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <article class="mx-auto max-w-2xl">
+
+      <!-- Chapter 1 -->
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">2014 &mdash; The road</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">Same building, different country, identical problem</h2>
+      <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-700">
+        <p>
+          Paul Richards started at PTZOptics in 2014, and for the next twelve years the job took him into more church booths than he can count. Multi-site campuses with a full-time production staff. One-room congregations where the sound board and the thermostat shared a shelf. Churches on the other side of the world where he needed a translator to explain what an SDI cable does.
+        </p>
+        <p>
+          The buildings were never the same. The problem always was.
+        </p>
+        <p>
+          Somewhere near the back there was a table, and at that table stood one person &mdash; usually a volunteer, often the only one in the building who understood how any of it worked. They ran the camera, the slides, the audio feed, and the stream. If they caught the flu, the service did not go out. If they moved away for a job, the church lost years of hard-won knowledge in a single weekend, and the next person started over from nothing.
+        </p>
+        <p>
+          Paul got very good at helping that person. What he could never do, from the other end of a phone call or across a trade show counter, was give them a second person.
+        </p>
+      </div>
+
+      <figure class="my-12 border-l-4 border-indigo-400 bg-indigo-50/60 py-6 pl-6 pr-4 sm:pl-8">
+        <blockquote class="text-xl font-medium leading-relaxed text-slate-800 sm:text-2xl">
+          &ldquo;Every church I visited had the same single point of failure, and it was a human being who had never asked to be one.&rdquo;
+        </blockquote>
+        <figcaption class="mt-3 text-sm font-semibold text-indigo-700">Paul Richards</figcaption>
+      </figure>
+
+      <!-- Chapter 2 -->
+      <p class="mt-16 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">2019 &mdash; The book</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">A book, an email, and the friend who answered it</h2>
+      <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-700">
+        <p>
+          In 2019 Paul wrote it all down. <em>Helping Your Church Live Stream</em> was meant to be the thing he could hand to a church instead of scheduling another two-hour phone call &mdash; the whole workflow, in plain language, for people who had never produced anything in their lives.
+        </p>
+        <p>
+          While the book was making the rounds, Paul reached out to a producer he had been watching for a while: <strong>Seth Haberman</strong>, better known online as the Digital Pastor. Seth had served at several churches, including Gateway Church in McKinney, Texas, and he was the rare kind of church video producer who kept going well past &ldquo;good enough for a Sunday.&rdquo;
+        </p>
+        <p>
+          You could find him at the vMix booth at the NAB Show, asking the kind of questions that made the engineers put their coffee down. He was a complete techie and a serious Christian, and he believed &mdash; genuinely believed &mdash; that a well-produced service could carry the gospel to someone who would never walk through the front doors on their own.
+        </p>
+        <p>
+          Seth wrote back, and the two of them hit it off immediately. Seth&apos;s Digital Pastor channel and Paul&apos;s work on the PTZOptics and StreamGeeks channels started to overlap, then collaborate, then stop being separable. Somewhere in there it stopped being a professional relationship and became a friendship.
+        </p>
+      </div>
+
+      <!-- Chapter 3 -->
+      <p class="mt-16 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">2020 &mdash; The doors close</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">When every sanctuary in the world went dark at once</h2>
+      <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-700">
+        <p>
+          Then came March 2020, and the work changed overnight.
+        </p>
+        <p>
+          Live streaming stopped being a nice-to-have and became the only way a congregation could gather at all. Pastors who had never touched an HDMI cable were suddenly asking about bitrates and upload speeds. Churches that had put off the whole question for a decade had a week to solve it.
+        </p>
+        <p>
+          Paul and Seth spent that year on Zoom calls, webinars, and live streams, helping thousands of churches get a signal out of a building nobody was allowed to enter. It was not glamorous work. It was mostly patience, and answering the same question kindly for the fortieth time, for people who were frightened and exhausted and trying to reach a congregation that had never been so alone.
+        </p>
+        <p>
+          Out of that season came the <strong>Churches That Live Stream</strong> community, which turned into thousands of church tech people helping each other through the hardest year most of them had ever had. It also produced more books &mdash; on OBS, on vMix, on PTZ cameras, and on the thing Paul kept coming back to: how to train a volunteer who has never done this before, and make them want to come back next week.
+        </p>
+        <p>
+          Twelve years of this work does something to a person. Paul went into it as an AV guy with a product to support. He came out of it with friendships in congregations on nearly every continent, and a much clearer sense of what he actually wanted to build.
+        </p>
+      </div>
+
+      <figure class="my-12 border-l-4 border-indigo-400 bg-indigo-50/60 py-6 pl-6 pr-4 sm:pl-8">
+        <blockquote class="text-xl font-medium leading-relaxed text-slate-800 sm:text-2xl">
+          &ldquo;We spent 2020 helping churches reach people who could not be in the room. It turns out that is not a pandemic problem. That is just ministry now.&rdquo;
+        </blockquote>
+        <figcaption class="mt-3 text-sm font-semibold text-indigo-700">Seth Haberman</figcaption>
+      </figure>
+
+      <!-- Chapter 4 -->
+      <p class="mt-16 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">2023&ndash;2024 &mdash; Coming home</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">Eleven kids and nowhere to put them</h2>
+      <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-700">
+        <p>
+          By 2023 the emergency had passed, and Paul noticed something uncomfortable. He had spent nearly a decade helping other people&apos;s churches while doing very little at his own: <strong>First Presbyterian Church in West Chester</strong>, where his family sits on a Sunday morning.
+        </p>
+        <p>
+          He wanted to start an AV club.
+        </p>
+        <p>
+          Part of that was the kids. Paul has three children. Seth has five. And across both households, and across every church Paul had visited in the previous decade, the same thing kept showing up: young people who were genuinely, unmistakably interested in this &mdash; in cameras, in switching, in graphics, in running the stream &mdash; and no path forward for any of them.
+        </p>
+        <p>
+          There was no on-ramp. No club, no training track, no obvious way for a curious thirteen-year-old to become the person who runs camera two. The knowledge lived in one volunteer&apos;s head and left the building when they did.
+        </p>
+        <p>
+          Meanwhile the youth minister at First Presbyterian was looking for ways to connect with the music committee, and the pieces started to look like they belonged together. Paul and Seth began talking seriously: what if the tools that made Sunday easier were also the tools that brought new people in? What if the online audience &mdash; that large, quiet, mostly anonymous group of people watching every week &mdash; could actually be connected to, welcomed, and eventually invited to serve?
+        </p>
+        <p>
+          That is the conversation that became WorshipMetrics.
+        </p>
+      </div>
+
+      <!-- Chapter 5 -->
+      <p class="mt-16 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">2025 &mdash; The third voice</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">The pastor who arrived at exactly the right moment</h2>
+      <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-700">
+        <p>
+          While all of this was brewing, First Presbyterian called a new senior pastor: <strong>Rev. Andrew Esqueda</strong>.
+        </p>
+        <p>
+          Andrew turned out to be a technology-forward, future-forward pastor who saw immediately what Paul and Seth were circling. He also happens to be almost exactly the same age as both of them. Three men in their late thirties, all with young families &mdash; Andrew has three children of his own, which brings the total across the three households to eleven.
+        </p>
+        <p>
+          That is not a marketing detail. It is the reason the product looks the way it does. Every one of those eleven kids is a person who could be handed a real job on a Sunday morning, and every one of them is a person who will quietly drift away from church if nobody ever hands them one.
+        </p>
+        <p>
+          Andrew&apos;s role is to keep the whole thing honest. He is an active pastor with an actual congregation, actual volunteers, and an actual Sunday to get through every week. When a feature does not survive contact with that reality, he says so.
+        </p>
+      </div>
+
+      <!-- Chapter 6 -->
+      <p class="mt-16 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">2026 &mdash; All in</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">Fearlessly, together</h2>
+      <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-700">
+        <p>
+          In 2026, after twelve years, Paul left PTZOptics to build WorshipMetrics full time. It was not a small decision. It was the right one.
+        </p>
+        <p>
+          We are three Christian men who have spent our careers at the place where technology meets ministry, and we have all arrived at the same conviction: the tools a church uses on a Sunday should carry the message further, share the load between more people, and create somewhere for the next generation to stand.
+        </p>
+        <p>
+          WorshipMetrics launches in <strong>September 2026</strong>. We are building it fearlessly, together, because we believe it matters.
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- Timeline -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <div class="text-center">
+        <span class="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">The short version</span>
+        <h2 class="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Twelve years, in order</h2>
+      </div>
+
+      <ol class="mt-14 space-y-0">
+        {timeline.map(({ year, title, body }, i) => (
+          <li class="relative flex gap-6 pb-10 last:pb-0">
+            <div class="flex flex-col items-center">
+              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-indigo-200 bg-white text-sm font-bold text-indigo-700 shadow-sm">{year}</span>
+              {i < timeline.length - 1 && <span class="mt-2 w-px grow bg-indigo-200" aria-hidden="true"></span>}
+            </div>
+            <div class="pt-3">
+              <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+              <p class="mt-2 leading-relaxed text-slate-600">{body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Founders -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">The three of us</span>
+      <h2 class="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A pastor, an engineer, and an educator &mdash; and eleven kids between them.</h2>
+      <p class="mt-6 text-lg leading-relaxed text-slate-600">
+        Most church software is built by engineers who have never led a service, or by ministry leaders who cannot ship software. We ended up with one of each, plus somebody whose whole job for twelve years was making sure churches actually succeeded after the box was opened.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-14 grid max-w-6xl gap-8 lg:grid-cols-3">
+      {founders.map(({ name, role, photo, line, kids }) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:border-indigo-200 hover:shadow-md">
+          <img src={photo} alt={name} loading="lazy" decoding="async" class="mb-6 aspect-[4/3] w-full rounded-2xl object-cover" />
+          <h3 class="text-xl font-semibold text-slate-900">{name}</h3>
+          <p class="mt-1 text-sm font-medium text-indigo-600">{role}</p>
+          <p class="mt-4 leading-relaxed text-slate-600">{line}</p>
+          <p class="mt-5 text-sm font-medium text-slate-500">{kids}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mx-auto mt-10 max-w-3xl text-center">
+      <a href="/about" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">Read the full team bios &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Beliefs -->
+  <section class="bg-indigo-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">What the story taught us</span>
+      <h2 class="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Three things we will not design around.</h2>
+    </div>
+
+    <div class="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-3">
+      {beliefs.map(({ title, body }) => (
+        <div class="rounded-2xl border border-indigo-100 bg-white p-7 shadow-sm">
+          <h3 class="font-semibold text-slate-900">{title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mx-auto mt-12 max-w-2xl text-center">
+      <p class="text-base leading-relaxed text-slate-600">
+        That last one is why the AV club matters to us so much.
+        <a href="/av-club" class="font-semibold text-indigo-600 hover:text-indigo-800">See what we are building for student volunteers &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl rounded-[2rem] border border-slate-200 bg-slate-50 p-8 text-center shadow-sm sm:p-10">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Come be part of it</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">We would genuinely like to hear your church&apos;s story too.</h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+        Call 910-WORSHIP and you will get Paul, not a call center. Tell us what Sunday looks like at your church, who is running the booth, and what keeps breaking. That conversation is how most of this got built in the first place.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+        <a href="tel:+19109677447" class="btn-primary">Call 910-WORSHIP</a>
+        <a href="/discovery-call" class="btn-outline">Book a discovery call</a>
+        <a href="mailto:paul@worshipmetrics.com" class="btn-outline">Email Paul</a>
+      </div>
+    </div>
+  </section>
+</Layout>

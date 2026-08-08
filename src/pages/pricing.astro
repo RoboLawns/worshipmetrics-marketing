@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PricingTwoAxis from "../components/diagrams/PricingTwoAxis.astro";
+import FoundersStrip from "../components/FoundersStrip.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -494,6 +495,14 @@ const structuredData = [
       </div>
     </div>
   </section>
+
+  <!-- Who you are actually paying -->
+  <FoundersStrip
+    variant="light"
+    eyebrow="Before you decide"
+    heading="You should know who you are handing your Sunday to."
+    body="There is no call center behind this price. WorshipMetrics is a pastor, an engineer, and an AV educator who have spent their careers in church production — and Paul still answers 910-WORSHIP himself."
+  />
 
   <!-- Final CTA -->
   <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
