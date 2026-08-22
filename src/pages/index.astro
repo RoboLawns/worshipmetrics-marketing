@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import FoundersStrip from "../components/FoundersStrip.astro";
 import SaturdayCheckIn from "../components/SaturdayCheckIn.astro";
+import WhyWeBuilt from "../components/WhyWeBuilt.astro";
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
@@ -22,8 +23,11 @@ const pillars = [
     href: "/present",
     linkLabel: "See Present",
     slides: [
-      { src: `${R2}/app-2026/lifestyle/presentation.jpg`, alt: "Volunteer running lyrics and slides with WorshipMetrics Present", kind: "lifestyle" },
-      { src: `${R2}/app-2026/screenshots/worship-metrics-present-slides.jpg`, alt: "Present slide grid with playlists, backgrounds library, and live program output" },
+      { src: `${R2}/app-2026/lifestyle/presentation.jpg`, alt: "Volunteer running lyrics and slides with WorshipMetrics Present", kind: "lifestyle", label: "Room" },
+      { src: `${R2}/app-2026/screenshots/worship-metrics-present-slides.jpg`, alt: "Present slide grid with playlists, backgrounds library, and live program output", label: "Slides" },
+      { src: "/images/app/worship-metrics-present-live.jpg", alt: "The Present live tab with the slide grid, program monitor, service timers, and clocks", label: "Live" },
+      { src: "/images/app/worship-metrics-cloud-slide-editor.jpg", alt: "The slide editor in the browser with the full text properties panel and media library", label: "Editor" },
+      { src: "/images/app/worship-metrics-stage-display-chords.jpg", alt: "The stage display editor with chord rows above the lyrics and a key selector", label: "Stage" },
     ],
   },
   {
@@ -35,8 +39,8 @@ const pillars = [
     href: "/tech-manager",
     linkLabel: "See Tech Manager",
     slides: [
-      { src: `${R2}/app-2026/lifestyle/team-collaboration.jpg`, alt: "Church production team working together in the booth", kind: "lifestyle" },
-      { src: `${R2}/app-2026/screenshots/worship-metrics-production-dashboard.jpg`, alt: "Production dashboard with audio mix, video, and stream health in WorshipMetrics" },
+      { src: "/images/lifestyle/church-production-booth-live.jpg", alt: "A booth operator running the WorshipMetrics production dashboard beside OBS during a live service", kind: "lifestyle" },
+      { src: "/images/app/worship-metrics-production-dashboard.jpg", alt: "Production dashboard with audio mix, video, and stream health in WorshipMetrics" },
     ],
   },
   {
@@ -156,9 +160,15 @@ const structuredData = {
         </div>
         <p class="mt-4 text-sm text-slate-500">AV monitoring, the Signal Map, and alerts are free forever. No credit card.</p>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-        <img src={HERO_IMAGE} alt="Two young volunteers running the church livestream and booth from tablets during worship" loading="eager" decoding="async" fetchpriority="high" class="w-full object-cover" />
-      </div>
+      <ImageCarousel
+        eager
+        slides={[
+          { src: HERO_IMAGE, alt: "Two young volunteers running the church livestream and booth from tablets during worship", kind: "lifestyle", label: "Sunday" },
+          { src: "/images/lifestyle/worship-rehearsal-chord-slides.jpg", alt: "A worship leader editing chord chart slides in WorshipMetrics from the stage at rehearsal", kind: "lifestyle", label: "Rehearsal" },
+          { src: "/images/lifestyle/pastor-editing-slides-home.jpg", alt: "A pastor making a quick slide change from home in WorshipMetrics", kind: "lifestyle", label: "Home" },
+          { src: "/images/lifestyle/church-scripture-operator-booth.jpg", alt: "A booth operator running scripture slides live in WorshipMetrics beside the mixer and multiview", kind: "lifestyle", label: "Booth" },
+        ]}
+      />
     </div>
   </section>
 
@@ -201,6 +211,8 @@ const structuredData = {
       />
     </div>
   </section>
+
+  <WhyWeBuilt bg="slate" />
 
   <!-- Support: AI-first, human-backed -->
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">

@@ -1,0 +1,368 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FoundersStrip from "../components/FoundersStrip.astro";
+import WhyWeBuilt from "../components/WhyWeBuilt.astro";
+
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const STORY_IMAGE = "/images/lifestyle/church-lyrics-operator-booth.jpg";
+const TEAM_IMAGE = `${R2}/app-2026/lifestyle/team-collaboration.jpg`;
+
+const NOTE_TEXT = `Hi [Name],
+
+I just made a designated gift of $[amount] to the church for a WorshipMetrics subscription. WorshipMetrics is a tool for church production teams that organizes the Sunday run-of-show, documents the AV system, and helps volunteers troubleshoot without calling someone at 8:30 on a Sunday morning.
+
+You can see the plans and sign up at worshipmetrics.com/pricing. I'd love for our team to have it for the coming year, but of course the church can use the gift however it sees best.
+
+Thanks for all you do,
+[Your name]`;
+
+const NOTE_EMAIL_HREF = `mailto:?subject=${encodeURIComponent("A gift toward WorshipMetrics for our production team")}&body=${encodeURIComponent(NOTE_TEXT)}`;
+const GIFT_KIT_HREF = "/downloads/worshipmetrics-gift-kit.pdf";
+
+// Annual = 2 months free, so 10× the monthly price.
+const giftPlans = [
+  {
+    plan: "Assist",
+    bestFor: "Churches that want the full suite and an expert on call — whether or not they stream",
+    monthly: "$49/mo",
+    annual: "$490",
+  },
+  {
+    plan: "Stream",
+    bestFor: "Churches that stream — premium cloud streaming plus everything in Assist. The most popular gift",
+    monthly: "$99/mo per campus",
+    annual: "$990",
+  },
+  {
+    plan: "Stream + Sunday Assurance",
+    bestFor: "The everything gift — a production pro on call every single Sunday, watching over your team",
+    monthly: "$598/mo",
+    annual: "$5,980",
+  },
+];
+
+const whyCards = [
+  {
+    title: "It helps every Sunday.",
+    body: "Volunteer AV teams are stretched thin. WorshipMetrics gives them one place for the run-of-show, gear documentation, and troubleshooting — so nobody is guessing at 8:45 a.m.",
+  },
+  {
+    title: "It's a one-time ask, not a monthly line item.",
+    body: "An annual plan covers a full year of services, special events, and holidays — with two months free built into annual billing. Nobody has to defend a subscription at every budget meeting.",
+  },
+  {
+    title: "It's tax-deductible when given through your church.",
+    body: "Gifts to your church are charitable contributions. Your gift goes to your church, not to us — see the plain-English details below.",
+  },
+];
+
+const steps = [
+  {
+    step: "1",
+    title: "Give to your church, designated for WorshipMetrics",
+    body: "Make a gift to your church in the amount of the annual plan. Use your church's normal giving method — online giving, check, or cash — and note the designation: “Designated gift – WorshipMetrics subscription.”",
+  },
+  {
+    step: "2",
+    title: "Send your church the recommendation",
+    body: "Forward our short note (below) to your pastor, church administrator, or tech director. It explains what WorshipMetrics is, what the plan costs, and how to sign up. Your church makes the final decision on how designated funds are used.",
+  },
+  {
+    step: "3",
+    title: "Your church signs up. Your team gets started.",
+    body: "Your church subscribes directly at worshipmetrics.com. Onboarding takes about 30 minutes, and we'll help the team get the first service loaded.",
+  },
+];
+
+const taxPoints = [
+  "Your gift goes to your church, which is a charitable organization. Payments made directly to WorshipMetrics are a software purchase, not a donation — which is why we don't take the gift ourselves.",
+  "Your church will provide a written acknowledgment for gifts of $250 or more. Keep it with your tax records.",
+  "Designating a gift for a specific purpose (like “WorshipMetrics subscription”) is a normal practice. Your church keeps discretion over how funds are used, which is what keeps the gift deductible.",
+  "Starting with the 2026 tax year, there is a charitable deduction available even for people who don't itemize — so more donors than ever can benefit.",
+];
+
+const leaderPoints = [
+  "Record the gift as a designated contribution. A suggested fund name is “Technology – WorshipMetrics” — or simply add it to your existing technology or production fund.",
+  "Issue your standard contribution acknowledgment (required for gifts of $250+).",
+  "Subscribe at worshipmetrics.com/pricing using a church payment method. We'll email a receipt the church can keep for its records.",
+  "Questions? Reply to any email from us or call 910-WORSHIP.",
+];
+
+const faqItems = [
+  {
+    question: "Can I just pay WorshipMetrics directly and have it count as a donation?",
+    answer: "No. We're a for-profit software company, so a payment to us isn't a charitable gift. Giving through your church is what makes it deductible, and it's also just cleaner for the church's books.",
+  },
+  {
+    question: "What if my church decides not to use it?",
+    answer: "Designated gifts are a recommendation, not a requirement. Your church keeps discretion over the funds. In practice, churches honor the donor's intent whenever they reasonably can.",
+  },
+  {
+    question: "Can a business sponsor a church's subscription?",
+    answer: "Yes. Many local businesses sponsor church ministries. Depending on how it's structured, a business may treat it as a charitable gift or as an advertising expense. Talk to your accountant.",
+  },
+  {
+    question: "Can I give anonymously?",
+    answer: "Yes. Give through your church's normal anonymous giving process and send the recommendation note separately — or ask the church office to pass it along.",
+  },
+  {
+    question: "Does my church need to be a registered 501(c)(3)?",
+    answer: "Churches are generally treated as tax-exempt without filing, but your church's finance team can confirm its status.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Layout
+  title="Gift WorshipMetrics to Your Church"
+  socialTitle="WorshipMetrics | Gift a year to your church."
+  description="Gift a year of WorshipMetrics to your church as a designated donation. It's simple, typically tax-deductible, and it gives your volunteer production team the tools — and the backup — they've been asking for."
+  canonical="/gift"
+  ogImage={TEAM_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-4 py-1 shadow-sm">For donors &middot; A gift that serves every Sunday</p>
+      <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        Give your church&apos;s production team the tools they&apos;ve been asking for.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+        Gift a year of WorshipMetrics to your church. The gift goes to your church, not to us, so it works like any other charitable donation. Your church pays for the plan, and your team gets organized run-of-shows, system documentation, and a calmer Sunday morning.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={GIFT_KIT_HREF} target="_blank" rel="noopener" class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="gift_hero_kit" data-wm-track-location="gift_hero">Download the Gift Kit</a>
+        <a href="/pricing" class="btn-outline">See plans &amp; pricing</a>
+      </div>
+      <p class="mt-5 text-sm text-slate-500">A five-page PDF: how it works, the tax part in plain English, current pricing, the recommendation letter, and a page for your church&apos;s finance team &mdash; ready to print or forward.</p>
+    </div>
+  </section>
+
+  <!-- Why this is a great gift -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Why this is a great gift</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Most gifts get used once. This one gets used every week.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {whyCards.map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h3 class="text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What your gift actually does -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">What your gift actually does</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">It reaches the person in the back of the room.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          In most churches, one hard-working volunteer holds the whole broadcast together &mdash; and can&apos;t step away, because everything they know lives in their head and nothing is connected. They can&apos;t hand a piece of it to anyone else, so they carry all of it, every week.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Your gift changes the shape of that job. WorshipMetrics organizes the whole system and connects it to the cloud and to the team&apos;s phones, so collaboration becomes the normal way of working: the run-of-show is shared, the documentation is written down, and helping hands can actually help &mdash; even from home.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          And it creates new places to serve. When the booth has real roles with real tools, a curious teenager can be handed camera two &mdash; and the next generation gets a reason to stay involved. That&apos;s what churches build with our <a href="/av-club" class="font-semibold text-indigo-600 hover:text-indigo-800">AV club</a>.
+        </p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={STORY_IMAGE} alt="A church volunteer running the booth calmly with WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">How it works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Three steps, through your church&apos;s normal giving.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {steps.map(({ step, title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{step}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- The tax part -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
+      <p class="eyebrow">The tax part, in plain English</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Simple, standard, and above-board.</h2>
+      <ul class="mt-6 space-y-4">
+        {taxPoints.map((point) => (
+          <li class="flex items-start gap-3 text-base leading-relaxed text-slate-600">
+            <svg class="mt-1 h-5 w-5 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6 text-sm italic leading-relaxed text-slate-500">
+        We&apos;re a software company, not tax advisors. Please confirm the details with your own tax professional or your church&apos;s finance team.
+      </p>
+    </div>
+  </section>
+
+  <!-- Annual pricing -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Annual plan pricing</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One gift, twelve months &mdash; with two months free.</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          Annual billing includes two months free, so a year costs ten times the monthly price. These are the amounts to give.
+        </p>
+      </div>
+      <div class="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-left">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-slate-700">Plan</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Best for</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Monthly price</th>
+              <th class="px-6 py-4 font-semibold text-slate-700">Annual gift amount</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            {giftPlans.map(({ plan, bestFor, monthly, annual }) => (
+              <tr>
+                <td class="px-6 py-4 font-semibold text-slate-900">{plan}</td>
+                <td class="px-6 py-4 text-slate-600">{bestFor}</td>
+                <td class="px-6 py-4 text-slate-600">{monthly}</td>
+                <td class="px-6 py-4 font-bold text-indigo-600">{annual}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-6 text-center text-sm text-slate-500">
+        Not sure which plan fits your church? Gift the amount you&apos;re comfortable with and let your tech team choose. <a href="/pricing" class="font-semibold text-indigo-600 hover:text-indigo-800">Compare plans &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Copy-and-paste note -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="eyebrow">Copy-and-paste note for your church</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Send this to your pastor, administrator, or tech lead.</h2>
+      </div>
+      <div class="mt-10 rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
+        <blockquote id="gift-note" class="space-y-4 border-l-4 border-indigo-200 pl-6 text-base leading-relaxed text-slate-700">
+          <p>Hi [Name],</p>
+          <p>I just made a designated gift of $[amount] to the church for a WorshipMetrics subscription. WorshipMetrics is a tool for church production teams that organizes the Sunday run-of-show, documents the AV system, and helps volunteers troubleshoot without calling someone at 8:30 on a Sunday morning.</p>
+          <p>You can see the plans and sign up at worshipmetrics.com/pricing. I&apos;d love for our team to have it for the coming year, but of course the church can use the gift however it sees best.</p>
+          <p>Thanks for all you do,<br />[Your name]</p>
+        </blockquote>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <button id="copy-note-btn" type="button" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="gift_copy_note" data-wm-track-location="gift_note">Copy this note</button>
+          <a href={NOTE_EMAIL_HREF} class="btn-outline" data-wm-track="cta_click" data-wm-track-label="gift_email_note" data-wm-track-location="gift_note">Email it</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For church leaders -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-200 bg-indigo-50 p-8 shadow-sm sm:p-10">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
+        <div>
+          <p class="eyebrow">For church leaders and finance teams</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">If a member has gifted WorshipMetrics to your church:</h2>
+          <ul class="mt-6 space-y-4">
+            {leaderPoints.map((point) => (
+              <li class="flex items-start gap-3 text-base leading-relaxed text-slate-600">
+                <svg class="mt-1 h-5 w-5 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={TEAM_IMAGE} alt="A church team collaborating on Sunday production together" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Gifting, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <summary class="cursor-pointer text-base font-semibold text-slate-900 marker:content-none">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WhyWeBuilt bg="slate" />
+
+  <!-- Who's behind it -->
+  <FoundersStrip
+    variant="light"
+    eyebrow="Who your gift equips"
+    heading="Your gift lands with a team that answers the phone."
+    body="WorshipMetrics is a pastor, an engineer, and an AV educator who have spent their careers in church production. When your church signs up, Paul helps the team get their first service loaded — and still answers 910-WORSHIP himself."
+  />
+
+  <!-- Closing CTA -->
+  <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Ready to give?</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
+        Download the Gift Kit: how it works, the tax part in plain English, current pricing, and a recommendation letter your pastor can hold in their hands.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={GIFT_KIT_HREF} target="_blank" rel="noopener" class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="gift_footer_kit" data-wm-track-location="gift_footer_cta">Download the Gift Kit</a>
+        <a href="/contact" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Talk to us first</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const noteEl = document.getElementById("gift-note")!;
+  const copyBtn = document.getElementById("copy-note-btn")! as HTMLButtonElement;
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(noteEl.innerText.trim());
+      const original = copyBtn.textContent;
+      copyBtn.textContent = "Copied ✓";
+      setTimeout(() => { copyBtn.textContent = original; }, 2000);
+    } catch {
+      copyBtn.textContent = "Select and copy above";
+    }
+  });
+</script>

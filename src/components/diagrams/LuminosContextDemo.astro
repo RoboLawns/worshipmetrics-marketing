@@ -6,12 +6,12 @@
  */
 
 const sources = [
-  { id: "machines",  y: 20,  label: "Your machines",      meta: "CPU · RAM · DISK · EVERY 15s" },
-  { id: "devices",   y: 72,  label: "Your devices",       meta: "CAMERAS · CONSOLES · SWITCHERS" },
-  { id: "map",       id2: "", y: 124, label: "Your Signal Map", meta: "PORTS · LABELED CABLE RUNS" },
-  { id: "timeline",  y: 176, label: "The last 30 minutes", meta: "HEALTH BEFORE IT BROKE" },
-  { id: "history",   y: 228, label: "30 days of history",  meta: "EVERY SERVICE · EVERY SCORE" },
-  { id: "tickets",   y: 280, label: "Every past fix",      meta: "WHAT WAS TRIED · WHAT WORKED" },
+  { id: "machines",  y: 20,  label: "Your machines",      meta: "CPU · RAM · DISK · EVERY 15s",   short: "CPU · RAM · DISK" },
+  { id: "devices",   y: 72,  label: "Your devices",       meta: "CAMERAS · CONSOLES · SWITCHERS", short: "CAMERAS · CONSOLES" },
+  { id: "map",       y: 124, label: "Your Signal Map",    meta: "PORTS · LABELED CABLE RUNS",     short: "PORTS · CABLE RUNS" },
+  { id: "timeline",  y: 176, label: "The last 30 minutes", meta: "HEALTH BEFORE IT BROKE",        short: "HEALTH BEFORE IT BROKE" },
+  { id: "history",   y: 228, label: "30 days of history",  meta: "EVERY SERVICE · EVERY SCORE",   short: "EVERY SERVICE · SCORE" },
+  { id: "tickets",   y: 280, label: "Every past fix",      meta: "WHAT WAS TRIED · WHAT WORKED",  short: "WHAT WAS TRIED" },
 ];
 
 const scenarios = [
@@ -74,7 +74,7 @@ const OUT_X = 672;
 
   <!-- The connection graph -->
   <div class="lcd-graph">
-    <svg viewBox="0 0 980 340" width="100%" role="img"
+    <svg class="lcd-svg-wide" viewBox="0 0 980 340" width="100%" role="img"
       aria-label="Connection diagram: six sources of context — your machines, devices, Signal Map, the last thirty minutes, thirty days of history, and every past fix — feed into Luminos, which answers in chat or on the phone. The sources used for the selected question are highlighted."
       xmlns="http://www.w3.org/2000/svg">
 
@@ -124,6 +124,60 @@ const OUT_X = 672;
         <text x="130" y="78" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" letter-spacing="0.8" fill="#9CC6F8">ALREADY KNOWS YOUR SYSTEM</text>
       </g>
     </svg>
+
+    <!-- Portrait: the same graph, sources stacked above the hub. -->
+    <svg class="lcd-svg-tall" viewBox="0 0 360 592" width="100%" role="img"
+      aria-label="Connection diagram: six sources of context — your machines, devices, Signal Map, the last thirty minutes, thirty days of history, and every past fix — feed into Luminos, which answers in chat or on the phone. The sources used for the selected question are highlighted."
+      xmlns="http://www.w3.org/2000/svg">
+
+      <!-- wires -->
+      {sources.map((s, i) => {
+        const ny = 31 + i * 50;
+        return (
+          <path
+            class="lcd-wire"
+            data-wire={s.id}
+            d={`M240 ${ny} C 322 ${ny}, 180 ${ny + (346 - ny) * 0.5}, 180 346`}
+            fill="none" stroke-linecap="round"
+          />
+        );
+      })}
+      <path class="lcd-wire lcd-wire-out" d="M180 438 V 452" fill="none" stroke-linecap="round" />
+      <path class="lcd-arrow" d="M172 446 L180 454 L188 446" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
+      <!-- source nodes -->
+      {sources.map((s, i) => (
+        <g class="lcd-node" data-node={s.id} transform={`translate(10, ${10 + i * 50})`}>
+          <rect width="230" height="42" rx="9" />
+          <circle class="lcd-node-dot" cx="18" cy="21" r="4.5" />
+          <text class="lcd-node-label" x="34" y="19">{s.label}</text>
+          <text class="lcd-node-meta" x="34" y="33">{s.short}</text>
+        </g>
+      ))}
+
+      <!-- Luminos hub -->
+      <g transform="translate(110, 346)">
+        <rect width="140" height="92" rx="16" fill="#0B0D10" />
+        <path d="M44 44 h6 l9-21 l10 39 l9-18 h6" fill="none" stroke="#2B7FF0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="70" y="76" text-anchor="middle" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Luminos</text>
+      </g>
+
+      <!-- outputs -->
+      <g class="lcd-out" data-out="chat" transform="translate(10, 462)">
+        <rect width="340" height="120" rx="14" fill="#ffffff" stroke="#C5DDFB" stroke-width="2" />
+        <rect x="22" y="24" width="160" height="10" rx="5" fill="#E3E7ED" />
+        <rect x="22" y="44" width="240" height="10" rx="5" fill="#E3E7ED" />
+        <rect x="22" y="64" width="128" height="10" rx="5" fill="#E3E7ED" />
+        <rect x="22" y="88" width="128" height="22" rx="11" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.2" />
+        <text x="36" y="103" font-family="IBM Plex Mono, monospace" font-size="11.5" font-weight="600" letter-spacing="0.8" fill="#1D66D6">IN THE APP</text>
+      </g>
+      <g class="lcd-out" data-out="phone" transform="translate(10, 462)">
+        <rect width="340" height="120" rx="14" fill="#0B0D10" />
+        <g transform="translate(26, 32) scale(1.5)"><path d="M9 11 c0-2 2-4 4-4h3l2.4 6-2.9 2c1.9 3.4 4.8 6.3 8.2 8.2l2-2.9 6 2.4v3c0 2-2 4-4 4 C17.6 29.7 9 21.1 9 11 z" fill="none" stroke="#2B7FF0" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" /></g>
+        <text x="128" y="56" font-family="Archivo, sans-serif" font-size="16" font-weight="800" fill="#ffffff">910-WORSHIP</text>
+        <text x="128" y="78" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.6" fill="#9CC6F8">KNOWS YOUR SYSTEM</text>
+      </g>
+    </svg>
   </div>
 
   <!-- The answer -->
@@ -158,8 +212,19 @@ const OUT_X = 672;
   }
   .is-hidden { display: none; }
 
-  .lcd-graph { margin-top: 1rem; overflow-x: auto; }
-  .lcd-graph svg { min-width: 720px; height: auto; }
+  .lcd-graph { margin-top: 1rem; }
+  .lcd-graph svg { height: auto; }
+  /* Below md the graph runs top-to-bottom and fits the screen; above it, the
+     wide version scrolls as before. */
+  .lcd-svg-wide { display: none; }
+  .lcd-svg-tall { display: block; margin-inline: auto; max-width: 460px; }
+  .lcd-svg-tall .lcd-node-label { font-size: 13.5px; }
+  .lcd-svg-tall .lcd-node-meta { font-size: 10.5px; }
+  @media (min-width: 768px) {
+    .lcd-graph { overflow-x: auto; }
+    .lcd-svg-wide { display: block; min-width: 720px; }
+    .lcd-svg-tall { display: none; }
+  }
 
   /* nodes */
   .lcd-node rect { fill: #fff; stroke: var(--border); stroke-width: 1.5; transition: stroke .3s, fill .3s; }

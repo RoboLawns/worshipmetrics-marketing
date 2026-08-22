@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ResearchCallout from "../components/ResearchCallout.astro";
+import { integrationStats } from "../data/churchProductionResearch";
 import IntegrationsHero from "../components/integrations/IntegrationsHero.astro";
 import IntegrationsSearch from "../components/integrations/IntegrationsSearch.astro";
 import IntegrationsGrid from "../components/integrations/IntegrationsGrid.astro";
@@ -236,4 +238,13 @@ const structuredData = {
 
     update();
   </script>
+  <!-- Why integration is now a buying criterion -->
+  <ResearchCallout
+    variant="slate"
+    eyebrow="Why this matters more than it used to"
+    heading="Churches are done buying systems that do not talk to each other."
+    body="Integration with existing systems is one of the fastest-rising things churches weigh when evaluating technology — because every disconnected system is one more thing a volunteer has to hold in their head."
+    stats={integrationStats}
+    footnote="We would rather connect to the gear you already trust than ask you to replace it. That is the whole reason this page is as long as it is."
+  />
 </Layout>

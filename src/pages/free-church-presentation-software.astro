@@ -1,17 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import AppScreenshot from "../components/AppScreenshot.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
+import { stageDisplay, scriptureBrowser } from "../data/appScreenshots";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-present-slides.jpg`;
-const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/presentation.jpg`;
+const REHEARSAL_IMAGE = "/images/lifestyle/worship-rehearsal-chord-slides.jpg";
+const BOOTH_IMAGE = "/images/lifestyle/church-scripture-operator-booth.jpg";
 
 const freeFeatures = [
   {
     title: "A real slide editor",
-    body: "Full 1920×1080 editing with layered items, text tools, and six lyric layouts. Not a template picker — an actual editor.",
+    body: "Full 1920×1080 editing with layered items, per-church themes, shrink-to-fit text, and six lyric layouts from Centered Classic to Lower-Third. Not a template picker — an actual editor.",
+  },
+  {
+    title: "Live video on your slides",
+    body: "Capture cards and NDI cameras drop onto slides like any other media — so IMAG, picture-in-picture teaching, and camera-behind-lyrics looks are just another slide, not another system.",
   },
   {
     title: "Lyrics from your song library",
@@ -19,19 +27,31 @@ const freeFeatures = [
   },
   {
     title: "Scripture in six translations",
-    body: "Type a reference, pick verses per slide, and the passage becomes clean slides. KJV, ASV, WEB, YLT, Darby, and BBE are included.",
+    body: "Type a reference, pick verses per slide, and the passage becomes clean slides — even appended to the live show mid-service. KJV, ASV, WEB, YLT, Darby, and BBE are included.",
   },
   {
     title: "Playlists built from the plan",
-    body: "The service plan projects into a ready playlist — songs, announcements, countdowns, and media in the order Sunday actually runs.",
+    body: "The service plan projects into a ready playlist — songs, announcements, countdowns, and media in the order Sunday actually runs. The plan changes Thursday? It re-syncs live, in seconds.",
   },
   {
-    title: "Timers and countdowns",
-    body: "Pre-service countdowns, count-up, and countdown-to-time with warning and overrun colors. The classic five-minutes-to-start screen, built in.",
+    title: "A media bin that behaves",
+    body: "Images and video with fit modes, crop, trim, fades, loop, and per-use audio gain — organized in folders, with a relink flow when files move.",
+  },
+  {
+    title: "Data-driven overlays",
+    body: "Lower thirds, messages, logo bugs, and timer overlays — and overlay fields can bind to a CSV, JSON, or XML source, so names and rosters update themselves row by row.",
+  },
+  {
+    title: "Macros for big moments",
+    body: "One click fires a named sequence: change the background, jump to a playlist, show an overlay, start audio, wait, clear — even fire the booth's control protocols.",
+  },
+  {
+    title: "Timers, clocks & countdowns",
+    body: "Countdown, count-up, and countdown-to-time with warning and overrun colors, plus timezone-aware clocks. The classic five-minutes-to-start screen, built in.",
   },
   {
     title: "Your church's brand",
-    body: "Colors, fonts, and logo flow through themes, so slides look like your church without a volunteer designing under pressure.",
+    body: "Colors, fonts, and logo flow through themes — and 'Clear to Logo' is always one button away. Slides look like your church without a volunteer designing under pressure.",
   },
   {
     title: "Bring your existing library",
@@ -41,6 +61,29 @@ const freeFeatures = [
     title: "Unlimited users",
     body: "Every volunteer gets an account. No per-seat math, no deciding who is important enough to have a login.",
   },
+];
+
+const protocolItems = [
+  "OSC over the network for lighting and media servers",
+  "RossTalk for Ross production switchers",
+  "MIDI — local devices or network MIDI",
+  "HTTP requests for anything with an API",
+  "OBS Studio via WebSocket, and Q-SYS via QRC",
+  "Presets for vMix, Companion, Resolume, ProPresenter, X32/M32, QLab, and disguise",
+];
+
+const techSpecs = [
+  ["Authoring canvas", "1920×1080 with layered media, slide, prop, and announcement layers rendered by one engine across editor, program, and stage"],
+  ["Output resolutions", "1280×720, 1920×1080, 1920×1200, 4K UHD (3840×2160), portrait 1080×1920, or custom — with fit, fill, and stretch screen modes"],
+  ["Live video inputs", "Capture cards and NDI sources placed on slides as live media for IMAG and picture-in-picture"],
+  ["NDI & Network Display", "NDI program output with alpha via the Tech Manager desktop app; Network Display publishes to auto-discovered network screens over WebRTC (H.264, up to 60 fps)"],
+  ["Media formats", "Images: JPG, PNG, WebP, GIF, AVIF, SVG, BMP · Video: MP4, WebM, MOV, M4V, MKV · up to 250 MB per video upload, with crop, trim, fade, loop, and gain per use"],
+  ["Scripture", "KJV, ASV, WEB, YLT, Darby, and BBE included, with verses-per-slide, verse numbers, and five reference display modes"],
+  ["Imports", "ProPresenter 4–7, ChordPro, OpenLyrics, CCLI SongSelect (.usr), and plain text"],
+  ["Control protocols", "OSC, RossTalk, MIDI (device and network), HTTP, OBS WebSocket, and Q-SYS QRC — fired from slides or macros, relayed through Tech Manager in the booth"],
+  ["Offline resilience", "Edits journal locally and reconcile automatically when the connection returns — a dropped network doesn't drop the service"],
+  ["Runs in", "Any Chromium-based browser (Chrome, Edge); multi-monitor output uses the Window Management API"],
+  ["With Assist ($49/mo)", "Multiple program and stage outputs across connected monitors — each with its own look, stage layout, resolution, and audio device — plus unlimited media storage"],
 ];
 
 const growInto = [
@@ -64,6 +107,10 @@ const faqItems = [
     answer: "Yes. Present imports ProPresenter 4 through 7 documents, ChordPro charts, OpenLyrics XML, CCLI SongSelect files, and plain pasted text. If your library lives somewhere else today, it can come with you.",
   },
   {
+    question: "Is the free plan a stripped-down version of Present?",
+    answer: "No — it's the same engine the paid plans run. Live video inputs on slides, data-driven overlays, macros, protocol triggers (OSC, RossTalk, MIDI, HTTP, OBS, Q-SYS), the full slide editor, and scripture-to-slides are all part of the free plan. The paid difference is room, not power: multi-screen output, stage display, and unlimited media storage come with Assist.",
+  },
+  {
     question: "What is not included in the free plan?",
     answer: "Multi-screen output, stage display, and unlimited media storage come with the Assist plan at $49 per month, alongside 24/7 AI support and the rest of the platform. The free plan is genuinely usable on its own — Assist is for churches that want more room and someone to call.",
   },
@@ -82,7 +129,7 @@ const structuredData = [
     operatingSystem: "Web",
     url: `${SITE_URL}/free-church-presentation-software`,
     image: HERO_IMAGE,
-    description: "Free church presentation software: slide editor, worship lyrics, scripture slides, playlists, timers, and your church's brand — free forever with unlimited users.",
+    description: "Free church presentation software: a full 1080p slide editor, live video on slides, worship lyrics, scripture slides, data-driven overlays, macros, protocol triggers, playlists, and timers — free forever with unlimited users.",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -106,13 +153,13 @@ const structuredData = [
 <Layout
   title="Free Church Presentation Software"
   socialTitle="WorshipMetrics | Free worship presentation software."
-  description="Free church presentation software for worship: slide editor, lyrics, scripture slides, playlists, timers, and your brand — free forever, unlimited users, nothing to install."
+  description="Free church presentation software for worship: a real slide editor, live video on slides, lyrics, scripture, overlays, macros, and OSC/MIDI/HTTP triggers — free forever, unlimited users, nothing to install."
   canonical="/free-church-presentation-software"
   ogImage={HERO_IMAGE}
   structuredData={structuredData}
 >
   <Fragment slot="head">
-    <link rel="preload" as="image" href={HERO_IMAGE} />
+    <link rel="preload" as="image" href={BOOTH_IMAGE} />
   </Fragment>
 
   <!-- Hero -->
@@ -126,7 +173,7 @@ const structuredData = [
           Free church presentation software.
         </h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-          Put the words on the screen without a budget line. A real slide editor, lyrics that follow your arrangements, scripture in six translations, playlists, and countdowns &mdash; free forever, with unlimited users and nothing to install.
+          A full presentation engine, not a starter app: a real 1080p slide editor, live cameras on slides, lyrics that follow your arrangements, scripture in six translations, data-driven overlays, and macros that run the whole room &mdash; free forever, with unlimited users and nothing to install.
         </p>
         <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
           <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="free_present_hero_signup" data-wm-track-location="free_present_hero">Start free</a>
@@ -134,9 +181,13 @@ const structuredData = [
         </div>
         <p class="mt-4 text-sm text-slate-500">No trial clock. No credit card. Your whole volunteer team gets accounts.</p>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-        <img src={HERO_IMAGE} alt="Free church presentation software: slide grid, playlists, and backgrounds in WorshipMetrics Present" loading="eager" decoding="async" class="aspect-video w-full object-contain" />
-      </div>
+      <ImageCarousel
+        eager
+        slides={[
+          { src: BOOTH_IMAGE, alt: "A booth operator running scripture slides live with free WorshipMetrics presentation software beside the mixer and multiview", kind: "lifestyle", label: "In the booth" },
+          { src: HERO_IMAGE, alt: "Free church presentation software: slide grid, playlists, and backgrounds in WorshipMetrics Present" },
+        ]}
+      />
     </div>
   </section>
 
@@ -145,9 +196,9 @@ const structuredData = [
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
         <p class="eyebrow">What you get for $0</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Not a demo. Not a trial. The actual software.</h2>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A full presentation engine. Not a demo, not a trial.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Plenty of church software is free until the moment it matters. This is the presentation engine your team runs on Sunday, and it stays free.
+          Plenty of church software is free until the moment it matters. This is the same engine paid plans run &mdash; live video on slides, data-bound overlays, macros, and all &mdash; and it stays free.
         </p>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -157,6 +208,35 @@ const structuredData = [
             <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
         ))}
+      </div>
+      <div class="mt-14">
+        <AppScreenshot shot={scriptureBrowser} label="The scripture browser — included free" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Protocol triggers -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-2xl sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Slides that run the room</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">When the slide goes live, the room follows.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            This is the part nobody expects from free software. Attach protocol actions to slides and playlists, and going live fires them across the network &mdash; lights shift for worship, the switcher takes the sermon camera, the stream overlay updates. One volunteer advancing slides quietly runs the whole moment.
+          </p>
+          <div class="mt-8">
+            <a href="/present" class="btn-ghost-dark">See the full Present tour</a>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Speaks the booth&apos;s languages</p>
+          <ul class="mt-6 space-y-3">
+            {protocolItems.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-slate-200 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-400"></span><span>{item}</span></li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -177,9 +257,36 @@ const structuredData = [
           <a href="/pricing" class="btn-outline">See what the paid plans add</a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={LIFESTYLE_IMAGE} alt="Volunteer running free church presentation software during a worship service" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
+      <div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={REHEARSAL_IMAGE} alt="A worship leader editing chord chart slides in the free WorshipMetrics slide editor from the stage at rehearsal" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
+        </div>
+        <p class="mt-3 text-center text-sm text-slate-500">The slide editor at Thursday rehearsal &mdash; lyrics, chords, and backgrounds, edited right from the stage.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Technical specs -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Technical specs</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">For the person who reads the spec sheet.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The free plan runs the same engine as the paid plans &mdash; here is what it&apos;s made of.
+        </p>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200">
+        {techSpecs.map(([term, detail], index) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mx-auto mt-6 max-w-4xl text-center text-sm text-slate-500">
+        Everything above is in the free plan except the last row &mdash; multi-display output and unlimited media come with <a href="/pricing" class="font-semibold text-indigo-600 hover:text-indigo-800">Assist</a>, and free media storage has practical limits.
+      </p>
     </div>
   </section>
 
@@ -200,6 +307,9 @@ const structuredData = [
             <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
         ))}
+      </div>
+      <div class="mt-14">
+        <AppScreenshot shot={stageDisplay} label="What Assist adds — the stage display editor" />
       </div>
       <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
         And the rest of the platform is there when you need it &mdash; <a href="/services/" class="font-semibold text-indigo-600 hover:text-indigo-800">service planning</a>, <a href="/songs/" class="font-semibold text-indigo-600 hover:text-indigo-800">song library</a>, <a href="/live-streaming/" class="font-semibold text-indigo-600 hover:text-indigo-800">streaming</a>, and <a href="/av-monitoring/" class="font-semibold text-indigo-600 hover:text-indigo-800">AV monitoring that&apos;s also free forever</a>.

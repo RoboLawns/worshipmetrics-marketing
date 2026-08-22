@@ -1,5 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ResearchCallout from "../../components/ResearchCallout.astro";
+import { contentStats } from "../../data/churchProductionResearch";
 import ImageCarousel from "../../components/ImageCarousel.astro";
 import TechManagerCTA from "../../components/TechManagerCTA.astro";
 import ReelsPipeline from "../../components/diagrams/ReelsPipeline.astro";
@@ -106,8 +108,8 @@ import ReelsPipeline from "../../components/diagrams/ReelsPipeline.astro";
         <p class="text-sm font-semibold uppercase tracking-widest text-indigo-600">From service to shareable</p>
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">We find the moments. You keep the good ones.</h2>
       </div>
-      <div class="mt-10 overflow-x-auto">
-        <div class="min-w-[760px]">
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
           <ReelsPipeline />
         </div>
       </div>
@@ -260,5 +262,15 @@ import ReelsPipeline from "../../components/diagrams/ReelsPipeline.astro";
       </div>
     </div>
   </section>
+  <!-- Content creation went mainstream -->
+  <ResearchCallout
+    variant="slate"
+    eyebrow="The biggest shift in the survey"
+    heading="Short-form content stopped being optional."
+    body="Two years ago, content creation for social and short-form video was a niche priority. Church Production Magazine calls its jump the single biggest mover in the entire dataset — a category transformation rather than a trend."
+    stats={contentStats}
+    footnote="The expectation moved faster than anyone's staffing did. Reels exists so the clips come out of the service you already produced, instead of becoming somebody's Monday."
+  />
+
   <TechManagerCTA />
 </Layout>

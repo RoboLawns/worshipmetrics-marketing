@@ -1,0 +1,47 @@
+---
+import { researchCitation, type ResearchStat } from "../data/churchProductionResearch";
+
+interface Props {
+  /** Small uppercase label above the heading. */
+  eyebrow?: string;
+  /** The claim this page is making, which the data underneath supports. */
+  heading: string;
+  /** One or two sentences connecting the numbers to this page's argument. */
+  body?: string;
+  stats: ResearchStat[];
+  /** Optional closing line drawing the conclusion. */
+  footnote?: string;
+  variant?: "light" | "slate" | "dark";
+}
+
+const { eyebrow = "The research", heading, body, stats, footnote, variant = "slate" } = Astro.props;
+
+const surface = {
+  light: { section: "bg-white", card: "border-slate-200 bg-slate-50", heading: "text-slate-900", body: "text-slate-600", stat: "text-indigo-600", label: "text-slate-600", cite: "text-slate-400" },
+  slate: { section: "bg-slate-50", card: "border-slate-200 bg-white", heading: "text-slate-900", body: "text-slate-600", stat: "text-indigo-600", label: "text-slate-600", cite: "text-slate-400" },
+  dark: { section: "bg-slate-950", card: "border-white/10 bg-white/5", heading: "text-white", body: "text-slate-300", stat: "text-indigo-300", label: "text-slate-300", cite: "text-slate-500" },
+}[variant];
+
+const cols = stats.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3";
+---
+
+<section class={`px-4 py-16 sm:px-6 lg:px-8 ${surface.section}`}>
+  <div class={`mx-auto max-w-5xl rounded-[2rem] border p-8 shadow-sm sm:p-10 ${surface.card}`}>
+    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">{eyebrow}</p>
+    <h2 class={`mt-3 text-2xl font-bold tracking-tight sm:text-3xl ${surface.heading}`}>{heading}</h2>
+    {body && <p class={`mt-4 max-w-3xl text-base leading-relaxed ${surface.body}`}>{body}</p>}
+
+    <dl class={`mt-10 grid gap-8 ${cols}`}>
+      {stats.map(({ stat, label }) => (
+        <div>
+          <dt class={`text-3xl font-extrabold tracking-tight sm:text-4xl ${surface.stat}`}>{stat}</dt>
+          <dd class={`mt-2 text-sm leading-relaxed ${surface.label}`}>{label}</dd>
+        </div>
+      ))}
+    </dl>
+
+    {footnote && <p class={`mt-8 max-w-3xl text-base leading-relaxed ${surface.body}`}>{footnote}</p>}
+
+    <p class={`mt-8 text-xs leading-relaxed ${surface.cite}`}>{researchCitation}</p>
+  </div>
+</section>

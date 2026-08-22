@@ -9,14 +9,15 @@ const checks = [
   { y: 178, label: "Encoder ready", note: "OBS CONNECTED · 6.2 MBPS" },
   { y: 240, label: "Last stream scored 96", note: "NO DROPS · NO AUDIO FLAGS" },
 ];
+const LABEL = "A phone check-in: someone asks from their phone how everything looks for Sunday. The question reaches Luminos, which reads the live state from Tech Manager in the booth — twelve devices online, encoder ready, last stream scored 96 — and answers that everything is connected and ready to go.";
 ---
 
 <svg
   viewBox="0 0 980 420"
   width="100%"
   role="img"
-  aria-label="A phone check-in: someone asks from their phone how everything looks for Sunday. The question reaches Luminos, which reads the live state from Tech Manager in the booth — twelve devices online, encoder ready, last stream scored 96 — and answers that everything is connected and ready to go."
-  class="h-auto w-full"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
   xmlns="http://www.w3.org/2000/svg"
 >
   <text x="20" y="30" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">SATURDAY, 6:14 PM &middot; FROM THE CAR</text>
@@ -113,4 +114,102 @@ const checks = [
   ))}
 
   <text x="20" y="412" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">The whole chain runs in the time it takes to read one sentence &mdash; and you never had to leave the driveway.</text>
+</svg>
+
+<!-- Portrait: the phone, then the chain that answers it. -->
+<svg
+  viewBox="0 0 360 944"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="1.2" fill="#78828F">SATURDAY, 6:14 PM &middot; FROM THE CAR</text>
+
+  <!-- ── Phone ── -->
+  <g transform="translate(64, 30)">
+    <rect x="0" y="0" width="232" height="384" rx="32" fill="#0B0D10" />
+    <rect x="10" y="10" width="212" height="364" rx="25" fill="#F7F9FB" />
+    <rect x="86" y="18" width="60" height="8" rx="4" fill="#0B0D10" opacity="0.85" />
+
+    <!-- app bar -->
+    <g transform="translate(10, 36)">
+      <rect width="212" height="38" fill="#ffffff" />
+      <circle cx="26" cy="19" r="11" fill="#0B0D10" />
+      <path d="M19 21 h4 l4.4-10 l5 19 l4.4-9 h4" fill="none" stroke="#2B7FF0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="46" y="24" font-family="Archivo, sans-serif" font-size="12.5" font-weight="700" fill="#0B0D10">Luminos</text>
+      <circle cx="192" cy="19" r="4" fill="#22C55E" />
+      <line x1="0" y1="38" x2="212" y2="38" stroke="#E3E7ED" stroke-width="1" />
+    </g>
+
+    <!-- outgoing question -->
+    <g transform="translate(42, 100)">
+      <rect width="174" height="58" rx="14" fill="#2B7FF0" />
+      <text x="16" y="24" font-family="Archivo, sans-serif" font-size="12" fill="#ffffff">How is everything looking</text>
+      <text x="16" y="41" font-family="Archivo, sans-serif" font-size="12" fill="#ffffff">for our service on Sunday?</text>
+    </g>
+
+    <!-- incoming answer -->
+    <g transform="translate(20, 174)">
+      <rect width="192" height="98" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.2" />
+      <text x="16" y="25" font-family="Archivo, sans-serif" font-size="12.5" font-weight="700" fill="#0B0D10">Looks good.</text>
+      <text x="16" y="45" font-family="Archivo, sans-serif" font-size="11.5" fill="#3F4854">I can see everything is</text>
+      <text x="16" y="61" font-family="Archivo, sans-serif" font-size="11.5" fill="#3F4854">connected and ready to go.</text>
+      <line x1="16" y1="72" x2="176" y2="72" stroke="#E3E7ED" stroke-width="1" />
+      <circle cx="22" cy="85" r="4" fill="#22C55E" />
+      <text x="34" y="88" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.5" fill="#78828F">CHECKED 12 DEVICES</text>
+    </g>
+
+    <!-- composer -->
+    <g transform="translate(20, 290)">
+      <rect width="192" height="34" rx="17" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.2" />
+      <text x="16" y="22" font-family="Archivo, sans-serif" font-size="11" fill="#B6BECB">Ask anything&hellip;</text>
+      <circle cx="170" cy="17" r="11" fill="#2B7FF0" />
+      <path d="M165 17 h8 M169 13 l4 4 l-4 4" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <text x="116" y="352" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.2" fill="#9AA5B4">NO LAPTOP &middot; NO DRIVE TO CHURCH</text>
+  </g>
+
+  <!-- phone → Luminos -->
+  <text x="180" y="436" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.8" fill="#78828F">ASKS</text>
+  <path d="M180 444 V 462" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 456 L180 464 L187 456" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Luminos -->
+  <g transform="translate(10, 474)">
+    <rect width="340" height="104" rx="16" fill="#EFF6FE" stroke="#2B7FF0" stroke-width="2" />
+    <circle cx="52" cy="52" r="22" fill="#0B0D10" />
+    <path d="M38 56 h4.5 l6.5-16 l8 30 l6.5-14 h4.5" fill="none" stroke="#2B7FF0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="92" y="46" font-family="Archivo, sans-serif" font-size="17" font-weight="800" fill="#0B0D10">Luminos</text>
+    <text x="92" y="68" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">Checks before it answers</text>
+  </g>
+
+  <!-- Luminos → Tech Manager -->
+  <text x="180" y="600" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.8" fill="#78828F">READS LIVE STATE</text>
+  <path d="M180 608 V 626" fill="none" stroke="#C5DDFB" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 620 L180 628 L187 620" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Tech Manager -->
+  <g transform="translate(10, 638)">
+    <rect width="340" height="104" rx="16" fill="#0B0D10" />
+    <path d="M32 56 h6 l8-19 l9 35 l8-16 h6" fill="none" stroke="#2B7FF0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="92" y="46" font-family="Archivo, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Tech Manager</text>
+    <text x="92" y="67" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.7" fill="#6AA9F4">IN THE BOOTH · ALREADY WATCHING</text>
+  </g>
+  <path d="M180 748 V 764" fill="none" stroke="#C5DDFB" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 758 L180 766 L187 758" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- status chips -->
+  <text x="10" y="790" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="1.2" fill="#16A34A">ALL CLEAR</text>
+  {checks.map(({ label, note }, i) => (
+    <g transform={`translate(10, ${798 + i * 46})`}>
+      <rect width="340" height="40" rx="10" fill="#ffffff" stroke="#BBF7D0" stroke-width="1.8" />
+      <circle cx="22" cy="20" r="8" fill="#22C55E" />
+      <path d="M18 20 l3 3 l5-5.5" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="42" y="18" font-family="Archivo, sans-serif" font-size="13.5" font-weight="700" fill="#0B0D10">{label}</text>
+      <text x="42" y="33" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#78828F">{note}</text>
+    </g>
+  ))}
 </svg>

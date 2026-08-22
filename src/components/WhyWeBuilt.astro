@@ -1,0 +1,25 @@
+---
+/**
+ * "Why we built this" blurb — a compact, reusable band carrying the founding
+ * inspiration, linking to the full letter at /why-we-built-this.
+ * Drop it on pages where the mission context earns its place.
+ */
+interface Props {
+  /** Section background: "white" or "slate". Pick whichever contrasts the neighbors. */
+  bg?: "white" | "slate";
+}
+const { bg = "slate" } = Astro.props;
+---
+
+<section class={`px-4 py-14 sm:px-6 lg:px-8 ${bg === "white" ? "bg-white" : "bg-slate-50"}`}>
+  <div class="mx-auto max-w-4xl rounded-[1.75rem] border border-indigo-200 bg-indigo-50 p-8 sm:p-10">
+    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Why we built this</p>
+    <p class="mt-4 text-lg font-medium leading-relaxed text-slate-800 sm:text-xl">
+      &ldquo;We kept walking into the same church: an AV system nobody fully understood, one burned-out volunteer carrying it alone, and a youth group that had never been invited into the booth. Serving on the AV team should be functional, joyful, and full of real-world skills &mdash; for a team of any size.&rdquo;
+    </p>
+    <div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm font-semibold text-slate-600">&mdash; Paul Richards, co-founder</p>
+      <a href="/why-we-built-this" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800" data-wm-track="cta_click" data-wm-track-label="why_we_built_blurb" data-wm-track-location="why_we_built_blurb">Read why we built WorshipMetrics &rarr;</a>
+    </div>
+  </div>
+</section>

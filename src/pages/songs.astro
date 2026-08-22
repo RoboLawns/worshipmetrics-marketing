@@ -6,8 +6,9 @@ import TechManagerCTA from "../components/TechManagerCTA.astro";
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-songs-library.jpg`;
-const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/song-management.jpg`;
+const HERO_IMAGE = "/images/app/worship-metrics-song-detail.jpg";
+const BOOTH_IMAGE = "/images/lifestyle/church-songs-booth.jpg";
+const CHART_IMAGE = "/images/lifestyle/church-song-chart-booth.jpg";
 
 const features = [
   {
@@ -88,8 +89,8 @@ const structuredData = {
       <ImageCarousel
         eager
         slides={[
-          { src: LIFESTYLE_IMAGE, alt: "Worship leader managing songs and chord charts with WorshipMetrics", kind: "lifestyle" },
-          { src: HERO_IMAGE, alt: "Song library with CCLI, BPM, keys, and schedule history in WorshipMetrics" },
+          { src: BOOTH_IMAGE, alt: "A song open in WorshipMetrics on a laptop at the front-of-house console", kind: "lifestyle" },
+          { src: HERO_IMAGE, alt: "A song in WorshipMetrics with its arrangement, keys, chord chart, and schedule history" },
         ]}
       />
     </div>
@@ -130,7 +131,7 @@ const structuredData = {
         <p class="mt-6 text-sm text-slate-500">Public-domain hymns come pre-loaded in a shared library, ready to schedule.</p>
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={LIFESTYLE_IMAGE} alt="Worship leader managing songs and chord charts with WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={CHART_IMAGE} alt="A chord chart open on a laptop between two consoles in the booth" width="1734" height="1115" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
   </section>

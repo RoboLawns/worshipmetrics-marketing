@@ -24,6 +24,15 @@ export const slideEditor: AppScreenshot = {
   height: 889
 };
 
+export const cloudEditor: AppScreenshot = {
+  src: `${APP}/worship-metrics-cloud-slide-editor.jpg`,
+  alt: "The WorshipMetrics slide editor open in a browser, editing an Amazing Grace lyric slide over a galaxy background with the full text properties panel and media library",
+  caption:
+    "The full editor — canvas, text properties, media library — is a browser tab, not an install. Sign in from the study or the sofa, fix the line, and the change is already in Sunday's playlist for the whole team.",
+  width: 1920,
+  height: 1080
+};
+
 export const lyricsSlides: AppScreenshot = {
   src: `${APP}/worship-metrics-lyrics-slides.jpg`,
   alt: "The WorshipMetrics Present tab showing all 34 lyric slides for Amazing Grace with the arrangement roadmap above them",
@@ -35,20 +44,20 @@ export const lyricsSlides: AppScreenshot = {
 
 export const scriptureBrowser: AppScreenshot = {
   src: `${APP}/worship-metrics-scripture-browser.jpg`,
-  alt: "The WorshipMetrics scripture browser showing the KJV translation, book and chapter navigation, and Numbers 1 verses building into slides",
+  alt: "The WorshipMetrics scripture browser in Live Mode showing John 3:16-28 in the KJV as ready slides, with the live verse marked orange and mirrored on the program monitor",
   caption:
-    "Pick a translation, click the book, shift-click the verse range. Verses-per-slide and reference style are set before anything is generated, and Add to Current drops the passage straight into the live playlist.",
+    "Pick a translation, click the book, shift-click the verse range — the passage becomes slides before you finish reading it. In Live Mode the verse you click goes straight to the program screen, one slide per verse, with the timers still running beside it.",
   width: 1920,
-  height: 1113
+  height: 1080
 };
 
 export const stageDisplay: AppScreenshot = {
   src: `${APP}/worship-metrics-stage-display-chords.jpg`,
-  alt: "The WorshipMetrics stage display editor showing a band confidence layout with chords above the lyrics and a note reading Capo 2",
+  alt: "The WorshipMetrics stage display editor showing the Band Confidence layout with green chord rows above the lyrics of Amazing Grace, a chords toggle, and a key selector set to as written (G)",
   caption:
-    "The band's confidence monitor is its own layout, not a mirror of the projector — chords above the words, the next line underneath, and the worship leader's note sitting where the drummer can read it.",
+    "The band's confidence monitor is its own layout, not a mirror of the projector — chord rows draw above the lyrics in a color the band can spot at a glance, the next lines wait underneath, and the key selector re-chords the whole song when the capo goes on.",
   width: 1920,
-  height: 1115
+  height: 1080
 };
 
 export const overlays: AppScreenshot = {

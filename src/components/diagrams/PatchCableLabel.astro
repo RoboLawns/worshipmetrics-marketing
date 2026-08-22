@@ -3,14 +3,15 @@
  * Patch — the label that makes support specific.
  * Map cable ID → physical label → the instruction a volunteer can act on.
  */
+const LABEL = "Diagram: a cable documented in the Signal Map as SDI-002 carries a matching physical label, so support can say reseat SDI-002 on the back of the switcher instead of check your connections.";
 ---
 
 <svg
   viewBox="0 0 980 320"
   width="100%"
   role="img"
-  aria-label="Diagram: a cable documented in the Signal Map as SDI-002 carries a matching physical label, so support can say reseat SDI-002 on the back of the switcher instead of check your connections."
-  class="h-auto w-full"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
   xmlns="http://www.w3.org/2000/svg"
 >
   <!-- 01 — In the Signal Map -->
@@ -76,4 +77,72 @@
 
   <!-- Footnote -->
   <text x="20" y="278" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">A volunteer who has never opened the rack can follow that instruction on their first Sunday.</text>
+</svg>
+
+<!-- Portrait: map → cable → call, stacked. -->
+<svg
+  viewBox="0 0 360 676"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- 01 — In the Signal Map -->
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">01 · IN THE SIGNAL MAP</text>
+  <g transform="translate(10, 26)">
+    <rect x="0" y="0" width="340" height="164" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <rect x="24" y="24" width="126" height="56" rx="9" fill="#F7F9FB" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="38" y="48" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">PTZ &mdash; Stage</text>
+    <text x="38" y="66" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.8" fill="#78828F">SDI OUT</text>
+    <circle cx="156" cy="52" r="4" fill="#2B7FF0" />
+
+    <rect x="190" y="84" width="126" height="56" rx="9" fill="#F7F9FB" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="204" y="108" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">Switcher</text>
+    <text x="204" y="126" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.8" fill="#78828F">IN 2</text>
+    <circle cx="184" cy="112" r="4" fill="#2B7FF0" />
+
+    <path d="M156 52 H172 V112 H184" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="46" y="98" width="86" height="26" rx="6" fill="#EFF6FE" stroke="#2B7FF0" stroke-width="1.5" />
+    <text x="58" y="116" font-family="IBM Plex Mono, monospace" font-size="11.5" font-weight="600" letter-spacing="0.6" fill="#1D66D6">SDI-002</text>
+  </g>
+  <path d="M180 196 V 216" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" />
+  <path d="M174 210 L180 218 L186 210" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- 02 — On the cable -->
+  <text x="10" y="242" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">02 · ON THE CABLE</text>
+  <g transform="translate(10, 252)">
+    <rect x="0" y="0" width="340" height="150" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <path d="M30 76 C 106 34, 226 122, 310 66" fill="none" stroke="#0B0D10" stroke-width="10" stroke-linecap="round" opacity="0.86" />
+    <path d="M30 76 C 106 34, 226 122, 310 66" fill="none" stroke="#3F4854" stroke-width="4" stroke-linecap="round" />
+    <rect x="16" y="65" width="22" height="22" rx="4" fill="#78828F" />
+    <rect x="302" y="55" width="22" height="22" rx="4" fill="#78828F" />
+    <g transform="translate(128, 42) rotate(9)">
+      <rect x="0" y="0" width="90" height="34" rx="6" fill="#ffffff" stroke="#2B7FF0" stroke-width="2" />
+      <text x="14" y="23" font-family="IBM Plex Mono, monospace" font-size="12.5" font-weight="600" letter-spacing="0.6" fill="#1D66D6">SDI-002</text>
+    </g>
+    <text x="22" y="122" font-family="Archivo, sans-serif" font-size="13.5" fill="#78828F">The printed patch sheet gives you</text>
+    <text x="22" y="140" font-family="Archivo, sans-serif" font-size="13.5" fill="#78828F">every label, ready to wrap.</text>
+  </g>
+  <path d="M180 408 V 428" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" />
+  <path d="M174 422 L180 430 L186 422" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- 03 — On the call -->
+  <text x="10" y="454" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#2B7FF0">03 · ON THE CALL</text>
+  <g transform="translate(10, 464)">
+    <rect x="0" y="0" width="340" height="156" rx="14" fill="#EFF6FE" stroke="#2B7FF0" stroke-width="2" />
+    <rect x="22" y="22" width="34" height="34" rx="8" fill="#0B0D10" />
+    <path d="M30 41 h4.5 l5-12.5 l6 24 l5-11.5 h4.5" fill="none" stroke="#2B7FF0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="38" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#0B0D10">910-WORSHIP</text>
+    <text x="68" y="54" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="1" fill="#78828F">SEES YOUR MAP</text>
+    <rect x="22" y="70" width="296" height="60" rx="10" fill="#ffffff" stroke="#C5DDFB" stroke-width="1.5" />
+    <text x="38" y="94" font-family="Archivo, sans-serif" font-size="14" fill="#0B0D10">&ldquo;Reseat the cable labeled</text>
+    <text x="38" y="116" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#1D66D6">SDI-002</text>
+    <text x="102" y="116" font-family="Archivo, sans-serif" font-size="14" fill="#0B0D10">on the switcher.&rdquo;</text>
+    <text x="22" y="148" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">Not &ldquo;check your connections.&rdquo;</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="10" y="646" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">A volunteer who has never opened the rack</text>
+  <text x="10" y="664" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">can follow that on their first Sunday.</text>
 </svg>

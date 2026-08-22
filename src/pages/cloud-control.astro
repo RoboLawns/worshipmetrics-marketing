@@ -1,0 +1,269 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+import CloudControlPath from "../components/diagrams/CloudControlPath.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const DASHBOARD_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-production-dashboard.jpg`;
+const ASSIST_IMAGE = `${R2}/app-2026/lifestyle/phone-support.jpg`;
+
+const capabilities = [
+  {
+    title: "Preview and program, in view",
+    body: "The same PVW / PGM state the booth sees, mirrored live to any phone or laptop. Know what's on air and what's queued next without calling the booth and asking someone to describe the screen.",
+  },
+  {
+    title: "Full API control from anywhere",
+    body: "Not a viewer — a control surface. Cut, transition, change scenes and inputs, toggle overlays, and adjust bus audio remotely, through the same deep integrations the booth uses locally.",
+  },
+  {
+    title: "Remote switching assistance",
+    body: "A trusted helper — your most experienced volunteer on vacation, a staff member at home, or a production pro on our team — can watch the service live and assist, or take the wheel entirely.",
+  },
+  {
+    title: "The switchers you already run",
+    body: "OBS Studio over WebSocket v5, vMix over its HTTP and TCP APIs, and Blackmagic ATEM cut, preview, and program control — the same three integrations, local and cloud.",
+  },
+];
+
+const steps = [
+  {
+    step: "1",
+    title: "Tech Manager connects in the booth",
+    body: "The desktop app on your production PC talks to OBS, vMix, or your ATEM over the local network — that's the free local control every plan gets, no cloud required.",
+  },
+  {
+    step: "2",
+    title: "One secure outbound link",
+    body: "Tech Manager makes a single outbound connection to WorshipMetrics. No port forwarding, no VPN, no holes in the church firewall — the same link that powers your AV monitoring.",
+  },
+  {
+    step: "3",
+    title: "Sign in anywhere, switch anything",
+    body: "On Assist and Stream, anyone you've invited signs into WorshipMetrics from any device and gets the booth's control surface — preview, program, and the full API, from anywhere.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Is switcher control free?",
+    answer: "Locally, yes — on every plan, including Free. Tech Manager controls OBS, vMix, and Blackmagic ATEM switchers (and your PTZ cameras) from the booth at no cost, forever. Cloud control — the same control and monitoring from outside the building — comes with the Assist ($49/mo) and Stream ($99/mo per campus) plans.",
+  },
+  {
+    question: "What is cloud switcher control?",
+    answer: "It extends the booth's control surface beyond the building. WorshipMetrics mirrors your switcher's live state — what's in preview, what's in program, which scenes and inputs exist — and relays the full control API, so an authorized person on any device can monitor the service and switch it as if they were standing at the production PC.",
+  },
+  {
+    question: "Which switchers and software does it work with?",
+    answer: "OBS Studio (WebSocket v5), vMix (HTTP and TCP APIs), and the Blackmagic ATEM family (cut, preview, and program control), with HyperDeck status monitoring alongside. PTZ camera control follows the same local-free, cloud-on-paid pattern.",
+  },
+  {
+    question: "Do I need port forwarding or a VPN?",
+    answer: "No. Tech Manager makes one secure outbound connection from the booth to WorshipMetrics — the same connection that powers AV monitoring. Nothing is exposed on your network, and your IT volunteer never has to open a firewall hole.",
+  },
+  {
+    question: "Who can switch my service remotely?",
+    answer: "Only people you've invited to your WorshipMetrics team, signed in with their own accounts. And because remote actions run through Tech Manager, they land in the same support history as everything else — nothing happens silently.",
+  },
+  {
+    question: "How does remote assistance work on a Sunday?",
+    answer: "Anyone on your team with access can open the service from home, see preview and program live, and help — talk a new volunteer through a transition, or make the switch themselves. With the Sunday Assurance add-on, a production pro from our team is on call every Sunday and can see your system the moment you call.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Layout
+  title="Cloud Video Switcher Control for Churches"
+  socialTitle="WorshipMetrics | Your switcher, from anywhere."
+  description="Monitor and control OBS, vMix, and Blackmagic ATEM from anywhere — live preview and program monitoring, full API control, and remote switching assistance. Local control in the booth is free on every plan; cloud control comes with Assist and Stream."
+  canonical="/cloud-control"
+  ogImage={DASHBOARD_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-4 py-1 shadow-sm">
+        <img src="/images/nav/pillars/produce.png" alt="" class="h-7 w-7 rounded-md" /> Cloud Control &middot; Included with Assist and Stream
+      </p>
+      <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        Eyes on preview and program &mdash; from anywhere.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+        WorshipMetrics controls OBS, vMix, and Blackmagic ATEM switchers locally in the booth &mdash; free, on every plan. The paid plans take the same control to the cloud: monitor your switcher, keep full API control, and let a trusted helper assist with the switching from anywhere.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="cloud_control_hero_start" data-wm-track-location="cloud_control_hero">Get started free</a>
+        <a href="/pricing" class="btn-outline">See pricing</a>
+      </div>
+      <p class="mt-5 text-sm text-slate-500">Local control in the booth costs nothing, forever &mdash; cloud control starts at $49/mo with Assist.</p>
+    </div>
+  </section>
+
+  <!-- Free vs cloud -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
+      <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="eyebrow">In the booth &mdash; free on every plan</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900">Local control, free forever.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600">
+          Tech Manager on the production PC controls OBS, vMix, and Blackmagic ATEM &mdash; scene switching, transitions, overlays, bus audio, plus your PTZ cameras &mdash; over your local network. That&apos;s part of the free pledge, alongside monitoring and alerts. No trial clock on it, ever.
+        </p>
+      </div>
+      <div class="rounded-[1.75rem] border border-indigo-200 bg-indigo-600 p-8 text-white shadow-lg shadow-indigo-200">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-200">From anywhere &mdash; Assist &amp; Stream</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight">Cloud control, wherever you are.</h2>
+        <p class="mt-4 text-base leading-relaxed text-indigo-100">
+          The paid plans lift the same control surface out of the building: live preview and program monitoring, full API control of the switcher, and remote assistance from anyone you trust with access &mdash; on any device, from anywhere.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram -->
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl border-t border-slate-200 pt-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">The signal path</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The booth&apos;s switcher, reachable anywhere.</h2>
+      </div>
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <CloudControlPath />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you can do -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">What cloud control gives you</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A control surface, not a webcam.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {capabilities.map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h3 class="text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Remote assistance story -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">Why it matters</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The second person the booth never had.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Most church booths run on one person. When that person is out &mdash; or when a brand-new volunteer is holding the T-bar for the first time &mdash; the difference between a rough Sunday and a smooth one is somebody experienced who can <em>see the switcher</em>.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Cloud control makes that person real. Your veteran operator checks preview and program from a phone in another state. A staff member at home catches the wrong scene queued and fixes it before the transition. And when you call us, the person answering can look at what&apos;s actually in program &mdash; not ask you to describe it.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Pair it with <a href="/pricing" class="font-semibold text-indigo-600 hover:text-indigo-800">Sunday Assurance</a> and that helper is a production pro from our team, on call every Sunday.
+        </p>
+        <div class="mt-6 flex flex-col items-start gap-3 sm:flex-row">
+          <a href="/tech-manager" class="btn-primary">See Tech Manager</a>
+          <a href="/phone-support" class="btn-outline">How support works</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={ASSIST_IMAGE} alt="A church production helper assisting a Sunday service remotely by phone" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">How it works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">No port forwarding. No VPN. No IT project.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {steps.map(({ step, title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{step}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        Access is limited to the people you&apos;ve invited to your team, and remote actions land in the same support history as everything else &mdash; nothing happens silently.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dashboard visual -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+      <div class="grid items-center gap-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <div class="p-8 sm:p-10">
+          <p class="eyebrow">The same dashboard, anywhere</p>
+          <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Scene thumbnails, meters, and stream health &mdash; on whatever screen you have.</h2>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+            Cloud control isn&apos;t a stripped-down remote. It&apos;s the production dashboard &mdash; live scene thumbnails you can cut to program, audio meters for every bus, overlay toggles, and stream health beside it all &mdash; served to wherever you are.
+          </p>
+          <div class="mt-6">
+            <a href="/tech-manager" class="btn-outline">Everything the booth app does</a>
+          </div>
+        </div>
+        <div class="overflow-hidden border-l border-slate-200 bg-slate-50">
+          <img src={DASHBOARD_IMAGE} alt="WorshipMetrics production dashboard with preview, program, and audio meters, available remotely with cloud control" loading="lazy" decoding="async" class="aspect-video h-full w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Cloud control, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <summary class="cursor-pointer text-base font-semibold text-slate-900 marker:content-none">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Free in the booth. With you everywhere on Assist.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
+        Start free and run OBS, vMix, or your ATEM from Tech Manager today. When you want eyes and hands on the service from anywhere, Assist is $49 a month &mdash; and Stream brings premium live streaming with it.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="cloud_control_footer_start" data-wm-track-location="cloud_control_footer">Get started free</a>
+        <a href="/pricing" class="btn-ghost-dark">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <TechManagerCTA />
+</Layout>

@@ -8,13 +8,16 @@ import PresentTriggerFan from "../components/diagrams/PresentTriggerFan.astro";
 import PresentScriptureStrip from "../components/diagrams/PresentScriptureStrip.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import AppScreenshot from "../components/AppScreenshot.astro";
-import { slideEditor, scriptureBrowser, stageDisplay, overlays } from "../data/appScreenshots";
+import { slideEditor, cloudEditor, scriptureBrowser, stageDisplay, overlays } from "../data/appScreenshots";
 
 const SITE_URL = "https://worshipmetrics.com";
 const APP_URL = "https://app.worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const HERO_IMAGE = "/images/app/worship-metrics-lyrics-slides.jpg";
 const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/presentation.jpg`;
+const REHEARSAL_IMAGE = "/images/lifestyle/worship-rehearsal-chord-slides.jpg";
+const BOOTH_IMAGE = "/images/lifestyle/church-scripture-operator-booth.jpg";
+const HOME_IMAGE = "/images/lifestyle/pastor-editing-slides-home.jpg";
 
 const features = [
   {
@@ -130,8 +133,10 @@ const structuredData = {
       <ImageCarousel
         eager
         slides={[
-          { src: LIFESTYLE_IMAGE, alt: "Volunteer running lyrics and slides with WorshipMetrics Present", kind: "lifestyle" },
-          { src: HERO_IMAGE, alt: "Present slide grid with playlists, backgrounds library, and live program output in WorshipMetrics" },
+          { src: LIFESTYLE_IMAGE, alt: "Volunteer running lyrics and slides with WorshipMetrics Present", kind: "lifestyle", label: "In the room" },
+          { src: HERO_IMAGE, alt: "Present slide grid with playlists, backgrounds library, and live program output in WorshipMetrics", label: "Slides" },
+          { src: "/images/app/worship-metrics-present-live.jpg", alt: "The Present live tab with the slide grid, program monitor, service timers, and clocks", label: "Live" },
+          { src: BOOTH_IMAGE, alt: "A booth operator running scripture slides live in WorshipMetrics Present beside the mixer and multiview", kind: "lifestyle", label: "In the booth" },
         ]}
       />
     </div>
@@ -160,8 +165,42 @@ const structuredData = {
           <a href="/songs" class="btn-outline">See the Songs library</a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={LIFESTYLE_IMAGE} alt="Volunteer running lyrics and slides with WorshipMetrics Present" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      <div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={REHEARSAL_IMAGE} alt="A worship leader editing chord chart slides in WorshipMetrics Present from the stage during rehearsal" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        </div>
+        <p class="mt-3 text-center text-sm text-slate-500">Thursday rehearsal: the worship leader tweaks the slides from the stage, chords and all &mdash; and Sunday&apos;s playlist is already right.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edit from anywhere -->
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl border-t border-slate-200 pt-16">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div class="order-2 lg:order-1 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={HOME_IMAGE} alt="A pastor making a quick slide change from the couch at home in WorshipMetrics Present" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <p class="eyebrow">Edit from anywhere</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The last-minute change stopped being an emergency.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            Present lives in the cloud, so the editor is wherever you sign in &mdash; the church office, the kitchen table, the couch on Saturday night. The pastor reworks a sermon slide at home, and it&apos;s simply <em>there</em> when the booth opens the service.
+          </p>
+          <ul class="mt-8 space-y-3">
+            {[
+              "No attachments, no shared folders, no wondering which file is current — everyone opens the same live service",
+              "A lyric fix at 9 p.m. Saturday is on the booth PC, the projector, and the stage display by Sunday morning — untouched by human hands",
+              "Pastors make their own quick changes without asking anyone to export anything",
+              "The whole team works in it at once — unlimited users, each with their own sign-in",
+            ].map((item) => (
+              <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="mt-14">
+        <AppScreenshot shot={cloudEditor} label="The same editor, in any browser" />
       </div>
     </div>
   </section>
@@ -194,8 +233,8 @@ const structuredData = {
           No copying from a Bible site, no reformatting someone else&apos;s line breaks. Type the passage, pick how it should break, and it&apos;s on screen &mdash; or saved to your library for next time.
         </p>
       </div>
-      <div class="mt-10 overflow-x-auto">
-        <div class="min-w-[760px]">
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
           <PresentScriptureStrip />
         </div>
       </div>
@@ -215,8 +254,8 @@ const structuredData = {
           Present doesn&apos;t flatten your service into pictures. Every frame is composed live from four independent layers &mdash; so the background can change without touching the lyrics, and an announcement can appear over anything without rebuilding a slide.
         </p>
       </div>
-      <div class="mt-12 overflow-x-auto">
-        <div class="min-w-[720px]">
+      <div class="mt-12 md:overflow-x-auto">
+        <div class="md:min-w-[720px]">
           <PresentLayerStack />
         </div>
       </div>
@@ -249,8 +288,8 @@ const structuredData = {
           One browser tab drives them all. The projector gets the full picture, the platform gets the words and chords, the lobby gets announcements, and the booth gets a clean key &mdash; each output painting only the layers it should.
         </p>
       </div>
-      <div class="mt-12 overflow-x-auto">
-        <div class="min-w-[720px]">
+      <div class="mt-12 md:overflow-x-auto">
+        <div class="md:min-w-[720px]">
           <PresentOutputRouting />
         </div>
       </div>
@@ -288,8 +327,8 @@ const structuredData = {
             The confidence monitor is its own layout with its own job: keep the band in the song, in the right key, and on time &mdash; without ever showing them the projector&apos;s picture.
           </p>
         </div>
-        <div class="mt-10 overflow-x-auto">
-          <div class="min-w-[720px]">
+        <div class="mt-10 md:overflow-x-auto">
+          <div class="md:min-w-[720px]">
             <PresentStageDisplay />
           </div>
         </div>
@@ -302,7 +341,7 @@ const structuredData = {
 
   <!-- Protocol triggers -->
   <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-2xl sm:p-12">
       <div class="grid gap-10 lg:grid-cols-2">
         <div>
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Slides that run the room</p>
@@ -328,8 +367,8 @@ const structuredData = {
             A macro is a named sequence attached to a slide. Fire it and the room moves together &mdash; while the volunteer keeps their eyes on the words.
           </p>
         </div>
-        <div class="mt-10 overflow-x-auto">
-          <div class="min-w-[700px]">
+        <div class="mt-10 md:overflow-x-auto">
+          <div class="md:min-w-[700px]">
             <PresentTriggerFan />
           </div>
         </div>

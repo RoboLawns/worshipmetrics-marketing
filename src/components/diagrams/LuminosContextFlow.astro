@@ -17,14 +17,15 @@ const strands = [
   { y: 196, label: "STREAM METRICS",    note: "bitrate · dropped frames" },
   { y: 240, label: "SIGNAL MAP & DOCS", note: "ports · cable labels" },
 ];
+const LABEL = "Signal-path diagram: cameras, audio console, switcher, and booth PC report into Tech Manager, which carries machine telemetry, device health, stream metrics, and the Signal Map up to Luminos. Your church's history and past fixes feed in as well, and the answer comes back in the app or on the phone.";
 ---
 
 <svg
   viewBox="0 0 980 400"
   width="100%"
   role="img"
-  aria-label="Signal-path diagram: cameras, audio console, switcher, and booth PC report into Tech Manager, which carries machine telemetry, device health, stream metrics, and the Signal Map up to Luminos. Your church's history and past fixes feed in as well, and the answer comes back in the app or on the phone."
-  class="h-auto w-full"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
   xmlns="http://www.w3.org/2000/svg"
 >
   <!-- column labels -->
@@ -95,4 +96,81 @@ const strands = [
 
   <!-- footnote -->
   <text x="20" y="384" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">Same path every time &mdash; which is why the answer already knows where things are and what was tried before.</text>
+</svg>
+
+<!-- Portrait: the same signal path, running down the page. -->
+<svg
+  viewBox="0 0 360 800"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- In your building -->
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">IN YOUR BUILDING</text>
+  {devices.map(({ label }, i) => (
+    <g transform={`translate(${i % 2 === 0 ? 10 : 186}, ${26 + Math.floor(i / 2) * 46})`}>
+      <rect width="164" height="38" rx="9" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <circle cx="20" cy="19" r="4.5" fill="#2B7FF0" />
+      <text x="36" y="24" font-family="Archivo, sans-serif" font-size="13" font-weight="600" fill="#3F4854">{label}</text>
+    </g>
+  ))}
+  <path d="M180 118 V 136" fill="none" stroke="#C5DDFB" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 130 L180 138 L187 130" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Tech Manager -->
+  <text x="10" y="164" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">THE BOOTH APP</text>
+  <g transform="translate(10, 174)">
+    <rect width="340" height="96" rx="16" fill="#0B0D10" />
+    <path d="M28 52 h7 l10-23 l11 43 l10-20 h7" fill="none" stroke="#2B7FF0" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="92" y="40" font-family="Archivo, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Tech Manager</text>
+    <text x="92" y="58" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.7" fill="#6AA9F4">FREE · RUNS IN THE BOOTH</text>
+    <text x="92" y="78" font-family="Archivo, sans-serif" font-size="12.5" fill="#9CC6F8">Watches. Documents. Reports.</text>
+  </g>
+
+  <!-- Strands -->
+  {strands.map(({ label, note }, i) => (
+    <g transform={`translate(10, ${286 + i * 42})`}>
+      <rect width="340" height="34" rx="8" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.2" />
+      <text x="14" y="15" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.7" fill="#1D66D6">{label}</text>
+      <text x="14" y="28" font-family="Archivo, sans-serif" font-size="11.5" fill="#78828F">{note}</text>
+    </g>
+  ))}
+  <path d="M180 456 V 474" fill="none" stroke="#C5DDFB" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 468 L180 476 L187 468" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Luminos -->
+  <text x="10" y="502" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#2B7FF0">THE AI</text>
+  <g transform="translate(10, 512)">
+    <rect width="340" height="96" rx="16" fill="#EFF6FE" stroke="#2B7FF0" stroke-width="2" />
+    <circle cx="50" cy="48" r="22" fill="#0B0D10" />
+    <path d="M36 52 h4.5 l6.5-16 l8 30 l6.5-14 h4.5" fill="none" stroke="#2B7FF0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="90" y="42" font-family="Archivo, sans-serif" font-size="17" font-weight="800" fill="#0B0D10">Luminos</text>
+    <text x="90" y="64" font-family="Archivo, sans-serif" font-size="12.5" fill="#3F4854">Reads all of it before you</text>
+    <text x="90" y="80" font-family="Archivo, sans-serif" font-size="12.5" fill="#3F4854">finish typing</text>
+  </g>
+
+  <!-- Church memory, feeding in -->
+  <path d="M180 640 V 612" fill="none" stroke="#C5DDFB" stroke-width="2" stroke-linecap="round" />
+  <path d="M173 620 L180 610 L187 620" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <g transform="translate(10, 642)">
+    <rect width="340" height="54" rx="12" fill="#ffffff" stroke="#C5DDFB" stroke-width="1.5" stroke-dasharray="5 4" />
+    <text x="16" y="22" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.8" fill="#1D66D6">YOUR CHURCH'S MEMORY</text>
+    <text x="16" y="40" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">30 days of history · every past fix that worked</text>
+  </g>
+
+  <!-- Outputs -->
+  <text x="10" y="726" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">YOU ASK</text>
+  <g transform="translate(10, 736)">
+    <rect width="164" height="56" rx="12" fill="#ffffff" stroke="#C5DDFB" stroke-width="1.8" />
+    <rect x="16" y="16" width="76" height="7" rx="3.5" fill="#E3E7ED" />
+    <rect x="16" y="28" width="104" height="7" rx="3.5" fill="#E3E7ED" />
+    <text x="16" y="49" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.7" fill="#1D66D6">CHAT IN THE APP</text>
+  </g>
+  <g transform="translate(186, 736)">
+    <rect width="164" height="56" rx="12" fill="#0B0D10" />
+    <g transform="translate(14, 13)"><path d="M9 11 c0-2 2-4 4-4h3l2.4 6-2.9 2c1.9 3.4 4.8 6.3 8.2 8.2l2-2.9 6 2.4v3c0 2-2 4-4 4 C17.6 29.7 9 21.1 9 11 z" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" /></g>
+    <text x="56" y="34" font-family="Archivo, sans-serif" font-size="13" font-weight="800" fill="#ffffff">910-WORSHIP</text>
+  </g>
 </svg>

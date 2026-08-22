@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ResearchCallout from "../components/ResearchCallout.astro";
+import { complexityStats } from "../data/churchProductionResearch";
 
 const SITE_URL = "https://worshipmetrics.com";
 const DISCOVERY_URL = "/discovery-call";
@@ -7,7 +9,7 @@ const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const R2NEW = `${R2}/homepage/new%20images`;
 const TECH_MANAGER_HERO_IMAGE = "/images/lifestyle/tech-manager-hero.jpg";
 const PTZ_GAMEPAD_IMAGE = "/images/lifestyle/church-ptz-camera-operator.jpg";
-const TECH_MANAGER_PRO_IMAGE = "/images/app/worship-metrics-production-dashboard.jpg";
+const TECH_MANAGER_PRO_IMAGE = "/images/lifestyle/church-booth-one-window.jpg";
 const OG_IMAGE = TECH_MANAGER_HERO_IMAGE;
 
 const techManagerFeatureSections = [
@@ -396,13 +398,16 @@ const structuredData = [
           </div>
         ))}
       </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        Switcher and camera control runs locally in the booth on every plan, free. Assist and Stream add <a href="/cloud-control" class="font-semibold text-indigo-600 hover:text-indigo-800">cloud control</a> &mdash; the same switching, with eyes on preview and program, from anywhere.
+      </p>
     </div>
   </section>
 
   <section class="bg-white px-4 pb-16 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={TECH_MANAGER_PRO_IMAGE} alt="Production dashboard in Tech Manager showing booth system visibility" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
+        <img src={TECH_MANAGER_PRO_IMAGE} alt="A volunteer running the booth from one window in WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
       </div>
       <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">What the booth actually sees</p>
@@ -423,6 +428,16 @@ const structuredData = [
       </p>
     </div>
   </section>
+
+  <!-- Complexity is the actual problem -->
+  <ResearchCallout
+    variant="slate"
+    eyebrow="The problem underneath"
+    heading="The gear got better faster than teams could absorb it."
+    body="Church production technology has become dramatically more capable. The survey suggests capability and operability have come apart — churches can install more than they can realistically sustain."
+    stats={complexityStats}
+    footnote="Tech Manager exists for the gap between those two things. It documents what you own, watches it continuously, and gives support the context to help without a volunteer having to explain the room first."
+  />
 
   <!-- Camera control -->
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">

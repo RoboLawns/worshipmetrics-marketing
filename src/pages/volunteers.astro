@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ResearchCallout from "../components/ResearchCallout.astro";
+import { trainingStats } from "../data/churchProductionResearch";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import WhyWeBuilt from "../components/WhyWeBuilt.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -179,5 +182,17 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <!-- Training is now the hard part -->
+  <ResearchCallout
+    variant="slate"
+    eyebrow="What changed"
+    heading="Finding volunteers is no longer the hardest part. Training them is."
+    body="For years the industry treated recruitment as the volunteer problem. Church Production Magazine's latest research puts training ahead of it for the first time."
+    stats={trainingStats}
+    footnote="That is why role-based panels matter more than another feature. A volunteer who only ever sees the controls their role needs can be useful on their first Sunday instead of their fifth."
+  />
+
+  <WhyWeBuilt bg="white" />
+
   <TechManagerCTA />
 </Layout>

@@ -27,14 +27,23 @@ const stages = [
   },
 ];
 const COL_W = 228;
+
+/** Portrait: the same proportional bar, then one full-width row per stage. */
+const LABEL = "Proportional diagram of one hundred AV issues: about seventy are caught by monitoring and self-healing, about twenty-two are answered by AI with live system context, about seven reach a weekday human, and about one needs a Sunday production pro.";
+const pSeg = [
+  { x: 10, w: 229.6 },
+  { x: 243.6, w: 72.2 },
+  { x: 319.8, w: 23 },
+  { x: 346.8, w: 3.2 },
+];
 ---
 
 <svg
   viewBox="0 0 980 300"
   width="100%"
   role="img"
-  aria-label="Proportional diagram of one hundred AV issues: about seventy are caught by monitoring and self-healing, about twenty-two are answered by AI with live system context, about seven reach a weekday human, and about one needs a Sunday production pro."
-  class="h-auto w-full"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
   xmlns="http://www.w3.org/2000/svg"
 >
   <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" letter-spacing="1.6" fill="#78828F">100 ISSUES IN A TYPICAL SEASON</text>
@@ -67,4 +76,36 @@ const COL_W = 228;
 
   <!-- Footnote -->
   <text x="20" y="284" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">Your team never sees most of them &mdash; and the ones they do arrive already diagnosed.</text>
+</svg>
+
+<!-- Portrait: bar on top, one row per stage below. -->
+<svg
+  viewBox="0 0 360 582"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">100 ISSUES IN A TYPICAL SEASON</text>
+
+  <!-- Proportional bar -->
+  {stages.map(({ fill }, i) => (
+    <rect x={pSeg[i].x} y={34} width={pSeg[i].w} height={38} rx={pSeg[i].w < 10 ? 1.6 : 6} fill={fill} />
+  ))}
+
+  <!-- One row per stage -->
+  {stages.map(({ fill, label, count, title, lines }, i) => (
+    <g transform={`translate(10, ${96 + i * 108})`}>
+      <rect x="0" y="0" width="5" height="94" rx="2.5" fill={fill} />
+      <text x="20" y="30" font-family="Archivo, sans-serif" font-size="31" font-weight="800" letter-spacing="-1" fill={label}>{count}</text>
+      <text x="20" y="56" font-family="Archivo, sans-serif" font-size="16.5" font-weight="700" fill="#0B0D10">{title}</text>
+      <text x="20" y="77" font-family="Archivo, sans-serif" font-size="13.5" fill="#78828F">{lines[0]}</text>
+      <text x="20" y="94" font-family="Archivo, sans-serif" font-size="13.5" fill="#78828F">{lines[1]}</text>
+    </g>
+  ))}
+
+  <!-- Footnote -->
+  <text x="10" y="548" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">Your team never sees most of them &mdash; and the</text>
+  <text x="10" y="568" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">ones they do arrive already diagnosed.</text>
 </svg>

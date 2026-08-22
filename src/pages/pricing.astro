@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ResearchCallout from "../components/ResearchCallout.astro";
+import { buyingStats, researchCitation } from "../data/churchProductionResearch";
 import PricingTwoAxis from "../components/diagrams/PricingTwoAxis.astro";
 import FoundersStrip from "../components/FoundersStrip.astro";
 
@@ -16,17 +18,19 @@ const platformPlans = [
     suffix: "/mo forever",
     tag: "The pledge, free forever",
     badge: "No credit card",
-    body: "AV monitoring, the Signal Map, and the alerts are free forever. Unlimited users, so the whole volunteer team lives in it.",
+    body: "AV monitoring, the Signal Map, the alerts, and social streaming are free forever. Unlimited users, so the whole volunteer team lives in it.",
     cta: "Get started free",
     href: `${APP_URL}/sign-up`,
     featured: false,
     items: [
       "24/7 AV monitoring, the living Signal Map, and instant alerts — free forever",
-      "Control your PTZ cameras and switcher from the booth — local control, free",
+      "Social streaming to YouTube and Facebook — we handle the integrations, schedule your broadcasts, and fetch the stream keys, all in one place",
+      "OBS, vMix, and Blackmagic ATEM switcher control — plus your PTZ cameras — local control in the booth, free",
       "Tech Manager booth app: production dashboard, camera presets, and self-healing included",
+      "Reels free in Tech Manager — AI finds the moments and renders the clips right on the booth PC",
       "Unlimited users — the whole volunteer team lives in it",
       "Worship presentation free forever — slide editor, lyrics, scripture, playlists, and your brand",
-      "Core planning and people tools too (practical limits on storage, clips, 1 signage screen)",
+      "Core planning and people tools too (practical limits on cloud storage and clips, 1 signage screen)",
       "AI support in your alerts, plus one full help session free",
       "No trial clock, no credit card — free means free",
     ],
@@ -42,6 +46,7 @@ const platformPlans = [
     featured: false,
     items: [
       "Everything in Free, with the practical limits removed",
+      "Cloud control for OBS, vMix, and Blackmagic ATEM — eyes on preview and program, and full switcher control from anywhere",
       "Unlimited 24/7 AI support that knows your system — Luminos in the app, Journey on 910-WORSHIP",
       "PCO sync, unlimited signage screens, and cloud Reels — AI clips from anywhere",
       "The full Present suite: multi-screen output, stage displays with transposed chord charts",
@@ -54,13 +59,14 @@ const platformPlans = [
     price: "$99",
     suffix: "/mo per campus",
     tag: "Streaming, included",
-    body: "Everything in Assist, plus cloud live streaming that runs like the expensive platforms — for less than you pay today, with no encoder box to buy.",
+    body: "Everything in Assist, plus premium cloud live streaming that runs like the dedicated platforms — for less than you pay today, with no encoder box to buy.",
     cta: "Start streaming",
     href: `${APP_URL}/sign-up`,
     featured: true,
     items: [
-      "Everything in Assist, plus cloud live streaming",
+      "Everything in Assist, plus premium cloud live streaming",
       "Resilient SRT and RTMPS ingest straight from OBS or vMix — no encoder hardware to buy",
+      "Dedicated infrastructure built to stay up — and a player and watch page where worship is never muted or flagged by a copyright bot",
       "Up to 10 simultaneous destinations: YouTube, Facebook, and an embeddable player with a hosted watch page",
       "Cloud DVR and archive, plus a scored stream-health report wired into your alerts",
       "Lossless CD-quality FLAC audio — on the roadmap, no extra charge when it lands",
@@ -112,15 +118,17 @@ const fairUseRows = [
 const comparisonRows = [
   ["Price", "$0 forever", "$49/mo", "$99/mo per campus"],
   ["24/7 AV monitoring, Signal Map & alerts", "Included", "Included", "Included"],
-  ["PTZ camera & switcher control", "Local", "Local + remote cloud", "Local + remote cloud"],
+  ["Social streaming — YouTube & Facebook", "Included — integrations, scheduling & stream keys handled", "Included", "Included"],
+  ["Switcher control — OBS, vMix, Blackmagic ATEM", "Local — free", "Local + cloud control", "Local + cloud control"],
+  ["PTZ camera control", "Local", "Local + cloud", "Local + cloud"],
   ["Users", "Unlimited", "Unlimited", "Unlimited"],
   ["Planning, presentation & people", "Core (practical limits)", "Full", "Full"],
   ["Storage caps", "Practical limits", "None", "None"],
   ["Digital signage screens", "1", "Unlimited", "Unlimited"],
-  ["Reels (AI clipping)", "Local workflow in Tech Manager", "Cloud Reels", "Auto from every service"],
+  ["Reels (AI clipping)", "Free — rendered locally in Tech Manager", "Cloud Reels — from anywhere", "Auto from every service"],
   ["PCO sync", "—", "Included", "Included"],
   ["Luminos + Journey AI support", "In alerts + 1 free session", "Unlimited", "Unlimited"],
-  ["Cloud live streaming", "—", "—", "Included"],
+  ["Premium cloud streaming — dedicated ingest, stays up, never flagged", "—", "—", "Included"],
   ["Multi-destination + hosted watch page", "—", "—", "Included"],
   ["Cloud DVR & archive", "—", "—", "120 days (extendable)"],
   ["Stream-health monitoring in alerts", "—", "—", "Included"],
@@ -130,6 +138,8 @@ const comparisonRows = [
 
 const faqItems = [
   { question: "Is the Free tier really free forever?", answer: "Yes. No credit card, no trial timer, no expiration. AV monitoring, the living Signal Map, and instant alerts are free forever — that is the pledge, and it never changes. The whole volunteer team can live in it with unlimited users." },
+  { question: "Can I really stream on the Free plan?", answer: "Yes. Social streaming to YouTube and Facebook is included free: connect your accounts once and WorshipMetrics handles the platform integrations, schedules your broadcasts, and retrieves the stream keys — so your encoder is configured once and everything lives in one place. The Stream plan adds premium cloud streaming on top: dedicated ingest infrastructure built to stay up, up to 10 destinations, and an embeddable player and hosted watch page where worship is never muted or flagged by a copyright bot." },
+  { question: "Is switcher control free?", answer: "Locally, yes — on every plan, including Free. Tech Manager controls OBS, vMix, and Blackmagic ATEM switchers, plus your PTZ cameras, from the booth at no cost. Assist and Stream add cloud control: the same full API control, plus live eyes on preview and program, from anywhere — so a trusted helper can monitor the service or assist with the switching remotely." },
   { question: "How do platform tiers and support add-ons combine?", answer: "Pick the platform tier that fits how your church runs Sunday — Free, Assist, or Stream. Then, if you want a person standing behind your team, add Care, Sunday Assurance, or Managed on top. Any tier combines with any add-on, and you can add or drop support anytime." },
   { question: "Why is Stream priced per campus?", answer: "Each campus gets its own encoder, its own Signal Map, its own stream, and its own included usage — so each campus is its own $99. It matches how multi-site churches already buy, without the per-site markup the expensive platforms charge. Network and denomination deals are handled inside Managed." },
   { question: "Do I need to buy a hardware encoder to stream?", answer: "No. The encoder is Tech Manager, the desktop app running on a PC your church already owns — a $0 replacement for the $1,500+ hardware box the expensive streaming platforms require." },
@@ -200,8 +210,8 @@ const structuredData = [
 
   <!-- Diagram: the two choices -->
   <section class="px-4 pb-8 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl overflow-x-auto">
-      <div class="min-w-[760px]">
+    <div class="mx-auto max-w-6xl md:overflow-x-auto">
+      <div class="md:min-w-[760px]">
         <PricingTwoAxis />
       </div>
     </div>
@@ -239,6 +249,10 @@ const structuredData = [
         ))}
       </div>
       <p class="mt-6 text-center text-sm text-slate-500">Billed monthly or annually — annual billing includes 2 months free. The first help session is free on every tier.</p>
+      <div class="mx-auto mt-8 max-w-3xl rounded-[1.75rem] border border-amber-200 bg-amber-50 p-6 text-center">
+        <p class="text-base font-semibold text-slate-900">Want to gift WorshipMetrics to your church?</p>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">Many members cover their church&apos;s annual plan as a designated gift. It&apos;s simple, and because the gift goes to your church, it&apos;s typically tax-deductible. <a href="/gift" class="font-semibold text-indigo-600 hover:text-indigo-800" data-wm-track="cta_click" data-wm-track-label="pricing_gift_learn" data-wm-track-location="pricing_platform">See how it works &rarr;</a></p>
+      </div>
     </div>
   </section>
 
@@ -301,32 +315,41 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- Streaming savings comparison -->
+  <!-- Make what you own work -->
   <section class="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The streaming math</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Stream for less than you pay today — box included, because there is no box.</h2>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Build on the rock</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Stop buying band-aid boxes. Make what you own work.</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          When Sunday keeps breaking, the reflex is another purchase — a new switcher, another converter, one more box on the rack. But most Sunday problems aren&apos;t equipment problems. They&apos;re visibility, training, and support problems, and every new box quietly makes those worse. WorshipMetrics fixes the root cause on the equipment you already own.
+        </p>
       </div>
       <div class="mt-10 grid gap-6 lg:grid-cols-2">
         <div class="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
-          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">What churches often piece together today</p>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">The band-aid cycle</p>
           <ul class="mt-5 space-y-3 text-sm text-slate-600">
-            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>A dedicated streaming service: often ~$150&ndash;350+/mo, plus a $1,500+ hardware encoder</span></li>
-            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>Planning, presentation, and signage tools bought separately — with no support layer at all</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>Something fails on a Sunday, so the church buys another box — and the system grows a little more complex</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>Every new box brings its own cables, configs, and quirks — one more thing only one volunteer understands</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>The root cause — nobody can see the whole system, and nobody is supporting the team — never gets fixed</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-slate-400"></span><span>Churches feel it: 38% now call system complexity a core operational challenge, up 15 points in two years&#8224;</span></li>
           </ul>
         </div>
         <div class="rounded-[1.75rem] border border-indigo-200 bg-indigo-600 p-8 text-white shadow-lg shadow-indigo-200">
-          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-200">With WorshipMetrics</p>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-200">The solid foundation</p>
           <ul class="mt-5 space-y-3 text-sm text-indigo-50">
-            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span><span class="font-semibold text-white">Stream: $99/mo per campus</span></span></li>
-            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>Encoder: Tech Manager on the PC you already own — <span class="font-semibold text-white">$0</span></span></li>
-            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>Planning, presentation, signage, people, and clips — included</span></li>
-            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>24/7 AI support that knows your system — included</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>Your existing cameras, switcher, and console — <span class="font-semibold text-white">documented, monitored, and controlled in one place</span></span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>The encoder is Tech Manager on a PC you already own — <span class="font-semibold text-white">$0 of new hardware</span></span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>Root causes surface in the Signal Map and alerts — with AI and real people standing behind them</span></li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-300"></span><span>Streaming, planning, presentation, and support built on that foundation — not bolted on beside it</span></li>
           </ul>
         </div>
       </div>
-      <p class="mt-4 text-center text-xs text-slate-400">Typical market ranges as of mid-2026 — individual services vary.</p>
+      <div class="mt-8 rounded-[1.75rem] border border-slate-200 bg-white p-8 text-center shadow-sm">
+        <p class="text-lg font-semibold leading-relaxed text-slate-900 sm:text-xl">&ldquo;&hellip;a wise man, which built his house upon a rock.&rdquo;</p>
+        <p class="mt-2 text-sm text-slate-500">Matthew 7:24. The rain fell and the winds blew, and that house stood &mdash; because of what it was built on, not what was added to it. That&apos;s the whole idea here: not more gear. A foundation under the gear you have.</p>
+      </div>
+      <p class="mt-4 text-center text-xs text-slate-400">&#8224; {researchCitation}</p>
     </div>
   </section>
 
@@ -474,6 +497,22 @@ const structuredData = [
           </tbody>
         </table>
       </div>
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <div class="flex flex-col rounded-[1.75rem] border border-indigo-200 bg-indigo-50 p-8">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Switcher control, both ways</p>
+          <p class="mt-3 flex-1 text-base font-semibold leading-relaxed text-slate-900">OBS, vMix, and Blackmagic ATEM control in the booth is free on every plan. Assist and Stream add cloud control &mdash; the same switching, plus eyes on preview and program, from anywhere.</p>
+          <div class="mt-5">
+            <a href="/cloud-control" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="pricing_cloud_control_learn" data-wm-track-location="pricing_comparison">How cloud control works</a>
+          </div>
+        </div>
+        <div class="flex flex-col rounded-[1.75rem] border border-indigo-200 bg-indigo-50 p-8">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Reels, both ways</p>
+          <p class="mt-3 flex-1 text-base font-semibold leading-relaxed text-slate-900">Reels &mdash; AI worship clips &mdash; is free on every plan: the moments are found and the clips render right on the booth PC in Tech Manager. Assist takes Reels to the cloud &mdash; work from anywhere, archive, collaborate &mdash; and Stream clips every service automatically.</p>
+          <div class="mt-5">
+            <a href="/solutions/worship-clips" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="pricing_reels_learn" data-wm-track-location="pricing_comparison">See Reels</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -502,6 +541,16 @@ const structuredData = [
     eyebrow="Before you decide"
     heading="You should know who you are handing your Sunday to."
     body="There is no call center behind this price. WorshipMetrics is a pastor, an engineer, and an AV educator who have spent their careers in church production — and Paul still answers 910-WORSHIP himself."
+  />
+
+  <!-- Why reliability is worth paying for -->
+  <ResearchCallout
+    variant="slate"
+    eyebrow="Why churches buy what they buy"
+    heading="Churches stopped shopping on price. They started shopping on whether it holds."
+    body="Church Production Magazine asked churches what they weigh when evaluating production technology, and compared it with two years ago. The order changed."
+    stats={buyingStats}
+    footnote="We price the platform to be reachable and the free tier to be genuinely useful. But the thing we actually optimize for is the thing churches now rank first — that it works on Sunday, and that a volunteer can run it."
   />
 
   <!-- Final CTA -->

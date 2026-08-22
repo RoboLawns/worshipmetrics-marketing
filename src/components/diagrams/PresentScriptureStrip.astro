@@ -3,14 +3,15 @@
  * Present — scripture to slides in three steps.
  * Type a reference, choose the translation and split, get re-editable slides.
  */
+const LABEL = "Three-step diagram: type a scripture reference, choose a translation and verses per slide, and finished slides appear ready to present.";
 ---
 
 <svg
   viewBox="0 0 980 268"
   width="100%"
   role="img"
-  aria-label="Three-step diagram: type a scripture reference, choose a translation and verses per slide, and finished slides appear ready to present."
-  class="h-auto w-full"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
   xmlns="http://www.w3.org/2000/svg"
 >
   <!-- Step 1 — type the reference -->
@@ -70,4 +71,69 @@
 
   <!-- Caption -->
   <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" letter-spacing="1.6" fill="#2B7FF0">SIX TRANSLATIONS INCLUDED · NO COPY-PASTE</text>
+</svg>
+
+<!-- Portrait: the three steps stacked. -->
+<svg
+  viewBox="0 0 360 620"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text x="10" y="14" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="1.2" fill="#2B7FF0">SIX TRANSLATIONS · NO COPY-PASTE</text>
+
+  <!-- Step 1 -->
+  <g transform="translate(10, 28)">
+    <rect x="0" y="0" width="340" height="152" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="22" y="30" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">01 · TYPE IT</text>
+    <rect x="22" y="46" width="296" height="50" rx="10" fill="#F7F9FB" stroke="#C5DDFB" stroke-width="1.5" />
+    <text x="40" y="78" font-family="Archivo, sans-serif" font-size="19" font-weight="600" fill="#0B0D10">John 3:16</text>
+    <rect x="134" y="59" width="1.8" height="24" fill="#2B7FF0" />
+    <text x="22" y="122" font-family="Archivo, sans-serif" font-size="13.5" fill="#78828F">Books, chapters, and ranges &mdash;</text>
+    <text x="22" y="140" font-family="Archivo, sans-serif" font-size="13.5" fill="#78828F">&ldquo;Rom 8:28&ndash;39&rdquo; works too.</text>
+  </g>
+  <path d="M180 186 V 206" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" />
+  <path d="M174 200 L180 208 L186 200" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Step 2 -->
+  <g transform="translate(10, 216)">
+    <rect x="0" y="0" width="340" height="176" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="22" y="30" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">02 · CHOOSE</text>
+    <rect x="22" y="44" width="110" height="32" rx="8" fill="#2B7FF0" />
+    <text x="77" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#ffffff">KJV</text>
+    <rect x="142" y="44" width="84" height="32" rx="8" fill="#F2F4F7" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="184" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#78828F">WEB</text>
+    <rect x="236" y="44" width="82" height="32" rx="8" fill="#F2F4F7" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="277" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#78828F">ASV</text>
+    <rect x="22" y="88" width="296" height="38" rx="9" fill="#F7F9FB" stroke="#E3E7ED" stroke-width="1.5" />
+    <circle cx="44" cy="107" r="8" fill="#2B7FF0" />
+    <path d="M40.5 107 l3 3 l5.2-5.6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="62" y="112" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">One verse per slide</text>
+    <text x="22" y="148" font-family="Archivo, sans-serif" font-size="13.5" fill="#78828F">Verse numbers and reference</text>
+    <text x="22" y="166" font-family="Archivo, sans-serif" font-size="13.5" fill="#78828F">style are yours to set.</text>
+  </g>
+  <path d="M180 398 V 418" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" />
+  <path d="M174 412 L180 420 L186 412" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Step 3 -->
+  <g transform="translate(10, 428)">
+    <rect x="0" y="0" width="340" height="176" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="22" y="30" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">03 · DONE</text>
+    <g transform="translate(22, 44)">
+      <rect x="0" y="0" width="142" height="80" rx="8" fill="#0B0D10" />
+      <rect x="14" y="20" width="98" height="8" rx="4" fill="#ffffff" opacity="0.92" />
+      <rect x="14" y="36" width="112" height="8" rx="4" fill="#ffffff" opacity="0.92" />
+      <text x="14" y="68" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" letter-spacing="0.8" fill="#6AA9F4">JOHN 3:16</text>
+    </g>
+    <g transform="translate(176, 44)">
+      <rect x="0" y="0" width="142" height="80" rx="8" fill="#0B0D10" />
+      <rect x="14" y="20" width="112" height="8" rx="4" fill="#ffffff" opacity="0.92" />
+      <rect x="14" y="36" width="82" height="8" rx="4" fill="#ffffff" opacity="0.92" />
+      <text x="14" y="68" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" letter-spacing="0.8" fill="#6AA9F4">JOHN 3:17</text>
+    </g>
+    <text x="22" y="146" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">Add to the live playlist, or save it</text>
+    <text x="22" y="164" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">as a re-editable presentation.</text>
+  </g>
 </svg>

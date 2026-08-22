@@ -129,7 +129,12 @@ const defaultLabel = (slide: Slide, index: number) =>
     border-radius: 999px;
     background: rgb(15 23 42 / 0.6);
     backdrop-filter: blur(6px);
+    max-width: calc(100% - 1.25rem);
+    overflow-x: auto;
+    scrollbar-width: none;
   }
+  .wm-carousel-tabs::-webkit-scrollbar { display: none; }
+  .wm-carousel-tab { flex-shrink: 0; }
 
   .wm-carousel-tab {
     border: none;

@@ -10,14 +10,16 @@ const destinations = [
   { y: 166, label: "Your website player", meta: "Embed + hosted watch page" },
   { y: 226, label: "Custom RTMP", meta: "Overflow room, partners, anywhere" },
 ];
+const LABEL = "Diagram: one feed leaves the church booth over SRT, WorshipMetrics ingests and packages it once, and it fans out simultaneously to YouTube, Facebook, your website player, and any custom RTMP destination, while the same feed is archived and cut into Reels.";
+const steps = ["Resilient ingest", "Transcode once", "Health watched live"];
 ---
 
 <svg
   viewBox="0 0 980 400"
   width="100%"
   role="img"
-  aria-label="Diagram: one feed leaves the church booth over SRT, WorshipMetrics ingests and packages it once, and it fans out simultaneously to YouTube, Facebook, your website player, and any custom RTMP destination, while the same feed is archived and cut into Reels."
-  class="h-auto w-full"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
   xmlns="http://www.w3.org/2000/svg"
 >
   <!-- Booth -->
@@ -43,7 +45,7 @@ const destinations = [
   <g transform="translate(312, 100)">
     <rect x="0" y="0" width="212" height="148" rx="16" fill="#EFF6FE" stroke="#2B7FF0" stroke-width="2" />
     <text x="22" y="34" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#0B0D10">Ingest &amp; package</text>
-    {["Resilient ingest", "Transcode once", "Health watched live"].map((t, i) => (
+    {steps.map((t, i) => (
       <g transform={`translate(22, ${52 + i * 28})`}>
         <circle cx="5" cy="9" r="4" fill="#2B7FF0" />
         <text x="18" y="13" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">{t}</text>
@@ -88,4 +90,69 @@ const destinations = [
 
   <!-- Footnote -->
   <text x="20" y="376" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">Add or drop a destination in a click &mdash; your encoder settings never change again.</text>
+</svg>
+
+<!-- Portrait: booth → packaging → destinations, top to bottom. -->
+<svg
+  viewBox="0 0 360 760"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Booth -->
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">YOUR BOOTH</text>
+  <g transform="translate(10, 26)">
+    <rect x="0" y="0" width="340" height="106" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <rect x="20" y="20" width="34" height="34" rx="8" fill="#0B0D10" />
+    <path d="M28 40 h4.5 l5-12.5 l6 24 l5-11.5 h4.5" fill="none" stroke="#2B7FF0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="66" y="36" font-family="Archivo, sans-serif" font-size="16" font-weight="700" fill="#0B0D10">Tech Manager</text>
+    <text x="66" y="54" font-family="Archivo, sans-serif" font-size="13" fill="#78828F">or vMix / OBS</text>
+    <text x="20" y="80" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">One encoder. One setting,</text>
+    <text x="20" y="97" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">pointed at us once.</text>
+  </g>
+
+  <!-- Feed arrow -->
+  <rect x="122" y="142" width="116" height="24" rx="6" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.5" />
+  <text x="180" y="158" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#1D66D6">SRT · ONE FEED</text>
+  <path d="M180 172 V 190" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 184 L180 192 L187 184" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Cloud -->
+  <text x="10" y="216" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#2B7FF0">WORSHIPMETRICS</text>
+  <g transform="translate(10, 226)">
+    <rect x="0" y="0" width="340" height="130" rx="16" fill="#EFF6FE" stroke="#2B7FF0" stroke-width="2" />
+    <text x="22" y="34" font-family="Archivo, sans-serif" font-size="16" font-weight="700" fill="#0B0D10">Ingest &amp; package</text>
+    {steps.map((t, i) => (
+      <g transform={`translate(22, ${50 + i * 26})`}>
+        <circle cx="5" cy="9" r="4.5" fill="#2B7FF0" />
+        <text x="20" y="14" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">{t}</text>
+      </g>
+    ))}
+  </g>
+  <path d="M180 356 V 380" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 374 L180 382 L187 374" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Destinations -->
+  <text x="10" y="406" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">EVERYWHERE AT ONCE</text>
+  {destinations.map(({ label, meta }, i) => (
+    <g transform={`translate(10, ${416 + i * 62})`}>
+      <rect x="0" y="0" width="340" height="54" rx="11" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <circle cx="24" cy="27" r="5.5" fill="#2B7FF0" />
+      <text x="44" y="24" font-family="Archivo, sans-serif" font-size="15" font-weight="700" fill="#0B0D10">{label}</text>
+      <text x="44" y="42" font-family="Archivo, sans-serif" font-size="12.5" fill="#78828F">{meta}</text>
+    </g>
+  ))}
+
+  <!-- Archive branch -->
+  <g transform="translate(10, 672)">
+    <rect x="0" y="0" width="340" height="54" rx="11" fill="#0B0D10" />
+    <circle cx="24" cy="27" r="5.5" fill="#6AA9F4" />
+    <text x="44" y="24" font-family="Archivo, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Recording, DVR &amp; Reels</text>
+    <text x="44" y="42" font-family="Archivo, sans-serif" font-size="12.5" fill="#9CC6F8">Every service archived and clipped</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="10" y="748" font-family="Archivo, sans-serif" font-size="13.5" fill="#3F4854">Add or drop a destination in a click.</text>
 </svg>
