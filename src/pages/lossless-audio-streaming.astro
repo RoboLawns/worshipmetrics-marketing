@@ -1,0 +1,247 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+import LosslessRenditions from "../components/diagrams/LosslessRenditions.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SITE_URL = "https://worshipmetrics.com";
+const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
+const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-stream-health.jpg`;
+const LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/stream-health.jpg`;
+
+const steps = [
+  {
+    step: "1",
+    title: "Your booth will send full-quality audio",
+    body: "The encoder pushes a feed carrying your video alongside uncompressed audio — the same quality your console puts out, before any lossy encode touches it.",
+  },
+  {
+    step: "2",
+    title: "The cloud will package two renditions in one stream",
+    body: "A lossless FLAC track and a high-quality AAC fallback, packaged into a single manifest. One stream, two audio qualities — no second encoder, no separate feed to babysit.",
+  },
+  {
+    step: "3",
+    title: "Every listener gets the best their device can play",
+    body: "Devices that decode FLAC will receive bit-perfect audio; everything else falls back to AAC automatically. Nobody configures anything — the player negotiates it.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Is lossless audio streaming available today?",
+    answer: "Not yet — it's on the roadmap for the Stream plan, and this page describes how it will work. Cloud live streaming, multi-destination delivery, recordings, and stream health monitoring are the shipping parts of Stream today. We'd rather tell you what's coming than let you discover the gap after you subscribe.",
+  },
+  {
+    question: "What is lossless audio streaming?",
+    answer: "Most live streams compress audio with lossy codecs that permanently discard detail — usually fine for speech, but audible on music: cymbals smear, congregational singing turns to mush, dynamics flatten. Lossless streaming delivers audio bit-for-bit identical to what left your mixing console, using FLAC compression that shrinks the data without discarding any of it.",
+  },
+  {
+    question: "Will viewers need special equipment to hear it?",
+    answer: "No. The lossless FLAC track and a high-quality AAC fallback will travel in the same stream. Devices and browsers that can decode FLAC get lossless automatically; everything else plays the AAC rendition — still excellent — with no setup on the viewer's end.",
+  },
+  {
+    question: "Will lossless streaming cost extra?",
+    answer: "No. When it ships it will be part of the Stream plan at $99 per month per campus, alongside multi-destination delivery, cloud recordings and archive, Reels, and stream health monitoring.",
+  },
+  {
+    question: "How much bandwidth does lossless audio use?",
+    answer: "Less than you'd guess: CD-quality FLAC — 16-bit, 44.1 kHz stereo — runs roughly 0.8 Mbps. That's a fraction of the video's bandwidth, which is why lossless audio is practical on an ordinary church internet connection.",
+  },
+  {
+    question: "Will YouTube and Facebook viewers hear lossless audio?",
+    answer: "No platform we restream to accepts lossless audio — YouTube and Facebook re-encode everything with their own codecs. Lossless will apply to your embedded player, your hosted watch page, and your archive. That archive matters most: recordings would keep the lossless master, so every clip and future re-edit starts from full quality.",
+  },
+  {
+    question: "Why does a church need lossless audio?",
+    answer: "Because worship is music. A sermon survives compression; a worship set is where lossy audio does real damage. The people worshiping from home — the homebound, the traveling, the not-yet-walked-in — deserve to hear the same worship the room heard. And your archive becomes a master recording of your church's worship, not a compressed copy of it.",
+  },
+];
+
+// No Service schema while this is on the roadmap — Service markup asserts a
+// capability we operate today. FAQ markup is safe and still earns rich results.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Layout
+  title="Lossless Audio Streaming for Churches"
+  socialTitle="WorshipMetrics | Lossless worship streaming."
+  description="Lossless CD-quality FLAC audio for worship streams — coming to the WorshipMetrics Stream plan. How it will work, why it matters for music-driven services, and why your archive deserves a master, not a copy."
+  canonical="/lossless-audio-streaming"
+  ogImage={LIFESTYLE_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-4 py-1 shadow-sm !text-amber-800">
+        <img src="/images/nav/pillars/publish.png" alt="" class="h-7 w-7 rounded-md" /> On the roadmap &middot; Coming to Stream
+      </p>
+      <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        Worship, streamed without losing a note.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+        Almost every live stream compresses the life out of worship audio. We&apos;re building a CD-quality lossless FLAC track that travels alongside a universal fallback &mdash; in one stream &mdash; so the congregation at home hears what the room heard.
+      </p>
+      <div class="mx-auto mt-8 max-w-2xl rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4 text-left">
+        <p class="text-sm leading-relaxed text-amber-900">
+          <strong class="font-bold">This one isn&apos;t shipped yet.</strong> Lossless audio is planned for the Stream plan and this page describes how it will work. Cloud live streaming, multi-destination delivery, recordings, and stream health monitoring are all part of Stream today &mdash; see <a href="/live-streaming" class="font-semibold underline">what streaming does now</a>.
+        </p>
+      </div>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/live-streaming" class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="lossless_hero_streaming" data-wm-track-location="lossless_hero">See streaming today</a>
+        <a href="/pricing" class="btn-outline">Stream — $99/mo per campus</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">Why it matters</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A sermon survives compression. A worship set doesn&apos;t.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Lossy audio codecs permanently discard detail to save bandwidth. On speech you rarely notice. On music you do: cymbals smear into hiss, congregational singing turns muddy, and the dynamics your worship team works so hard for get flattened on the way out the door.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Lossless FLAC changes the deal: the audio that reaches the listener will be bit-for-bit identical to what left your console. The homebound member worshiping from a living room hears the same worship the sanctuary heard &mdash; and that&apos;s the point.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Very few streaming platforms in any industry offer this. We&apos;re building it because worship is the one broadcast where the music <em>is</em> the message.
+        </p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={LIFESTYLE_IMAGE} alt="Church tech team reviewing a lossless worship stream" loading="eager" decoding="async" class="aspect-video w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram: two renditions, one stream -->
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl border-t border-slate-200 pt-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">The signal path</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Two renditions, travelling together.</h2>
+        <p class="mt-3 text-sm text-slate-500">How the planned signal path will work.</p>
+      </div>
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <LosslessRenditions />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">How it works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One stream. Two audio qualities. Zero viewer setup.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {steps.map(({ step, title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{step}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        The numbers, for the skeptics: CD-quality FLAC (16-bit / 44.1 kHz stereo) runs roughly 0.8 Mbps &mdash; a fraction of your video bandwidth. Lossless is not a bandwidth problem; it just needed someone to build it.
+      </p>
+    </div>
+  </section>
+
+  <!-- Archive angle -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-indigo-200 bg-indigo-50 p-8 shadow-sm sm:p-10">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
+        <div>
+          <p class="eyebrow">Your archive becomes a master</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every recording keeps the lossless track.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            Restream destinations re-encode whatever they receive &mdash; that&apos;s out of anyone&apos;s hands. But your own player, your watch page, and above all your <em>archive</em> keep the lossless master. Every Reel you cut, every anniversary montage, every future re-edit starts from full quality instead of a copy of a copy.
+          </p>
+          <div class="mt-6 flex flex-col items-start gap-3 sm:flex-row">
+            <a href="/live-streaming" class="btn-primary">See live streaming</a>
+            <a href="/kb/articles/lossless-flac-live-streaming-worship/" class="btn-outline">The deep technical dive</a>
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={HERO_IMAGE} alt="Stream health report for a lossless worship stream in WorshipMetrics" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical details -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Technical details</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The spec we&apos;re building to.</h2>
+      </div>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        {[
+          ["Ingest (planned)", "A feed carrying H.264 video alongside uncompressed audio, so nothing lossy touches it before packaging"],
+          ["Lossless codec", "FLAC, 16-bit / 44.1 kHz stereo — bit-perfect CD quality at roughly 0.7–0.9 Mbps"],
+          ["Packaging", "FLAC-in-fMP4 (CMAF) alongside an AAC-LC 256 kbps fallback rendition in a single HLS manifest"],
+          ["Playback", "Devices that decode FLAC get lossless automatically; all others receive the AAC rendition — no viewer configuration"],
+          ["Where lossless applies", "Your embedded player, your hosted watch page, and your recording archive; restream platforms (YouTube, Facebook) re-encode with their own codecs"],
+          ["Archive", "Recordings retain the lossless track — clips and re-edits start from the master, within your archive retention window"],
+          ["Availability", "On the roadmap for the Stream plan ($99/mo per campus) — no additional charge planned, no separate audio product"],
+        ].map(([term, detail], index) => (
+          <div class={`grid gap-1 px-6 py-4 sm:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] sm:gap-6 ${index % 2 === 0 ? "bg-slate-50" : "bg-white"}`}>
+            <p class="text-sm font-semibold text-slate-900">{term}</p>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Lossless streaming, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <summary class="cursor-pointer text-base font-semibold text-slate-900 marker:content-none">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Streaming today. Lossless next.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
+        Multi-destination delivery, recordings and archive, Reels, and a scored health report for every service &mdash; all in the Stream plan today, with lossless audio on the way.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="lossless_footer_start" data-wm-track-location="lossless_footer">Start with Stream</a>
+        <a href="/pricing" class="btn-ghost-dark">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <TechManagerCTA />
+</Layout>
