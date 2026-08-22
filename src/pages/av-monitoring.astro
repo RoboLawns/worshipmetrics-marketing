@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import PulseEscalation from "../components/diagrams/PulseEscalation.astro";
@@ -317,6 +318,31 @@ const structuredData = {
             <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cloud connectivity -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Connected through the cloud</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Watched from anywhere. Fixed from anywhere.</h2>
+      </div>
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <CloudConnectivity
+            users={[
+              { device: "phone", role: "The tech director", action: "Gets the alert first", where: "Anywhere" },
+              { device: "laptop", role: "The volunteer", action: "Checks the Signal Map", where: "From home" },
+              { device: "laptop", role: "Journey & our team", action: "Sees your system on a call", where: "910-WORSHIP" },
+            ]}
+            churchTitle="Every device"
+            churchLines={["Machines, streams, and cables", "watched 24/7 — free forever."]}
+            footnote="Most issues clear before anyone in the room notices — that is the point of a connected system."
+            ariaJob="watch the AV system from anywhere"
+          />
+        </div>
       </div>
     </div>
   </section>

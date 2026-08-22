@@ -12,6 +12,8 @@ export default defineConfig({
   site: 'https://worshipmetrics.com',
   trailingSlash: 'always',
   redirects: {
+    '/lossless-audio-streaming': '/live-streaming',
+    '/kb/articles/lossless-flac-live-streaming-worship': '/kb/articles/church-live-streaming-platform-guide',
     '/platform/operations': '/volunteers',
     '/features': '/platform',
     '/integrations/central-control': '/services',

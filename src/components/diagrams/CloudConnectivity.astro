@@ -1,0 +1,218 @@
+---
+/**
+ * Cloud connectivity — the reusable "everything meets in the cloud" diagram.
+ * Three people (phone or laptop, each doing their real job) ↔ the WorshipMetrics
+ * cloud ↔ the church. Parameterize per module: Present shows slide editing,
+ * Produce shows switcher control, Plan shows the service plan, and so on.
+ */
+export interface CloudUser {
+  device: "phone" | "laptop";
+  role: string;
+  /** Keep to ~30 characters — it renders on one line. */
+  action: string;
+  /** Short location chip, uppercase-styled ("FROM HOME", "ON THE GO"). */
+  where: string;
+}
+
+interface Props {
+  /** Exactly three people — three primary roles doing their important function. */
+  users: [CloudUser, CloudUser, CloudUser];
+  /** Bold name of what's at the church ("Sunday's screens", "The booth"). */
+  churchTitle: string;
+  /** One or two short description lines under the church title. */
+  churchLines: string[];
+  /** Closing line under the diagram. */
+  footnote: string;
+  /** One phrase for screen readers naming the module's job ("edit Sunday's slides"). */
+  ariaJob: string;
+}
+
+const { users, churchTitle, churchLines, footnote, ariaJob } = Astro.props;
+
+// Soft cloud silhouette in local coords (~ -14..196 x, 2..106 y), flat bottom.
+const CLOUD =
+  "M 22 106 C -8 106 -14 76 8 62 C 0 30 34 12 62 26 C 76 2 116 2 130 24 C 160 10 186 32 178 58 C 200 70 196 102 164 106 Z";
+
+const LABEL = `Diagram: three people connect through the WorshipMetrics cloud to ${ariaJob} — ${users
+  .map((u) => `${u.role} (${u.where.toLowerCase()}) ${u.action.toLowerCase()}`)
+  .join("; ")} — over one secure link back to ${churchTitle} at the church, where everyone works in the same live system.`;
+
+// Landscape geometry
+const CARD_YS = [46, 146, 246];
+const CLOUD_TARGET_YS = [158, 178, 198];
+
+// Portrait: wrap the footnote to ~50-char lines so it never overruns the 360 viewBox.
+const wrapLines = (text: string, max = 50): string[] => {
+  const lines: string[] = [];
+  let line = "";
+  for (const word of text.split(" ")) {
+    if (line && (line + " " + word).length > max) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = line ? line + " " + word : word;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+};
+const footnoteLines = wrapLines(footnote);
+const PORTRAIT_H = 714 + footnoteLines.length * 16;
+---
+
+<svg
+  viewBox="0 0 980 400"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- People -->
+  <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">FROM ANYWHERE</text>
+  {users.map(({ device, role, action, where }, i) => (
+    <g transform={`translate(20, ${CARD_YS[i]})`}>
+      <rect x="0" y="0" width="272" height="88" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <rect x="18" y="16" width="34" height="34" rx="8" fill="#0B0D10" />
+      {device === "phone" ? (
+        <g>
+          <rect x="29.5" y="22" width="11" height="22" rx="3" fill="none" stroke="#2B7FF0" stroke-width="1.8" />
+          <path d="M33 40.5 h4" stroke="#2B7FF0" stroke-width="1.6" stroke-linecap="round" />
+        </g>
+      ) : (
+        <g>
+          <rect x="25" y="24" width="20" height="13" rx="2" fill="none" stroke="#2B7FF0" stroke-width="1.8" />
+          <path d="M22 41 h26" stroke="#2B7FF0" stroke-width="1.8" stroke-linecap="round" />
+        </g>
+      )}
+      <text x="64" y="30" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">{role}</text>
+      <text x="64" y="48" font-family="Archivo, sans-serif" font-size="11.5" fill="#3F4854">{action}</text>
+      <text x="64" y="68" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" letter-spacing="0.8" fill="#1D66D6">{where.toUpperCase()}</text>
+    </g>
+  ))}
+
+  <!-- People ↔ cloud -->
+  {users.map((_, i) => (
+    <g>
+      <path
+        d={`M296 ${CARD_YS[i] + 44} C 340 ${CARD_YS[i] + 44}, 350 ${CLOUD_TARGET_YS[i]}, 394 ${CLOUD_TARGET_YS[i]}`}
+        fill="none"
+        stroke="#C5DDFB"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+      <path d={`M304 ${CARD_YS[i] + 38} L296 ${CARD_YS[i] + 44} L304 ${CARD_YS[i] + 50}`} fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d={`M388 ${CLOUD_TARGET_YS[i] - 6} L396 ${CLOUD_TARGET_YS[i]} L388 ${CLOUD_TARGET_YS[i] + 6}`} fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  ))}
+
+  <!-- Cloud -->
+  <g transform="translate(392, 96)">
+    <path d={CLOUD} fill="#EFF6FE" stroke="#2B7FF0" stroke-width="2" stroke-linejoin="round" />
+    <text x="91" y="54" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" letter-spacing="1.1" fill="#1D66D6">WORSHIPMETRICS</text>
+    <text x="91" y="74" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">One secure cloud</text>
+    <text x="91" y="90" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" fill="#3F4854">always in sync</text>
+  </g>
+
+  <!-- Cloud ↔ church -->
+  <path d="M594 178 H676" fill="none" stroke="#C5DDFB" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M602 172 L594 178 L602 184" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M668 172 L676 178 L668 184" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="592" y="144" width="86" height="20" rx="5" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.5" />
+  <text x="635" y="158" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" letter-spacing="0.6" fill="#1D66D6">SECURE LINK</text>
+
+  <!-- Church -->
+  <text x="688" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">AT YOUR CHURCH</text>
+  <g transform="translate(688, 96)">
+    <rect x="0" y="0" width="272" height="168" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <g stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M22 56 L44 36 L66 56" />
+      <path d="M28 56 v20 h32 v-20" />
+      <path d="M44 16 v12 M38 21 h12" />
+    </g>
+    <text x="82" y="44" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#0B0D10">{churchTitle}</text>
+    <text x="82" y="60" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" letter-spacing="0.8" fill="#78828F">LIVE · CONNECTED</text>
+    {churchLines.map((line, i) => (
+      <text x="22" y={102 + i * 17} font-family="Archivo, sans-serif" font-size="11.5" fill="#3F4854">{line}</text>
+    ))}
+    <path d="M22 140 H250" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="22" y="156" font-family="Archivo, sans-serif" font-size="11" font-weight="600" fill="#1D66D6">Everyone works in the same live system.</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="20" y="378" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">{footnote}</text>
+</svg>
+
+<!-- Portrait: people → cloud → church, top to bottom. -->
+<svg
+  viewBox={`0 0 360 ${PORTRAIT_H}`}
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">FROM ANYWHERE</text>
+  {users.map(({ device, role, action, where }, i) => (
+    <g transform={`translate(10, ${26 + i * 90})`}>
+      <rect x="0" y="0" width="340" height="80" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <rect x="16" y="14" width="34" height="34" rx="8" fill="#0B0D10" />
+      {device === "phone" ? (
+        <g>
+          <rect x="27.5" y="20" width="11" height="22" rx="3" fill="none" stroke="#2B7FF0" stroke-width="1.8" />
+          <path d="M31 38.5 h4" stroke="#2B7FF0" stroke-width="1.6" stroke-linecap="round" />
+        </g>
+      ) : (
+        <g>
+          <rect x="23" y="22" width="20" height="13" rx="2" fill="none" stroke="#2B7FF0" stroke-width="1.8" />
+          <path d="M20 39 h26" stroke="#2B7FF0" stroke-width="1.8" stroke-linecap="round" />
+        </g>
+      )}
+      <text x="62" y="30" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#0B0D10">{role}</text>
+      <text x="62" y="48" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">{action}</text>
+      <text x="62" y="66" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" letter-spacing="0.8" fill="#1D66D6">{where.toUpperCase()}</text>
+    </g>
+  ))}
+
+  <!-- Down to the cloud -->
+  <path d="M180 300 V 322" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 296 L180 304 L187 296" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M173 316 L180 324 L187 316" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Cloud -->
+  <g transform="translate(88, 334)">
+    <path d={CLOUD} fill="#EFF6FE" stroke="#2B7FF0" stroke-width="2" stroke-linejoin="round" />
+    <text x="91" y="54" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" letter-spacing="1.1" fill="#1D66D6">WORSHIPMETRICS</text>
+    <text x="91" y="74" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">One secure cloud</text>
+    <text x="91" y="90" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" fill="#3F4854">always in sync</text>
+  </g>
+
+  <!-- Secure link down to church -->
+  <rect x="128" y="452" width="104" height="24" rx="6" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.5" />
+  <text x="180" y="468" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" letter-spacing="0.6" fill="#1D66D6">SECURE LINK</text>
+  <path d="M180 482 V 504" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 478 L180 486 L187 478" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M173 498 L180 506 L187 498" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Church -->
+  <text x="10" y="530" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">AT YOUR CHURCH</text>
+  <g transform="translate(10, 540)">
+    <rect x="0" y="0" width="340" height="150" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <g stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M20 52 L42 32 L64 52" />
+      <path d="M26 52 v18 h32 v-18" />
+      <path d="M42 12 v12 M36 17 h12" />
+    </g>
+    <text x="80" y="40" font-family="Archivo, sans-serif" font-size="15" font-weight="700" fill="#0B0D10">{churchTitle}</text>
+    <text x="80" y="56" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" letter-spacing="0.8" fill="#78828F">LIVE · CONNECTED</text>
+    {churchLines.map((line, i) => (
+      <text x="20" y={94 + i * 17} font-family="Archivo, sans-serif" font-size="11.5" fill="#3F4854">{line}</text>
+    ))}
+    <text x="20" y="136" font-family="Archivo, sans-serif" font-size="11" font-weight="600" fill="#1D66D6">Everyone works in the same live system.</text>
+  </g>
+
+  <!-- Footnote -->
+  {footnoteLines.map((line, i) => (
+    <text x="10" y={710 + i * 16} font-family="Archivo, sans-serif" font-size="12.5" fill="#3F4854">{line}</text>
+  ))}
+</svg>

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import PublishFanOut from "../components/diagrams/PublishFanOut.astro";
@@ -154,10 +155,6 @@ const structuredData = [
             body: "Your encoder pushes one RTMPS or SRT feed to stream.worshipmetrics.com, and a worldwide delivery network handles the adaptive bitrate ladder, DVR, and playback. Resilient ingest, not a server in a closet.",
           },
           {
-            title: "Lossless worship audio — coming",
-            body: "On the roadmap for Stream: CD-quality lossless FLAC audio alongside a universal AAC fallback in the same stream, because worship deserves better than squashed audio.",
-          },
-          {
             title: "One feed, ten destinations",
             body: "The cloud fans your single uplink out to up to ten destinations at once — YouTube, Facebook, your own embedded player, and any custom RTMP endpoint — without asking your encoder to do more work.",
           },
@@ -196,9 +193,6 @@ const structuredData = [
           </div>
         ))}
       </div>
-      <p class="mt-8 text-center text-sm text-slate-500">
-        Lossless audio is rare enough that we wrote a whole page on it &mdash; including where it stands: <a href="/lossless-audio-streaming" class="font-semibold text-indigo-600 hover:text-indigo-800">how lossless worship streaming will work &rarr;</a>
-      </p>
     </div>
   </section>
 
@@ -250,6 +244,31 @@ const structuredData = [
     </div>
   </section>
 
+  <!-- Cloud connectivity -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Connected through the cloud</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your stream team, wherever they are.</h2>
+      </div>
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <CloudConnectivity
+            users={[
+              { device: "laptop", role: "The stream operator", action: "Starts and watches the stream", where: "From the booth" },
+              { device: "phone", role: "The Reels volunteer", action: "Clips Sunday's best moments", where: "Before Monday" },
+              { device: "phone", role: "The pastor", action: "Checks the service is live", where: "From the road" },
+            ]}
+            churchTitle="One feed out"
+            churchLines={["Tech Manager encodes — YouTube,", "Facebook, and your watch page."]}
+            footnote="One feed in, every destination out — recorded, archived, and ready to clip from anywhere."
+            ariaJob="run the live stream from anywhere"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl">
@@ -292,7 +311,6 @@ const structuredData = [
         {[
           ["Ingest", "RTMPS and SRT (stream ID + passphrase) to stream.worshipmetrics.com — works with vMix, OBS, and any RTMP/SRT encoder"],
           ["Delivery", "HLS with an adaptive bitrate ladder to the embeddable player and your hosted watch page (4-second segments, auto-start when you go live)"],
-          ["Lossless lane (roadmap)", "Planned: FLAC lossless audio plus an AAC fallback in one manifest — CD-quality 16-bit/44.1 kHz stereo at roughly 0.8 Mbps"],
           ["Destinations", "Up to 10 simultaneous per channel: YouTube, Facebook Live, Twitch, and any custom RTMP/RTMPS endpoint"],
           ["Recordings", "Automatic per service, up to 4 hours / 8 GB each, available once the stream ends — and fully separate from the broadcast, so archive limits can never stop a live stream"],
           ["Archive retention", "120 days included; extended one-year archive available as an add-on"],

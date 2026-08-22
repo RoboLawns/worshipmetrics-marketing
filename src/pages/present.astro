@@ -6,6 +6,7 @@ import PresentOutputRouting from "../components/diagrams/PresentOutputRouting.as
 import PresentStageDisplay from "../components/diagrams/PresentStageDisplay.astro";
 import PresentTriggerFan from "../components/diagrams/PresentTriggerFan.astro";
 import PresentScriptureStrip from "../components/diagrams/PresentScriptureStrip.astro";
+import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import AppScreenshot from "../components/AppScreenshot.astro";
 import { slideEditor, cloudEditor, scriptureBrowser, stageDisplay, overlays } from "../data/appScreenshots";
@@ -197,6 +198,21 @@ const structuredData = {
               <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
             ))}
           </ul>
+        </div>
+      </div>
+      <div class="mt-14 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <CloudConnectivity
+            users={[
+              { device: "laptop", role: "The pastor", action: "Reworks the sermon slides", where: "From home" },
+              { device: "phone", role: "The worship leader", action: "Fixes a lyric and the key", where: "On the go" },
+              { device: "laptop", role: "The volunteer", action: "Builds Sunday's playlist", where: "At the booth" },
+            ]}
+            churchTitle="Sunday's screens"
+            churchLines={["Projector, stage display, booth PC —", "updating live as the team works."]}
+            footnote="No exports, no emailed files — the edit is simply there when the booth opens the service."
+            ariaJob="edit Sunday's slides from anywhere"
+          />
         </div>
       </div>
       <div class="mt-14">

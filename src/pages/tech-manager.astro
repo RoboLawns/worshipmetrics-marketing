@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ResearchCallout from "../components/ResearchCallout.astro";
+import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 import { complexityStats } from "../data/churchProductionResearch";
 
 const SITE_URL = "https://worshipmetrics.com";
@@ -401,6 +402,21 @@ const structuredData = [
       <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
         Switcher and camera control runs locally in the booth on every plan, free. Assist and Stream add <a href="/cloud-control" class="font-semibold text-indigo-600 hover:text-indigo-800">cloud control</a> &mdash; the same switching, with eyes on preview and program, from anywhere.
       </p>
+      <div class="mt-12 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <CloudConnectivity
+            users={[
+              { device: "phone", role: "The tech director", action: "Eyes on preview & program", where: "From anywhere" },
+              { device: "laptop", role: "The veteran volunteer", action: "Covers the switch remotely", where: "On vacation" },
+              { device: "laptop", role: "Our support pro", action: "Assists live when you call", where: "Sunday Assurance" },
+            ]}
+            churchTitle="The booth"
+            churchLines={["OBS, vMix, or ATEM + Tech Manager —", "local control free on every plan."]}
+            footnote="One outbound link from Tech Manager — no port forwarding, and every remote action lands in your support history."
+            ariaJob="control the video switcher from anywhere"
+          />
+        </div>
+      </div>
     </div>
   </section>
 

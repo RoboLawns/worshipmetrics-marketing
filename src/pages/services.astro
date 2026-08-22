@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
@@ -350,6 +351,31 @@ const structuredData = {
             <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cloud connectivity -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Connected through the cloud</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One plan, planned from anywhere.</h2>
+      </div>
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <CloudConnectivity
+            users={[
+              { device: "laptop", role: "The worship leader", action: "Builds the set, keys and all", where: "From home" },
+              { device: "phone", role: "The pastor", action: "Reorders the service", where: "Saturday night" },
+              { device: "phone", role: "The volunteer", action: "Accepts the serving request", where: "Between classes" },
+            ]}
+            churchTitle="Sunday's plan"
+            churchLines={["One live order of service — songs,", "people, and cues, ready for Present."]}
+            footnote="The plan changes once and changes everywhere — nobody runs Sunday from an outdated printout."
+            ariaJob="plan the service together from anywhere"
+          />
+        </div>
       </div>
     </div>
   </section>
