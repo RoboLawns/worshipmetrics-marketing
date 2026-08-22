@@ -31,7 +31,7 @@ const platformPlans = [
       "Unlimited users — the whole volunteer team lives in it",
       "Worship presentation free forever — slide editor, lyrics, scripture, playlists, and your brand",
       "Core planning and people tools too (practical limits on cloud storage and clips, 1 signage screen)",
-      "AI support in your alerts, plus one full help session free",
+      "A taste of the AI — smart help inside your alerts, plus one full help session free (unlimited AI support is what Assist adds)",
       "No trial clock, no credit card — free means free",
     ],
   },
@@ -47,7 +47,7 @@ const platformPlans = [
     items: [
       "Everything in Free, with the practical limits removed",
       "Cloud control for OBS, vMix, and Blackmagic ATEM — eyes on preview and program, and full switcher control from anywhere",
-      "Unlimited 24/7 AI support that knows your system — Luminos in the app, Journey on 910-WORSHIP",
+      "Unlimited 24/7 AI support that knows your system — Luminos in the app, Journey on 910-WORSHIP, no session caps",
       "PCO sync, unlimited signage screens, and cloud Reels — AI clips from anywhere",
       "The full Present suite: multi-screen output, stage displays with transposed chord charts",
       "Full media and song libraries with per-key PDF chord charts, no storage caps",
@@ -126,7 +126,7 @@ const comparisonRows = [
   ["Digital signage screens", "1", "Unlimited", "Unlimited"],
   ["Reels (AI clipping)", "Free — rendered locally in Tech Manager", "Cloud Reels — from anywhere", "Auto from every service"],
   ["PCO sync", "—", "Included", "Included"],
-  ["Luminos + Journey AI support", "In alerts + 1 free session", "Unlimited", "Unlimited"],
+  ["Luminos + Journey AI support", "A taste — in alerts, plus 1 free session", "Unlimited", "Unlimited"],
   ["Premium cloud streaming — dedicated ingest, stays up, never flagged", "—", "—", "Included"],
   ["Multi-destination + hosted watch page", "—", "—", "Included"],
   ["Cloud DVR & archive", "—", "—", "120 days (extendable)"],
@@ -137,6 +137,7 @@ const comparisonRows = [
 
 const faqItems = [
   { question: "Is the Free tier really free forever?", answer: "Yes. No credit card, no trial timer, no expiration. AV monitoring, the living Signal Map, and instant alerts are free forever — that is the pledge, and it never changes. The whole volunteer team can live in it with unlimited users." },
+  { question: "What AI support is free, and what does Assist add?", answer: "Free gives you a real taste: Luminos-powered help inside your alerts, plus one full help session so your team can experience it end to end — in the app, no strings. Assist ($49/mo) removes the caps: unlimited 24/7 AI support with Luminos in the app and Journey on 910-WORSHIP, both looking at your live system, as often as your team needs it. If you'd lean on AI help more than once, Assist is the plan built for that." },
   { question: "Can I really stream on the Free plan?", answer: "Yes. Social streaming to YouTube and Facebook is included free: connect your accounts once and WorshipMetrics handles the platform integrations, schedules your broadcasts, and retrieves the stream keys — so your encoder is configured once and everything lives in one place. The Stream plan adds premium cloud streaming on top: dedicated ingest infrastructure built to stay up, up to 10 destinations, and an embeddable player and hosted watch page where worship is never muted or flagged by a copyright bot." },
   { question: "Is switcher control free?", answer: "Locally, yes — on every plan, including Free. Tech Manager controls OBS, vMix, and Blackmagic ATEM switchers, plus your PTZ cameras, from the booth at no cost. Assist and Stream add cloud control: the same full API control, plus live eyes on preview and program, from anywhere — so a trusted helper can monitor the service or assist with the switching remotely." },
   { question: "How do platform tiers and support add-ons combine?", answer: "Pick the platform tier that fits how your church runs Sunday — Free, Assist, or Stream. Then, if you want a person standing behind your team, add Care, Sunday Assurance, or Managed on top. Any tier combines with any add-on, and you can add or drop support anytime." },
@@ -261,7 +262,7 @@ const structuredData = [
       <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Step 2 — Add human support, if you want it</p>
       <h3 class="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Support stacks on top of any platform tier.</h3>
       <p class="mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-        Most weeks your team never opens a ticket: monitoring quietly clears about seventy of every hundred issues before anyone notices, AI resolves most of the rest, and a real person steps in for the few that need hands. These add-ons decide how much human is standing by for your church — attach one to whichever platform tier you run.
+        Most weeks your team never opens a ticket: monitoring quietly clears about seventy of every hundred issues before anyone notices, and your plan&apos;s AI handles most of the rest &mdash; a taste of it on Free, unlimited from Assist up. These add-ons decide something different: how much <em>human</em> is standing by for your church. Attach one to whichever platform tier you run.
       </p>
       <div class="mt-8 grid gap-6 lg:grid-cols-3">
         {supportAddons.map(({ name, price, suffix, body, highlight }) => (
