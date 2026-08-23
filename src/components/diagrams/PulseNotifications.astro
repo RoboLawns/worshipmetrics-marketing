@@ -1,0 +1,187 @@
+---
+/**
+ * Pulse notifications — the alert finds you.
+ * Pulse watches all week, then reaches you by email (included), optional SMS,
+ * and web push — shown as the actual messages a tech director would get:
+ * the Saturday all-clear, the Saturday warning, and the mid-service save.
+ */
+const messages = [
+  {
+    when: "SAT · 6:00 PM",
+    tone: "#16A34A",
+    lines: [
+      "Saturday check-in: you're ready.",
+      "23 of 23 devices green, stream",
+      "destinations authorized, storage",
+      "healthy. See you Sunday.",
+    ],
+  },
+  {
+    when: "SAT · 9:14 PM",
+    tone: "#D97706",
+    lines: [
+      "The FOH audio interface stopped",
+      "responding at 9:12 PM. We suggest",
+      "arriving 20 minutes early —",
+      "tap for the likely fix.",
+    ],
+  },
+  {
+    when: "SUN · 10:22 AM",
+    tone: "#2B7FF0",
+    lines: [
+      "Mid-service: bitrate dipped, so",
+      "self-healing stepped down one",
+      "notch. The stream never blinked.",
+    ],
+  },
+];
+
+const channels = ["EMAIL · INCLUDED", "SMS · OPTIONAL", "WEB PUSH", "IN-APP"];
+
+const LABEL =
+  "Diagram: Pulse watches every device, stream, and machine all week, then reaches you where you will actually see it — email included, SMS optional, web push, and in-app. Three example messages on a phone: a Saturday 6 PM all-clear check-in saying you're ready for Sunday with 23 of 23 devices green; a Saturday 9:14 PM warning that the FOH audio interface stopped responding with a suggestion to arrive 20 minutes early; and a Sunday 10:22 AM note that self-healing caught a bitrate dip and the stream never went down.";
+
+// Bubble geometry: header line + text lines, computed per message.
+const bubbleHeight = (n: number) => 30 + n * 16;
+const landscapeBubbleYs = (() => {
+  const ys: number[] = [];
+  let y = 78;
+  for (const m of messages) {
+    ys.push(y);
+    y += bubbleHeight(m.lines.length) + 26;
+  }
+  return ys;
+})();
+---
+
+<svg
+  viewBox="0 0 980 470"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Pulse, watching -->
+  <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">PULSE · WATCHING ALL WEEK</text>
+  <g transform="translate(20, 48)">
+    <rect x="0" y="0" width="400" height="240" rx="16" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <rect x="22" y="24" width="34" height="34" rx="8" fill="#0B0D10" />
+    <path d="M29 44 h5 l5-12.5 l6 24 l5-11.5 h5" fill="none" stroke="#2B7FF0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="40" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#0B0D10">The alert finds you</text>
+    <text x="68" y="56" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" letter-spacing="0.8" fill="#78828F">FREE FOREVER</text>
+    {[
+      "Every device, stream, and machine heartbeats in 24/7",
+      "A pre-flight check-in lands every Saturday evening",
+      "Something drifts? The alert usually beats the room",
+      "One clear message, not forty — re-alerts are capped",
+    ].map((t, i) => (
+      <g transform={`translate(22, ${86 + i * 28})`}>
+        <circle cx="5" cy="8" r="4" fill="#2B7FF0" />
+        <text x="18" y="12" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">{t}</text>
+      </g>
+    ))}
+    <path d="M22 206 H378" stroke="#E3E7ED" stroke-width="1.5" />
+    {channels.map((c, i) => (
+      <g transform={`translate(${22 + i * 92}, 216)`}>
+        <rect x="0" y="0" width={c.length * 5.4 + 16} height="18" rx="5" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.2" />
+        <text x={(c.length * 5.4 + 16) / 2} y="12.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" letter-spacing="0.4" fill="#1D66D6">{c}</text>
+      </g>
+    ))}
+  </g>
+  <text x="20" y="322" font-family="Archivo, sans-serif" font-size="12" fill="#78828F">Email is the guaranteed channel; add SMS for the people</text>
+  <text x="20" y="339" font-family="Archivo, sans-serif" font-size="12" fill="#78828F">who live by their texts &mdash; per person, per alert type.</text>
+
+  <!-- Arrow -->
+  <path d="M436 168 H560" fill="none" stroke="#C5DDFB" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M552 161 L562 168 L552 175" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="446" y="136" width="106" height="22" rx="5" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.5" />
+  <text x="499" y="151" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" letter-spacing="0.5" fill="#1D66D6">WHEN IT MATTERS</text>
+
+  <!-- Phone -->
+  <text x="600" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">ON YOUR PHONE</text>
+  <g transform="translate(600, 40)">
+    <rect x="0" y="0" width="290" height="408" rx="26" fill="#0B0D10" />
+    <rect x="8" y="8" width="274" height="392" rx="20" fill="#F8FAFC" />
+    <rect x="118" y="16" width="54" height="6" rx="3" fill="#0B0D10" />
+    <text x="145" y="44" text-anchor="middle" font-family="Archivo, sans-serif" font-size="11.5" font-weight="700" fill="#0B0D10">worship<tspan fill="#2B7FF0">metrics</tspan> &middot; Pulse</text>
+    <path d="M24 54 H266" stroke="#E3E7ED" stroke-width="1" />
+    {messages.map(({ when, tone, lines }, i) => (
+      <g transform={`translate(24, ${landscapeBubbleYs[i]})`}>
+        <text x="121" y="0" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" letter-spacing="0.8" fill="#78828F">{when}</text>
+        <rect x="0" y="8" width="242" height={bubbleHeight(lines.length) - 8} rx="12" fill="#EEF2F7" />
+        <circle cx="16" cy="24" r="4.5" fill={tone} />
+        {lines.map((line, j) => (
+          <text x="30" y={28 + j * 16} font-family="Archivo, sans-serif" font-size="11" fill="#1F2937">{line}</text>
+        ))}
+      </g>
+    ))}
+  </g>
+
+  <!-- Footnote -->
+  <text x="20" y="464" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">Real messages, boring on purpose &mdash; calm when it&apos;s fine, specific when it&apos;s not.</text>
+</svg>
+
+<!-- Portrait: explainer, then the phone. -->
+<svg
+  viewBox="0 0 360 856"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">PULSE · WATCHING ALL WEEK</text>
+  <g transform="translate(10, 28)">
+    <rect x="0" y="0" width="340" height="216" rx="16" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <rect x="18" y="18" width="32" height="32" rx="8" fill="#0B0D10" />
+    <path d="M25 37 h4.5 l4.5-11.5 l5.5 22 l4.5-10.5 h4.5" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="60" y="32" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#0B0D10">The alert finds you</text>
+    <text x="60" y="47" font-family="IBM Plex Mono, monospace" font-size="8" font-weight="600" letter-spacing="0.8" fill="#78828F">FREE FOREVER</text>
+    {[
+      "Every device heartbeats in, 24/7",
+      "A pre-flight check-in every Saturday",
+      "The alert usually beats the room",
+      "One clear message, not forty",
+    ].map((t, i) => (
+      <g transform={`translate(18, ${68 + i * 26})`}>
+        <circle cx="5" cy="8" r="4" fill="#2B7FF0" />
+        <text x="17" y="12" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">{t}</text>
+      </g>
+    ))}
+    <g transform="translate(18, 180)">
+      {channels.map((c, i) => (
+        <g transform={`translate(${[0, 108, 202, 268][i]}, 0)`}>
+          <rect x="0" y="0" width={c.length * 5 + 12} height="18" rx="5" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.2" />
+          <text x={(c.length * 5 + 12) / 2} y="12.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" font-weight="600" letter-spacing="0.3" fill="#1D66D6">{c}</text>
+        </g>
+      ))}
+    </g>
+  </g>
+
+  <path d="M180 258 V 278" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 272 L180 280 L187 272" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <g transform="translate(35, 292)">
+    <rect x="0" y="0" width="290" height="470" rx="26" fill="#0B0D10" />
+    <rect x="8" y="8" width="274" height="454" rx="20" fill="#F8FAFC" />
+    <rect x="118" y="16" width="54" height="6" rx="3" fill="#0B0D10" />
+    <text x="145" y="44" text-anchor="middle" font-family="Archivo, sans-serif" font-size="11.5" font-weight="700" fill="#0B0D10">worship<tspan fill="#2B7FF0">metrics</tspan> &middot; Pulse</text>
+    <path d="M24 54 H266" stroke="#E3E7ED" stroke-width="1" />
+    {messages.map(({ when, tone, lines }, i) => (
+      <g transform={`translate(24, ${[86, 216, 346][i]})`}>
+        <text x="121" y="0" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" letter-spacing="0.8" fill="#78828F">{when}</text>
+        <rect x="0" y="8" width="242" height={bubbleHeight(lines.length) - 8} rx="12" fill="#EEF2F7" />
+        <circle cx="16" cy="24" r="4.5" fill={tone} />
+        {lines.map((line, j) => (
+          <text x="30" y={28 + j * 16} font-family="Archivo, sans-serif" font-size="11" fill="#1F2937">{line}</text>
+        ))}
+      </g>
+    ))}
+  </g>
+
+  <text x="10" y="792" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">Email is guaranteed; SMS is optional &mdash; per person,</text>
+  <text x="10" y="809" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">per alert type. Calm when it&apos;s fine, specific when</text>
+  <text x="10" y="826" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">it&apos;s not.</text>
+</svg>

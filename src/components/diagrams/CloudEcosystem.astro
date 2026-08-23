@@ -1,0 +1,322 @@
+---
+/**
+ * The ecosystem — the big-picture cloud diagram for the home page.
+ * Church roles (phones and laptops) on one side, the seven modules on the
+ * other, the WorshipMetrics mark in the cloud between them. Hovering or
+ * tapping a role lights up its path and explains how that person uses it.
+ */
+const roles = [
+  {
+    id: "pastor",
+    name: "The pastor",
+    device: "laptop",
+    chip: "ON A LAPTOP",
+    modules: ["plan", "present", "publish", "people"],
+    tip: "Plans the service, polishes sermon slides from home, checks the stream is live, and sees the congregation — through Plan, Present, Publish, and People.",
+  },
+  {
+    id: "worship",
+    name: "The worship leader",
+    device: "phone",
+    chip: "ON A PHONE",
+    modules: ["plan", "present"],
+    tip: "Builds the set in the right keys — and the lyrics, chord charts, and stage display follow automatically, through Plan and Present.",
+  },
+  {
+    id: "band",
+    name: "The band",
+    device: "phone",
+    chip: "ON THEIR PHONES",
+    modules: ["people", "plan", "present"],
+    tip: "Accepts serving requests, rehearses from the live plan, and reads chords on stage in the key they're playing — through People, Plan, and Present.",
+  },
+  {
+    id: "av",
+    name: "The AV lead",
+    device: "laptop",
+    chip: "BOOTH OR ANYWHERE",
+    modules: ["produce", "publish", "pulse", "patch"],
+    tip: "Runs the booth, controls the switcher from anywhere, and gets the alert before anyone in the room notices — through Produce, Publish, Pulse, and Patch.",
+  },
+];
+
+const modules = [
+  { id: "plan", title: "Plan", desc: "Services, songs & schedules", icon: "/images/nav/pillars/plan.png", href: "/services" },
+  { id: "present", title: "Present", desc: "Slides, lyrics & stage display", icon: "/images/nav/pillars/present.png", href: "/present" },
+  { id: "produce", title: "Produce", desc: "The booth: switcher & cameras", icon: "/images/nav/pillars/produce.png", href: "/tech-manager" },
+  { id: "publish", title: "Publish", desc: "Streaming, Reels & signage", icon: "/images/nav/pillars/publish.png", href: "/live-streaming" },
+  { id: "pulse", title: "Pulse", desc: "24/7 monitoring & alerts", icon: "/images/nav/pillars/pulse.png", href: "/av-monitoring" },
+  { id: "patch", title: "Patch", desc: "The system, documented", icon: "/images/nav/pillars/patch.png", href: "/system-documentation" },
+  { id: "people", title: "People", desc: "Members, volunteers & teams", icon: "/images/nav/pillars/people.png", href: "/people" },
+];
+
+// Soft cloud silhouette (shared with CloudConnectivity), flat bottom.
+const CLOUD =
+  "M 22 106 C -8 106 -14 76 8 62 C 0 30 34 12 62 26 C 76 2 116 2 130 24 C 160 10 186 32 178 58 C 200 70 196 102 164 106 Z";
+
+const LABEL =
+  "Diagram: the whole church connects through one WorshipMetrics cloud. On one side, the pastor, worship leader, band, and AV lead each connect from a phone or laptop; on the other side sit the seven modules — Plan, Present, Produce, Publish, Pulse, Patch, and People. Hovering or tapping a role highlights the modules that person uses.";
+
+// Landscape geometry
+const ROLE_YS = [96, 200, 304, 408];           // card tops (h=64)
+const ROLE_ANCHOR_YS = [240, 268, 296, 324];   // where role lines meet the cloud
+const MOD_YS = [46, 116, 186, 256, 326, 396, 466]; // card tops (h=56)
+const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines leave the cloud
+---
+
+<div class="eco-root relative" data-eco>
+  <!-- Landscape -->
+  <svg
+    viewBox="0 0 980 560"
+    width="100%"
+    role="img"
+    aria-label={LABEL}
+    class="hidden h-auto w-full md:block"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <!-- Lines (painted first so the cloud covers their ends) -->
+    {roles.map(({ id }, i) => (
+      <path
+        class="eco-line"
+        data-line-role={id}
+        d={`M264 ${ROLE_YS[i] + 32} C 310 ${ROLE_YS[i] + 32}, 300 ${ROLE_ANCHOR_YS[i]}, 360 ${ROLE_ANCHOR_YS[i]}`}
+        fill="none"
+        stroke="#C5DDFB"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    ))}
+    {modules.map(({ id }, i) => (
+      <path
+        class="eco-line"
+        data-line-module={id}
+        d={`M600 ${MOD_ANCHOR_YS[i]} C 660 ${MOD_ANCHOR_YS[i]}, 640 ${MOD_YS[i] + 28}, 696 ${MOD_YS[i] + 28}`}
+        fill="none"
+        stroke="#C5DDFB"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    ))}
+
+    <!-- People -->
+    <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">THE PEOPLE</text>
+    {roles.map(({ id, name, device, chip, tip }, i) => (
+      <g class="eco-role" data-role={id} data-tip={tip} tabindex="0" role="button" aria-label={`${name}: ${tip}`} transform={`translate(20, ${ROLE_YS[i]})`}>
+        <rect x="0" y="0" width="240" height="64" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+        <rect x="14" y="15" width="34" height="34" rx="8" fill="#0B0D10" />
+        {device === "phone" ? (
+          <g>
+            <rect x="25.5" y="21" width="11" height="22" rx="3" fill="none" stroke="#2B7FF0" stroke-width="1.8" />
+            <path d="M29 39.5 h4" stroke="#2B7FF0" stroke-width="1.6" stroke-linecap="round" />
+          </g>
+        ) : (
+          <g>
+            <rect x="21" y="23" width="20" height="13" rx="2" fill="none" stroke="#2B7FF0" stroke-width="1.8" />
+            <path d="M18 40 h26" stroke="#2B7FF0" stroke-width="1.8" stroke-linecap="round" />
+          </g>
+        )}
+        <text x="60" y="30" font-family="Archivo, sans-serif" font-size="13.5" font-weight="700" fill="#0B0D10">{name}</text>
+        <text x="60" y="48" font-family="IBM Plex Mono, monospace" font-size="8" font-weight="600" letter-spacing="0.8" fill="#1D66D6">{chip}</text>
+      </g>
+    ))}
+
+    <!-- Cloud + brand -->
+    <g transform="translate(340, 190) scale(1.5)">
+      <path d={CLOUD} fill="#EFF6FE" stroke="#2B7FF0" stroke-width="1.6" stroke-linejoin="round" />
+    </g>
+    <image href="/logo.png" x="454" y="222" width="44" height="44" />
+    <text x="476" y="292" text-anchor="middle" font-family="Archivo, sans-serif" font-size="16" font-weight="800" fill="#0B0D10">worship<tspan fill="#2B7FF0">metrics</tspan></text>
+    <text x="476" y="310" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" font-weight="600" letter-spacing="1" fill="#1D66D6">ONE CLOUD &middot; ALWAYS IN SYNC</text>
+
+    <!-- Modules -->
+    <text x="700" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">THE PLATFORM &middot; SEVEN MODULES</text>
+    {modules.map(({ id, title, desc, icon, href }, i) => (
+      <a href={href} aria-label={`${title} — ${desc}`}>
+        <g class="eco-module" data-module={id} transform={`translate(700, ${MOD_YS[i]})`}>
+          <rect x="0" y="0" width="260" height="56" rx="11" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+          <image href={icon} x="14" y="15" width="26" height="26" />
+          <text x="52" y="26" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">{title}</text>
+          <text x="52" y="43" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">{desc}</text>
+        </g>
+      </a>
+    ))}
+
+    <!-- Footnote -->
+    <text x="20" y="548" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">Hover a role to light up their path &mdash; every connection travels the same secure cloud.</text>
+  </svg>
+
+  <!-- Portrait: roles → cloud → modules, stacked -->
+  <svg
+    viewBox="0 0 360 796"
+    width="100%"
+    role="img"
+    aria-label={LABEL}
+    class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">THE PEOPLE</text>
+    {roles.map(({ id, name, device, chip, tip }, i) => (
+      <g class="eco-role" data-role={id} data-tip={tip} tabindex="0" role="button" aria-label={`${name}: ${tip}`} transform={`translate(${i % 2 === 0 ? 10 : 184}, ${28 + Math.floor(i / 2) * 72})`}>
+        <rect x="0" y="0" width="166" height="62" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+        <rect x="12" y="14" width="30" height="30" rx="7" fill="#0B0D10" />
+        {device === "phone" ? (
+          <g>
+            <rect x="22" y="19" width="10" height="20" rx="3" fill="none" stroke="#2B7FF0" stroke-width="1.7" />
+            <path d="M25 35.5 h4" stroke="#2B7FF0" stroke-width="1.5" stroke-linecap="round" />
+          </g>
+        ) : (
+          <g>
+            <rect x="18" y="21" width="18" height="12" rx="2" fill="none" stroke="#2B7FF0" stroke-width="1.7" />
+            <path d="M15 36 h24" stroke="#2B7FF0" stroke-width="1.7" stroke-linecap="round" />
+          </g>
+        )}
+        <text x="50" y="27" font-family="Archivo, sans-serif" font-size="11.5" font-weight="700" fill="#0B0D10">{name}</text>
+        <text x="50" y="44" font-family="IBM Plex Mono, monospace" font-size="6.8" font-weight="600" letter-spacing="0.6" fill="#1D66D6">{chip}</text>
+      </g>
+    ))}
+
+    <path d="M180 180 V 200" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M173 194 L180 202 L187 194" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <g transform="translate(80, 212)">
+      <path d={CLOUD} fill="#EFF6FE" stroke="#2B7FF0" stroke-width="1.8" stroke-linejoin="round" />
+    </g>
+    <image href="/logo.png" x="162" y="240" width="34" height="34" />
+    <text x="180" y="294" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13.5" font-weight="800" fill="#0B0D10">worship<tspan fill="#2B7FF0">metrics</tspan></text>
+
+    <path d="M180 326 V 346" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M173 340 L180 348 L187 340" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <text x="10" y="372" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">THE PLATFORM &middot; SEVEN MODULES</text>
+    {modules.map(({ id, title, desc, icon, href }, i) => (
+      <a href={href} aria-label={`${title} — ${desc}`}>
+        <g class="eco-module" data-module={id} transform={`translate(10, ${384 + i * 54})`}>
+          <rect x="0" y="0" width="340" height="46" rx="10" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+          <image href={icon} x="12" y="11" width="24" height="24" />
+          <text x="48" y="21" font-family="Archivo, sans-serif" font-size="12.5" font-weight="700" fill="#0B0D10">{title}</text>
+          <text x="48" y="37" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">{desc}</text>
+        </g>
+      </a>
+    ))}
+
+    <text x="10" y="788" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">Tap a role to see how they use the cloud.</text>
+  </svg>
+
+  <!-- Tooltip -->
+  <div class="eco-tip" role="status" aria-hidden="true"></div>
+</div>
+
+<style>
+  .eco-root :global(.eco-role) { cursor: pointer; outline: none; }
+  .eco-root :global(.eco-role rect:first-of-type),
+  .eco-root :global(.eco-module rect),
+  .eco-root :global(.eco-line),
+  .eco-root :global(.eco-role),
+  .eco-root :global(.eco-module) {
+    transition: stroke 0.15s ease, opacity 0.15s ease;
+  }
+  .eco-root :global(.is-dim) { opacity: 0.3; }
+  .eco-root :global(.eco-line.is-on) { stroke: #2b7ff0; stroke-width: 2.5; }
+  .eco-root :global(.eco-role.is-active rect:first-of-type),
+  .eco-root :global(.eco-role:focus-visible rect:first-of-type) { stroke: #2b7ff0; stroke-width: 2; }
+  .eco-root :global(.eco-module.is-on rect) { stroke: #2b7ff0; stroke-width: 2; }
+
+  .eco-tip {
+    position: absolute;
+    max-width: 300px;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(199 210 254);
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgb(15 23 42 / 0.14);
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: rgb(51 65 85);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 20;
+  }
+  .eco-tip.is-visible { opacity: 1; transform: translateY(0); }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-eco]").forEach((root) => {
+    const tip = root.querySelector<HTMLElement>(".eco-tip")!;
+    let active: string | null = null;
+
+    const rolesEls = Array.from(root.querySelectorAll<SVGGElement>(".eco-role"));
+    const moduleEls = Array.from(root.querySelectorAll<SVGGElement>(".eco-module"));
+    const lineEls = Array.from(root.querySelectorAll<SVGPathElement>(".eco-line"));
+
+    const moduleMap: Record<string, string[]> = {
+      pastor: ["plan", "present", "publish", "people"],
+      worship: ["plan", "present"],
+      band: ["people", "plan", "present"],
+      av: ["produce", "publish", "pulse", "patch"],
+    };
+
+    const clear = () => {
+      active = null;
+      [...rolesEls, ...moduleEls, ...lineEls].forEach((el) => el.classList.remove("is-dim", "is-on", "is-active"));
+      tip.classList.remove("is-visible");
+      tip.setAttribute("aria-hidden", "true");
+    };
+
+    const activate = (roleEl: SVGGElement) => {
+      const id = roleEl.dataset.role!;
+      active = id;
+      const mods = moduleMap[id] ?? [];
+
+      rolesEls.forEach((el) => {
+        el.classList.toggle("is-active", el === roleEl || el.dataset.role === id);
+        el.classList.toggle("is-dim", el.dataset.role !== id);
+      });
+      moduleEls.forEach((el) => {
+        const on = mods.includes(el.dataset.module!);
+        el.classList.toggle("is-on", on);
+        el.classList.toggle("is-dim", !on);
+      });
+      lineEls.forEach((el) => {
+        const on = el.dataset.lineRole === id || (el.dataset.lineModule && mods.includes(el.dataset.lineModule));
+        el.classList.toggle("is-on", !!on);
+        el.classList.toggle("is-dim", !on);
+      });
+
+      tip.textContent = roleEl.dataset.tip ?? "";
+      tip.classList.add("is-visible");
+      tip.setAttribute("aria-hidden", "false");
+
+      // Position near the hovered card, clamped inside the diagram.
+      const rootRect = root.getBoundingClientRect();
+      const r = roleEl.getBoundingClientRect();
+      let left = r.right - rootRect.left + 10;
+      let top = r.top - rootRect.top;
+      if (left + 310 > rootRect.width) left = Math.max(8, r.left - rootRect.left);
+      if (left + 310 > rootRect.width) left = Math.max(8, rootRect.width - 310);
+      if (top + 140 > rootRect.height) top = Math.max(8, rootRect.height - 140);
+      if (left <= r.right - rootRect.left && left + 310 > r.left - rootRect.left) {
+        top = r.bottom - rootRect.top + 8; // fell back under the card
+      }
+      tip.style.left = `${left}px`;
+      tip.style.top = `${top}px`;
+    };
+
+    rolesEls.forEach((el) => {
+      el.addEventListener("pointerenter", () => activate(el));
+      el.addEventListener("focus", () => activate(el));
+      el.addEventListener("blur", clear);
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (active === el.dataset.role) clear();
+        else activate(el);
+      });
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); active === el.dataset.role ? clear() : activate(el); }
+        if (e.key === "Escape") clear();
+      });
+    });
+    root.addEventListener("pointerleave", clear);
+  });
+</script>

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
+import PulseNotifications from "../components/diagrams/PulseNotifications.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import PulseEscalation from "../components/diagrams/PulseEscalation.astro";
@@ -38,7 +39,7 @@ const features = [
   },
   {
     title: "Alerts that reach your phone",
-    body: "Real OS notifications by web push — including iPhones with the home-screen app — with email as the guaranteed channel and an in-app feed that never misses. You choose channels per alert type.",
+    body: "Real OS notifications by web push — including iPhones with the home-screen app — with email as the guaranteed channel, optional SMS text alerts for the people who live by their texts, and an in-app feed that never misses. You choose channels per person, per alert type.",
   },
   {
     title: "The machine's timeline",
@@ -304,7 +305,7 @@ const structuredData = {
           ["Offline thresholds", "Online badge flips after 90 s (three missed beats); alert email after 5 minutes of silence; a dropped connection is caught in ~60 s; signage screens alert at 30 minutes"],
           ["Resource red lines", "CPU ≥ 90%, RAM ≥ 90%, disk ≤ 5% free, CPU temp ≥ 95°C — with hysteresis recovery (85% / 85% / 8% / 92°C) and a 30-minute re-alert cooldown per machine"],
           ["Alert types", "Device offline, AV device offline, resource critical, audio state, and livestream drop — three severities across six filterable areas (Hardware, System, Stream, Audio, Network, Other)"],
-          ["Delivery channels", "Email (guaranteed), web push notifications — including iOS 16.4+ home-screen app — in-app feed, desktop toast, and live page updates"],
+          ["Delivery channels", "Email (guaranteed), optional SMS text alerts, web push notifications — including iOS 16.4+ home-screen app — in-app feed, desktop toast, and live page updates"],
           ["Machine telemetry", "CPU load/temp/clocks, RAM, per-disk storage with drive model, GPU and driver version, displays (resolution, refresh, HDR, rotation), audio endpoints, USB peripherals, network adapters and WiFi signal"],
           ["Stream telemetry", "Bitrate vs target, dropped-frame %, encoder load, fps, scene, resolution, reconnect count — plus upload/download, latency, jitter, packet loss, and audio silence/clipping flags"],
           ["AV device health", "Multi-observer rollup with online / degraded / stale / offline / unknown states — offline requires every fresh observer to agree, so one bad network path never false-alarms"],
@@ -318,6 +319,24 @@ const structuredData = {
             <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Notifications -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Notifications</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Saturday night, your phone already knows.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Pulse doesn&apos;t wait to be checked. A pre-flight check-in lands every Saturday evening &mdash; &ldquo;everything looks right for Sunday&rdquo; &mdash; and if a device goes quiet overnight, the message says so and suggests coming in early. Email is included on every plan; add SMS text alerts for the people who live by their texts.
+        </p>
+      </div>
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <PulseNotifications />
+        </div>
       </div>
     </div>
   </section>
