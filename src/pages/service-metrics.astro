@@ -1,13 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 import TotalReach from "../components/diagrams/TotalReach.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const RECAP_LIVE_IMAGE = "/images/app/worship-metrics-total-reach-live.jpg";
-const RECAP_IMAGE = "/images/app/worship-metrics-attendance-recap.jpg";
 const SEAT_IMAGE = "/images/app/worship-metrics-seat-count.jpg";
 const OVERVIEW_IMAGE = "/images/app/worship-metrics-service-metrics.jpg";
+const WATCHING_IMAGE = "/images/lifestyle/homebound-member-watching-livestream.jpg";
+const SEAT_LIFESTYLE_IMAGE = "/images/lifestyle/seat-count-tablet-sanctuary.jpg";
+const BOARD_IMAGE = "/images/lifestyle/church-leaders-metrics-presentation.jpg";
 
 const leaderQuestions = [
   "Did Easter have more or less attendance this year than last year?",
@@ -112,7 +115,7 @@ const structuredData = {
         </p>
       </div>
       <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={RECAP_IMAGE} alt="The attendance recap panel showing in-person, virtual, and total reach for a Sunday service" loading="lazy" decoding="async" class="w-full object-contain" />
+        <img src={WATCHING_IMAGE} alt="A lifelong church member worshiping through the Sunday live stream on a tablet from his armchair" loading="lazy" decoding="async" class="aspect-video w-full object-cover" />
       </div>
     </div>
   </section>
@@ -138,9 +141,12 @@ const structuredData = {
   <!-- Validates the work -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={SEAT_IMAGE} alt="The seat-map attendance counter in WorshipMetrics — tap to toggle a seat, hold to assign a member, or mark a new visitor" loading="lazy" decoding="async" class="w-full object-contain" />
-      </div>
+      <ImageCarousel
+        slides={[
+          { src: SEAT_LIFESTYLE_IMAGE, alt: "A volunteer counting in-person attendance on the seat map from a tablet in the pews during the service", kind: "lifestyle", label: "In the pews" },
+          { src: SEAT_IMAGE, alt: "The seat-map attendance counter in WorshipMetrics — tap to toggle a seat, hold to assign a member, or mark a new visitor", label: "The seat map" },
+        ]}
+      />
       <div>
         <p class="eyebrow">It validates the work</p>
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Online worship is real ministry. Now leaders can see it.</h2>
@@ -176,9 +182,12 @@ const structuredData = {
           The catch: year-over-year answers need last year&apos;s data. <strong class="font-semibold text-slate-900">Start gathering it today, and next Easter you&apos;ll know.</strong>
         </p>
       </div>
-      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-        <img src={OVERVIEW_IMAGE} alt="Service Metrics overview in WorshipMetrics: attendance over time by month with in-person, virtual, and total, plus a service type breakdown" loading="lazy" decoding="async" class="w-full object-contain" />
-      </div>
+      <ImageCarousel
+        slides={[
+          { src: BOARD_IMAGE, alt: "A pastor presenting the Service Metrics attendance dashboard to church leaders around a meeting table", kind: "lifestyle", label: "The board meeting" },
+          { src: OVERVIEW_IMAGE, alt: "Service Metrics overview in WorshipMetrics: attendance over time by month with in-person, virtual, and total, plus a service type breakdown", label: "The dashboard" },
+        ]}
+      />
     </div>
   </section>
 
