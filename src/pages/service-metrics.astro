@@ -1,0 +1,221 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+import TotalReach from "../components/diagrams/TotalReach.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const RECAP_LIVE_IMAGE = "/images/app/worship-metrics-total-reach-live.jpg";
+const RECAP_IMAGE = "/images/app/worship-metrics-attendance-recap.jpg";
+const SEAT_IMAGE = "/images/app/worship-metrics-seat-count.jpg";
+const OVERVIEW_IMAGE = "/images/app/worship-metrics-service-metrics.jpg";
+
+const leaderQuestions = [
+  "Did Easter have more or less attendance this year than last year?",
+  "Is the online congregation growing, or quietly going stagnant?",
+  "Which service type reaches the most people — and which reaches furthest online?",
+  "How many first-time visitors joined, in the room and on the stream?",
+  "What did that sermon series actually do to attendance?",
+];
+
+const onlineFaces = [
+  { who: "The lifelong member", detail: "who supported the church for fifty years and now worships from a recliner — still every Sunday, still counted." },
+  { who: "The family who moved away", detail: "three states over now, still part of the congregation every week." },
+  { who: "The traveling parent", detail: "in a hotel on Sunday morning, worshiping with their home church anyway." },
+  { who: "The not-yet-visitor", detail: "quietly watching for weeks, deciding whether your church is safe to walk into." },
+];
+
+const faqItems = [
+  {
+    question: "What is Total Reach?",
+    answer: "One number for everyone who worshiped with you: the people counted in the room plus the peak concurrent viewers online. In-person and virtual are always shown separately too, so leaders see the shape of the congregation — not just its size.",
+  },
+  {
+    question: "Where does the in-person count come from?",
+    answer: "Two ways, both in Tech Manager: a seat-map counter volunteers actually use — tap a seat to toggle it, hold to assign a member or mark a new visitor — or camera Auto-Count, which tallies the room from an RTSP camera or webcam on a schedule or on demand.",
+  },
+  {
+    question: "Where does the online attendance come from?",
+    answer: "Connect your YouTube or Facebook broadcast and viewers are counted automatically, during and after the service — concurrent viewers sampled every minute, with peak and average rolled into that day's attendance when the broadcast ends. Streams through the WorshipMetrics player count the same way.",
+  },
+  {
+    question: "Can I compare services across time?",
+    answer: "Yes — that's the point. Attendance Over Time charts in-person, virtual, and total by month, quarter, or year, and every service type is broken out separately. Easter versus last Easter, this series versus the last one, Sunday morning versus midweek — the comparisons leaders actually ask for.",
+  },
+  {
+    question: "What does it cost?",
+    answer: "In-person counting — the seat map and camera Auto-Count — ships in the free platform. Automatic online viewer analytics comes with the Stream plan, alongside cloud streaming and the stream-health reports. See pricing for the full picture.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Layout
+  title="Church Attendance Analytics & Service Metrics"
+  socialTitle="WorshipMetrics | One number for everyone who worshiped."
+  description="Service Metrics gives church leadership one dashboard for in-person and online attendance together — total reach per service, year-over-year comparisons, and proof of what the online ministry is really doing."
+  canonical="/service-metrics"
+  ogImage={RECAP_LIVE_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-4 py-1 shadow-sm">
+          <img src="/images/nav/pillars/plan.png" alt="" class="h-7 w-7 rounded-md" /> Plan &middot; Service Metrics
+        </p>
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          One number for everyone who worshiped with you.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          The room is only half the congregation. Service Metrics puts in-person and online attendance on one dashboard &mdash; total reach per service, trends across the year, and an honest answer to the question every leader asks: <em>are we growing?</em>
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="metrics_hero_start" data-wm-track-location="metrics_hero">Start counting free</a>
+          <a href="/pricing" class="btn-outline">See pricing</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={RECAP_LIVE_IMAGE} alt="A live attendance recap in WorshipMetrics: 185 in person, 169 watching online, 354 total reach, counted automatically during the service" loading="eager" decoding="async" class="w-full object-contain" />
+      </div>
+    </div>
+  </section>
+
+  <!-- The window -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">The window into your church</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The stream is a front porch. Count who's standing on it.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Almost nobody walks into a church cold anymore &mdash; guests watch online first, sometimes for weeks, deciding whether your church is a place they could belong. The stream is a bridge into the building. And the people already on it are not strangers:
+        </p>
+        <div class="mt-6 space-y-4">
+          {onlineFaces.map(({ who, detail }) => (
+            <div class="flex items-start gap-3">
+              <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span>
+              <p class="text-sm leading-relaxed text-slate-700 sm:text-base"><strong class="font-semibold text-slate-900">{who}</strong> — {detail}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Healthy churches know their online congregation &mdash; who it is, and whether it&apos;s growing or stagnant. Service Metrics makes that knowable.
+        </p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={RECAP_IMAGE} alt="The attendance recap panel showing in-person, virtual, and total reach for a Sunday service" loading="lazy" decoding="async" class="w-full object-contain" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Total reach diagram -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">How the number is built</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">In-person + online = the real picture.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Attendance used to mean a headcount in a notebook. Total Reach counts both congregations &mdash; and because every service is stored, the comparisons leaders actually care about are one click away.
+        </p>
+      </div>
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <TotalReach />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Validates the work -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={SEAT_IMAGE} alt="The seat-map attendance counter in WorshipMetrics — tap to toggle a seat, hold to assign a member, or mark a new visitor" loading="lazy" decoding="async" class="w-full object-contain" />
+      </div>
+      <div>
+        <p class="eyebrow">It validates the work</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Online worship is real ministry. Now leaders can see it.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Every week, an AV team keeps the stream up, shepherds the chat, greets people by name, and responds to a congregation nobody in the building can see. For too long that work has been invisible &mdash; hard to measure, easy to undervalue.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Service Metrics changes that. The online audience is counted beside the room, first-time online visitors show up in the recap, and the team&apos;s effort becomes a number a board meeting can see. When leaders can watch the online congregation grow, the people tending it finally get the credit &mdash; and the budget conversations get easier.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
+          <a href="/av-team" class="btn-outline">The team behind the stream</a>
+          <a href="/live-streaming" class="btn-outline">How streaming works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaders' questions -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">For church leadership</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The questions boards ask, answered with data.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Attendance Over Time charts by month, quarter, or year. Every service type broken out. In-person, virtual, and total side by side. Growth stops being a feeling and becomes a fact:
+        </p>
+        <ul class="mt-6 space-y-3">
+          {leaderQuestions.map((q) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{q}</span></li>
+          ))}
+        </ul>
+        <p class="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The catch: year-over-year answers need last year&apos;s data. <strong class="font-semibold text-slate-900">Start gathering it today, and next Easter you&apos;ll know.</strong>
+        </p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <img src={OVERVIEW_IMAGE} alt="Service Metrics overview in WorshipMetrics: attendance over time by month with in-person, virtual, and total, plus a service type breakdown" loading="lazy" decoding="async" class="w-full object-contain" />
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Service Metrics, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <summary class="cursor-pointer text-base font-semibold text-slate-900 marker:content-none">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{answer}</p>
+          </details>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        Related: <a href="/platform/attendance" class="font-semibold text-indigo-600 hover:text-indigo-800">how attendance counting works</a> &middot; <a href="/services" class="font-semibold text-indigo-600 hover:text-indigo-800">service planning</a> &middot; <a href="/church-livestream-analytics" class="font-semibold text-indigo-600 hover:text-indigo-800">stream health reports</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Start gathering the data today.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
+        Next year&apos;s Easter comparison starts with this Sunday&apos;s count. Set up the seat map, connect the broadcast, and give your leaders the dashboard &mdash; so you&apos;re prepared for the growing church of tomorrow.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="metrics_footer_start" data-wm-track-location="metrics_footer">Get started free</a>
+        <a href="/discovery-call" class="btn-ghost-dark">Book a demo for your leaders</a>
+      </div>
+    </div>
+  </section>
+
+  <TechManagerCTA />
+</Layout>

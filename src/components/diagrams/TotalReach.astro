@@ -1,0 +1,156 @@
+---
+/**
+ * Total Reach — in-person plus online is the real attendance number.
+ * Two sources (the room, the stream) combine into one Total Reach figure,
+ * and the year-over-year panel shows why leaders track it: growth becomes
+ * a fact instead of a feeling. Numbers are illustrative.
+ */
+const LABEL =
+  "Diagram: in-person attendance (a seat count or camera auto-count, 185 people at 82% of seats) plus online attendance (169 peak viewers across YouTube, Facebook, and the church's own player) combine into one Total Reach number, 354 — every person who worshiped with you. A year-over-year panel compares Easter attendance: 296 last year against 354 this year, up 20 percent, split between in-person and online.";
+
+// Year-over-year bars (illustrative): total reach, split in-person / online.
+const YOY = [
+  { label: "Easter, last year", inPerson: 172, online: 124, total: 296 },
+  { label: "Easter, this year", inPerson: 185, online: 169, total: 354 },
+];
+const MAX = 380;
+---
+
+<svg
+  viewBox="0 0 980 430"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Sources -->
+  <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">TWO CONGREGATIONS, COUNTED</text>
+  <g transform="translate(20, 70)">
+    <rect x="0" y="0" width="252" height="96" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <rect x="16" y="16" width="34" height="34" rx="8" fill="#0B0D10" />
+    <g fill="#2B7FF0">
+      <circle cx="27" cy="28" r="2.4" /><circle cx="34" cy="28" r="2.4" /><circle cx="41" cy="28" r="2.4" />
+      <circle cx="27" cy="35" r="2.4" /><circle cx="34" cy="35" r="2.4" /><circle cx="41" cy="35" r="2.4" />
+    </g>
+    <text x="62" y="30" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">In the room</text>
+    <text x="62" y="46" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">Seat count or camera auto-count</text>
+    <text x="16" y="80" font-family="Archivo, sans-serif" font-size="20" font-weight="800" fill="#1D66D6">185 <tspan font-size="11" font-weight="600" fill="#78828F">· 82% of seats</tspan></text>
+  </g>
+  <g transform="translate(20, 240)">
+    <rect x="0" y="0" width="252" height="96" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <rect x="16" y="16" width="34" height="34" rx="8" fill="#0B0D10" />
+    <g fill="none" stroke="#2B7FF0" stroke-width="1.8" stroke-linejoin="round">
+      <rect x="23" y="24" width="21" height="14" rx="2.5" />
+      <path d="M31 28.5 l6 2.5 -6 2.5 z" fill="#2B7FF0" stroke="none" />
+    </g>
+    <text x="62" y="30" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">Watching online</text>
+    <text x="62" y="46" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">YouTube, Facebook &amp; your player</text>
+    <text x="16" y="80" font-family="Archivo, sans-serif" font-size="20" font-weight="800" fill="#7C5CE0">169 <tspan font-size="11" font-weight="600" fill="#78828F">· peak viewers</tspan></text>
+  </g>
+
+  <!-- Join into total -->
+  <path d="M276 118 C 330 118, 330 180, 372 196" fill="none" stroke="#C5DDFB" stroke-width="2" stroke-linecap="round" />
+  <path d="M276 288 C 330 288, 330 226, 372 212" fill="none" stroke="#C5DDFB" stroke-width="2" stroke-linecap="round" />
+  <path d="M366 189 L374 197 L364 199" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M364 209 L374 211 L366 219" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Total reach -->
+  <g transform="translate(384, 130)">
+    <rect x="0" y="0" width="232" height="148" rx="16" fill="#0B0D10" />
+    <text x="116" y="34" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" letter-spacing="1.2" fill="#9CC6F8">TOTAL REACH</text>
+    <text x="116" y="88" text-anchor="middle" font-family="Archivo, sans-serif" font-size="48" font-weight="800" fill="#ffffff">354</text>
+    <text x="116" y="112" text-anchor="middle" font-family="Archivo, sans-serif" font-size="11.5" fill="#9CC6F8">every person who worshiped with you</text>
+    <rect x="46" y="124" width="140" height="6" rx="3" fill="#1C4685" />
+    <rect x="46" y="124" width="73" height="6" rx="3" fill="#2B7FF0" />
+  </g>
+
+  <!-- Arrow to compare panel -->
+  <path d="M620 204 H664" fill="none" stroke="#C5DDFB" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M656 198 L664 204 L656 210" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Year over year -->
+  <text x="676" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">COMPARED ACROSS TIME</text>
+  <g transform="translate(676, 70)">
+    <rect x="0" y="0" width="284" height="266" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="22" y="32" font-family="Archivo, sans-serif" font-size="13.5" font-weight="700" fill="#0B0D10">Did Easter grow this year?</text>
+    <rect x="216" y="16" width="48" height="22" rx="6" fill="#E8F7EE" stroke="#B9E6C9" stroke-width="1.2" />
+    <text x="240" y="31" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="700" fill="#1B7F45">+20%</text>
+    {YOY.map(({ label, inPerson, online, total }, i) => (
+      <g transform={`translate(${52 + i * 116}, 52)`}>
+        <rect x="0" y={150 - (inPerson / MAX) * 150} width="64" height={(inPerson / MAX) * 150} fill="#2B7FF0" rx="3" />
+        <rect x="0" y={150 - ((inPerson + online) / MAX) * 150} width="64" height={(online / MAX) * 150} fill="#7C5CE0" rx="3" />
+        <text x="32" y={140 - ((inPerson + online) / MAX) * 150} text-anchor="middle" font-family="Archivo, sans-serif" font-size="13" font-weight="800" fill="#0B0D10">{total}</text>
+        <text x="32" y="170" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10" fill="#78828F">{label}</text>
+      </g>
+    ))}
+    <g transform="translate(22, 240)">
+      <rect x="0" y="-8" width="9" height="9" rx="2" fill="#2B7FF0" /><text x="15" y="0" font-family="Archivo, sans-serif" font-size="10" fill="#3F4854">In person</text>
+      <rect x="76" y="-8" width="9" height="9" rx="2" fill="#7C5CE0" /><text x="91" y="0" font-family="Archivo, sans-serif" font-size="10" fill="#3F4854">Online</text>
+    </g>
+  </g>
+
+  <!-- Footnote -->
+  <text x="20" y="408" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">Start gathering the data today &mdash; so you can prepare for a growing church tomorrow. <tspan fill="#78828F" font-size="11">(Numbers shown are illustrative.)</tspan></text>
+</svg>
+
+<!-- Portrait: sources → total → year over year, stacked. -->
+<svg
+  viewBox="0 0 360 780"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">TWO CONGREGATIONS, COUNTED</text>
+  <g transform="translate(10, 28)">
+    <rect x="0" y="0" width="340" height="74" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="18" y="28" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">In the room</text>
+    <text x="18" y="46" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">Seat count or camera auto-count</text>
+    <text x="322" y="44" text-anchor="end" font-family="Archivo, sans-serif" font-size="22" font-weight="800" fill="#1D66D6">185</text>
+  </g>
+  <g transform="translate(10, 112)">
+    <rect x="0" y="0" width="340" height="74" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="18" y="28" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">Watching online</text>
+    <text x="18" y="46" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">YouTube, Facebook &amp; your player</text>
+    <text x="322" y="44" text-anchor="end" font-family="Archivo, sans-serif" font-size="22" font-weight="800" fill="#7C5CE0">169</text>
+  </g>
+
+  <path d="M180 196 V 216" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 210 L180 218 L187 210" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <g transform="translate(50, 228)">
+    <rect x="0" y="0" width="260" height="130" rx="16" fill="#0B0D10" />
+    <text x="130" y="32" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" letter-spacing="1.2" fill="#9CC6F8">TOTAL REACH</text>
+    <text x="130" y="82" text-anchor="middle" font-family="Archivo, sans-serif" font-size="42" font-weight="800" fill="#ffffff">354</text>
+    <text x="130" y="106" text-anchor="middle" font-family="Archivo, sans-serif" font-size="11.5" fill="#9CC6F8">every person who worshiped with you</text>
+  </g>
+
+  <path d="M180 370 V 390" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 384 L180 392 L187 384" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <text x="10" y="416" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">COMPARED ACROSS TIME</text>
+  <g transform="translate(10, 428)">
+    <rect x="0" y="0" width="340" height="268" rx="14" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+    <text x="20" y="32" font-family="Archivo, sans-serif" font-size="14" font-weight="700" fill="#0B0D10">Did Easter grow this year?</text>
+    <rect x="268" y="16" width="52" height="24" rx="6" fill="#E8F7EE" stroke="#B9E6C9" stroke-width="1.2" />
+    <text x="294" y="32" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#1B7F45">+20%</text>
+    {YOY.map(({ label, inPerson, online, total }, i) => (
+      <g transform={`translate(${74 + i * 140}, 54)`}>
+        <rect x="0" y={140 - (inPerson / MAX) * 140} width="70" height={(inPerson / MAX) * 140} fill="#2B7FF0" rx="3" />
+        <rect x="0" y={140 - ((inPerson + online) / MAX) * 140} width="70" height={(online / MAX) * 140} fill="#7C5CE0" rx="3" />
+        <text x="35" y={130 - ((inPerson + online) / MAX) * 140} text-anchor="middle" font-family="Archivo, sans-serif" font-size="14" font-weight="800" fill="#0B0D10">{total}</text>
+        <text x="35" y="162" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">{label}</text>
+      </g>
+    ))}
+    <g transform="translate(20, 244)">
+      <rect x="0" y="-9" width="10" height="10" rx="2" fill="#2B7FF0" /><text x="16" y="0" font-family="Archivo, sans-serif" font-size="11" fill="#3F4854">In person</text>
+      <rect x="88" y="-9" width="10" height="10" rx="2" fill="#7C5CE0" /><text x="104" y="0" font-family="Archivo, sans-serif" font-size="11" fill="#3F4854">Online</text>
+    </g>
+  </g>
+
+  <text x="10" y="726" font-family="Archivo, sans-serif" font-size="12.5" fill="#3F4854">Start gathering the data today &mdash; so you can</text>
+  <text x="10" y="744" font-family="Archivo, sans-serif" font-size="12.5" fill="#3F4854">prepare for a growing church tomorrow.</text>
+  <text x="10" y="762" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">(Numbers shown are illustrative.)</text>
+</svg>

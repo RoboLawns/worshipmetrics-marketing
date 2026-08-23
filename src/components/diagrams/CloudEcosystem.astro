@@ -38,6 +38,14 @@ const roles = [
     modules: ["produce", "publish", "pulse", "patch"],
     tip: "Runs the booth, controls the switcher from anywhere, and gets the alert before anyone in the room notices — through Produce, Publish, Pulse, and Patch.",
   },
+  {
+    id: "leaders",
+    name: "Church leadership",
+    device: "laptop",
+    chip: "THE DASHBOARD",
+    modules: ["plan", "publish", "people"],
+    tip: "Sees every service's in-person and online attendance together in Service Metrics — whether Easter grew, and whether the online congregation is growing — through Plan, Publish, and People.",
+  },
 ];
 
 const modules = [
@@ -58,8 +66,8 @@ const LABEL =
   "Diagram: the whole church connects through one WorshipMetrics cloud. On one side, the pastor, worship leader, band, and AV lead each connect from a phone or laptop; on the other side sit the seven modules — Plan, Present, Produce, Publish, Pulse, Patch, and People. Hovering or tapping a role highlights the modules that person uses.";
 
 // Landscape geometry
-const ROLE_YS = [96, 200, 304, 408];           // card tops (h=64)
-const ROLE_ANCHOR_YS = [240, 268, 296, 324];   // where role lines meet the cloud
+const ROLE_YS = [52, 140, 228, 316, 404];        // card tops (h=64)
+const ROLE_ANCHOR_YS = [236, 260, 284, 308, 332]; // where role lines meet the cloud
 const MOD_YS = [46, 116, 186, 256, 326, 396, 466]; // card tops (h=56)
 const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines leave the cloud
 ---
@@ -147,7 +155,7 @@ const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines
 
   <!-- Portrait: roles → cloud → modules, stacked -->
   <svg
-    viewBox="0 0 360 796"
+    viewBox="0 0 360 868"
     width="100%"
     role="img"
     aria-label={LABEL}
@@ -156,8 +164,8 @@ const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines
   >
     <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">THE PEOPLE</text>
     {roles.map(({ id, name, device, chip, tip }, i) => (
-      <g class="eco-role" data-role={id} data-tip={tip} tabindex="0" role="button" aria-label={`${name}: ${tip}`} transform={`translate(${i % 2 === 0 ? 10 : 184}, ${28 + Math.floor(i / 2) * 72})`}>
-        <rect x="0" y="0" width="166" height="62" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <g class="eco-role" data-role={id} data-tip={tip} tabindex="0" role="button" aria-label={`${name}: ${tip}`} transform={`translate(${i === 4 ? 10 : i % 2 === 0 ? 10 : 184}, ${28 + Math.floor(i / 2) * 72})`}>
+        <rect x="0" y="0" width={i === 4 ? 340 : 166} height="62" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
         <rect x="12" y="14" width="30" height="30" rx="7" fill="#0B0D10" />
         {device === "phone" ? (
           <g>
@@ -175,22 +183,22 @@ const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines
       </g>
     ))}
 
-    <path d="M180 180 V 200" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
-    <path d="M173 194 L180 202 L187 194" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M180 252 V 272" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M173 266 L180 274 L187 266" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 
-    <g transform="translate(80, 212)">
+    <g transform="translate(80, 284)">
       <path d={CLOUD} fill="#EFF6FE" stroke="#2B7FF0" stroke-width="1.8" stroke-linejoin="round" />
     </g>
-    <image href="/logo.png" x="162" y="240" width="34" height="34" />
-    <text x="180" y="294" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13.5" font-weight="800" fill="#0B0D10">worship<tspan fill="#2B7FF0">metrics</tspan></text>
+    <image href="/logo.png" x="162" y="312" width="34" height="34" />
+    <text x="180" y="366" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13.5" font-weight="800" fill="#0B0D10">worship<tspan fill="#2B7FF0">metrics</tspan></text>
 
-    <path d="M180 326 V 346" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
-    <path d="M173 340 L180 348 L187 340" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M180 398 V 418" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M173 412 L180 420 L187 412" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 
-    <text x="10" y="372" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">THE PLATFORM &middot; SEVEN MODULES</text>
+    <text x="10" y="444" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">THE PLATFORM &middot; SEVEN MODULES</text>
     {modules.map(({ id, title, desc, icon, href }, i) => (
       <a href={href} aria-label={`${title} — ${desc}`}>
-        <g class="eco-module" data-module={id} transform={`translate(10, ${384 + i * 54})`}>
+        <g class="eco-module" data-module={id} transform={`translate(10, ${456 + i * 54})`}>
           <rect x="0" y="0" width="340" height="46" rx="10" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
           <image href={icon} x="12" y="11" width="24" height="24" />
           <text x="48" y="21" font-family="Archivo, sans-serif" font-size="12.5" font-weight="700" fill="#0B0D10">{title}</text>
@@ -199,7 +207,7 @@ const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines
       </a>
     ))}
 
-    <text x="10" y="788" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">Tap a role to see how they use the cloud.</text>
+    <text x="10" y="860" font-family="Archivo, sans-serif" font-size="12" fill="#3F4854">Tap a role to see how they use the cloud.</text>
   </svg>
 
   <!-- Tooltip -->
@@ -255,6 +263,7 @@ const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines
       worship: ["plan", "present"],
       band: ["people", "plan", "present"],
       av: ["produce", "publish", "pulse", "patch"],
+      leaders: ["plan", "publish", "people"],
     };
 
     const clear = () => {
