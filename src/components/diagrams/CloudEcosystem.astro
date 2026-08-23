@@ -207,7 +207,7 @@ const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines
 </div>
 
 <style>
-  .eco-root :global(.eco-role) { cursor: pointer; outline: none; }
+  .eco-root :global(.eco-role) { cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; }
   .eco-root :global(.eco-role rect:first-of-type),
   .eco-root :global(.eco-module rect),
   .eco-root :global(.eco-line),
@@ -303,13 +303,25 @@ const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines
       tip.style.top = `${top}px`;
     };
 
+    // Touch and mouse need different rules: hover activates for mouse/pen only,
+    // while touch relies on click as a toggle — otherwise a tap activates on
+    // pointerenter and the very next click reads as "already active" and clears.
+    let lastPointer = "mouse";
+    root.addEventListener("pointerdown", (e) => { lastPointer = (e as PointerEvent).pointerType || "mouse"; }, true);
+
     rolesEls.forEach((el) => {
-      el.addEventListener("pointerenter", () => activate(el));
-      el.addEventListener("focus", () => activate(el));
+      el.addEventListener("pointerenter", (e) => {
+        const type = (e as PointerEvent).pointerType;
+        if (type === "mouse" || type === "pen") activate(el);
+      });
+      el.addEventListener("focus", () => {
+        if (el.matches(":focus-visible")) activate(el); // keyboard focus only, not tap focus
+      });
       el.addEventListener("blur", clear);
       el.addEventListener("click", (e) => {
         e.preventDefault();
-        if (active === el.dataset.role) clear();
+        e.stopPropagation();
+        if (lastPointer === "touch" && active === el.dataset.role) clear();
         else activate(el);
       });
       el.addEventListener("keydown", (e) => {
@@ -317,6 +329,17 @@ const MOD_ANCHOR_YS = [222, 241, 260, 279, 298, 317, 336]; // where module lines
         if (e.key === "Escape") clear();
       });
     });
-    root.addEventListener("pointerleave", clear);
+
+    // Mouse leaving the diagram hides everything; a touch "leave" (which fires
+    // right after every tap) must not.
+    root.addEventListener("pointerleave", (e) => {
+      const type = (e as PointerEvent).pointerType;
+      if (type === "mouse" || type === "pen") clear();
+    });
+
+    // Tapping empty space in the diagram dismisses the active role on touch.
+    root.addEventListener("click", (e) => {
+      if (!(e.target as Element).closest(".eco-role")) clear();
+    });
   });
 </script>
