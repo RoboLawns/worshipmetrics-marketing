@@ -1,0 +1,259 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const DESK_IMAGE = "/images/lifestyle/church-obs-worshipmetrics-desk.jpg";
+const DASHBOARD_IMAGE = "/images/app/worship-metrics-production-dashboard.jpg";
+
+const capabilities = [
+  {
+    title: "Scene control",
+    body: "Switch OBS scenes from the panel — with live thumbnails of what's available and an enlargeable program view of what's on air, so the cut lands on the right scene every time.",
+  },
+  {
+    title: "Streaming & recording control",
+    body: "Start and stop the stream and the recording remotely — and let a second person confirm the red light is actually on before the prelude ends.",
+  },
+  {
+    title: "Program monitoring",
+    body: "See what OBS is putting out from any authorized account — in the booth, in the lobby, or from home — without a webcam pointed at the booth monitor.",
+  },
+  {
+    title: "WebSocket v5, built in",
+    body: "The integration speaks obs-websocket v5, the protocol modern OBS ships with — no third-party plugins to hunt down, no fragile scripts to maintain.",
+  },
+  {
+    title: "Slides that drive OBS",
+    body: "Present can fire OBS over the same WebSocket: a slide going live switches the scene, so one volunteer advancing lyrics quietly runs the video too.",
+  },
+  {
+    title: "Health, watched",
+    body: "OBS connection state and encoder health sit in your live system record beside everything else — feeding the monitoring, the alerts, and the support that knows your setup.",
+  },
+];
+
+const remoteWins = [
+  "A second person confirms the recording is running — from any seat, any campus, any couch",
+  "Scenes checked before the service: what's live and what's queued, visible in thumbnails",
+  "A veteran volunteer covers the switch remotely when the scheduled operator is out",
+  "You decide who can touch OBS — access follows your team roles, and every remote action is logged",
+];
+
+const faqItems = [
+  {
+    question: "Does WorshipMetrics replace OBS?",
+    answer: "No — it completes it. OBS is the most-loved free streaming tool in church production for good reason, and it stays your engine. WorshipMetrics connects over the WebSocket server built into modern OBS and adds what OBS doesn't have: cloud control for your whole team, monitoring and alerts, role-based permissions, and support that can see the system.",
+  },
+  {
+    question: "What can my team control remotely?",
+    answer: "Scene switching with live thumbnails and a program view, and streaming and recording start/stop — from the same Switcher panel the booth uses, in any authorized member's WorshipMetrics account.",
+  },
+  {
+    question: "Do I need to install an OBS plugin?",
+    answer: "No. The integration uses obs-websocket v5, which ships inside modern OBS — you enable the WebSocket server in OBS's own settings, point Tech Manager at it once, and you're connected.",
+  },
+  {
+    question: "Who gets access to OBS?",
+    answer: "That's yours to decide. Control follows your WorshipMetrics team roles, so access is granted on purpose, never by accident. Every remote action lands in your support history — nothing happens silently.",
+  },
+  {
+    question: "Is the OBS integration free?",
+    answer: "Local control — running OBS from Tech Manager in the booth — is free on every plan, forever. Cloud control, the same panel from anywhere for your whole team, comes with Assist ($49/mo) and Stream ($99/mo per campus).",
+  },
+  {
+    question: "How does remote OBS support work?",
+    answer: "Because Tech Manager holds a live connection to OBS, our support — Luminos in the app, Journey on 910-WORSHIP, and the humans behind them — sees your actual connection state, scenes, and settings when you ask for help. Troubleshooting starts from your real configuration, not a guessing game.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Layout
+  title="OBS Integration for Churches — Cloud Control & Support"
+  socialTitle="WorshipMetrics | OBS, fully integrated."
+  description="WorshipMetrics integrates deeply with OBS Studio over WebSocket v5: scene control, streaming and recording, and program monitoring — in the booth and from the cloud for your whole team, with support that can see your OBS settings."
+  canonical="/obs-integration"
+  ogImage={DESK_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div>
+        <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-4 py-1 shadow-sm">
+          <img src="/images/nav/pillars/produce.png" alt="" class="h-7 w-7 rounded-md" /> Produce &middot; Integration
+        </p>
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          OBS, fully integrated.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          The free streaming tool your church already trusts, wrapped in the layer it always needed: scene control, streaming and recording, and program monitoring &mdash; in the booth and in the cloud for your whole team. And because we can see your OBS settings, our support can troubleshoot the smallest change, 100% online.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="obs_hero_start" data-wm-track-location="obs_hero">Connect OBS free</a>
+          <a href="/cloud-control" class="btn-outline">How cloud control works</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Local control is free on every plan. OBS Studio is a free, open-source project of the OBS Project; WorshipMetrics connects through its built-in WebSocket server.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={DESK_IMAGE} alt="A church booth desk running OBS Studio beside the WorshipMetrics production dashboard, with a Stream Deck and the sanctuary through the window" loading="eager" decoding="async" class="w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">What the integration covers</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Everything a Sunday asks of OBS, in one panel.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Deep integration over the WebSocket server built into modern OBS &mdash; not a remote-desktop hack.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {capabilities.map(({ title, body }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cloud + team -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">One panel, your whole team</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Four eyes on the record button beat two.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The OBS controls live in the Switcher panel &mdash; in the booth, in the cloud, and in every authorized member&apos;s WorshipMetrics account. That changes what&apos;s possible on a Sunday morning:
+        </p>
+        <ul class="mt-6 space-y-3">
+          {remoteWins.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/cloud-control" class="btn-outline">See cloud control</a>
+        </div>
+      </div>
+      <div>
+        <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 shadow-sm">
+          <img src={DASHBOARD_IMAGE} alt="The WorshipMetrics production dashboard: audio mix, scene thumbnails, live program, stream health, and recording controls" loading="lazy" decoding="async" class="w-full object-contain" />
+        </div>
+        <p class="mt-3 text-center text-sm text-slate-500">One production dashboard for the whole booth &mdash; it drives OBS, vMix, and Blackmagic ATEM alike.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support headline -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">The bigger headline</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Our OBS support is 100% online &mdash; because we can see your settings.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            OBS puts a lot of power in a lot of menus &mdash; which is wonderful until a volunteer changes one of them on a Saturday night. Tech Manager&apos;s live OBS connection puts your scenes, connection state, and settings in front of Luminos in the app, Journey on 910-WORSHIP, and the production humans behind them.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            So support starts from your real configuration, not a guessing game &mdash; and the smallest settings change gets found and fixed without anyone driving to the church.
+          </p>
+          <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+            <a href="/phone-support" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="obs_support_phone" data-wm-track-location="obs_support">How support works</a>
+            <a href="tel:+19109677447" class="btn-ghost-dark">Call 910-WORSHIP</a>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">What that looks like on a call</p>
+          <ul class="mt-6 space-y-3">
+            {[
+              "“Your Worship Wide scene lost its camera source — it's showing the fallback.”",
+              "“The stream is up, but recording never started — want me to walk your volunteer through it?”",
+              "“Your encoder settings changed Tuesday — that's why the stream looks soft.”",
+              "“Everything checks out. You're ready for Sunday.”",
+            ].map((line) => (
+              <li class="flex items-start gap-3 text-sm text-slate-200 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-400"></span><span>{line}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it connects -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">How it connects</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Enable the WebSocket. Point Tech Manager at it. Done.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {[
+          { step: "1", title: "Connect on your network", body: "Enable OBS's built-in WebSocket server, and Tech Manager connects on the booth's own network — scenes, status, and control flow immediately, free on every plan." },
+          { step: "2", title: "One secure outbound link", body: "Tech Manager makes a single outbound connection to WorshipMetrics. No port forwarding, no VPN — the same link that powers your monitoring and alerts." },
+          { step: "3", title: "Your team, from anywhere", body: "On Assist and Stream, everyone you authorize opens the same Switcher panel from their own account — with role-based access and every action logged." },
+        ].map(({ step, title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{step}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        OBS is also a first-class streaming source: resilient SRT and RTMPS ingest straight from OBS, with <a href="/live-streaming" class="font-semibold text-indigo-600 hover:text-indigo-800">cloud delivery to every destination</a> and reusable stream keys so OBS is configured exactly once.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The OBS integration, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="group rounded-2xl border border-slate-200 bg-white p-6">
+            <summary class="cursor-pointer text-base font-semibold text-slate-900 marker:content-none">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{answer}</p>
+          </details>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        Run vMix instead? There&apos;s a <a href="/vmix-integration" class="font-semibold text-indigo-600 hover:text-indigo-800">dedicated page on the full vMix integration</a> &mdash; and Blackmagic ATEM control is built into <a href="/tech-manager" class="font-semibold text-indigo-600 hover:text-indigo-800">Tech Manager</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Your OBS, backed by a team that can see it.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
+        Connect OBS to Tech Manager tonight and the whole platform lights up around it &mdash; control, monitoring, alerts, and support that already knows your system.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="obs_footer_start" data-wm-track-location="obs_footer">Get started free</a>
+        <a href="/discovery-call" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Book a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <TechManagerCTA />
+</Layout>
