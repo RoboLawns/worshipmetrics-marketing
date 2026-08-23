@@ -1,0 +1,189 @@
+---
+/**
+ * AV Club × NDI — network video as the club's great enabler.
+ * Five club roles connect through WorshipMetrics to the NDI sources already
+ * on the church network — so a classroom down the hall becomes a real
+ * control room without touching the sanctuary.
+ */
+const roles = [
+  { slug: "service-director", name: "Service Director", note: "Runs the plan" },
+  { slug: "camera-operator", name: "Camera Operator", note: "Frames the shot" },
+  { slug: "audio-engineer", name: "Audio Engineer", note: "Mixes the room" },
+  { slug: "lyrics-operator", name: "Lyrics Operator", note: "Words on screen" },
+  { slug: "stream-operator", name: "Stream Operator", note: "Watches it go out" },
+];
+
+const sources = [
+  { kind: "obs", name: "OBS Studio", note: "Controlled over WebSocket" },
+  { kind: "vmix", name: "vMix", note: "Deep switching integration" },
+  { kind: "ndi", name: "NDI Studio Monitor", note: "Any feed, any screen" },
+  { kind: "ptz", name: "PTZ cameras", note: "Panned from a laptop or gamepad" },
+  { kind: "mixer", name: "Network audio mixer", note: "Meters and control on the LAN" },
+];
+
+const CLOUD =
+  "M 22 106 C -8 106 -14 76 8 62 C 0 30 34 12 62 26 C 76 2 116 2 130 24 C 160 10 186 32 178 58 C 200 70 196 102 164 106 Z";
+
+const LABEL =
+  "Diagram: five AV Club roles — Service Director, Camera Operator, Audio Engineer, Lyrics Operator, and Stream Operator — connect through the WorshipMetrics cloud to the NDI-compatible sources already on the church network: OBS Studio, vMix, NDI Studio Monitor, PTZ cameras, and a network-connected audio mixer. Because the video travels over the network, the club can work from a classroom or anywhere on campus.";
+
+const CARD_YS = [46, 124, 202, 280, 358];
+const ANCHOR_YS = [240, 257, 274, 291, 308];
+---
+
+<svg
+  viewBox="0 0 980 470"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="hidden h-auto w-full md:block"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    {roles.map(({ slug }, i) => (
+      <clipPath id={`ndi-role-${i}`}><circle cx="37" cy="32" r="17" /></clipPath>
+    ))}
+  </defs>
+
+  <!-- Lines first, painted under the cloud -->
+  {roles.map((_, i) => (
+    <path
+      d={`M276 ${CARD_YS[i] + 32} C 322 ${CARD_YS[i] + 32}, 330 ${ANCHOR_YS[i]}, 386 ${ANCHOR_YS[i]}`}
+      fill="none" stroke="#C5DDFB" stroke-width="2" stroke-linecap="round"
+    />
+  ))}
+  {sources.map((_, i) => (
+    <path
+      d={`M594 ${ANCHOR_YS[i]} C 650 ${ANCHOR_YS[i]}, 658 ${CARD_YS[i] + 32}, 704 ${CARD_YS[i] + 32}`}
+      fill="none" stroke="#C5DDFB" stroke-width="2" stroke-linecap="round"
+    />
+  ))}
+  {sources.map((_, i) => (
+    <path d={`M698 ${CARD_YS[i] + 26} L706 ${CARD_YS[i] + 32} L698 ${CARD_YS[i] + 38}`} fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  ))}
+
+  <!-- Roles -->
+  <text x="20" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">THE CLUB &middot; ANY ROOM ON CAMPUS</text>
+  {roles.map(({ slug, name, note }, i) => (
+    <g transform={`translate(20, ${CARD_YS[i]})`}>
+      <rect x="0" y="0" width="252" height="64" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <circle cx="37" cy="32" r="18" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.5" />
+      <image href={`/images/roles/av-role-${slug}.jpg`} x="16" y="11" width="42" height="42" preserveAspectRatio="xMidYMid slice" clip-path={`url(#ndi-role-${i})`} />
+      <text x="66" y="28" font-family="Archivo, sans-serif" font-size="12.5" font-weight="700" fill="#0B0D10">{name}</text>
+      <text x="66" y="46" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">{note}</text>
+    </g>
+  ))}
+
+  <!-- Cloud -->
+  <g transform="translate(380, 190) scale(1.1)">
+    <path d={CLOUD} fill="#EFF6FE" stroke="#2B7FF0" stroke-width="1.8" stroke-linejoin="round" />
+  </g>
+  <image href="/logo.png" x="466" y="216" width="34" height="34" />
+  <text x="483" y="270" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13.5" font-weight="800" fill="#0B0D10">worship<tspan fill="#2B7FF0">metrics</tspan></text>
+  <text x="483" y="286" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" letter-spacing="0.9" fill="#1D66D6">ROLE PANELS &middot; ONE CLOUD</text>
+
+  <!-- NDI trunk label -->
+  <rect x="596" y="196" width="102" height="20" rx="5" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.5" />
+  <text x="647" y="210" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" letter-spacing="0.6" fill="#1D66D6">NDI &middot; NETWORK AV</text>
+
+  <!-- Sources -->
+  <text x="708" y="24" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="#78828F">THE SOURCES &middot; ON THE NETWORK</text>
+  {sources.map(({ kind, name, note }, i) => (
+    <g transform={`translate(708, ${CARD_YS[i]})`}>
+      <rect x="0" y="0" width="252" height="64" rx="12" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <rect x="14" y="15" width="34" height="34" rx="8" fill="#0B0D10" />
+      {kind === "obs" && <text x="31" y="36" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#2B7FF0">OBS</text>}
+      {kind === "vmix" && <text x="31" y="36" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="700" fill="#2B7FF0">vMix</text>}
+      {kind === "ndi" && <text x="31" y="36" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#2B7FF0">NDI</text>}
+      {kind === "ptz" && (
+        <g fill="none" stroke="#2B7FF0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="21" y="24" width="15" height="11" rx="2.5" />
+          <circle cx="28.5" cy="29.5" r="2.6" />
+          <path d="M36 27 l6 -3 v11 l-6 -3" />
+        </g>
+      )}
+      {kind === "mixer" && (
+        <g stroke="#2B7FF0" stroke-width="1.8" stroke-linecap="round">
+          <path d="M24 23 v18 M31 23 v18 M38 23 v18" />
+          <path d="M21 34 h6 M28 27 h6 M35 31 h6" stroke-width="2.6" />
+        </g>
+      )}
+      <text x="60" y="28" font-family="Archivo, sans-serif" font-size="12.5" font-weight="700" fill="#0B0D10">{name}</text>
+      <text x="60" y="46" font-family="Archivo, sans-serif" font-size="10.5" fill="#78828F">{note}</text>
+    </g>
+  ))}
+
+  <!-- Footnote -->
+  <text x="20" y="452" font-family="Archivo, sans-serif" font-size="13" fill="#3F4854">The video already travels the network &mdash; so the club can rehearse, learn, and even run Sunday from a classroom down the hall.</text>
+</svg>
+
+<!-- Portrait: roles → cloud → NDI sources, stacked. -->
+<svg
+  viewBox="0 0 360 1010"
+  width="100%"
+  role="img"
+  aria-label={LABEL}
+  class="mx-auto block h-auto w-full max-w-[460px] md:hidden"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    {roles.map((_, i) => (
+      <clipPath id={`ndi-role-p-${i}`}><circle cx="36" cy="28" r="15" /></clipPath>
+    ))}
+  </defs>
+
+  <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">THE CLUB &middot; ANY ROOM</text>
+  {roles.map(({ slug, name, note }, i) => (
+    <g transform={`translate(10, ${28 + i * 62})`}>
+      <rect x="0" y="0" width="340" height="54" rx="11" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <circle cx="36" cy="28" r="16" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.5" />
+      <image href={`/images/roles/av-role-${slug}.jpg`} x="18" y="10" width="36" height="36" preserveAspectRatio="xMidYMid slice" clip-path={`url(#ndi-role-p-${i})`} />
+      <text x="62" y="24" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">{name}</text>
+      <text x="62" y="42" font-family="Archivo, sans-serif" font-size="11" fill="#78828F">{note}</text>
+    </g>
+  ))}
+
+  <path d="M180 348 V 368" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 362 L180 370 L187 362" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <g transform="translate(80, 380)">
+    <path d={CLOUD} fill="#EFF6FE" stroke="#2B7FF0" stroke-width="1.8" stroke-linejoin="round" />
+  </g>
+  <image href="/logo.png" x="164" y="404" width="32" height="32" />
+  <text x="180" y="456" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13" font-weight="800" fill="#0B0D10">worship<tspan fill="#2B7FF0">metrics</tspan></text>
+
+  <rect x="122" y="500" width="116" height="24" rx="6" fill="#EFF6FE" stroke="#C5DDFB" stroke-width="1.5" />
+  <text x="180" y="516" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" font-weight="600" letter-spacing="0.6" fill="#1D66D6">NDI &middot; NETWORK AV</text>
+  <path d="M180 530 V 550" fill="none" stroke="#2B7FF0" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M173 544 L180 552 L187 544" fill="none" stroke="#2B7FF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <text x="10" y="576" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="1.3" fill="#78828F">THE SOURCES &middot; ON THE NETWORK</text>
+  {sources.map(({ kind, name, note }, i) => (
+    <g transform={`translate(10, ${588 + i * 62})`}>
+      <rect x="0" y="0" width="340" height="54" rx="11" fill="#ffffff" stroke="#E3E7ED" stroke-width="1.5" />
+      <rect x="14" y="12" width="30" height="30" rx="7" fill="#0B0D10" />
+      {kind === "obs" && <text x="29" y="31" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#2B7FF0">OBS</text>}
+      {kind === "vmix" && <text x="29" y="31" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="700" fill="#2B7FF0">vMix</text>}
+      {kind === "ndi" && <text x="29" y="31" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#2B7FF0">NDI</text>}
+      {kind === "ptz" && (
+        <g fill="none" stroke="#2B7FF0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="19" y="21" width="13" height="10" rx="2" />
+          <circle cx="25.5" cy="26" r="2.3" />
+          <path d="M32 24 l5.5 -2.7 v9.4 l-5.5 -2.7" />
+        </g>
+      )}
+      {kind === "mixer" && (
+        <g stroke="#2B7FF0" stroke-width="1.7" stroke-linecap="round">
+          <path d="M22 20 v16 M29 20 v16 M36 20 v16" />
+          <path d="M19.5 30 h5 M26.5 24 h5 M33.5 27 h5" stroke-width="2.4" />
+        </g>
+      )}
+      <text x="56" y="24" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#0B0D10">{name}</text>
+      <text x="56" y="42" font-family="Archivo, sans-serif" font-size="11" fill="#78828F">{note}</text>
+    </g>
+  ))}
+
+  <text x="10" y="922" font-family="Archivo, sans-serif" font-size="12.5" fill="#3F4854">The video already travels the network &mdash; so the</text>
+  <text x="10" y="940" font-family="Archivo, sans-serif" font-size="12.5" fill="#3F4854">club can rehearse, learn, and even run Sunday</text>
+  <text x="10" y="958" font-family="Archivo, sans-serif" font-size="12.5" fill="#3F4854">from a classroom down the hall.</text>
+</svg>

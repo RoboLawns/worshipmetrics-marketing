@@ -4,11 +4,22 @@ import ResearchCallout from "../components/ResearchCallout.astro";
 import { recruitmentStats } from "../data/churchProductionResearch";
 import FoundersStrip from "../components/FoundersStrip.astro";
 import WhyWeBuilt from "../components/WhyWeBuilt.astro";
+import AVClubNdi from "../components/diagrams/AVClubNdi.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
-const HERO_IMAGE = `${R2}/homepage/new%20images/Worship%20Volunteers%20Working%20Together.jpg`;
+const HERO_IMAGE = "/images/av-club/av-club-classroom-hero.jpg";
+
+const clubRoles = [
+  { slug: "service-director", name: "Service Director" },
+  { slug: "camera-operator", name: "Camera Operator" },
+  { slug: "audio-engineer", name: "Audio Engineer" },
+  { slug: "lyrics-operator", name: "Lyrics Operator" },
+  { slug: "stream-operator", name: "Stream Operator" },
+  { slug: "lighting-operator", name: "Lighting Operator" },
+  { slug: "recording-archivist", name: "Recording / Archivist" },
+];
 const PANEL_IMAGE = "/images/roles/av-role-camera-operator.jpg";
 const TABLET_IMAGE = `${R2}/app-2026/lifestyle/team-collaboration.jpg`;
 
@@ -74,7 +85,7 @@ const structuredData = {
         </div>
       </div>
       <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-        <img src={HERO_IMAGE} alt="Church volunteers serving together in production" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={HERO_IMAGE} alt="A church AV club of students running cameras, switching, and audio from laptops around a classroom table" loading="eager" decoding="async" class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
   </section>
@@ -161,17 +172,42 @@ const structuredData = {
           </div>
         </div>
         <div class="grid gap-4 sm:grid-cols-2">
-          {[
-            "Service Director",
-            "Camera Operator",
-            "Audio Engineer",
-            "Lyrics Operator",
-            "Stream Operator",
-            "Lighting Operator",
-            "Recording / Archivist",
-          ].map((role) => (
-            <div class="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-semibold text-slate-700 shadow-sm">{role}</div>
+          {clubRoles.map(({ slug, name }) => (
+            <a href={`/av-team/${slug}`} class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md">
+              <img src={`/images/roles/av-role-${slug}.jpg`} alt={`${name} — a student serving in the church AV team role`} loading="lazy" decoding="async" class="aspect-[5/2] w-full object-cover" />
+              <p class="px-5 py-3 text-sm font-semibold text-slate-700 group-hover:text-indigo-700">{name} &rarr;</p>
+            </a>
           ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NDI: network AV as the enabler -->
+  <section class="bg-white px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl border-t border-slate-200 pt-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Network AV &middot; NDI</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One network cable turns any classroom into a control room.</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          This is the quiet technology that makes an AV Club practical. NDI puts every camera and video source on the church network &mdash; so the club doesn&apos;t need a seat in the booth to do real work. Students pull up any camera on a laptop, pan a PTZ with a gamepad, watch the program feed on a classroom TV, and rehearse the whole service from down the hall &mdash; while the sanctuary system stays exactly as it is.
+        </p>
+      </div>
+      <div class="mt-10 md:overflow-x-auto">
+        <div class="md:min-w-[760px]">
+          <AVClubNdi />
+        </div>
+      </div>
+      <div class="mt-10 rounded-[1.75rem] border border-indigo-200 bg-indigo-50 p-8">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-center">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Not sure how to use network AV?</p>
+            <p class="mt-3 text-lg font-semibold leading-relaxed text-slate-900">That&apos;s exactly what a discovery call is for. Tell us what rooms you have and what you dream of doing, and we&apos;ll sketch the network, the gear you already own that fits, and the first three roles to launch with.</p>
+          </div>
+          <div class="flex flex-col items-start gap-3 lg:items-end">
+            <a href="/discovery-call" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="avclub_ndi_discovery" data-wm-track-location="avclub_ndi">Set up a free discovery call</a>
+            <a href="tel:+19109677447" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">Or call 910-WORSHIP now</a>
+          </div>
         </div>
       </div>
     </div>
