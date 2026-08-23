@@ -1,0 +1,247 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const SWITCHER_IMAGE = "/images/app/worship-metrics-vmix-switcher-control.jpg";
+const DASHBOARD_IMAGE = "/images/app/worship-metrics-production-dashboard.jpg";
+const BOOTH_IMAGE = "/images/lifestyle/church-vmix-operator-booth.jpg";
+
+const capabilities = [
+  {
+    title: "Full switcher control",
+    body: "Cut, fade, wipe, zoom, and stinger transitions with adjustable duration, a hands-on T-bar, and preview/program switching across every input — through vMix's own HTTP and TCP APIs.",
+  },
+  {
+    title: "Recording & streaming control",
+    body: "Start and stop recording and streaming from the panel — and let a second person confirm the red light is actually on before the prelude ends.",
+  },
+  {
+    title: "Program & preview monitors",
+    body: "Live thumbnails of every input beside an enlargeable program view, so anyone with access can see exactly what's on screen and what's queued next.",
+  },
+  {
+    title: "Real vMix audio meters",
+    body: "Master and bus meters streamed at ~30 fps over a persistent TCP connection — the same numbers vMix shows, live in the panel beside the video.",
+  },
+  {
+    title: "Per-input control",
+    body: "Play and pause inputs, toggle overlays 1–4, and manage bus audio mute and volume — the everyday moves of a service, one click each.",
+  },
+  {
+    title: "Settings, visible",
+    body: "vMix connection state, inputs, and configuration are part of your live system record — the foundation for monitoring, alerts, and support that actually knows your setup.",
+  },
+];
+
+const remoteWins = [
+  "A second person confirms recording is running — from any seat, any campus, any couch",
+  "Sources checked before the service: every input live in thumbnails, not guesswork over the phone",
+  "A veteran volunteer takes the switch remotely when the scheduled operator is out sick",
+  "You decide who can control the switcher — access follows your team roles, and every remote action is logged",
+];
+
+const faqItems = [
+  {
+    question: "Does WorshipMetrics replace vMix?",
+    answer: "No — it makes vMix better. vMix stays your production engine, doing what it does brilliantly. WorshipMetrics connects to it through vMix's own HTTP and TCP APIs and wraps it with the things vMix doesn't do: cloud control for your whole team, monitoring and alerts, role-based permissions, and support that can see the system.",
+  },
+  {
+    question: "What can my team control remotely?",
+    answer: "The full switching surface: preview/program with cuts, fades, wipes, zooms, and stingers, a T-bar, overlays 1–4, per-input play/pause, bus audio mute and volume, and recording and streaming start/stop — with live program and preview monitors and real vMix audio meters beside it all.",
+  },
+  {
+    question: "Who gets access to the switcher?",
+    answer: "That's yours to decide. Switcher control follows your WorshipMetrics team roles, so a lyrics volunteer doesn't inherit the T-bar by accident. Anyone you authorize can operate from their own account — in the booth or from anywhere — and every remote action lands in your support history.",
+  },
+  {
+    question: "Is the vMix integration free?",
+    answer: "Local control — running vMix from Tech Manager in the booth — is free on every plan, forever. Cloud control, the same panel from anywhere for your whole team, comes with Assist ($49/mo) and Stream ($99/mo per campus).",
+  },
+  {
+    question: "How does remote vMix support actually work?",
+    answer: "Because Tech Manager holds a live connection to vMix, our support — Luminos in the app, Journey on 910-WORSHIP, and the humans behind them — sees your actual connection state, inputs, and settings when you ask for help. Troubleshooting starts from your real configuration, not twenty questions about what version you're running.",
+  },
+  {
+    question: "Do I need port forwarding for remote control?",
+    answer: "No. Tech Manager makes one secure outbound connection from the booth to WorshipMetrics — the same link that powers monitoring. Nothing on your network is exposed, and your firewall stays closed.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Layout
+  title="vMix Integration for Churches — Cloud Control & Support"
+  socialTitle="WorshipMetrics | vMix, fully integrated."
+  description="WorshipMetrics integrates deeply with vMix: full switcher control, recording, streaming, program/preview, and real audio meters — in the booth and from the cloud for your whole team, with support that can see your vMix settings."
+  canonical="/vmix-integration"
+  ogImage={SWITCHER_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div>
+        <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-4 py-1 shadow-sm">
+          <img src="/images/nav/pillars/produce.png" alt="" class="h-7 w-7 rounded-md" /> Produce &middot; Integration
+        </p>
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          vMix, fully integrated.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          The switcher panel your booth runs vMix from is the same panel your whole team can open in the cloud &mdash; full switching, recording, streaming, program and preview, and real audio meters. And because we can see your vMix settings, our support can troubleshoot the smallest configuration change, 100% online.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="vmix_hero_start" data-wm-track-location="vmix_hero">Connect vMix free</a>
+          <a href="/cloud-control" class="btn-outline">How cloud control works</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Local control is free on every plan. vMix is a product of StudioCoast Pty Ltd; WorshipMetrics connects through vMix&apos;s own APIs.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={SWITCHER_IMAGE} alt="The WorshipMetrics Switcher Control panel connected to vMix: preview and program monitors, six inputs with live thumbnails, transitions, and vMix audio meters" loading="eager" decoding="async" class="w-full object-contain" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">What the integration covers</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Everything a Sunday asks of vMix, in one panel.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Deep integration over vMix&apos;s HTTP and TCP APIs &mdash; not a webcam pointed at the booth monitor.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {capabilities.map(({ title, body }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cloud + team -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">One panel, your whole team</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Four eyes on the record button beat two.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The vMix controls live in the Switcher panel &mdash; in the booth, in the cloud, and in every authorized member&apos;s WorshipMetrics account. That changes what&apos;s possible on a Sunday morning:
+        </p>
+        <ul class="mt-6 space-y-3">
+          {remoteWins.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/cloud-control" class="btn-outline">See cloud control</a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 shadow-sm">
+        <img src={DASHBOARD_IMAGE} alt="The WorshipMetrics production dashboard with vMix connected: audio mix, scene thumbnails, live program, and stream health" loading="lazy" decoding="async" class="w-full object-contain" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Support headline -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl sm:p-12">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">The bigger headline</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Our vMix support is 100% online &mdash; because we can see your settings.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            Most support for production software starts with an interrogation: what version, which input, what did you change? Ours starts with the answer. Tech Manager&apos;s live vMix connection puts your connection state, inputs, meters, and settings in front of Luminos in the app, Journey on 910-WORSHIP, and the production humans behind them.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+            That&apos;s how a Saturday-night &ldquo;the stream output looks wrong&rdquo; call becomes a two-minute fix: we look at the actual configuration together and troubleshoot even the smallest settings change &mdash; without anyone driving to the church.
+          </p>
+          <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+            <a href="/phone-support" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="vmix_support_phone" data-wm-track-location="vmix_support">How support works</a>
+            <a href="tel:+19109677447" class="btn-ghost-dark">Call 910-WORSHIP</a>
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+          <img src={BOOTH_IMAGE} alt="A church operator running vMix through WorshipMetrics Switcher Control on a two-monitor booth setup during a live service" loading="lazy" decoding="async" class="w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it connects -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">How it connects</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Point Tech Manager at vMix once. Done.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {[
+          { step: "1", title: "Connect on your network", body: "Tech Manager talks to vMix over its HTTP and TCP APIs on the booth's own network — switching, meters, and status flow immediately, free on every plan." },
+          { step: "2", title: "One secure outbound link", body: "Tech Manager makes a single outbound connection to WorshipMetrics. No port forwarding, no VPN — the same link that powers your monitoring and alerts." },
+          { step: "3", title: "Your team, from anywhere", body: "On Assist and Stream, everyone you authorize opens the same Switcher panel from their own account — with role-based access and every action logged." },
+        ].map(({ step, title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{step}</span>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        vMix is also a first-class streaming source: resilient SRT and RTMPS ingest straight from vMix, with <a href="/live-streaming" class="font-semibold text-indigo-600 hover:text-indigo-800">cloud delivery to every destination</a> and reusable stream keys so vMix is configured exactly once.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The vMix integration, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="group rounded-2xl border border-slate-200 bg-white p-6">
+            <summary class="cursor-pointer text-base font-semibold text-slate-900 marker:content-none">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{answer}</p>
+          </details>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        Run OBS instead? The same deep integration exists for OBS Studio &mdash; and Blackmagic ATEM control is built in too. Both live in <a href="/tech-manager" class="font-semibold text-indigo-600 hover:text-indigo-800">Tech Manager</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Your vMix, backed by a team that can see it.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
+        Connect vMix to Tech Manager tonight and the whole platform lights up around it &mdash; control, monitoring, alerts, and support that already knows your system.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="vmix_footer_start" data-wm-track-location="vmix_footer">Get started free</a>
+        <a href="/discovery-call" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Book a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <TechManagerCTA />
+</Layout>
