@@ -197,7 +197,7 @@ const supportTabs = [
     notes: [
       {
         heading: "PTZOptics users",
-        body: "Tech Manager natively understands the PTZOptics VISCA protocol on TCP port 5678. NDI-enabled PTZOptics cameras also appear in the NDI device list automatically.",
+        body: "Tech Manager natively speaks VISCA-over-IP on TCP port 52381, the protocol PTZOptics cameras use. NDI-enabled PTZOptics cameras also appear in the NDI device list automatically.",
       },
       {
         heading: "Budget Amazon PTZ users",
@@ -257,7 +257,7 @@ const faqItems = [
   },
   {
     question: "Does Tech Manager require any special hardware?",
-    answer: "No. Tech Manager is the desktop bridge between your physical AV system and the WorshipMetrics cloud, and it runs on a Windows or Mac computer your church already owns.",
+    answer: "No. Tech Manager is the desktop bridge between your physical AV system and the WorshipMetrics cloud, and it runs on a Windows computer your church already owns (Windows 10 or later). Mac support is on the roadmap — ask us about it.",
   },
   {
     question: "Does Tech Manager fix problems automatically?",
@@ -275,7 +275,7 @@ const structuredData = [
     "@type": "SoftwareApplication",
     name: "WorshipMetrics Tech Manager",
     applicationCategory: "BusinessApplication",
-    operatingSystem: "Windows, Mac",
+    operatingSystem: "Windows",
     url: `${SITE_URL}/tech-manager`,
     image: OG_IMAGE,
   description: "Tech Manager is the desktop app that powers your booth with AV monitoring, system mapping, PTZ control, and Luminos diagnostics inside WorshipMetrics.",
@@ -400,7 +400,7 @@ const structuredData = [
         ))}
       </div>
       <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
-        Switcher and camera control runs locally in the booth on every plan, free. Assist and Stream add <a href="/cloud-control" class="font-semibold text-indigo-600 hover:text-indigo-800">cloud control</a> &mdash; the same switching, with eyes on preview and program, from anywhere. Running vMix or OBS? See the full <a href="/vmix-integration" class="font-semibold text-indigo-600 hover:text-indigo-800">vMix</a> and <a href="/obs-integration" class="font-semibold text-indigo-600 hover:text-indigo-800">OBS</a> integrations.
+        Switcher and camera control runs locally in the booth on every plan, free. Assist and Stream add <a href="/cloud-control" class="font-semibold text-indigo-600 hover:text-indigo-800">cloud control</a> &mdash; the full vMix panel, plus OBS scene, stream, and recording control, from anywhere. Running vMix or OBS? See the full <a href="/vmix-integration" class="font-semibold text-indigo-600 hover:text-indigo-800">vMix</a> and <a href="/obs-integration" class="font-semibold text-indigo-600 hover:text-indigo-800">OBS</a> integrations.
       </p>
       <div class="mt-12 md:overflow-x-auto">
         <div class="md:min-w-[760px]">
@@ -558,7 +558,7 @@ const structuredData = [
 
       <div class="mx-auto mt-8 max-w-4xl rounded-2xl border border-slate-200 bg-slate-950 p-6 text-center shadow-sm">
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">Quick summary</p>
-        <p class="mt-3 text-base leading-relaxed text-slate-200 sm:text-lg">80+ supported devices. Tech Manager recognizes the gear congregations actually use — from PTZOptics and Blackmagic ATEM to Yamaha DM3, QSC Q-SYS, Shure wireless, and your entire Dante network.</p>
+        <p class="mt-3 text-base leading-relaxed text-slate-200 sm:text-lg">A 422-model device catalog. Tech Manager recognizes the gear congregations actually use — from PTZOptics and Blackmagic ATEM to Yamaha DM3, QSC Q-SYS, Shure wireless, and your entire Dante network.</p>
       </div>
     </div>
   </section>
@@ -701,7 +701,7 @@ const structuredData = [
           ["Platform", "Native desktop app for Windows 10/11 (64-bit, x64 and ARM), installed or portable, signed with an EV certificate and kept current by automatic updates"],
           ["Production software", "OBS Studio (WebSocket v5), vMix (HTTP + TCP APIs), Blackmagic ATEM cut/preview/program control, and HyperDeck status monitoring"],
           ["Audio metering", "Real-time vMix master and bus meters at ~30 fps over a persistent TCP connection — the same numbers vMix shows, beside your other tiles"],
-          ["Camera protocols", "VISCA-over-IP (UDP 52381) with a command watchdog that stops runaway cameras, ONVIF fallback, and HTTP control for supported brands — image adjustment adapters for Sony, BirdDog, and generic VISCA cameras"],
+          ["Camera protocols", "VISCA-over-IP (TCP 52381) with a command watchdog that stops runaway cameras, ONVIF fallback, and HTTP control for supported brands — image adjustment adapters for Sony, BirdDog, and generic VISCA cameras"],
           ["NDI", "NDI send (slides), NDI receive (cameras as live slide media), and alpha-channel NDI output from Present for clean keys"],
           ["Protocol relay", "Fires OSC, RossTalk, RTP-MIDI, HTTP, and Q-SYS QRC onto the booth network on behalf of the cloud — browsers can't open those sockets; Tech Manager can. PJLink projectors are monitored for power, lamp, and error state"],
           ["Telemetry", "Hardware snapshots every heartbeat: CPU, GPU, temperatures, memory, storage, displays, audio devices, USB (event-driven), network — plus hourly software and driver inventory"],

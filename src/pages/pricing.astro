@@ -42,11 +42,11 @@ const platformPlans = [
     tag: "Expert help on tap",
     body: "The full suite unlocked, with unlimited AI support that knows your exact system. For churches that stream elsewhere — or not at all — but want an expert on call.",
     cta: "Start with Assist",
-    href: `${APP_URL}/sign-up`,
+    href: "/discovery-call",
     featured: false,
     items: [
       "Everything in Free, with the practical limits removed",
-      "Cloud control for OBS, vMix, and Blackmagic ATEM — eyes on preview and program, and full switcher control from anywhere",
+      "Cloud control from anywhere — the full vMix switcher panel, plus OBS scene, stream, and recording control",
       "Unlimited 24/7 AI support that knows your system — Luminos in the app, Journey on 910-WORSHIP, no session caps",
       "PCO sync, unlimited signage screens, and cloud Reels — AI clips from anywhere",
       "The full Present suite: multi-screen output, stage displays with transposed chord charts",
@@ -60,15 +60,15 @@ const platformPlans = [
     suffix: "/mo per campus",
     tag: "Streaming, included",
     body: "Everything in Assist, plus premium cloud live streaming that runs like the dedicated platforms — for less than you pay today, with no encoder box to buy.",
-    cta: "Start streaming",
-    href: `${APP_URL}/sign-up`,
+    cta: "Request streaming access",
+    href: "/discovery-call",
     featured: true,
     items: [
       "Everything in Assist, plus premium cloud live streaming",
       "Resilient SRT and RTMPS ingest straight from OBS or vMix — no encoder hardware to buy",
       "Dedicated infrastructure built to stay up — and a player and watch page where worship is never muted or flagged by a copyright bot",
       "Up to 10 simultaneous destinations: YouTube, Facebook, and an embeddable player with a hosted watch page",
-      "Cloud DVR and archive, plus a scored stream-health report wired into your alerts",
+      "Cloud recordings and archive, plus a scored stream-health report wired into your alerts",
       "Reels from any service in a click, plus online attendance analytics",
       "Each campus is its own $99 with its own included usage",
     ],
@@ -110,7 +110,7 @@ const exampleStacks = [
 const fairUseRows = [
   { included: "Live stream hours (1080p, all destinations simultaneously)", allowance: "20 hours", overage: "Generous — a typical church never reaches it" },
   { included: "Viewer hours on the embedded player / watch page (YouTube and Facebook viewers are never metered)", allowance: "2,500 viewer-hours", overage: "Generous — a typical church never reaches it" },
-  { included: "Cloud archive retention (recordings, DVR, clip sources)", allowance: "120 days", overage: "—" },
+  { included: "Cloud archive retention (recordings, clip sources)", allowance: "120 days", overage: "—" },
   { included: "Simultaneous destinations", allowance: "Up to 10", overage: "—" },
 ];
 
@@ -118,7 +118,7 @@ const comparisonRows = [
   ["Price", "$0 forever", "$49/mo", "$99/mo per campus"],
   ["24/7 AV monitoring, Signal Map & alerts", "Included", "Included", "Included"],
   ["Social streaming — YouTube & Facebook", "Included — integrations, scheduling & stream keys handled", "Included", "Included"],
-  ["Switcher control — OBS, vMix, Blackmagic ATEM", "Local — free", "Local + cloud control", "Local + cloud control"],
+  ["Switcher control — vMix, OBS, Blackmagic ATEM", "Local — free", "Local + cloud (full vMix panel; OBS scenes, stream & recording)", "Local + cloud (full vMix panel; OBS scenes, stream & recording)"],
   ["PTZ camera control", "Local", "Local + cloud", "Local + cloud"],
   ["Users", "Unlimited", "Unlimited", "Unlimited"],
   ["Planning, presentation & people", "Core (practical limits)", "Full", "Full"],
@@ -129,7 +129,7 @@ const comparisonRows = [
   ["Luminos + Journey AI support", "A taste — in alerts, plus 1 free session", "Unlimited", "Unlimited"],
   ["Premium cloud streaming — dedicated ingest, stays up, never flagged", "—", "—", "Included"],
   ["Multi-destination + hosted watch page", "—", "—", "Included"],
-  ["Cloud DVR & archive", "—", "—", "120 days (extendable)"],
+  ["Cloud recordings & archive", "—", "—", "120 days"],
   ["Stream-health monitoring in alerts", "—", "—", "Included"],
   ["Online attendance analytics", "—", "—", "Included"],
   ["First help session", "Free", "Free", "Free"],
@@ -138,14 +138,14 @@ const comparisonRows = [
 const faqItems = [
   { question: "Is the Free tier really free forever?", answer: "Yes. No credit card, no trial timer, no expiration. AV monitoring, the living Signal Map, and instant alerts are free forever — that is the pledge, and it never changes. The whole volunteer team can live in it with unlimited users." },
   { question: "What AI support is free, and what does Assist add?", answer: "Free gives you a real taste: Luminos-powered help inside your alerts, plus one full help session so your team can experience it end to end — in the app, no strings. Assist ($49/mo) removes the caps: unlimited 24/7 AI support with Luminos in the app and Journey on 910-WORSHIP, both looking at your live system, as often as your team needs it. If you'd lean on AI help more than once, Assist is the plan built for that." },
-  { question: "Can I really stream on the Free plan?", answer: "Yes. Social streaming to YouTube and Facebook is included free: connect your accounts once and WorshipMetrics handles the platform integrations, schedules your broadcasts, and retrieves the stream keys — so your encoder is configured once and everything lives in one place. The Stream plan adds premium cloud streaming on top: dedicated ingest infrastructure built to stay up, up to 10 destinations, and an embeddable player and hosted watch page where worship is never muted or flagged by a copyright bot." },
-  { question: "Is switcher control free?", answer: "Locally, yes — on every plan, including Free. Tech Manager controls OBS, vMix, and Blackmagic ATEM switchers, plus your PTZ cameras, from the booth at no cost. Assist and Stream add cloud control: the same full API control, plus live eyes on preview and program, from anywhere — so a trusted helper can monitor the service or assist with the switching remotely." },
+  { question: "Can I really stream on the Free plan?", answer: "Yes. Social streaming to YouTube and Facebook is included free. We currently switch streaming on for each church personally — request it and we'll enable your account, then connect your platforms once and WorshipMetrics handles the integrations, schedules your broadcasts, and retrieves the stream keys, so your encoder is configured once and everything lives in one place. The Stream plan adds premium cloud streaming on top: dedicated ingest infrastructure built to stay up, up to 10 destinations, and an embeddable player and hosted watch page where worship is never muted or flagged by a copyright bot." },
+  { question: "Is switcher control free?", answer: "Locally, yes — on every plan, including Free. Tech Manager controls OBS, vMix, and Blackmagic ATEM switchers, plus your PTZ cameras, from the booth at no cost. Assist and Stream add cloud control from anywhere: the full switching surface for vMix, and scene, stream, and recording control for OBS — so a trusted helper can monitor the service or assist with the switching remotely." },
   { question: "How do platform tiers and support add-ons combine?", answer: "Pick the platform tier that fits how your church runs Sunday — Free, Assist, or Stream. Then, if you want a person standing behind your team, add Care, Sunday Assurance, or Managed on top. Any tier combines with any add-on, and you can add or drop support anytime." },
   { question: "Why is Stream priced per campus?", answer: "Each campus gets its own encoder, its own Signal Map, its own stream, and its own included usage — so each campus is its own $99. It matches how multi-site churches already buy, without the per-site markup the expensive platforms charge. Network and denomination deals are handled inside Managed." },
   { question: "Do I need to buy a hardware encoder to stream?", answer: "No. The encoder is Tech Manager, the desktop app running on a PC your church already owns — a $0 replacement for the $1,500+ hardware box the expensive streaming platforms require." },
   { question: "What happens if I go over the Stream allowances?", answer: "We never stop a live service over a quota. If you blow through an allowance mid-stream, the stream keeps running and the overage shows up on the bill — never on the screen. Usage alerts fire at 80% of any allowance, and overage pricing is published, flat, and cheap." },
   { question: "Is Reels included, or is it extra?", answer: "Reels — our AI clipping tool, formerly Worship Clips — has a free local workflow inside Tech Manager on every tier. Using Reels in the cloud (access from anywhere, cloud archival, team collaboration) requires the Assist plan or higher, and Stream adds cloud recordings for every service, ready to clip." },
-  { question: "Do you offer annual billing?", answer: "Yes. Billed monthly or annually, and annual billing includes 2 months free — you pay 10-month pricing for the year. The first help session is free on every tier." },
+  { question: "Do you offer annual billing?", answer: "Yes. Annual billing is 10-month pricing for the year — 2 months free. We set annual invoicing up with you directly: mention it when you get started, or reach out and we'll arrange it. The first help session is free on every tier." },
   { question: "Do you offer a nonprofit or multi-church discount?", answer: "Yes. Contact us and we will talk through the right fit for your ministry and budget. Multi-campus and denomination rollouts are handled directly inside Managed." },
   { question: "What happens to my data if I cancel?", answer: "Your data stays exportable. We will help you make sure your ministry can keep what it needs." },
 ];
@@ -248,7 +248,7 @@ const structuredData = [
           </div>
         ))}
       </div>
-      <p class="mt-6 text-center text-sm text-slate-500">Billed monthly or annually — annual billing includes 2 months free. The first help session is free on every tier.</p>
+      <p class="mt-6 text-center text-sm text-slate-500">Billed monthly — or annually with 2 months free, arranged with us when you set up your plan. The first help session is free on every tier.</p>
       <div class="mx-auto mt-8 max-w-3xl rounded-[1.75rem] border border-amber-200 bg-amber-50 p-6 text-center">
         <p class="text-base font-semibold text-slate-900">Want to gift WorshipMetrics to your church?</p>
         <p class="mt-2 text-sm leading-relaxed text-slate-600">Many members cover their church&apos;s annual plan as a designated gift. It&apos;s simple, and because the gift goes to your church, it&apos;s typically tax-deductible. <a href="/gift" class="font-semibold text-indigo-600 hover:text-indigo-800" data-wm-track="cta_click" data-wm-track-label="pricing_gift_learn" data-wm-track-location="pricing_platform">See how it works &rarr;</a></p>
@@ -429,7 +429,7 @@ const structuredData = [
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">The encoder you already own</p>
           <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Tech Manager is the encoder — no $1,500 box on the rack.</h2>
           <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Stream runs on Tech Manager, the desktop app on a PC your church already owns. Resilient ingest, multi-destination delivery, cloud DVR, and stream-health alerts — capability that usually requires dedicated hardware, running as software on a computer you already have.
+            Stream runs on Tech Manager, the desktop app on a PC your church already owns. Resilient ingest, multi-destination delivery, cloud recordings, and stream-health alerts — capability that usually requires dedicated hardware, running as software on a computer you already have.
           </p>
           <div class="mt-6 space-y-3 text-sm text-slate-700">
             {[
@@ -485,7 +485,7 @@ const structuredData = [
       <div class="mt-8 grid gap-6 lg:grid-cols-2">
         <div class="flex flex-col rounded-[1.75rem] border border-indigo-200 bg-indigo-50 p-8">
           <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Switcher control, both ways</p>
-          <p class="mt-3 flex-1 text-base font-semibold leading-relaxed text-slate-900">OBS, vMix, and Blackmagic ATEM control in the booth is free on every plan. Assist and Stream add cloud control &mdash; the same switching, plus eyes on preview and program, from anywhere.</p>
+          <p class="mt-3 flex-1 text-base font-semibold leading-relaxed text-slate-900">OBS, vMix, and Blackmagic ATEM control in the booth is free on every plan. Assist and Stream add cloud control from anywhere &mdash; the full vMix panel, and OBS scene, stream, and recording control.</p>
           <div class="mt-5">
             <a href="/cloud-control" class="btn-primary" data-wm-track="cta_click" data-wm-track-label="pricing_cloud_control_learn" data-wm-track-location="pricing_comparison">How cloud control works</a>
           </div>

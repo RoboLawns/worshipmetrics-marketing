@@ -6,7 +6,7 @@ import IntegrationsHero from "../components/integrations/IntegrationsHero.astro"
 import IntegrationsSearch from "../components/integrations/IntegrationsSearch.astro";
 import IntegrationsGrid from "../components/integrations/IntegrationsGrid.astro";
 import IntegrationsCTA from "../components/integrations/IntegrationsCTA.astro";
-import { integrationCategories, integrationTotals } from "../data/integrations";
+import { integrationCategories, integrationTotals, catalogStats } from "../data/integrations";
 
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
@@ -157,8 +157,8 @@ const structuredData = {
         <ul class="mt-8 space-y-3">
           {[
             "System documentation and device inventory so your team knows what you have and how it connects",
-            "Remote management and control through Central Control's show automation platform",
-            "Stream health monitoring, camera control, and automated macros that reduce live pressure on operators",
+            "Remote management and control through Tech Manager's secure cloud link — no port forwarding, no VPN",
+            "Stream health monitoring, camera control, and switcher control that reduce live pressure on operators",
             "Always listening and building — real church feedback shapes what comes next",
           ].map((item) => (
             <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
@@ -180,7 +180,10 @@ const structuredData = {
       <p class="eyebrow">Supported gear</p>
       <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Works with the gear <span class="title-accent">you already own.</span></h2>
       <p class="mt-4 text-base leading-relaxed text-slate-600">
-        WorshipMetrics integrates with over {integrationTotals.totalDevices} devices across {integrationTotals.totalCategories} categories of ProAV equipment through Central Control&apos;s show automation platform. If your church already invested in quality gear, we help you get more out of it.
+        WorshipMetrics controls the systems that run Sunday directly &mdash; vMix, OBS Studio, Blackmagic ATEM, VISCA and BirdDog PTZ cameras, Behringer X32 and Midas M32, Q-SYS, and UniFi &mdash; and documents and monitors {catalogStats.entries} devices across {catalogStats.manufacturers} manufacturers, {catalogStats.portMapped} of them with factory port maps. If your church already invested in quality gear, we help you get more out of it.
+      </p>
+      <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-500">
+        Every card below says exactly what it means: <strong>Direct control</strong> — WorshipMetrics drives it. <strong>Cue target</strong> — Present fires cues at it over OSC, RossTalk, MIDI, or HTTP. <strong>Status monitoring</strong> — we watch its health. <strong>Documented &amp; monitored</strong> — it lives in your Signal Map with factory port maps.
       </p>
     </div>
 

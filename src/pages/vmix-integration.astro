@@ -38,13 +38,13 @@ const remoteWins = [
   "A second person confirms recording is running — from any seat, any campus, any couch",
   "Sources checked before the service: every input live in thumbnails, not guesswork over the phone",
   "A veteran volunteer takes the switch remotely when the scheduled operator is out sick",
-  "You decide who can control the switcher — access follows your team roles, and every remote action is logged",
+  "You decide who can control the switcher — control stays inside your team's accounts, and every remote action is logged",
 ];
 
 const faqItems = [
   {
     question: "Does WorshipMetrics replace vMix?",
-    answer: "No — it makes vMix better. vMix stays your production engine, doing what it does brilliantly. WorshipMetrics connects to it through vMix's own HTTP and TCP APIs and wraps it with the things vMix doesn't do: cloud control for your whole team, monitoring and alerts, role-based permissions, and support that can see the system.",
+    answer: "No — it makes vMix better. vMix stays your production engine, doing what it does brilliantly. WorshipMetrics connects to it through vMix's own HTTP and TCP APIs and wraps it with the things vMix doesn't do: cloud control for your whole team, monitoring and alerts, and support that can see the system.",
   },
   {
     question: "What can my team control remotely?",
@@ -52,7 +52,7 @@ const faqItems = [
   },
   {
     question: "Who gets access to the switcher?",
-    answer: "That's yours to decide. Switcher control follows your WorshipMetrics team roles, so a lyrics volunteer doesn't inherit the T-bar by accident. Anyone you authorize can operate from their own account — in the booth or from anywhere — and every remote action lands in your support history.",
+    answer: "That's yours to decide. Remote control lives inside your church's WorshipMetrics team — only people you've invited can open the panel. Anyone you authorize can operate from their own account — in the booth or from anywhere — and every remote action lands in your support history.",
   },
   {
     question: "Is the vMix integration free?",
@@ -193,7 +193,7 @@ const structuredData = {
         {[
           { step: "1", title: "Connect on your network", body: "Tech Manager talks to vMix over its HTTP and TCP APIs on the booth's own network — switching, meters, and status flow immediately, free on every plan." },
           { step: "2", title: "One secure outbound link", body: "Tech Manager makes a single outbound connection to WorshipMetrics. No port forwarding, no VPN — the same link that powers your monitoring and alerts." },
-          { step: "3", title: "Your team, from anywhere", body: "On Assist and Stream, everyone you authorize opens the same Switcher panel from their own account — with role-based access and every action logged." },
+          { step: "3", title: "Your team, from anywhere", body: "On Assist and Stream, everyone you authorize opens the same Switcher panel from their own account — with every action logged." },
         ].map(({ step, title, body }) => (
           <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
             <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{step}</span>

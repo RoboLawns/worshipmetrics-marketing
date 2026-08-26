@@ -17,7 +17,7 @@ const faqItems = [
   },
   {
     question: "Can attendance data connect to visitor follow-up?",
-    answer: "Yes. Attendance in WorshipMetrics is tied to people workflows, which helps churches notice first-time guests, missed attendees, and follow-up opportunities sooner.",
+    answer: "Yes. Attendance in WorshipMetrics is tied to people workflows, so first-time guests, prayer requests, and per-service attendance history live with the person — which makes follow-up easier to organize.",
   },
 ];
 const structuredData = [
@@ -383,8 +383,8 @@ const structuredData = [
           body: "Seat templates and Auto-Count help teams move quickly without sacrificing accuracy.",
         },
         {
-          heading: "Who is new or missing",
-          body: "Attendance ties to people records, so follow-up gets easier.",
+          heading: "Who is new",
+          body: "Guests land in people records the same morning, so follow-up gets easier.",
         },
         {
           heading: "Digital front door",
@@ -785,20 +785,20 @@ const structuredData = [
       <div class="grid gap-5 sm:grid-cols-2">
         {[
           {
-            label: "New family worth welcoming",
-            detail: "A first-time household attended in person after engaging online last week.",
+            label: "First-time guest, on the record",
+            detail: "A new household checks in at the welcome desk and lands in your people records the same morning.",
           },
           {
-            label: "Regular member has missed two weeks",
-            detail: "A normally consistent attender missed two Sundays and wasn't online either.",
+            label: "Prayer request, kept with the person",
+            detail: "A prayer request from the check-in form is saved on that person's record — not on a paper card in a stack.",
           },
           {
-            label: "Prayer request plus attendance drop",
-            detail: "A member shared a prayer request and also missed their usual service. Connected signals.",
+            label: "In-room and online, one story",
+            detail: "Sunday's headcount and the livestream's peak and average viewers land in the same service record automatically.",
           },
           {
-            label: "Online visitor showing real interest",
-            detail: "A livestream viewer returned, asked a question, and created a contact record.",
+            label: "History a shepherd can read",
+            detail: "Attendance is recorded service by service, so when your team asks about someone, the record is there to check.",
           },
         ].map(({ label, detail }) => (
           <div class="flex gap-4 rounded-2xl border border-slate-200 bg-white p-6">

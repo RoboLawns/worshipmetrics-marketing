@@ -14,8 +14,8 @@ const capabilities = [
     body: "The same PVW / PGM state the booth sees, mirrored live to any phone or laptop. Know what's on air and what's queued next without calling the booth and asking someone to describe the screen.",
   },
   {
-    title: "Full API control from anywhere",
-    body: "Not a viewer — a control surface. Cut, transition, change scenes and inputs, toggle overlays, and adjust bus audio remotely, through the same deep integrations the booth uses locally.",
+    title: "A control surface, not a viewer",
+    body: "With vMix, the cloud panel is the full switching surface — cut, transition, T-bar, overlays, and bus audio. With OBS, switch scenes and start or stop the stream and the recording remotely.",
   },
   {
     title: "Remote switching assistance",
@@ -23,7 +23,7 @@ const capabilities = [
   },
   {
     title: "The switchers you already run",
-    body: "OBS Studio over WebSocket v5, vMix over its HTTP and TCP APIs, and Blackmagic ATEM cut, preview, and program control — the same three integrations, local and cloud.",
+    body: "vMix gets the full cloud panel over its HTTP and TCP APIs. OBS gets remote scene, stream, and recording control over WebSocket v5. And Blackmagic ATEM — cut, preview, and program — is controlled locally in the booth.",
   },
 ];
 
@@ -41,7 +41,7 @@ const steps = [
   {
     step: "3",
     title: "Sign in anywhere, switch anything",
-    body: "On Assist and Stream, anyone you've invited signs into WorshipMetrics from any device and gets the booth's control surface — preview, program, and the full API, from anywhere.",
+    body: "On Assist and Stream, anyone you've invited signs into WorshipMetrics from any device and gets the booth's control surface — the full vMix panel, or OBS scene and stream control, from anywhere.",
   },
 ];
 
@@ -52,11 +52,11 @@ const faqItems = [
   },
   {
     question: "What is cloud switcher control?",
-    answer: "It extends the booth's control surface beyond the building. WorshipMetrics mirrors your switcher's live state — what's in preview, what's in program, which scenes and inputs exist — and relays the full control API, so an authorized person on any device can monitor the service and switch it as if they were standing at the production PC.",
+    answer: "It extends the booth's control surface beyond the building. WorshipMetrics mirrors your switcher's live state — what's in preview, what's in program, which scenes and inputs exist — and relays the control API, so an authorized person on any device can monitor the service and switch it. With vMix that's the full switching surface; with OBS it's scenes, the stream, and the recording.",
   },
   {
     question: "Which switchers and software does it work with?",
-    answer: "OBS Studio (WebSocket v5), vMix (HTTP and TCP APIs), and the Blackmagic ATEM family (cut, preview, and program control), with HyperDeck status monitoring alongside. PTZ camera control follows the same local-free, cloud-on-paid pattern.",
+    answer: "vMix (full cloud control over its HTTP and TCP APIs), OBS Studio (remote scene, stream, and recording control over WebSocket v5), and the Blackmagic ATEM family (cut, preview, and program control, locally in the booth), with HyperDeck status monitoring alongside. PTZ camera control follows the same local-free, cloud-on-paid pattern.",
   },
   {
     question: "Do I need port forwarding or a VPN?",
@@ -86,7 +86,7 @@ const structuredData = {
 <Layout
   title="Cloud Video Switcher Control for Churches"
   socialTitle="WorshipMetrics | Your switcher, from anywhere."
-  description="Monitor and control OBS, vMix, and Blackmagic ATEM from anywhere — live preview and program monitoring, full API control, and remote switching assistance. Local control in the booth is free on every plan; cloud control comes with Assist and Stream."
+  description="Your switcher, from anywhere — the full vMix panel in the cloud, remote scene, stream, and recording control for OBS, and free local control of vMix, OBS, and Blackmagic ATEM in the booth. Cloud control comes with Assist and Stream."
   canonical="/cloud-control"
   ogImage={DASHBOARD_IMAGE}
   structuredData={structuredData}
@@ -101,7 +101,7 @@ const structuredData = {
         Eyes on preview and program &mdash; from anywhere.
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-        WorshipMetrics controls OBS, vMix, and Blackmagic ATEM switchers locally in the booth &mdash; free, on every plan. The paid plans take the same control to the cloud: monitor your switcher, keep full API control, and let a trusted helper assist with the switching from anywhere.
+        WorshipMetrics controls OBS, vMix, and Blackmagic ATEM switchers locally in the booth &mdash; free, on every plan. The paid plans take control to the cloud: the full vMix panel from anywhere, remote scene, stream, and recording control for OBS, and a trusted helper who can assist with the switching wherever they are.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="cloud_control_hero_start" data-wm-track-location="cloud_control_hero">Get started free</a>
@@ -223,7 +223,7 @@ const structuredData = {
           <p class="eyebrow">The same dashboard, anywhere</p>
           <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Scene thumbnails, meters, and stream health &mdash; on whatever screen you have.</h2>
           <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Cloud control isn&apos;t a stripped-down remote. It&apos;s the production dashboard &mdash; live scene thumbnails you can cut to program, audio meters for every bus, overlay toggles, and stream health beside it all &mdash; served to wherever you are.
+            Cloud control isn&apos;t a stripped-down remote. It&apos;s the production dashboard &mdash; live scene thumbnails you can cut to program, vMix audio meters and overlay toggles, and stream health beside it all &mdash; served to wherever you are.
           </p>
           <div class="mt-6">
             <a href="/tech-manager" class="btn-outline">Everything the booth app does</a>

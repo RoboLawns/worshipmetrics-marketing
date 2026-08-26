@@ -37,13 +37,13 @@ const remoteWins = [
   "A second person confirms the recording is running — from any seat, any campus, any couch",
   "Scenes checked before the service: what's live and what's queued, visible in thumbnails",
   "A veteran volunteer covers the switch remotely when the scheduled operator is out",
-  "You decide who can touch OBS — access follows your team roles, and every remote action is logged",
+  "You decide who can touch OBS — control stays inside your team's accounts, and every remote action is logged",
 ];
 
 const faqItems = [
   {
     question: "Does WorshipMetrics replace OBS?",
-    answer: "No — it completes it. OBS is the most-loved free streaming tool in church production for good reason, and it stays your engine. WorshipMetrics connects over the WebSocket server built into modern OBS and adds what OBS doesn't have: cloud control for your whole team, monitoring and alerts, role-based permissions, and support that can see the system.",
+    answer: "No — it completes it. OBS is the most-loved free streaming tool in church production for good reason, and it stays your engine. WorshipMetrics connects over the WebSocket server built into modern OBS and adds what OBS doesn't have: cloud control for your whole team, monitoring and alerts, and support that can see the system.",
   },
   {
     question: "What can my team control remotely?",
@@ -55,7 +55,7 @@ const faqItems = [
   },
   {
     question: "Who gets access to OBS?",
-    answer: "That's yours to decide. Control follows your WorshipMetrics team roles, so access is granted on purpose, never by accident. Every remote action lands in your support history — nothing happens silently.",
+    answer: "That's yours to decide. Remote control lives inside your church's WorshipMetrics team — only people you've invited can open the panel. Every remote action lands in your support history, so nothing happens silently.",
   },
   {
     question: "Is the OBS integration free?",
@@ -205,7 +205,7 @@ const structuredData = {
         {[
           { step: "1", title: "Connect on your network", body: "Enable OBS's built-in WebSocket server, and Tech Manager connects on the booth's own network — scenes, status, and control flow immediately, free on every plan." },
           { step: "2", title: "One secure outbound link", body: "Tech Manager makes a single outbound connection to WorshipMetrics. No port forwarding, no VPN — the same link that powers your monitoring and alerts." },
-          { step: "3", title: "Your team, from anywhere", body: "On Assist and Stream, everyone you authorize opens the same Switcher panel from their own account — with role-based access and every action logged." },
+          { step: "3", title: "Your team, from anywhere", body: "On Assist and Stream, everyone you authorize opens the same Switcher panel from their own account — with every action logged." },
         ].map(({ step, title, body }) => (
           <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
             <span class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{step}</span>

@@ -1,9 +1,11 @@
 ---
-import type { IntegrationCategoryKey } from "../../data/integrations";
+import type { IntegrationCategoryKey, IntegrationStatus } from "../../data/integrations";
+import { STATUS_META } from "../../data/integrations";
 
 interface Item {
   brand: string;
   name: string;
+  status: IntegrationStatus;
   logoUrl?: string;
 }
 
@@ -46,8 +48,8 @@ const { categories } = Astro.props;
               <h3 class="mt-2 text-lg font-bold leading-snug tracking-tight text-slate-900">{item.name}</h3>
             </div>
             <p class="mt-5 inline-flex items-center gap-2 text-[0.8rem] font-medium text-slate-600">
-              <span class="h-2 w-2 flex-shrink-0 rounded-full bg-emerald-500"></span>
-              <span>Live integration</span>
+              <span class:list={["h-2 w-2 flex-shrink-0 rounded-full", STATUS_META[item.status].dotClass]}></span>
+              <span>{STATUS_META[item.status].label}</span>
             </p>
           </article>
         ))}
@@ -57,7 +59,7 @@ const { categories } = Astro.props;
 
   <div class="empty-state mx-auto mt-12 hidden max-w-2xl rounded-2xl border border-slate-200 bg-slate-50 p-10 text-center [&.visible]:block" id="integrations-empty-state">
     <h2 class="text-2xl font-bold tracking-tight text-slate-900">We don&apos;t have that one yet.</h2>
-    <p class="mt-3 text-base leading-relaxed text-slate-600">If you run a piece of gear we haven&apos;t listed, tell us. Central Control ships new device integrations regularly, and your request moves the list.</p>
+    <p class="mt-3 text-base leading-relaxed text-slate-600">If you run a piece of gear we haven&apos;t listed, tell us. The device catalog grows every release, and your request moves the list.</p>
     <a href="/contact" class="btn-primary mt-6">Request an integration &rarr;</a>
   </div>
 </div>

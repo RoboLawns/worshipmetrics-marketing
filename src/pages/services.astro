@@ -227,9 +227,9 @@ const structuredData = {
       </div>
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Share the work</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every volunteer gets a role. Every role gets the right panel.</h2>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Every volunteer gets a role. Every role gets a clear job.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          This is how churches stop asking one person to do everything. Services gives staff and volunteers clearer assignments, and the paid production engine gives each role a simpler live surface to work from.
+          This is how churches stop asking one person to do everything. Services gives staff and volunteers clearer assignments, and each seat works from the tools that job actually needs.
         </p>
         <ul class="mt-8 space-y-3">
           {volunteerBullets.map((item) => (
@@ -239,7 +239,7 @@ const structuredData = {
         <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           <a href="/volunteers" class="btn-outline">See Volunteers</a>
           <a href="/av-club" class="btn-outline">This is how you build an AV Club</a>
-          <a href="/av-team" class="btn-outline">See the seven role panels</a>
+          <a href="/av-team" class="btn-outline">See the seven roles</a>
         </div>
       </div>
     </div>
@@ -265,8 +265,8 @@ const structuredData = {
           <div class="mt-6 space-y-4">
             {[
               "The service plan becomes an execution-ready rundown instead of a reference document.",
-              "Automated show control sequences fire on cue so cameras, graphics, lighting, and switcher moves stay aligned.",
-              "Every volunteer gets a dedicated control panel on any tablet, with exactly the buttons they need and nothing more.",
+              "Show cues fire on time so graphics, switcher moves, and playback stay aligned with the plan.",
+              "Every volunteer gets one clear seat, with the plan and team chat on any tablet they already own.",
               "The booth spends less energy translating the plan and more energy serving the room well.",
             ].map((item) => (
               <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-slate-200">{item}</div>
@@ -356,7 +356,7 @@ const structuredData = {
           ["Assignment lifecycle", "Unfilled → invited → confirmed / declined / no-show / completed, with tokenized email accept-decline valid until service start and replacement chains tracked"],
           ["Volunteer communications", "A 15-minute server sweep sends day-before reminders, decline notices to leaders, cancellation notices, and unfilled-position alerts — double-send-proof"],
           ["Scheduling matrix", "Positions × dates up to a 400-day window, per-position needed counts, batch send across up to 200 plans in one click"],
-          ["Song imports", "ChordPro (.cho, .crd, .chopro), OpenLyrics XML, SongSelect (.usr), ProPresenter 4–7, plain-text paste — plus 96 public-domain hymns included"],
+          ["Song imports", "ChordPro (.cho, .crd, .chopro), OpenLyrics XML, SongSelect (.usr), ProPresenter 4–7, plain-text paste — plus 94 public-domain hymns included, each with its traditional key and a full ChordPro chart"],
           ["Chord charts", "Per-key print-quality PDFs (plus capo renditions) auto-generate on save; non-destructive transpose across 17 major and 12 minor key spellings with correct flats and sharps"],
           ["CCLI export", "One CSV line per use — Date, Title, Authors, Copyright, CCLI Number, Confirmation, Plan — deduplicated per song per service date over a trailing-year window"],
           ["Planning Center sync", "PCO Services API v2 with a Personal Access Token, credentials encrypted at rest (AES-256-GCM); full import on connect, then a five-minute delta sync"],

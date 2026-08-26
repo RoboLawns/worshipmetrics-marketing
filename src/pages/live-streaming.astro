@@ -15,7 +15,7 @@ const destinations = [
   { name: "YouTube", desc: "Scheduled broadcasts, go live, end, and history — handled end to end." },
   { name: "Facebook", desc: "Simulcast to your page without touching a second encoder." },
   { name: "Your website", desc: "A clean player embed for your church site — no platform branding." },
-  { name: "Custom RTMP", desc: "Any destination that takes a stream key. Point us at it once." },
+  { name: "More destinations", desc: "Twitch, BoxCast, Restream, and Castr — plus additional RTMP endpoints we allowlist for you on request." },
   { name: "The Stream console", desc: "Encoders, connections, and scheduled events in one console — sync to vMix and go live in two clicks." },
 ];
 
@@ -35,6 +35,10 @@ const clipFeatures = [
 ];
 
 const faqs = [
+  {
+    question: "How do we get streaming turned on?",
+    answer: "We enable streaming for each church personally — it keeps every campus's ingest provisioned right and Sunday-safe. Request access and we'll switch it on with you, then confirm your first test stream together before it counts.",
+  },
   {
     question: "Do we have to change our encoder or software?",
     answer: "No. Point vMix, OBS, or any RTMP encoder at your WorshipMetrics ingest once. Everything downstream — destinations, recordings, clips, monitoring — happens on our side.",
@@ -96,8 +100,8 @@ const structuredData = [
         Send us one feed and your service reaches YouTube, Facebook, and your own website player &mdash; recorded, archived, and cut into Reels your team can share before Monday. WorshipMetrics allows you to know who&apos;s in the room, and reach who isn&apos;t.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="streaming_hero_sign_up_free" data-wm-track-location="streaming_hero">Start streaming free</a>
-        <a href="/discovery-call" class="btn-outline">Book a call</a>
+        <a href="/discovery-call" class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="streaming_hero_request_access" data-wm-track-location="streaming_hero">Request streaming access</a>
+        <a href={`${APP_URL}/sign-up`} class="btn-outline">Get started free</a>
       </div>
     </div>
   </section>
@@ -152,11 +156,11 @@ const structuredData = [
         {[
           {
             title: "Built on a global network",
-            body: "Your encoder pushes one RTMPS or SRT feed to stream.worshipmetrics.com, and a worldwide delivery network handles the adaptive bitrate ladder, DVR, and playback. Resilient ingest, not a server in a closet.",
+            body: "Your encoder pushes one RTMPS or SRT feed to stream.worshipmetrics.com, and a worldwide delivery network handles the adaptive bitrate ladder, recordings, and playback. Resilient ingest, not a server in a closet.",
           },
           {
             title: "One feed, ten destinations",
-            body: "The cloud fans your single uplink out to up to ten destinations at once — YouTube, Facebook, your own embedded player, and any custom RTMP endpoint — without asking your encoder to do more work.",
+            body: "The cloud fans your single uplink out to up to ten destinations at once — YouTube, Facebook, Twitch, the major restreamers, and your own embedded player — without asking your encoder to do more work.",
           },
           {
             title: "YouTube & Facebook, end to end",
@@ -292,11 +296,11 @@ const structuredData = [
     <div class="mx-auto max-w-4xl rounded-[2rem] border border-slate-200 bg-slate-50 p-10 text-center shadow-sm sm:p-12">
       <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your live stream, handled.</h2>
       <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
-        Point your encoder at WorshipMetrics this week and stop thinking about streaming infrastructure on Sunday morning.
+        Request access, we&apos;ll get your encoder pointed at WorshipMetrics together &mdash; and you can stop thinking about streaming infrastructure on Sunday morning.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
-        <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="streaming_footer_sign_up_free" data-wm-track-location="streaming_footer">Start streaming free</a>
-        <a href="/discovery-call" class="btn-outline text-sm">Book a call</a>
+        <a href="/discovery-call" class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="streaming_footer_request_access" data-wm-track-location="streaming_footer">Request streaming access</a>
+        <a href={`${APP_URL}/sign-up`} class="btn-outline text-sm">Get started free</a>
       </div>
     </div>
   </section>
@@ -311,7 +315,7 @@ const structuredData = [
         {[
           ["Ingest", "RTMPS and SRT (stream ID + passphrase) to stream.worshipmetrics.com — works with vMix, OBS, and any RTMP/SRT encoder"],
           ["Delivery", "HLS with an adaptive bitrate ladder to the embeddable player and your hosted watch page (4-second segments, auto-start when you go live)"],
-          ["Destinations", "Up to 10 simultaneous per channel: YouTube, Facebook Live, Twitch, and any custom RTMP/RTMPS endpoint"],
+          ["Destinations", "Up to 10 simultaneous per channel: YouTube, Facebook Live, Twitch, BoxCast, Restream, and Castr — plus additional RTMP/RTMPS endpoints we allowlist for you on request"],
           ["Recordings", "Automatic per service, up to 4 hours / 8 GB each, available once the stream ends — and fully separate from the broadcast, so archive limits can never stop a live stream"],
           ["Archive retention", "120 days included; extended one-year archive available as an add-on"],
           ["Clipping", "Live clips up to 10 minutes cut from the in-progress stream; frame-accurate VOD clips over ranged reads (no downloads); whole-service trims without re-encoding"],

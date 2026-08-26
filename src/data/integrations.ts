@@ -1,43 +1,21 @@
 const LOGO_BASE = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main/central-control-logos";
 
 const LOGOS = {
-  vizrt: `${LOGO_BASE}/vizrt.svg`,
-  newtek: `${LOGO_BASE}/newtek.svg`,
   vmix: `${LOGO_BASE}/vmix.png`,
   blackmagic: `${LOGO_BASE}/blackmagic-design.svg`,
   obs: `${LOGO_BASE}/obs-studio.svg`,
-  livestream: `${LOGO_BASE}/livestream-vimeo.svg`,
   roland: `${LOGO_BASE}/roland.svg`,
-  magewell: `${LOGO_BASE}/magewell.svg`,
-  osee: `${LOGO_BASE}/osee.svg`,
-  aja: `${LOGO_BASE}/aja.svg`,
-  turtleav: `${LOGO_BASE}/turtle-av.svg`,
-  zen: `${LOGO_BASE}/zen-videowall.svg`,
   ma: `${LOGO_BASE}/ma-lighting.svg`,
-  obsidian: `${LOGO_BASE}/obsidian-control.svg`,
   avolites: `${LOGO_BASE}/avolites.svg`,
   chamsys: `${LOGO_BASE}/chamsys.svg`,
-  showcad: `${LOGO_BASE}/showcad.svg`,
-  elation: `${LOGO_BASE}/elation.svg`,
   resolume: `${LOGO_BASE}/resolume.svg`,
   qlab: `${LOGO_BASE}/figure53-qlab.svg`,
-  millumin: `${LOGO_BASE}/millumin.svg`,
-  mitti: `${LOGO_BASE}/imimot-mitti.svg`,
-  h2r: `${LOGO_BASE}/h2r-graphics.svg`,
   ptzoptics: `${LOGO_BASE}/ptzoptics.svg`,
-  aida: `${LOGO_BASE}/aida-imaging.svg`,
   panasonic: `${LOGO_BASE}/panasonic.svg`,
-  elgato: `${LOGO_BASE}/elgato.svg`,
-  xkeys: `${LOGO_BASE}/xkeys.svg`,
-  akai: `${LOGO_BASE}/akai-pro.svg`,
   behringer: `${LOGO_BASE}/behringer.svg`,
-  novation: `${LOGO_BASE}/novation.svg`,
   soundcraft: `${LOGO_BASE}/soundcraft.svg`,
   bitfocus: `${LOGO_BASE}/bitfocus-companion.svg`,
-  irisdown: `${LOGO_BASE}/irisdown.svg`,
-  tyst: `${LOGO_BASE}/tyst.svg`,
-  sankeys: `${LOGO_BASE}/sankeys.svg`,
-  katovision: `${LOGO_BASE}/katovision.svg`,
+  magewell: `${LOGO_BASE}/magewell.svg`,
   ross: `${LOGO_BASE}/Ross%20Logo.png`,
 } as const;
 
@@ -46,169 +24,125 @@ function getLogoUrl(brand: string, name: string) {
 
   if (key.includes("blackmagic")) return LOGOS.blackmagic;
   if (key.includes("studiocoast") || key.includes("vmix")) return LOGOS.vmix;
-  if (key.includes("vizrt") || key.includes("tricaster") || key.includes("vectar") || key.includes("3play")) return LOGOS.vizrt;
-  if (key.includes("newtek")) return LOGOS.newtek;
   if (key.includes("obs")) return LOGOS.obs;
-  if (key.includes("livestream") || key.includes("vimeo")) return LOGOS.livestream;
   if (key.includes("roland")) return LOGOS.roland;
   if (key.includes("ross")) return LOGOS.ross;
   if (key.includes("magewell")) return LOGOS.magewell;
-  if (key.includes("osee")) return LOGOS.osee;
-  if (key.includes("aja")) return LOGOS.aja;
-  if (key.includes("turtle av")) return LOGOS.turtleav;
-  if (key.includes("zen ndi") || key.includes("zen videowall")) return LOGOS.zen;
   if (key.includes("ma lighting") || key.includes("grandma")) return LOGOS.ma;
-  if (key.includes("obsidian") || key.includes("onyx")) return LOGOS.obsidian;
   if (key.includes("avolites")) return LOGOS.avolites;
   if (key.includes("chamsys") || key.includes("magicq")) return LOGOS.chamsys;
-  if (key.includes("showcad")) return LOGOS.showcad;
-  if (key.includes("elation")) return LOGOS.elation;
   if (key.includes("resolume")) return LOGOS.resolume;
   if (key.includes("figure 53") || key.includes("qlab")) return LOGOS.qlab;
-  if (key.includes("millumin")) return LOGOS.millumin;
-  if (key.includes("imimot") || key.includes("mitti")) return LOGOS.mitti;
-  if (key.includes("h2r")) return LOGOS.h2r;
   if (key.includes("ptzoptics")) return LOGOS.ptzoptics;
-  if (key.includes("aida")) return LOGOS.aida;
   if (key.includes("panasonic")) return LOGOS.panasonic;
-  if (key.includes("elgato") || key.includes("stream deck")) return LOGOS.elgato;
-  if (key.includes("x-keys") || key.includes("xkeys") || key.includes("pi engineering")) return LOGOS.xkeys;
-  if (key.includes("akai")) return LOGOS.akai;
   if (key.includes("behringer") || key.includes("midas")) return LOGOS.behringer;
-  if (key.includes("novation")) return LOGOS.novation;
   if (key.includes("soundcraft")) return LOGOS.soundcraft;
   if (key.includes("bitfocus") || key.includes("companion")) return LOGOS.bitfocus;
-  if (key.includes("irisdown")) return LOGOS.irisdown;
-  if (key.includes("tyst")) return LOGOS.tyst;
-  if (key.includes("san-keys") || key.includes("sankeys")) return LOGOS.sankeys;
-  if (key.includes("katovision")) return LOGOS.katovision;
 
   return undefined;
 }
+
+/**
+ * Honest per-item status:
+ *  - "control": WorshipMetrics drives the device directly (Tech Manager and/or cloud).
+ *  - "cue": Present fires outbound cues at it (OSC / RossTalk / MIDI / HTTP presets).
+ *  - "monitored": live status monitoring, no control surface.
+ *  - "documented": lives in the device catalog — Signal Map, factory port maps, health checks.
+ */
+export type IntegrationStatus = "control" | "cue" | "monitored" | "documented";
+
+export const STATUS_META: Record<IntegrationStatus, { label: string; dotClass: string }> = {
+  control: { label: "Direct control", dotClass: "bg-emerald-500" },
+  cue: { label: "Cue target via Present", dotClass: "bg-indigo-500" },
+  monitored: { label: "Status monitoring", dotClass: "bg-sky-500" },
+  documented: { label: "Documented & monitored", dotClass: "bg-slate-400" },
+};
+
+/** The current device-catalog census (shared/device-catalog.ts in the app). */
+export const catalogStats = {
+  entries: 422,
+  manufacturers: 114,
+  portMapped: 348,
+};
 
 export const DATA = {
   switchers: {
     title: "Video Switchers",
     tagline: "The heart of your live production.",
     items: [
-      { brand: "Blackmagic", name: "ATEM" },
-      { brand: "StudioCoast", name: "vMix" },
-      { brand: "Vizrt", name: "TriCaster" },
-      { brand: "Vizrt", name: "Vectar" },
-      { brand: "Vizrt", name: "3Play" },
-      { brand: "OBS Project", name: "OBS Studio" },
-      { brand: "Livestream", name: "Studio" },
-      { brand: "Roland", name: "V-160HD" },
-      { brand: "Magewell", name: "Director Mini" },
-      { brand: "Osee", name: "GoStream Deck" },
-      { brand: "Ross", name: "Carbonite" },
-    ],
-  },
-  lighting: {
-    title: "Lighting Consoles",
-    tagline: "From house lights to stage looks.",
-    items: [
-      { brand: "MA Lighting", name: "grandMA3" },
-      { brand: "MA Lighting", name: "grandMA2" },
-      { brand: "Obsidian", name: "Onyx" },
-      { brand: "Avolites", name: "Titan" },
-      { brand: "Chamsys", name: "MagicQ" },
-      { brand: "ShowCAD", name: "Artist" },
+      { brand: "StudioCoast", name: "vMix", status: "control" },
+      { brand: "OBS Project", name: "OBS Studio", status: "control" },
+      { brand: "Blackmagic", name: "ATEM", status: "control" },
+      { brand: "Roland", name: "V-160HD", status: "documented" },
+      { brand: "Ross", name: "Carbonite", status: "documented" },
     ],
   },
   cameras: {
     title: "PTZ Cameras",
     tagline: "Pan, tilt, zoom — from anywhere.",
     items: [
-      { brand: "PTZOptics", name: "All Models" },
-      { brand: "AIDA Imaging", name: "PTZ Cameras" },
-      { brand: "Blackmagic", name: "HTTP Camera Control" },
-      { brand: "Panasonic", name: "UE Series" },
-      { brand: "NDI", name: "PTZ" },
-      { brand: "VISCA", name: "TCP" },
-      { brand: "VISCA", name: "UDP" },
+      { brand: "PTZOptics", name: "All Models", status: "control" },
+      { brand: "VISCA", name: "VISCA-over-IP (TCP)", status: "control" },
+      { brand: "BirdDog", name: "PTZ Cameras", status: "control" },
+      { brand: "Panasonic", name: "UE Series", status: "documented" },
     ],
   },
   audio: {
-    title: "Audio Mixers",
+    title: "Audio Mixers & DSP",
     tagline: "Dialed in from FOH to livestream.",
     items: [
-      { brand: "Behringer", name: "X32" },
-      { brand: "Behringer", name: "X-Air" },
-      { brand: "Midas", name: "M32" },
-      { brand: "Soundcraft", name: "Ui Series" },
+      { brand: "Behringer", name: "X32", status: "control" },
+      { brand: "Midas", name: "M32", status: "control" },
+      { brand: "QSC", name: "Q-SYS", status: "control" },
+      { brand: "Behringer", name: "X-Air", status: "documented" },
+      { brand: "Soundcraft", name: "Ui Series", status: "documented" },
+    ],
+  },
+  lighting: {
+    title: "Lighting Consoles",
+    tagline: "Your rig, documented and monitored.",
+    items: [
+      { brand: "MA Lighting", name: "grandMA3", status: "documented" },
+      { brand: "MA Lighting", name: "grandMA2", status: "documented" },
+      { brand: "Avolites", name: "Titan", status: "documented" },
+      { brand: "Chamsys", name: "MagicQ", status: "documented" },
     ],
   },
   media: {
-    title: "Media & Graphics",
-    tagline: "Lower thirds, lyrics, and playback.",
+    title: "Playback & Presentation",
+    tagline: "Playback and graphics, cued from Present.",
     items: [
-      { brand: "H2R", name: "Graphics" },
-      { brand: "Resolume", name: "Arena" },
-      { brand: "Figure 53", name: "Q-Lab" },
-      { brand: "Millumin", name: "Millumin" },
-      { brand: "Imimot", name: "Mitti" },
-      { brand: "Blackmagic", name: "HyperDeck" },
-      { brand: "Microsoft", name: "PowerPoint" },
+      { brand: "Renewed Vision", name: "ProPresenter", status: "cue" },
+      { brand: "Figure 53", name: "QLab", status: "cue" },
+      { brand: "Resolume", name: "Arena", status: "cue" },
+      { brand: "disguise", name: "Media Servers", status: "cue" },
+      { brand: "Blackmagic", name: "HyperDeck", status: "monitored" },
     ],
   },
   routing: {
     title: "Video Routing & Conversion",
-    tagline: "Move pixels where they need to go.",
+    tagline: "Documented paths for every pixel.",
     items: [
-      { brand: "Blackmagic", name: "VideoHub" },
-      { brand: "AJA", name: "Kumo Routers" },
-      { brand: "Turtle AV", name: "4x4 / 8x8 Videowall" },
-      { brand: "NDI Stuff", name: "Zen NDI Router" },
-      { brand: "Magewell", name: "ProConvert" },
+      { brand: "Blackmagic", name: "VideoHub", status: "documented" },
+      { brand: "Magewell", name: "ProConvert", status: "documented" },
     ],
   },
-  surfaces: {
-    title: "Control Surfaces",
-    tagline: "Hands-on control for your volunteers.",
+  network: {
+    title: "Network",
+    tagline: "The network under it all, watched.",
     items: [
-      { brand: "Elgato", name: "Stream Deck" },
-      { brand: "Elgato", name: "Stream Deck XL" },
-      { brand: "Elgato", name: "Stream Deck Mini" },
-      { brand: "Elgato", name: "Stream Deck Plus" },
-      { brand: "Elgato", name: "Stream Deck Pedal" },
-      { brand: "X-keys", name: "XK-24 / XK-68 / XK-80 / XK-128" },
-      { brand: "X-keys", name: "XKE-64 Replay" },
-      { brand: "X-keys", name: "XKE-124 T-Bar" },
-      { brand: "Hexler", name: "TouchOSC" },
-      { brand: "NewTek", name: "RS8 / LC-11 / TC Series" },
-    ],
-  },
-  midi: {
-    title: "MIDI Controllers",
-    tagline: "Repurpose that controller in the closet.",
-    items: [
-      { brand: "AKAI", name: "APC40 MK2" },
-      { brand: "AKAI", name: "APC Mini" },
-      { brand: "AKAI", name: "MIDIMIX" },
-      { brand: "AKAI", name: "LPD8" },
-      { brand: "AKAI", name: "Fire" },
-      { brand: "Behringer", name: "X-Touch" },
-      { brand: "Behringer", name: "X-Touch Compact / Mini" },
-      { brand: "Novation", name: "Launchpad X" },
-      { brand: "Novation", name: "Launchkey Mk3" },
-      { brand: "Elation", name: "MIDICon 2" },
-      { brand: "Generic", name: "MIDI" },
+      { brand: "Ubiquiti", name: "UniFi", status: "control" },
     ],
   },
   ecosystem: {
     title: "Ecosystem & Protocols",
     tagline: "The plumbing that connects everything.",
     items: [
-      { brand: "Bitfocus", name: "Companion" },
-      { brand: "IrisDown", name: "Remote Show Control" },
-      { brand: "IrisDown", name: "Countdown Timer" },
-      { brand: "Vicreo", name: "Listener" },
-      { brand: "NDI", name: "Router / Connect" },
-      { brand: "Generic", name: "OSC" },
-      { brand: "Generic", name: "HTTP Listener" },
-      { brand: "Generic", name: "HTTP Requester" },
-      { brand: "Generic", name: "Websocket Client" },
+      { brand: "Bitfocus", name: "Companion", status: "cue" },
+      { brand: "Generic", name: "OSC", status: "cue" },
+      { brand: "Generic", name: "RossTalk", status: "cue" },
+      { brand: "Generic", name: "MIDI", status: "cue" },
+      { brand: "Generic", name: "HTTP", status: "cue" },
     ],
   },
 } as const;
@@ -216,12 +150,11 @@ export const DATA = {
 export const INTEGRATION_CATEGORY_ORDER = [
   "switchers",
   "cameras",
-  "lighting",
   "audio",
+  "lighting",
   "media",
   "routing",
-  "surfaces",
-  "midi",
+  "network",
   "ecosystem",
 ] as const;
 
@@ -245,29 +178,24 @@ export const integrationTotals = {
 export const homepageIntegrationTiles = [
   { brand: "Blackmagic", meta: "ATEM", logoUrl: LOGOS.blackmagic },
   { brand: "vMix", meta: "StudioCoast", logoUrl: LOGOS.vmix },
-  { brand: "TriCaster", meta: "Vizrt", logoUrl: LOGOS.vizrt },
   { brand: "OBS", meta: "Studio", logoUrl: LOGOS.obs },
   { brand: "PTZOptics", meta: "PTZ", logoUrl: LOGOS.ptzoptics },
-  { brand: "AIDA", meta: "Imaging", logoUrl: LOGOS.aida },
-  { brand: "grandMA3", meta: "MA Lighting", logoUrl: LOGOS.ma },
-  { brand: "Onyx", meta: "Obsidian", logoUrl: LOGOS.obsidian },
-  { brand: "Chamsys", meta: "MagicQ", logoUrl: LOGOS.chamsys },
+  { brand: "BirdDog", meta: "PTZ", logoUrl: undefined },
   { brand: "Behringer", meta: "X32", logoUrl: LOGOS.behringer },
-  { brand: "Soundcraft", meta: "Ui Series", logoUrl: LOGOS.soundcraft },
-  { brand: "Stream Deck", meta: "Elgato", logoUrl: LOGOS.elgato },
-  { brand: "H2R", meta: "Graphics", logoUrl: LOGOS.h2r },
-  { brand: "Resolume", meta: "Arena", logoUrl: LOGOS.resolume },
-  { brand: "Q-Lab", meta: "Figure 53", logoUrl: LOGOS.qlab },
+  { brand: "Midas", meta: "M32", logoUrl: LOGOS.behringer },
+  { brand: "Q-SYS", meta: "QSC", logoUrl: undefined },
+  { brand: "UniFi", meta: "Ubiquiti", logoUrl: undefined },
   { brand: "HyperDeck", meta: "Blackmagic", logoUrl: LOGOS.blackmagic },
-  { brand: "Companion", meta: "Bitfocus", logoUrl: LOGOS.bitfocus },
-  { brand: "Ross", meta: "Carbonite", logoUrl: LOGOS.ross },
+  { brand: "ProPresenter", meta: "Cue target", logoUrl: undefined },
+  { brand: "Q-Lab", meta: "Cue target", logoUrl: LOGOS.qlab },
+  { brand: "Resolume", meta: "Cue target", logoUrl: LOGOS.resolume },
+  { brand: "Companion", meta: "Cue target", logoUrl: LOGOS.bitfocus },
+  { brand: "grandMA3", meta: "Documented", logoUrl: LOGOS.ma },
 ];
 
 export const homepageCategoryCounts = [
-  { label: "Switchers", count: "11" },
-  { label: "PTZ Cameras", count: "7" },
-  { label: "Lighting", count: "6" },
-  { label: "Audio Mixers", count: "4" },
-  { label: "Media & Graphics", count: "7" },
-  { label: "Control Surfaces", count: "25+" },
+  { label: "device families under direct control", count: "8" },
+  { label: "devices documented & monitored", count: String(catalogStats.entries) },
+  { label: "manufacturers", count: String(catalogStats.manufacturers) },
+  { label: "factory port maps", count: String(catalogStats.portMapped) },
 ];
