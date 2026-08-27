@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
@@ -12,42 +13,52 @@ const SCHEDULE_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-my-schedule.j
 
 const features = [
   {
+    icon: "identification",
     title: "One directory, your vocabulary",
     body: "Members, guests, and attenders — plus unlimited custom types your church defines. Every profile carries labeled contact methods, photo, birthday with auto-computed age, join date, anniversary, and campus.",
   },
   {
+    icon: "home",
     title: "Households, not just rows",
     body: "People group into households with a designated head, shared address, and family visibility — and removing a household never removes its people. Follow-up reaches the right person, not just an address.",
   },
   {
+    icon: "table-cells",
     title: "CSV in, CSV out — safely",
     body: "A 16-field import wizard auto-maps your old system's headers, previews before writing, and handles duplicates your way: skip, update, or create — deduping on email, phone, or exact name. Full exports carry every field.",
   },
   {
+    icon: "chat-bubble-left-right",
     title: "Team Chat, built in",
     body: "Public channels that auto-join the whole org, invite-only private channels, and one-click DMs — with typing indicators, presence, reactions, pinning, file sharing, and polls. Live over WebSocket, everywhere.",
   },
   {
+    icon: "arrow-path",
     title: "A serving lifecycle, not a signup sheet",
     body: "Assignments move through unfilled, invited, confirmed, declined, no-show, and completed. A decline instantly re-opens the vacancy and tells the team's leaders — not just whoever clicked invite.",
   },
   {
+    icon: "calendar-days",
     title: "My Schedule, self-service",
     body: "Volunteers see their upcoming serves, respond inline or straight from the email — no login required — and manage their own unavailable dates, which leaders see as warnings at assign time, never hard blocks.",
   },
   {
+    icon: "envelope",
     title: "Emails that close the loop",
     body: "Invites with accept/decline buttons, day-before reminders that can't double-send, cancellation notices, and unfilled-position nudges days before Sunday. The no-show loop closes itself.",
   },
   {
+    icon: "qr-code",
     title: "QR check-in that never duplicates",
     body: "A shareable check-in link and printable QR code for the lobby. Returning attenders match their existing record — by email, then phone, then name and birthday — while true first-timers land in the directory automatically.",
   },
   {
+    icon: "face-smile",
     title: "QR check-in that knows returning faces",
     body: "Print an org-wide QR code for the lobby and returning attenders are matched automatically — on email, then phone, then name and birthday — so first-timers land in the directory without a volunteer typing anything.",
   },
   {
+    icon: "bolt",
     title: "Live everywhere, instantly",
     body: "Every edit reaches every open screen in about 50 milliseconds — web and desktop — with bulk archive/restore, filtered exports, and a duplicate detector that flags likely pairs for review.",
   },
@@ -119,10 +130,11 @@ const structuredData = {
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">People management that ministry actually uses.</h2>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2">
-        {features.map(({ title, body }) => (
+        {features.map(({ icon, title, body }) => (
           <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+            <FeatureIcon name={icon} />
+            <p class="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
           </div>
         ))}
       </div>

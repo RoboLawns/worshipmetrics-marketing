@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 
@@ -17,9 +18,9 @@ const RUN_IMAGE = `${R2}/homepage/Church%20Viewer.jpg`;
 const TEAM_IMAGE = "/images/lifestyle/church-video-switcher-operator.jpg";
 
 const views = [
-  { title: "Plan view", body: "Build the service order, duplicate forward from last week, and keep every item in one timeline your team can understand." },
-  { title: "Production view", body: "See every role, every timing cue, and every service item in the same operating picture instead of a stack of disconnected tools." },
-  { title: "Run view", body: "Move through Sunday live with confidence, with volunteers following the same order the team planned earlier in the week." },
+  { icon: "list-bullet", title: "Plan view", body: "Build the service order, duplicate forward from last week, and keep every item in one timeline your team can understand." },
+  { icon: "squares-2x2", title: "Production view", body: "See every role, every timing cue, and every service item in the same operating picture instead of a stack of disconnected tools." },
+  { icon: "play-circle", title: "Run view", body: "Move through Sunday live with confidence, with volunteers following the same order the team planned earlier in the week." },
 ];
 
 const planningBullets = [
@@ -125,10 +126,11 @@ const structuredData = {
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One mental model from planning to production.</h2>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {views.map(({ title, body }) => (
+        {views.map(({ icon, title, body }) => (
           <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+            <FeatureIcon name={icon} />
+            <p class="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
           </div>
         ))}
       </div>
@@ -145,48 +147,59 @@ const structuredData = {
       <div class="mt-10 grid gap-6 md:grid-cols-2">
         {[
           {
+            icon: "queue-list",
             title: "A plan built from real service items",
             body: "Seventeen item types — worship, sermon, offering, communion, baptism, countdowns, transitions, and more — each with its own planned duration, drag-and-drop order, and grouping. Per-team note columns give Audio, Video, and Hospitality their own notes on every item.",
           },
           {
+            icon: "forward",
             title: "Live run mode: the walkthrough and the real thing",
             body: "Every service time gets its own run. Rehearsals and test runs are discardable; the real Sunday's timings lock permanently once the service completes. A 9 AM and 11 AM never overwrite each other, and the runner shows live variance — \"+2:10 over\" — as you go.",
           },
           {
+            icon: "document-duplicate",
             title: "Duplicate forward, templates, and repeats",
             body: "Copy last week with items, slides, cues, and staffing — carried as unfilled or re-invited, your choice. Repeating plans know that 'monthly' means the second Sunday, not the 14th, and any plan becomes a reusable template.",
           },
           {
+            icon: "clock",
             title: "Multiple service times, honestly staffed",
             body: "Each time carries its own item-length overrides and its own volunteer coverage — a 9 AM-only guitarist correctly leaves the 11 AM showing a vacancy instead of 'team full.'",
           },
           {
+            icon: "table-cells",
             title: "The scheduling matrix",
             body: "Positions × dates across months at a glance, with confirmed, invited, draft, and declined states in every cell. Draft quietly, then one Send batch-invites everything outstanding — with blockout, double-booking, and eligibility warnings inline.",
           },
           {
+            icon: "envelope",
             title: "Email loops volunteers actually answer",
             body: "Invites carry accept/decline links that work without signing in. Declines instantly reopen the position and notify team leaders, day-before reminders go out automatically, and unfilled positions nudge the right person.",
           },
           {
+            icon: "flag",
             title: "Production cues, owned by a position",
             body: "Six cue types — camera change, audio change, graphics, lighting scene, clip mark, note — fired on item start, on a timed offset, on item end, or manually, so the moment everyone is waiting for is written down instead of remembered.",
           },
           {
+            icon: "musical-note",
             title: "Songs with arrangements and named keys",
             body: "Arrangements are first-class, and every key has a name — 'Girl Key' in E, 'Guy Key' in G — with capo variants. One stored chart transposes to any key non-destructively, and print-ready PDF chord charts generate themselves for every key.",
           },
           {
+            icon: "link",
             title: "Planning Center, connected",
             body: "Link your PCO account and service types, plans, items, and times import automatically — then stay in sync every five minutes. Bring songs in from ProPresenter 4–7, SongSelect, ChordPro, OpenLyrics, or plain text.",
           },
           {
+            icon: "clipboard-document-check",
             title: "CCLI reporting from what was actually sung",
             body: "Usage merges what was performed, what was scheduled, and what was logged — deduplicated so a 9 and 11 AM count once — and exports the exact CSV a CCLI renewal asks for, over a trailing year.",
           },
-        ].map(({ title, body }) => (
+        ].map(({ icon, title, body }) => (
           <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <FeatureIcon name={icon} />
+            <h3 class="mt-4 text-lg font-bold text-slate-900">{title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
         ))}

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import PatchCableLabel from "../components/diagrams/PatchCableLabel.astro";
 
@@ -13,42 +14,52 @@ const WIRING_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-signal-map.jpg`
 
 const features = [
   {
+    icon: "map",
     title: "A map that draws like a CAD tool",
     body: "A snap-to-grid canvas with drag-from-port wiring and smart orthogonal cable routing — bundles fan symmetrically, lines jump at crossings, and the whole layout stays legible as the system grows.",
   },
   {
+    icon: "tag",
     title: "Every cable gets a permanent ID",
     body: "Draw a connection and it's labeled the moment it exists — SDI-001, DANTE-002, NET-014 — and never renumbered. Delete SDI-001 and SDI-002 keeps its name forever. Those IDs key the patch sheet, the printed diagram, and every support conversation.",
   },
   {
+    icon: "circle-stack",
     title: "348 devices with factory port maps",
     body: "Add a Behringer WING or an ATEM and its real rear panel arrives already documented — nearly 2,000 factory port presets across 114 manufacturers, down to PoE class and wattage budgets.",
   },
   {
+    icon: "sparkles",
     title: "AI research for unknown gear",
     body: "Gear the library doesn't know gets researched on demand: AI confirms the real port complement with live web search, flags its confidence, and is always visually distinct from human-verified entries.",
   },
   {
+    icon: "wifi",
     title: "Verified against the live network",
     body: "Connect your UniFi controller and the map checks itself against reality: port-precise topology, live PoE draw per port, and negotiated versus maximum link speed — so a gigabit port stuck at 100 Mb is visible, not mysterious.",
   },
   {
+    icon: "magnifying-glass",
     title: "Seven automated wiring audits",
     body: "Duplicate cables, self-loops, out-to-out direction conflicts, unmapped signals, connector mismatches, port-less endpoints, and duplicate device names — each finding jumps you straight to the offending cable.",
   },
   {
+    icon: "no-symbol",
     title: "It knows AES50 dies at a switch",
     body: "The compatibility engine separates network signals that can ride a switch — Dante, AES67, NDI, Art-Net — from point-to-point links that can't, like AES50, Ultranet, and HDBaseT. The classic snake-into-the-switch disaster is prevented in the vocabulary itself.",
   },
   {
+    icon: "document-arrow-up",
     title: "Import the integrator's drawing",
     body: "Upload the installer's schematic or proposal as a PDF or photo, and AI vision extracts the devices and wiring into your map — nothing writes until a human reviews and approves it.",
   },
   {
+    icon: "printer",
     title: "Patch sheets & vector PDF diagrams",
     body: "The patch sheet prints portrait or landscape, in color or mono-laser black-and-white, with your church logo and per-room sections. The wiring diagram exports as a true vector PDF in integrator-proposal style.",
   },
   {
+    icon: "book-open",
     title: "Documentation the AI actually reads",
     body: "Every Luminos chat and 910-WORSHIP call loads your live inventory — and can pull the full signal map with cable and port labels on demand. Documenting your system is what makes support this specific.",
   },
@@ -56,14 +67,17 @@ const features = [
 
 const capabilities = [
   {
+    icon: "funnel",
     title: "Organize by device type",
     body: "View just your audio system, just your cameras, or just your lighting rig. Filter by device type so you only see the gear relevant to the question you're answering.",
   },
   {
+    icon: "map-pin",
     title: "Organize by room",
     body: "Group devices into rooms — lobby, front stage, balcony booth, overflow room. Manage each space independently or see the full system map across your entire campus.",
   },
   {
+    icon: "chat-bubble-left-right",
     title: "Syncs with Luminos AI",
     body: "The better you document your system, the smarter Luminos becomes. When something breaks, the AI already knows your signal chain, your device models, and your room layout — so troubleshooting starts in seconds, not hours.",
   },
@@ -139,10 +153,11 @@ const structuredData = {
         </p>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2">
-        {features.map(({ title, body }) => (
+        {features.map(({ icon, title, body }) => (
           <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+            <FeatureIcon name={icon} />
+            <p class="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
           </div>
         ))}
       </div>
@@ -189,9 +204,10 @@ const structuredData = {
           Your audio team doesn&apos;t need to see the lighting rig. Your lighting operator doesn&apos;t need to scroll past the cameras. System Documentation lets you organize devices by type or by room so every person sees exactly what they need.
         </p>
         <div class="mt-8 grid gap-6 sm:grid-cols-3">
-          {capabilities.map(({ title, body }) => (
+          {capabilities.map(({ icon, title, body }) => (
             <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-              <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+              <FeatureIcon name={icon} />
+              <p class="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
               <p class="mt-3 text-sm leading-relaxed text-slate-600">{body}</p>
             </div>
           ))}

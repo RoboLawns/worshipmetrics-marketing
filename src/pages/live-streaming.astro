@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
 import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
@@ -12,11 +13,11 @@ const STREAM_HEALTH_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-live-str
 const STREAM_LIFESTYLE_IMAGE = `${R2}/app-2026/lifestyle/av-stream-connections.jpg`;
 
 const destinations = [
-  { name: "YouTube", desc: "Scheduled broadcasts, go live, end, and history — handled end to end." },
-  { name: "Facebook", desc: "Simulcast to your page without touching a second encoder." },
-  { name: "Your website", desc: "A clean player embed for your church site — no platform branding." },
-  { name: "More destinations", desc: "Twitch, BoxCast, Restream, and Castr — plus additional RTMP endpoints we allowlist for you on request." },
-  { name: "The Stream console", desc: "Encoders, connections, and scheduled events in one console — sync to vMix and go live in two clicks." },
+  { icon: "play-circle", name: "YouTube", desc: "Scheduled broadcasts, go live, end, and history — handled end to end." },
+  { icon: "hand-thumb-up", name: "Facebook", desc: "Simulcast to your page without touching a second encoder." },
+  { icon: "globe", name: "Your website", desc: "A clean player embed for your church site — no platform branding." },
+  { icon: "squares-plus", name: "More destinations", desc: "Twitch, BoxCast, Restream, and Castr — plus additional RTMP endpoints we allowlist for you on request." },
+  { icon: "adjustments-horizontal", name: "The Stream console", desc: "Encoders, connections, and scheduled events in one console — sync to vMix and go live in two clicks." },
 ];
 
 const clipFeatures = [
@@ -135,9 +136,10 @@ const structuredData = [
         </p>
       </div>
       <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {destinations.map(({ name, desc }) => (
+        {destinations.map(({ icon, name, desc }) => (
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-            <h3 class="text-lg font-bold text-slate-900">{name}</h3>
+            <FeatureIcon name={icon} />
+            <h3 class="mt-4 text-lg font-bold text-slate-900">{name}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{desc}</p>
           </div>
         ))}
@@ -155,44 +157,54 @@ const structuredData = [
       <div class="mt-10 grid gap-6 md:grid-cols-2">
         {[
           {
+            icon: "server-stack",
             title: "Built on a global network",
             body: "Your encoder pushes one RTMPS or SRT feed to stream.worshipmetrics.com, and a worldwide delivery network handles the adaptive bitrate ladder, recordings, and playback. Resilient ingest, not a server in a closet.",
           },
           {
+            icon: "arrows-pointing-out",
             title: "One feed, ten destinations",
             body: "The cloud fans your single uplink out to up to ten destinations at once — YouTube, Facebook, Twitch, the major restreamers, and your own embedded player — without asking your encoder to do more work.",
           },
           {
+            icon: "arrow-path",
             title: "YouTube & Facebook, end to end",
             body: "Broadcasts are created, scheduled, started, and ended for you — with reusable stream keys so vMix is configured exactly once, and settings chosen so a network blip can't permanently kill a broadcast. Facebook tokens renew themselves before they expire.",
           },
           {
+            icon: "archive-box",
             title: "Recordings that just happen",
             body: "Every service records automatically and lands in your archive exactly once, ready to watch as soon as the stream ends. Recording is separate from the broadcast, so nothing about the archive can ever interrupt the live stream.",
           },
           {
+            icon: "scissors",
             title: "Clip while it's live",
             body: "Cut 'the last 30 seconds' out of the stream while it's still running, or scrub finished recordings and cut frame-accurate clips without downloading multi-gigabyte files first.",
           },
           {
+            icon: "sparkles",
             title: "Reels that find the moments",
             body: "Transcription tuned for church language — an up-to-80-term vocabulary boost so 'propitiation' and your pastor's name transcribe correctly — then AI scores every candidate moment across ten categories and writes a hook caption for each.",
           },
           {
+            icon: "paint-brush",
             title: "Branded renders, three formats",
             body: "Vertical, square, and widescreen at 30 fps with burned captions in four styles, six lower-third looks, your brand colors and logo, and intro/outro panels — publishable straight to YouTube.",
           },
           {
+            icon: "chart-bar",
             title: "A scored report for every stream",
             body: "Telemetry samples every five seconds build a 0–100 health score per service, with per-issue recommendations. A 45-second grace window means one bad hiccup reads as a reconnect, not a new report.",
           },
           {
+            icon: "users",
             title: "Online attendance fills itself in",
             body: "Concurrent viewers are sampled every minute; when the broadcast ends, peak and average roll into that day's service attendance automatically. Nobody transcribes YouTube numbers into a spreadsheet on Monday.",
           },
-        ].map(({ title, body }) => (
+        ].map(({ icon, title, body }) => (
           <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <FeatureIcon name={icon} />
+            <h3 class="mt-4 text-lg font-bold text-slate-900">{title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
         ))}

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
 import PresentLayerStack from "../components/diagrams/PresentLayerStack.astro";
 import PresentOutputRouting from "../components/diagrams/PresentOutputRouting.astro";
 import PresentStageDisplay from "../components/diagrams/PresentStageDisplay.astro";
@@ -22,38 +23,47 @@ const HOME_IMAGE = "/images/lifestyle/pastor-editing-slides-home.jpg";
 
 const features = [
   {
+    icon: "pencil-square",
     title: "A real slide editor",
     body: "Full 1920×1080 editing with layered items, per-church themes, shrink-to-fit text, and six lyric layouts from Centered Classic to Lower-Third. Section labels carry identity colors — Verse, Chorus, Bridge — so the operator always knows where the song is going.",
   },
   {
+    icon: "video-camera",
     title: "Live video on your slides",
     body: "Capture cards and NDI cameras drop onto slides like any other media — so IMAG, picture-in-picture teaching, and camera-behind-lyrics looks are just another slide, not another system.",
   },
   {
+    icon: "book-open",
     title: "Scripture to slides in seconds",
     body: "Type a reference and the passage becomes clean slides — six translations included (KJV, ASV, WEB, YLT, Darby, BBE), with verses-per-slide and reference display options. Save it, or append it to the live show mid-service.",
   },
   {
+    icon: "photo",
     title: "A media bin that behaves",
     body: "Images and video with fit modes, crop, trim, fades, loop, and per-use audio gain. Up to 250 MB per video upload, organized in folders, with a relink flow when files move.",
   },
   {
+    icon: "square-3-stack-3d",
     title: "Data-driven overlays",
     body: "Lower thirds, messages, logo bugs, and timer overlays — and overlay fields can bind to a CSV, JSON, or XML source, so names and rosters update themselves row by row.",
   },
   {
+    icon: "bolt",
     title: "Macros for big moments",
     body: "One click fires a named sequence: change the background, jump to a playlist, show an overlay, start audio, wait, clear — even fire the booth's control protocols. Complex transitions become a single button.",
   },
   {
+    icon: "queue-list",
     title: "Playlists synced to the plan",
     body: "The service plan projects straight into a Present playlist — songs, announcements, countdowns, and media in order, with presentations auto-built from the plan. Arrangements and keys stay in lockstep with the Songs library.",
   },
   {
+    icon: "clock",
     title: "Timers, clocks & countdowns",
     body: "Countdown, count-up, and countdown-to-time with warning and overrun colors, plus timezone-aware clocks. Pre-service countdowns and sermon timers, built in.",
   },
   {
+    icon: "paint-brush",
     title: "Your brand, everywhere",
     body: "Church brand colors, fonts, and logo flow through templates and themes — and 'Clear to Logo' is always one button away. Every slide looks like your church without a volunteer designing under pressure.",
   },
@@ -232,9 +242,10 @@ const structuredData = {
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A full presentation engine, not a slide viewer.</h2>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {features.map(({ title, body }) => (
+        {features.map(({ icon, title, body }) => (
           <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <FeatureIcon name={icon} />
+            <h3 class="mt-4 text-lg font-bold text-slate-900">{title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
         ))}
@@ -327,13 +338,14 @@ const structuredData = {
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-3">
         {[
-          { title: "Program out", body: "The audience screen: slides, lyrics, media, and overlays, fullscreen on any connected display or projector — each output with its own look and resolution." },
-          { title: "Stage out", body: "The confidence monitor: current and next lyrics, notes, live timers, song key — even the chord chart, transposed to the key you're playing in. Its own editable layout, never a mirror." },
-          { title: "Browser, booth, or network", body: "Web output needs no install — pick the screen and go. Tech Manager adds NDI output in the booth, and Network Display sends video to remote screens over WebRTC." },
-        ].map(({ title, body }) => (
+          { icon: "tv", title: "Program out", body: "The audience screen: slides, lyrics, media, and overlays, fullscreen on any connected display or projector — each output with its own look and resolution." },
+          { icon: "computer-desktop", title: "Stage out", body: "The confidence monitor: current and next lyrics, notes, live timers, song key — even the chord chart, transposed to the key you're playing in. Its own editable layout, never a mirror." },
+          { icon: "globe", title: "Browser, booth, or network", body: "Web output needs no install — pick the screen and go. Tech Manager adds NDI output in the booth, and Network Display sends video to remote screens over WebRTC." },
+        ].map(({ icon, title, body }) => (
           <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+            <FeatureIcon name={icon} />
+            <p class="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">{title}</p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
           </div>
         ))}
       </div>

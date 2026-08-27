@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ResearchCallout from "../components/ResearchCallout.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
 import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 import { complexityStats } from "../data/churchProductionResearch";
 
@@ -357,44 +358,54 @@ const structuredData = [
       <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {[
           {
+            icon: "squares-2x2",
             title: "The production dashboard",
             body: "Live scene thumbnails you can cut to Program with a click, per-input play/pause, overlay toggles, an enlargeable program view, and audio meters for every bus — beside stream health sparklines for bitrate, dropped frames, and CPU.",
           },
           {
+            icon: "arrows-right-left",
             title: "Real switcher control",
             body: "Transitions with adjustable duration — cuts, fades, wipes, zooms, even stingers — a hands-on T-bar, overlay 1–4 control, and bus audio mute and volume. Deep vMix integration, OBS scene control, and Blackmagic ATEM status at a glance.",
           },
           {
+            icon: "video-camera",
             title: "PTZ camera control",
             body: "Drive cameras with a virtual joystick, a physical gamepad, or the pointer: drag a box to frame a shot, click to center a subject. Nine thumbnail presets per camera, autofocus zones, and cross-brand image adjustment — exposure, white balance, color — under one UI.",
           },
           {
+            icon: "wrench-screwdriver",
             title: "Self-healing, logged",
             body: "A dropped stream restarts itself after 30 seconds; a starving bitrate steps down resolution; a stopped recording restarts; a filling disk cleans itself up. Every action is logged to your support history — nothing happens silently.",
           },
           {
+            icon: "cpu-chip",
             title: "The booth's black box",
             body: "Full hardware telemetry — CPU, GPU, temperatures, RAM, disks, displays, audio devices — plus event-driven USB tracking and a software-and-driver inventory. When something changes in the booth, the record shows exactly what and when.",
           },
           {
+            icon: "qr-code",
             title: "Volunteer remote & Live Run",
             body: "A QR code opens a volunteer console on any phone on the booth's network — secured with rotating session tokens. The Live Run rundown advances the service from any device on that network.",
           },
           {
+            icon: "users",
             title: "Attendance, two ways",
             body: "A manual seat counter volunteers actually use, and camera Auto-Count that tallies the room from an RTSP camera or webcam — on a schedule or on demand.",
           },
           {
+            icon: "film",
             title: "Reels, rendered locally",
             body: "Whisper transcription runs on the booth PC, AI analysis finds the moments, and bundled FFmpeg renders vertical, square, and widescreen clips with burned-in captions and your branded intro — no upload required.",
           },
           {
+            icon: "signal",
             title: "NDI, three ways",
             body: "Send slides as an NDI source, receive NDI cameras as live media, and publish Present output with a true alpha channel — a clean key for your switcher, no chroma keying.",
           },
-        ].map(({ title, body }) => (
+        ].map(({ icon, title, body }) => (
           <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <FeatureIcon name={icon} />
+            <h3 class="mt-4 text-lg font-bold text-slate-900">{title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
           </div>
         ))}
