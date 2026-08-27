@@ -277,12 +277,15 @@ const structuredData = {
           <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">What changes when you automate</p>
           <div class="mt-6 space-y-4">
             {[
-              "The service plan becomes an execution-ready rundown instead of a reference document.",
-              "Show cues fire on time so graphics, switcher moves, and playback stay aligned with the plan.",
-              "Every volunteer gets one clear seat, with the plan and team chat on any tablet they already own.",
-              "The booth spends less energy translating the plan and more energy serving the room well.",
-            ].map((item) => (
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-slate-200">{item}</div>
+              { icon: "queue-list", text: "The service plan becomes an execution-ready rundown instead of a reference document." },
+              { icon: "flag", text: "Show cues fire on time so graphics, switcher moves, and playback stay aligned with the plan." },
+              { icon: "users", text: "Every volunteer gets one clear seat, with the plan and team chat on any tablet they already own." },
+              { icon: "face-smile", text: "The booth spends less energy translating the plan and more energy serving the room well." },
+            ].map(({ icon, text }) => (
+              <div class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-slate-200">
+                <span class="flex-shrink-0"><FeatureIcon name={icon} dark /></span>
+                <span>{text}</span>
+              </div>
             ))}
           </div>
           <div class="mt-6 flex flex-wrap gap-3">

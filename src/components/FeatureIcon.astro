@@ -8,6 +8,8 @@
  */
 interface Props {
   name: string;
+  /** Chip colors for dark sections (slate-950 backgrounds). */
+  dark?: boolean;
 }
 
 const ICONS: Record<string, string[]> = {
@@ -197,12 +199,17 @@ const ICONS: Record<string, string[]> = {
   ],
 };
 
-const { name } = Astro.props;
+const { name, dark = false } = Astro.props;
 const paths = ICONS[name];
 if (!paths) throw new Error(`FeatureIcon: unknown icon "${name}"`);
 ---
 
-<span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
+<span
+  class:list={[
+    "mx-auto flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl",
+    dark ? "bg-indigo-500/20 text-indigo-300" : "bg-indigo-100 text-indigo-600",
+  ]}
+>
   <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
     {paths.map((d) => <path stroke-linecap="round" stroke-linejoin="round" d={d} />)}
   </svg>

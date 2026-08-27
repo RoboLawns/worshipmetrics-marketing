@@ -689,12 +689,13 @@ const structuredData = [
       <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Related pages</h2>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
           {[
-            { href: "/services", title: "Services", body: "See how the service plan and live Sunday workflow sit upstream of the booth layer Tech Manager powers." },
-            { href: "/volunteers", title: "Volunteers", body: "See how stronger volunteer coordination reduces the pressure that usually lands on one booth expert." },
-            { href: "/luminos-ai-assistant", title: "Luminos AI", body: "See how Luminos uses Tech Manager context for hardware-specific diagnostics and support." },
-          ].map(({ href, title, body }) => (
+            { icon: "queue-list", href: "/services", title: "Services", body: "See how the service plan and live Sunday workflow sit upstream of the booth layer Tech Manager powers." },
+            { icon: "users", href: "/volunteers", title: "Volunteers", body: "See how stronger volunteer coordination reduces the pressure that usually lands on one booth expert." },
+            { icon: "sparkles", href: "/luminos-ai-assistant", title: "Luminos AI", body: "See how Luminos uses Tech Manager context for hardware-specific diagnostics and support." },
+          ].map(({ icon, href, title, body }) => (
           <a href={href} class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-300 hover:bg-white">
-            <h3 class="text-lg font-semibold text-slate-900">{title}</h3>
+            <FeatureIcon name={icon} />
+            <h3 class="mt-4 text-lg font-semibold text-slate-900">{title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
             <span class="mt-4 inline-block text-sm font-semibold text-indigo-600">Explore →</span>
           </a>
