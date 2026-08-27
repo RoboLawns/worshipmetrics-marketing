@@ -4,13 +4,17 @@ import ImageCarousel from "../components/ImageCarousel.astro";
 import FeatureIcon from "../components/FeatureIcon.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import PatchCableLabel from "../components/diagrams/PatchCableLabel.astro";
+import AppScreenshot from "../components/AppScreenshot.astro";
+import { patchDevicesList, patchSignalMap, printableWiringDiagram, printablePatchSheet } from "../data/appScreenshots";
 
 const APP_URL = "https://app.worshipmetrics.com";
 const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const HERO_IMAGE = `${R2}/app-2026/lifestyle/av-device-system-layout.jpg`;
-const DEVICE_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-devices-inventory.jpg`;
-const WIRING_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-signal-map.jpg`;
+const DEVICE_IMAGE = "/images/app/worship-metrics-patch-devices-grid.jpg";
+const WIRING_IMAGE = "/images/app/worship-metrics-patch-signal-map.jpg";
+const PATCH_SHEET_LIFESTYLE = "/images/lifestyle/church-patch-sheet-clipboard.jpg";
+const DIAGRAM_LIFESTYLE = "/images/lifestyle/church-wiring-diagram-clipboard.jpg";
 
 const features = [
   {
@@ -136,8 +140,10 @@ const structuredData = {
         eager
         slides={[
           { src: HERO_IMAGE, alt: "Church AV system laid out and documented", kind: "lifestyle" },
-          { src: DEVICE_IMAGE, alt: "Device inventory with every piece of AV gear in WorshipMetrics", label: "Device inventory" },
-          { src: WIRING_IMAGE, alt: "Signal Map with labeled cable runs in WorshipMetrics", label: "Signal Map" },
+          { src: DEVICE_IMAGE, alt: "Device inventory with every piece of AV gear as cards with brand, model, and IP address in WorshipMetrics", label: "Devices" },
+          { src: WIRING_IMAGE, alt: "Signal Map with labeled cable runs, port detail, and category filters in WorshipMetrics", label: "Signal Map" },
+          { src: printableWiringDiagram.src, alt: printableWiringDiagram.alt, label: "Printed diagram" },
+          { src: PATCH_SHEET_LIFESTYLE, alt: "A volunteer holding a freshly printed WorshipMetrics patch sheet beside the consoles in a church production booth", kind: "lifestyle", label: "On paper" },
         ]}
       />
     </div>
@@ -187,7 +193,7 @@ const structuredData = {
         </div>
       </div>
       <div class="self-center overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={DEVICE_IMAGE} alt="Church AV device management in WorshipMetrics" loading="lazy" decoding="async" class="w-full" />
+        <img src={DEVICE_IMAGE} alt="The Devices inventory in WorshipMetrics: cards for every piece of AV gear with brand, model, and IP address, grouped by category" loading="lazy" decoding="async" class="w-full" />
       </div>
     </div>
   </section>
@@ -195,7 +201,7 @@ const structuredData = {
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
       <div class="self-center overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={WIRING_IMAGE} alt="Device management and room organization in WorshipMetrics" loading="lazy" decoding="async" class="w-full" />
+        <img src={patchDevicesList.src} alt={patchDevicesList.alt} loading="lazy" decoding="async" class="w-full" />
       </div>
       <div>
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Organize by type & room</p>
@@ -231,34 +237,74 @@ const structuredData = {
           <PatchCableLabel />
         </div>
       </div>
+      <div class="mt-14">
+        <AppScreenshot shot={patchSignalMap} label="The map those IDs live on" />
+      </div>
     </div>
   </section>
 
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Professional printouts</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Cable labels. Wiring diagrams. Ready to print.</h2>
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">Printable documentation</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">A source of truth you can hand to a volunteer.</h2>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          Generate clean, professional wiring diagrams suitable for framing in the booth or handing to an installer. Label every cable and port so that when something fails mid-service, anyone on the team can find the problem without tracing cables through a dark rack.
+          The wiring diagrams inside WorshipMetrics do quiet, important work — they&apos;re what Luminos and our remote support read when they help you. But documentation only changes Sunday when it reaches the real world. So the same live map prints: a clean System Wiring Diagram and a cable-by-cable Patch Sheet, generated on demand and stamped with the moment they were made.
         </p>
-        <ul class="mt-8 space-y-3">
-          {[
-            "Full system wiring diagrams with port-level detail",
-            "Cable labeling exports so every connection is identified",
-            "Room-by-room views for targeted troubleshooting",
-            "Shareable documentation that stays current as your system evolves",
-          ].map((item) => (
-            <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
-          ))}
-        </ul>
-        <div class="mt-8">
-          <a href="/tech-manager" class="btn-primary">Download Tech Manager</a>
+      </div>
+
+      <div class="mt-12 grid gap-12 lg:grid-cols-2">
+        <div>
+          <h3 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Print today&apos;s system, not the one from the install.</h3>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            The binder the integrator left behind was accurate the day it was printed &mdash; and systems drift. A camera gets added, a switch gets swapped, and the paper quietly stops matching the rack. When the map lives in WorshipMetrics, the drawings stay current instead: change the system, print a fresh copy, and hand your team the truth.
+          </p>
+          <ul class="mt-8 space-y-3">
+            {[
+              "System Wiring Diagram as a single-page vector PDF, in integrator-proposal style",
+              "Patch sheet in portrait or landscape, color or mono-laser black-and-white",
+              "Your church logo and per-room sections on every sheet",
+              "Cable IDs match the map, the physical labels, and every support call",
+            ].map((item) => (
+              <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-500"></span><span>{item}</span></li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <a href="/tech-manager" class="btn-primary">Download Tech Manager</a>
+          </div>
+        </div>
+        <div class="self-center overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src={DIAGRAM_LIFESTYLE} alt="Hands holding a clipboard with a freshly printed WorshipMetrics System Wiring Diagram in front of the equipment rack" loading="lazy" decoding="async" class="w-full" />
         </div>
       </div>
-      <div class="self-center overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={`${R2}/app-2026/lifestyle/device-map.jpg`} alt="Church tech director reviewing the AV signal map" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+
+      <div class="mt-14">
+        <AppScreenshot shot={printableWiringDiagram} label="One click from the Signal Map" />
       </div>
+      <div class="mt-14">
+        <AppScreenshot shot={printablePatchSheet} label="The patch sheet, cable by cable" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Printed documentation in the real world -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Into the booth</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Paper your volunteers can trust.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          New team members learn a booth fastest with the system in their hands. Flip through the wiring diagrams by room or by system, print the patch sheet on the way in, and everyone works from the same up-to-date picture &mdash; the sheet in the booth, the map in the app, and the copy support sees on a call, all agreeing with each other.
+        </p>
+      </div>
+      <figure class="mx-auto mt-10 max-w-6xl">
+        <div class="overflow-hidden rounded-[2rem] border border-slate-200 shadow-lg">
+          <img src={PATCH_SHEET_LIFESTYLE} alt="A volunteer holding a freshly printed WorshipMetrics patch sheet at the production desk, with the multiview, consoles, and patched rack behind it" loading="lazy" decoding="async" class="w-full" />
+        </div>
+        <figcaption class="mt-4 text-center text-sm leading-relaxed text-slate-500">
+          Training night at the desk: the patch sheet on the clipboard was generated that morning, so what the paper says is what the rack does.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -270,8 +316,12 @@ const structuredData = {
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
           System Documentation isn&apos;t just a pretty diagram — it&apos;s the knowledge base that powers Luminos AI. When something breaks on Sunday, Luminos already knows your signal chain, your device models, your room layout, and your connection paths. Troubleshooting starts in seconds instead of hours, and every system upgrade recommendation is based on your actual gear, not a generic checklist.
         </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Sort through the wiring diagrams by room or by system, ask Luminos the best way to set up whatever&apos;s next &mdash; and when you&apos;d rather talk it through, 910-WORSHIP answers any time with the same map in view.
+        </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
           <a href="/luminos-ai-assistant" class="btn-primary">See Luminos AI</a>
+          <a href="tel:+19109677447" class="btn-outline">Call 910-WORSHIP</a>
           <a href={`${APP_URL}/sign-up`} class="btn-outline" data-wm-track="cta_click" data-wm-track-label="system_docs_luminos_sign_up_free" data-wm-track-location="system_docs_luminos">Sign up free</a>
         </div>
       </div>
