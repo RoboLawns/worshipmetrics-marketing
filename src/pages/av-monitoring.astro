@@ -11,6 +11,10 @@ const SITE_URL = "https://worshipmetrics.com";
 const R2 = "https://pub-a4845709a76642e7943bcb8b80677531.r2.dev/main";
 const HERO_IMAGE = `${R2}/app-2026/screenshots/worship-metrics-pulse-system-health.jpg`;
 const MONITOR_IMAGE = `${R2}/app-2026/lifestyle/system-health-monitoring.jpg`;
+const MACHINE_PERF_IMAGE = "/images/app/worship-metrics-pulse-machine-performance.jpg";
+const MACHINE_GPU_IMAGE = "/images/app/worship-metrics-pulse-gpu-display-audio.jpg";
+const MACHINE_USB_IMAGE = "/images/app/worship-metrics-pulse-usb-peripherals.jpg";
+const BOOTH_CHECK_IMAGE = "/images/lifestyle/church-booth-sunday-morning-check.jpg";
 
 const features = [
   {
@@ -162,7 +166,59 @@ const structuredData = {
         </div>
       </div>
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <img src={MONITOR_IMAGE} alt="System monitoring and control panels in WorshipMetrics" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        <img src={BOOTH_CHECK_IMAGE} alt="A church tech volunteer at the booth on a Sunday morning, checking a machine's Pulse page on one laptop beside the audio console" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Machine detail drill-down -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Inside every machine</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Open any machine. See everything.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Every PC running Tech Manager gets its own live page in Pulse &mdash; seconds-fresh, readable from anywhere, and deep enough to answer the question that matters most on a Sunday: is it the computer, or isn&apos;t it?
+        </p>
+      </div>
+
+      <div class="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Processor &amp; memory</p>
+          <h3 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Is the machine struggling? Answer from anywhere.</h3>
+          <p class="mt-4 text-base leading-relaxed text-slate-600">
+            CPU load with a bar for every core, base and current clocks, temperature, and RAM used against installed &mdash; with live graphs, the machine&apos;s uptime, and how many seconds ago it last reported. When Present stutters or the stream drops frames, this page says whether the computer is the problem before anyone walks to the booth.
+          </p>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-slate-950 shadow-sm">
+          <img src={MACHINE_PERF_IMAGE} alt="A machine's page in Pulse showing CPU load, clock speeds, per-core usage bars for 32 threads, RAM used of total, and live usage graphs, with the machine online at 9 days uptime" loading="lazy" decoding="async" class="w-full object-contain" />
+        </div>
+      </div>
+
+      <div class="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div class="lg:order-2">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Displays, GPU &amp; audio</p>
+          <h3 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">See the graphics card. Set the resolution. Pick the sound card.</h3>
+          <p class="mt-4 text-base leading-relaxed text-slate-600">
+            The GPU with its VRAM and driver version &mdash; checked daily, with an update chip the moment a newer driver ships. Every display with its resolution, refresh rate, and connection &mdash; and the resolution dropdown actually changes it, remotely. Default audio output and input are pickable from the same page, storage shows the actual drive model and free space, and every remote change lands in the machine&apos;s history.
+          </p>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-slate-950 shadow-sm lg:order-1">
+          <img src={MACHINE_GPU_IMAGE} alt="The displays and GPU section of a machine's page in Pulse: an NVIDIA GeForce RTX 4060 Ti with a driver update available chip, a 3440 by 1440 display with resolution and refresh rate dropdowns, an NVMe drive with free space, and default audio device pickers" loading="lazy" decoding="async" class="w-full object-contain" />
+        </div>
+      </div>
+
+      <div class="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">USB peripherals &amp; network</p>
+          <h3 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">The unplugged-mouse problem, caught before Sunday finds it.</h3>
+          <p class="mt-4 text-base leading-relaxed text-slate-600">
+            Every USB device, named for what it is &mdash; the keyboard, the mouse, the control surface, even the printer &mdash; beside every audio device with volume, mute state, and sample rate, and every network connection with its IP and link speed. When a mouse wanders off to another ministry or a keyboard cable gets knocked loose, Tech Manager logs the disconnect the moment it happens, by name, into the machine&apos;s event feed and your org-wide incident history. A thirty-second fix stops hiding until fifteen minutes before the service.
+          </p>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-slate-950 shadow-sm">
+          <img src={MACHINE_USB_IMAGE} alt="The peripherals section of a machine's page in Pulse: audio output and input devices with volume and default badges, an installed ASIO driver, five connected USB peripherals including a keyboard, mouse, and control surface, and wired and wireless network connections with IP addresses" loading="lazy" decoding="async" class="w-full object-contain" />
+        </div>
       </div>
     </div>
   </section>
@@ -193,7 +249,7 @@ const structuredData = {
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">When Pulse sees it, support already knows</p>
           <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Monitoring and tech support are one system.</h2>
           <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-            Everything Pulse watches flows straight into support. Call 910-WORSHIP or open a chat, and the AI is already looking at the same live telemetry your dashboard shows &mdash; every device, every alert, and the health history leading up to the problem. No re-explaining, no starting from scratch.
+            Everything Pulse watches flows straight into support. Call 910-WORSHIP or open a chat, and the AI is already looking at the same live telemetry your dashboard shows &mdash; every device, every alert, the health history leading up to the problem, and the last week of hardware changes, that unplugged USB cable included. No re-explaining, no starting from scratch.
           </p>
         </div>
         <div class="flex flex-col items-start gap-4 lg:items-end">
