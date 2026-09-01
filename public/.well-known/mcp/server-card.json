@@ -1,0 +1,12 @@
+{
+  "name": "com.worshipmetrics/app",
+  "title": "WorshipMetrics",
+  "description": "WorshipMetrics is an all-in-one platform for church worship and production teams: service planning, presentation, volunteer scheduling, attendance, live streaming, digital signage, and A/V monitoring. This MCP server exposes public product-information tools; church data lives behind sign-in in the web app.",
+  "version": "1.0.0",
+  "websiteUrl": "https://worshipmetrics.com",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": { "name": "worshipmetrics", "title": "WorshipMetrics", "version": "1.0.0" },
+  "capabilities": { "tools": { "listChanged": false } },
+  "transport": { "type": "streamable-http", "endpoint": "https://app.worshipmetrics.com/mcp" },
+  "remotes": [{ "type": "streamable-http", "url": "https://app.worshipmetrics.com/mcp" }]
+}
