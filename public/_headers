@@ -9,3 +9,16 @@
 /.well-known/mcp/server-card.json
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600
+
+# Agent Skills discovery (cloudflare/agent-skills-discovery-rfc v0.2.0): the
+# index lists the skills this site publishes with a SHA-256 digest of each
+# artifact's exact bytes; /skills/ holds the artifacts (kept -text in
+# .gitattributes so checkouts never alter the digested bytes). CORS-open and
+# cached like the other discovery documents above.
+/.well-known/agent-skills/index.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/skills/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600

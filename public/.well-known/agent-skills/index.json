@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "worshipmetrics",
+      "type": "skill-md",
+      "description": "Answer questions about WorshipMetrics — the all-in-one platform for church worship and production teams — using its public knowledge base, MCP server, and discovery documents, and route churches to the right next step for access.",
+      "url": "https://worshipmetrics.com/skills/worshipmetrics/SKILL.md",
+      "digest": "sha256:933c657afee5c245d9aaaf748e1b52514223b37bd929a9439467873e773bfb57"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Skill artifacts are content-addressed: /.well-known/agent-skills/index.json
+# publishes a SHA-256 digest of each file's exact bytes, so line-ending
+# conversion on checkout would silently break every digest. Never convert.
+public/skills/** -text
