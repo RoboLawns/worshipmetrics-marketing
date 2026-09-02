@@ -21,9 +21,9 @@ interface Props {
 const { article, headings, prevArticle, nextArticle, relatedArticles, readingTime } = Astro.props;
 const categoryLabel = categoryMap[article.data.category].label;
 const breadcrumbItems = [
-  { name: 'Home', item: 'https://worshipmetrics.com/kb' },
-  { name: categoryLabel, item: `https://worshipmetrics.com/kb/category/${article.data.category}` },
-  { name: article.data.title, item: `https://worshipmetrics.com/kb/articles/${article.id}` },
+  { name: 'Home', item: 'https://worshipmetrics.com/kb/' },
+  { name: categoryLabel, item: `https://worshipmetrics.com/kb/category/${article.data.category}/` },
+  { name: article.data.title, item: `https://worshipmetrics.com/kb/articles/${article.id}/` },
 ];
 ---
 
@@ -41,8 +41,8 @@ const breadcrumbItems = [
   <section class="border-b border-border bg-bg">
     <div class="mx-auto max-w-7xl px-6 py-16">
       <BreadcrumbNav items={[
-        { label: 'Knowledge Base', href: '/kb' },
-        { label: categoryLabel, href: `/kb/category/${article.data.category}` },
+        { label: 'Knowledge Base', href: '/kb/' },
+        { label: categoryLabel, href: `/kb/category/${article.data.category}/` },
         { label: article.data.title },
       ]} />
       <div class="mt-8 flex flex-wrap items-center gap-3">
@@ -92,13 +92,13 @@ const breadcrumbItems = [
         <ProductCTA variant="banner" />
         <div class="mt-12 grid gap-4 sm:grid-cols-2" data-pagefind-ignore>
           {prevArticle && (
-            <a href={`/kb/articles/${prevArticle.id}`} class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 shadow-sm transition hover:border-blue-300 hover:bg-white">
+            <a href={`/kb/articles/${prevArticle.id}/`} class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 shadow-sm transition hover:border-blue-300 hover:bg-white">
               <span class="text-xs uppercase tracking-[0.16em] text-slate-500">Previous</span>
               <p class="mt-2 font-semibold text-slate-900">{prevArticle.data.title}</p>
             </a>
           )}
           {nextArticle && (
-            <a href={`/kb/articles/${nextArticle.id}`} class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 shadow-sm transition hover:border-blue-300 hover:bg-white">
+            <a href={`/kb/articles/${nextArticle.id}/`} class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 shadow-sm transition hover:border-blue-300 hover:bg-white">
               <span class="text-xs uppercase tracking-[0.16em] text-slate-500">Next</span>
               <p class="mt-2 font-semibold text-slate-900">{nextArticle.data.title}</p>
             </a>

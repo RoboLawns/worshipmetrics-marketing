@@ -18,7 +18,7 @@ const { Content, headings } = await render(entry);
 <BaseLayout title={`${entry.data.title} | Church AV Knowledge Base`} description={entry.data.description} canonical={`/kb/compare/${entry.id}`} type="article" publishedAt={entry.data.publishedAt}>
   <section class="border-b border-border bg-bg px-6 py-16">
     <div class="mx-auto max-w-7xl">
-      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'Comparisons', href: '/kb/compare' }, { label: entry.data.title }]} />
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb/' }, { label: 'Comparisons', href: '/kb/compare/' }, { label: entry.data.title }]} />
       <div class="mt-8">
         <p class="text-sm text-slate-400">{entry.data.competitorA} vs {entry.data.competitorB}{entry.data.competitorC ? ` vs ${entry.data.competitorC}` : ''}</p>
       </div>

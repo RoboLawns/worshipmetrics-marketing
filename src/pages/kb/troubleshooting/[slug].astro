@@ -18,7 +18,7 @@ const { Content, headings } = await render(entry);
 <BaseLayout title={`${entry.data.title} | Church AV Knowledge Base`} description={entry.data.description} canonical={`/kb/troubleshooting/${entry.id}`} type="article" publishedAt={entry.data.publishedAt}>
   <section class="border-b border-border bg-bg px-6 py-16">
     <div class="mx-auto max-w-7xl">
-      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'Troubleshooting', href: '/kb/troubleshooting' }, { label: entry.data.title }]} />
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb/' }, { label: 'Troubleshooting', href: '/kb/troubleshooting/' }, { label: entry.data.title }]} />
       <div class="mt-8">
         <span class="rounded-full bg-red-900/50 px-3 py-1 text-sm text-red-200">Symptom: {entry.data.symptom}</span>
       </div>

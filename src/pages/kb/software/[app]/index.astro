@@ -29,7 +29,7 @@ const label = appLabels[app] ?? app;
 <BaseLayout title={`${label} Guides for Church Production`} description={`Church-specific ${label} guides — setup, integration, troubleshooting, and best practices for worship production teams.`} canonical={`/kb/software/${app}`}>
   <section class="border-b border-border bg-bg px-6 py-16">
     <div class="mx-auto max-w-7xl">
-      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'Streaming Software', href: '/kb/software' }, { label }]} />
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb/' }, { label: 'Streaming Software', href: '/kb/software/' }, { label }]} />
       <h1 class="mt-8 font-display text-5xl text-white">{label} Guides</h1>
       <p class="mt-4 text-lg text-slate-300">{articles.length} church-specific guides for {label}.</p>
     </div>
@@ -37,7 +37,7 @@ const label = appLabels[app] ?? app;
   <section class="bg-[#10151d] px-6 py-16">
       <div class="mx-auto max-w-7xl grid gap-6 lg:grid-cols-3">
         {articles.map(article => (
-          <a href={`/kb/software/${app}/${article.id}`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
+          <a href={`/kb/software/${app}/${article.id}/`} class="group rounded-2xl border border-border bg-surface/80 p-6 shadow transition hover:-translate-y-0.5 hover:border-accent/40">
             <img src={getKbCoverImage(article.data.coverImage, 'software')} alt={article.data.title} class="mb-4 aspect-[16/9] w-full rounded-xl border border-border object-cover" loading="lazy" />
             <DifficultyBadge difficulty={article.data.difficulty} />
             <h3 class="mt-4 font-display text-xl text-white group-hover:text-blue-200">{article.data.title}</h3>

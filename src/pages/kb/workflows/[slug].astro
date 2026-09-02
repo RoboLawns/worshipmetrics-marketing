@@ -20,7 +20,7 @@ const budgetLabels: Record<string, string> = { 'under-1k': 'Under $1k', '1k-5k':
 <BaseLayout title={`${entry.data.title} | Church AV Knowledge Base`} description={entry.data.description} canonical={`/kb/workflows/${entry.id}`} type="article" publishedAt={entry.data.publishedAt}>
   <section class="border-b border-border bg-bg px-6 py-16">
     <div class="mx-auto max-w-7xl">
-      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb' }, { label: 'Workflow Guides', href: '/kb/workflows' }, { label: entry.data.title }]} />
+      <BreadcrumbNav items={[{ label: 'Knowledge Base', href: '/kb/' }, { label: 'Workflow Guides', href: '/kb/workflows/' }, { label: entry.data.title }]} />
       <div class="mt-8 flex flex-wrap gap-2">
         <span class="rounded-full bg-blue-900/50 px-3 py-1 text-sm text-blue-200">{sizeLabels[entry.data.churchSize]}</span>
         <span class="rounded-full bg-slate-700/50 px-3 py-1 text-sm text-slate-300">{budgetLabels[entry.data.budget]}</span>
