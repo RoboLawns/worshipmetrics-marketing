@@ -10,6 +10,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://worshipmetrics.com',
+  server: { port: Number(process.env.PORT) || 4399 },
   trailingSlash: 'always',
   redirects: {
     '/lossless-audio-streaming': '/live-streaming',
