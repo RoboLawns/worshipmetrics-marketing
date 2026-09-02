@@ -1,6 +1,7 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import WebMcp from "../components/WebMcp.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -174,6 +175,7 @@ const structuredData = [
          }
        }, true);
      </script>
+    <WebMcp />
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col antialiased">

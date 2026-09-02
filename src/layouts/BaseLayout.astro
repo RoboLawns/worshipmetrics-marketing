@@ -2,6 +2,7 @@
 import SEO from '../components/kb/SEO.astro';
 import Header from '../components/kb/Header.astro';
 import Footer from '../components/kb/Footer.astro';
+import WebMcp from '../components/WebMcp.astro';
 import '../styles/kb.css';
 
 interface BreadcrumbItem {
@@ -32,6 +33,7 @@ const props = Astro.props;
     <SEO {...props} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/logo.png" sizes="any" />
+    <WebMcp />
   </head>
   <body class="kb-body min-h-screen">
     <Header />

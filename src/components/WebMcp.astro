@@ -1,0 +1,180 @@
+{/*
+  WebMCP tool registration (https://webmachinelearning.github.io/webmcp/).
+  Browser-hosted agents that implement navigator.modelContext get four tools:
+  Pagefind search over the built site, a compact sitemap, same-origin
+  navigation, and read-out of the current page. is:inline like the KB
+  SearchBar's script so Vite leaves the runtime import of
+  /pagefind/pagefind.js alone (the index only exists in the built site).
+*/}
+<script type="module" is:inline>
+  const modelContext = navigator.modelContext ?? document.modelContext;
+
+  if (modelContext && typeof modelContext.registerTool === 'function') {
+    const controller = new AbortController();
+    addEventListener('pagehide', () => controller.abort(), { once: true });
+
+    const asText = (value) => ({
+      content: [
+        {
+          type: 'text',
+          text: typeof value === 'string' ? value : JSON.stringify(value, null, 2),
+        },
+      ],
+    });
+
+    const registerTool = (tool) => {
+      try {
+        const registration = modelContext.registerTool(tool, { signal: controller.signal });
+        if (registration && typeof registration.catch === 'function') {
+          registration.catch(() => {});
+        }
+      } catch {
+        // Older shims only take the tool dictionary.
+        try {
+          modelContext.registerTool(tool);
+        } catch {}
+      }
+    };
+
+    const KEY_PAGES = [
+      { path: '/', label: 'Home' },
+      { path: '/pricing/', label: 'Pricing and plans' },
+      { path: '/live-streaming/', label: 'Live streaming' },
+      { path: '/free-church-presentation-software/', label: 'Free presentation software (Present)' },
+      { path: '/solutions/worship-clips/', label: 'Worship clips and reels' },
+      { path: '/signage-display/', label: 'Slides and digital signage' },
+      { path: '/replace-your-stack/', label: 'Replace your stack' },
+      { path: '/services/', label: 'Service planning' },
+      { path: '/service-metrics/', label: 'Service metrics' },
+      { path: '/platform/attendance/', label: 'Attendance' },
+      { path: '/volunteers/', label: 'Volunteer tools' },
+      { path: '/av-team/', label: 'AV team' },
+      { path: '/team-chat/', label: 'Team chat' },
+      { path: '/av-club/', label: 'AV Club' },
+      { path: '/av-monitoring/', label: 'AV monitoring' },
+      { path: '/tech-manager/', label: 'Tech Manager appliance' },
+      { path: '/cloud-control/', label: 'Cloud Control' },
+      { path: '/hardware/', label: 'Hardware' },
+      { path: '/integrations/', label: 'Integrations' },
+      { path: '/system-documentation/', label: 'System documentation' },
+      { path: '/luminos-ai-assistant/', label: 'Luminos AI assistant' },
+      { path: '/kb/', label: 'Church AV knowledge base' },
+      { path: '/professional-services/', label: 'Professional services' },
+      { path: '/pilot-program/', label: 'Pilot program' },
+      { path: '/gift/', label: 'Gift WorshipMetrics to a church' },
+      { path: '/discovery-call/', label: 'Book a discovery call' },
+      { path: '/contact/', label: 'Contact and phone support' },
+      { path: '/about/', label: 'About' },
+      { path: '/our-story/', label: 'Our story' },
+      { path: '/privacy/', label: 'Privacy policy' },
+      { path: '/terms/', label: 'Terms of service' },
+    ];
+
+    registerTool({
+      name: 'search_site',
+      description:
+        'Search worshipmetrics.com pages and knowledge-base articles by keyword. Returns matching page titles, URLs, and short excerpts.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          query: { type: 'string', description: 'Search terms, e.g. "NDI camera setup"' },
+          limit: {
+            type: 'integer',
+            minimum: 1,
+            maximum: 20,
+            description: 'Maximum number of results to return (default 8)',
+          },
+        },
+        required: ['query'],
+      },
+      annotations: { readOnlyHint: true },
+      async execute({ query, limit }) {
+        const max = Math.min(Math.max(Number(limit) || 8, 1), 20);
+        try {
+          const pagefind = await import('/pagefind/pagefind.js');
+          const search = await pagefind.search(String(query), { limit: max });
+          const results = await Promise.all(
+            search.results.slice(0, max).map(async (result) => {
+              const data = await result.data();
+              return {
+                title: data.meta?.title || data.url,
+                url: new URL(data.url, location.origin).href,
+                excerpt: (data.excerpt || '').replace(/<[^>]+>/g, ''),
+              };
+            }),
+          );
+          if (results.length === 0) {
+            return asText(`No results for "${query}". Try broader terms, or browse https://worshipmetrics.com/kb/`);
+          }
+          return asText(results);
+        } catch {
+          return asText(
+            'The search index is not available right now. Browse the knowledge base at https://worshipmetrics.com/kb/ instead.',
+          );
+        }
+      },
+    });
+
+    registerTool({
+      name: 'list_pages',
+      description:
+        'List the main pages of worshipmetrics.com as a compact sitemap: a label and URL for each. Use it to decide where to navigate.',
+      inputSchema: { type: 'object', properties: {} },
+      annotations: { readOnlyHint: true },
+      async execute() {
+        return asText(
+          KEY_PAGES.map(({ path, label }) => ({ label, url: new URL(path, location.origin).href })),
+        );
+      },
+    });
+
+    registerTool({
+      name: 'open_page',
+      description:
+        'Navigate this browser tab to a page on worshipmetrics.com. Accepts a site-relative path such as /pricing/ or a full worshipmetrics.com URL. Off-site URLs are refused.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          path: {
+            type: 'string',
+            description: 'Site-relative path (e.g. /kb/) or absolute URL on this site',
+          },
+        },
+        required: ['path'],
+      },
+      async execute({ path }) {
+        let url;
+        try {
+          url = new URL(String(path), location.origin);
+        } catch {
+          return asText(`"${path}" is not a valid path or URL.`);
+        }
+        if (url.origin !== location.origin) {
+          return asText(`Refused: ${url.href} is not on ${location.origin}.`);
+        }
+        location.assign(url.href);
+        return asText(`Navigating to ${url.href}`);
+      },
+    });
+
+    registerTool({
+      name: 'read_current_page',
+      description:
+        'Read the page currently open in this tab: its title, URL, meta description, and main text content.',
+      inputSchema: { type: 'object', properties: {} },
+      annotations: { readOnlyHint: true },
+      async execute() {
+        const description =
+          document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+        const main = document.querySelector('main') ?? document.body;
+        const content = (main?.innerText || '').replace(/\n{3,}/g, '\n\n').trim();
+        return asText({
+          title: document.title,
+          url: location.href,
+          description,
+          content: content.length > 8000 ? `${content.slice(0, 8000)}…` : content,
+        });
+      },
+    });
+  }
+</script>
