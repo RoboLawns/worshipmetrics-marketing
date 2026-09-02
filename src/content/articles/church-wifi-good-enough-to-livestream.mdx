@@ -1,0 +1,57 @@
+---
+title: "Is Our Church WiFi Good Enough to Livestream?"
+description: "Probably the wrong question — the encoder should be on wired Ethernet, and WiFi should carry the phones. Here's how to test what your connection can really do, and how to know for certain instead of guessing."
+category: "streaming"
+tags: ["WiFi", "network", "bandwidth", "streaming"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+coverImage: "/images/products/church-wifi-good-enough-to-livestream/unifi-topology-church-streaming-network.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "Can we livestream over WiFi if the signal is strong?"
+    answer: "You can, but you shouldn't if a cable is possible. WiFi in a building that fills with phones every Sunday is the single most common cause of dropped frames — signal strength on Tuesday says little about airtime contention at 9:55 on Sunday. Wire the encoder; let WiFi carry the congregation."
+  - question: "How much upload speed does a church stream need?"
+    answer: "A safe rule of thumb is to stream at no more than half your reliably measured upload speed — measured on Sunday morning under real load, not on a quiet Tuesday afternoon. If a speed test says 20 Mbps up on Sunday at 9:45, a stream in the 4–6 Mbps range has comfortable headroom."
+  - question: "How do we find network problems before they hit a Sunday?"
+    answer: "Let the network report on itself. Connecting a UniFi controller to WorshipMetrics surfaces per-port truth — including gigabit links that silently fell back to 100 Mb/s, which is almost always a damaged cable — and every stream produces a health report showing exactly when and how the connection struggled."
+---
+
+## The short answer: wire the encoder, and let WiFi do a different job
+
+"Is our WiFi good enough to livestream?" is usually the wrong question, and the right answer starts by splitting it in two:
+
+1. **The streaming computer should not be on WiFi at all.** Run a cable. WiFi in a building full of phones is the single most common cause of Sunday-morning dropped frames, and no router upgrade beats a $15 patch cable.
+2. **The real question is whether your *internet connection* is good enough** — and that's measurable in ten minutes, on the right morning.
+
+Here's why the distinction matters, how to run the honest test, and how to move from "we think it's fine" to *knowing*.
+
+## Why WiFi betrays streams specifically
+
+WiFi is a shared medium: every device in range takes turns on the air. On Tuesday afternoon, your booth laptop has the airwaves nearly to itself and everything looks great. On Sunday at 9:55, two hundred phones arrive — auto-syncing photos, checking in on the guest network, hunting for signal — and the encoder now queues behind all of them for its turn to transmit.
+
+A live encoder is uniquely intolerant of that. Web browsing shrugs off a half-second stall; an encoder pushing thirty frames a second experiences the same stall as frames it must drop. That's why dropped frames carry the heaviest penalty (−35) in the [stream health score](/kb/articles/reading-your-stream-health-score/): they're the failure viewers feel most directly, and the fix list starts with *get the encoder on wired Ethernet* — before bitrate, before hardware, before anything.
+
+So give WiFi the job it's good at — the congregation's phones, [QR check-ins](/kb/articles/church-check-in-without-an-app/), the lobby — and give the stream copper.
+
+## The honest bandwidth test
+
+With the encoder wired, the question becomes your internet connection's **upload** capacity, and there's a rule of thumb worth taping to the booth desk: **stream at no more than half your reliably measured upload speed — measured on Sunday morning, not Tuesday afternoon.**
+
+Both halves of that sentence do work. *Half*, because upload capacity fluctuates and an encoder run at the ceiling has no headroom for the moments that need it. *Sunday morning*, because that's when your congregation's devices, the neighborhood's usage, and your ISP's real-world performance all show up at once. A connection that tests at 40 Mbps up on Tuesday and 12 Mbps at 9:45 on Sunday is a 12 Mbps connection for your purposes.
+
+If the Sunday number can't comfortably carry your target bitrate, you have three levers, in order of cost: lower the stream's bitrate and resolution (a stable 720p beats a struggling 1080p every time — our [encoder settings guide](/kb/articles/church-encoder-settings-that-survive-sunday/) covers the numbers), separate streaming traffic from guest WiFi with VLANs and QoS so the phones can't starve the booth (the design is in the [church network guide](/kb/articles/church-network-av-streaming/)), and only then talk to your ISP about a faster plan.
+
+## From guessing to knowing
+
+Everything above you can do with a speed test and a cable. The step most churches never take is making the network *report on itself* — and it's the step that finds problems on Tuesdays instead of Sundays.
+
+If your building runs Ubiquiti UniFi gear, [connecting the controller to WorshipMetrics](/kb/articles/connect-unifi-worshipmetrics/) pulls live network truth into your documentation: which device hangs off which switch port, live PoE draw, and — the sleeper feature — **negotiated versus maximum link speed**. A gigabit port that silently fell back to 100 Mb/s hides behind a green link light, "works" for browsing, and then chokes the first NDI feed or big upload you push through it. Almost always it's one damaged pair in a cable, and seeing it in the documentation means finding it before it finds you.
+
+Meanwhile every stream you run produces its own evidence. The [health report](/kb/articles/reading-your-stream-health-score/) samples bitrate, dropped frames, and encoder state every five seconds, so "the internet was weird" becomes "bitrate sagged for ninety seconds during greeting time, three weeks running" — a pattern with an obvious suspect (the lobby WiFi lighting up) and a concrete fix. And [Pulse](/av-monitoring/) watches for network patterns across devices, flagging packet loss and latency drift against each device's own baseline.
+
+One more safety net for the Sundays when the connection struggles anyway: Tech Manager's [self-healing rules](/kb/articles/tech-manager-self-healing-explained/) step the stream's resolution down when bitrate sags — keeping you live within the bandwidth that actually exists — and queue a clean reconnect through short outages. Viewers forgive softness; they don't forgive freezing.
+
+## How WorshipMetrics handles this
+
+WorshipMetrics can't pull the Ethernet cable for you, but it turns every other part of this from folklore into data: [stream health reports](/live-streaming/) show exactly when and how the connection struggled, [UniFi integration](/kb/articles/connect-unifi-worshipmetrics/) exposes the per-port truth your green link lights are hiding, [Pulse monitoring](/av-monitoring/) watches for the patterns that precede failures, and [Tech Manager](/tech-manager/) keeps the stream alive through the rough patches while you fix root causes on a weekday. Wire the encoder, measure on Sunday, stream at half — and let the telemetry tell you the rest.

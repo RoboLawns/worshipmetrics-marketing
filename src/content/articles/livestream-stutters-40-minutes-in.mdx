@@ -1,0 +1,65 @@
+---
+title: "Why Does Our Livestream Look Fine at 9:00 and Stutter by 9:40?"
+description: "A stream that starts clean and degrades mid-service is usually a resource story — creeping RAM pressure, a warming CPU, a filling disk, or greeting-time WiFi surges. Five-second telemetry catches the slide that per-service averages hide."
+category: "streaming"
+tags: ["troubleshooting", "stuttering", "RAM", "telemetry"]
+difficulty: "intermediate"
+publishedAt: "2026-09-01"
+coverImage: "/images/products/livestream-stutters-40-minutes-in/worshipmetrics-stream-health-telemetry-timeline.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "Why does the stream degrade gradually instead of just failing?"
+    answer: "Because the causes are cumulative: memory pressure builds as the service runs, CPU temperature climbs toward throttle territory, disk space shrinks as the recording grows, and network congestion peaks when the building fills. Each one erodes headroom slowly — which is why the stream was genuinely fine at 9:00."
+  - question: "How do I find out which cause is mine?"
+    answer: "Look at telemetry over time, not a single reading. WorshipMetrics samples the encoder and the booth machine every five seconds all service long, so the health report shows exactly when the slide began and which measurement moved first — RAM, CPU, temperature, bitrate, or dropped frames."
+  - question: "What's the fastest fix to try this Sunday?"
+    answer: "Restart the booth PC before the service and close everything that isn't production software — a fresh boot resets the memory creep that causes most 40-minutes-in stutter. Then let the health report tell you whether the real story is memory, heat, disk, or network."
+---
+
+## The short answer: something is running out — slowly
+
+A stream that's broken from the first minute has an obvious cause. A stream that starts clean and falls apart forty minutes in has a *cumulative* one: some resource that was fine at 9:00 is being consumed, warmed, or crowded as the service runs. There are four usual suspects, and they leave different fingerprints:
+
+1. **Memory pressure** building on the booth PC — the most common story.
+2. **Heat** pushing the CPU toward throttle territory.
+3. **Disk space** shrinking as the recording grows.
+4. **Network congestion** peaking as the building fills with phones.
+
+The reason this fault is so maddening to chase by hand is that whoever checks the machine *after* the service finds it idle, cool, and innocent-looking. The diagnosis lives in what was happening *at 9:40*, which is exactly what continuous telemetry is for — the [Tech Manager](/tech-manager/) booth app samples the encoder and the machine every five seconds all service long, so the slide is recorded even though nobody was watching for it.
+
+Here's each suspect, its fingerprint, and its fix.
+
+## Suspect 1: memory creep — fine at 9:00, paging by 9:40
+
+Memory pressure causes the slow, creeping degradation that's hardest to spot live. As the service runs, RAM fills — the encoder's buffers, a browser someone left open with fifteen tabs, a chat app quietly caching — and when the operating system starts paging to disk, "a little slow" becomes stutter on a machine that's also encoding video.
+
+**The fingerprint:** RAM climbing steadily across the service in the telemetry, with stutter arriving as it crosses into the 90s. Pulse trips a critical resource alert at 90% RAM precisely because that's where paging begins — the [published thresholds](/kb/articles/pulse-alert-thresholds-reference/) exist so this fires before the congregation notices.
+
+**The fix:** a pre-service restart of the booth PC (fresh boot, fresh memory), a close-everything discipline for non-production software, and — if the creep persists on a clean machine — more RAM. This is the cheapest hardware upgrade that fixes a Sunday problem.
+
+## Suspect 2: heat — the machine that throttles at the sermon
+
+CPUs protect themselves from overheating by slowing down, and a booth PC in a sealed cabinet, choked with dust, or running a tired fan warms steadily from the moment the encoder starts. Forty minutes in, it crosses into throttle territory and the encoder — which was using most of the CPU already — suddenly has less machine underneath it.
+
+**The fingerprint:** CPU temperature climbing all service and encoder load rising with it; the alert line is 95°C, which is throttle territory for nearly every modern CPU. **The fix** is physical and weekday-shaped: dust, airflow, an open cabinet, a working fan — all fixable on a Tuesday, none at 9:58.
+
+## Suspect 3: the disk the recording is eating
+
+Local recordings consume gigabytes per hour, and a disk that crosses into its last few percent mid-service can take the recording — and sometimes the encoder — down with it. **The fingerprint:** free space shrinking linearly all morning. **The safety nets:** Tech Manager [cleans re-fetchable signage cache automatically](/kb/articles/tech-manager-self-healing-explained/) below 10% free and raises an alert so a human addresses the trend; the critical line sits at 5%. **The fix:** a storage plan — archive old recordings on a schedule instead of discovering the problem at 9:40.
+
+## Suspect 4: the building woke up
+
+Sometimes the machine is innocent and the *network* changed: at 9:00 you shared the internet with a locked building; by 9:40 you share it with every phone in the sanctuary. Uplink congestion shows up as bitrate sagging from target and dropped frames climbing — often in a tell-tale dip during greeting time, when the lobby WiFi lights up.
+
+**The fingerprint:** the machine's own vitals staying flat while bitrate wobbles and dropped frames spike — instability with clean system numbers is a network story, not a computer story. **The fix:** wire the encoder, right-size the bitrate to half your *Sunday-morning* measured upload, and separate streaming traffic from guest WiFi — the full triage is in [is our church WiFi good enough to livestream?](/kb/articles/church-wifi-good-enough-to-livestream/) and the [church network guide](/kb/articles/church-network-av-streaming/).
+
+## Why averages hide this — and five-second samples don't
+
+A per-service average would tell you a 9:40-stutter Sunday was "mostly fine" — because it *was* mostly fine. Five-second resolution is what separates a bitrate that sagged for ninety seconds during greeting time from one that was low all morning, and a RAM line that climbed all service from one that spiked once. That's the design premise of the [stream health score](/kb/articles/reading-your-stream-health-score/): every service produces a 0-100 report with the full telemetry timeline, each penalty timestamped, and a plain-English recommendation attached.
+
+The report matters over weeks, not just Sundays. One bad morning is an event; a slow slide across a month is drift — a machine accumulating background software, a disk filling, a network getting busier — and drift is the pattern human memory misses and telemetry catches. If the same deduction appears three weeks running, you've found a project, not a fluke.
+
+## How WorshipMetrics handles this
+
+The 9:40 mystery is exactly what the platform's telemetry was built to solve: [Tech Manager](/tech-manager/) samples CPU, RAM, temperature, disk, and encoder state every five seconds; [Pulse](/av-monitoring/) trips its published thresholds *before* the congregation notices and pushes the alert to [your phone](/kb/articles/church-stream-drop-phone-alert/); self-healing steps the resolution down to keep you live through a bandwidth sag; and every service's health report turns "it got weird near the end" into a timestamped, diagnosable timeline. The machine knows why it stuttered at 9:40. Now you get to know too.
