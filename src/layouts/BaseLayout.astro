@@ -10,6 +10,11 @@ interface BreadcrumbItem {
   item: string;
 }
 
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -19,6 +24,7 @@ interface Props {
   publishedAt?: Date;
   updatedAt?: Date;
   breadcrumbItems?: BreadcrumbItem[];
+  faq?: FaqItem[];
 }
 
 const props = Astro.props;

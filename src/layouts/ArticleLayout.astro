@@ -36,6 +36,7 @@ const breadcrumbItems = [
   publishedAt={article.data.publishedAt}
   updatedAt={article.data.updatedAt}
   breadcrumbItems={breadcrumbItems}
+  faq={article.data.faq}
 >
   <section class="border-b border-border bg-bg">
     <div class="mx-auto max-w-7xl px-6 py-16">
@@ -75,6 +76,19 @@ const breadcrumbItems = [
         <div class="kb-prose prose prose-slate max-w-none" data-pagefind-body>
           <slot />
         </div>
+        {article.data.faq && article.data.faq.length > 0 && (
+          <section class="mt-12 rounded-3xl border border-slate-200 bg-slate-50 p-8">
+            <h2 class="font-display text-2xl text-slate-900">Related questions</h2>
+            <dl class="mt-6 space-y-6">
+              {article.data.faq.map((entry) => (
+                <div>
+                  <dt class="font-semibold text-slate-900">{entry.question}</dt>
+                  <dd class="mt-2 text-sm leading-relaxed text-slate-700">{entry.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
         <ProductCTA variant="banner" />
         <div class="mt-12 grid gap-4 sm:grid-cols-2" data-pagefind-ignore>
           {prevArticle && (

@@ -22,6 +22,7 @@ const articles = defineCollection({
     productCTA: z.boolean().default(true),
     coverImage: z.string().optional(),
     readingTime: z.number().optional(),
+    faq: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
   }),
 });
 
