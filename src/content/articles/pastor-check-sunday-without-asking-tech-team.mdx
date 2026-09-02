@@ -1,0 +1,57 @@
+---
+title: "How Can a Pastor Check That Sunday Went Okay Without Asking the Tech Team?"
+description: "Open one dashboard on Monday morning: total reach for the service, a 0-100 stream health score, and the alert history — the honest answers to 'did it work?' and 'are we growing?' without a single 'hey, how did the stream go?' text."
+category: "operations"
+tags: ["service metrics", "attendance", "stream health", "leadership"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+featured: false
+productCTA: true
+faq:
+  - question: "What is Total Reach?"
+    answer: "One number for everyone who worshiped with you: the people counted in the room plus the peak concurrent viewers online. In-person and virtual are always shown separately too, so leaders see the shape of the congregation, not just its size."
+  - question: "Does the pastor need to understand the technical details?"
+    answer: "No. The stream health score is a single 0-100 number per service, and every deduction comes with a plain-English recommendation. A quiet alert feed means the booth was genuinely healthy — the monitoring is designed so silence is trustworthy."
+  - question: "Can leaders compare attendance across services and years?"
+    answer: "Yes — Attendance Over Time charts in-person, virtual, and total by month, quarter, or year, with every service type broken out separately. Easter versus last Easter, this sermon series versus the last one, Sunday morning versus midweek."
+---
+
+## The short answer: one dashboard answers both Monday questions
+
+Every Monday morning, a pastor quietly wants the answers to two questions: **did Sunday work?** and **are we growing?** In most churches, both answers currently live in other people's heads — the tech director knows whether the stream struggled, an usher has a headcount on a sticky note, and nobody knows how many people worshiped online.
+
+With WorshipMetrics, both answers are on a dashboard before the first coffee. [Service Metrics](/service-metrics/) shows the service's **total reach** — in-person and online attendance, together and separately — and the stream carries a **health score from 0 to 100** with plain-English notes. No text messages, no putting the tech volunteer on the spot, no wondering whether "it went fine" means *fine*.
+
+Here's what that Monday look actually contains, and where each number comes from.
+
+## "Did it work?" — the stream health score
+
+Every streamed service gets a single 0-100 score summarizing what the encoder and booth computer experienced while live: bitrate stability, dropped frames, frame rate, encoder load, and the machine's own vital signs, sampled every five seconds all service long. A 94 means the online congregation had a smooth morning. A 61 comes with specific, readable reasons — and every deduction ships with a recommendation, so the score reads less like a verdict and more like a to-do list for the team.
+
+The pastor doesn't need to parse any of the telemetry; that's the point of the number. But it changes the Monday conversation from "how was the stream?" (answer: a shrug) to "I saw we scored 88 with one reconnect — anything the team needs?" — which is a genuinely encouraging question to receive in the booth. The full scoring system is explained in [reading your stream health score](/kb/articles/reading-your-stream-health-score/).
+
+Two companion signals round out the "did it work" picture:
+
+- **The alert feed.** [Pulse monitoring](/av-monitoring/) watches every booth machine and device around the clock and keeps 90 days of alert history. A quiet feed is trustworthy by design — thresholds and anti-noise rules are [published exactly](/kb/articles/pulse-alert-thresholds-reference/) — so silence really does mean healthy.
+- **The self-healing log.** If the stream restarted itself at 10:42 and nobody in the room noticed, [the log shows it](/kb/articles/tech-manager-self-healing-explained/). Leadership seeing that the system quietly handled a problem is very different from leadership never knowing there was one.
+
+## "Are we growing?" — total reach, honestly counted
+
+The room is only half the congregation. The homebound member who gave faithfully for fifty years, the family three states away, the not-yet-visitor who's been quietly watching for a month deciding whether your church is safe to walk into — they all worshiped with you, and a headcount on a sticky note misses every one of them.
+
+Service Metrics counts both halves:
+
+- **In the room:** volunteers use a seat-map counter in Tech Manager — tap a seat to toggle it, hold to mark a member or first-time visitor — or camera Auto-Count tallies the room automatically from an RTSP camera or webcam, on a schedule or on demand. (Setup for that is in the [camera Auto-Count guide](/kb/articles/camera-auto-count-attendance-setup/).)
+- **Online:** connect your YouTube or Facebook broadcast and viewers are counted automatically — concurrent viewers sampled every minute, with peak and average rolled into that day's attendance when the broadcast ends. Streams through the WorshipMetrics player count the same way.
+
+**Total reach** is the sum a leader can actually use: everyone who worshiped, with the in-person and online shapes always visible separately. And because every service is stored the same way, Attendance Over Time answers the questions leadership meetings actually ask — Easter versus last Easter, this sermon series versus the last one, whether the online congregation is growing or quietly going stagnant — by month, quarter, or year, per service type.
+
+## What this changes for the tech team
+
+It's worth saying plainly: the goal isn't surveillance of the booth, and the gracious framing matters. What the dashboard removes is the *interrogation* — the volunteer who gave up their Sunday morning no longer fields "so did it work?" texts, because the answer is self-serve. What it adds is recognition: a string of healthy scores is visible evidence of work that used to be invisible precisely when it was done well.
+
+It also makes the ask for resources concrete. "We need a better internet plan" lands differently when the health reports show bitrate sagging during greeting time three weeks running. Numbers turn hunches into a budget line — our guide to [AV budget planning](/kb/articles/av-budget-planning-churches/) picks up that thread.
+
+## How WorshipMetrics handles this
+
+Everything above is one platform doing its quiet work: [Tech Manager](/tech-manager/) counts the room and reports the booth's health, [Pulse](/av-monitoring/) watches the fleet and keeps the alert history, [live streaming](/live-streaming/) produces the health report for every service, and [Service Metrics](/service-metrics/) rolls it all into the dashboard a leader checks in ninety seconds on Monday morning. In-person counting ships in the free platform; automatic online viewer analytics comes with the Stream plan. The pastor gets honest answers, the tech team gets credit for invisible excellence, and "are we growing?" finally gets answered with data instead of a feeling.

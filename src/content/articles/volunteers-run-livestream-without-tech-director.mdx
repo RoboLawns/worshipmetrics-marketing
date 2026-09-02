@@ -1,0 +1,63 @@
+---
+title: "Can Volunteers Run the Livestream When the Tech Director Is Out of Town?"
+description: "Yes — when the booth is set up so routine failures fix themselves, help can see the system from anywhere, and knowledge lives in documentation instead of one person's head. Here's what that Sunday actually looks like."
+category: "operations"
+tags: ["volunteers", "cloud control", "self-healing", "remote support"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+featured: false
+productCTA: true
+faq:
+  - question: "Can someone at home actually operate the switcher during the service?"
+    answer: "Yes, on the Assist and Stream plans. With vMix, the cloud panel is the full switching surface — cut, transition, T-bar, overlays, and bus audio — mirrored live to any phone or laptop. With OBS, a remote helper can switch scenes and start or stop the stream and recording. Local control in the booth is free on every plan."
+  - question: "Does remote help require port forwarding or a VPN?"
+    answer: "No. Tech Manager makes one secure outbound connection from the booth to WorshipMetrics — the same link that powers AV monitoring. Nothing is exposed on the church network, and nobody has to open a firewall hole."
+  - question: "What if the stream drops and the volunteer doesn't notice?"
+    answer: "Two safety nets: Tech Manager automatically restarts a stream that has been down more than 30 seconds, and if a drop persists, the organization's owner, admins, and operators get an alert by email — plus push notifications on any phone that's set them up."
+---
+
+## The short answer: yes — if the booth doesn't depend on one person's presence
+
+Every church with one deeply capable tech person eventually faces the same Sunday: that person is at a wedding, on vacation, or home sick, and a well-meaning volunteer is alone in the booth. Whether that morning goes fine has very little to do with the volunteer's courage and everything to do with how the system was set up beforehand.
+
+The honest answer to the question is yes — volunteers run streams solo every week at churches everywhere. The churches where it goes smoothly have quietly arranged three things: **routine failures fix themselves**, **help can see the system from anywhere**, and **knowledge lives in documentation instead of one person's memory**. Here's what that looks like in practice, told the way it actually plays out.
+
+## 9:15 a.m. — the stream hiccups, and nothing happens
+
+Twenty minutes before the service, the building's internet has a rough moment and the stream drops. In the old world, this is where the volunteer notices a "reconnecting" badge — or doesn't — and starts texting the tech director.
+
+In a booth running [Tech Manager](/tech-manager/), the rule is simple and automatic: a stream down more than 30 seconds gets restarted. A short network blip queues a clean reconnect for the moment the network recovers, instead of hammering retry into a dead connection. If the upload bandwidth sags mid-service, the resolution steps down so the stream stays smooth within what the connection can actually carry — the same triage an experienced operator would perform by hand.
+
+The volunteer never touches anything. Every automatic action lands, timestamped, in the support history, so the tech director can see on Monday exactly what happened at 9:15 — the [self-healing rules](/kb/articles/tech-manager-self-healing-explained/) are deliberately boring, well-understood fixes, not a robot improvising.
+
+## 9:40 a.m. — the tech director checks in from three states away
+
+Here's where the setup pays for itself. On the Assist and Stream plans, [cloud control](/cloud-control/) mirrors the booth's switcher state — what's in preview, what's in program, which scenes exist — live to any phone or laptop. The tech director, sitting in a hotel lobby, opens WorshipMetrics and sees exactly what the volunteer sees.
+
+If the volunteer just needs reassurance, that's a text: "you're live, program looks right, you're fine." If they need more, the remote person can act: with vMix, the cloud panel is the full switching surface — cut, transition, overlays, bus audio; with OBS, remote scene switching plus stream and recording control. A trusted helper can talk a nervous volunteer through a transition, or simply make the switch themselves.
+
+Two details matter for the church's peace of mind. First, there's no port forwarding, no VPN, and no hole in the church firewall — Tech Manager makes one secure outbound connection, the same one that powers monitoring. Second, only people you've invited to your team can connect, signed in with their own accounts, and remote actions land in the same support history as everything else. Nothing happens silently.
+
+(Local switcher control in the booth — OBS, vMix, and Blackmagic ATEM — is free on every plan, including Free. The cloud layer comes with Assist at $49/mo and Stream at $99/mo per campus.)
+
+## 10:05 a.m. — a cable question, answered by the map
+
+Mid-service, the confidence monitor goes dark. The volunteer has no idea which cable feeds it — that knowledge has always lived in the tech director's head.
+
+Except it doesn't anymore: the [Signal Map](/system-documentation/) documents every device, port, and labeled cable run, so "which cable feeds the confidence monitor" is a lookup, not a phone call. And because that documentation is what [Luminos](/luminos-ai-assistant/) and remote support read, a call to [910-WORSHIP](/phone-support/) starts from your actual wiring — the person helping can point to the exact cable, not ask the volunteer to describe the back of the rack. System documentation ships free in Tech Manager, which makes it the single highest-leverage thing to set up *before* the Sunday someone's alone.
+
+For churches that want a professional in the loop every week, the Sunday Assurance add-on puts a production pro from the WorshipMetrics team on call every Sunday, able to see your system the moment you call.
+
+## The preparation that makes all of this work
+
+None of the above is magic on the day; it's setup done on a calm Tuesday:
+
+1. **Install Tech Manager and let self-healing run.** The safety net has to exist before it's needed.
+2. **Set up alerts on more phones than one.** Drop alerts go to owners, admins, and operators by email automatically; [push notifications](/kb/articles/church-stream-drop-phone-alert/) take a minute per phone.
+3. **Document the system while the person who knows it is available.** The Signal Map turns tribal knowledge into a shared map — and it prints, so a paper copy can live in the booth.
+4. **Invite the remote helpers now.** Cloud control only helps if the trusted people already have accounts and access.
+5. **Run a practice Sunday.** Our guide to [building a volunteer-proof AV setup](/kb/workflows/volunteer-proof-av-setup/) and [training volunteer AV teams](/kb/articles/training-volunteer-av-teams/) cover the human side — automation handles the reflexes so training can focus on judgment.
+
+## How WorshipMetrics handles this
+
+The whole point of the platform's reliability stack is that Sunday shouldn't hinge on one person's attendance. [Tech Manager](/tech-manager/) fixes the routine failures automatically and logs every action; [Pulse monitoring](/av-monitoring/) watches the fleet around the clock and alerts real phones when a human is needed; [cloud control](/cloud-control/) lets a trusted helper see preview and program — and switch, if it comes to that — from anywhere; and the [Signal Map](/system-documentation/) keeps the knowledge in the church, not in one volunteer's head. The tech director still deserves the vacation. Now they can actually take it.

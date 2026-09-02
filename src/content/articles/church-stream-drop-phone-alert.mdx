@@ -1,0 +1,64 @@
+---
+title: "Can I Get an Alert on My Phone When Our Church Stream Drops?"
+description: "Yes — with web push notifications that work on iPhone and Android, backed by guaranteed email. Here's how stream-drop alerts reach your pocket, and why many drops fix themselves before the alert would even fire."
+category: "streaming"
+tags: ["alerts", "stream drops", "notifications", "monitoring"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+featured: false
+productCTA: true
+faq:
+  - question: "Do I need to install an app from the App Store to get stream alerts?"
+    answer: "No. WorshipMetrics uses standard web push notifications, so alerts arrive as real operating-system notifications from your browser. On iPhone (iOS 16.4 or later), you add the web app to your home screen from Safari — about a minute of setup — and pushes then behave exactly like a native app's."
+  - question: "What happens if my phone is off or the push doesn't arrive?"
+    answer: "Every alert that matters also goes out by email, which is the guaranteed channel — livestream drop alerts go to the organization's owner, admins, and operators by email automatically. An in-app notification entry is always written too, and the alert feed keeps 90 days of history."
+  - question: "Will I get spammed with alerts every time the stream wobbles?"
+    answer: "No. Each outage alerts exactly once, recovery auto-resolves it in the feed, and resource alerts use hysteresis margins plus a 30-minute cooldown. When an alert reaches your phone, it's worth looking at."
+---
+
+## The short answer: yes — as a real notification, not just an email
+
+If your church streams through WorshipMetrics, a stream that leaves the "live" state for any reason other than someone pressing Stop triggers a drop alert. That alert can reach you as a **push notification on your phone** — a real, operating-system-level notification on the lock screen, with the app's own name and icon — and it **always** goes out by email to the organization's owner, admins, and operators, with no subscription step to forget.
+
+There's no app store download involved. WorshipMetrics uses **web push**, the open standard modern browsers support natively. On a laptop, desktop, or Android phone, enabling it is a single permission prompt. On iPhone it works too — Apple added web push in iOS 16.4 — with one extra step: add **app.worshipmetrics.com** to your home screen from Safari, then enable notifications from the installed icon. The full walkthrough, including the iOS Focus-mode gotcha that silently holds alerts until 9 a.m., is in our [phone alerts setup guide](/kb/articles/church-av-alerts-on-your-phone/).
+
+The rest of this article covers the questions that usually come next: how fast the alert fires, who should get it, and why — honestly — many stream drops never page anyone at all.
+
+## How fast does the alert fire?
+
+Detection runs on the server side, around the clock, from heartbeats the [Tech Manager](/tech-manager/) booth app sends every 15 to 60 seconds. Those heartbeats carry live encoder telemetry from OBS or vMix — bitrate versus target, dropped frames, encoder load, frame rate, current scene — so the platform knows the stream's state continuously, not just when someone has a dashboard open.
+
+That server-side design is the part worth appreciating: the alert doesn't depend on a browser tab being open anywhere. The booth PC can be locked, the tech director can be at lunch, and detection still happens. Monitoring that only works while someone is watching a screen isn't monitoring — it's a status page.
+
+Alerting is deliberately conservative about repeat noise. Each outage produces **one** alert, recovery auto-resolves it in the feed, and cooldown rules prevent a flapping connection from machine-gunning your lock screen. The exact timings for every alert type — including the 90-second offline badge versus the 5-minute offline email — are published in the [Pulse alert thresholds reference](/kb/articles/pulse-alert-thresholds-reference/).
+
+## Who should get the push?
+
+Not every alert deserves to buzz every pocket, so notification preferences are per-person and per-alert-type. A sensible split for a volunteer team:
+
+| Alert | Who gets push |
+|---|---|
+| Livestream drop | Streaming operator + tech director |
+| Booth machine offline | Tech director |
+| Camera or console offline | Whoever owns that gear |
+| Audio state warning | Sound lead |
+
+Alerts are also grouped into areas — Hardware, System, Stream, Audio, Network, Other — and each person chooses which channels carry each area. Network noise can stay on desktop toast in the booth while stream problems escalate to phones.
+
+Do the phone setup on **every** phone that should be woken up. Each person's push subscription is their own; there's no shared device to configure, and it takes under a minute per phone.
+
+## The honest caveat: push is fast, email is guaranteed
+
+Web push is excellent, but it's best-effort by design. A revoked permission, a Do Not Disturb Focus, a cleared browser cache, or an aggressive Android battery optimizer can silently interrupt it — and none of those produce an error anyone sees.
+
+That's why the alert stack is layered: push is the *fast* channel, **email is the guaranteed one**, an in-app notification entry is always written regardless of your settings, and the alert feed keeps **90 days of filterable history**. If your phone is dead at 7 a.m., the email is waiting when it charges, and the feed can always answer "has this happened before?" with data instead of memory.
+
+## Why many drops never page you at all
+
+Here's the part that surprises teams coming from manual monitoring: a good chunk of stream drops are corrected before a human needs to know. Tech Manager's [self-healing rules](/kb/articles/tech-manager-self-healing-explained/) restart a stream that's been down more than 30 seconds, step the resolution down when bitrate sags so the stream survives a rough patch of bandwidth, and queue a clean restart through short network blips instead of hammering a dead connection.
+
+Every one of those automatic actions is logged to your support history — nothing happens silently — but the practical effect is that the alerts that *do* reach your phone are the ones that genuinely need a person. When one does, keep the [dropped-stream recovery playbook](/kb/articles/church-stream-dropped-mid-service/) bookmarked on the same phone that receives the alert: calm steps, in order, written for the moment your heart rate spikes.
+
+## How WorshipMetrics handles this
+
+Stream-drop alerting is standing behavior in [Pulse, the monitoring layer](/av-monitoring/) of WorshipMetrics: [Tech Manager](/tech-manager/) supplies encoder telemetry from the booth, the cloud watches it around the clock, drop alerts go to owners, admins, and operators by email automatically, and web push — including full iPhone support via the iOS home-screen app — puts the same alert on your lock screen in seconds. Five minutes of setup per phone this week, and the next problem finds you before Sunday does.

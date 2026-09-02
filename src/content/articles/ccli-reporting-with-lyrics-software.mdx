@@ -1,0 +1,55 @@
+---
+title: "Do We Still Need to Report to CCLI If Our Lyrics Software Tracks Songs?"
+description: "Yes — the license still asks for your usage. But if your software records what was actually sung (not just what was planned), the report becomes a download instead of a year-end archaeology project."
+category: "operations"
+tags: ["CCLI", "copyright", "song usage", "lyrics software"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+featured: false
+productCTA: true
+faq:
+  - question: "Does using lyrics software replace CCLI reporting?"
+    answer: "No. Your CCLI license still asks you to report what was sung. What good software changes is the effort: if it records actual usage — performed, scheduled, and logged songs with CCLI numbers attached — the report becomes a one-click CSV export over the trailing year instead of a reconstruction from memory."
+  - question: "What about songs the worship leader added spontaneously?"
+    answer: "That's exactly what a usage ledger is for: a durable 'we sang this, at this service, on this date' entry that lives independently of any plan. Log it after the service and it's a permanent line in your report — even if the plan is later edited or deleted."
+  - question: "If we run identical 9 and 11 AM services, does each song count twice?"
+    answer: "In WorshipMetrics the report deduplicates per song, per plan — one Sunday plan with two service times produces one usage line per song, applied consistently. The two runs stay separate records internally; the report counts the Sunday once."
+---
+
+## The short answer: yes — but the report should build itself
+
+Projecting lyrics, printing chord charts, and streaming worship all happen under a copyright license — for most congregations, CCLI — and the license asks you to report your song usage. Using lyrics software doesn't change that obligation. What it *should* change is the cost of meeting it: if your software records what was **actually sung**, renewal season becomes a download button instead of a reconstruction project.
+
+The catch is in the word *actually*. CCLI doesn't ask what you planned to sing — it asks what you sang. And those are different lists more often than teams expect.
+
+## Why your planning document isn't a usage report
+
+A worship plan is a forecast, and Sunday diverges from forecasts in predictable ways: the baptism runs long and the closing song gets cut; the worship leader flows into a spontaneous chorus nobody scheduled; someone tidies the plan on Monday and the record now reflects the cleanup, not the service; old plans get pruned in November, taking their song history with them.
+
+If your only record of usage is the plan, your report is a record of intentions. The way out is to treat song usage as **evidence** from three distinct sources:
+
+- **Performed** — the gold standard. In WorshipMetrics, every performance of a plan is a run, and runs are either *draft* (rehearsal, tech check) or *committed* (the real service). Only committed runs count as performance evidence, and once a committed run finishes its record locks read-only — Monday cleanup can't rewrite history.
+- **Scheduled** — the paper trail. A song on a dated order of service is reasonable evidence it was sung, and for the months before your team built the live-run habit it may be the only record. Weaker than performed, but honest data worth keeping.
+- **Logged** — the ledger that survives everything. A durable "we sang this, at this service, on this date" entry that lives independently of any plan. It catches the spontaneous songs and outlives plan deletion.
+
+The report merges all three and labels each line with its evidence level, so a use backed by a committed run reads with more confidence than one backed only by a plan — and nothing is silently upgraded. The full model, including how the 9 and 11 AM deduplicate to one Sunday, is in [CCLI reporting from what was actually sung](/kb/articles/ccli-reporting-from-actual-services/).
+
+## What the export actually gives you
+
+When the renewal email arrives, the export produces a CSV over a default trailing-year window — the span renewals ask about — with one line per use: Date, Title, Authors, Copyright, CCLI Number, Confirmation (performed / scheduled / logged), and the Plan it belongs to.
+
+The CCLI numbers aren't guessed at export time; they live on each song in your [library](/songs/) as first-class fields, alongside authors and the copyright line — and songs brought in from SongSelect .usr files arrive with that metadata attached. If your library migrated from presentation software, one pass to confirm the CCLI numbers made the trip is worth an afternoon; our [ProPresenter migration guide](/kb/articles/migrate-propresenter-song-library/) covers what carries over.
+
+One scope note worth repeating: if you stream, CCLI's streaming license is a separate grant from the copy license — and the reporting logic is the same, because the songs in your stream are the songs in your run.
+
+## The three habits that make it automatic
+
+You don't need a compliance department; you need a rhythm:
+
+1. **Run Sunday from the plan.** When the service runs live from your planning tool, performance evidence accumulates on its own — every committed run is a permanent record. (This is the same [live run discipline](/kb/articles/live-run-test-vs-real-service/) that keeps rehearsals out of your service history.)
+2. **Log the spontaneous moments.** One Sunday-afternoon question — "did we sing anything that wasn't on the plan?" — and thirty seconds of logging closes the biggest gap in most churches' records.
+3. **Glance quarterly.** Not because CCLI asks quarterly, but because a quick look catches a missing CCLI number while the memory is fresh instead of twelve months later.
+
+## How WorshipMetrics handles this
+
+CCLI usage reporting is built into the WorshipMetrics [songs library](/songs/) and [service planning](/services/): committed live runs supply performance evidence, dated plans supply the schedule, the durable ledger catches everything else, and the merge deduplicates per song per plan so a two-service Sunday counts once. The export is a per-use CSV — Date, Title, Authors, Copyright, CCLI Number, Confirmation, Plan — over the trailing year. Report still required; project no longer. The reporting becomes a byproduct of running Sunday the way you already wanted to.

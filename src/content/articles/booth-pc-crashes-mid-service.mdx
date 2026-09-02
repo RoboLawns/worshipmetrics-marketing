@@ -1,0 +1,53 @@
+---
+title: "What Happens If the Booth PC Crashes Mid-Service?"
+description: "The worship service continues — that's the design principle. What happens next depends on preparation: which failures fix themselves, which page a human, and the small list of things to set up on a calm Tuesday."
+category: "operations"
+tags: ["disaster recovery", "reliability", "booth computer", "self-healing"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+featured: false
+productCTA: true
+faq:
+  - question: "Will the stream restart itself if the encoder has a problem?"
+    answer: "A dropped stream restarts automatically after 30 seconds down, a stopped recording restarts the moment it's caught, and short network outages queue a clean reconnect. A full application crash is deliberately different: it's reported to a human rather than silently relaunched, because a crash can signal a problem that blind restarting would mask."
+  - question: "How fast does anyone find out the booth machine went down?"
+    answer: "The machine's status badge flips to offline after 90 seconds of missed heartbeats, and a high-confidence offline alert email goes out after more than 5 minutes of silence — with push notifications on any phone that's set them up. Detection runs server-side, so it doesn't depend on anyone watching a dashboard."
+  - question: "What's the single best preparation for a booth failure?"
+    answer: "Decide your degradation order in advance: the in-room service continues no matter what, and the stream recovers second. Then set up phone alerts, keep the recovery playbook bookmarked, and document the system so any volunteer — not just the person who built it — can bring things back."
+---
+
+## The short answer: the service continues — the rest depends on Tuesday
+
+Here's the reframe that takes the terror out of the question: when the booth PC dies, **worship doesn't stop**. The pastor keeps preaching, the band keeps playing, and in most rooms the sound console isn't the machine that crashed. What's actually at stake is the stream, the recording, and the lyrics — real losses, but recoverable ones, and how quickly they recover was decided before Sunday ever arrived.
+
+So the honest answer has two halves: what the platform does in the seconds after a failure, and what you set up on a calm Tuesday so that a crash is an anecdote instead of an incident.
+
+## First, the failures that never become "the PC crashed"
+
+Most Sunday booth problems aren't outright crashes — they're the stream dropping, the recording quietly stopping, the disk filling, the network blipping. Those well-understood failures have well-understood fixes, and [Tech Manager](/tech-manager/) applies them automatically: a stream down more than 30 seconds is restarted; a recording that should be rolling is restarted the moment it's found stopped; a disk under 10% free gets its signage cache cleaned (recordings and media are never touched); a network outage under 60 seconds queues one clean reconnect for the moment the connection returns, instead of hammering retries into a dead line.
+
+Every one of those actions is logged to your support history — [nothing happens silently](/kb/articles/tech-manager-self-healing-explained/) — and the practical effect is that a large share of "crashes" people remember from the old days simply don't reach the congregation anymore.
+
+## What an actual crash looks like, minute by minute
+
+Suppose the encoder application genuinely goes down mid-sermon.
+
+**The system tells the truth instead of guessing.** A crashed application is deliberately **reported, not silently relaunched**. That restraint is a feature: a crash can mean a corrupted scene collection, a dying capture card, or a driver problem, and blind relaunching could compound the damage or mask hardware that needs attention. Restarting a stream output is routine; resurrecting a crashed application is a human decision.
+
+**The humans find out fast.** If the whole machine went down, its status badge flips to offline after **90 seconds** of missed heartbeats, and a high-confidence offline alert email goes out after more than **5 minutes** of silence — timings published in the [alert thresholds reference](/kb/articles/pulse-alert-thresholds-reference/). Anyone with [phone alerts set up](/kb/articles/church-stream-drop-phone-alert/) gets buzzed, including people who aren't in the building. Detection runs server-side, around the clock, so it never depends on someone staring at a dashboard.
+
+**The recovery is a checklist, not an improvisation.** For the stream, the calm sequence is written down in the [dropped-stream recovery playbook](/kb/articles/church-stream-dropped-mid-service/). For the online congregation, "Stream Offline" on the platform reads as a technical hiccup, not a canceled service — resist the urge to over-announce, get the encoder back, and most viewers rejoin without drama.
+
+**Help can see your system.** On the Assist and Stream plans, a trusted helper — or, with the Sunday Assurance add-on, a production pro from the WorshipMetrics team on call every Sunday — can [see the booth's state remotely](/cloud-control/) and assist. And a call to [910-WORSHIP](/phone-support/) starts from your support history, where the self-healing log already shows what was tried automatically and when — no "so what happened?" archaeology.
+
+## The Tuesday list: five preparations that change the story
+
+1. **Decide the degradation order out loud.** In-room audio beats the stream; the pastor's face beats the graphics. When everyone knows what gets sacrificed first, nobody panics. Our [Sunday failure recovery workflow](/kb/workflows/church-av-disaster-recovery/) walks the five most common failures with this mindset.
+2. **Set up alerts on more phones than one.** The tech director's phone, the streaming lead's, whoever is on call. A minute per phone.
+3. **Have a backup internet path.** A tested cellular hotspot turns "the internet is down" from an outage into a network switch. Test it on a Tuesday, not at 10:15.
+4. **Document the system.** When the person who built the booth isn't in the room, the [Signal Map](/system-documentation/) is how a volunteer answers "what plugs into what" — and it prints, so a paper copy can live in the booth for the morning the PC itself is the casualty.
+5. **Watch the pattern, not just the incident.** A booth that self-heals once a quarter is healthy; one that self-heals every week is telling you something about its hardware or network. The support history makes that trend visible — and worth acting on before it escalates.
+
+## How WorshipMetrics handles this
+
+Booth reliability in WorshipMetrics is layered on purpose: [Tech Manager](/tech-manager/) fixes the routine failures in seconds and refuses to paper over the ambiguous ones, [Pulse monitoring](/av-monitoring/) notices a dead machine in 90 seconds and alerts real phones within minutes, [cloud control](/cloud-control/) puts trusted eyes on the system from anywhere, and every action lands in the support history your helpers read when you call. The goal was never a booth that can't fail — it's a Sunday where a failure costs you minutes of stream, zero minutes of worship, and no mystery afterward about what happened.
