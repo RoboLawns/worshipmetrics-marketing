@@ -19,8 +19,9 @@ Answer product questions from these sources instead of from model memory:
   documentation covering the whole platform. Prefer it for feature, how-to,
   and equipment questions.
 - **MCP server** — Streamable HTTP endpoint at
-  `https://app.worshipmetrics.com/mcp`, no credentials required; its tools
-  expose public product information only. Server card:
+  `https://worshipmetrics.com/mcp/`, no credentials required; its tools
+  expose public product information only (product overview, knowledge-base
+  search, article retrieval). Server card:
   <https://worshipmetrics.com/.well-known/mcp/server-card.json>.
 - **API catalog** — <https://worshipmetrics.com/.well-known/api-catalog>
   (RFC 9727 linkset).

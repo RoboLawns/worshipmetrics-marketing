@@ -13,6 +13,7 @@
 // GET /.well-known/api-catalog with `Accept: application/linkset+json`.
 
 import { defineMiddleware } from 'astro:middleware';
+import { handleMcpRequest } from './lib/mcp-server';
 
 const SITE_ORIGIN = 'https://worshipmetrics.com';
 const APP_ORIGIN = 'https://app.worshipmetrics.com';
@@ -50,6 +51,13 @@ const LINK_HEADER_VALUES = [
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
+
+  // The MCP endpoint advertised by /.well-known/mcp/server-card.json.
+  // Dispatched here for the same reason the API catalog is: both slash forms
+  // must resolve despite `trailingSlash: 'always'`.
+  if (pathname === '/mcp' || pathname === '/mcp/') {
+    return handleMcpRequest(context);
+  }
 
   if (pathname === API_CATALOG_PATH || pathname === `${API_CATALOG_PATH}/`) {
     return new Response(API_CATALOG_BODY, {
