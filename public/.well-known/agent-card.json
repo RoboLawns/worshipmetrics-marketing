@@ -1,0 +1,54 @@
+{
+  "protocolVersion": "1.0",
+  "name": "WorshipMetrics",
+  "description": "Church service planning, worship presentation, livestreaming, and A/V operations for houses of worship. This A2A surface publishes discovery metadata and answers simple messages; it does not yet execute tasks on behalf of callers.",
+  "version": "1.0.0",
+  "url": "https://app.worshipmetrics.com/a2a/v1",
+  "preferredTransport": "JSONRPC",
+  "supportedInterfaces": [
+    {
+      "url": "https://app.worshipmetrics.com/a2a/v1",
+      "protocolBinding": "JSONRPC",
+      "transport": "JSONRPC",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "provider": { "organization": "WorshipMetrics", "url": "https://worshipmetrics.com" },
+  "documentationUrl": "https://worshipmetrics.com",
+  "iconUrl": "https://app.worshipmetrics.com/icon-192.png",
+  "capabilities": { "streaming": false, "pushNotifications": false, "extendedAgentCard": false },
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain", "application/json"],
+  "skills": [
+    {
+      "id": "service-planning",
+      "name": "Service planning",
+      "description": "Plan weekly worship services: order of service, songs and arrangements, keys, service times, and the run sheet a booth executes on Sunday.",
+      "tags": ["church", "worship", "service-planning", "plans"]
+    },
+    {
+      "id": "team-scheduling",
+      "name": "Team scheduling",
+      "description": "Schedule volunteers and staff onto service plans — positions, assignments, availability, and automatic serve reminders.",
+      "tags": ["scheduling", "volunteers", "teams", "people"]
+    },
+    {
+      "id": "worship-presentation",
+      "name": "Worship presentation",
+      "description": "Render song lyrics, scripture, and media to congregation screens and stage displays, with themes and per-song arrangements.",
+      "tags": ["presentation", "lyrics", "slides", "stage-display"]
+    },
+    {
+      "id": "livestreaming",
+      "name": "Livestreaming and clips",
+      "description": "Run church livestreams with viewer metrics, recordings, and short social clips cut from Sunday's stream.",
+      "tags": ["livestream", "video", "clips", "metrics"]
+    },
+    {
+      "id": "av-operations",
+      "name": "A/V operations",
+      "description": "Monitor and control booth A/V — cameras, switchers, signage, and device health — through a paired desktop Tech Manager.",
+      "tags": ["av", "cameras", "switchers", "signage", "monitoring"]
+    }
+  ]
+}

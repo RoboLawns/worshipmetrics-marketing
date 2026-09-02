@@ -17,6 +17,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# Web Bot Auth private signing keys (public half lives in
+# public/.well-known/http-message-signatures-directory)
+keys/
+
 # macOS-specific files
 .DS_Store
 

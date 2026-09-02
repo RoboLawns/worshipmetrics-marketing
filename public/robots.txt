@@ -1,4 +1,9 @@
+# Content Signals (contentsignals.org):
+# search = building a search index and serving results with links/excerpts
+# ai-input = using content as real-time input to AI answers (grounding/RAG)
+# ai-train = training or fine-tuning AI models
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 Sitemap: https://worshipmetrics.com/sitemap-index.xml

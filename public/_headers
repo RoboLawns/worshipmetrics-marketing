@@ -10,6 +10,32 @@
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600
 
+# Web Bot Auth key directory (IETF webbotauth). JWKS holding the Ed25519
+# public key our outbound agent requests are signed with (private half is
+# gitignored in keys/; signer in scripts/web-bot-auth/). The draft requires
+# this exact media type; CORS-open and cached like the other agent
+# discovery documents.
+/.well-known/http-message-signatures-directory
+  Content-Type: application/http-message-signatures-directory+json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400
+
+# A2A Agent Card (agent-to-agent discovery). Static twin of the dynamic card
+# on app.worshipmetrics.com (WorshipMetricscom server/agent-card-routes.ts,
+# WM-873) — the JSON-RPC endpoint inside points there, where the A2A routes
+# run. CORS-open and cached for the same reasons as the MCP card above.
+/.well-known/agent-card.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+# Auth.md agent-registration discovery. Self-contained (no OAuth metadata
+# exists to point at): documents human-in-the-loop provisioning as the only
+# registration method. Public document, so CORS-open and cached like the
+# server card above.
+/auth.md
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
 # Agent Skills discovery (cloudflare/agent-skills-discovery-rfc v0.2.0): the
 # index lists the skills this site publishes with a SHA-256 digest of each
 # artifact's exact bytes; /skills/ holds the artifacts (kept -text in
