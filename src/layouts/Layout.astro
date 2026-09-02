@@ -113,6 +113,18 @@ const structuredData = [
     <script>
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+      // Consent Mode v2 default: the Ads tag must not set cookies for EEA/UK/CH
+      // visitors without prior consent (GDPR/ePrivacy), and Google requires these
+      // signals for EEA/UK conversion measurement. Region-scoped so US traffic is
+      // untouched. Must stay ABOVE the gtag('config') call. Mirrors the same
+      // default in the cloud app (WM-876).
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']
+      });
       gtag('js', new Date());
       gtag('config', 'AW-18048317342');
     </script>
