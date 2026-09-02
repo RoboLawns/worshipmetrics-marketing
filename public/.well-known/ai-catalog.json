@@ -1,0 +1,47 @@
+{
+  "entries": [
+    {
+      "identifier": "urn:air:worshipmetrics.com:site:mcp-server",
+      "displayName": "WorshipMetrics product-information MCP server",
+      "type": "application/mcp-server-card+json",
+      "url": "https://worshipmetrics.com/.well-known/mcp/server-card.json",
+      "description": "Public MCP server (Streamable HTTP at https://worshipmetrics.com/mcp/) for WorshipMetrics, the all-in-one platform for church worship and production teams. Tools: product overview, knowledge-base search, and article retrieval as markdown. No authentication; church data lives behind sign-in in the web app.",
+      "capabilities": ["product-overview", "knowledge-base-search", "article-retrieval"],
+      "representativeQueries": [
+        "What does WorshipMetrics do?",
+        "Search the WorshipMetrics knowledge base for livestream encoder settings",
+        "Get the WorshipMetrics article on volunteer scheduling as markdown"
+      ],
+      "tags": ["church", "worship", "livestreaming", "av", "mcp"],
+      "version": "1.0.0",
+      "updatedAt": "2026-09-02"
+    },
+    {
+      "identifier": "urn:air:worshipmetrics.com:app:a2a-agent",
+      "displayName": "WorshipMetrics A2A agent",
+      "type": "application/a2a-agent-card+json",
+      "url": "https://worshipmetrics.com/.well-known/agent-card.json",
+      "description": "A2A agent card for WorshipMetrics (JSON-RPC endpoint at https://app.worshipmetrics.com/a2a/v1). Discovery-first: it publishes metadata and answers simple messages, and does not yet execute tasks on behalf of callers.",
+      "representativeQueries": [
+        "What is WorshipMetrics and who is it for?",
+        "How does an agent get access to a church's WorshipMetrics data?"
+      ],
+      "tags": ["church", "worship", "a2a", "agent"],
+      "version": "1.0.0",
+      "updatedAt": "2026-09-02"
+    },
+    {
+      "identifier": "urn:air:worshipmetrics.com:skills:worshipmetrics",
+      "displayName": "worshipmetrics",
+      "type": "application/ai-skill+md",
+      "url": "https://worshipmetrics.com/skills/worshipmetrics/SKILL.md",
+      "description": "Agent skill: answer questions about WorshipMetrics using its public knowledge base, MCP server, and discovery documents, and route churches to the right next step for access.",
+      "representativeQueries": [
+        "Does WorshipMetrics work with our cameras and switcher?",
+        "How do we get our church set up on WorshipMetrics?"
+      ],
+      "tags": ["church", "worship", "skill"],
+      "updatedAt": "2026-09-02"
+    }
+  ]
+}

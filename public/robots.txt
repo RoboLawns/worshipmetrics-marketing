@@ -7,3 +7,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 Sitemap: https://worshipmetrics.com/sitemap-index.xml
+
+# Agentic Resource Discovery (agenticresourcediscovery.org): machine-readable
+# catalog of the agent surfaces this site publishes.
+Agentmap: https://worshipmetrics.com/.well-known/ai-catalog.json

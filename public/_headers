@@ -28,6 +28,18 @@
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600
 
+# Agentic Resource Discovery (agenticresourcediscovery.org v0.91): one catalog
+# of the agent surfaces above (MCP card, A2A card, the published skill), served
+# at both the spec-primary path (ard.json) and the legacy path scanners still
+# probe (ai-catalog.json) — identical bytes. CORS-open and cached like the rest.
+/.well-known/ard.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/.well-known/ai-catalog.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
 # Auth.md agent-registration discovery. Self-contained (no OAuth metadata
 # exists to point at): documents human-in-the-loop provisioning as the only
 # registration method. Public document, so CORS-open and cached like the
