@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import ResearchCallout from "../components/ResearchCallout.astro";
 import { recruitmentStats } from "../data/churchProductionResearch";
 import FoundersStrip from "../components/FoundersStrip.astro";
@@ -289,4 +290,10 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <KBQuestions heading="The AV Club playbook, post by post." items={[
+    { question: "How to start a church AV Club around your vMix system", href: "/kb/articles/start-church-av-club-vmix/" },
+    { question: "Can students safely run a church livestream?", href: "/kb/articles/students-run-church-livestream-safely/" },
+    { question: "The tech booth is a youth ministry", href: "/kb/articles/tech-booth-youth-ministry/" },
+    { question: "Need volunteers for your livestream? Start with the youth ministry", href: "/kb/articles/need-volunteers-church-livestream/" },
+  ]} />
 </Layout>

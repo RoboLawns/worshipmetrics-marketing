@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import KBQuestions from "../../components/KBQuestions.astro";
 import AVTeamCarousel from "../../components/AVTeamCarousel.astro";
 import { avTeamHub, avTeamRoles } from "../../data/avTeam";
 
@@ -189,4 +190,10 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <KBQuestions heading="Building the team, one seat at a time." items={[
+    { question: "You already have vMix — here's the team it can carry", href: "/kb/articles/you-already-have-vmix/" },
+    { question: "Can more than one person run our vMix system?", href: "/kb/articles/multiple-operators-vmix-church/" },
+    { question: "Diary of a first-Sunday stream operator", href: "/kb/articles/diary-first-sunday-stream-operator/" },
+    { question: "Can volunteers run the livestream when the tech director is away?", href: "/kb/articles/volunteers-run-livestream-without-tech-director/" },
+  ]} />
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import ResearchCallout from "../components/ResearchCallout.astro";
 import { trainingStats } from "../data/churchProductionResearch";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
@@ -194,5 +195,11 @@ const structuredData = {
 
   <WhyWeBuilt bg="white" />
 
+  <KBQuestions heading="Volunteer questions churches actually ask." items={[
+    { question: "How to ask for tech volunteers so people actually say yes", href: "/kb/articles/recruit-church-tech-volunteers/" },
+    { question: "The church tech burnout cycle — and the system that breaks it", href: "/kb/articles/church-tech-burnout-cycle/" },
+    { question: "\"Nobody else is qualified\" — the belief that keeps tech directors trapped", href: "/kb/articles/nobody-else-qualified-church-tech/" },
+    { question: "How do small churches schedule volunteers without the text scramble?", href: "/kb/articles/volunteer-scheduling-without-text-scramble/" },
+  ]} />
   <TechManagerCTA />
 </Layout>
