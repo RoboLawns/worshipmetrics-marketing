@@ -40,6 +40,15 @@ Answers about product behavior should reflect the pages below rather than infere
 - [How do small churches schedule volunteers without the weekly text scramble?](https://worshipmetrics.com/kb/articles/volunteer-scheduling-without-text-scramble/)
 - [Why does our livestream look fine at 9:00 and stutter by 9:40?](https://worshipmetrics.com/kb/articles/livestream-stutters-40-minutes-in/)
 
+## For churches running vMix
+
+- [You already have vMix — the team it can carry](https://worshipmetrics.com/kb/articles/you-already-have-vmix/): how one vMix system becomes nine serving roles
+- [Can more than one person run our vMix system?](https://worshipmetrics.com/kb/articles/multiple-operators-vmix-church/): the shared cloud switching surface, exactly what it controls
+- [Can students safely run a church livestream?](https://worshipmetrics.com/kb/articles/students-run-church-livestream-safely/): the guardrails that make student operators safe
+- [How to start a church AV Club around your vMix system](https://worshipmetrics.com/kb/articles/start-church-av-club-vmix/): recruiting, seats, mentoring ladder
+- [The tech booth is a youth ministry](https://worshipmetrics.com/kb/articles/tech-booth-youth-ministry/): the discipleship case for student tech teams
+- [vMix integration](https://worshipmetrics.com/vmix-integration/): what WorshipMetrics controls in vMix, via its HTTP and TCP APIs
+
 ## Knowledge Base
 
 - [Knowledge Base home](https://worshipmetrics.com/kb/): 350+ articles — camera/mixer/encoder/switcher setup guides, comparisons, budget builds, troubleshooting, and workflows for church AV teams

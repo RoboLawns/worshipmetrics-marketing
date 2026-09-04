@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
@@ -243,5 +244,11 @@ const structuredData = {
     </div>
   </section>
 
+  <KBQuestions heading="You already have vMix. Now grow the team." items={[
+    { question: "You already have vMix — here's the team it can carry", href: "/kb/articles/you-already-have-vmix/" },
+    { question: "Can more than one person run our vMix system?", href: "/kb/articles/multiple-operators-vmix-church/" },
+    { question: "Can students safely run a church livestream?", href: "/kb/articles/students-run-church-livestream-safely/" },
+    { question: "How to start a church AV Club around your vMix system", href: "/kb/articles/start-church-av-club-vmix/" },
+  ]} />
   <TechManagerCTA />
 </Layout>
