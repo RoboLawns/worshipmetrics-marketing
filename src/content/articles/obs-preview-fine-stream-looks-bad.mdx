@@ -1,0 +1,45 @@
+---
+title: "Why Does OBS Look Perfect in Preview but Blurry on the Stream?"
+description: "The preview window shows video before compression; your viewers see it after. Between the two sit the bitrate, the encoder, and the platform's re-encode — here's which one is stealing your quality, and the telemetry that settles it."
+category: "streaming"
+tags: ["OBS", "quality", "bitrate", "troubleshooting"]
+difficulty: "intermediate"
+publishedAt: "2026-09-04"
+featured: false
+productCTA: true
+faq:
+  - question: "Why is my stream blurry when OBS preview looks sharp?"
+    answer: "Because the preview is pre-compression — it's the raw composited video. Viewers see that video after your encoder squeezes it to a bitrate and after the platform re-encodes it again. If the bitrate is too low for the motion in the frame, quality is spent surviving the compression, and worship's full-motion moments suffer first."
+  - question: "What bitrate stops a church stream from looking blurry?"
+    answer: "Enough for your resolution and motion, within your upload's honest limits: as a rule, stream at no more than half your Sunday-measured upload, and if that budget can't carry sharp 1080p, drop to 720p — a well-fed 720p looks dramatically better than a starved 1080p."
+  - question: "How do I tell whether it's my encoder, my network, or the platform?"
+    answer: "Telemetry separates them cleanly: bitrate wobbling with dropped frames is a network story; steady bitrate with rising encoder load is a settings/horsepower story; and clean numbers on both with soft video on the platform's lower quality options is just viewers on auto-quality — check the stream at source quality first."
+---
+
+## The short answer: preview is before compression — your viewers live after it
+
+The disappointment has a precise technical location. OBS's preview window shows the *composited* video — your cameras and graphics, assembled, before any compression touches them. What your congregation sees has survived two additional journeys: your **encoder** squeezing thirty frames a second down to your bitrate, and the **platform** (YouTube, Facebook) re-encoding your feed again into its own quality ladder. The preview isn't lying. It's just upstream of everything that costs quality.
+
+So "blurry on the stream" is always one of three thieves. Here's each one, its fingerprint, and its fix.
+
+## Thief 1: a bitrate too small for worship's motion
+
+Compression spends its budget on *change between frames*, and worship — a full band, moving lights, camera cuts — changes nearly everything, constantly. A bitrate that keeps the announcements crisp can be half of what the second song needs, which is why church streams so often look sharp until the room comes alive, then dissolve into mush around the moving lights.
+
+**The fix is budget honesty.** Within what your connection can carry — [no more than half your Sunday-measured upload](/kb/articles/church-wifi-good-enough-to-livestream/) — give the stream enough bitrate for its resolution, and if the budget can't feed sharp 1080p, **drop to 720p**. A well-fed 720p beats a starving 1080p dramatically, every time. The [bitrate calculator](/tools/church-streaming-bitrate-calculator/) does the arithmetic; the [encoder settings guide](/kb/articles/church-encoder-settings-that-survive-sunday/) covers the supporting cast (CBR for the stream, sane keyframe and profile choices).
+
+Two OBS-specific checks while you're in settings: make sure the **output (scaled) resolution** isn't upscaling a small canvas or downscaling with the cheapest filter (Lanczos costs little and looks better), and confirm the stream output is actually using the settings you think — [between-Sundays settings drift](/kb/articles/obs-settings-changed-between-sundays/) is a top cause of "it looked better last month."
+
+## Thief 2: an encoder out of headroom
+
+Quality also dies when the encoder can't *think* fast enough. x264 on a fast preset, or an encoder [running near its ceiling](/kb/articles/obs-encoding-overloaded-during-worship/), makes hastier compression decisions — same bitrate, worse picture, often with stutter as the tell. The fingerprint: quality that degrades as scenes get busy *without* the network numbers moving. The fix: a hardware encoder (NVENC/AMF/Quick Sync) if the machine has one, a resolution the hardware can afford, and scenes that don't render eight invisible sources all morning.
+
+## Thief 3: the platform's quality ladder (and the viewer's player)
+
+Sometimes your feed is genuinely fine and the complaint is real anyway: platforms re-encode everything into multiple qualities, and viewers' players auto-select — the family on flaky WiFi is watching the 480p rung and reporting "your stream is blurry." Before touching the booth, **check the stream at source quality** on a good connection. If source looks sharp, the booth is innocent; the answer is viewer education (the little gear icon) and, occasionally, sending a higher-quality feed so the platform's rungs start from more.
+
+## How to stop guessing which thief it is
+
+Here's the trap of quality complaints: they arrive as vibes ("it looked soft near the end?") hours after the evidence is gone. Telemetry turns the vibe into a verdict. [Tech Manager](/tech-manager/) samples bitrate, dropped frames, and encoder load every five seconds all service, so the [health report](/kb/articles/reading-your-stream-health-score/) separates the suspects cleanly: **bitrate sagging with dropped frames** is the network; **steady bitrate with climbing encoder load** is the machine; **clean everything** means look at the platform and the viewers. The report even stores the settings each stream ran with — so "it looked better last month" becomes a side-by-side, not a séance.
+
+And the standing observation behind this whole series: quality that mysteriously varies week to week is usually a *system* without a baseline — settings unowned, nobody watching the meters, [one exhausted operator](/kb/articles/church-tech-burnout-cycle/) with no attention left for trends. The booths that look consistently good aren't lucky; they read Monday's report, own their settings, and have [enough seats filled](/kb/articles/obs-problem-every-sunday/) that someone's job is noticing. That's the fix that doesn't wear off.

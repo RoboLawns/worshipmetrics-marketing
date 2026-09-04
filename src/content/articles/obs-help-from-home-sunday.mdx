@@ -1,0 +1,45 @@
+---
+title: "Can Someone Fix OBS From Home When It Breaks on Sunday?"
+description: "Yes — remote scene, stream, and recording control over OBS's WebSocket, live booth telemetry, and a support layer that can already see your system when you call. The end of troubleshooting-by-panicked-phone-description."
+category: "streaming"
+tags: ["OBS", "remote support", "cloud control", "volunteers"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+featured: false
+productCTA: true
+faq:
+  - question: "Can OBS be controlled remotely during a church service?"
+    answer: "Yes. WorshipMetrics connects to OBS over its WebSocket (v5) protocol, so an authorized person anywhere can switch scenes and start or stop the stream and recording — with the booth's live state visible, not described over the phone. Local control in the booth is free on every plan; the from-anywhere layer comes with Assist and Stream."
+  - question: "Does remote help require port forwarding or remote-desktop software?"
+    answer: "No. The booth's Tech Manager app makes one secure outbound connection — no firewall holes, no VPN, no one wrestling with screen-sharing while the service runs. Only people invited to your team can connect, and every remote action lands in the support history."
+  - question: "What if nobody on our team knows how to fix it?"
+    answer: "That's what the support layer is for: 910-WORSHIP starts from your system's actual history — telemetry, settings, what self-healing already tried — and with the Sunday Assurance add-on, a production pro is on call every Sunday who can see your setup the moment you dial."
+---
+
+## The short answer: yes — and it changes what a Sunday emergency is
+
+Every church OBS booth eventually lives this scene: something breaks mid-service, the volunteer calls the one person who knows OBS, and that person — at a lake house, in pajamas, three states away — tries to fix a computer *by asking questions about what the screen looks like*. "Click Settings. No, the gear icon. What does it say now?" Twenty minutes of archaeology, conducted over a phone, while the congregation watches a frozen frame.
+
+The scene is obsolete. OBS has spoken a remote-control protocol for years — **WebSocket v5**, built into the app — and [WorshipMetrics cloud control](/cloud-control/) turns it into something a church can actually use on a Sunday: an authorized helper, anywhere, sees the booth's live state and can **switch scenes and start or stop the stream and the recording** directly. Not screen-sharing. Not a description relay. The actual controls, with the actual state visible.
+
+Here's what the modern version of that panicked phone call looks like, layer by layer.
+
+## Layer 1: the helper can see before they touch
+
+Half of remote troubleshooting is just *knowing what's true*, and that part no longer requires a conversation. The booth's [Tech Manager](/tech-manager/) app streams live telemetry — is OBS running, is the stream up, is the recording rolling, what's the encoder doing, [how's the machine itself](/kb/articles/livestream-stutters-40-minutes-in/) — so the veteran at the lake house opens their phone and sees the situation in ten seconds. Often the "emergency" resolves right there: *"You're actually still live — YouTube's player hiccuped, not the stream. Tell the pastor's spouse to refresh."*
+
+No port forwarding makes this possible in a church context: Tech Manager holds **one secure outbound connection**, so there's no firewall hole, no VPN, and no IT volunteer summoned mid-service. Only people invited to your team can connect, and every remote action is logged to the support history with a name on it.
+
+## Layer 2: the routine stuff fixed itself before anyone called
+
+The dirty secret of Sunday OBS emergencies: most were never emergencies. A stream that drops mid-service [restarts automatically after 30 seconds down](/kb/articles/tech-manager-self-healing-explained/); a stopped recording restarts the moment it's caught; a short network blip queues one clean reconnect. By the time the veteran's phone would have rung, the [alert that did fire](/kb/articles/church-stream-drop-phone-alert/) often says *resolved* — the call that used to interrupt vacation just... doesn't happen. What reaches humans is the residue that genuinely needs judgment, which is exactly the [division of labor that makes volunteer-run booths viable](/kb/articles/volunteers-run-livestream-without-tech-director/).
+
+## Layer 3: when your team is out of depth, the next layer can see too
+
+Some Sundays exceed everyone you've got — the crash that [self-healing deliberately won't paper over](/kb/articles/obs-recording-unplayable-after-crash/), the audio gremlin nobody's met before. Here's where the phone call is transformed rather than eliminated: [910-WORSHIP](/phone-support/) support starts from your system's *actual record* — the live telemetry, [the settings this stream ran with](/kb/articles/obs-settings-changed-between-sundays/), what the automation already tried — instead of from "describe your setup." And churches on the **Sunday Assurance** add-on have a production pro on call *every single Sunday* who can see the system the moment the call connects. The gap between "our volunteer is stuck" and "someone competent is looking at it" shrinks to about a minute.
+
+## What this unlocks — beyond the emergencies
+
+Notice what these layers quietly make possible: the reason churches keep one indispensable expert chained to the booth was never ego — it was that help couldn't reach the room. Once it can, [the volunteer question changes shape](/kb/articles/need-volunteers-church-livestream/). A rookie can run their [first solo Sunday](/kb/articles/diary-first-sunday-stream-operator/) with a mentor on the panel from a couch. A [student can hold a real seat](/kb/articles/students-run-church-livestream-safely/) with a safety net that doesn't require an adult's physical presence. The expert takes an actual vacation.
+
+Remote fixing is the headline. Remote *presence* — the thing that lets a team exist at all — is the story. If your booth still runs on one irreplaceable person and a prayer, start there: [a different OBS problem every Sunday](/kb/articles/obs-problem-every-sunday/) explains why the fixes were never going to be enough on their own.

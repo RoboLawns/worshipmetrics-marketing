@@ -1,0 +1,47 @@
+---
+title: "OBS Crashed and Sunday's Recording Won't Play. Can We Save It?"
+description: "The honest answer about corrupted MP4s, the one settings change that prevents the next one, and the redundancy plan that means a crash never again decides whether the baptism was recorded."
+category: "streaming"
+tags: ["OBS", "recording", "corrupted file", "troubleshooting"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+featured: false
+productCTA: true
+faq:
+  - question: "Can a corrupted OBS MP4 recording be repaired?"
+    answer: "Usually not, and it's important to hear that before spending a night on repair tools. An MP4 writes its index when the recording finishes cleanly — a crash mid-recording means the file never got its index, and most 'repair' attempts fail. Prevention is the real answer: record to MKV (or OBS's hybrid MP4) so an interruption costs seconds, not the service."
+  - question: "What recording format should a church use in OBS?"
+    answer: "MKV, then remux to MP4 afterward (OBS does this in one click under File → Remux Recordings), or the hybrid/fragmented MP4 option in recent OBS versions — both survive interruptions. Plain MP4/MOV is the only choice where a crash destroys everything already recorded."
+  - question: "How do we make sure a sermon is never lost again?"
+    answer: "Redundancy plus automation: a crash-safe local format, a second recording that doesn't depend on the booth PC (streaming through WorshipMetrics records automatically in the cloud), and a system that restarts a stopped recording the moment it's detected rather than when someone notices on Monday."
+---
+
+## The short answer: probably not — and here's how it never happens again
+
+Let's start with the honest part, because you may be reading this on a Sunday afternoon with a 4 GB file that won't open: **a standard MP4 interrupted mid-recording is usually unrecoverable.** The MP4 format writes its index — the map that tells a player what's in the file — when recording finishes *cleanly*. If OBS crashed, the power blinked, or the disk filled, the map was never written. The video data is in there; almost nothing can read it. Repair tools exist and occasionally succeed, but the [OBS community's](https://obsproject.com/forum/tags/corrupted-recording/) long, sad archive of these threads mostly ends the same way.
+
+If the sermon also went out live, check the stream platform — YouTube and Facebook keep the broadcast, and that copy may save your week. Then take the next ten minutes to make sure this particular heartbreak is structurally impossible from now on. Three layers do it.
+
+## Layer 1: a recording format that survives interruption
+
+This is the single most valuable settings change in church OBS, and it takes thirty seconds. In Settings → Output, set the recording format to **MKV** — a format that stays playable up to the moment of interruption. A crash costs you the final seconds, not the service. When you need MP4 for editing or upload, OBS converts losslessly in one click: File → **Remux Recordings**. Recent OBS versions also offer a **hybrid MP4** designed to survive interruptions — either choice is fine; plain MP4 is the only wrong one.
+
+While you're in the settings: recordings fail for boring reasons too. A disk quietly filling is the classic — local recordings eat gigabytes per hour, and [a drive that runs dry mid-service can take the recording down with it](/kb/articles/livestream-stutters-40-minutes-in/). Which brings us to the second layer.
+
+## Layer 2: automation that notices before Monday
+
+The cruelest property of recording failures is their silence. The stream looks fine, the room sounds fine, and the loss is discovered *after* — when the file someone needed doesn't exist. Machines are better at this vigil than humans: [Tech Manager](/tech-manager/) checks continuously whether a recording that should be rolling actually is, and **restarts a stopped recording the moment it's found stopped** — one of the [self-healing rules](/kb/articles/tech-manager-self-healing-explained/), every action logged. Disk pressure gets caught early too: an alert fires and re-fetchable cache is cleaned automatically before free space becomes a Sunday problem.
+
+One deliberate boundary worth knowing: if OBS itself crashes outright, Tech Manager **reports it and alerts a human rather than silently relaunching** — a crash can mean a corrupted scene collection or failing hardware, and blind restarts can compound the damage. Routine failures get automatic fixes; ambiguous ones get [a phone that buzzes](/kb/articles/church-stream-drop-phone-alert/).
+
+## Layer 3: a second copy that doesn't live on the booth PC
+
+Formats and automation protect the local recording. The final layer removes the single point of failure entirely: churches that stream through [WorshipMetrics live streaming](/live-streaming/) get every service **recorded automatically in the cloud** — no button, no booth-PC dependency, finished recordings landing in the library where [Monday's sermon clips](/kb/articles/sunday-sermon-instagram-before-monday/) start. The local MKV becomes your high-quality master; the cloud copy is the one that exists no matter what happened at the desk.
+
+Three layers, and the arithmetic changes completely: for a crash to cost you a sermon now, the format, the automation, *and* an independent recording all have to fail at once.
+
+## The part that isn't about software
+
+A closing observation from the support desk: "the recording didn't record" is rarely a solo-software story. It's usually a solo-*operator* story — one person running everything, with no attention left for the silent failures. The booths where this never happens twice have a [second set of eyes](/kb/articles/obs-help-from-home-sunday/), a [recording/archivist seat](/av-team/recording-archivist/) that owns exactly this (a wonderful first role for a detail-loving student), and the habit of reading the [health report](/kb/articles/reading-your-stream-health-score/) on Monday instead of discovering things.
+
+If this is the third different failure in a month, the recording was never really the problem — read [a different OBS problem every Sunday](/kb/articles/obs-problem-every-sunday/) for the pattern underneath.

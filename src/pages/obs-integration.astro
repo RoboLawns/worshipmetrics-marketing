@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
 const APP_URL = "https://app.worshipmetrics.com";
@@ -255,5 +256,11 @@ const structuredData = {
     </div>
   </section>
 
+  <KBQuestions heading="OBS questions churches actually ask." items={[
+    { question: "A different OBS problem every Sunday? The fix isn't another fix", href: "/kb/articles/obs-problem-every-sunday/" },
+    { question: "Why does OBS say 'encoding overloaded' in the middle of worship?", href: "/kb/articles/obs-encoding-overloaded-during-worship/" },
+    { question: "Can someone fix OBS from home when it breaks on Sunday?", href: "/kb/articles/obs-help-from-home-sunday/" },
+    { question: "OBS crashed and Sunday's recording won't play. Can we save it?", href: "/kb/articles/obs-recording-unplayable-after-crash/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

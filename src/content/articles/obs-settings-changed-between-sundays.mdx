@@ -1,0 +1,47 @@
+---
+title: "Who Changed the OBS Settings? Ending the Between-Sundays Mystery"
+description: "Last week the stream was perfect; this week it's broken, and nobody touched anything — allegedly. Why multi-operator booths drift, the OBS discipline that contains it, and the settings paper trail that ends the whodunit for good."
+category: "streaming"
+tags: ["OBS", "settings", "volunteers", "troubleshooting"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+featured: false
+productCTA: true
+faq:
+  - question: "Why do OBS settings keep changing between services?"
+    answer: "Because OBS remembers everything and multiple humans share one machine. A midweek youth stream, a quick test, a helpful tweak — every session leaves the settings wherever it ended, and Sunday inherits whatever Thursday left behind. It's drift, not sabotage."
+  - question: "How do we stop volunteers from breaking OBS settings?"
+    answer: "Structure beats rules: separate OBS profiles and scene collections per use (Sunday service vs. youth night vs. testing), a pre-service check against a known-good baseline, and one named owner per setting group. The goal isn't locking people out — it's making the Sunday configuration boringly recoverable."
+  - question: "How do we find out what actually changed?"
+    answer: "Stop reconstructing from memory. Every stream's health report in WorshipMetrics captures the settings it ran with — resolution, bitrate, encoder preset and profile — so 'what changed since last Sunday?' becomes a side-by-side lookup instead of an interrogation."
+---
+
+## The short answer: nobody's lying, and everybody touched it
+
+It's the most common whodunit in church tech: last Sunday streamed perfectly, this Sunday is pixelated or silent or the wrong resolution, and every person with booth access swears — sincerely — that they didn't change anything. Here's the liberating truth: **they're all telling the truth as they remember it, and the settings changed anyway.**
+
+OBS remembers everything and forgets nothing. The youth-night operator dropped the bitrate for the building's shared internet on Wednesday and never dropped it back. Someone tested a new mic Thursday and left the audio device switched. A well-meaning helper googled "make stream better," changed three things, and improved nothing. None of it was sabotage; all of it was drift — the natural state of one machine shared by several humans with no baseline. Sunday doesn't get the settings anyone chose. It gets whatever the week left behind.
+
+So skip the interrogation. The fix has three parts: contain the drift, catch it before the service, and — the part almost nobody has — a paper trail that answers "what changed?" in ten seconds.
+
+## Contain it: profiles and scene collections are the guardrails
+
+OBS ships with the containment tools; most churches just never separate them. **Profiles** hold the output settings — encoder, bitrate, resolution, audio devices. **Scene collections** hold the scenes and sources. They switch independently, and the discipline is simple:
+
+- **One profile + collection pair per use**: *Sunday Service*, *Youth Night*, *Testing*. Wednesday's experiments happen in Wednesday's profile; Sunday's stays untouched.
+- **The Sunday pair is sacred**: changes to it happen deliberately, by its owner, on a weekday — never mid-morning by whoever's nervous.
+- **Name an owner per group**: one person owns output settings, one owns scenes. "Everyone's" settings are no one's — the [one-seat-one-job principle](/kb/articles/nobody-else-qualified-church-tech/) applies to configuration exactly as it applies to people.
+
+Add a 60-second pre-service check — correct profile? correct collection? audio meters moving? — to the [Sunday checklist](/kb/workflows/sunday-morning-checklist/), and most drift dies before it reaches the congregation. (One caution from the [OBS community](https://obsproject.com/forum/): make settings changes *outside* of live sessions — mid-stream settings surgery is its own crash category.)
+
+## Catch it: the paper trail that ends the whodunit
+
+Discipline contains drift; it can't answer the Monday question — *so what was actually different yesterday?* For that you need a record no human has to remember to keep, and this is where the mystery genuinely ends: **every stream's [health report](/kb/articles/reading-your-stream-health-score/) captures the settings it ran with** — resolution, target bitrate, encoder preset and profile, audio codec — alongside the telemetry. Last Sunday's clean 94 and this Sunday's rough 71 sit side by side, settings and all. If the score dropped the same week the bitrate did, you've found your answer without asking a single person to remember Thursday.
+
+The same record-keeping covers the other direction, too: remote actions through [cloud control](/cloud-control/) land in the support history with names attached, and [self-healing interventions](/kb/articles/tech-manager-self-healing-explained/) are logged the moment they happen. The booth stops being a shared mystery box and becomes a system with a memory — which changes the *culture* as much as the troubleshooting. Volunteers stop being suspects; the conversation shifts from "who broke it?" to "here's what changed — let's put it back and note why."
+
+## The real fix: drift is a symptom of structure
+
+Step back far enough and the between-Sundays mystery is rarely about OBS at all. It's what a booth looks like when several people share one machine **without shared structure** — no owned seats, no baseline, no record. The same booth with [named seats](/kb/articles/serving-opportunities-teens-without-stage/), [training that includes the why](/kb/articles/train-vmix-operators-without-risking-sunday/), and settings that are captured every service simply stops producing mysteries. The people didn't change. The system grew a memory and a shape.
+
+If the whodunit is just one of several recurring dramas — a different fire every week — the pattern has a name and a way out: [a different OBS problem every Sunday](/kb/articles/obs-problem-every-sunday/). And for the weeks when you'd rather show someone the problem than describe it, [help that can see your system](/kb/articles/obs-help-from-home-sunday/) is a phone call, not a mystery.

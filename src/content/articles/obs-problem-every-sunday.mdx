@@ -1,0 +1,49 @@
+---
+title: "A Different OBS Problem Every Sunday? The Fix Isn't Another Fix"
+description: "Encoding overload one week, silent audio the next, a corrupted recording the week after — when the problems rotate, the problem isn't any of them. It's a booth running without margin, memory, or a team. Here's the stack that ends the whack-a-mole."
+category: "streaming"
+tags: ["OBS", "troubleshooting", "reliability", "team building"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+featured: true
+productCTA: true
+faq:
+  - question: "Why does our church have a new OBS problem every week?"
+    answer: "Because the failures are symptoms rotating over one root condition: a single overloaded operator, a machine nobody monitors, settings without a baseline, and no record of what happened last time. Fix any one symptom and the condition produces a different one next Sunday."
+  - question: "Is OBS itself the problem? Should we switch software?"
+    answer: "Almost never. OBS is superb, free, and runs an enormous share of church streams. Churches that switch software carry the same root condition into the new tool and meet the same rotation of failures wearing different error messages. The gap isn't the software — it's the system around it."
+  - question: "What actually ends the cycle?"
+    answer: "Four layers, in order: telemetry so the booth is seen continuously, automation that fixes routine failures itself, a settings-and-documentation baseline so nothing depends on memory, and a team — more seats, real training, support on call — so no single person is the system."
+---
+
+## The short answer: rotating problems mean the problem isn't the problems
+
+Look at your booth's last two months honestly. [Encoding overloaded](/kb/articles/obs-encoding-overloaded-during-worship/) during the second song. Silent stream for ten minutes — wrong audio device. A [recording that wouldn't play](/kb/articles/obs-recording-unplayable-after-crash/). [Settings mysteriously different](/kb/articles/obs-settings-changed-between-sundays/) from the Sunday before. [Blurry video nobody can explain](/kb/articles/obs-preview-fine-stream-looks-bad/). Each got fixed. None came back. **And yet next Sunday found something new.**
+
+When failures *rotate* like that, stop diagnosing the failures. A booth that produces a different problem every week has one problem producing them all: **it's running as a bare application on an unwatched machine, operated by one overloaded person, with no baseline and no memory.** In that condition, whack-a-mole isn't bad luck — it's the steady state. Every fix works; no fix helps.
+
+And to say it plainly, because someone on your board is wondering: **OBS is not the issue.** It's excellent, free, and carries an enormous share of church streams beautifully. Churches that rage-quit to other software bring the bare-and-unwatched condition with them and meet the same rotation wearing new error messages. The gap was never the software. It's everything churches don't build *around* the software — four layers, and here they are in the order that works.
+
+## Layer 1: telemetry — the booth becomes seen
+
+Every rotating failure shares one enabler: nobody was looking at the right number at the right moment, because a human running a service *can't*. So the first layer isn't a fix at all — it's sight. [Tech Manager](/tech-manager/) samples the machine and the encoder every five seconds, all service long; [Pulse](/av-monitoring/) watches from the server side around the clock with [published thresholds](/kb/articles/pulse-alert-thresholds-reference/); and every service ends with a [0-100 health report](/kb/articles/reading-your-stream-health-score/) — penalties timestamped, settings captured. Overnight, "something felt off near the end" becomes a chart, and the drift that precedes most failures becomes visible *weeks* before it becomes a Sunday.
+
+## Layer 2: automation — routine failures stop reaching the congregation
+
+Half the rotation is failures with known, safe, boring fixes — the kind a veteran would apply instantly if they happened to be staring at the encoder. [Self-healing](/kb/articles/tech-manager-self-healing-explained/) applies them without the staring: a dropped stream restarts after 30 seconds down, a stopped recording restarts on detection, a filling disk cleans re-fetchable cache, a network blip queues one clean reconnect. Everything logged; the ambiguous stuff — a genuine crash — [escalates to a human phone](/kb/articles/church-stream-drop-phone-alert/) instead of being papered over. The rotation loses its most frequent contestants on day one.
+
+## Layer 3: a baseline — nothing depends on anyone's memory
+
+The remaining chaos mostly comes from the booth having no *source of truth*: settings that drift between operators, wiring that lives in one head, history that lives nowhere. The baseline layer is unglamorous and transformative — [owned OBS profiles with settings captured every stream](/kb/articles/obs-settings-changed-between-sundays/), a [Signal Map](/system-documentation/) that documents every cable and prints, and a support history that remembers what was tried so nobody re-solves last month's mystery. This is also what makes the booth [survive its builder leaving](/kb/articles/when-your-vmix-person-leaves/) — the knowledge stops being a person.
+
+## Layer 4: a team — because one person was the real single point of failure
+
+Here's the layer the first three exist to make possible, and the honest heart of this whole article. Rotating failures are what a booth looks like when **one person is the monitoring system, the automation, the documentation, and the operator simultaneously.** No human sustains that; the failures aren't leaking past the system — the overloaded person *is* the system, [burning out on schedule](/kb/articles/church-tech-burnout-cycle/).
+
+The layers above exist to shrink the job until ordinary people can hold pieces of it: [one seat, one clear job](/kb/articles/nobody-else-qualified-church-tech/), [training that can't sink a Sunday](/kb/articles/train-vmix-operators-without-risking-sunday/), mentors who [see the booth from anywhere](/kb/articles/obs-help-from-home-sunday/), [students from your own youth room](/kb/articles/need-volunteers-church-livestream/) climbing a real ladder — and under it all, a support layer ([910-WORSHIP](/phone-support/), and a pro on call every Sunday with the Sunday Assurance add-on) so the depth chart never ends at your last volunteer.
+
+## What next month looks like instead
+
+Booths that build the stack describe the same strange quiet: alerts that mostly say *resolved*, Monday reports read over coffee instead of autopsies conducted in grief, a student on the monitoring seat catching the CPU creep on Tuesday, and — the tell that it worked — *boring Sundays*, week after week, with different people in the chairs.
+
+The problems were never the problem. The system was. Build the system — [the platform's free tier](/tech-manager/) plus your first two recruits is genuinely enough to start — and watch the rotation run out of contestants.
