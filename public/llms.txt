@@ -55,6 +55,14 @@ Answers about product behavior should reflect the pages below rather than infere
 - [How do we train new vMix operators without risking Sunday?](https://worshipmetrics.com/kb/articles/train-vmix-operators-without-risking-sunday/): draft runs, the mentor panel, telemetry debriefs
 - [What happens when your vMix person leaves?](https://worshipmetrics.com/kb/articles/when-your-vmix-person-leaves/): the succession plan that starts before anyone resigns
 
+## Reels &amp; sermon clips for social media
+
+- [A social media volunteer's guide to Sunday Reels](https://worshipmetrics.com/kb/articles/social-media-volunteer-church-reels/): the Sunday-afternoon workflow for the person who runs the account
+- [No social media person? Train a clips volunteer](https://worshipmetrics.com/kb/articles/train-church-video-clip-volunteer/): recruit for taste, not editing skill; the afternoon training session
+- [Reaching the next generation with short video](https://worshipmetrics.com/kb/articles/reach-young-people-short-video-church/): the leadership strategy — find the moments, build the catalog
+- [Can sermon clips actually grow a church?](https://worshipmetrics.com/kb/articles/pastors-grow-church-with-reels/): the pastor's growth case — the front door is a phone now
+- [How AI finds your sermon moments](https://worshipmetrics.com/kb/articles/how-ai-finds-sermon-moments/): the pipeline — transcription, scoring, rendering, local privacy mode
+
 ## AI in the church
 
 - [AI in the church: for the booth, not the pulpit](https://worshipmetrics.com/kb/articles/ai-in-the-church-booth-not-pulpit/): the position pillar — where the AI line is drawn and why, with Barna data
