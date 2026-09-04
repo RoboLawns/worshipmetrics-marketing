@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import PulseEscalation from "../components/diagrams/PulseEscalation.astro";
 import FoundersStrip from "../components/FoundersStrip.astro";
@@ -322,4 +323,10 @@ const structuredData = [
       </div>
     </div>
   </section>
+  <KBQuestions heading="Support questions churches actually ask." items={[
+    { question: "How do churches get tech support for their AV systems?", href: "/kb/articles/church-av-tech-support-options/" },
+    { question: "Who answers at 8:45 on a Sunday morning?", href: "/kb/articles/sunday-morning-church-tech-support/" },
+    { question: "Can church tech support be remote — and actually work?", href: "/kb/articles/remote-church-tech-support/" },
+    { question: "Church tech support when there's no budget for it", href: "/kb/articles/small-church-tech-support-budget/" },
+  ]} />
 </Layout>
