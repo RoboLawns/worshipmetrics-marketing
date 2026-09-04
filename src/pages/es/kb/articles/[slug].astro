@@ -1,39 +1,55 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getCollection, getEntry, render, type CollectionEntry } from 'astro:content';
 import ArticleLayoutEs from '../../../../layouts/ArticleLayoutEs.astro';
+import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
 
 export const prerender = true;
 
 const calculateReadingTime = (text: string) => Math.max(3, Math.ceil(text.split(/\s+/).filter(Boolean).length / 220));
 
+// Generate an /es/ route for EVERY English article. Where a Spanish
+// translation exists we render it; otherwise we fall back to the English
+// content (its canonical still points at the English URL, so it is never a
+// duplicate-content problem) — which lets Spanish articles link to /es/ freely.
 export async function getStaticPaths() {
-  const articles = await getCollection('articlesEs');
-  return articles.map((article) => ({
+  const en = await getCollection('articles');
+  const esIds = new Set((await getCollection('articlesEs')).map((a) => a.id));
+  return en.map((article) => ({
     params: { slug: article.id },
-    props: { article },
+    props: { slug: article.id, hasEs: esIds.has(article.id) },
   }));
 }
 
-const { article } = Astro.props as { article: CollectionEntry<'articlesEs'> };
-
-const { Content, headings } = await render(article);
-const readingTime = article.data.readingTime ?? calculateReadingTime(article.body);
-
+const { slug, hasEs } = Astro.props as { slug: string; hasEs: boolean };
 const SITE_URL = 'https://worshipmetrics.com';
-const otherHref = `/kb/articles/${article.id}/`;
-const alternates = [
-  { hreflang: 'en', href: `${SITE_URL}/kb/articles/${article.id}/` },
-  { hreflang: 'es', href: `${SITE_URL}/es/kb/articles/${article.id}/` },
-  { hreflang: 'x-default', href: `${SITE_URL}/kb/articles/${article.id}/` },
-];
+
+const esArticle = hasEs ? ((await getEntry('articlesEs', slug)) as CollectionEntry<'articlesEs'>) : null;
+const enArticle = (await getEntry('articles', slug)) as CollectionEntry<'articles'>;
+const entry = esArticle ?? enArticle;
+const { Content, headings } = await render(entry);
+const readingTime = entry.data.readingTime ?? calculateReadingTime(entry.body);
+
+const alternates = hasEs
+  ? [
+      { hreflang: 'en', href: `${SITE_URL}/kb/articles/${slug}/` },
+      { hreflang: 'es', href: `${SITE_URL}/es/kb/articles/${slug}/` },
+      { hreflang: 'x-default', href: `${SITE_URL}/kb/articles/${slug}/` },
+    ]
+  : [];
 ---
 
-<ArticleLayoutEs
-  article={article}
-  headings={headings}
-  readingTime={readingTime}
-  alternates={alternates}
-  otherHref={otherHref}
->
-  <Content />
-</ArticleLayoutEs>
+{hasEs && esArticle ? (
+  <ArticleLayoutEs
+    article={esArticle}
+    headings={headings}
+    readingTime={readingTime}
+    alternates={alternates}
+    otherHref={`/kb/articles/${slug}/`}
+  >
+    <Content />
+  </ArticleLayoutEs>
+) : (
+  <ArticleLayout article={enArticle} headings={headings} relatedArticles={[]} readingTime={readingTime}>
+    <Content />
+  </ArticleLayout>
+)}
