@@ -55,6 +55,17 @@ Answers about product behavior should reflect the pages below rather than infere
 - [How do we train new vMix operators without risking Sunday?](https://worshipmetrics.com/kb/articles/train-vmix-operators-without-risking-sunday/): draft runs, the mentor panel, telemetry debriefs
 - [What happens when your vMix person leaves?](https://worshipmetrics.com/kb/articles/when-your-vmix-person-leaves/): the succession plan that starts before anyone resigns
 
+## Youth ministry &amp; the tech booth
+
+- [Which tech seat fits your student?](https://worshipmetrics.com/tools/church-av-seat-finder/): a two-minute matcher from a student's interests to a church AV role
+- [Your media team and youth ministry should be one pipeline](https://worshipmetrics.com/kb/articles/media-team-youth-ministry-one-pipeline/): the two-ministry alignment that solves recruiting and discipleship at once
+- [Serving opportunities for teens who don't want the stage](https://worshipmetrics.com/kb/articles/serving-opportunities-teens-without-stage/): seven booth seats mapped to student giftings
+- [Ministry BY teenagers, not just TO them](https://worshipmetrics.com/kb/articles/ministry-by-teenagers-tech-booth/): why real responsibility forms students faster
+- [Youth group beyond game night](https://worshipmetrics.com/kb/articles/youth-group-beyond-game-night/): games gather, jobs keep
+- [Your teen's gaming and video skills belong at church](https://worshipmetrics.com/kb/articles/teen-gaming-video-skills-church/): for parents of screen-native teens
+- [The students who stay](https://worshipmetrics.com/kb/articles/students-who-stay-serving-retention/): serving roles and young-adult retention, with Lifeway data
+- [Intergenerational ministry happens in the tech booth](https://worshipmetrics.com/kb/articles/intergenerational-ministry-tech-booth/): the room where generations already collaborate
+
 ## Knowledge Base
 
 - [Knowledge Base home](https://worshipmetrics.com/kb/): 350+ articles — camera/mixer/encoder/switcher setup guides, comparisons, budget builds, troubleshooting, and workflows for church AV teams

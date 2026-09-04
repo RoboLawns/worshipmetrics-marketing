@@ -1,0 +1,203 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import KBQuestions from "../../components/KBQuestions.astro";
+
+const faqItems = [
+  {
+    question: "What tech roles can a student serve in at church?",
+    answer:
+      "More than most churches realize: camera operator, lyrics/presentation, stream operator, audio, lighting, recording and archiving, service directing — plus adjacent seats like sermon-clip editing and the welcome-desk check-in tablet. Each has a different floor, and most are reachable by a teenager with a mentor.",
+  },
+  {
+    question: "How accurate is this seat matcher?",
+    answer:
+      "It's a conversation starter, not a placement exam. The match points you to a seat whose daily work fits how the student already spends their attention — then the role page, a mentor, and a couple of trial Sundays do the real matching.",
+  },
+  {
+    question: "What if the student wants to try a different seat later?",
+    answer:
+      "That's the design. Seats form a ladder — students commonly start on lyrics or a camera and climb toward the switcher, or sideways into clips and audio. Moving seats isn't quitting; it's how a booth grows its next generation.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Layout
+  title="Which Church Tech Seat Fits Your Student?"
+  description="A two-minute matcher for youth pastors and parents: answer five questions about how a student already spends their attention, and get the church AV team seat where those instincts become a place to serve."
+  canonical="/tools/church-av-seat-finder"
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="eyebrow inline-flex items-center rounded-full border border-indigo-200 bg-white px-4 py-1 shadow-sm">Free tool &middot; 2 minutes</p>
+      <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Which tech seat fits your student?</h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
+        The gifts are usually already visible — in how a student spends their free time and attention. Five questions, and we'll point you to the seat on the church AV team where those instincts become a place to belong.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quiz -->
+  <section class="bg-white px-4 pb-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_24px_60px_rgba(15,23,42,0.08)] sm:p-10">
+      <div id="quiz"></div>
+      <div id="result" hidden>
+        <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Best-fit seat</p>
+        <h2 id="result-title" class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900"></h2>
+        <p id="result-tagline" class="mt-1 text-lg font-semibold text-indigo-600"></p>
+        <p id="result-body" class="mt-4 text-base leading-relaxed text-slate-600"></p>
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a id="result-link" href="/av-team/" class="btn-primary px-6 py-3 text-base">See the full role</a>
+          <a href="/av-team/" class="btn-outline text-sm">Browse every seat</a>
+          <button id="retake" class="btn-outline text-sm" type="button">Retake the quiz</button>
+        </div>
+        <p id="runners" class="mt-6 text-sm text-slate-500"></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    type Weights = Record<string, number>;
+    interface Option { label: string; w: Weights }
+    interface Question { q: string; options: Option[] }
+
+    const roles: Record<string, { title: string; tagline: string; body: string }> = {
+      "camera-operator": { title: "Camera Operator", tagline: "The Shot Framer", body: "Steady hands and a patient eye. This student notices framing, light, and the moment worth catching — and the congregation sees their work every week without ever seeing them." },
+      "audio-engineer": { title: "Audio Engineer", tagline: "The Ears", body: "They hear what others miss — the muddy mix, the late fade, the perfect blend. Audio is deep craft with a long ladder, and it starts with simply caring how things sound." },
+      "lyrics-operator": { title: "Lyrics Operator", tagline: "The Story Keeper", body: "Focused, dependable, always knows what comes next. The room sings because this seat never misses a cue — a perfect first seat with real responsibility from day one." },
+      "stream-operator": { title: "Stream Operator", tagline: "The Broadcaster", body: "Comfortable with screens, calm under pressure, probably already streams for fun. This seat carries the service to everyone who couldn't be in the room." },
+      "lighting-operator": { title: "Lighting Operator", tagline: "The Atmosphere", body: "They set the mood of every room they're in. Lighting turns that instinct into worship craft — shaping how the room feels, moment by moment." },
+      "recording-archivist": { title: "Recording / Archivist", tagline: "The Historian", body: "Detail-oriented and quietly thorough. Nothing is lost on their watch — recordings, files, the story of what happened — and Monday's sermon clips start from their work." },
+      "service-director": { title: "Service Director", tagline: "The Quarterback", body: "A natural coordinator who keeps the whole picture in view. This is the seat students grow into — calling the service, cueing the team, carrying the calm." },
+    };
+
+    const questions: Question[] = [
+      { q: "In their free time, this student mostly…", options: [
+        { label: "Streams, games, or watches streamers", w: { "stream-operator": 3, "service-director": 1 } },
+        { label: "Takes photos or shoots little videos", w: { "camera-operator": 3, "recording-archivist": 1 } },
+        { label: "Lives in headphones — playlists, mixes, beats", w: { "audio-engineer": 3 } },
+        { label: "Reads, writes, or keeps everything organized", w: { "lyrics-operator": 2, "recording-archivist": 2 } },
+      ]},
+      { q: "In a group project, they're the one who…", options: [
+        { label: "Takes charge and hands out the tasks", w: { "service-director": 3 } },
+        { label: "Quietly makes their own part excellent", w: { "camera-operator": 2, "lyrics-operator": 1, "audio-engineer": 1 } },
+        { label: "Catches the details everyone else missed", w: { "recording-archivist": 2, "audio-engineer": 2 } },
+        { label: "Makes the whole thing look and feel good", w: { "lighting-operator": 3 } },
+      ]},
+      { q: "Their Sunday-morning superpower would be…", options: [
+        { label: "Staying calm when something goes sideways", w: { "stream-operator": 2, "service-director": 2 } },
+        { label: "Patience — holding steady on one job", w: { "camera-operator": 3 } },
+        { label: "Hearing when something's off before anyone else", w: { "audio-engineer": 3 } },
+        { label: "Always knowing what comes next in the plan", w: { "lyrics-operator": 2, "service-director": 1 } },
+      ]},
+      { q: "Their relationship with screens looks like…", options: [
+        { label: "Three windows open, monitoring all of them", w: { "stream-operator": 2, "service-director": 2 } },
+        { label: "One screen, deep focus, don't interrupt", w: { "lyrics-operator": 2, "audio-engineer": 1, "camera-operator": 1 } },
+        { label: "Happier behind a camera than in front of one", w: { "camera-operator": 2, "recording-archivist": 1 } },
+        { label: "They notice the lighting in every room and every photo", w: { "lighting-operator": 3 } },
+      ]},
+      { q: "The compliment that would mean the most to them:", options: [
+        { label: "“You kept the whole thing running.”", w: { "service-director": 2, "stream-operator": 2 } },
+        { label: "“That shot was beautiful.”", w: { "camera-operator": 2, "lighting-operator": 1 } },
+        { label: "“It sounded perfect today.”", w: { "audio-engineer": 3 } },
+        { label: "“We get to rewatch it because of you.”", w: { "recording-archivist": 3 } },
+      ]},
+    ];
+
+    const quiz = document.getElementById("quiz")!;
+    const result = document.getElementById("result")!;
+    const scores: Weights = {};
+    let step = 0;
+
+    function renderStep() {
+      const item = questions[step];
+      quiz.innerHTML = `
+        <p class="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600">Question ${step + 1} of ${questions.length}</p>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-slate-900">${item.q}</h2>
+        <div class="mt-6 grid gap-3">
+          ${item.options.map((o, i) => `<button data-i="${i}" type="button" class="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-left text-base font-semibold text-slate-800 transition hover:border-indigo-300 hover:bg-white">${o.label}</button>`).join("")}
+        </div>`;
+      quiz.querySelectorAll("button").forEach((b) =>
+        b.addEventListener("click", () => {
+          const chosen = item.options[Number((b as HTMLElement).dataset.i)];
+          for (const [role, pts] of Object.entries(chosen.w)) scores[role] = (scores[role] || 0) + pts;
+          step += 1;
+          step < questions.length ? renderStep() : showResult();
+        })
+      );
+    }
+
+    function showResult() {
+      const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const [topSlug] = ranked[0];
+      const top = roles[topSlug];
+      quiz.innerHTML = "";
+      (document.getElementById("result-title") as HTMLElement).textContent = top.title;
+      (document.getElementById("result-tagline") as HTMLElement).textContent = top.tagline;
+      (document.getElementById("result-body") as HTMLElement).textContent = top.body;
+      (document.getElementById("result-link") as HTMLAnchorElement).href = `/av-team/${topSlug}/`;
+      const runners = ranked.slice(1, 3).map(([s]) => roles[s].title).join(" and ");
+      (document.getElementById("runners") as HTMLElement).textContent = runners ? `Also worth a look: ${runners}. Most students try two seats before one becomes theirs.` : "";
+      result.hidden = false;
+    }
+
+    document.getElementById("retake")!.addEventListener("click", () => {
+      for (const k of Object.keys(scores)) delete scores[k];
+      step = 0;
+      result.hidden = true;
+      renderStep();
+    });
+
+    renderStep();
+  </script>
+
+  <!-- Why seats work -->
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">Why one seat?</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">One seat, one clear job, one place to belong.</h2>
+      <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+        The fastest path to a confident student volunteer is one role with one clear job — not "helping with tech." A seat is small enough to learn in an hour, real enough that the room depends on it, and connected to a ladder worth climbing. That's the whole <a href="/av-club/" class="font-semibold text-indigo-600 hover:underline">AV Club</a> philosophy, and it's why the booth has become one of the best-kept secrets in youth ministry.
+      </p>
+      <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+        Share your result with your church's tech director — or if you <em>are</em> the tech director, this quiz plus a pizza night is a genuinely good AV Club kickoff.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <div class="text-center">
+        <p class="eyebrow">Questions</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Seat questions, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-6">
+        {faqItems.map(({ question, answer }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6">
+            <h3 class="text-lg font-bold text-slate-900">{question}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <KBQuestions heading="Next steps for the whole team." items={[
+    { question: "Can students safely run a church livestream?", href: "/kb/articles/students-run-church-livestream-safely/" },
+    { question: "How to start a church AV Club around your vMix system", href: "/kb/articles/start-church-av-club-vmix/" },
+    { question: "The tech booth is a youth ministry", href: "/kb/articles/tech-booth-youth-ministry/" },
+    { question: "Need volunteers for your livestream? Start with the youth ministry", href: "/kb/articles/need-volunteers-church-livestream/" },
+  ]} />
+</Layout>

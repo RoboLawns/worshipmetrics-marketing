@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import AVTeamCarousel from "../../components/AVTeamCarousel.astro";
 import AVTeamRoleNav from "../../components/AVTeamRoleNav.astro";
 import { avTeamRoles, getAVTeamRole, getAVTeamNeighbors } from "../../data/avTeam";
+import KBQuestions from "../../components/KBQuestions.astro";
 
 export const prerender = true;
 
@@ -156,4 +157,11 @@ const structuredData = {
       <AVTeamCarousel currentSlug={role.slug} heading="Explore the rest of the team." compact={true} />
     </div>
   </section>
+
+  <KBQuestions heading="Put this seat in a real Sunday." items={[
+    { question: "Can students safely run a church livestream?", href: "/kb/articles/students-run-church-livestream-safely/" },
+    { question: "How to start a church AV Club around your vMix system", href: "/kb/articles/start-church-av-club-vmix/" },
+    { question: "The tech booth is a youth ministry", href: "/kb/articles/tech-booth-youth-ministry/" },
+    { question: "How to train new operators without risking Sunday", href: "/kb/articles/train-vmix-operators-without-risking-sunday/" },
+  ]} />
 </Layout>
