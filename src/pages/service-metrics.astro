@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TotalReach from "../components/diagrams/TotalReach.astro";
@@ -226,5 +227,11 @@ const structuredData = {
     </div>
   </section>
 
+  <KBQuestions heading="Attendance questions leaders actually ask." items={[
+    { question: "How can a pastor check that Sunday went okay without asking the tech team?", href: "/kb/articles/pastor-check-sunday-without-asking-tech-team/" },
+    { question: "What counts as attendance when half the congregation watches online?", href: "/kb/articles/online-church-attendance-what-counts/" },
+    { question: "How do churches know how many people actually watched?", href: "/kb/articles/how-many-watched-church-livestream/" },
+    { question: "Camera auto-count attendance: setup, scheduling, and remote runs", href: "/kb/articles/camera-auto-count-attendance-setup/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

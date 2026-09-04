@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 
@@ -175,5 +176,11 @@ const structuredData = {
       </div>
     </div>
   </section>
+  <KBQuestions heading="Song library questions worship teams actually ask." items={[
+    { question: "Do we still need to report to CCLI if our lyrics software tracks songs?", href: "/kb/articles/ccli-reporting-with-lyrics-software/" },
+    { question: "ChordPro for worship teams: one chart, every key", href: "/kb/articles/chordpro-worship-team-reference/" },
+    { question: "Migrating your song library from ProPresenter: what carries over", href: "/kb/articles/migrate-propresenter-song-library/" },
+    { question: "A worship leader's Thursday: one planning hour, start to finish", href: "/kb/articles/worship-leader-thursday-planning-hour/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import FeatureIcon from "../components/FeatureIcon.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
@@ -371,5 +372,11 @@ const structuredData = {
     </div>
   </section>
 
+  <KBQuestions heading="Documentation questions churches actually ask." items={[
+    { question: "Connecting a UniFi controller: port-precise network truth", href: "/kb/articles/connect-unifi-worshipmetrics/" },
+    { question: "A cable labeling system that survives volunteer turnover", href: "/kb/articles/cable-labeling-system-that-survives/" },
+    { question: "Can volunteers run the livestream when the tech director is away?", href: "/kb/articles/volunteers-run-livestream-without-tech-director/" },
+    { question: "Which AV signals survive a network switch?", href: "/kb/articles/av-signals-that-survive-network-switch/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 import PulseNotifications from "../components/diagrams/PulseNotifications.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
@@ -438,5 +439,11 @@ const structuredData = {
     </div>
   </section>
 
+  <KBQuestions heading="Monitoring questions churches actually ask." items={[
+    { question: "Can I get an alert on my phone when our stream drops?", href: "/kb/articles/church-stream-drop-phone-alert/" },
+    { question: "What happens if the booth PC crashes mid-service?", href: "/kb/articles/booth-pc-crashes-mid-service/" },
+    { question: "When does WorshipMetrics alert you? The exact thresholds", href: "/kb/articles/pulse-alert-thresholds-reference/" },
+    { question: "Why does our livestream stutter 40 minutes in?", href: "/kb/articles/livestream-stutters-40-minutes-in/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

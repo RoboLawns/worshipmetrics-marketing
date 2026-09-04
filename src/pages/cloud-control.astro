@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
 import CloudControlPath from "../components/diagrams/CloudControlPath.astro";
 
@@ -268,5 +269,11 @@ const structuredData = {
     </div>
   </section>
 
+  <KBQuestions heading="Remote control questions churches actually ask." items={[
+    { question: "Can volunteers run the livestream when the tech director is out of town?", href: "/kb/articles/volunteers-run-livestream-without-tech-director/" },
+    { question: "Diary of a first-Sunday stream operator", href: "/kb/articles/diary-first-sunday-stream-operator/" },
+    { question: "What happens if the booth PC crashes mid-service?", href: "/kb/articles/booth-pc-crashes-mid-service/" },
+    { question: "Can I get an alert on my phone when our stream drops?", href: "/kb/articles/church-stream-drop-phone-alert/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

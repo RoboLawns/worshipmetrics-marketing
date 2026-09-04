@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import FeatureIcon from "../components/FeatureIcon.astro";
 import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
@@ -347,5 +348,11 @@ const structuredData = [
     </div>
   </section>
 
+  <KBQuestions heading="Streaming questions churches actually ask." items={[
+    { question: "Is our church WiFi good enough to livestream?", href: "/kb/articles/church-wifi-good-enough-to-livestream/" },
+    { question: "Why does our livestream look fine at 9:00 and stutter by 9:40?", href: "/kb/articles/livestream-stutters-40-minutes-in/" },
+    { question: "Can I get an alert on my phone when our stream drops?", href: "/kb/articles/church-stream-drop-phone-alert/" },
+    { question: "How do churches know how many people actually watched?", href: "/kb/articles/how-many-watched-church-livestream/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

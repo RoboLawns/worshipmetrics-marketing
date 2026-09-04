@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import ResearchCallout from "../components/ResearchCallout.astro";
 import FeatureIcon from "../components/FeatureIcon.astro";
 import CloudConnectivity from "../components/diagrams/CloudConnectivity.astro";
@@ -791,4 +792,10 @@ const structuredData = [
       });
     })();
   </script>
+  <KBQuestions heading="Booth questions churches actually ask." items={[
+    { question: "What happens if the booth PC crashes mid-service?", href: "/kb/articles/booth-pc-crashes-mid-service/" },
+    { question: "What does Tech Manager fix before you notice?", href: "/kb/articles/tech-manager-self-healing-explained/" },
+    { question: "A tech director's Tuesday: the maintenance rhythm that saves Sundays", href: "/kb/articles/tech-director-tuesday-maintenance-rhythm/" },
+    { question: "What does Tech Manager actually send? A tour of the booth heartbeat", href: "/kb/articles/tech-manager-heartbeat-telemetry-tour/" },
+  ]} />
 </Layout>

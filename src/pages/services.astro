@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import FeatureIcon from "../components/FeatureIcon.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
@@ -433,5 +434,11 @@ const structuredData = {
     </div>
   </section>
 
+  <KBQuestions heading="Planning questions churches actually ask." items={[
+    { question: "How do small churches schedule volunteers without the text scramble?", href: "/kb/articles/volunteer-scheduling-without-text-scramble/" },
+    { question: "Scheduling volunteers a month at a time: the matrix workflow", href: "/kb/articles/scheduling-volunteers-month-at-a-time/" },
+    { question: "Test runs vs the real thing: how Live Run protects your service history", href: "/kb/articles/live-run-test-vs-real-service/" },
+    { question: "Connecting Planning Center to WorshipMetrics", href: "/kb/articles/connect-planning-center-worshipmetrics/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

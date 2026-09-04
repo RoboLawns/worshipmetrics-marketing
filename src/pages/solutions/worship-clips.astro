@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import KBQuestions from "../../components/KBQuestions.astro";
 import ResearchCallout from "../../components/ResearchCallout.astro";
 import { contentStats } from "../../data/churchProductionResearch";
 import ImageCarousel from "../../components/ImageCarousel.astro";
@@ -272,5 +273,10 @@ import ReelsPipeline from "../../components/diagrams/ReelsPipeline.astro";
     footnote="The expectation moved faster than anyone's staffing did. Reels exists so the clips come out of the service you already produced, instead of becoming somebody's Monday."
   />
 
+  <KBQuestions heading="Clip questions churches actually ask." items={[
+    { question: "How do I get Sunday's sermon onto Instagram before Monday?", href: "/kb/articles/sunday-sermon-instagram-before-monday/" },
+    { question: "How AI finds your sermon moments: inside the Reels pipeline", href: "/kb/articles/how-ai-finds-sermon-moments/" },
+    { question: "Clipping sermons for social media: Reels, Shorts & TikTok workflow", href: "/kb/articles/clipping-sermons-social-media/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

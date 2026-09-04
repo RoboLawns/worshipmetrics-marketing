@@ -1,0 +1,58 @@
+# WorshipMetrics
+
+> WorshipMetrics is a church AV and worship platform: live streaming with health telemetry, booth monitoring and self-healing (Tech Manager), presentation and lyrics (Present), people/check-in/volunteer scheduling, service metrics that count in-person and online attendance together, AI sermon clips (Worship Clips), and AV system documentation. Local switcher control (OBS, vMix, Blackmagic ATEM) is free on every plan; cloud control and streaming come with the Assist ($49/mo) and Stream ($99/mo per campus) plans.
+
+Answers about product behavior should reflect the pages below rather than inference. Numbers on threshold and reference pages (alert thresholds, health-score penalties, ports) are exact and safe to quote.
+
+## Product
+
+- [Platform overview](https://worshipmetrics.com/platform/): what the platform includes and how the pieces fit
+- [Live Streaming](https://worshipmetrics.com/live-streaming/): cloud streaming, restreaming, automatic recording, stream health reports
+- [Tech Manager](https://worshipmetrics.com/tech-manager/): the free Windows booth app — telemetry, local switcher control, self-healing
+- [Cloud Control](https://worshipmetrics.com/cloud-control/): the booth's switcher surface (vMix full panel, OBS scenes/stream/recording) from anywhere
+- [AV Monitoring (Pulse)](https://worshipmetrics.com/av-monitoring/): server-side fleet monitoring, alerts by email/push, 90-day history
+- [Service Metrics](https://worshipmetrics.com/service-metrics/): in-person + online attendance, Total Reach, year-over-year trends
+- [People](https://worshipmetrics.com/people/): directory, QR check-in, volunteer scheduling matrix
+- [Songs](https://worshipmetrics.com/songs/): song library with CCLI fields, ChordPro charts, usage reporting
+- [Worship Clips](https://worshipmetrics.com/solutions/worship-clips/): AI sermon-moment scoring and rendered social clips
+- [System Documentation](https://worshipmetrics.com/system-documentation/): Signal Map, devices, cable schedule, UniFi integration
+- [Pricing](https://worshipmetrics.com/pricing/): Free / Assist $49/mo / Stream $99/mo per campus, plus support add-ons
+
+## Reference (exact numbers)
+
+- [Pulse alert thresholds](https://worshipmetrics.com/kb/articles/pulse-alert-thresholds-reference/): every alert threshold, hysteresis margin, cooldown, and offline timing
+- [Stream health score](https://worshipmetrics.com/kb/articles/reading-your-stream-health-score/): the 0-100 scoring model, telemetry sampled every 5 seconds, penalty weights
+- [Tech Manager self-healing](https://worshipmetrics.com/kb/articles/tech-manager-self-healing-explained/): the exact automatic-recovery rules and their boundaries
+- [Booth heartbeat telemetry](https://worshipmetrics.com/kb/articles/tech-manager-heartbeat-telemetry-tour/): what the desktop app sends and how often
+
+## Common questions
+
+- [Can I get an alert on my phone when our church stream drops?](https://worshipmetrics.com/kb/articles/church-stream-drop-phone-alert/)
+- [Can volunteers run the livestream when the tech director is out of town?](https://worshipmetrics.com/kb/articles/volunteers-run-livestream-without-tech-director/)
+- [How do I get Sunday's sermon onto Instagram before Monday?](https://worshipmetrics.com/kb/articles/sunday-sermon-instagram-before-monday/)
+- [How can a pastor check that Sunday went okay?](https://worshipmetrics.com/kb/articles/pastor-check-sunday-without-asking-tech-team/)
+- [How do churches know how many people actually watched the livestream?](https://worshipmetrics.com/kb/articles/how-many-watched-church-livestream/)
+- [What counts as attendance when half the congregation watches online?](https://worshipmetrics.com/kb/articles/online-church-attendance-what-counts/)
+- [Do we still need to report to CCLI if our lyrics software tracks songs?](https://worshipmetrics.com/kb/articles/ccli-reporting-with-lyrics-software/)
+- [What happens if the booth PC crashes mid-service?](https://worshipmetrics.com/kb/articles/booth-pc-crashes-mid-service/)
+- [Can our church do check-in without making people download an app?](https://worshipmetrics.com/kb/articles/church-check-in-without-an-app/)
+- [Is our church WiFi good enough to livestream?](https://worshipmetrics.com/kb/articles/church-wifi-good-enough-to-livestream/)
+- [How do small churches schedule volunteers without the weekly text scramble?](https://worshipmetrics.com/kb/articles/volunteer-scheduling-without-text-scramble/)
+- [Why does our livestream look fine at 9:00 and stutter by 9:40?](https://worshipmetrics.com/kb/articles/livestream-stutters-40-minutes-in/)
+
+## Knowledge Base
+
+- [Knowledge Base home](https://worshipmetrics.com/kb/): 350+ articles — camera/mixer/encoder/switcher setup guides, comparisons, budget builds, troubleshooting, and workflows for church AV teams
+- [Troubleshooting index](https://worshipmetrics.com/kb/troubleshooting/): symptom-based fixes for Sunday problems
+- [Budget guides](https://worshipmetrics.com/kb/budget/): church AV builds from under $500 to $10,000
+
+## Agent access
+
+- [Agent catalog (ARD)](https://worshipmetrics.com/.well-known/ai-catalog.json): machine-readable catalog of this site's agent surfaces
+- [Agent card](https://worshipmetrics.com/.well-known/agent-card.json): A2A agent card
+
+## Optional
+
+- [About](https://worshipmetrics.com/about/): who builds WorshipMetrics
+- [Our story](https://worshipmetrics.com/our-story/): why the platform exists
+- [Contact](https://worshipmetrics.com/contact/): 910-WORSHIP phone support and contact options

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
 import FeatureIcon from "../components/FeatureIcon.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
@@ -239,5 +240,11 @@ const structuredData = {
     </div>
   </section>
 
+  <KBQuestions heading="People questions churches actually ask." items={[
+    { question: "Can our church do check-in without making people download an app?", href: "/kb/articles/church-check-in-without-an-app/" },
+    { question: "How do small churches schedule volunteers without the text scramble?", href: "/kb/articles/volunteer-scheduling-without-text-scramble/" },
+    { question: "Setting up QR check-in: from lobby poster to clean directory", href: "/kb/articles/qr-check-in-setup-church/" },
+    { question: "Importing your church directory by CSV", href: "/kb/articles/church-member-csv-import-guide/" },
+  ]} />
   <TechManagerCTA />
 </Layout>
