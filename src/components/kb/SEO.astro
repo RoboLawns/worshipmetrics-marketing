@@ -9,6 +9,11 @@ interface FaqItem {
   answer: string;
 }
 
+interface AlternateLink {
+  hreflang: string;
+  href: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -20,6 +25,8 @@ interface Props {
   updatedAt?: Date;
   breadcrumbItems?: BreadcrumbItem[];
   faq?: FaqItem[];
+  lang?: string;
+  alternates?: AlternateLink[];
 }
 
 const SITE_URL = 'https://worshipmetrics.com';
@@ -36,7 +43,11 @@ const {
   updatedAt,
   breadcrumbItems = [],
   faq = [],
+  lang = 'en',
+  alternates = [],
 } = Astro.props;
+
+const titleSuffix = lang === 'es' ? 'Base de Conocimiento WorshipMetrics' : 'WorshipMetrics Knowledge Base';
 
 const normalizeCanonicalPath = (value: string) => {
   if (value === '/') return '/';
@@ -46,7 +57,7 @@ const normalizeCanonicalPath = (value: string) => {
 
 const canonicalUrl = canonical.startsWith('http') ? canonical : `${SITE_URL}${normalizeCanonicalPath(canonical)}`;
 const ogImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
-const pageTitle = `${title} | WorshipMetrics Knowledge Base`;
+const pageTitle = `${title} | ${titleSuffix}`;
 
 const jsonLd: unknown[] = [];
 
@@ -108,6 +119,9 @@ if (breadcrumbItems.length > 0) {
 <meta name="description" content={description} />
 <meta name="robots" content={robots} />
 <link rel="canonical" href={canonicalUrl} />
+{alternates.map((alt) => (
+  <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+))}
 
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={description} />

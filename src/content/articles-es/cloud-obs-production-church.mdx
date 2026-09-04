@@ -1,0 +1,53 @@
+---
+title: "Producción OBS en la Nube para Iglesias: Control Remoto por WebSocket"
+description: "OBS habla un protocolo de control remoto hecho justo para esto. Tu iglesia mantiene OBS corriendo gratis y local en la cabina, mientras WorshipMetrics transmite el cambio de escenas, el stream y el control de grabación —más monitoreo en vivo— a cualquier dispositivo donde tu equipo inicie sesión."
+category: "streaming"
+tags: ["OBS", "cloud production", "WebSocket", "remote control"]
+difficulty: "beginner"
+publishedAt: "2026-09-05"
+coverImage: "/images/products/cloud-obs-production-church/cloud-obs-production-church-websocket.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Se puede controlar OBS desde la nube?"
+    answer: "Sí. OBS incluye un protocolo de control remoto llamado WebSocket (v5). WorshipMetrics se conecta a él en la cabina y lo transmite de forma segura, para que una persona autorizada en cualquier lugar pueda ver el estado en vivo de la cabina y cambiar escenas, e iniciar o detener el stream y la grabación —mientras OBS mismo sigue corriendo en la PC de tu cabina."
+  - question: "¿Cuesta algo el control de OBS en la nube, y necesita abrir puertos?"
+    answer: "El control local en la cabina es gratis en todos los planes, para siempre; la capa de nube desde cualquier lugar viene con Assist ($49/mes) o Stream ($99/mes por campus). Sin abrir puertos ni VPN —Tech Manager hace una sola conexión segura de salida, y solo las personas que invitas a tu equipo pueden conectarse."
+  - question: "¿Qué no se puede hacer con OBS de forma remota?"
+    answer: "La edición profunda —construir escenas, agregar fuentes, recablear filtros de audio— se queda en la cabina, en la máquina de OBS, que de todos modos es donde ese trabajo de martes pertenece. El control remoto cubre la superficie de operación en vivo: cambio de escenas, iniciar/detener stream, iniciar/detener grabación, con el estado en vivo visible. Para correr un servicio, eso es lo que un segundo operador necesita."
+---
+
+## OBS fue hecho para manejarse de forma remota —la mayoría de las iglesias solo nunca lo conectaron
+
+Aquí hay un dato que sorprende a muchos operadores de OBS en iglesias: OBS habla un protocolo de control remoto desde hace años. Se llama **WebSocket (v5)**, viene dentro de la app, y es la puerta de entrada que el proyecto OBS mantiene precisamente para que otro software vea y maneje OBS. Lo que a la mayoría de las iglesias les falta no es la capacidad —es una forma, con forma de iglesia, de usarla con seguridad un domingo. Eso es lo que provee la producción OBS en la nube.
+
+El modelo coincide con [el resto del ecosistema](/es/kb/articles/cloud-video-production-for-churches/): **OBS sigue corriendo localmente en tu cabina, gratis, en la PC que tienes —y [WorshipMetrics](/obs-integration/) transmite su control por WebSocket y refleja su estado en vivo a cualquier dispositivo donde tu equipo inicie sesión.** Switching local, alcance en la nube. Nada de tu producción se muda a un servidor rentado.
+
+## Qué cubre el control remoto de OBS —con honestidad
+
+Directo sobre el límite, porque la honestidad es toda la marca aquí. El control de OBS en la nube le da a tu equipo la **superficie de operación en vivo**:
+
+- **Cambio de escenas** —muévete entre las escenas de tu servicio desde cualquier lugar.
+- **Control del stream** —inicia y detén la transmisión de forma remota.
+- **Control de grabación** —inicia y detén la grabación, y [confirma desde un teléfono que de verdad está corriendo](/kb/articles/obs-recording-unplayable-after-crash/) antes de que empiece el servicio.
+- **Estado en vivo visible** —escena actual, estado de stream y grabación, y [la salud del encoder llegando cada pocos segundos](/kb/articles/is-obs-stream-actually-working/), para que un ayudante remoto *vea* la cabina en lugar de preguntar por ella.
+
+Lo que se queda en la cabina: la edición profunda de escenas —construir escenas, agregar fuentes, cirugía de filtros de audio. Y ese es el límite correcto, no una limitación: [los cambios de configuración a mitad del servicio son su propia categoría de fallas](/kb/articles/obs-settings-changed-between-sundays/), y toda cabina estable adopta la misma disciplina de todos modos —**opera en vivo desde cualquier lugar, edita los martes en la máquina.** (Las iglesias que quieren una superficie de *switching* remoto más profunda —T-bar completo, overlays, bus de audio— son las que con el tiempo [miran hacia vMix](/es/kb/articles/cloud-vmix-production-church/); para correr un servicio de OBS de forma remota, escenas más stream más grabación es el trabajo.)
+
+## ¿Por qué no simplemente hospedar OBS en la nube?
+
+Porque para una iglesia, [local primero gana en las tres cosas que importan](/es/kb/articles/cloud-video-production-for-churches/): el switching en vivo nunca depende de tu subida, no hay renta de cómputo encima de la PC que ya tienes, y —el bono específico de OBS— **es gratis.** OBS no cuesta nada, su control local a través de Tech Manager no cuesta nada, y eso hace de la producción OBS en la nube el camino de menor costo hacia una cabina alcanzable, monitoreable y llevada por un equipo en toda la tecnología de iglesias. Agregas la capa de nube; nunca rentas la producción.
+
+## Qué hace posible
+
+La superficie remota es el mecanismo; los resultados son la razón:
+
+- **Confirmación sin un carro.** "¿Está grabando? ¿Está en vivo?" respondido —y arreglado— desde un teléfono, por quien esté de turno.
+- **Un segundo operador de verdad.** El respaldo inicia el stream y cambia a la escena de cuenta regresiva desde su cocina cuando el voluntario agendado está atorado en el tráfico —para que el [novato en la mesa](/kb/articles/diary-first-sunday-stream-operator/) nunca esté solo.
+- **Mentoría con ojos, no con adivinanzas.** Un veterano observa la escena en vivo real y el estado del encoder mientras un [estudiante o voluntario nuevo maneja](/kb/articles/train-obs-volunteers-church/) —la diferencia entre acompañar e interrogar, y lo que hace que [la ayuda desde casa de verdad funcione](/kb/articles/obs-help-from-home-sunday/).
+
+Una sola conexión segura de salida lleva todo esto —sin abrir puertos, sin VPN— solo miembros invitados se conectan, y cada acción remota queda registrada. La historia completa de convertir una máquina de OBS en un equipo es [ya tienes OBS](/kb/articles/you-already-have-obs/).
+
+## La plataforma por debajo
+
+El control de OBS en la nube no es un aparato suelto —va montado sobre la misma plataforma que [consolida tu streaming, clips, presentación, calendarización, monitoreo y soporte](/kb/articles/one-platform-church-tech-stack/) en un solo inicio de sesión. Tu encoder gratuito, hecho alcanzable por todo tu equipo, dentro de un solo lugar que también corre el resto de la tecnología de tu iglesia. Eso es producción en la nube como una iglesia de verdad la quiere: nada rentado que ya posees, nada tercerizado que preferirías hacer tú mismo, y todo por fin en una sola plataforma.

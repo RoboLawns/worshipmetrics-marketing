@@ -1,0 +1,23 @@
+---
+interface Props {
+  lang: string;
+  /** URL of this page's twin in the other language, or null if none exists. */
+  otherHref: string | null;
+}
+
+const { lang, otherHref } = Astro.props;
+if (!otherHref) return;
+
+// When viewing English, offer Spanish; when viewing Spanish, offer English.
+const label = lang === 'es' ? 'English' : 'Español';
+---
+
+<a
+  href={otherHref}
+  rel="alternate"
+  hreflang={lang === 'es' ? 'en' : 'es'}
+  class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-indigo-300 hover:text-indigo-700"
+>
+  <svg viewBox="0 0 20 20" fill="none" class="h-3.5 w-3.5" aria-hidden="true"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM2 10h16M10 2c2 2.5 3 5.5 3 8s-1 5.5-3 8c-2-2.5-3-5.5-3-8s1-5.5 3-8z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  {label}
+</a>

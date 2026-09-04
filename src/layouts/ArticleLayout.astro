@@ -6,8 +6,11 @@ import DifficultyBadge from '../components/kb/DifficultyBadge.astro';
 import ProductCTA from '../components/kb/ProductCTA.astro';
 import TableOfContents from '../components/kb/TableOfContents.astro';
 import RelatedArticles from '../components/kb/RelatedArticles.astro';
+import LanguageSwitcher from '../components/kb/LanguageSwitcher.astro';
 import type { CollectionEntry } from 'astro:content';
 import { categoryMap } from '../data/categories';
+
+interface AlternateLink { hreflang: string; href: string; }
 
 interface Props {
   article: CollectionEntry<'articles'>;
@@ -16,9 +19,12 @@ interface Props {
   nextArticle?: CollectionEntry<'articles'>;
   relatedArticles: CollectionEntry<'articles'>[];
   readingTime: number;
+  alternates?: AlternateLink[];
+  /** Spanish twin URL, for the language switcher. Null when no translation exists. */
+  otherHref?: string | null;
 }
 
-const { article, headings, prevArticle, nextArticle, relatedArticles, readingTime } = Astro.props;
+const { article, headings, prevArticle, nextArticle, relatedArticles, readingTime, alternates = [], otherHref = null } = Astro.props;
 const categoryLabel = categoryMap[article.data.category].label;
 const breadcrumbItems = [
   { name: 'Home', item: 'https://worshipmetrics.com/kb/' },
@@ -37,6 +43,7 @@ const breadcrumbItems = [
   updatedAt={article.data.updatedAt}
   breadcrumbItems={breadcrumbItems}
   faq={article.data.faq}
+  alternates={alternates}
 >
   <section class="border-b border-border bg-bg">
     <div class="mx-auto max-w-7xl px-6 py-16">
@@ -50,6 +57,7 @@ const breadcrumbItems = [
         <DifficultyBadge difficulty={article.data.difficulty} />
         <span class="text-xs uppercase tracking-[0.16em] text-muted">{article.data.publishedAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
         <span class="text-xs uppercase tracking-[0.16em] text-muted">{readingTime} min read</span>
+        <LanguageSwitcher lang="en" otherHref={otherHref} />
       </div>
       <h1 class="mt-6 max-w-4xl font-display text-5xl leading-tight text-white sm:text-6xl">{article.data.title}</h1>
       <p class="mt-5 max-w-3xl text-lg leading-relaxed text-slate-300">{article.data.description}</p>

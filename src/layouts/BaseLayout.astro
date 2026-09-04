@@ -15,6 +15,11 @@ interface FaqItem {
   answer: string;
 }
 
+interface AlternateLink {
+  hreflang: string;
+  href: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -25,13 +30,16 @@ interface Props {
   updatedAt?: Date;
   breadcrumbItems?: BreadcrumbItem[];
   faq?: FaqItem[];
+  lang?: string;
+  alternates?: AlternateLink[];
 }
 
 const props = Astro.props;
+const lang = props.lang ?? 'en';
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

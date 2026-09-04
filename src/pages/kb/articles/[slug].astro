@@ -8,21 +8,34 @@ const calculateReadingTime = (text: string) => Math.max(3, Math.ceil(text.split(
 
 export async function getStaticPaths() {
   const articles = (await getCollection('articles')).sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime());
+  const esIds = new Set((await getCollection('articlesEs')).map((a) => a.id));
   return articles.map((article, index) => ({
     params: { slug: article.id },
     props: {
       article,
       prevArticle: index > 0 ? articles[index - 1] : undefined,
       nextArticle: index < articles.length - 1 ? articles[index + 1] : undefined,
+      hasEs: esIds.has(article.id),
     },
   }));
 }
 
-const { article, prevArticle, nextArticle } = Astro.props as {
+const { article, prevArticle, nextArticle, hasEs } = Astro.props as {
   article: CollectionEntry<'articles'>;
   prevArticle?: CollectionEntry<'articles'>;
   nextArticle?: CollectionEntry<'articles'>;
+  hasEs: boolean;
 };
+
+const SITE_URL = 'https://worshipmetrics.com';
+const otherHref = hasEs ? `/es/kb/articles/${article.id}/` : null;
+const alternates = hasEs
+  ? [
+      { hreflang: 'en', href: `${SITE_URL}/kb/articles/${article.id}/` },
+      { hreflang: 'es', href: `${SITE_URL}/es/kb/articles/${article.id}/` },
+      { hreflang: 'x-default', href: `${SITE_URL}/kb/articles/${article.id}/` },
+    ]
+  : [];
 
 const { Content, headings } = await render(article);
 const allArticles = await getCollection('articles');
@@ -40,6 +53,8 @@ const readingTime = article.data.readingTime ?? calculateReadingTime(article.bod
   nextArticle={nextArticle}
   relatedArticles={relatedArticles}
   readingTime={readingTime}
+  alternates={alternates}
+  otherHref={otherHref}
 >
   <Content />
 </ArticleLayout>

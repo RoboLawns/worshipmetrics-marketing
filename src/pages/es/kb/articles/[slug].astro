@@ -1,0 +1,39 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ArticleLayoutEs from '../../../../layouts/ArticleLayoutEs.astro';
+
+export const prerender = true;
+
+const calculateReadingTime = (text: string) => Math.max(3, Math.ceil(text.split(/\s+/).filter(Boolean).length / 220));
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articlesEs');
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props as { article: CollectionEntry<'articlesEs'> };
+
+const { Content, headings } = await render(article);
+const readingTime = article.data.readingTime ?? calculateReadingTime(article.body);
+
+const SITE_URL = 'https://worshipmetrics.com';
+const otherHref = `/kb/articles/${article.id}/`;
+const alternates = [
+  { hreflang: 'en', href: `${SITE_URL}/kb/articles/${article.id}/` },
+  { hreflang: 'es', href: `${SITE_URL}/es/kb/articles/${article.id}/` },
+  { hreflang: 'x-default', href: `${SITE_URL}/kb/articles/${article.id}/` },
+];
+---
+
+<ArticleLayoutEs
+  article={article}
+  headings={headings}
+  readingTime={readingTime}
+  alternates={alternates}
+  otherHref={otherHref}
+>
+  <Content />
+</ArticleLayoutEs>

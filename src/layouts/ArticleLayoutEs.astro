@@ -1,0 +1,107 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import BreadcrumbNav from '../components/kb/BreadcrumbNav.astro';
+import CategoryBadge from '../components/kb/CategoryBadge.astro';
+import DifficultyBadge from '../components/kb/DifficultyBadge.astro';
+import ProductCTA from '../components/kb/ProductCTA.astro';
+import TableOfContents from '../components/kb/TableOfContents.astro';
+import LanguageSwitcher from '../components/kb/LanguageSwitcher.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface AlternateLink { hreflang: string; href: string; }
+
+interface Props {
+  article: CollectionEntry<'articlesEs'>;
+  headings: { depth: number; slug: string; text: string }[];
+  readingTime: number;
+  alternates: AlternateLink[];
+  /** English twin URL, for the language switcher. */
+  otherHref: string;
+}
+
+const { article, headings, readingTime, alternates, otherHref } = Astro.props;
+const slug = article.id.replace(/^es\//, '');
+
+const categoryLabelsEs: Record<string, string> = {
+  'device-management': 'Gestión de Dispositivos',
+  streaming: 'Streaming',
+  'video-clipping': 'Clips de Video',
+  audio: 'Audio',
+  display: 'Proyección',
+  operations: 'Operaciones',
+};
+const categoryLabel = categoryLabelsEs[article.data.category] ?? article.data.category;
+
+const breadcrumbItems = [
+  { name: 'Base de Conocimiento', item: 'https://worshipmetrics.com/kb/' },
+  { name: categoryLabel, item: `https://worshipmetrics.com/kb/category/${article.data.category}/` },
+  { name: article.data.title, item: `https://worshipmetrics.com/es/kb/articles/${slug}/` },
+];
+
+const publishedLabel = article.data.publishedAt.toLocaleDateString('es', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+
+<BaseLayout
+  title={article.data.title}
+  description={article.data.description}
+  canonical={`/es/kb/articles/${slug}`}
+  image={article.data.coverImage}
+  type="article"
+  publishedAt={article.data.publishedAt}
+  updatedAt={article.data.updatedAt}
+  breadcrumbItems={breadcrumbItems}
+  faq={article.data.faq}
+  lang="es"
+  alternates={alternates}
+>
+  <section class="border-b border-border bg-bg">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <BreadcrumbNav items={[
+        { label: 'Base de Conocimiento', href: '/kb/' },
+        { label: categoryLabel },
+        { label: article.data.title },
+      ]} />
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <CategoryBadge category={article.data.category} />
+        <DifficultyBadge difficulty={article.data.difficulty} />
+        <span class="text-xs uppercase tracking-[0.16em] text-muted">{publishedLabel}</span>
+        <span class="text-xs uppercase tracking-[0.16em] text-muted">{readingTime} min de lectura</span>
+        <LanguageSwitcher lang="es" otherHref={otherHref} />
+      </div>
+      <h1 class="mt-6 max-w-4xl font-display text-5xl leading-tight text-white sm:text-6xl">{article.data.title}</h1>
+      <p class="mt-5 max-w-3xl text-lg leading-relaxed text-slate-300">{article.data.description}</p>
+      {article.data.coverImage && (
+        <div class="mt-10 overflow-hidden rounded-3xl border border-border bg-surface shadow-[0_18px_40px_rgba(0,0,0,0.24)]">
+          <img src={article.data.coverImage} alt={article.data.title} class="aspect-[16/8] w-full object-cover" loading="lazy" />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <article class="min-w-0">
+        <div class="kb-prose prose prose-slate max-w-none" data-pagefind-ignore>
+          <slot />
+        </div>
+        {article.data.faq && article.data.faq.length > 0 && (
+          <section class="mt-12 rounded-3xl border border-slate-200 bg-slate-50 p-8">
+            <h2 class="font-display text-2xl text-slate-900">Preguntas relacionadas</h2>
+            <dl class="mt-6 space-y-6">
+              {article.data.faq.map((entry) => (
+                <div>
+                  <dt class="font-semibold text-slate-900">{entry.question}</dt>
+                  <dd class="mt-2 text-sm leading-relaxed text-slate-700">{entry.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+        <ProductCTA variant="banner" />
+      </article>
+      <div class="hidden lg:block">
+        <TableOfContents headings={headings} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
