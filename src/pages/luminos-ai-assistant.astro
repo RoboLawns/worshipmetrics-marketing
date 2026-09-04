@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TechManagerCTA from "../components/TechManagerCTA.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import LuminosContextFlow from "../components/diagrams/LuminosContextFlow.astro";
 import SaturdayCheckIn from "../components/SaturdayCheckIn.astro";
 import LuminosContextDemo from "../components/diagrams/LuminosContextDemo.astro";
@@ -368,5 +369,11 @@ const structuredData = [
       </div>
     </div>
   </section>
+  <KBQuestions heading="AI in the church, answered honestly." items={[
+    { question: "AI in the church: for the booth, not the pulpit", href: "/kb/articles/ai-in-the-church-booth-not-pulpit/" },
+    { question: "AI that knows your wiring: how Luminos and Journey actually work", href: "/kb/articles/ai-that-knows-your-wiring/" },
+    { question: "Should our church use AI? A framework for leadership", href: "/kb/articles/should-church-use-ai-leadership/" },
+    { question: "Will AI replace our church tech volunteers?", href: "/kb/articles/will-ai-replace-church-tech-volunteers/" },
+  ]} />
   <TechManagerCTA />
 </Layout>

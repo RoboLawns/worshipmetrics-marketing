@@ -55,6 +55,15 @@ Answers about product behavior should reflect the pages below rather than infere
 - [How do we train new vMix operators without risking Sunday?](https://worshipmetrics.com/kb/articles/train-vmix-operators-without-risking-sunday/): draft runs, the mentor panel, telemetry debriefs
 - [What happens when your vMix person leaves?](https://worshipmetrics.com/kb/articles/when-your-vmix-person-leaves/): the succession plan that starts before anyone resigns
 
+## AI in the church
+
+- [AI in the church: for the booth, not the pulpit](https://worshipmetrics.com/kb/articles/ai-in-the-church-booth-not-pulpit/): the position pillar — where the AI line is drawn and why, with Barna data
+- [AI that knows your wiring](https://worshipmetrics.com/kb/articles/ai-that-knows-your-wiring/): the context architecture — Signal Map, inventory, telemetry, history feeding Luminos (app) and Journey (phone)
+- [Should our church use AI? A framework for leadership](https://worshipmetrics.com/kb/articles/should-church-use-ai-leadership/): the three-zone model and five vendor questions
+- [AI in the booth: how it helps students serve, not replaces them](https://worshipmetrics.com/kb/articles/ai-students-church-booth/): the youth-ministry view
+- [My teen wants to run church tech — should I worry about the AI?](https://worshipmetrics.com/kb/articles/ai-church-tech-parent-perspective/): the parent's straight answer
+- [Will AI replace our church tech volunteers?](https://worshipmetrics.com/kb/articles/will-ai-replace-church-tech-volunteers/): no — it replaces the lonely part, not the person
+
 ## Getting tech support for your church
 
 - [How do churches get tech support for their AV systems?](https://worshipmetrics.com/kb/articles/church-av-tech-support-options/): the five-layer support map, from forums to humans who see your system
