@@ -1,0 +1,125 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const outcomes = [
+  {
+    title: "Students who stay",
+    body: "Lifeway Research found 66% of church-attending teens drop out as young adults — and about 70% say it wasn't a decision; the habit just broke. Students who hold a real serving role carry an identity that survives transition: a crew that notices their absence, a skill the next church needs.",
+  },
+  {
+    title: "A volunteer pipeline that refills itself",
+    body: "The tech booth stops depending on one exhausted expert. Students climb a seat ladder — tablet, lyrics, camera, stream, switcher — and older students train younger ones, so every graduation is covered by the class behind it.",
+  },
+  {
+    title: "Genuine intergenerational ministry",
+    body: "The booth pairs veterans and teenagers as real collaborators — same headset channel, same shared work, every week. It's the connection our mixer events try to manufacture, occurring naturally around something both generations care about.",
+  },
+];
+
+const asks = [
+  { label: "People", detail: "One or two adult mentors (our current tech volunteers, plus any veteran willing to teach) and two or three named students to start." },
+  { label: "Structure", detail: "One seat per student with one clear job, a monthly club gathering (training, review, pizza), and serving rotations scheduled a month ahead." },
+  { label: "Tools", detail: "The WorshipMetrics platform: free to begin (local booth control, documentation, scheduling); the cloud mentoring layer — mentors seeing a student's live controls from anywhere — is $49/mo (Assist) or $99/mo per campus with streaming (Stream). Annual plans include two months free, and a member can sponsor it as a designated, tax-deductible gift through our normal church giving." },
+  { label: "A pilot window", detail: "One semester. We report back with the students served, the Sundays covered, and the stream-health record — the platform scores every service, so the results are measurable, not anecdotal." },
+];
+---
+
+<Layout
+  title="The AV Club Proposal"
+  description="A one-page, board-ready proposal for starting a church AV Club: what it is, what it produces — student retention, a volunteer pipeline, intergenerational ministry — what it requires, and the one-semester pilot ask."
+  canonical="/av-club/proposal"
+>
+  <style>
+    @media print {
+      header, footer, nav, .no-print { display: none !important; }
+      section { padding: 0.5rem 0 !important; }
+      body { background: #fff !important; }
+    }
+  </style>
+
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-14 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">A proposal for our church leadership</p>
+      <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Start an AV Club.</h1>
+      <p class="mt-5 text-lg leading-relaxed text-slate-600">
+        A structured way for our students to serve in the tech booth — real seats, adult mentors, and a ladder to grow on — that simultaneously staffs our production needs, deepens our youth ministry, and connects generations. This page is the whole proposal; it prints on one sheet.
+      </p>
+      <div class="no-print mt-6 flex flex-wrap gap-3">
+        <button onclick="window.print()" class="btn-primary px-6 py-3 text-base">Print this proposal</button>
+        <a href="/av-club/" class="btn-outline text-sm">See the full AV Club vision</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What it is -->
+  <section class="bg-white px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">What it is</h2>
+      <p class="mt-3 text-base leading-relaxed text-slate-600">
+        An AV Club is a named group of students who serve on the church's production team — camera, lyrics, audio, livestream, recording — each owning <strong>one seat with one clear job</strong>, trained and mentored by our existing tech volunteers. Students are matched to seats by gifting (there's even a
+        <a href="/tools/church-av-seat-finder/" class="font-semibold text-indigo-600 hover:underline">two-minute seat matcher</a>), responsibility is sized to age and maturity, and the club meets monthly for training and recognition. The model is documented in depth at
+        <a href="/av-club/" class="font-semibold text-indigo-600 hover:underline">worshipmetrics.com/av-club</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- What it produces -->
+  <section class="bg-white px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">What it produces</h2>
+      <div class="mt-5 space-y-5">
+        {outcomes.map(({ title, body }) => (
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-4 text-xs text-slate-500">
+        Retention data: Lifeway Research, 2019 — <a href="https://research.lifeway.com/2019/01/15/most-teenagers-drop-out-of-church-as-young-adults/" class="underline">research.lifeway.com</a>. Fuller treatment of each outcome: <a href="/kb/articles/students-who-stay-serving-retention/" class="underline">the students who stay</a>, <a href="/kb/articles/media-team-youth-ministry-one-pipeline/" class="underline">the two-ministry pipeline</a>, <a href="/kb/articles/intergenerational-ministry-tech-booth/" class="underline">intergenerational ministry in the booth</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Safety -->
+  <section class="bg-white px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">The safety question, answered</h2>
+      <p class="mt-3 text-base leading-relaxed text-slate-600">
+        Students cannot sink a Sunday, by design. Modern production systems restart a dropped stream or stopped recording automatically; a mentor can watch a student's actual controls live — from the next chair or from home — and a student's choices appear in <em>preview</em>, visible to the mentor before anything reaches the congregation. Every service produces a 0&ndash;100 health report, so the debrief is a teaching timeline, not a blame session. The complete case, written for this exact conversation: <a href="/kb/articles/students-run-church-livestream-safely/" class="font-semibold text-indigo-600 hover:underline">Can students safely run a church livestream?</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- What it requires -->
+  <section class="bg-white px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">What it requires</h2>
+      <div class="mt-5 space-y-4">
+        {asks.map(({ label, detail }) => (
+          <div class="flex items-start gap-4">
+            <span class="mt-1 rounded-full bg-indigo-600 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">{label}</span>
+            <p class="text-sm leading-relaxed text-slate-600">{detail}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-5 text-sm leading-relaxed text-slate-600">
+        On the sponsorship note: members who want their giving to reach the next generation directly can fund the platform as a designated gift through our normal giving — details at <a href="/gift/" class="font-semibold text-indigo-600 hover:underline">worshipmetrics.com/gift</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- The ask -->
+  <section class="bg-slate-50 px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">The ask</h2>
+      <p class="mt-3 text-base leading-relaxed text-slate-600">
+        Approve a <strong>one-semester pilot</strong>: two or three students, one seat each, mentored by our current team, with the club rhythm above. At semester's end we bring back the results — students serving, Sundays covered, and the measured health of every service — and decide together whether to grow it.
+      </p>
+      <p class="mt-4 text-base leading-relaxed text-slate-600">
+        The students are already in our building. The seats are already in our booth. This proposal simply introduces them.
+      </p>
+    </div>
+  </section>
+</Layout>

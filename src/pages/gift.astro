@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
 import FoundersStrip from "../components/FoundersStrip.astro";
 import WhyWeBuilt from "../components/WhyWeBuilt.astro";
 
@@ -142,7 +143,7 @@ const structuredData = {
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a href={GIFT_KIT_HREF} target="_blank" rel="noopener" class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="gift_hero_kit" data-wm-track-location="gift_hero">Download the Gift Kit</a>
-        <a href="/pricing" class="btn-outline">See plans &amp; pricing</a>
+        <a href="/pricing/" class="btn-outline">See plans &amp; pricing</a>
       </div>
       <p class="mt-5 text-sm text-slate-500">A five-page PDF: how it works, the tax part in plain English, current pricing, the recommendation letter, and a page for your church&apos;s finance team &mdash; ready to print or forward.</p>
     </div>
@@ -179,7 +180,7 @@ const structuredData = {
           Your gift changes the shape of that job. WorshipMetrics organizes the whole system and connects it to the cloud and to the team&apos;s phones, so collaboration becomes the normal way of working: the run-of-show is shared, the documentation is written down, and helping hands can actually help &mdash; even from home.
         </p>
         <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          And it creates new places to serve. When the booth has real roles with real tools, a curious teenager can be handed camera two &mdash; and the next generation gets a reason to stay involved. That&apos;s what churches build with our <a href="/av-club" class="font-semibold text-indigo-600 hover:text-indigo-800">AV club</a>.
+          And it creates new places to serve. When the booth has real roles with real tools, a curious teenager can be handed camera two &mdash; and the next generation gets a reason to stay involved. That&apos;s what churches build with our <a href="/av-club/" class="font-semibold text-indigo-600 hover:text-indigo-800">AV club</a>.
         </p>
       </div>
       <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
@@ -259,7 +260,7 @@ const structuredData = {
         </table>
       </div>
       <p class="mt-6 text-center text-sm text-slate-500">
-        Not sure which plan fits your church? Gift the amount you&apos;re comfortable with and let your tech team choose. <a href="/pricing" class="font-semibold text-indigo-600 hover:text-indigo-800">Compare plans &rarr;</a>
+        Not sure which plan fits your church? Gift the amount you&apos;re comfortable with and let your tech team choose. <a href="/pricing/" class="font-semibold text-indigo-600 hover:text-indigo-800">Compare plans &rarr;</a>
       </p>
     </div>
   </section>
@@ -346,10 +347,16 @@ const structuredData = {
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a href={GIFT_KIT_HREF} target="_blank" rel="noopener" class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="gift_footer_kit" data-wm-track-location="gift_footer_cta">Download the Gift Kit</a>
-        <a href="/contact" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Talk to us first</a>
+        <a href="/contact/" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Talk to us first</a>
       </div>
     </div>
   </section>
+  <KBQuestions heading="Why this gift reaches the next generation." items={[
+    { question: "Sponsor an AV Club: the gift that builds your church's next generation", href: "/kb/articles/sponsor-church-av-club/" },
+    { question: "The tech booth is a youth ministry", href: "/kb/articles/tech-booth-youth-ministry/" },
+    { question: "Intergenerational ministry happens in the tech booth", href: "/kb/articles/intergenerational-ministry-tech-booth/" },
+    { question: "The students who stay: serving roles and young-adult retention", href: "/kb/articles/students-who-stay-serving-retention/" },
+  ]} />
 </Layout>
 
 <script>
