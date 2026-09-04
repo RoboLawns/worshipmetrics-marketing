@@ -1,0 +1,91 @@
+<svg viewBox="0 0 1600 800" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef2ff"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="booth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="800" fill="url(#bg)"/>
+
+  <!-- Left: the whole booth, one intimidating block -->
+  <g>
+    <rect x="90" y="150" width="520" height="500" rx="28" fill="url(#booth)"/>
+    <!-- rows of tiny anonymous controls -->
+    <g fill="#334155">
+      <g>
+        <rect x="130" y="200" width="440" height="10" rx="5"/>
+        <rect x="130" y="230" width="440" height="10" rx="5"/>
+      </g>
+    </g>
+    <g fill="#475569">
+      <circle cx="160" cy="300" r="14"/><circle cx="215" cy="300" r="14"/><circle cx="270" cy="300" r="14"/><circle cx="325" cy="300" r="14"/><circle cx="380" cy="300" r="14"/><circle cx="435" cy="300" r="14"/><circle cx="490" cy="300" r="14"/><circle cx="545" cy="300" r="14"/>
+      <circle cx="160" cy="350" r="14"/><circle cx="215" cy="350" r="14"/><circle cx="270" cy="350" r="14"/><circle cx="325" cy="350" r="14"/><circle cx="380" cy="350" r="14"/><circle cx="435" cy="350" r="14"/><circle cx="490" cy="350" r="14"/><circle cx="545" cy="350" r="14"/>
+    </g>
+    <g fill="#64748b">
+      <rect x="150" y="400" width="18" height="90" rx="9"/><rect x="205" y="415" width="18" height="75" rx="9"/><rect x="260" y="395" width="18" height="95" rx="9"/><rect x="315" y="425" width="18" height="65" rx="9"/><rect x="370" y="405" width="18" height="85" rx="9"/><rect x="425" y="418" width="18" height="72" rx="9"/><rect x="480" y="398" width="18" height="92" rx="9"/><rect x="535" y="412" width="18" height="78" rx="9"/>
+    </g>
+    <text x="350" y="560" text-anchor="middle" fill="#f8fafc" font-size="40" font-weight="800" letter-spacing="1">"THE WHOLE BOOTH"</text>
+    <text x="350" y="602" text-anchor="middle" fill="#94a3b8" font-size="24" font-weight="600">qualified operators: 1</text>
+  </g>
+
+  <!-- Arrow -->
+  <g fill="#4f46e5">
+    <rect x="660" y="384" width="150" height="32" rx="16"/>
+    <path d="M 800 355 L 870 400 L 800 445 Z"/>
+  </g>
+
+  <!-- Right: nine seats -->
+  <g font-size="26" font-weight="700" text-anchor="middle">
+    <g>
+      <rect x="920" y="150" width="180" height="140" rx="20" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
+      <circle cx="1010" cy="200" r="16" fill="#4f46e5"/>
+      <text x="1010" y="260" fill="#0f172a">Camera</text>
+    </g>
+    <g>
+      <rect x="1120" y="150" width="180" height="140" rx="20" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
+      <circle cx="1210" cy="200" r="16" fill="#6366f1"/>
+      <text x="1210" y="260" fill="#0f172a">Lyrics</text>
+    </g>
+    <g>
+      <rect x="1320" y="150" width="180" height="140" rx="20" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
+      <circle cx="1410" cy="200" r="16" fill="#818cf8"/>
+      <text x="1410" y="260" fill="#0f172a">Clips</text>
+    </g>
+    <g>
+      <rect x="920" y="330" width="180" height="140" rx="20" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
+      <circle cx="1010" cy="380" r="16" fill="#4f46e5"/>
+      <text x="1010" y="440" fill="#0f172a">Tablet</text>
+    </g>
+    <g>
+      <rect x="1120" y="330" width="180" height="140" rx="20" fill="#eef2ff" stroke="#4f46e5" stroke-width="4"/>
+      <circle cx="1210" cy="380" r="16" fill="#4f46e5"/>
+      <text x="1210" y="440" fill="#0f172a">Switcher</text>
+    </g>
+    <g>
+      <rect x="1320" y="330" width="180" height="140" rx="20" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
+      <circle cx="1410" cy="380" r="16" fill="#6366f1"/>
+      <text x="1410" y="440" fill="#0f172a">Monitor</text>
+    </g>
+    <g>
+      <rect x="920" y="510" width="180" height="140" rx="20" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
+      <circle cx="1010" cy="560" r="16" fill="#818cf8"/>
+      <text x="1010" y="620" fill="#0f172a">Docs</text>
+    </g>
+    <g>
+      <rect x="1120" y="510" width="180" height="140" rx="20" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
+      <circle cx="1210" cy="560" r="16" fill="#6366f1"/>
+      <text x="1210" y="620" fill="#0f172a">Schedule</text>
+    </g>
+    <g>
+      <rect x="1320" y="510" width="180" height="140" rx="20" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
+      <circle cx="1410" cy="560" r="16" fill="#4f46e5"/>
+      <text x="1410" y="620" fill="#0f172a">Mentor</text>
+    </g>
+  </g>
+  <text x="1210" y="712" text-anchor="middle" fill="#4f46e5" font-size="28" font-weight="800">nine seats, human-sized</text>
+</svg>
