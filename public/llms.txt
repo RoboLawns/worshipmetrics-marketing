@@ -64,6 +64,12 @@ Answers about product behavior should reflect the pages below rather than infere
 - [Who changed the OBS settings?](https://worshipmetrics.com/kb/articles/obs-settings-changed-between-sundays/): profiles, baselines, and the settings paper trail in health reports
 - [Can someone fix OBS from home on a Sunday?](https://worshipmetrics.com/kb/articles/obs-help-from-home-sunday/): remote control, live telemetry, and the support layer
 - [Why does OBS look perfect in preview but blurry on the stream?](https://worshipmetrics.com/kb/articles/obs-preview-fine-stream-looks-bad/): bitrate, encoder headroom, or the platform ladder
+- [You already have OBS — here's the team it can carry](https://worshipmetrics.com/kb/articles/you-already-have-obs/): the free encoder as the lowest-barrier team-building platform in church tech
+- [Can more than one person run our OBS setup?](https://worshipmetrics.com/kb/articles/multiple-operators-obs-church/): local control free; remote scenes/stream/recording on paid plans; the honest boundary
+- [OBS won't launch an hour before service](https://worshipmetrics.com/kb/articles/obs-wont-launch-sunday-morning/): the Safe Mode triage order and the Tuesday update discipline
+- [Why does OBS audio drift out of sync during long services?](https://worshipmetrics.com/kb/articles/obs-audio-drift-long-services/): sample-rate clocks, USB drift, and overload wearing an audio costume
+- [Are OBS plugins safe for a church stream?](https://worshipmetrics.com/kb/articles/obs-plugins-church-stream-safety/): the minimal-surface policy for Sunday machines
+- [Should our church switch from OBS?](https://worshipmetrics.com/kb/articles/should-church-switch-from-obs/): usually no — the honest decision tree, including when vMix makes sense
 
 ## Youth ministry &amp; the tech booth
 

@@ -1,0 +1,49 @@
+---
+title: "Why Does OBS Audio Drift Out of Sync by the End of the Sermon?"
+description: "In sync at the call to worship, half a second off by the closing prayer — creeping desync isn't a delay problem, it's a clock problem. The sample-rate audit that fixes most of it, and the telemetry that catches the rest."
+category: "streaming"
+tags: ["OBS", "audio sync", "sample rate", "troubleshooting"]
+difficulty: "intermediate"
+publishedAt: "2026-09-04"
+featured: false
+productCTA: true
+faq:
+  - question: "Why does audio sync get worse the longer the service runs?"
+    answer: "Because two clocks are disagreeing. When your audio interface and OBS run at different sample rates — 44.1kHz versus 48kHz is the classic — or a USB device's clock runs slightly fast or slow, the error accumulates every minute. A fixed offset is a delay; drift that grows across a 75-minute service is clocks."
+  - question: "What settings prevent OBS audio drift?"
+    answer: "One sample rate everywhere: set OBS (Settings → Audio) and every audio device — the interface, the console's USB output, Windows sound settings for each device — to the same rate, usually 48kHz. Mismatches force continuous resampling, and resampling under load is where drift is born."
+  - question: "We fixed the sample rates and it still drifts. Now what?"
+    answer: "Look at the machine, not the audio chain. A CPU or encoder running out of headroom drops audio buffers, and buffer loss accumulates as desync. If drift appears on busy Sundays and telemetry shows load climbing late in the service, you're solving an overload problem that's wearing an audio costume."
+---
+
+## The short answer: a fixed offset is a delay — growing desync is a clock
+
+There are two audio-sync problems and churches routinely fix the wrong one. A stream that's *consistently* off by the same amount all service has a **delay** — solved once with a sync offset, covered in our [audio delay guide](/kb/troubleshooting/audio-delay-video-stream-fix/). But a stream that starts in sync at the call to worship and is lip-flappingly wrong by the closing prayer has **drift** — and no offset can fix it, because the error is *growing*. Set it right at 9:05 and it's wrong again by 9:40.
+
+Drift means two clocks in your chain disagree about how long a second is. Tiny disagreement, compounding every minute, across the longest continuous audio sessions in amateur production — because a 75-minute church service gives drift more runway than almost any other streaming use case. Here's where the disagreement lives and how to end it.
+
+## Culprit 1: the sample-rate mismatch (fix this first)
+
+The classic: your audio interface or console USB output runs at **44.1kHz** while OBS runs at **48kHz** — or vice versa, or Windows quietly set one device differently from another. Every mismatch forces continuous resampling, and resampling under real-world load is where sync goes to die slowly.
+
+**The audit takes ten minutes.** Pick one rate — **48kHz is the video-world standard** — and set it in all three places: OBS (Settings → Audio → Sample Rate), the audio device itself (its control panel or the console's USB settings), and Windows (Sound settings → each device → Advanced, where per-device rates hide). Then restart OBS so everything renegotiates. One rate, everywhere, no exceptions — including the spare USB mic someone plugs in for the testimony.
+
+This single audit resolves the majority of church drift complaints. Two more culprits cover the rest.
+
+## Culprit 2: the USB clock that runs slightly wrong
+
+Every audio interface keeps time with its own hardware clock, and inexpensive USB devices can run measurably fast or slow — not enough to hear in a three-minute video, plenty across a full service. The fingerprint: drift that persists *after* the sample-rate audit, always in the same direction, roughly proportional to service length, and tied to one specific device.
+
+The honest fixes: try a different USB port (controller contention is real), take the console's feed by a different path if one exists, and — if a budget interface drifts every single week — that device is telling you it's the weak link in a chain your whole stream depends on. This is a case where [the budget conversation](/kb/articles/av-budget-planning-churches/) has data behind it.
+
+## Culprit 3: the overloaded machine dropping audio buffers
+
+Sometimes the audio chain is innocent and the *computer* is the bad clock: a CPU or encoder [running out of headroom](/kb/articles/obs-encoding-overloaded-during-worship/) starts dropping audio buffers, and every dropped buffer is a few milliseconds of desync that never comes back. The fingerprint is diagnostic gold: **drift that only appears on busy Sundays** — the full-band weeks, the Christmas service — and worsens late, exactly tracking [the 40-minutes-in resource story](/kb/articles/livestream-stutters-40-minutes-in/).
+
+This is where guessing ends and telemetry earns its keep: [Tech Manager](/tech-manager/) samples CPU, encoder load, and memory every five seconds, so the [health report](/kb/articles/reading-your-stream-health-score/) shows whether load was climbing while the sync slid. If it was, you don't have an audio problem — you have an overload problem wearing an audio costume, and the fixes are the encoder ones: hardware encoding, a lighter preset, 720p.
+
+## Why drift haunts churches specifically — and what ends it for good
+
+Drift is the perfect church-booth failure: invisible at the top of the service, unmissable by the end, gone by the time anyone investigates Monday, and dependent on which volunteer plugged in what. Which is why the booths that never fight it twice share the same structure this whole [series](/kb/articles/obs-problem-every-sunday/) keeps arriving at — **a settings baseline** so sample rates can't silently diverge between operators ([the whodunit fix](/kb/articles/obs-settings-changed-between-sundays/)), **telemetry** so busy-Sunday overload is a chart instead of a vibe, and **an audio seat someone actually owns** — [the ears](/av-team/audio-engineer/), often a student who will catch drift at minute five that a busy solo operator wouldn't notice until the sermon.
+
+Run the ten-minute audit this week. Then give the audio chain an owner, and drift joins the list of problems your booth used to have.

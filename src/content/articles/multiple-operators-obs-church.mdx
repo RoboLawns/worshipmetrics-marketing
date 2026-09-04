@@ -1,0 +1,46 @@
+---
+title: "Can More Than One Person Run Our OBS Setup?"
+description: "Yes — in the booth, at no cost, and from anywhere on the paid plans: OBS's WebSocket protocol lets authorized helpers see the live state and control scenes, stream, and recording. Here's exactly what remote OBS control can and can't do, honestly."
+category: "streaming"
+tags: ["OBS", "remote control", "WebSocket", "team"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+featured: false
+productCTA: true
+faq:
+  - question: "How does remote OBS control actually work?"
+    answer: "OBS ships with a built-in remote-control protocol called WebSocket (v5). Tech Manager connects to it in the booth, and WorshipMetrics relays it securely — so an authorized person anywhere can see the booth's state and switch scenes or start and stop the stream and recording. One outbound connection; no port forwarding, no remote desktop."
+  - question: "What can a remote helper NOT do with OBS?"
+    answer: "Deep editing — building scenes, adding sources, rewiring audio filters — remains in-booth work at the OBS machine itself. Remote control covers the live-operation surface: scene switching, stream start/stop, recording start/stop, with live state visible. For services, that's most of what a second operator needs."
+  - question: "Is any of this free?"
+    answer: "Local control is — Tech Manager runs OBS control in the booth at no cost on every plan, forever. The from-anywhere layer (remote scenes, stream, and recording for your whole team) comes with Assist at $49/mo or Stream at $99/mo per campus."
+---
+
+## The short answer: yes — locally for free, remotely on the paid plans
+
+The question usually arrives from one of two Sundays: the veteran is sick and someone asks *"can anyone else even run this?"* — or a new volunteer is at the keyboard and the veteran wishes they could see what's happening without driving in. Both have the same answer, and it's built into OBS itself.
+
+OBS speaks a remote-control protocol called **WebSocket (v5)** — a front door the OBS project maintains for exactly this. [WorshipMetrics](/obs-integration/) uses it two ways:
+
+- **In the booth, free forever:** [Tech Manager](/tech-manager/) connects to OBS on the local network — control, monitoring, and the [self-healing rules](/kb/articles/tech-manager-self-healing-explained/) — at no cost, on every plan.
+- **From anywhere, on Assist ($49/mo) or Stream ($99/mo per campus):** authorized people on your team see the booth's live state from any device and can **switch scenes and start or stop the stream and the recording.** One secure outbound connection from the booth; no port forwarding, no VPN, no remote-desktop wrestling. Every remote action lands in the support history with a name attached.
+
+## What that makes possible on an actual Sunday
+
+**The confirmation nobody has to drive in for.** "Is the recording actually rolling?" — answered from a phone, and *fixed* from a phone if it isn't. The classic pre-service panic becomes a ten-second check by whoever's on call.
+
+**A second operator, anywhere.** The scheduled volunteer is stuck in traffic; the backup starts the stream from their kitchen and switches to the countdown scene. The service opens on time, and the [first-Sunday rookie](/kb/articles/diary-first-sunday-stream-operator/) at the desk never faced the moment alone.
+
+**Mentoring with eyes, not guesses.** This is the quiet revolution for [training](/kb/articles/train-vmix-operators-without-risking-sunday/): a veteran watches the *actual state* — current scene, stream status, [encoder health streaming in every five seconds](/kb/articles/reading-your-stream-health-score/) — while the trainee drives. Coaching becomes "you're still on the wide shot" instead of "describe your screen to me," which is the whole difference between [help from home that works](/kb/articles/obs-help-from-home-sunday/) and a twenty-minute phone archaeology.
+
+## The honest boundary — and why it's the right one
+
+Remote OBS control covers the **live-operation surface**: scenes, stream, recording, with state visible. It does *not* reach OBS's deep editing — building scenes, adding sources, audio filter surgery. That work stays at the booth machine, on a weekday, in [an owned profile with a settings baseline](/kb/articles/obs-settings-changed-between-sundays/) — which is honestly where it belongs. Sunday-morning remote settings surgery is how streams die; the boundary enforces the discipline every stable booth adopts anyway: **operate live, edit on Tuesdays.**
+
+(For churches running vMix alongside or instead, the remote surface goes deeper — [the full switching panel](/kb/articles/multiple-operators-vmix-church/) — but the OBS story above is complete on its own.)
+
+## What "more than one person" is really about
+
+Notice what every scenario above quietly assumes: *there's a second person to hand things to.* That's the real unlock, and it's why this question is bigger than its plumbing. The reason one volunteer became irreplaceable was never that OBS is hard — it's that nobody else could **see** the system, **fix** it safely, or **be trusted** with it. WebSocket control plus [telemetry](/av-monitoring/) plus [logged actions](/kb/articles/tech-manager-self-healing-explained/) dissolves all three barriers at once — which is why churches that turn this on don't just get redundancy. They get [a team](/kb/articles/you-already-have-obs/): seats, a ladder, [students from the youth room](/kb/articles/need-volunteers-church-livestream/), and a veteran who finally takes a vacation with their phone in their pocket instead of their car keys.
+
+So: yes, more than one person can run your OBS setup. The better news is what that makes possible — and if your booth has been [fighting a different fire every week](/kb/articles/obs-problem-every-sunday/) with one exhausted firefighter, this is the door out.

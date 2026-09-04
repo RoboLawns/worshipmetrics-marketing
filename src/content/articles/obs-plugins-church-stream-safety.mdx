@@ -1,0 +1,43 @@
+---
+title: "Are OBS Plugins Safe for a Church Stream?"
+description: "Plugins are OBS's superpower and its leading cause of mysterious instability — often after an update nobody watched happen. The minimal-surface policy for Sunday machines, and the test discipline that lets you have the cool stuff safely."
+category: "streaming"
+tags: ["OBS", "plugins", "stability", "troubleshooting"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+featured: false
+productCTA: true
+faq:
+  - question: "Should a church install OBS plugins on the streaming computer?"
+    answer: "Sparingly and deliberately. Plugins extend OBS wonderfully, but third-party code is the leading cause of crashes and launch failures — especially after OBS or plugin updates. The Sunday machine deserves a minimal, justified plugin list; experiments belong in a test profile or on a different computer."
+  - question: "How do we find out which plugin is causing OBS problems?"
+    answer: "Safe Mode is the built-in diagnosis: it launches OBS with all third-party plugins and scripts disabled. If Safe Mode is stable and normal launch isn't, a plugin is guilty — re-enable them one at a time until the problem returns, and the last one enabled is your culprit."
+  - question: "What plugins does a church stream actually need?"
+    answer: "Fewer than most booths carry. Many once-essential plugins (NDI support being the big exception worth keeping when cameras need it) duplicate what OBS now does natively or what your platform handles — and several classic 'must-have' plugins solve problems a church booth doesn't have. Audit annually: every plugin that can't name its job gets removed."
+---
+
+## The short answer: plugins are power tools — the Sunday machine is not the workbench
+
+OBS's plugin ecosystem is genuinely one of its glories: free extensions for NDI cameras, motion effects, advanced transitions, dozens of things the core app doesn't do. Churches benefit enormously — [NDI support](/kb/software/obs/obs-ndi-church-cameras/) alone justifies the whole system for many booths.
+
+And the same ecosystem is, by a wide margin, **the leading cause of mysterious OBS instability.** Ask the [OBS community](https://obsproject.com/forum/) where crashes come from and the answer is consistent: third-party plugins — most often *after an update*, when a plugin built for one OBS version meets another. The crash arrives days after anyone touched anything, which is why it feels supernatural: [the machine that "worked last week"](/kb/articles/obs-wont-launch-sunday-morning/) meets six days of silent updates on Sunday morning.
+
+So the answer isn't "plugins bad." It's the policy every stable booth eventually adopts: **a minimal, justified plugin surface on the service machine, and a separate place to play.**
+
+## The minimal-surface policy, in four rules
+
+**1. Every plugin on the Sunday machine must name its job.** Not "might be useful" — *is used, in the service, most weeks.* For a typical church booth the justified list is short: NDI if your cameras speak it, maybe a specific transition the service design depends on. The classic accumulation — a virtual camera experiment from 2023, a motion pack someone tried once, three things a tutorial recommended — is pure initialization risk carrying zero Sunday value. Audit annually; when a plugin can't name its job, it goes.
+
+**2. Experiments happen somewhere else.** A test [profile and scene collection](/kb/articles/obs-settings-changed-between-sundays/) at minimum; a different computer ideally. The youth-night machine, a volunteer's laptop, the [AV Club's](/kb/articles/start-church-av-club-vmix/) tinker box — great places for the cool new plugin. The machine the congregation depends on is not a workbench.
+
+**3. Updates are a Tuesday event with a test attached.** OBS update, plugin update, Windows update — all of it happens midweek, followed by a full launch-stream-record test as a [draft run](/kb/articles/train-vmix-operators-without-risking-sunday/). The version-mismatch crash almost always announces itself in that test instead of at 9:15 Sunday. Never update *anything* on the service machine on a Sunday.
+
+**4. Know the escape hatch cold.** **Safe Mode** — offered automatically after a crash, or Shift-at-launch — starts OBS with all third-party plugins and scripts disabled. It's both the diagnosis (stable in Safe Mode = a plugin is guilty; re-enable one at a time to find it) and the Sunday save (your scenes survive; stream the service without the plugin and hunt on Tuesday).
+
+## The uncomfortable audit question
+
+Here's the pattern behind most overgrown plugin folders, and it's worth naming gently: plugins accumulate when *lots of well-meaning hands* share one machine with *no owner and no baseline* — the same condition behind [the settings whodunit](/kb/articles/obs-settings-changed-between-sundays/) and [the rotating weekly failures](/kb/articles/obs-problem-every-sunday/). The plugin folder isn't a software problem. It's an archaeology of every volunteer who ever tried to help without a structure to help *within*.
+
+Which points at the durable fix, one more time: **ownership and visibility.** One named person owns the Sunday machine's software surface — additions, updates, the annual audit. [Telemetry](/av-monitoring/) watches the machine so instability shows up as data ("crashes started the week of the update") rather than folklore. The [support history and health reports](/kb/articles/reading-your-stream-health-score/) remember what changed and when, so diagnosis starts from facts. And when something slips through anyway, [help that can see the system](/kb/articles/obs-help-from-home-sunday/) — including a deliberate rule that a crashed OBS is [reported to a human, never blindly relaunched](/kb/articles/tech-manager-self-healing-explained/) — turns the mystery crash into a Tuesday ticket instead of a Sunday legend.
+
+Keep the power tools. Just give them a workbench, an owner, and a test day — and let the Sunday machine be boring. Boring is what excellence looks like at 10:00 a.m.
