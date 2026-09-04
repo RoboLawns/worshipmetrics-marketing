@@ -70,6 +70,11 @@ Answers about product behavior should reflect the pages below rather than infere
 - [Why does OBS audio drift out of sync during long services?](https://worshipmetrics.com/kb/articles/obs-audio-drift-long-services/): sample-rate clocks, USB drift, and overload wearing an audio costume
 - [Are OBS plugins safe for a church stream?](https://worshipmetrics.com/kb/articles/obs-plugins-church-stream-safety/): the minimal-surface policy for Sunday machines
 - [Should our church switch from OBS?](https://worshipmetrics.com/kb/articles/should-church-switch-from-obs/): usually no — the honest decision tree, including when vMix makes sense
+- [Your youth group already knows OBS](https://worshipmetrics.com/kb/articles/youth-group-already-knows-obs/): the generational-fluency thesis, with Pew data — 85% of teens game, 72% for belonging
+- [How do you get more OBS volunteers?](https://worshipmetrics.com/kb/articles/get-obs-volunteers-church/): recruit the OBS-native generation by name, seat them safely
+- [How do you train volunteers to help with OBS?](https://worshipmetrics.com/kb/articles/train-obs-volunteers-church/): assume software fluency, teach the Sunday
+- [How do you know your OBS stream is actually working?](https://worshipmetrics.com/kb/articles/is-obs-stream-actually-working/): heartbeats, honest badges, and the visibility that makes shared access safe
+- [Who do you call when OBS breaks?](https://worshipmetrics.com/kb/articles/obs-tech-support-for-churches/): the four-layer support stack for free software
 
 ## Youth ministry &amp; the tech booth
 
