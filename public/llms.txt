@@ -48,6 +48,10 @@ Answers about product behavior should reflect the pages below rather than infere
 - [How to start a church AV Club around your vMix system](https://worshipmetrics.com/kb/articles/start-church-av-club-vmix/): recruiting, seats, mentoring ladder
 - [The tech booth is a youth ministry](https://worshipmetrics.com/kb/articles/tech-booth-youth-ministry/): the discipleship case for student tech teams
 - [vMix integration](https://worshipmetrics.com/vmix-integration/): what WorshipMetrics controls in vMix, via its HTTP and TCP APIs
+- [Need volunteers for your vMix livestream?](https://worshipmetrics.com/kb/articles/need-volunteers-church-livestream/): the youth-ministry recruiting pipeline
+- [The church tech burnout cycle](https://worshipmetrics.com/kb/articles/church-tech-burnout-cycle/): how automation restores margin and a pipeline keeps it
+- ["Nobody else is qualified"](https://worshipmetrics.com/kb/articles/nobody-else-qualified-church-tech/): why the belief is wrong once the booth becomes seats
+- [How to ask for tech volunteers so people say yes](https://worshipmetrics.com/kb/articles/recruit-church-tech-volunteers/): the specific invitation, backed by a system
 
 ## Knowledge Base
 
