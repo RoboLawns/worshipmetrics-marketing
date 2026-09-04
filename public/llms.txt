@@ -55,6 +55,13 @@ Answers about product behavior should reflect the pages below rather than infere
 - [How do we train new vMix operators without risking Sunday?](https://worshipmetrics.com/kb/articles/train-vmix-operators-without-risking-sunday/): draft runs, the mentor panel, telemetry debriefs
 - [What happens when your vMix person leaves?](https://worshipmetrics.com/kb/articles/when-your-vmix-person-leaves/): the succession plan that starts before anyone resigns
 
+## Cloud video production &amp; platform consolidation
+
+- [Cloud video production for churches: what it actually means](https://worshipmetrics.com/kb/articles/cloud-video-production-for-churches/): local switch, cloud connect — why it beats cloud-hosted production for churches
+- [Cloud vMix production: the full panel from anywhere](https://worshipmetrics.com/kb/articles/cloud-vmix-production-church/): mirrored state + relayed HTTP/TCP control; cut, T-bar, overlays, bus audio
+- [Cloud OBS production: remote control over WebSocket](https://worshipmetrics.com/kb/articles/cloud-obs-production-church/): scenes, stream, and recording remotely; the honest editing boundary
+- [One platform instead of six subscriptions](https://worshipmetrics.com/kb/articles/one-platform-church-tech-stack/): consolidating the church tech stack — for churches that run their own booth
+
 ## Reels &amp; sermon clips for social media
 
 - [A social media volunteer's guide to Sunday Reels](https://worshipmetrics.com/kb/articles/social-media-volunteer-church-reels/): the Sunday-afternoon workflow for the person who runs the account
