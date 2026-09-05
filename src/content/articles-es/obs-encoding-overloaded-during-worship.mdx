@@ -1,0 +1,48 @@
+---
+title: "¿Por Qué OBS Dice 'Codificación Sobrecargada' a Mitad de la Adoración?"
+description: "La advertencia aparece durante la segunda canción, no en los anuncios, por una razón: la adoración es el contenido más difícil que tu encoder enfrenta en toda la semana. Los arreglos reales —y cómo ver venir la sobrecarga antes que la congregación."
+category: "streaming"
+tags: ["OBS", "encoding overloaded", "troubleshooting", "CPU"]
+difficulty: "intermediate"
+publishedAt: "2026-09-04"
+coverImage: "/images/products/obs-encoding-overloaded-during-worship/obs-encoder-live-worship-band-monitors.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Qué significa en realidad la advertencia 'codificación sobrecargada' de OBS?"
+    answer: "El encoder no puede comprimir los frames tan rápido como llegan, así que OBS empieza a saltar frames para mantener el ritmo —los espectadores ven entrecorte. Es un problema de caballos de fuerza: la máquina se quedó sin margen para el contenido que se le pide codificar en los ajustes que se le dieron."
+  - question: "¿Por qué pasa durante la adoración en lugar del sermón?"
+    answer: "Porque el movimiento es lo que cuesta la codificación. Una cabeza parlante apenas cambia entre frames; una banda completa, luces en movimiento, humo, y cortes de cámara cambian casi cada pixel, treinta veces por segundo. La adoración es el contenido más caro que tu cabina produce —el encoder que navega por los anuncios choca con su techo en la segunda canción."
+  - question: "¿Cuál es el arreglo más rápido antes del próximo domingo?"
+    answer: "En orden de recompensa: cambia a un encoder de hardware (NVENC, AMF, o Quick Sync) si la máquina tiene uno; si debes quedarte en x264, mueve el preset hacia veryfast; y baja la salida a 720p —un 720p estable le gana a un 1080p que batalla, cada vez."
+---
+
+## La respuesta corta: la adoración es tu contenido más difícil, y el encoder se quedó sin margen
+
+El patrón enloquecedor que cada operador de OBS de iglesia aprende: el stream es impecable durante la bienvenida y los anuncios, luego la banda arranca, las luces se mueven, y OBS parpadea **"¡Codificación sobrecargada! Considere bajar los ajustes de video o usar un preset de codificación más rápido."** No es aleatorio, y no es OBS portándose mal —es aritmética.
+
+La codificación de video cuesta CPU en proporción al *cambio entre frames*. Un pastor en un podio apenas cambia; el encoder navega tranquilo. Una banda completa con luces en movimiento, humo en el aire, y cortes de cámara cambia casi cada pixel, treinta veces por segundo —rutinariamente varias veces el trabajo de codificación de una cabeza parlante. Tu encoder nunca fue dimensionado para los anuncios. Tiene que dimensionarse para el *puente de la canción más fuerte*, porque ese es el momento que enfrentará cada semana.
+
+## Los arreglos, en orden de recompensa
+
+**1. Muévete a un encoder de hardware.** Si la PC de la cabina tiene una GPU NVIDIA (NVENC), GPU AMD (AMF), o un CPU Intel reciente (Quick Sync), cambia el encoder en los ajustes de salida de OBS. La codificación por hardware descarga el trabajo del CPU casi por completo, y los encoders de hardware modernos son excelentes en los bitrates típicos de iglesia. Este solo cambio resuelve la mayoría de la sobrecarga crónica.
+
+**2. Si estás atrapado en x264, toma un preset más rápido.** Mover de `medium` a `veryfast` reduce dramáticamente la carga por un costo de calidad que rara vez es visible en los bitrates de streaming. Los presets intercambian CPU por eficiencia de compresión —y la estabilidad vale más que la eficiencia el domingo.
+
+**3. Baja la resolución de salida.** Codificar 720p en lugar de 1080p compra un margen enorme, y en los tamaños que la gente de verdad ve —teléfonos, tablets, una TV al otro lado de la sala— un 720p estable le gana consistentemente a un 1080p que batalla. Configúralo en Ajustes → Video → Resolución de Salida (Escalada), y ajusta el bitrate con la [calculadora de bitrate](/tools/church-streaming-bitrate-calculator/).
+
+**4. Simplifica las escenas que de verdad usas en vivo.** Cada fuente se renderiza incluso cuando es invisible en el programa. Retira la "escena especial de Navidad" de ocho fuentes de la colección de todos los días, y estandariza tus cámaras a una tasa de frames para que OBS no esté convirtiendo constantemente. Los capítulos de construcción de escenas de nuestra [guía completa de OBS para iglesias](/es/kb/articles/obs-studio-complete-church-guide/) cubren esto a fondo.
+
+**5. Revisa qué más se está comiendo la máquina.** Un navegador que alguien dejó abierto, un cliente de sincronización, una actualización de Windows a mitad del servicio —el encoder comparte su CPU con todo. La sobrecarga que aparece *tarde* en un servicio suele ser [presión de recursos que trepa](/es/kb/articles/livestream-stutters-40-minutes-in/), no costo de escena.
+
+## El problema más profundo: nadie ve venir la sobrecarga
+
+Aquí está lo que hace cruel esta falla en una cabina de iglesia: la advertencia aparece exactamente cuando el operador está más ocupado —a mitad de la adoración, manos llenas— y para cuando alguien la lee, los espectadores ya han tenido un minuto de entrecorte. Luego el servicio termina, la máquina se queda inactiva, y quien viene a diagnosticar encuentra una computadora que se ve perfectamente inocente.
+
+Esa es la brecha de visibilidad que el arreglo-de-la-semana nunca cierra, y es donde la telemetría cambia la historia. [Tech Manager](/tech-manager/) muestrea la carga del encoder cada cinco segundos durante todo el servicio, así que el [reporte de salud](/es/kb/articles/reading-your-stream-health-score/) muestra exactamente cuándo trepó la carga y qué cruzó —la sobrecarga del encoder carga su propia penalización en el puntaje de 0-100, con la marca de tiempo adjunta. Ve tres semanas de reportes y sabrás si tienes un problema de escena-de-Navidad, un problema de carga-que-trepa, o una máquina que simplemente es demasiado pequeña —*antes* de comprar nada. Y [Pulse](/av-monitoring/) dispara una alerta de CPU al 90% precisamente porque ese es el último punto donde alguien puede intervenir con gracia —cerrar el navegador, mover el preset— en lugar de leer una advertencia a mitad de la canción.
+
+## El equipo es el arreglo que perdura
+
+Una observación honesta más de ver cientos de cabinas de iglesia: la sobrecarga crónica de codificación suele ser un síntoma *de personal* usando un disfraz técnico. Un operador solitario corriendo letras, cámaras, y el stream no tiene atención sobrante para notar la carga trepando —así que cada advertencia es una sorpresa. Una cabina con un [segundo asiento](/es/kb/articles/you-already-have-vmix/) —incluso un estudiante en la [pantalla de monitoreo](/es/kb/articles/students-run-church-livestream-safely/)— atrapa el ascenso al 85% con una mirada entrenada un martes, no en "sobrecargado" a mitad del puente.
+
+Si tu cabina pelea un incendio distinto cada semana, el patrón mismo es el diagnóstico —esa historia, y la salida de ella, está en [un problema distinto de OBS cada domingo](/es/kb/articles/obs-problem-every-sunday/). Y en los domingos en que se rompe de todos modos, [la ayuda que puede ver tu sistema](/es/kb/articles/obs-help-from-home-sunday/) le gana a la ayuda que te pide describirlo.

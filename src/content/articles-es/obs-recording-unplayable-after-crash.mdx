@@ -1,0 +1,48 @@
+---
+title: "OBS Se Cayó y la Grabación del Domingo No Reproduce. ¿La Podemos Salvar?"
+description: "La respuesta honesta sobre los MP4 corruptos, el único cambio de ajuste que previene el siguiente, y el plan de redundancia que significa que una caída nunca más decida si el bautismo quedó grabado."
+category: "streaming"
+tags: ["OBS", "recording", "corrupted file", "troubleshooting"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+coverImage: "/images/products/obs-recording-unplayable-after-crash/obs-recording-problem-church-support-call.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Se puede reparar una grabación MP4 corrupta de OBS?"
+    answer: "Usualmente no, y es importante oír eso antes de gastar una noche en herramientas de reparación. Un MP4 escribe su índice cuando la grabación termina limpiamente —una caída a mitad de la grabación significa que el archivo nunca recibió su índice, y la mayoría de los intentos de 'reparación' fallan. La prevención es la respuesta real: graba en MKV (o el MP4 híbrido de OBS) para que una interrupción cueste segundos, no el servicio."
+  - question: "¿Qué formato de grabación debería usar una iglesia en OBS?"
+    answer: "MKV, luego remuxear a MP4 después (OBS lo hace en un clic bajo Archivo → Remuxear Grabaciones), o la opción de MP4 híbrido/fragmentado en versiones recientes de OBS —ambos sobreviven interrupciones. El MP4/MOV simple es la única opción donde una caída destruye todo lo ya grabado."
+  - question: "¿Cómo nos aseguramos de que un sermón nunca se pierda otra vez?"
+    answer: "Redundancia más automatización: un formato local a prueba de caídas, una segunda grabación que no depende de la PC de la cabina (transmitir a través de WorshipMetrics graba automáticamente en la nube), y un sistema que reinicia una grabación detenida en el momento en que se detecta en lugar de cuando alguien lo nota el lunes."
+---
+
+## La respuesta corta: probablemente no —y aquí está cómo no vuelve a pasar
+
+Empecemos por la parte honesta, porque quizá estés leyendo esto un domingo por la tarde con un archivo de 4 GB que no abre: **un MP4 estándar interrumpido a mitad de la grabación usualmente es irrecuperable.** El formato MP4 escribe su índice —el mapa que le dice a un reproductor qué hay en el archivo— cuando la grabación termina *limpiamente*. Si OBS se cayó, la corriente parpadeó, o el disco se llenó, el mapa nunca se escribió. Los datos de video están ahí adentro; casi nada puede leerlos. Existen herramientas de reparación y ocasionalmente tienen éxito, pero el largo y triste archivo de estos hilos de la [comunidad de OBS](https://obsproject.com/forum/tags/corrupted-recording/) mayormente termina igual.
+
+Si el sermón también salió en vivo, revisa la plataforma de stream —YouTube y Facebook guardan la transmisión, y esa copia puede salvarte la semana. Luego toma los siguientes diez minutos para asegurarte de que este desamor particular sea estructuralmente imposible de ahora en adelante. Tres capas lo logran.
+
+## Capa 1: un formato de grabación que sobrevive la interrupción
+
+Este es el cambio de ajuste más valioso en el OBS de iglesias, y toma treinta segundos. En Ajustes → Salida, pon el formato de grabación en **MKV** —un formato que se mantiene reproducible hasta el momento de la interrupción. Una caída te cuesta los segundos finales, no el servicio. Cuando necesites MP4 para editar o subir, OBS convierte sin pérdida en un clic: Archivo → **Remuxear Grabaciones**. Las versiones recientes de OBS también ofrecen un **MP4 híbrido** diseñado para sobrevivir interrupciones —cualquiera de las dos opciones está bien; el MP4 simple es la única equivocada.
+
+Ya que estás en los ajustes: las grabaciones fallan por razones aburridas también. Un disco llenándose calladamente es el clásico —las grabaciones locales se comen gigabytes por hora, y [un disco que se seca a mitad del servicio puede llevarse la grabación con él](/es/kb/articles/livestream-stutters-40-minutes-in/). Lo que nos lleva a la segunda capa.
+
+## Capa 2: automatización que nota antes del lunes
+
+La propiedad más cruel de las fallas de grabación es su silencio. El stream se ve bien, la sala suena bien, y la pérdida se descubre *después* —cuando el archivo que alguien necesitaba no existe. Las máquinas son mejores en esta vigilia que los humanos: [Tech Manager](/tech-manager/) revisa continuamente si una grabación que debería estar corriendo de verdad lo está, y **reinicia una grabación detenida en el momento en que se encuentra detenida** —una de las [reglas de auto-reparación](/es/kb/articles/tech-manager-self-healing-explained/), cada acción registrada. La presión del disco también se atrapa temprano: una alerta se dispara y el caché re-descargable se limpia automáticamente antes de que el espacio libre se vuelva un problema de domingo.
+
+Un límite deliberado que vale conocer: si OBS mismo se cae por completo, Tech Manager **lo reporta y alerta a un humano en lugar de relanzar en silencio** —una caída puede significar una colección de escenas corrupta o hardware fallando, y los reinicios a ciegas pueden agravar el daño. Las fallas de rutina reciben arreglos automáticos; las ambiguas reciben [un teléfono que vibra](/es/kb/articles/church-stream-drop-phone-alert/).
+
+## Capa 3: una segunda copia que no vive en la PC de la cabina
+
+Los formatos y la automatización protegen la grabación local. La capa final elimina el punto único de falla por completo: las iglesias que transmiten a través de [WorshipMetrics live streaming](/live-streaming/) reciben cada servicio **grabado automáticamente en la nube** —sin botón, sin dependencia de la PC de la cabina, con grabaciones terminadas aterrizando en la biblioteca donde empiezan [los clips del sermón del lunes](/es/kb/articles/sunday-sermon-instagram-before-monday/). El MKV local se vuelve tu máster de alta calidad; la copia en la nube es la que existe sin importar qué pasó en el escritorio.
+
+Tres capas, y la aritmética cambia por completo: para que una caída te cueste un sermón ahora, el formato, la automatización, *y* una grabación independiente tienen que fallar todos a la vez.
+
+## La parte que no es sobre el software
+
+Una observación de cierre del escritorio de soporte: "la grabación no grabó" rara vez es una historia de software-en-solitario. Usualmente es una historia de operador-*en-solitario* —una persona corriendo todo, sin atención sobrante para las fallas silenciosas. Las cabinas donde esto nunca pasa dos veces tienen un [segundo par de ojos](/es/kb/articles/obs-help-from-home-sunday/), un [asiento de grabación/archivista](/av-team/recording-archivist/) que es dueño de exactamente esto (un maravilloso primer rol para un estudiante amante del detalle), y el hábito de leer el [reporte de salud](/es/kb/articles/reading-your-stream-health-score/) el lunes en lugar de descubrir cosas.
+
+Si esta es la tercera falla distinta en un mes, la grabación nunca fue de verdad el problema —lee [un problema distinto de OBS cada domingo](/es/kb/articles/obs-problem-every-sunday/) para el patrón por debajo.

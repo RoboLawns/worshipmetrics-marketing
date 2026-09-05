@@ -1,0 +1,47 @@
+---
+title: "¿Puede Más de Una Persona Correr Nuestra Configuración de OBS?"
+description: "Sí —en la cabina, sin costo, y desde cualquier lugar en los planes de pago: el protocolo WebSocket de OBS deja que ayudantes autorizados vean el estado en vivo y controlen escenas, stream, y grabación. Aquí está exactamente qué puede y qué no puede hacer el control remoto de OBS, con honestidad."
+category: "streaming"
+tags: ["OBS", "remote control", "WebSocket", "team"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+coverImage: "/images/products/multiple-operators-obs-church/obs-two-operators-youth-ministry-team.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Cómo funciona en realidad el control remoto de OBS?"
+    answer: "OBS viene con un protocolo de control remoto integrado llamado WebSocket (v5). Tech Manager se conecta a él en la cabina, y WorshipMetrics lo transmite de forma segura —así que una persona autorizada en cualquier lugar puede ver el estado de la cabina y cambiar escenas o iniciar y detener el stream y la grabación. Una conexión de salida; sin abrir puertos, sin escritorio remoto."
+  - question: "¿Qué NO puede hacer un ayudante remoto con OBS?"
+    answer: "La edición profunda —construir escenas, agregar fuentes, recablear filtros de audio— sigue siendo trabajo en la cabina en la máquina de OBS misma. El control remoto cubre la superficie de operación en vivo: cambio de escenas, iniciar/detener stream, iniciar/detener grabación, con el estado en vivo visible. Para los servicios, eso es la mayoría de lo que un segundo operador necesita."
+  - question: "¿Algo de esto es gratis?"
+    answer: "El control local sí —Tech Manager corre el control de OBS en la cabina sin costo en todos los planes, para siempre. La capa desde-cualquier-lugar (escenas remotas, stream, y grabación para todo tu equipo) viene con Assist a $49/mes o Stream a $99/mes por campus."
+---
+
+## La respuesta corta: sí —localmente gratis, remotamente en los planes de pago
+
+La pregunta usualmente llega desde uno de dos domingos: el veterano está enfermo y alguien pregunta *"¿alguien más puede siquiera correr esto?"* —o un voluntario nuevo está en el teclado y el veterano desearía poder ver qué está pasando sin manejar hasta ahí. Ambos tienen la misma respuesta, y está integrada en OBS mismo.
+
+OBS habla un protocolo de control remoto llamado **WebSocket (v5)** —una puerta de entrada que el proyecto OBS mantiene para exactamente esto. [WorshipMetrics](/obs-integration/) lo usa de dos formas:
+
+- **En la cabina, gratis para siempre:** [Tech Manager](/tech-manager/) se conecta a OBS en la red local —control, monitoreo, y las [reglas de auto-reparación](/es/kb/articles/tech-manager-self-healing-explained/)— sin costo, en todos los planes.
+- **Desde cualquier lugar, en Assist ($49/mes) o Stream ($99/mes por campus):** las personas autorizadas en tu equipo ven el estado en vivo de la cabina desde cualquier dispositivo y pueden **cambiar escenas e iniciar o detener el stream y la grabación.** Una conexión segura de salida desde la cabina; sin abrir puertos, sin VPN, sin forcejear con escritorio remoto. Cada acción remota aterriza en el historial de soporte con un nombre adjunto.
+
+## Qué hace posible eso en un domingo real
+
+**La confirmación por la que nadie tiene que manejar hasta ahí.** "¿De verdad está corriendo la grabación?" —respondido desde un teléfono, y *arreglado* desde un teléfono si no lo está. El pánico clásico pre-servicio se vuelve una revisión de diez segundos por quien esté de turno.
+
+**Un segundo operador, en cualquier lugar.** El voluntario agendado está atorado en el tráfico; el respaldo inicia el stream desde su cocina y cambia a la escena de cuenta regresiva. El servicio abre a tiempo, y el [novato de primer domingo](/es/kb/articles/diary-first-sunday-stream-operator/) en el escritorio nunca enfrentó el momento solo.
+
+**Mentoreando con ojos, no con conjeturas.** Esta es la revolución callada para el [entrenamiento](/es/kb/articles/train-vmix-operators-without-risking-sunday/): un veterano observa el *estado real* —escena actual, estado del stream, [salud del encoder llegando cada cinco segundos](/es/kb/articles/reading-your-stream-health-score/)— mientras el aprendiz maneja. El acompañamiento se vuelve "sigues en la toma abierta" en lugar de "descríbeme tu pantalla", que es toda la diferencia entre [ayuda desde casa que funciona](/es/kb/articles/obs-help-from-home-sunday/) y una arqueología telefónica de veinte minutos.
+
+## El límite honesto —y por qué es el correcto
+
+El control remoto de OBS cubre la **superficie de operación en vivo**: escenas, stream, grabación, con el estado visible. *No* alcanza la edición profunda de OBS —construir escenas, agregar fuentes, cirugía de filtros de audio. Ese trabajo se queda en la máquina de la cabina, un día entre semana, en [un perfil propio con una configuración base](/es/kb/articles/obs-settings-changed-between-sundays/) —que honestamente es donde pertenece. La cirugía remota de ajustes un domingo por la mañana es cómo mueren los streams; el límite refuerza la disciplina que cada cabina estable adopta de todos modos: **opera en vivo, edita los martes.**
+
+(Para las iglesias que corren vMix junto o en lugar, la superficie remota va más profundo —[el panel completo de switching](/es/kb/articles/multiple-operators-vmix-church/)— pero la historia de OBS de arriba está completa por sí sola.)
+
+## De qué se trata en realidad "más de una persona"
+
+Fíjate en lo que cada escenario de arriba calladamente asume: *hay una segunda persona a quién entregarle las cosas.* Ese es el desbloqueo real, y es por qué esta pregunta es más grande que su plomería. La razón por la que un voluntario se volvió irreemplazable nunca fue que OBS es difícil —es que nadie más podía **ver** el sistema, **arreglarlo** con seguridad, o **ser de confianza** con él. El control WebSocket más la [telemetría](/av-monitoring/) más las [acciones registradas](/es/kb/articles/tech-manager-self-healing-explained/) disuelven las tres barreras a la vez —que es por qué las iglesias que encienden esto no solo obtienen redundancia. Obtienen [un equipo](/es/kb/articles/you-already-have-obs/): asientos, una escalera, [estudiantes del salón de jóvenes](/es/kb/articles/need-volunteers-church-livestream/), y un veterano que por fin toma vacaciones con su teléfono en el bolsillo en lugar de las llaves del auto.
+
+Entonces: sí, más de una persona puede correr tu configuración de OBS. La mejor noticia es lo que eso hace posible —y si tu cabina ha estado [peleando un incendio distinto cada semana](/es/kb/articles/obs-problem-every-sunday/) con un solo bombero exhausto, esta es la puerta de salida.
