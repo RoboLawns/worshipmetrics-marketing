@@ -1,0 +1,46 @@
+---
+title: "¿Por Qué OBS Se Ve Perfecto en Preview pero Borroso en el Stream?"
+description: "La ventana de preview muestra el video antes de la compresión; tus espectadores lo ven después. Entre los dos se sientan el bitrate, el encoder, y el re-encode de la plataforma —aquí está cuál está robando tu calidad, y la telemetría que lo resuelve."
+category: "streaming"
+tags: ["OBS", "quality", "bitrate", "troubleshooting"]
+difficulty: "intermediate"
+publishedAt: "2026-09-04"
+coverImage: "/images/products/obs-preview-fine-stream-looks-bad/obs-preview-program-church-dual-screen.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Por qué está borroso mi stream cuando el preview de OBS se ve nítido?"
+    answer: "Porque el preview es pre-compresión —es el video compuesto en crudo. Los espectadores ven ese video después de que tu encoder lo exprime a un bitrate y después de que la plataforma lo re-encodea otra vez. Si el bitrate es demasiado bajo para el movimiento en el cuadro, la calidad se gasta sobreviviendo la compresión, y los momentos de movimiento completo de la adoración sufren primero."
+  - question: "¿Qué bitrate evita que un stream de iglesia se vea borroso?"
+    answer: "Suficiente para tu resolución y movimiento, dentro de los límites honestos de tu subida: como regla, transmite a no más de la mitad de tu subida medida el domingo, y si ese presupuesto no puede cargar un 1080p nítido, baja a 720p —un 720p bien alimentado se ve dramáticamente mejor que un 1080p hambriento."
+  - question: "¿Cómo distingo si es mi encoder, mi red, o la plataforma?"
+    answer: "La telemetría los separa limpiamente: bitrate tambaleándose con frames perdidos es una historia de red; bitrate estable con carga de encoder subiendo es una historia de configuración/caballos de fuerza; y números limpios en ambos con video suave en las opciones de calidad más bajas de la plataforma son solo espectadores en calidad automática —checa el stream en calidad de fuente primero."
+---
+
+## La respuesta corta: el preview es antes de la compresión —tus espectadores viven después de ella
+
+La decepción tiene una ubicación técnica precisa. La ventana de preview de OBS muestra el video *compuesto* —tus cámaras y gráficas, ensambladas, antes de que cualquier compresión las toque. Lo que ve tu congregación ha sobrevivido dos viajes adicionales: tu **encoder** exprimiendo treinta cuadros por segundo hacia abajo a tu bitrate, y la **plataforma** (YouTube, Facebook) re-encodeando tu feed otra vez hacia su propia escalera de calidad. El preview no está mintiendo. Simplemente está río arriba de todo lo que cuesta calidad.
+
+Así que "borroso en el stream" siempre es uno de tres ladrones. Aquí está cada uno, su huella digital, y su arreglo.
+
+## Ladrón 1: un bitrate demasiado pequeño para el movimiento de la adoración
+
+La compresión gasta su presupuesto en el *cambio entre cuadros*, y la adoración —una banda completa, luces en movimiento, cortes de cámara— cambia casi todo, constantemente. Un bitrate que mantiene los anuncios nítidos puede ser la mitad de lo que la segunda canción necesita, que es por lo que los streams de iglesia tan a menudo se ven nítidos hasta que la sala cobra vida, luego se disuelven en papilla alrededor de las luces en movimiento.
+
+**El arreglo es la honestidad del presupuesto.** Dentro de lo que tu conexión puede cargar —[no más de la mitad de tu subida medida el domingo](/es/kb/articles/church-wifi-good-enough-to-livestream/)— dale al stream suficiente bitrate para su resolución, y si el presupuesto no puede alimentar un 1080p nítido, **baja a 720p**. Un 720p bien alimentado le gana a un 1080p hambriento dramáticamente, cada vez. La [calculadora de bitrate](/tools/church-streaming-bitrate-calculator/) hace la aritmética; la [guía de configuración de encoder](/es/kb/articles/church-encoder-settings-that-survive-sunday/) cubre al elenco de apoyo (CBR para el stream, elecciones sensatas de keyframe y perfil).
+
+Dos checadas específicas de OBS mientras estás en la configuración: asegúrate de que la **resolución de salida (escalada)** no esté escalando hacia arriba un lienzo pequeño ni escalando hacia abajo con el filtro más barato (Lanczos cuesta poco y se ve mejor), y confirma que la salida del stream realmente esté usando la configuración que crees —[el desvío de configuración entre domingos](/es/kb/articles/obs-settings-changed-between-sundays/) es una causa principal de "se veía mejor el mes pasado".
+
+## Ladrón 2: un encoder sin margen
+
+La calidad también muere cuando el encoder no puede *pensar* lo suficientemente rápido. x264 en un preset rápido, o un encoder [corriendo cerca de su techo](/es/kb/articles/obs-encoding-overloaded-during-worship/), toma decisiones de compresión más apresuradas —el mismo bitrate, peor imagen, a menudo con tartamudeo como la señal. La huella digital: calidad que se degrada conforme las escenas se ponen ocupadas *sin* que los números de red se muevan. El arreglo: un encoder de hardware (NVENC/AMF/Quick Sync) si la máquina tiene uno, una resolución que el hardware pueda pagar, y escenas que no rendericen ocho fuentes invisibles toda la mañana.
+
+## Ladrón 3: la escalera de calidad de la plataforma (y el reproductor del espectador)
+
+A veces tu feed está genuinamente bien y la queja es real de todos modos: las plataformas re-encodean todo hacia múltiples calidades, y los reproductores de los espectadores auto-seleccionan —la familia con WiFi inestable está viendo el peldaño de 480p y reportando "tu stream está borroso". Antes de tocar la cabina, **checa el stream en calidad de fuente** en una buena conexión. Si la fuente se ve nítida, la cabina es inocente; la respuesta es educación del espectador (el pequeño ícono de engrane) y, ocasionalmente, enviar un feed de mayor calidad para que los peldaños de la plataforma partan de más.
+
+## Cómo dejar de adivinar cuál ladrón es
+
+Aquí está la trampa de las quejas de calidad: llegan como vibras ("¿se veía suave cerca del final?") horas después de que la evidencia se fue. La telemetría convierte la vibra en un veredicto. [Tech Manager](/tech-manager/) muestrea bitrate, frames perdidos, y carga del encoder cada cinco segundos todo el servicio, así que el [reporte de salud](/es/kb/articles/reading-your-stream-health-score/) separa a los sospechosos limpiamente: **bitrate cayendo con frames perdidos** es la red; **bitrate estable con carga de encoder trepando** es la máquina; **todo limpio** significa mira la plataforma y a los espectadores. El reporte incluso guarda la configuración con la que corrió cada stream —así que "se veía mejor el mes pasado" se vuelve un lado a lado, no una sesión de espiritismo.
+
+Y la observación permanente detrás de toda esta serie: la calidad que varía misteriosamente de semana en semana usualmente es un *sistema* sin línea base —configuración sin dueño, nadie vigilando los medidores, [un operador exhausto](/es/kb/articles/church-tech-burnout-cycle/) sin atención que le quede para las tendencias. Las cabinas que se ven consistentemente bien no tienen suerte; leen el reporte del lunes, son dueñas de su configuración, y tienen [suficientes asientos llenos](/es/kb/articles/obs-problem-every-sunday/) para que el trabajo de alguien sea notar. Ese es el arreglo que no se desgasta.
