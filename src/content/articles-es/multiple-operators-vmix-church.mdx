@@ -1,0 +1,52 @@
+---
+title: "¿Puede Más de Una Persona Correr Nuestro Sistema vMix?"
+description: "Sí —localmente gratis, y desde cualquier lugar en los planes de pago: la superficie completa de switching de vMix (preview/programa, T-bar, transiciones, overlays, bus de audio) reflejada a cualquier dispositivo, con cada acción remota registrada. Aquí está cómo un asiento se vuelve una superficie compartida."
+category: "streaming"
+tags: ["vMix", "cloud control", "remote switching", "volunteers"]
+difficulty: "beginner"
+publishedAt: "2026-09-03"
+coverImage: "/images/products/multiple-operators-vmix-church/vmix-cloud-switcher-control-panel.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿El control remoto de vMix requiere abrir puertos o una VPN?"
+    answer: "No. Tech Manager hace una sola conexión segura de salida desde la cabina a WorshipMetrics —el mismo enlace que impulsa el monitoreo. Nada se expone en la red de la iglesia, y nadie abre un agujero en el firewall."
+  - question: "¿Quién puede controlar nuestro switcher de forma remota?"
+    answer: "Solo las personas que has invitado a tu equipo de WorshipMetrics, con sus propias cuentas. Tú decides quién tiene control, y cada acción remota aterriza en el mismo historial de soporte que todo lo demás —nada pasa en silencio."
+  - question: "¿Cuánto cuesta el control de vMix para varias personas?"
+    answer: "El control local —correr vMix desde Tech Manager en la cabina— es gratis en todos los planes, para siempre. El control en la nube, el mismo panel desde cualquier lugar para todo tu equipo, viene con Assist ($49/mes) y Stream ($99/mes por campus)."
+---
+
+## La respuesta corta: sí —y cambia lo que significa "el asiento de vMix"
+
+vMix corre en una PC, así que las iglesias naturalmente asumen que es un instrumento de una sola persona: quien se siente en ese teclado corre el servicio, y todos los demás observan. Con WorshipMetrics conectado, eso deja de ser cierto. **La superficie de switching de la cabina se vuelve algo que tu equipo comparte** —localmente gratis en todos los planes, y desde cualquier lugar en Assist y Stream— mientras vMix mismo se queda exactamente donde está, haciendo exactamente lo que hace.
+
+Concretamente, aquí está lo que una segunda (o tercera, o quinta) persona obtiene, en cualquier dispositivo en el que inicie sesión:
+
+- **Preview y programa, en vivo** —miniaturas de cada entrada junto a una vista de programa ampliable, para que cualquiera con acceso vea exactamente qué está al aire y qué está en cola. Se acabó el describir la pantalla por teléfono.
+- **El switch completo** —transiciones cut, fade, wipe, zoom, y stinger con duración ajustable, un T-bar práctico, y switching preview/programa entre cada entrada, a través de las propias APIs HTTP y TCP de vMix.
+- **Los movimientos de todos los días** —reproducir y pausar entradas, alternar overlays 1–4, manejar mute y volumen del bus de audio.
+- **Medidores de audio honestos** —niveles de máster y bus transmitidos a ~30 fps sobre una conexión TCP persistente: los mismos números que vMix muestra, en vivo en el panel.
+- **Control de stream y grabación** —inicia y detén ambos desde el panel, lo que significa que una segunda persona puede *confirmar que la luz roja de verdad está encendida* antes de que termine el preludio.
+
+Y los dos hechos que hacen a un director técnico sentirse cómodo entregando cualquiera de esto: no hay **abrir puertos ni VPN** (una conexión segura de salida desde la cabina, el mismo enlace que impulsa el [monitoreo](/av-monitoring/)), y **cada acción remota queda registrada** en tu historial de soporte. Tú decides quién puede hacer el switch; el sistema recuerda quién lo hizo.
+
+## Qué hacen en realidad las iglesias con una superficie compartida
+
+La lista de características importa menos que los domingos que cambia. Cuatro patrones surgen constantemente:
+
+**El asiento de confirmación.** El seguro más barato en la producción de iglesias: alguien —al fondo de la sala, en casa, en otro campus— echa un ojo al panel y confirma que el stream está en vivo, la grabación está corriendo, y la entrada correcta está en programa. Treinta segundos, cada semana, y una categoría entera de "no lo notamos hasta el lunes" desaparece.
+
+**El mentor remoto.** Tu operador veterano está en una boda; un novato nervioso está en la cabina. El veterano abre el panel, observa preview y programa durante el servicio, y envía una línea: *"lo estás haciendo genial."* Cuando se necesita, guía al novato por una transición —o hace el switch él mismo. Contamos esta historia desde el lado del novato en el [diario del operador de stream de primer domingo](/es/kb/articles/diary-first-sunday-stream-operator/), y desde el lado de la iglesia en [¿pueden los voluntarios correr el livestream cuando el director técnico está fuera?](/es/kb/articles/volunteers-run-livestream-without-tech-director/)
+
+**El salvamento del domingo-enfermo.** El operador agendado despierta con gripe. Un voluntario veterano toma todo el servicio de forma remota —switching real, no un visor bloqueado— mientras un cuerpo cálido en el edificio maneja la sala física. Lo que solía ser un stream cancelado ahora es un domingo normal con un acomodo inusual.
+
+**La división de entrenamiento.** Este es el superpoder callado para equipos en crecimiento: el aprendiz se sienta en el teclado de vMix donde sucede el aprendizaje táctil, mientras el entrenador observa la *misma superficie en vivo* desde la silla de al lado o el pueblo de al lado —viendo cada decisión de preview antes de que llegue a programa. Los errores se atrapan en preview, que es exactamente donde se supone que los errores deben vivir. Es el patrón que hace [poner estudiantes en el switcher](/es/kb/articles/students-run-church-livestream-safely/) genuinamente seguro, y es cómo el conocimiento de un operador deja de embotellarse y empieza a multiplicarse —el corazón del [equipo que tu sistema vMix puede sostener](/es/kb/articles/you-already-have-vmix/).
+
+## Lo que esto no cambia
+
+vMix mantiene sus colecciones de escenas, sus entradas, su archivo de show, sus atajos de teclado —el oficio del operador se transfiere intacto, porque WorshipMetrics le habla a vMix a través de sus propias APIs en lugar de reemplazar nada. La PC de la cabina se queda como el motor; el panel extiende su alcance. Y el control local a través de [Tech Manager](/tech-manager/) no cuesta nada, para siempre, así que el hábito de la superficie compartida puede empezar hoy incluso en el plan Free —la capa de nube se une cuando el equipo esté listo para ella.
+
+## Cómo lo maneja WorshipMetrics
+
+El control de vMix para varias personas es la capa de [cloud control](/cloud-control/) de WorshipMetrics montada sobre la [integración con vMix](/vmix-integration/): la superficie completa de switching reflejada a los dispositivos de tu equipo, acotada a las cuentas que invitas, registrada acción por acción, sin agujeros en el firewall de la iglesia. Una persona todavía se sienta en la cabina. La diferencia es que ya no está sola ahí —y el asiento por el que compraste vMix se vuelve el primer asiento de un equipo.
