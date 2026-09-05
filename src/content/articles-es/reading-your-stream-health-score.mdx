@@ -1,0 +1,112 @@
+---
+title: "Leyendo el Puntaje de Salud de Tu Stream: Qué Significa en Realidad el Número 0-100"
+description: "Una guía en lenguaje sencillo del puntaje de salud del stream —la telemetría detrás de él, qué significa cada penalización, y el arreglo práctico para cada deducción común."
+category: "streaming"
+tags: ["stream health", "monitoring", "troubleshooting", "bitrate"]
+difficulty: "beginner"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/reading-your-stream-health-score/worshipmetrics-stream-health-score-report.jpg"
+featured: false
+productCTA: true
+---
+
+## Un número, un servicio
+
+Después de cada stream, WorshipMetrics te da un solo puntaje de salud de 0-100 para la sesión. Está diseñado para responder la pregunta que cada director técnico hace el lunes por la mañana: *¿estuvo bien el domingo de verdad, o solo tuvimos suerte?*
+
+El puntaje no es una calificación de tu equipo, tu presupuesto de equipo, o tu creatividad. Es un resumen de lo que el encoder y la computadora de la cabina estaban experimentando mientras el stream estaba en vivo —y como cada deducción viene con una recomendación en lenguaje sencillo, un puntaje bajo es menos un veredicto y más una lista de pendientes.
+
+Este artículo recorre de dónde viene el número, qué significa cada penalización, y el arreglo práctico para cada deducción común.
+
+## La telemetría: siete mediciones, cada cinco segundos
+
+Mientras tu stream corre, la app de escritorio [Tech Manager](/tech-manager/) de WorshipMetrics en la PC de la cabina muestrea telemetría de tu encoder —vMix u OBS— cada cinco segundos. Siete mediciones componen cada muestra:
+
+1. **Bitrate vs. objetivo.** Lo que le pediste al encoder que enviara versus lo que de verdad está empujando. Si pusiste un objetivo de 4,500 Kbps y el encoder solo está moviendo 2,800, algo entre la cabina y el internet está rechazando datos.
+2. **Porcentaje de frames perdidos.** Frames que el encoder abandonó porque la red no podía aceptarlos suficientemente rápido. Esta es la señal más honesta del encoder —no descarta frames a menos que tenga que hacerlo.
+3. **Frames por segundo.** Si el encoder de verdad está produciendo video a la tasa que configuraste. Un stream de 30 fps renderizando a 22 fps se ve como entrecorte para cada espectador, en cada plataforma.
+4. **Carga del encoder.** Qué tan duro está trabajando el motor de codificación mismo. Un encoder corriendo cerca de su techo no tiene margen para el momento en que la iluminación cambia y cada pixel del cuadro de repente necesita recodificarse.
+5. **Uso de CPU.** La máquina entera, no solo el encoder —porque una actualización de Windows o una pestaña de navegador desbocada le roba ciclos a tu stream tan efectivamente como lo hace una escena pesada.
+6. **Uso de RAM.** La presión de memoria causa la degradación lenta y trepadora que es la más difícil de detectar en vivo: las cosas funcionan a las 9:00 y se entrecortan para las 9:40.
+7. **Espacio libre en disco.** Las grabaciones locales consumen calladamente gigabytes por hora. Un disco que se llena a mitad del servicio puede llevarse la grabación —y a veces el encoder— con él.
+
+La resolución de cinco segundos importa porque los problemas del domingo rara vez son constantes. Un bitrate que cede por noventa segundos durante el saludo (cuando el WiFi del lobby se enciende) y se recupera es una historia muy distinta de un bitrate que está bajo toda la mañana —y un promedio por servicio escondería la diferencia por completo.
+
+Cada reporte también captura los ajustes del stream en ese momento: resolución, bitrate objetivo, preset y perfil del encoder, tamaño de GOP, y códec de audio. Ese contexto es lo que hace los reportes comparables a través de semanas. Si el puntaje bajó el mismo domingo que los ajustes cambiaron, usualmente ya encontraste tu respuesta.
+
+## La ventana de gracia de reconexión de 45 segundos
+
+Los streams tienen hipos. Un router renegocia, una ruta de ISP se tambalea por un momento, el encoder re-establece su conexión, y el servicio continúa. El sistema de salud sostiene una **ventana de gracia de 45 segundos** alrededor de estos eventos: si el stream regresa dentro de ella, la caída se cuenta como una *reconexión dentro de la misma sesión* en lugar del final de un stream y el inicio de otro.
+
+Esto importa por dos razones:
+
+- **Un servicio produce un reporte.** Sin la ventana de gracia, un domingo con dos parpadeos breves aparecería en tu historial como tres fragmentos de stream separados, ninguno de los cuales cuenta la historia completa. Con ella, obtienes un solo reporte que dice: un servicio, dos reconexiones, aquí está cuándo pasaron.
+- **Las reconexiones se vuelven una señal medible.** Como se cuentan dentro de la sesión, el puntaje puede penalizar un patrón de ellas —que es exactamente el tipo de problema de "siempre regresa, así que nunca investigamos" que eventualmente se vuelve un corte a mitad del sermón. Si tu stream sí se cae y se queda caído, ese es otro manual —mira [qué hacer cuando tu stream se cae a mitad del servicio](/es/kb/articles/church-stream-dropped-mid-service/).
+
+## Las penalizaciones, una por una
+
+El puntaje empieza en 100 y toma deducciones ponderadas cuando la telemetría cruza umbrales definidos. Los pesos reflejan qué tan mal lastima cada problema a la gente que mira:
+
+| Problema | Disparador | Penalización |
+|---|---|---|
+| Frames perdidos | ≥5% de frames perdidos | −35 |
+| Reconexiones frecuentes | ≥3 reconexiones por hora | −25 |
+| FPS bajo sostenido | Tasa de frames mantenida bajo el objetivo | −20 |
+| Sobrecarga del encoder | Motor de codificación corriendo más allá de la carga sana | −18 |
+| Inestabilidad del bitrate | Bitrate de salida vagando del objetivo | −15 |
+
+Cada deducción trae una recomendación específica en el reporte mismo, pero aquí está la versión más larga de qué significa cada una y cómo arreglarla.
+
+### Frames perdidos ≥5% (−35): la red rechazó datos
+
+Esta es la penalización más pesada porque es la que los espectadores sienten más directamente —los frames perdidos llegan al otro lado como congelamientos, pixelación, y audio que le gana al video. Cinco por ciento puede sonar pequeño; repartido sobre un servicio de 75 minutos son varios minutos de stream visiblemente roto.
+
+Los frames perdidos son casi siempre la *ruta de subida*, no el encoder. Los arreglos, en orden de recompensa probable:
+
+- **Pon el encoder en Ethernet cableado.** El WiFi en un edificio lleno de teléfonos es la causa más común de frames perdidos un domingo por la mañana.
+- **Ajusta el bitrate a tu subida.** Una regla segura es transmitir a no más de la mitad de tu velocidad de subida medida de forma confiable —medida un domingo por la mañana, no un martes por la tarde.
+- **Separa el tráfico de streaming del WiFi de invitados.** Una congregación entera de teléfonos en la misma conexión de internet ganará la pelea del ancho de banda. Las VLANs y reglas de QoS para la cabina están cubiertas en nuestra [guía de red de iglesias para AV y streaming](/es/kb/articles/church-network-av-streaming/).
+
+### Reconexiones ≥3/hora (−25): la conexión sigue tambaleándose
+
+La ventana de gracia evita que las caídas breves dividan tu sesión, pero tres o más reconexiones en una hora es un patrón, no mala suerte. Cada reconexión es un tramo de aire muerto para los espectadores y una pequeña apuesta a que el stream regrese siquiera.
+
+Mira aguas arriba del encoder: un módem o router que necesita un reinicio (o reemplazo), una ruta de ISP que se degrada bajo la carga del vecindario, o equipo del edificio que se reinicia en un horario. Si las reconexiones se agrupan a la misma hora cada semana, ese tiempo es tu mejor pista. Y si la conexión del edificio simplemente no puede mantenerse estable, una ruta de respaldo enlazada o celular para la cabina es una inversión mucho mejor que un plan más rápido en la misma línea poco confiable.
+
+### FPS bajo sostenido (−20): la máquina no puede renderizar en tiempo real
+
+Cuando el encoder no puede producir frames a la tasa configurada, el stream se entrecorta incluso en una red perfecta. Causas y arreglos comunes:
+
+- **Complejidad de escena.** Múltiples entradas de cámara, fuentes NDI, y gráficos en capas todos cuestan tiempo de renderizado. Simplifica las escenas que de verdad usas en vivo.
+- **Desajustes de tasa de frames.** Una cámara de 60 fps alimentando una salida de 30 fps (o una mezcla de fuentes desajustadas) fuerza una conversión constante. Estandariza tus fuentes a una tasa de frames.
+- **La GPU haciendo doble trabajo.** Renderizar la salida de programa *y* codificar en la misma GPU hambrienta es un cuello de botella clásico de cabina. Los capítulos de construcción de escenas y desempeño de nuestra [guía de OBS Studio](/es/kb/articles/obs-studio-complete-church-guide/) y [guía de vMix](/es/kb/articles/vmix-complete-church-guide/) cubren esto a fondo para cada encoder.
+
+### Sobrecarga del encoder (−18): sin margen restante
+
+La carga del encoder cerca del techo significa que el motor de codificación está a un cuadro ocupado de quedarse atrás. Los arreglos intercambian un poco de calidad que no extrañarás por estabilidad que sí:
+
+- **Usa un preset más rápido.** En x264, mover de `medium` a `veryfast` reduce dramáticamente la carga con un costo de calidad modesto que rara vez es visible en los bitrates de streaming.
+- **Muévete a la codificación por hardware.** NVENC (NVIDIA), Quick Sync (Intel), o AMF (AMD) descarga la codificación del CPU casi por completo, y los encoders de hardware modernos son excelentes en los bitrates típicos de iglesia.
+- **Baja la resolución de salida.** Codificar 1080p mientras tus cámaras y ancho de banda realistamente soportan 720p compra un margen enorme —y en los tamaños típicos de visualización de iglesia, un 720p estable le gana consistentemente a un 1080p que batalla.
+
+### Inestabilidad del bitrate (−15): la salida vaga del objetivo
+
+Un bitrate que oscila —alcanzando el objetivo, cediendo, saltando de vuelta— produce búfer para los espectadores incluso cuando el promedio se ve bien, porque las plataformas de streaming construyen sus escaleras de calidad asumiendo una entrada estable.
+
+- **Confirma que el encoder está en CBR** (bitrate constante) para la salida de streaming. El bitrate variable es genial para grabaciones y áspero para la entrega en vivo.
+- **Revisa qué comparte la línea.** Los respaldos en la nube, los clientes de sincronización, y los sistemas del edificio que llaman a casa a media mañana todos causan la firma de ceder-y-recuperar.
+- **Vigila la correlación con los frames perdidos.** Inestabilidad más caídas es una historia de red; inestabilidad con frames limpios es usualmente una historia de ajustes del encoder. Las muestras de cinco segundos te dejan distinguirlas.
+
+## Leyendo los puntajes a lo largo del tiempo
+
+Un solo número es una instantánea; la tendencia es el diagnóstico. Una forma práctica de leer tu historial:
+
+- **Un puntaje consistentemente alto** significa que tus ajustes, máquina, y red están emparejados entre sí. Anota los ajustes capturados en esos reportes —esa es tu línea base conocida-buena.
+- **Un mal domingo** es un evento. Abre ese reporte, mira cuándo se dispararon las penalizaciones, y empareja las marcas de tiempo contra lo que estaba pasando en la sala.
+- **Un deslizamiento lento a lo largo de semanas** es deriva —una máquina acumulando software de fondo, un disco llenándose, una red poniéndose más ocupada. Este es el patrón que la memoria humana pierde y la telemetría atrapa.
+
+Como cada reporte guarda los ajustes con que corrió, "¿qué cambió?" deja de ser un debate y se vuelve una búsqueda. Eso también hace del puntaje una herramienta de entrenamiento genuinamente útil: un voluntario que puede leer el reporte puede aprender cómo se ve lo sano mucho antes de que pueda diagnosticar un problema desde cero.
+
+## Cómo lo maneja WorshipMetrics
+
+El puntaje de salud del stream está integrado en la app de escritorio [Tech Manager](/tech-manager/) de WorshipMetrics: muestrea vMix u OBS cada cinco segundos durante cada stream, aplica la gracia de reconexión de 45 segundos para que cada servicio produzca exactamente un reporte, y sube la sesión puntuada —telemetría, penalizaciones, recomendaciones en lenguaje sencillo, y la captura completa de ajustes— a la nube, donde se sienta junto al resto de tu historial de [AV monitoring](/av-monitoring/). Emparejado con [WorshipMetrics live streaming](/live-streaming/), la misma plataforma que carga tu stream es la que vigila su salud —así que la pregunta del lunes, *¿estuvo bien el domingo de verdad?*, siempre tiene una respuesta con números detrás.
