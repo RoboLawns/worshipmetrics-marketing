@@ -1,0 +1,106 @@
+---
+title: "Auto-Reparación en la Cabina: Lo Que Tech Manager Arregla Antes de que lo Notes"
+description: "Un recorrido en lenguaje sencillo por las reglas de auto-reparación de Tech Manager —reinicios de stream, bajadas de bitrate, recuperación de grabación, limpieza de disco, y encolado consciente de la red— y por qué cada acción aterriza en tu historial de soporte."
+category: "operations"
+tags: ["self-healing", "Tech Manager", "reliability", "streaming"]
+difficulty: "beginner"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/tech-manager-self-healing-explained/tech-manager-self-healing-booth-dashboard.jpg"
+featured: false
+productCTA: true
+---
+
+## Qué significa "auto-reparación" en realidad
+
+Cada cabina técnica de iglesia tiene una lista corta de problemas que pasan una y otra vez: el stream se cae, la grabación se detiene calladamente, el disco se llena, el internet parpadea por cuarenta y cinco segundos durante la segunda canción. Ninguno de estos es difícil de arreglar. Lo que los hace dolorosos es *cuándo* pasan —a mitad del servicio, mientras la única persona que sabe el arreglo también está corriendo las letras, mezclando un envío de monitor, y respondiendo un mensaje del pastor.
+
+La auto-reparación es la idea simple de que una computadora en la cabina puede vigilar esas fallas específicas y bien entendidas y aplicar el arreglo específico y bien entendido —de inmediato, sin esperar a que un humano lo note. No es inteligencia artificial adivinando soluciones. Es un conjunto pequeño de reglas explícitas, cada una haciendo exactamente lo que un voluntario experimentado haría si hubiera estado mirando el encoder en el momento en que las cosas salieron mal.
+
+Tech Manager, la aplicación de cabina de WorshipMetrics, viene con un puñado de estas reglas. Este artículo recorre cada una en lenguaje sencillo: qué vigila, cuándo actúa, qué hace, y —igual de importante— qué se niega deliberadamente a hacer. Y termina con la filosofía que sostiene todo: **cada acción queda registrada en tu historial de soporte. Nada pasa en silencio.**
+
+## Regla 1: Caída de stream — reiniciar tras 30 segundos
+
+**Qué vigila:** si tu salida de stream de verdad está corriendo y enviando.
+
+**Cuándo actúa:** si el stream ha estado caído por más de 30 segundos.
+
+**Qué hace:** reinicia el stream.
+
+¿Por qué la espera de 30 segundos? Porque el streaming en vivo por el internet público tiene hipos que se resuelven solos. Los encoders reintentan, las conexiones se re-establecen, y un tirón de dos segundos usualmente se recupera solo. Reiniciar el stream al instante en cada tambaleo empeoraría las cosas —cada reinicio es en sí una breve interrupción. Treinta segundos es suficiente para confiar en que el stream está genuinamente caído, y suficientemente corto para que la mayoría de tu congregación en línea lo experimente como una pausa de búfer en lugar de un corte.
+
+Si alguna vez has trabajado la versión manual de esto —notando el badge de "reconectando", decidiendo cuánto esperar, finalmente haciendo clic en stop y start de nuevo— sabes que la parte más difícil es que nadie usualmente está mirando el encoder en el momento que importa. La regla simplemente elimina el modo de falla de "nadie estaba mirando". Para qué hacer cuando una caída *sí* pasa cada red de seguridad, mantén a la mano el [manual de recuperación de stream caído](/es/kb/articles/church-stream-dropped-mid-service/).
+
+## Regla 2: Bitrate bajo — bajar la resolución
+
+**Qué vigila:** el bitrate real que tu encoder está logrando, comparado con cómo se ve un stream sano.
+
+**Cuándo actúa:** cuando el bitrate cede lo suficientemente bajo como para que el stream esté batallando.
+
+**Qué hace:** reduce la resolución de salida para que el stream pueda mantenerse dentro del ancho de banda que de verdad está disponible.
+
+Este es el mismo triaje que un operador de streaming experimentado hace a mano: cuando la subida no puede sostener el stream, una resolución más baja que se reproduce suave le gana a una resolución más alta que se entrecorta y cae. Los espectadores perdonan la suavidad; no perdonan el congelamiento. El bitrate cediendo es casi siempre una historia de red —congestión en la conexión del edificio, un ISP con una mala mañana, un trabajo de respaldo que eligió el momento equivocado para correr— y la respuesta correcta en el momento es encoger el apetito del stream, no pelear contra la física.
+
+La bajada te mantiene en vivo a través del tramo difícil. Después, la causa subyacente vale perseguirse apropiadamente —nuestra guía de [diseño de red de iglesias para AV y streaming](/es/kb/articles/church-network-av-streaming/) cubre cómo aislar el tráfico de streaming para que el WiFi de invitados del domingo no mate de hambre a tu encoder en primer lugar.
+
+## Regla 3: Grabación detenida — iniciarla de nuevo
+
+**Qué vigila:** si tu grabación está corriendo cuando debería estarlo.
+
+**Cuándo actúa:** en el momento en que una grabación que debería estar corriendo se encuentra detenida.
+
+**Qué hace:** reinicia la grabación.
+
+De todas las fallas de cabina, la grabación detenida en silencio es la más cruel, porque la descubres *después* del servicio —cuando el sermón que tu pastor quería recortar, o la copia de archivo que un miembro confinado en casa esperaba, simplemente no existe. No hay síntoma a mitad del servicio. El stream se ve bien, la sala suena bien, y la pérdida es invisible hasta el lunes.
+
+Ese es exactamente el tipo de falla en la que la automatización es mejor, porque la verificación es trivial para una computadora y casi imposible para un humano ocupado: "¿sigue corriendo la grabación?" preguntada continuamente, durante todo el servicio. Si la respuesta alguna vez se vuelve no, el arreglo se aplica en segundos en lugar de descubrirse con arrepentimiento.
+
+## Regla 4: Disco llenándose — limpiar el caché y avisarte
+
+**Qué vigila:** el espacio libre en el almacenamiento de la máquina de la cabina.
+
+**Cuándo actúa:** cuando el espacio libre cae por debajo del 10%.
+
+**Qué hace:** borra los archivos de señalización digital cacheados más viejos para recuperar espacio —y levanta una alerta para que sepas que pasó y puedas atender la tendencia subyacente.
+
+Un disco lleno es una emergencia en cámara lenta. Las grabaciones fallan, el software se porta mal, y la máquina que estuvo bien por meses de repente no lo está —usualmente un domingo, porque los domingos son cuando se escriben los archivos grandes. La regla de limpieza te compra margen automáticamente removiendo solo contenido de señalización *cacheado*, que es seguro borrar porque se puede re-descargar. Tus grabaciones, material y archivos de proyecto nunca se tocan.
+
+Fíjate en la segunda mitad de la regla, sin embargo: la alerta. La limpieza automática trata el síntoma; la alerta se asegura de que un humano mire la causa. Si el disco sigue coqueteando con el 10%, el arreglo real es un plan de almacenamiento —algo que un ritmo regular de [inventario y mantenimiento de AV](/es/kb/articles/av-inventory-maintenance/) debería revelar mucho antes de que se vuelva urgente.
+
+## Regla 5: Caída de red — encolar el reinicio, no forcejear
+
+**Qué vigila:** la propia conexión de red de la cabina.
+
+**Cuándo actúa y qué hace — dos casos:**
+
+- **Corte menor a 60 segundos:** Tech Manager encola un reinicio de stream y lo dispara en el momento en que la red se recupera. No martilla a ciegas intentos de reconexión en una conexión muerta; espera a que la red de verdad regrese, luego actúa una vez, limpiamente.
+- **Corte mayor a 60 segundos:** te alerta en su lugar. En ese punto el problema es más grande que un parpadeo —un reinicio de router, un corte de ISP, un cable que alguien golpeó— y se necesita una decisión humana: cambio a hotspot, un anuncio a la congregación en línea, o una llamada de ayuda.
+
+Esta división es el comportamiento más de "operador experimentado" en todo el conjunto. Cualquiera que haya transmitido por un tiempo conoce la diferencia entre un hipo que aguantas y un corte que escalas —y sabe que hacer clic frenéticamente en reintentar durante el hipo solo prolonga la recuperación. Codificar ese juicio en una regla significa que la respuesta calmada sucede incluso cuando la persona en la cabina es completamente nueva. (Se combina bien con [entrenar a tu equipo de AV voluntario](/es/kb/articles/training-volunteer-av-teams/) —la automatización maneja los reflejos para que el entrenamiento pueda enfocarse en el juicio.)
+
+## Lo que la auto-reparación deliberadamente *no* hace
+
+Un sistema de confiabilidad gana confianza tanto por su contención como por sus acciones. Dos límites importan aquí:
+
+**Un encoder caído se reporta, no se relanza en silencio.** Si OBS se cae por completo, Tech Manager lo reporta y escala a un humano en lugar de auto-reiniciar la aplicación. Esa es una elección deliberada: una caída puede significar una colección de escenas corrupta, una tarjeta de captura muriendo, o un problema de driver, y relanzar a ciegas podría agravar el daño o enmascarar una falla de hardware que necesita atención. Reiniciar una salida de stream es rutina; resucitar una aplicación caída es una decisión que una persona debe tomar.
+
+**Repara lo que configuraste, nada más.** En cabinas de vMix, Tech Manager monitorea y repara mediante sondeo contra la fuente que configuraste —no anda deambulando por tu máquina tomando decisiones sobre software que nunca se le pidió vigilar. El mismo monitoreo funciona en cabinas basadas en OBS, vMix y ATEM, con cada regla acotada a lo que esa configuración de verdad expone.
+
+El patrón en ambos: **automatiza lo reversible, escala lo ambiguo.** Cada regla de auto-reparación maneja una falla cuyo arreglo es seguro, bien entendido y fácilmente deshacible. Cualquier cosa que requiera diagnóstico recibe un humano.
+
+## Nada es silencioso: cada acción en tu historial de soporte
+
+Aquí está la parte que hace la auto-reparación confiable en lugar de espeluznante: **cada intento queda registrado en un log de auto-reparación en tu historial de soporte.** Cada reinicio de stream, cada bajada de resolución, cada recuperación de grabación, cada limpieza de caché, cada reconexión de red encolada —con marca de tiempo y registrado, haya tenido éxito o no.
+
+Eso importa por tres razones:
+
+1. **Puedes auditar tu propia cabina.** Si el stream se reinició solo a las 10:42 el domingo pasado, lo verás —aunque nadie en la sala haya notado nada. A lo largo de semanas, el log se vuelve un registro de salud: una cabina que se auto-repara una vez por trimestre está bien; una que se auto-repara cada servicio te está diciendo algo sobre tu red o hardware que merece un arreglo real.
+2. **El soporte parte de los hechos.** Cuando sí llamas por ayuda, el historial de lo que se intentó automáticamente —y cuándo, y si funcionó— ya está ahí. Te saltas la arqueología de "¿entonces qué pasó?" y vas directo al diagnóstico.
+3. **La confianza requiere visibilidad.** Un sistema que calladamente cambia tus ajustes de stream sería inquietante sin importar qué tan buenas fueran sus intenciones. Un sistema que actúa *y muestra su trabajo* es un compañero de equipo.
+
+La automatización silenciosa cría misterio. La automatización registrada construye un rastro de papel que los hace más inteligentes, a ti y a tus herramientas, cada semana.
+
+## Cómo lo maneja WorshipMetrics
+
+Las cinco reglas de este artículo están integradas en [Tech Manager](/tech-manager/), la aplicación de cabina de WorshipMetrics para Windows. Corre calladamente en la bandeja del sistema con un badge de punto de salud, se lanza automáticamente al iniciar sesión, y vigila tu cabina ya sea que esté construida sobre OBS, vMix o un ATEM —reiniciando streams caídos tras 30 segundos, bajando la resolución cuando el bitrate cede, reiniciando grabaciones detenidas, limpiando la señalización cacheada cuando el espacio de disco escasea, y encolando reconexiones a través de caídas cortas de red mientras te alerta en las largas.
+
+Todo lo que hace alimenta la misma imagen en vivo que tu equipo ve en [AV monitoring](/av-monitoring/) —bitrate, frames perdidos, y carga del encoder rastreados continuamente— y cada acción de auto-reparación aterriza en tu historial de soporte, donde ya está en pantalla si llamas a [910-WORSHIP](/phone-support/) por los problemas que la automatización no debería resolver sola. La meta no es una cabina que nunca tenga problemas. Es una cabina donde los problemas de rutina se arreglan solos, los problemas reales alcanzan a un humano rápido, y nada —jamás— pasa en silencio.
