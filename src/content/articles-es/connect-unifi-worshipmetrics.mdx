@@ -1,0 +1,92 @@
+---
+title: "Conectar un Controlador UniFi a WorshipMetrics: Verdad Precisa por Puerto"
+description: "Cómo enlazar un controlador Ubiquiti UniFi a WorshipMetrics con una llave de API o una cuenta de admin local, y qué desbloquea la topología precisa por puerto: cables de Ethernet auto-inferidos, consumo PoE en vivo por puerto, y velocidad de enlace negociada vs. máxima."
+category: "device-management"
+tags: ["UniFi", "networking", "PoE", "topology"]
+difficulty: "intermediate"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/connect-unifi-worshipmetrics/unifi-network-topology-church-signal-map.jpg"
+featured: false
+productCTA: true
+---
+
+## Por qué tu red debería auditar tu documentación
+
+Todo equipo de AV de iglesia eventualmente construye algún tipo de signal map —una foto de un pizarrón, una hoja de cálculo, un dibujo de qué se enchufa a qué. Y cada uno de esos mapas tiene la misma debilidad: registra lo que alguien *creía* que era cierto el día que lo dibujó. Luego un voluntario mueve una cámara a un puerto de switch diferente durante un reacomodo de Navidad, nadie actualiza el dibujo, y seis meses después estás resolviendo problemas desde un mapa que calladamente te miente.
+
+Tus switches de red, por otro lado, no pueden mentir sobre el presente. Un switch administrado sabe exactamente cuál puerto tiene enlace, qué tan rápido negoció ese enlace, y cuántos watts de Power over Ethernet está entregando cada puerto ahora mismo. Si tu iglesia corre equipo Ubiquiti UniFi —y muchísimas iglesias lo hacen, porque da en un punto dulce de capacidad y precio— toda esa verdad está sentada en tu controlador UniFi esperando que le pregunten.
+
+WorshipMetrics puede preguntar. Conecta tu controlador UniFi y la plataforma jala telemetría de red en vivo al mismo lugar donde tus dispositivos, signal map, y programa de cables ya viven. Este artículo recorre las dos formas de autenticar, explica qué desbloquea el modo más profundo "preciso por puerto", y muestra cómo la verdad de red en vivo se vuelve una auditoría permanente de tu signal map documentado.
+
+## Dos formas de entrar: llave de API o admin local
+
+WorshipMetrics soporta dos modos de autenticación para un controlador UniFi, y intercambian conveniencia por profundidad.
+
+### Llave de API: la ruta de integración oficial
+
+Ubiquiti publica una API oficial de Network Integration, autenticada con una llave de API enviada en un encabezado de solicitud. Generas la llave en la configuración de API/integraciones de tu consola UniFi, la pegas en WorshipMetrics, y estás conectado —sin contraseñas compartidas, y la llave puede revocarse en cualquier momento sin tocar el login de nadie.
+
+Esta es la forma más suave de empezar. Trae tu red UniFi a WorshipMetrics por la puerta del frente que Ubiquiti construyó para exactamente este propósito, y es la elección correcta si tu red la maneja un proveedor de IT externo que preferiría entregarte una llave con alcance limitado que una cuenta.
+
+### Admin local: la ruta precisa por puerto
+
+El segundo modo usa un nombre de usuario y contraseña de admin local en el controlador mismo, lo que permite a WorshipMetrics hablar con la interfaz local más completa del controlador. Este es el modo que desbloquea la **topología precisa por puerto**: detalle cable por cable de cuál dispositivo cuelga de cuál puerto físico de switch, wattaje PoE en vivo por puerto, y resultados de negociación de enlace por puerto.
+
+Dos piezas de consejo práctico si vas por esta ruta:
+
+- **Crea una cuenta local dedicada para la integración** en lugar de reutilizar el login de una persona. UniFi te deja agregar usuarios locales con roles limitados; una cuenta dedicada orientada a lectura significa que la conexión sigue funcionando cuando un miembro del personal cambia su contraseña o se va, y tu rastro de auditoría se queda limpio.
+- **Usa una cuenta local, no una cuenta de nube (SSO) de Ubiquiti.** La integración le habla al controlador directamente en tu LAN, así que necesita credenciales que vivan en el controlador mismo.
+
+### ¿Cuál deberías usar?
+
+Empieza con la que te conecte hoy, pero sabe lo que estás eligiendo. El modo de llave de API es rápido, revocable, y oficialmente sancionado. El modo de admin local es lo que convierte tu red de una lista de dispositivos en un testigo de cableado —todo en la siguiente sección depende de él. Muchas iglesias corren la llave de API primero, ven el valor, y luego configuran una cuenta local dedicada una vez que el administrador de red se siente cómodo.
+
+Una nota arquitectónica: el colector de UniFi corre desde la app de escritorio de WorshipMetrics —la que vive en la computadora de tu cabina— porque esa máquina se sienta en la misma LAN que tu controlador. Los resultados se sincronizan a la nube, así que la app web muestra la misma topología que reunió tu máquina de cabina.
+
+## Qué desbloquea la topología precisa por puerto
+
+Aquí está lo que aparece una vez que WorshipMetrics puede ver tus switches puerto por puerto.
+
+### Cables de Ethernet auto-inferidos
+
+La sincronización lee las tablas de clientes por puerto del controlador y escribe las conexiones de Ethernet reales en tu signal map —esta cámara al puerto 7 del switch del lado izquierdo del escenario, ese access point al puerto 16. Cada cable inferido recibe un ID de cable de red en el mismo esquema de numeración estilo `NET-001` que la plataforma usa para cada cable, así que los cables que la red descubrió se sientan justo al lado de las tiradas de SDI y Dante que dibujaste a mano, en el mismo mapa y el mismo [programa de cables Patches](/es/kb/articles/cable-labeling-system-that-survives/).
+
+Esto importa porque las tiradas de Ethernet son precisamente los cables que los equipos documentan peor. Una tirada de SDI se dibuja porque alguien conscientemente la instaló; los patches de red se acumulan de uno en uno a lo largo de años, y nadie recuerda en cuál puerto aterrizó el reproductor de medios del monitor de confianza. La auto-inferencia significa que la capa menos documentada de tu rig se vuelve la capa *mejor* documentada —presenciada por el switch mismo.
+
+### Consumo PoE en vivo, puerto por puerto
+
+Si has leído nuestra guía de [clases PoE para AV de iglesia](/es/kb/articles/poe-classes-church-av-guide/), sabes la diferencia entre lo que un dispositivo *negocia* (su asignación de clase) y lo que realmente *jala* (su consumo en vivo). La sincronización precisa por puerto muestra el wattaje en vivo en cada puerto PoE, lo que convierte dos misterios crónicos en checadas de treinta segundos:
+
+- **¿Esa cámara realmente está siendo alimentada por este switch?** Un puerto mostrando 0.0 W con una luz de enlace te dice que el dispositivo está corriendo con un adaptador de energía local —verdad útil cuando estás decidiendo si un reinicio de switch tumbará la cámara.
+- **¿Qué tan cerca está este switch de su presupuesto PoE?** Sumar los consumos en vivo a lo largo de los puertos te dice cuánto margen real queda antes de que agregues el siguiente access point —y si un dispositivo está jalando sospechosamente más de lo que sugiere su clase documentada, que a menudo es la primera señal de un calentador arrancando o un dispositivo fallando.
+
+Como el catálogo de dispositivos de WorshipMetrics registra la clase PoE y las expectativas de wattaje para el equipo que conoce, puedes leer la expectativa documentada y la medición en vivo lado a lado. Cuando no coinciden, la red te está diciendo algo.
+
+### Velocidad de enlace negociada vs. máxima
+
+Esta es la característica durmiente, y en nuestra experiencia la que encuentra problemas reales más rápido. La sincronización registra la velocidad negociada de un puerto *por separado* de su capacidad máxima —así que un puerto gigabit que silenciosamente cayó a 100 Mb/s es visible de un vistazo en lugar de esconderse detrás de una luz de enlace verde.
+
+¿Por qué cae gigabit a 100M? Casi siempre el cable: una terminación marginal, un par dañado, una tirada que se pellizcó durante una reconstrucción de escenario. El Gigabit Ethernet necesita los cuatro pares; 100 Mb/s necesita solo dos, así que un cable con un par malo "funciona" —justo hasta que empujas un feed de NDI o una red Dante a través de él y las cosas se ponen extrañas. Si corres [señales de AV sobre tus switches de red](/es/kb/articles/av-signals-that-survive-network-switch/), un puerto atorado a 100M es un incidente de domingo esperando su momento. Ver negociada-contra-máxima en tu documentación significa que encuentras ese cable un martes en su lugar.
+
+## Dejar que la verdad de la red revise tu signal map
+
+Junta las piezas y obtienes algo genuinamente raro en el AV de iglesia: un signal map documentado con un verificador de hechos integrado.
+
+Tu mapa dibujado a mano registra la intención —lo que el sistema fue diseñado para ser. La sincronización de UniFi registra la observación —lo que el cobre realmente está haciendo. Cuando los cables auto-inferidos aterrizan en el mapa al lado de tus tiradas documentadas, los desacuerdos salen a la superficie naturalmente: un dispositivo que tu dibujo dice que alimenta el switch de la cabina pero el controlador dice que cuelga del switch del lobby; una tirada de Ethernet que documentaste que ningún switch ha visto jamás; un dispositivo cuyo puerto se apagó por completo.
+
+El resto de la plataforma refuerza el hábito. Las tarjetas de dispositivo cargan indicadores de salud en vivo en un umbral de offline de 90 segundos —tres latidos perdidos y el punto cambia— así que el mapa que usas para planear también es el mapa que echas un vistazo cuando algo muere a media misa. Y las auditorías automatizadas de cableado del signal map (cables duplicados, conflictos de dirección, desajustes de conectores, y más) mantienen honesto el lado dibujado a mano de la documentación mientras la sincronización de red mantiene honesto el lado de Ethernet.
+
+Si aún estás construyendo el lado de red de tu sistema de AV, nuestra guía de [redes de iglesia para AV y streaming](/es/kb/articles/church-network-av-streaming/) cubre VLANs, selección de switches, y las decisiones de diseño que hacen este tipo de telemetría más útil.
+
+## Notas de configuración y buenas prácticas
+
+Unas recomendaciones probadas en campo para una conexión sin problemas:
+
+1. **Conecta desde la máquina de la cabina.** La app de escritorio que hace la recolección debería estar en la misma LAN que el controlador —idealmente en tu VLAN de administración o una que pueda alcanzarlo.
+2. **Prefiere una cuenta de integración dedicada** (modo admin local) o una llave de API dedicada (modo oficial) sobre cualquier cosa compartida con humanos. La revocación nunca debería requerir una conversación de personal.
+3. **Corre una sincronización, luego camina tus racks una vez.** La primera sincronización precisa por puerto es la excusa perfecta para una auditoría física: confirma que los cables inferidos coinciden con la realidad, arregla las dos o tres sorpresas que absolutamente encontrarás, y etiqueta cualquier cosa sin etiquetar mientras estás ahí.
+4. **Revisa las velocidades negociadas después de cualquier retrabajo físico.** Las reconstrucciones de escenario y las re-tiradas de cable son cuando los enlaces gigabit calladamente se vuelven enlaces de 100M. Un vistazo de treinta segundos después de que el trabajo está hecho lo atrapa.
+
+## Cómo maneja esto WorshipMetrics
+
+La integración de UniFi es parte del pilar de documentación de WorshipMetrics —Dispositivos, Signal Map, y Patches— donde tu inventario, cableado, y programa de cables viven como una sola fuente de verdad de toda la organización. Conecta tu controlador una vez y tu documentación deja de ser una instantánea y empieza a ser un registro vivo: cables de Ethernet auto-inferidos con IDs de cable estables, consumo PoE en vivo junto a los presupuestos de energía documentados, y verdad de velocidad de enlace en cada puerto. Explora el conjunto completo de herramientas en [documentación del sistema](/system-documentation/), y ve cómo la salud de dispositivos en vivo alimenta las alertas en [monitoreo de AV](/av-monitoring/).

@@ -1,0 +1,105 @@
+---
+title: "ChordPro para Equipos de Alabanza: Un Chart, Cada Tonalidad"
+description: "Una guía práctica del formato de chart ChordPro —cómo la transposición no destructiva renderiza cualquier tonalidad desde un solo chart guardado con la ortografía correcta de bemoles y sostenidos, más tonalidades nombradas, renders con capo, y PDFs por tonalidad auto-generados."
+category: "operations"
+tags: ["ChordPro", "chord charts", "transpose", "songs"]
+difficulty: "intermediate"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/chordpro-worship-team-reference/chordpro-worship-team-chord-charts.jpg"
+featured: false
+productCTA: true
+---
+
+## Por qué todo equipo de alabanza termina con cinco copias de la misma canción
+
+Abre el disco compartido de cualquier iglesia y encontrarás la misma arqueología: `Cornerstone - C.pdf`, `Cornerstone - Bb FINAL.pdf`, `Cornerstone - Bb FINAL v2 (usa este).pdf`, un documento de Word en E para la banda de jóvenes, y una foto de un chart de capo escrito a mano que alguien le envió por mensaje a un guitarrista suplente en 2023. Cada uno de esos archivos estaba correcto el día que se hizo. Ninguno coincide hoy, porque en algún punto alguien arregló un acorde equivocado en el puente —en exactamente una de las cinco copias.
+
+Este es el problema que ChordPro fue diseñado para resolver, décadas antes de que existiera el software de alabanza. Es un formato de texto plano que guarda una canción *una vez*, en una tonalidad, con los acordes anclados a las letras —y deja que el software renderice cada otra tonalidad, cada posición de capo, y cada página impresa desde esa única fuente de verdad. Arregla el puente una vez, y cada tonalidad queda arreglada.
+
+Este artículo cubre el formato mismo, por qué la transposición debería ser no destructiva, cómo funciona en realidad la ortografía correcta de bemoles y sostenidos, y cómo WorshipMetrics convierte un chart guardado en un set completo de charts PDF por tonalidad automáticamente.
+
+## ChordPro en diez minutos
+
+Un archivo ChordPro es texto plano. Lo verás con tres extensiones intercambiables —`.cho`, `.crd`, y `.chopro`— pero todas son el mismo formato, y cualquiera de las tres importa de forma idéntica. Dos convenciones hacen todo el trabajo:
+
+**Los acordes viven en corchetes, en línea con la letra.** El acorde se sienta inmediatamente antes de la sílaba en la que cae:
+
+```
+{title: Every Hour}
+{key: G}
+{tempo: 72}
+{time: 4/4}
+
+{start_of_verse}
+We [G]lift our eyes to [C]You a[G]gain
+For [Em7]every hour You [C]hold us [D]still
+{end_of_verse}
+
+{start_of_chorus}
+[C]You are faithful, [G/B]You are good
+[Am7]Every promise [D]stands
+{end_of_chorus}
+```
+
+**Las directivas viven en llaves.** `{title:}`, `{key:}`, `{tempo:}`, y `{time:}` cargan metadata; `{start_of_verse}`/`{end_of_verse}`, `{start_of_chorus}`/`{end_of_chorus}` (a menudo abreviados `{sov}`, `{soc}`, y así) marcan las secciones; `{comment:}` carga notas de interpretación como "la banda sale, solo voces".
+
+Compara eso con el chart de texto de "acordes flotando sobre las letras" de dos líneas con el que la mayoría de nosotros crecimos. En un chart de dos líneas, la alineación es una ilusión mantenida por una fuente monoespaciada y una oración. Cambia la fuente, pégalo en un correo, o míralo en un teléfono, y los acordes se desvían de sus palabras. En ChordPro, el acorde está estructuralmente adjunto a su sílaba. Sobrevive el reflujo, el recambio de estilo, el reformateo —y, de manera crítica, la *transposición*, porque el software sabe exactamente cuál token es un acorde y cuál es una letra.
+
+## Transposición no destructiva: guarda una vez, renderiza en cualquier lado
+
+Aquí está el principio que hace que un chart sirva a cada músico: **la transposición es un paso de renderizado, no una edición.**
+
+El chart se guarda en una sola tonalidad de origen —digamos, G. Cuando tu líder de alabanza la necesita en A para el domingo, el software no crea un segundo chart. Analiza el chart guardado, desplaza cada token de acorde dos semitonos hacia arriba al momento de mostrarlo, y renderiza el resultado. El archivo guardado nunca cambia. Pídelo en B♭ mañana y renderiza B♭ desde la misma fuente. Arregla un error de tipeo en las letras o corrige ese acorde del puente, y el arreglo aparece en cada tonalidad al instante, porque siempre ha habido un solo chart.
+
+Este es el modelo de WorshipMetrics: el motor de ChordPro aplica la transposición al momento de renderizar, así que el chart que guardaste es el chart que conservas. Contrasta eso con el flujo de una-copia-por-tonalidad, donde transponer significa "guardar como" —y cada guardar-como es un desacuerdo futuro esperando pasar.
+
+La transposición no destructiva también cambia el comportamiento del equipo de una forma sutil. Cuando hacer una nueva tonalidad es gratis e instantáneo, la gente deja de acaparar PDFs. El chart en la biblioteca *es* la canción; las tonalidades se vuelven una vista de ella, no una versión de ella.
+
+## La ortografía importa: por qué B♭ no es A♯
+
+Transponer es aritmética trivial —hasta que escribes la respuesta. Cada tono en el diapasón de una guitarra tiene dos nombres (A♯ y B♭ son el mismo traste), y un transpositor que solo camina una escala cromática del lado de los sostenidos felizmente le entregará a tu equipo un chart "en A♯" con un D♯ y un G♯ dentro. Los músicos con letra musical hacen mueca, y los músicos más nuevos se confunden genuinamente, porque nadie escribe charts de canciones de alabanza en A♯ mayor.
+
+La ortografía correcta sigue la armadura de la tonalidad de destino:
+
+- **Las tonalidades bemoles se escriben con bemol.** Toma una canción escrita en G y muévela tres semitonos arriba. El destino es B♭ mayor —una tonalidad de dos bemoles— así que el I–IV–V renderiza como B♭, E♭, F. Nunca A♯, D♯, F.
+- **Las tonalidades sostenidas se escriben con sostenido.** Mueve la misma canción cuatro semitonos arriba en su lugar y estás en B mayor, así que el chart renderiza B, E, F♯ —no G♭.
+- **Algunos destinos son legítimamente ambiguos.** F♯ mayor y G♭ mayor son la misma tonalidad sonando con diferentes ortografías, y músicos razonables eligen distinto dependiendo de la banda. Esa es una elección que el software debería entregarte, no hacer en silencio.
+
+WorshipMetrics maneja esto con un selector de tonalidad consciente de los enarmónicos: las tonalidades se agrupan como bemoles, naturales, y sostenidos, las tonalidades menores se listan explícitamente en lugar de inferirse, y el transpositor cubre diecisiete ortografías distintas de tonalidad mayor más doce tonalidades menores. Cualquier destino que elijas, cada acorde en el chart renderizado se escribe para coincidir con la armadura de esa tonalidad —así que el E♭ en tu chart de B♭ nunca aparece disfrazado de D♯.
+
+Si alguna vez has re-escrito manualmente un chart auto-transpuesto antes del ensayo, esta es la característica que te devuelve esa hora.
+
+## Tonalidades nombradas: la capa del vocalista
+
+Las bibliotecas de alabanza reales no solo necesitan "cualquier tonalidad a pedido" —necesitan tonalidades *específicas, recordadas*. Tu congregación canta una canción en G cuando tu líder de alabanza masculino la carga y en E cuando lo hace la vocalista, y esas no son elecciones arbitrarias; son decisiones que tu equipo tomó una vez y quiere conservar.
+
+Para eso son las tonalidades nombradas. En WorshipMetrics, cada canción sostiene uno o más arreglos (la versión de coro doble, la versión acústica), y cada arreglo carga tonalidades nombradas —"Tonalidad de Él" en G, "Tonalidad de Ella" en E— con una tonalidad inicial, una tonalidad final (para canciones que modulan hacia arriba para el coro final), y un capo opcional. Si tu equipo ha usado Planning Center, esta forma se sentirá inmediatamente familiar; es la misma estructura de arreglos-y-tonalidades-nombradas, lo que también hace la vida más fácil para los equipos que planean en ambas herramientas. Para el panorama más amplio de qué se sincroniza entre las plataformas, ve [conectar Planning Center a WorshipMetrics](/es/kb/articles/connect-planning-center-worshipmetrics/).
+
+Los archivos se adjuntan al nivel al que pertenecen: una grabación de referencia al nivel de la canción, una nota de orden de secciones al nivel del arreglo, y charts específicos por tonalidad al nivel de la tonalidad —así que el chart de la Tonalidad de Ella vive con la Tonalidad de Ella.
+
+## Renders con capo: dos charts, una tonalidad
+
+Un chart de capo es la misma canción en la misma tonalidad *sonando*, escrita en formas más amigables. Una canción en B es un entrenamiento de acordes con cejilla; pon un capo en el segundo traste y el guitarrista toca acordes con forma de A mientras la banda escucha B. Para la mayoría de los guitarristas voluntarios, capo 2 tocando A es la diferencia entre la confianza y los nudillos blancos.
+
+Como cada tonalidad nombrada puede cargar un capo, WorshipMetrics renderiza **dos** charts para una tonalidad con capo: el chart de concierto (lo que lee el tecladista y el bajista) y el render con capo (lo que el guitarrista realmente digita). Ambos vienen de la misma fuente ChordPro guardada —el render con capo es solo una transposición más al momento de renderizar, desplazada hacia abajo por el intervalo del capo y escrita para la tonalidad de forma. Nadie mantiene el chart de capo a mano, así que nunca puede desviarse de sincronía con el chart de concierto.
+
+## PDFs que se generan solos
+
+Todo lo anterior pasa en pantalla. El domingo por la mañana aún corre sobre papel y tablets, y ahí es donde aterriza la última pieza: **cada tonalidad nombrada recibe su propio chart de acordes PDF de calidad de impresión, tamaño US Letter, generado automáticamente al guardar** —más el segundo render con capo donde sea que se ponga un capo.
+
+Dos detalles hacen esto confiable en lugar de ruidoso:
+
+- **Un hash de contenido salta las tonalidades sin cambios.** Cuando guardas una canción, solo las tonalidades cuyo contenido renderizado realmente cambió se regeneran. Editar el capo de la Tonalidad de Él no produce PDFs frescos para cuatro tonalidades intactas.
+- **Los charts subidos por humanos nunca se sobrescriben.** Si tu director musical hizo a mano un chart para una tonalidad —un chart de números de Nashville, un chart rítmico con los golpes anotados— y lo subió, el generador lo deja en paz. La auto-generación llena huecos; no arrasa la artesanía.
+
+El resultado es una biblioteca donde cada canción, en cada tonalidad que realmente usas, siempre tiene un chart imprimible actual —sin que nadie tenga "hacer los PDFs" como trabajo. Y porque los charts y las letras de proyección vienen del mismo registro de canción, las palabras que lee tu banda y las palabras en pantalla a través de la [salida multi-pantalla de Present](/es/kb/articles/present-multi-screen-output-setup/) no pueden estar en desacuerdo.
+
+## Metiendo tus charts existentes al formato
+
+No tienes que reteclear tu biblioteca. WorshipMetrics importa canciones desde archivos ChordPro mismos (`.cho`, `.crd`, `.chopro`), pegado de texto plano (esos charts de dos líneas se convierten al entrar), XML de OpenLyrics, archivos `.usr` de SongSelect, documentos de ProPresenter 4–7, y datos de estructura de MultiTracks (tonalidad, tempo, y mapa de secciones —MultiTracks no provee letras), con un set inicial de himnos de dominio público ya sembrado. Si ProPresenter es tu hogar actual para las letras, nuestra [guía de ProPresenter 7](/es/kb/articles/propresenter-7-advanced-setup/) cubre cómo se organizan esos documentos antes de que exportes.
+
+Un bono callado de los datos de canción estructurados: porque cada canción carga su número de CCLI, créditos de autor, y línea de derechos de autor como campos reales en lugar de texto en una página, tu reporte de uso se vuelve dramáticamente más fácil —ve [reporte de CCLI desde lo que realmente se cantó](/es/kb/articles/ccli-reporting-from-actual-services/) para saber cómo funciona eso al momento de la renovación.
+
+## Cómo maneja esto WorshipMetrics
+
+La [biblioteca de Songs](/songs/) guarda cada canción una vez como ChordPro, con arreglos y tonalidades nombradas como estructura de primera clase. La transposición se aplica al momento de renderizar con ortografía enarmónicamente correcta a lo largo de selectores de diecisiete tonalidades mayores y doce menores, las tonalidades con capo renderizan charts tanto de concierto como de capo, y cada tonalidad nombrada auto-genera un PDF listo para imprimir al guardar —regenerando solo lo que cambió y nunca tocando los charts que tu equipo subió a mano. Un chart, cada tonalidad, siempre actual —y se enchufa directo a la [planeación de servicios](/services/) para que el chart que tu banda ensaya sea el chart que corre el domingo. El mismo arreglo maneja las [diapositivas de letras](/church-lyrics-software/) en las pantallas y el chart transpuesto en la [pantalla de escenario](/stage-display-software/), así que la banda y la cabina están leyendo de una sola fuente.

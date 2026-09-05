@@ -1,0 +1,116 @@
+---
+title: "Conectar Planning Center a WorshipMetrics: Token, Sincronización, y Qué Se Importa"
+description: "Una guía paso a paso para enlazar Planning Center Services con WorshipMetrics —crear un Personal Access Token, entender qué se importa, y cómo la sincronización de 5 minutos mantiene los planes al día."
+category: "operations"
+tags: ["Planning Center", "PCO", "sync", "service plans"]
+difficulty: "beginner"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/connect-planning-center-worshipmetrics/planning-center-worshipmetrics-sync-services.jpg"
+featured: false
+productCTA: true
+---
+
+## ¿Por qué conectar Planning Center para empezar?
+
+Muchas iglesias tienen años de historia en Planning Center Services: tipos de servicio para cada lugar y reunión, planes que se extienden a través de múltiples pastores de alabanza, y un equipo que sabe exactamente dónde vive el domingo. Esa historia es valiosa, y nadie debería tener que abandonarla para probar una nueva herramienta.
+
+Conectar Planning Center a WorshipMetrics trae tus tipos de servicio, planes, ítems de plan, y horarios de servicio a WorshipMetrics automáticamente —y los mantiene al día con una sincronización que corre cada cinco minutos. Tu planeación de alabanza sigue pasando donde sea que tu equipo se sienta cómodo, mientras tu equipo de producción recibe los mismos planes dentro de WorshipMetrics para el tiempo del run-of-show, las señales, y el resto del flujo del domingo.
+
+Toda la configuración toma unos diez minutos, y la mayoría de eso es leer. Aquí está el recorrido completo.
+
+## Antes de empezar
+
+Necesitarás dos cosas:
+
+1. **Una cuenta de Planning Center con acceso a Services.** La conexión usa un Personal Access Token, y los tokens heredan los permisos de la persona que los crea. Crea el token desde una cuenta que pueda ver todos los tipos de servicio que quieres traer —un admin o un editor de Services con acceso amplio es ideal. Si el token pertenece a alguien que solo puede ver el servicio de jóvenes, eso es todo lo que WorshipMetrics podrá ver también.
+2. **Una cuenta de WorshipMetrics** con permiso para manejar integraciones para tu iglesia.
+
+Eso es todo. No hay software que instalar y nada que configurar del lado de Planning Center más allá del token mismo.
+
+## Paso 1: Crea un Personal Access Token en Planning Center
+
+Planning Center emite los Personal Access Tokens desde su portal de desarrolladores en lugar de desde la interfaz principal de Services, así que esta parte es fácil de perder si nunca lo has hecho.
+
+1. Inicia sesión en Planning Center como la cuenta que elegiste arriba.
+2. Ve a **api.planningcenteronline.com** en tu navegador. Como ya iniciaste sesión, aterrizarás en la página de API de Planning Center de tu cuenta.
+3. Encuentra la sección de **Personal Access Tokens** y elige crear un nuevo token.
+4. Dale al token un nombre que reconocerás después —algo como `WorshipMetrics sync` funciona bien. Un nombre descriptivo importa más de lo que parece: meses después, cuando alguien audite qué apps tienen acceso a tus datos de Planning Center, el nombre es la única pista sobre qué hace cada token.
+5. Planning Center genera dos valores: un **Application ID** y un **Secret**. Copia ambos. Trata el secret como una contraseña —otorga el mismo acceso que la cuenta que lo creó.
+
+Una nota rápida sobre la administración: como el token actúa como el usuario que lo creó, atarlo a una cuenta de rol (por ejemplo, un admin compartido de "ministerio técnico") en lugar de una cuenta personal significa que la conexión sobrevive las transiciones de personal. Si la persona que creó el token se va y su cuenta de Planning Center se desactiva, los tokens creados bajo esa cuenta dejan de funcionar.
+
+## Paso 2: Agrega el token en WorshipMetrics
+
+Dentro de WorshipMetrics, abre la configuración de integraciones de tu iglesia y elige Planning Center. Pega el Application ID y el Secret del paso anterior y conecta.
+
+Dos cosas pasan en este momento que vale la pena conocer:
+
+- **El token se verifica antes de guardarse.** WorshipMetrics hace una llamada en vivo a la API de Planning Center con tus credenciales antes de guardar nada. Si el token se copió incorrectamente o carece de acceso, te enteras de inmediato —no en silencio tres días después cuando los planes no aparecen.
+- **Las credenciales se encriptan en reposo con AES-256-GCM.** Tu Application ID y Secret nunca se guardan en texto plano. AES-256-GCM es un estándar de encriptación autenticada, lo que significa que las credenciales guardadas son tanto ilegibles sin la llave como evidentes ante manipulación. El token se usa solo del lado del servidor; nunca viaja a navegadores o dispositivos de voluntarios.
+
+Una vez que el token se verifica, la primera importación arranca automáticamente.
+
+## Qué se importa
+
+La sincronización habla la API de Services v2 de Planning Center y trae cuatro tipos de datos:
+
+| Datos de Planning Center | Qué obtienes en WorshipMetrics |
+|---|---|
+| **Tipos de servicio** | Cada tipo de servicio (Domingo AM, Miércoles por la Noche, Nochebuena) aparece como un tipo de servicio en WorshipMetrics, así que tu estructura organizacional se traslada intacta. |
+| **Planes** | Los 25 planes más recientes por tipo de servicio se importan al conectar, y los nuevos planes fluyen conforme se crean. |
+| **Ítems de plan** | Canciones, espacios de sermón, anuncios, transiciones —los ítems ordenados dentro de cada plan, con sus duraciones. |
+| **Horarios de servicio y ensayo** | Los horarios de cada plan se trasladan, así que un domingo de 9:00 y 11:00 muestra ambos horarios, y los ensayos se distinguen de los servicios. |
+
+Todo se importa a las tablas nativas de WorshipMetrics —los planes importados no son un espejo de solo lectura atornillado. Aparecen en la lista de planes justo al lado de los planes construidos directamente en WorshipMetrics, y tanto la app web como el Tech Manager de escritorio los navegan de forma idéntica. Tus voluntarios de producción no necesitan saber ni importarles de dónde se originó un plan.
+
+También puedes elegir cuáles tipos de servicio traer, lo que es útil cuando una cuenta de Planning Center contiene tipos de servicio que no son relevantes para el equipo de producción —reuniones internas, lugares retirados, o un campus que aún no está en WorshipMetrics.
+
+## Qué no se importa: tu biblioteca de canciones
+
+Una frontera honesta que hay que dejar clara: **la sincronización de Planning Center cubre tipos de servicio, planes, ítems, y horarios —no importa tu biblioteca de canciones de Planning Center.** Los títulos de canciones aparecen como ítems de plan dentro de los planes importados, pero las entradas subyacentes de la biblioteca —arreglos, tonalidades, charts de acordes— no se transfieren a través de esta conexión hoy.
+
+Si quieres tus canciones en WorshipMetrics, la [biblioteca de canciones](/songs/) importa desde una amplia gama de formatos directamente:
+
+- Archivos **ChordPro** (`.cho`, `.crd`, `.chopro`)
+- XML de **OpenLyrics**
+- Archivos `.usr` de **SongSelect**
+- Documentos de **ProPresenter**, versiones 4 a 7
+- **Pegado de texto plano** e importación de estructura de canción de **MultiTracks**
+
+Vale la pena agregar que el modelo de canciones de WorshipMetrics fue construido deliberadamente con la misma forma que los usuarios de Planning Center ya conocen —arreglos como entidades de primera clase, con tonalidades nombradas ("Tonalidad de Ella" en E, "Tonalidad de Él" en G) cargando su propia tonalidad inicial y capo. Si tu equipo piensa en el vocabulario de canciones de PCO, nada de la biblioteca de WorshipMetrics se sentirá ajeno.
+
+Los equipos que vienen de un flujo centrado en ProPresenter también pueden encontrar útil nuestra [guía de configuración de ProPresenter 7](/es/kb/articles/propresenter-7-advanced-setup/) junto con la importación de archivos.
+
+## Cómo funciona la sincronización delta de 5 minutos
+
+Después de la importación inicial, WorshipMetrics re-sincroniza cada cinco minutos. Dos detalles de diseño hacen esto eficiente y amigable con la API de Planning Center:
+
+**Sincroniza por delta, no por fuerza bruta.** En lugar de re-descargar todo cada ciclo, la sincronización le pide a Planning Center los registros cambiados desde la última pasada, usando las propias marcas de tiempo `updated_at` de PCO. Si nada cambió, casi nada se transfiere. Cuando tu líder de alabanza intercambia la canción de cierre a las 8:40 del domingo por la mañana, esa edición aterriza en WorshipMetrics dentro de cinco minutos —sin re-importar seis meses de historia para encontrarla.
+
+**Respeta los límites de tasa de Planning Center.** La API de Planning Center permite aproximadamente 100 solicitudes por 20 segundos, y la sincronización deliberadamente se marca el paso bajo ese techo. Tu cuenta de Planning Center se queda sana, y la sincronización nunca compite con el uso propio de PCO de tu equipo en una mañana ocupada.
+
+La conclusión práctica para tu equipo: sigue planeando en Planning Center exactamente como lo haces ahora. Las ediciones hechas ahí aparecen en WorshipMetrics dentro de cinco minutos, sin refresco manual ni re-importación requerida. Para un flujo del domingo por la mañana, eso significa que la versión que tu [equipo de AV voluntario](/es/kb/articles/training-volunteer-av-teams/) ve en el escritorio de producción es la versión que el líder de alabanza realmente publicó.
+
+## Planes importados y nativos, lado a lado
+
+Algunas iglesias conectan Planning Center y nunca construyen un plan directamente en WorshipMetrics. Otras planean sus servicios principales en PCO pero construyen eventos especiales —una noche de adoración, un funeral, una conferencia— nativamente en WorshipMetrics usando sus plantillas y 17 tipos de ítems. Ambos patrones funcionan, porque los planes importados y nativos coexisten como iguales:
+
+- Ambos aparecen en la misma lista de planes, organizados bajo los mismos tipos de servicio.
+- Ambos pueden correrse en el corredor de plan en vivo, con tiempo planeado-contra-real y varianza de run-of-show.
+- Ambos son visibles en la app web y el Tech Manager de escritorio, en tiempo real.
+
+No hay un "área de planes importados" que revisar y ningún trato de segunda clase. El origen de un plan es un detalle, no una línea divisoria —que es exactamente como un equipo mixto de planeadores y voluntarios de producción lo necesita.
+
+## Resolución de problemas de la conexión
+
+Unas situaciones surgen ocasionalmente:
+
+- **El token se verifica pero faltan algunos tipos de servicio.** El token solo puede ver lo que su cuenta creadora puede ver. Revisa los permisos de esa cuenta en Planning Center Services, o recrea el token desde una cuenta con acceso más amplio.
+- **La conexión deja de sincronizar después de un cambio de personal.** Si la cuenta que creó el token se desactivó, sus tokens dejan de funcionar. Crea un token fresco desde una cuenta activa y reconecta.
+- **Una edición de plan aún no ha aparecido.** Dale cinco minutos —la sincronización delta corre en ese ciclo. Si aún no ha llegado, confirma que la edición se guardó en Planning Center y que el plan pertenece a un tipo de servicio incluido en la sincronización.
+
+## Cómo maneja esto WorshipMetrics
+
+La conexión de Planning Center existe para que tu equipo no tenga que elegir entre la herramienta de planeación que conoce y la plataforma de producción que necesita. Los tipos de servicio, planes, ítems, y horarios se importan al conectar y se quedan al día con una sincronización delta de cinco minutos; tus credenciales se verifican antes de guardarse y se encriptan en reposo con AES-256-GCM; y los planes importados viven como ciudadanos plenos junto a los nativos —listos para el tiempo del run-of-show, las señales de producción, y el seguimiento de corrida en vivo el domingo.
+
+La planeación de servicios, incluyendo planes ilimitados y el modo de corrida en vivo, está incluida en el nivel gratuito. Explora cómo los planes, horarios, y equipos encajan juntos en la página de [services](/services/), ve cómo los planes llegan a la plataforma en la cabina a través de [Tech Manager](/tech-manager/), y cuando estés listo para traer tus canciones, empieza con la [biblioteca de canciones](/songs/).

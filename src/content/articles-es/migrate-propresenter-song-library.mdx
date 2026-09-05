@@ -1,0 +1,104 @@
+---
+title: "Migrar tu Biblioteca de Canciones desde ProPresenter: Qué Se Traslada"
+description: "Cómo los archivos .pro4, .pro5, .pro6, y ProPresenter 7 se importan a una biblioteca de canciones —qué se traslada, la excepción de licenciamiento de MultiTracks, y una lista para un fin de semana de migración limpio."
+category: "operations"
+tags: ["ProPresenter", "migration", "song library", "import"]
+difficulty: "beginner"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/migrate-propresenter-song-library/propresenter-song-library-migration-slides.jpg"
+featured: false
+productCTA: true
+---
+
+## Tu biblioteca de ProPresenter es años de trabajo —trátala así
+
+Si tu iglesia ha estado corriendo ProPresenter por cualquier lapso de tiempo, tu biblioteca de canciones es uno de los activos más cuidadosamente curados que tu ministerio posee. Cada etiqueta de verso, cada coro dividido en dos diapositivas, cada puente que alguien tecleó a las 10pm un sábado —eso es trabajo real, acumulado a lo largo de años, y merece hacer el viaje intacto cuando traes tus canciones a una herramienta de planeación.
+
+La buena noticia: puede hacerlo. Los documentos de ProPresenter son archivos estructurados, y las partes con forma de canción de ellos —letras, grupos de secciones, y arreglos— importan limpiamente. Las partes que no se trasladan son en su mayoría cosas que no querrías en una biblioteca de canciones de todos modos, porque pertenecen a la capa de presentación en lugar de a la canción misma.
+
+Una cosa que decir claramente desde el principio: migrar tu biblioteca de canciones no significa dejar ProPresenter. Muchas iglesias importan sus canciones a WorshipMetrics para la planeación, los charts de acordes, y el reporte de CCLI mientras ProPresenter sigue haciendo exactamente lo que hace bien el domingo por la mañana. Si ese es tu setup, nuestra [guía de configuración avanzada de ProPresenter 7](/es/kb/articles/propresenter-7-advanced-setup/) cubre el lado de la proyección, y este artículo cubre el traslado de la biblioteca. Los dos flujos coexisten felizmente.
+
+## Conoce tus generaciones de archivos: .pro4/.pro5/.pro6 vs. ProPresenter 7
+
+ProPresenter ha usado dos formatos de archivo fundamentalmente diferentes a lo largo de su historia, y saber cuál tienes te dice qué esperar de una importación.
+
+**ProPresenter 4 a 6 (.pro4, .pro5, .pro6).** Estos son archivos XML —texto plano, con el contenido de la diapositiva guardado dentro como RTF (Rich Text Format). Como el formato es basado en texto y bien entendido, las importaciones de estas generaciones son muy confiables: las letras, las etiquetas de grupo en cada diapositiva (Verso 1, Coro, Puente), y la metadata del encabezado todas se analizan limpiamente. Si tu iglesia corrió ProPresenter 5 o 6 por años antes de actualizar, esos archivos viejos siguen siendo fuentes de importación perfectamente buenas —no tires ese disco de respaldo.
+
+**ProPresenter 7 (.pro).** Con la versión 7, el formato de archivo cambió a protobuf —un formato binario compacto en lugar de XML legible. La misma información está ahí (y más: ProPresenter 7 hizo de los arreglos una característica mucho más prominente), pero toma un analizador hecho a propósito leerlo. WorshipMetrics importa ambas generaciones: archivos XML .pro4/.pro5/.pro6 y archivos protobuf .pro de ProPresenter 7.
+
+Encontrar los archivos usualmente es la parte fácil. ProPresenter guarda su biblioteca como archivos de documento individuales en disco —por defecto bajo tu carpeta de Documentos en un directorio de ProPresenter (`~/Documents/ProPresenter` en una Mac, `Documents\ProPresenter` en Windows). Cada canción es su propio archivo, así que puedes migrar la biblioteca entera o solo el set de esta semana.
+
+## Qué se traslada —y qué se queda atrás
+
+Aquí está el inventario honesto. Una importación de biblioteca de canciones se trata de la *canción*, así que los datos con forma de canción hacen el viaje y los datos con forma de presentación no.
+
+| Elemento de ProPresenter | ¿Se traslada? | Notas |
+| --- | --- | --- |
+| Letras (texto de diapositiva) | Sí | El texto en cada diapositiva se vuelve el contenido de letra de la canción |
+| Grupos (Verso 1, Coro, Puente…) | Sí | Las etiquetas de grupo se vuelven secciones nombradas |
+| Arreglos | Sí | La secuencia ordenada de grupos se vuelve una secuencia de secciones de arreglo |
+| Título de la canción | Sí | Tomado del documento |
+| Fondos y loops de movimiento | No | Activos de presentación, no datos de canción |
+| Formato de diapositiva (fuentes, tamaños, saltos de línea por diapositiva) | No | El texto se traslada; el estilo visual por diapositiva no |
+| Plantillas y "looks" | No | Estos viven en la capa de presentación |
+| Medios enlazados (videos, señales de audio) | No | Los medios se quedan con tu software de presentación |
+
+Dos de estos merecen una mirada más cercana.
+
+**Los grupos se vuelven secciones.** Las etiquetas de grupo de ProPresenter son lo más cercano que tu biblioteca tiene a una estructura formal de canción, y se mapean naturalmente sobre las secciones de la biblioteca. Una canción cuyas diapositivas se agruparon como Verso 1, Verso 2, Coro, y Puente llega con esas secciones nombradas e intactas —lo que importa enormemente después, cuando construyes arreglos o alineas letras contra un chart de acordes.
+
+**Los arreglos son de primera clase.** Si tus operadores de ProPresenter construyeron arreglos —las listas ordenadas de grupos que dicen "este domingo hacemos Verso 1, Coro, Verso 2, Coro, Puente, Coro ×2"— ese orden es dato de canción, e importa como un arreglo con su propia secuencia de secciones. En WorshipMetrics, los arreglos son objetos hechos y derechos que pueden cargar sus propias tonalidades nombradas (una "Tonalidad de Ella" en E y una "Tonalidad de Él" en G, por ejemplo), así que un arreglo importado se vuelve la base sobre la que cuelgas tonalidades y charts en lugar de un bloque de letra aplanado.
+
+¿Qué pasa con los números de CCLI, autores, y líneas de derechos de autor? Los documentos de ProPresenter *pueden* cargar metadata de CCLI en sus encabezados, pero en la práctica si está presente depende de cómo entró cada canción a tu biblioteca —las canciones tecleadas a mano a menudo no tienen ninguno. Presupuesta una pasada de metadata después de importar (más sobre eso en la lista), porque la biblioteca trata el número de CCLI, autores, y derechos de autor como campos estructurados, y llenarlos una vez rinde cada temporada de renovación. Nuestra guía de [reporte de CCLI desde servicios reales](/es/kb/articles/ccli-reporting-from-actual-services/) explica dónde termina esa metadata.
+
+## La excepción de MultiTracks: archivos SlidePro y ChartPro
+
+Una categoría de archivo de ProPresenter 7 no dará letras al importar, y vale la pena entender por qué: es una frontera de licenciamiento, no una falla técnica.
+
+MultiTracks vende contenido listo de ProPresenter —presentaciones de letras SlidePro y charts de acordes ChartPro. Esos archivos contienen contenido licenciado para uso dentro de ProPresenter, y esa licencia no se extiende a extraer el texto hacia otro software. Respetar esa frontera es lo correcto, así que los documentos SlidePro y ChartPro comprados son el único tipo de archivo .pro donde el contenido de letra se queda donde fue licenciado para vivir.
+
+Eso no deja a esas canciones varadas. WorshipMetrics soporta una importación de *estructura* de MultiTracks, que traslada el esqueleto de la canción —tonalidad, tempo, y el mapa de secciones con códigos de tiempo— porque MultiTracks sirve estructura de canción pero sin letras. De ahí, emparejas la estructura con texto de letra que estás licenciado para usar: un archivo .usr de SongSelect (que llega con metadata de CCLI adjunta), un archivo ChordPro, o un pegado de texto plano bajo la licencia de CCLI de tu iglesia. Es un paso extra para un pequeño subconjunto de tu biblioteca, y el resultado es una entrada de canción que es completamente tuya para planear, transponer, y reportar.
+
+Si no estás seguro de si un archivo dado vino de MultiTracks, la señal usualmente es su origen: las canciones que tu equipo tecleó o construyó a mano importan normalmente; las presentaciones descargadas como productos terminados de una tienda de contenido son las que hay que revisar.
+
+## Una lista para un fin de semana de migración limpio
+
+No necesitas migrar setecientas canciones de una sentada, y no deberías intentarlo. Aquí está un ritmo que funciona, cronometrado para que nada amenace un domingo.
+
+**Viernes por la noche — reúne y respalda (30 minutos)**
+
+1. Copia toda tu carpeta de biblioteca de ProPresenter a una ubicación de respaldo antes de tocar nada. No estás modificando los originales, pero un respaldo hace todo el fin de semana de riesgo cero.
+2. Identifica tus generaciones de archivos. Una biblioteca mixta (archivos .pro5 de la máquina vieja, archivos .pro de la actual) es completamente normal —ambos importan.
+3. Marca cualquier contenido SlidePro/ChartPro comprado para que sepas cuáles canciones necesitarán el camino de estructura-más-letras-licenciadas en su lugar.
+
+**Sábado — importa en lotes y revisa por muestra (2–3 horas)**
+
+4. Empieza con tu rotación actual —las 30 a 50 canciones que realmente cantas— en lugar del archivo completo. Estas son las canciones donde un error importaría, así que revísalas mientras estás fresco.
+5. Después de cada lote, revisa por muestra tres cosas por canción: las letras se leen correctamente, las secciones cargan sus nombres de grupo, y cualquier orden de arreglo sobrevivió.
+6. Importa el archivo en lotes más grandes una vez que confíes en el proceso. Los archivos viejos de ProPresenter 4–6 son XML basado en texto y tienden a ser los más predecibles de todos.
+7. Para cualquier archivo que se porte mal —corrupto, antiguo, o de otro modo terco— el pegado de texto plano es la salida de emergencia. Dos minutos de copiar y pegar le ganan a veinte minutos de forense.
+
+**Sábado — la pasada de metadata (1 hora)**
+
+8. Recorre tu rotación actual y confirma que cada canción tiene su número de CCLI, autores (los compositores, distintos del artista de la grabación), y línea de derechos de autor. Las importaciones .usr de SongSelect llegan con esto adjunto; las canciones de ProPresenter tecleadas a mano usualmente no.
+9. Ya que estás ahí, pon las tonalidades. Cada arreglo puede cargar tonalidades nombradas con posiciones de capo, y una vez que un chart ChordPro está adjunto, cada tonalidad recibe su propio chart de acordes listo para imprimir automáticamente —así que la pasada de metadata también es el momento en que tu biblioteca empieza a producir charts en lugar de solo guardar letras.
+
+**Domingo — no cambies nada**
+
+10. Corre el domingo exactamente como lo hiciste la semana pasada. Un fin de semana de migración debería ser invisible para la congregación y para tus voluntarios. La próxima semana, empieza a planear desde la biblioteca importada y deja que el nuevo flujo se pruebe a su propio ritmo.
+
+Una fuente más que vale la pena conocer: la biblioteca viene con 96 himnos de dominio público ya sembrados, así que la parte más vieja de tu repertorio quizás ya te esté esperando antes de que importes un solo archivo.
+
+## Si Planning Center también está en el panorama
+
+Muchas iglesias de ProPresenter también corren Planning Center, y es natural preguntar si la biblioteca de canciones puede venir de ahí en su lugar. Hoy, la conexión de Planning Center sincroniza tipos de servicio, planes, ítems, y horarios —la [guía de integración de Planning Center](/es/kb/articles/connect-planning-center-worshipmetrics/) cubre exactamente qué fluye— pero la importación de la biblioteca de canciones no es parte de esa sincronización. La importación basada en archivos, como se describe aquí, es el camino para las letras y los arreglos, y los dos funcionan bien juntos: los planes se sincronizan desde Planning Center mientras las canciones en esos planes viven en tu biblioteca importada.
+
+Y si tu equipo alguna vez quiere diapositivas manejadas desde la misma biblioteca, la [salida multi-pantalla de Present](/es/kb/articles/present-multi-screen-output-setup/) también lee archivos de ProPresenter directamente —el mismo motor de importación, apuntado a la proyección.
+
+## Cómo maneja esto WorshipMetrics
+
+Todo lo anterior describe el pipeline de importación integrado en la [biblioteca de canciones](/songs/) de WorshipMetrics. Lee documentos XML de ProPresenter 4–6 y archivos protobuf de ProPresenter 7, junto con ChordPro (.cho/.crd/.chopro), XML de OpenLyrics, .usr de SongSelect, importación de estructura de MultiTracks, y pegado de texto plano —así que cualquiera que sea la mezcla de formatos que tu historia te dejó, hay un camino de entrada.
+
+Una vez importadas, las canciones no son texto estático: los arreglos son de primera clase con sus propias secuencias de secciones, las tonalidades nombradas cargan tonalidad inicial y capo, la transposición es no destructiva (un chart guardado renderiza en cada tonalidad), y cada tonalidad nombrada recibe un chart de acordes PDF de calidad de impresión auto-generado. Tus números de CCLI, autores, y líneas de derechos de autor se vuelven campos estructurados que alimentan el reporte de uso directo desde los servicios que realmente corres. La biblioteca que pasaste años construyendo en ProPresenter no solo sobrevive la mudanza —se vuelve más útil del otro lado, esté o no ProPresenter en la cabina.
+
+Si sí decides proyectar desde el mismo lugar donde vive la biblioteca, la [presentación de alabanza](/present/) lee esos arreglos directamente, y las [diapositivas de letras](/church-lyrics-software/) heredan la estructura de secciones que tus importaciones trajeron consigo.
