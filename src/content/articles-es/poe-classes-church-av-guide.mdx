@@ -1,0 +1,102 @@
+---
+title: "Clases PoE para AV de Iglesia: Alimentando Cámaras, APs, y Paneles Sin Sorpresas"
+description: "Una guía práctica de las clases PoE 802.3af, 802.3at, y 802.3bt, los límites por puerto, y los presupuestos de energía del chasis para que tus cámaras PTZ, access points, y paneles táctiles se queden alimentados cada domingo."
+category: "device-management"
+tags: ["PoE", "network", "switches", "power budget"]
+difficulty: "intermediate"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/poe-classes-church-av-guide/poe-church-av-device-inventory-power.jpg"
+featured: false
+productCTA: true
+---
+
+## Por qué PoE merece diez minutos de tu atención
+
+Camina por un rig de AV de iglesia moderno y cuenta los dispositivos que obtienen su energía de un cable de Ethernet: cámaras PTZ en la pared trasera, access points de Wi-Fi sobre el lobby, un panel táctil en la cabina técnica, quizás una estación de intercom de cinturón o una placa de pared Dante. Power over Ethernet es una de las mejores cosas que le han pasado a las instalaciones de iglesia —un cable carga tanto la señal como la energía, así que una cámara puede vivir a nueve metros de altura en una pared sin electricista involucrado.
+
+También es una de las fuentes más comunes de fallas misteriosas. Los síntomas clásicos todos se remontan a la energía, no a las redes:
+
+- Una cámara PTZ que funciona en algunos puertos de switch pero no en otros
+- Una cámara que se reinicia cuando un access point cercano se enciende
+- Un panel táctil que arranca, muestra su logo, luego muere a media inicialización
+- Todo un banco de dispositivos que se apaga parcialmente cuando se conecta una cosa más
+
+Cada uno de estos es un problema de clase PoE o de presupuesto de energía, y cada uno de ellos es prevenible con un poco de aritmética. Este artículo cubre los tres estándares PoE, la diferencia entre un límite por puerto y un presupuesto de chasis, y cómo dimensionar un switch para un rig de iglesia real.
+
+## Los tres estándares: 802.3af, 802.3at, 802.3bt
+
+PoE está estandarizado por el IEEE, y las tres generaciones que encontrarás en el campo usualmente se comercializan como PoE, PoE+, y PoE++ (o "4PPoE").
+
+**802.3af (Type 1, "PoE")** —el estándar original de 2003. El switch puede suministrar hasta 15.4 W en el puerto, de los cuales cerca de 12.95 W están garantizados de llegar al dispositivo después de las pérdidas del cable. Suficiente para teléfonos VoIP, cámaras IP pequeñas, y paneles de pared simples.
+
+**802.3at (Type 2, "PoE+")** —la revisión de 2009. Hasta 30 W en el puerto, aproximadamente 25.5 W entregados. Esta es la clase caballo de batalla para el AV de iglesia: la mayoría de las cámaras PTZ, la mayoría de los access points de Wi-Fi modernos, y la mayoría de los paneles táctiles son dispositivos PoE+.
+
+**802.3bt (Types 3 y 4, "PoE++")** —el estándar de 2018, que entrega energía sobre los cuatro pares de cable en lugar de dos. El Type 3 suministra hasta 60 W en el puerto (cerca de 51 W entregados); el Type 4 llega a 90 W en el puerto (cerca de 71 W entregados). Verás 802.3bt en cámaras PTZ más grandes con bloques de zoom grandes y calentadores, barras de videoconferencia, luminarias LED, y computadoras pequeñas.
+
+Dentro de esos estándares, los dispositivos negocian una **clase** —un número del 0 al 8 que le dice al switch cuánta energía apartar:
+
+| Clase | Estándar | Energía máx. en el puerto del switch | Energía máx. en el dispositivo |
+|-------|----------|--------------------------|---------------------|
+| 0–3 | 802.3af | hasta 15.4 W | hasta 12.95 W |
+| 4 | 802.3at | 30 W | 25.5 W |
+| 5 | 802.3bt Type 3 | 45 W | 40 W |
+| 6 | 802.3bt Type 3 | 60 W | 51 W |
+| 7 | 802.3bt Type 4 | 75 W | 62 W |
+| 8 | 802.3bt Type 4 | 90 W | 71.3 W |
+
+Dos notas prácticas sobre esa tabla. Primero, los estándares son compatibles hacia atrás: un switch 802.3bt felizmente alimentará un teléfono 802.3af, y la negociación maneja los detalles. Segundo, cuidado con el **PoE pasivo**, que no es parte de ninguno de estos estándares. Algún equipo inalámbrico más viejo viene con inyectores pasivos de 24 V que se saltan la negociación por completo y solo ponen voltaje en el cable. El PoE pasivo y el PoE basado en estándares no se mezclan —conectar la combinación equivocada puede dañar el equipo— así que mantén el equipo alimentado pasivamente en sus propios inyectores claramente etiquetados.
+
+## Límites por puerto vs. el presupuesto del chasis
+
+Aquí está la trampa que atrapa a la mayoría de los equipos. Un switch tiene **dos límites separados**, y el titular de la hoja de especificaciones usualmente solo te dice uno de ellos.
+
+El **límite por puerto** es el máximo que cualquier puerto único puede entregar —esto es lo que "switch PoE+" te dice. Cada puerto en un switch 802.3at puede hacer hasta 30 W.
+
+El **presupuesto del chasis** (o presupuesto PoE) es el total que la fuente de energía interna del switch puede entregar a lo largo de *todos* los puertos a la vez. Y aquí es donde la aritmética muerde: un "switch PoE+ de 16 puertos" con un presupuesto de 120 W no puede acercarse a alimentar dieciséis cargas de 30 W. Dieciséis puertos por 30 W serían 480 W; el switch en realidad puede repartir 120 W en total, como sea que lo cortes.
+
+Hay una arruga más: muchos switches presupuestan por **asignación, no por consumo medido**. Cuando una cámara Class 4 negocia, el switch puede reservar los 30 W completos para ese puerto aunque la cámara solo jale 14 W estando quieta. Eso es conservador por diseño —la cámara tiene permitido dispararse a su límite de clase cuando quiera, como cuando el motor de zoom y el iluminador IR arrancan juntos. Los switches que soportan la negociación de energía LLDP pueden asignar más precisamente, pero para propósitos de planeación siempre deberías presupuestar por asignación de clase, no por el wattaje que ves en un medidor durante una prueba de martes tranquilo.
+
+Cuando el presupuesto se acaba, los switches sueltan carga —usualmente negándose a dar energía al puerto de menor prioridad, que en muchos modelos simplemente significa el número de puerto más alto. Por esto "la cámara funcionó hasta que agregamos el nuevo access point" es una historia tan común: el AP no rompió nada, solo empujó el chasis más allá de su presupuesto y algo tuvo que perder.
+
+## Dimensionando un switch para un rig de iglesia real
+
+Dimensionemos un switch de producción para un santuario de tamaño mediano típico. El método es simple: lista cada dispositivo alimentado, encuentra su clase PoE, suma las **asignaciones**, y agrega margen.
+
+| Dispositivo | Cant. | Clase | Asignación c/u | Subtotal |
+|--------|-----|-------|-----------------|----------|
+| Cámaras PTZ | 3 | Class 4 (PoE+) | 30 W | 90 W |
+| Access points Wi-Fi | 2 | Class 4 (PoE+) | 30 W | 60 W |
+| Paneles táctiles | 2 | Class 3 (PoE) | 15.4 W | 30.8 W |
+| Estación de intercom | 1 | Class 2 (PoE) | 7 W | 7 W |
+| **Asignación total** | | | | **~188 W** |
+
+Un switch PoE+ de 16 puertos con un presupuesto de 150 W tiene muchos *puertos* para este rig —y no suficiente *energía*. Ocho dispositivos alimentados a 188 W de asignación necesita un switch con al menos un presupuesto de 250 W una vez que agregas margen sensato.
+
+¿Por qué margen? Tres razones:
+
+1. **Inrush de arranque en frío.** El domingo por la mañana todo se enciende a la vez, y el consumo de arranque simultáneo es el peor caso que el presupuesto ve jamás.
+2. **El siguiente dispositivo.** Las iglesias agregan equipo. Un rig dimensionado al 95% del presupuesto falla la primera vez que alguien agrega un reproductor de monitor de confianza o un AP más.
+3. **Escalada de clase.** Los dispositivos de reemplazo tienden a querer más energía que los que reemplazan —el sucesor Wi-Fi 6E de tu AP actual puede negociar Class 5 o 6.
+
+Un margen de 20–30% sobre la asignación total es un buen objetivo. Y unas notas de cableado mientras planeas: Cat5e maneja 802.3af y 802.3at bien a cualquier longitud de tirada estándar, pero para cargas 802.3bt —especialmente muchas de ellas agrupadas juntas en un conduit— los conductores más pesados del Cat6a disipan el calor mejor y vale la pena especificarlos. Evita alimentar cualquier cosa a través de cadenas largas de cables de patch delgados, acopladores, o viejos bloques de punch-down; las fallas de PoE aman las uniones de alta resistencia.
+
+Finalmente, resiste la tentación de colgar un pequeño switch de escritorio no administrado de un puerto de pared para "dividir" un feed de PoE. La mayoría de los switches baratos ni pasan ni regeneran PoE, y los que sí agregan otro dominio de energía sin presupuesto ni documentar a tu edificio. Si una sala necesita tres dispositivos alimentados, necesita tres tiradas a un switch real —tu yo futuro resolviendo problemas a las 7:45 a.m. te lo agradecerá. Para el panorama más grande sobre VLANs, ubicación de switches, y mantener el tráfico de producción aislado, ve nuestra guía de [infraestructura de red para AV y streaming de iglesia](/es/kb/articles/church-network-av-streaming/).
+
+## Escríbelo antes de que te muerda
+
+Los rigs que evitan las sorpresas de PoE todos comparten un hábito: la historia de la energía está documentada, no recordada. Por cada dispositivo alimentado, registra:
+
+- **La clase PoE que negocia** (de la hoja de especificaciones, no una adivinanza)
+- **Cuál switch y puerto lo alimenta** —para que "la cámara 2 es el switch A puerto 7" esté escrito, no sea conocimiento tribal
+- **El presupuesto total del switch y la asignación actual** —un total corriente de una línea por switch
+- **Cualquier inyector pasivo o midspan** —claramente marcado, ya que viven fuera del presupuesto del switch por completo
+
+Esto importa más para los dispositivos que hacen que el domingo suceda. Una cámara PTZ que se apaga parcialmente a media misa se ve exactamente como una falla de cámara, y los equipos han cambiado cámaras sanas por lo que en realidad era un problema de presupuesto dos racks más allá. Si estás especificando cámaras ahora, nuestra [guía de configuración de cámaras PTZ](/es/kb/articles/ptz-camera-setup-church/) cubre el lado de control y video de la misma instalación, y [la producción NDI](/es/kb/articles/ndi-church-production/) agrega contexto sobre por qué esos puertos de cámara también cargan datos serios. Mantener esta documentación de energía junto a los seriales y las fechas de compra es parte de la misma disciplina que el [rastreo de inventario y mantenimiento de AV](/es/kb/articles/av-inventory-maintenance/).
+
+## Cómo maneja esto WorshipMetrics
+
+WorshipMetrics trata el PoE como parte de tu documentación del sistema, no una nota adhesiva en la puerta del rack. La biblioteca de dispositivos integrada —422 entradas de marca/modelo curadas de 114 fabricantes con más de 2,000 presets de puerto de fábrica— significa que cuando agregas una cámara PTZ o switch soportado, su panel trasero llega ya documentado, incluyendo la clase PoE y el wattaje donde el fabricante los publica. Cada puerto en tu signal map puede cargar su tipo de conector, señal, configuración de VLAN e IP, y clase y wattaje PoE, así que la pregunta "¿qué clase es la cámara 2, y cuál puerto la alimenta?" la responde la documentación misma.
+
+Si tu red corre sobre Ubiquiti UniFi, WorshipMetrics puede conectarse directamente a tu controlador —ya sea a través de la API oficial de Network Integration con una llave de API, o con credenciales de admin local, que desbloquea el detalle preciso por puerto: la sincronización mapea cuál dispositivo está en cuál puerto de switch, registra la velocidad de enlace negociada contra la máxima (así que una cámara gigabit atorada a 100 Mb es visible), y muestra el **consumo PoE en vivo** de tus switches. Tu presupuesto de energía documentado y tu consumo real del domingo por la mañana viven lado a lado, y los puntos de salud de dispositivos marcan cualquier cosa que se haya quedado callada por más de 90 segundos.
+
+Explora el conjunto completo de herramientas de documentación en [documentación del sistema](/system-documentation/), y ve cómo la salud de dispositivos en vivo se integra a las alertas en [monitoreo de AV](/av-monitoring/).

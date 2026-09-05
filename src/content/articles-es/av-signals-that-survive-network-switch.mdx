@@ -1,0 +1,109 @@
+---
+title: "Cuáles Señales de AV Sobreviven un Switch de Red (y Cuáles Mueren en el Puerto)"
+description: "Por qué Dante, AES67, NDI, Art-Net, y sACN viajan felizmente a través de los switches de red mientras AES50, Ultranet, dSNAKE, y HDBaseT deben correr punto-a-punto —y cómo evitar el clásico desastre del snake-al-switch."
+category: "audio"
+tags: ["Dante", "AES50", "NDI", "networking"]
+difficulty: "intermediate"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/av-signals-that-survive-network-switch/dante-aes50-ndi-network-signal-map.jpg"
+featured: false
+productCTA: true
+---
+
+## El cable más peligroso de tu edificio se ve completamente ordinario
+
+Entra a cualquier cabina técnica de iglesia y cuenta los cables Cat5e y Cat6. El que alimenta la computadora de streaming, el que va al stage box, el que corre a los mezcladores de monitores personales, el que carga video a la TV del lobby —todos se ven idénticos. Misma chaqueta, mismo plug RJ45, mismo click satisfactorio cuando se asientan.
+
+Pero esos cables de aspecto idéntico están cargando cosas salvajemente diferentes. Algunos de ellos son tráfico de red genuino que cualquier switch de Ethernet decente felizmente reenviará. Otros son señales propietarias que meramente *toman prestado* el cable físico —y en el momento en que un voluntario bien intencionado lo conecta a un switch de red, la señal muere en el puerto.
+
+Esta es una de las fallas de "todo funcionaba la semana pasada" más comunes en el AV de iglesia, y es completamente prevenible una vez que tu equipo entiende una distinción: **conmutable versus punto-a-punto**.
+
+## La prueba de una pregunta: ¿habla IP?
+
+Aquí está la regla que ordena casi cada señal de cable Cat en tu edificio.
+
+**Si la señal es tráfico de red real —tramas de Ethernet cargando paquetes IP— un switch puede reenviarla.** Protocolos como Dante, AES67, NDI, Art-Net, y sACN fueron diseñados desde el principio para vivir en redes estándar. Tienen direcciones IP. Coexisten (con algo de cuidado) junto a otro tráfico. Puedes rutearlos a través de switches, a lo largo de VLANs, y en algunos casos a lo largo de todo tu campus.
+
+**Si la señal solo toma prestado el cable y el conector, un switch la matará.** Protocolos como AES50, Ultranet, dSNAKE, gigaACE, y HDBaseT usan cable de par trenzado porque es barato, resistente, y está en todos lados —pero lo que viaja por ese cable no es tráfico de Ethernet estándar que un switch sepa cómo manejar. Estos enlaces deben correr directamente de un dispositivo a su compañero intencionado. No hay switch, ni VLAN, ni "solo conéctalo a través de la placa de pared al clóset de red".
+
+Veamos ambas familias en detalle.
+
+## Señales que sobreviven el switch
+
+### Dante y AES67 (audio sobre IP)
+
+Dante es el sistema de audio sobre IP más extendido en las instalaciones de iglesia, y AES67 es el estándar de interoperabilidad que permite a diferentes ecosistemas de AoIP intercambiar streams. Ambos son tráfico IP genuino: cada dispositivo Dante recibe una dirección IP, los streams se mueven como paquetes UDP, y los switches gigabit estándar los reenvían.
+
+"Sobrevive un switch" no significa "prospera en cualquier switch," sin embargo. Dante es crítico en tiempo. Para un rendimiento confiable en el día del servicio quieres:
+
+- **Switches gigabit** —no la vieja unidad 10/100 rescatada de un clóset.
+- **QoS (DSCP) configurado** para que los paquetes de reloj de Dante reciban prioridad cuando la red está ocupada.
+- **IGMP snooping** si usas flujos multicast, para que el audio no inunde cada puerto.
+- **Energy Efficient Ethernet (EEE / Green Ethernet) deshabilitado**, porque los trucos de ahorro de energía del enlace pueden perturbar la sincronización de reloj de Dante.
+
+Muchas iglesias corren Dante en una VLAN dedicada o un switch físicamente separado. Esa es una práctica sabia, y se empareja naturalmente con el consejo de segmentación más amplio en nuestra [guía de infraestructura de red](/es/kb/articles/church-network-av-streaming/).
+
+### NDI (video sobre IP)
+
+NDI mueve video, audio, y control como tráfico de red, que es exactamente por lo que se ha vuelto tan popular para la producción de iglesia —una tirada de Cat6 puede cargar un feed de cámara, tally, y control PTZ que de otra forma tomaría tres cables. Absolutamente viaja en switches, pero es *hambriento*: un solo stream NDI de ancho de banda completo comúnmente corre a 100–150 Mbps, así que un puñado de cámaras saturará enlaces que estaban bien para correo y navegación. Gigabit en todos lados es el piso, y los sistemas NDI ocupados se benefician de su propia VLAN o switch. Nuestra [guía de NDI para producción de iglesia](/es/kb/articles/ndi-church-production/) cubre la planeación de ancho de banda a profundidad.
+
+### Art-Net y sACN (control de iluminación sobre IP)
+
+Ambos son datos de iluminación DMX envueltos en paquetes UDP/IP. Se conmutan y rutean como cualquier otro tráfico de red, que es lo que hace a los nodos de iluminación en red tan flexibles: un cable de la cabina al escenario puede alimentar múltiples universos DMX. El diseño multicast de sACN generalmente es el mejor ciudadano en redes compartidas, pero cualquiera de los dos pertenece firmemente en la columna "conmutable".
+
+## Señales que mueren en el puerto
+
+### AES50 (el snake digital en las consolas Behringer y Midas)
+
+AES50 es la que causa la mayor angustia del domingo por la mañana, porque está en todos lados: es el enlace entre una Behringer X32 o WING (o Midas M32) y su stage box. Usa cable Cat5e blindado y un conector estilo RJ45 —usualmente reforzado con una carcasa EtherCON— y se ve exactamente como una toma de red.
+
+No lo es. AES50 usa la *capa física* de Ethernet pero reemplaza el tráfico con su propio encuadre determinístico de latencia ultra-baja. No hay direcciones IP, ni tramas de Ethernet que un switch pueda analizar, ni lógica de reenvío que aplique. AES50 corre punto-a-punto: puerto de consola a puerto de stage box, punto final. Conéctalo a un switch de red y obtienes silencio —32 canales de él.
+
+Dos notas prácticas mientras estamos aquí: AES50 quiere Cat5e **blindado** (los fabricantes de consolas son explícitos sobre esto), y las tiradas largas son mucho más confiables con cable terminado en EtherCON que con clips RJ45 desnudos y frágiles.
+
+### Ultranet (monitoreo personal)
+
+Ultranet carga 16 canales de audio de monitor a los sistemas de mezcladores personales Behringer Powerplay y Midas —de nuevo sobre cable Cat5, de nuevo *no* tráfico de Ethernet. Los dispositivos Ultranet se encadenan o conectan a través de hardware de distribución Ultranet dedicado (como un hub Powerplay), nunca a través de un switch de red. Un mezclador P16 conectado a tu switch de oficina se quedará ahí oscuro y silencioso sin importar cuánto lo reinicies.
+
+### dSNAKE y gigaACE (Allen & Heath)
+
+El ecosistema de Allen & Heath tiene el mismo patrón. dSNAKE enlaza las consolas SQ y Qu a sus stage boxes; gigaACE enlaza las superficies dLive y Avantis a sus MixRacks. Ambos usan cable Cat familiar, y ambos son transportes directos, punto-a-punto que un switch de red estándar no puede reenviar. Puerto de consola a puerto de rack, siempre.
+
+### HDBaseT (extensión de video)
+
+HDBaseT es la tecnología dentro de la mayoría de los sets de extensores "HDMI sobre Cat6" y muchas placas de pared instaladas. Merece mención especial porque es la cosa *más* lejana de Ethernet en esta lista: HDBaseT usa su propia modulación de alta frecuencia para empujar video sin comprimir, y el transmisor debe conectar directamente a su receptor correspondiente. Un switch no puede reenviarlo, y el par de extensores simplemente no enlazará. Si una pantalla del lobby "funcionó hasta que ordenamos el rack," revisa si alguien re-conectó una tirada de HDBaseT a través del switch de red pensando que era una toma de datos.
+
+## Anatomía del clásico desastre
+
+Usualmente pasa durante una limpieza, un re-rack, o un día liderado por voluntarios de "etiquetemos todo" —el tipo de iniciativa que de otra forma amamos y alentamos en el [entrenamiento de equipos voluntarios](/es/kb/articles/training-volunteer-av-teams/).
+
+Alguien rastrea el cable desde el puerto AES50 de la consola de vuelta a una placa de pared. En el otro extremo, en el clóset de red, el puerto del patch panel de esa placa de pared se sienta justo al lado de otros doce —todos alimentando el switch de red. Para mantener las cosas ordenadas, lo conectan al switch como a sus vecinos. Todo se ve *más* organizado que antes.
+
+El domingo por la mañana: la consola se enciende, el stage box se enciende, y no hay audio de una sola entrada de escenario. Ningún mensaje de error dice "tu snake está conectado a un switch." La consola solo reporta el enlace AES50 como caído, y un voluntario estresado empieza a reiniciar el equipo pieza por pieza mientras el equipo de alabanza espera en el escenario.
+
+El arreglo toma treinta segundos —mover un cable de patch— pero solo si alguien sabe qué está buscando. Esa brecha de conocimiento es todo el problema, y es por lo que la distinción conmutable/punto-a-punto pertenece en tu documentación, no solo en la cabeza de un veterano.
+
+## Zonas grises que vale la pena conocer
+
+Unas arrugas honestas, para que la regla no te sorprenda:
+
+- **"Usa cable Cat" no te dice nada.** El tipo de cable es un hecho de la capa física; la conmutabilidad es un hecho del protocolo. Ambas familias usan el mismo cobre.
+- **Punto-a-punto no significa un solo dispositivo.** Ultranet soporta encadenamiento y hubs de distribución dedicados; los stage boxes AES50 pueden cascada. Pero cada salto es un dispositivo hecho a propósito que habla el protocolo —nunca un switch de Ethernet genérico.
+- **Conmutable no significa despreocupado.** Dante en una red congestionada y no administrada tendrá glitches; NDI puede aplanar un backbone gigabit. "Sobrevive un switch" es el requisito de entrada, no todo el diseño.
+- **Los puertos de control de consola son la excepción que prueba la regla.** El puerto de Ethernet de *control remoto* en una X32 o SQ (para la app de iPad) genuinamente es tráfico de red y genuinamente pertenece en un switch. Mismo chasis, dos puertos, dos mundos diferentes —etiquétalos según corresponda.
+
+## Haz la distinción física: etiquetas y documentación
+
+Como estas señales son invisibles en el cable, las únicas defensas duraderas son el etiquetado y la documentación:
+
+- **Codifica por color según la familia de señal.** Muchos equipos corren AES50 y otros enlaces punto-a-punto en un color de chaqueta distinto (o color de bota EtherCON distinto) para que visualmente no puedan confundirse con tomas de red.
+- **Etiqueta ambos extremos con la señal, no solo el destino.** "AES50-A → Stage Box" previene el error; "Escenario" lo invita.
+- **Documéntalo donde la siguiente persona mirará.** Una hoja de patch en la puerta del rack que lista cada tirada de cable Cat y qué protocolo carga convierte el conocimiento tribal en un sistema que cualquiera puede seguir —la misma filosofía detrás de una buena [práctica de inventario y mantenimiento de AV](/es/kb/articles/av-inventory-maintenance/).
+
+## Cómo modela esto WorshipMetrics
+
+Esta distinción no es una nota al pie en WorshipMetrics —está integrada en el vocabulario del Signal Map. La taxonomía de conectores y señales detrás del mapa separa las **señales de red conmutables** (Dante, AES67, NDI, Art-Net, sACN entre ellas) de las **señales de enlace punto-a-punto** (AES50, Ultranet, dSNAKE, HDBaseT), a lo largo de 76 tipos de conectores físicos organizados en 8 grupos. El desastre del snake-al-switch está modelado en los datos mismos: mientras dibujas una conexión, cada otro puerto en el mapa se ilumina verde, naranja, o rojo —así que un puerto AES50 nunca presenta un switch de red como destino válido, y el mapa distingue "un adaptador pasivo funciona aquí" de "esto necesita un convertidor con energía".
+
+Cada cable que dibujas recibe un ID permanente por señal —DANTE-002, NET-014— que indexa la hoja de patch imprimible y el PDF de diagrama de cableado, así que la etiqueta en la puerta del rack coincide con el mapa exactamente. Siete auditorías de cableado continuas (incluyendo revisiones de desajuste de conectores y señal sin mapear) marcan las tiradas sospechosas y saltan directo al cable ofensor. Y para las iglesias en redes Ubiquiti, una sincronización de controlador UniFi verifica la documentación contra la telemetría en vivo —topología precisa por puerto, velocidad de enlace negociada contra máxima, y consumo PoE por puerto— así que el mapa refleja el edificio como realmente es, no como se documentó por última vez.
+
+Aprende más sobre documentar tu flujo de señal en la página de [documentación del sistema](/system-documentation/).

@@ -1,0 +1,95 @@
+---
+title: "Cómo WorshipMetrics Sabe Que Corres Dante"
+description: "Cómo la enumeración de drivers ASIO atrapa el Dante Virtual Soundcard incluso cuando Windows no puede verlo, cómo el descubrimiento mDNS _netaudio encuentra tu hardware Dante, y por qué ese contexto cambia las conversaciones de soporte."
+category: "audio"
+tags: ["Dante", "audio networking", "ASIO", "discovery"]
+difficulty: "advanced"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/dante-detection-church-av/dante-audio-network-church-av-detection.jpg"
+featured: false
+productCTA: true
+---
+
+## Equipo que nunca tecleaste
+
+Abre el inventario de Pulse en una iglesia que corre Dante y notarás algo un poco extraño: los dispositivos Dante ya están ahí. Nadie llenó un formulario. Nadie pegó direcciones MAC en una hoja de cálculo. El stage box, la tarjeta Dante de la consola, el Dante Virtual Soundcard en la PC de streaming —listados, tecleados, y con marca de tiempo.
+
+Eso no es magia, y no es adivinanza. Son dos rutas de detección independientes que se corroboran entre sí: una que lee lo que está *instalado* en la computadora de la cabina, y una que escucha lo que está *vivo* en la red. Este artículo recorre ambas —porque, útilmente, los modos de falla de la detección son los mismos modos de falla que rompen Dante un domingo.
+
+## Un repaso de Dante en sesenta segundos
+
+Dante, de Audinate, mueve audio multicanal sin comprimir como tráfico IP ordinario sobre Ethernet gigabit estándar. Cada dispositivo Dante recibe una dirección IP, el audio fluye como paquetes UDP, y los dispositivos se mantienen bloqueados a la muestra con un reloj compartido elegido vía PTP. Como es tráfico de red real, viaja en switches y VLANs —con el cuidado alrededor de QoS, IGMP snooping, y Energy Efficient Ethernet que cubrimos en [cuáles señales de AV sobreviven un switch de red](/es/kb/articles/av-signals-that-survive-network-switch/).
+
+La pieza que más importa aquí: los dispositivos Dante *se anuncian a sí mismos*, usando mDNS/DNS-SD estándar —la misma publicidad de servicio de cero-configuración que usan las impresoras Bonjour y las bocinas AirPlay. Esa decisión de diseño es lo que hace posible que un tercero sea consciente de Dante para empezar.
+
+## Ruta uno: la tarjeta de sonido que Windows no puede ver
+
+El Dante Virtual Soundcard (DVS) convierte una computadora ordinaria en un punto final Dante —típicamente 64×64 canales de entrada y salida de tu máquina de streaming o grabación con nada más que un cable de red. En Windows, DVS corre en uno de dos modos de driver, y la diferencia importa enormemente para la detección:
+
+- El **modo WDM** presenta a DVS como dispositivos de audio de Windows estándar: visible en el panel de control de Sonido, usable por cualquier aplicación.
+- El **modo ASIO** presenta a DVS solo a través del modelo de driver ASIO. Las aplicaciones conscientes de ASIO —DAWs, vMix, grabadores multitrack— obtienen acceso de baja latencia al conteo completo de canales. El panel de Sonido de Windows no ve *nada*.
+
+Ese segundo modo es la trampa para cualquier herramienta de monitoreo que solo enumera los puntos finales de audio de la forma normal. Una PC de cabina corriendo DVS en modo ASIO se ve, para la enumeración de puntos finales estándar, como una computadora sin Dante en absoluto —incluso mientras 64 canales de audio de adoración fluyen a través de ella.
+
+ASIO tiene una respuesta, sin embargo, y es refrescantemente aburrida: **cada driver ASIO instalado se registra a sí mismo en el registro de Windows.** La especificación ASIO requiere que los drivers se registren bajo una ubicación de registro bien conocida para que las aplicaciones anfitrionas puedan presentar una lista de drivers. La app de escritorio Tech Manager de WorshipMetrics lee esa misma lista de registro como parte de su instantánea de hardware. Si el Dante Virtual Soundcard está instalado, su driver ASIO está registrado —y aparece en la telemetría de tu máquina sin importar en cuál modo esté corriendo, y sin importar si el mezclador de Windows alguna vez ha oído de él.
+
+Por esto el inventario puede decir honestamente "esta máquina tiene capacidad de audio Dante" cuando una mirada superficial a Windows dice lo contrario. El registro no le importan los modos de driver.
+
+Dos capturas adyacentes redondean el panorama en la misma máquina:
+
+- **Los puntos finales de audio se capturan con volumen en vivo, estado de mute, y tasa de muestreo.** Si corres DVS en modo WDM, esos puntos finales aparecen aquí como cualquier otro dispositivo —y su tasa de muestreo es visible, lo que es útil ya que una máquina sentada a 48 kHz en una red Dante de 44.1 kHz es una mala configuración silenciosa clásica.
+- **El software instalado se inventaría cada hora.** Dante Controller, DVS, y Dante Via aparecen en la lista de software como cualquier otra aplicación, y la línea de tiempo de la máquina registra instalaciones, remociones, y actualizaciones —así que "¿cuándo cambió el driver de Dante?" tiene una respuesta con una fecha.
+
+## Ruta dos: escuchando `_netaudio` en el cable
+
+El registro te dice qué está instalado en la PC de la cabina. No dice nada sobre el stage box al otro extremo del edificio. Para eso, el Tech Manager corre un listener de mDNS como uno de sus sondeos de descubrimiento de red, junto a su conciencia SNMP, ARP, e ICMP de la red de AV más amplia.
+
+Los dispositivos Dante anuncian una familia de tipos de servicio DNS-SD con el prefijo `_netaudio-`:
+
+- `_netaudio-arc._udp`
+- `_netaudio-chan._udp`
+- `_netaudio-cmc._udp`
+- `_netaudio-dbc._udp`
+
+Juntos estos cubren el control de ruteo, la publicidad de canales, y el tráfico de control-y-monitoreo de Dante. Así es exactamente como Dante Controller puebla su lista de dispositivos cuando lo abres —WorshipMetrics simplemente escucha los mismos anuncios públicos. Una publicidad de servicio carga el nombre del dispositivo y los detalles de red, lo que es suficiente para decir *un dispositivo Dante llamado FOH-Stagebox-1 está vivo en esta dirección* sin tocar el dispositivo en sí. El mismo listener de mDNS también reconoce las publicidades estilo AES67/Ravenna, así que un ecosistema de AoIP que no es Dante puro aún se registra.
+
+Nota la corroboración entre las dos rutas. DVS, cuando está corriendo, se anuncia vía mDNS como cualquier otro dispositivo Dante. Así que una PC de streaming sana produce *ambas* señales: el registro dice que Dante está instalado, y la red dice que Dante está respondiendo. Cuando esas dos no coinciden —instalado pero nunca anunciándose— esa brecha es en sí misma diagnóstica, y usualmente apunta a la red, no al software.
+
+## Qué significa "detectado" —y qué deliberadamente no
+
+La detección alimenta tres lugares, y vale la pena ser preciso sobre cada uno:
+
+**El inventario.** Los dispositivos Dante descubiertos aterrizan en tu inventario de dispositivos de AV automáticamente, tecleados por cómo se encontraron. Esa es la base de la [práctica de mantenimiento inventario-primero](/es/kb/articles/av-inventory-maintenance/) —una lista de dispositivos que refleja el edificio como es, no como alguien lo documentó dos transiciones de personal atrás.
+
+**El signal map.** Dante es un tipo de señal de primera clase en la documentación del sistema de WorshipMetrics, con sus propios IDs por cable en la hoja de patch imprimible. La detección significa que las entradas Dante del mapa corresponden a dispositivos de los que la plataforma realmente ha escuchado, no solo cajas que alguien dibujó.
+
+**Monitoreo, si te inscribes.** Marca un dispositivo Dante "Alertar cuando esté offline" y se une a la flota de AV monitoreada, con un retraso de alerta configurable (60 segundos por defecto). De manera crucial, las alertas de offline usan un resumen multi-observador: un dispositivo solo alarma cuando es inalcanzable desde *cada* máquina de telemetría en la red, así que una PC de cabina con una ruta de red inestable no puede paginar a todo tu equipo a las 6 a.m. Los observadores que ellos mismos se quedan callados degradan el dispositivo a un honesto "rancio" en lugar de un congelado "en línea". La tabla completa de umbrales vive en la [referencia de umbrales de alerta de Pulse](/es/kb/articles/pulse-alert-thresholds-reference/).
+
+Y el límite deliberado: **los dispositivos Dante descubiertos no tienen medición de audio.** WorshipMetrics no se suscribe a tus flujos Dante ni se inserta en tu ruteo —la medición de audio en vivo que ves en la plataforma viene de los propios buses de tu software de producción. El descubrimiento es presencia e identidad, no intercepción de señal. Tu ruteo Dante se queda enteramente entre Dante Controller y tus dispositivos, que es exactamente donde pertenece.
+
+Hay un bono sutil en esos datos de presencia: como el descubrimiento de Dante depende de que el mDNS multicast realmente atraviese tu red, la capa de descubrimiento funciona doble como un canario. Si dispositivos Dante que eran visibles ayer desaparecen del descubrimiento mientras siguen pasando audio, algo cambió en tu manejo de multicast —una configuración IGMP, un nuevo switch, un AP que empezó a filtrar mDNS. Ese es el tipo de señal temprana que vale la pena tener antes de la semana en que Dante Controller misteriosamente muestra una lista de dispositivos vacía.
+
+## Por qué este contexto cambia las conversaciones de soporte
+
+Aquí está la recompensa práctica. Cuando algo se rompe un domingo y buscas ayuda, los primeros diez minutos de una interacción de soporte típica son arqueología: *¿Qué consola? ¿Qué es la computadora? ¿Hay Dante involucrado? ¿Cuándo cambió algo?*
+
+Con la detección en su lugar, esa arqueología ya está hecha. La instantánea de la máquina muestra la lista de drivers ASIO y los puntos finales de audio con tasas de muestreo. El descubrimiento de red muestra cuáles dispositivos Dante están anunciándose actualmente y cuáles se han quedado callados. El inventario de software cada hora y la línea de tiempo de la máquina muestran que, digamos, una actualización de driver Dante aterrizó el jueves por la noche —dos días antes del domingo en que los micrófonos se quedaron en silencio. La cadencia del latido (un latido ligero cada 15 segundos, una instantánea completa cada 60) significa que todo eso está al día dentro de aproximadamente un minuto, no una descripción de memoria.
+
+Una conversación de soporte que empieza desde *"DVS está instalado en modo ASIO, tu stage box dejó de anunciarse en mDNS a las 9:04, y la NIC de tu PC de cabina rebotó a las 9:03"* es fundamentalmente diferente de una que empieza desde *"okay, describe tu setup."* Es más rápida, más calmada, y no depende de que el único voluntario que conoce el rig esté alcanzable a media misa. Es la misma razón por la que alentamos a los equipos a mantener la documentación de red al día en la [guía de red de iglesia para AV y streaming](/es/kb/articles/church-network-av-streaming/) —la herramienta simplemente hace una gran parte del documentar por ti.
+
+## Cuando Dante no aparece
+
+Si corres Dante y el inventario *no* lo muestra, trata eso como información. Los sospechosos usuales, en orden:
+
+1. **VLAN o subred diferente.** El mDNS es multicast local del enlace; un listener en la VLAN de oficina no puede escuchar los anuncios en una VLAN Dante aislada. Una PC de cabina que debería ver Dante necesita una interfaz en la red Dante —lo que es igualmente cierto para Dante Controller.
+2. **mDNS filtrado o descartado.** Los switches administrados con configuraciones de multicast agresivas, el IGMP snooping habilitado sin un querier, y los access points que bloquean el multicast entre clientes todos se comen silenciosamente las publicidades de servicio.
+3. **DVS instalado pero no iniciado.** La ruta del registro aún reporta el driver ASIO; la ruta de red no, porque DVS solo se anuncia mientras corre. Esa combinación instalado-pero-silencioso es tu pista.
+4. **Aislamiento de cliente.** El WiFi con aislamiento de cliente habilitado ni escuchará ni será escuchado. El equipo Dante pertenece en cobre de todos modos, pero el descubrimiento desde una laptop inalámbrica falla de esta forma constantemente.
+
+Cada uno de estos rompe el descubrimiento de Dante Controller también —así que arreglar lo que esconde Dante de WorshipMetrics generalmente arregla lo que estaba a punto de esconderlo de ti.
+
+## Cómo maneja esto WorshipMetrics
+
+La conciencia de Dante en WorshipMetrics es pasiva, en capas, y honesta sobre sus límites. En la máquina de la cabina, el Tech Manager enumera los drivers ASIO instalados desde sus registros en el registro —atrapando el Dante Virtual Soundcard incluso en modo ASIO, donde la enumeración de puntos finales normal de Windows no ve nada— junto a los puntos finales de audio con tasa de muestreo, volumen, y estado de mute en vivo, más un inventario de software cada hora que rastrea las instalaciones y actualizaciones de aplicaciones Dante. En la red, un listener de mDNS descubre el hardware Dante a través de sus publicidades de servicio `_netaudio-*` (con reconocimiento de AES67/Ravenna también), alimentando tu inventario y signal map automáticamente. Los dispositivos que eliges monitorear reciben alertas de offline multi-observador que no darán falsa alarma por la mala ruta de red de una máquina —y nada de ello toca jamás tu ruteo de audio.
+
+Ve el panorama completo de monitoreo en la página de [monitoreo de AV](/av-monitoring/), cómo el mismo descubrimiento alimenta tu documentación en la página de [documentación del sistema](/system-documentation/), y cómo ese contexto acelera la ayuda real en la página de [soporte telefónico](/phone-support/).
