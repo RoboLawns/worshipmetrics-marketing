@@ -1,0 +1,57 @@
+---
+title: "¿Es Suficientemente Bueno el WiFi de Nuestra Iglesia para Transmitir en Vivo?"
+description: "Probablemente la pregunta equivocada —el encoder debería estar en Ethernet cableado, y el WiFi debería llevar los teléfonos. Aquí está cómo probar lo que tu conexión de verdad puede hacer, y cómo saberlo con certeza en lugar de adivinar."
+category: "streaming"
+tags: ["WiFi", "network", "bandwidth", "streaming"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+coverImage: "/images/products/church-wifi-good-enough-to-livestream/unifi-topology-church-streaming-network.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Podemos transmitir en vivo por WiFi si la señal es fuerte?"
+    answer: "Puedes, pero no deberías si un cable es posible. El WiFi en un edificio que se llena de teléfonos cada domingo es la causa más común de frames perdidos —la fuerza de la señal un martes dice poco sobre la contención del aire a las 9:55 de un domingo. Cablea el encoder; deja que el WiFi lleve a la congregación."
+  - question: "¿Cuánta velocidad de subida necesita el stream de una iglesia?"
+    answer: "Una regla segura es transmitir a no más de la mitad de tu velocidad de subida medida de forma confiable —medida un domingo por la mañana bajo carga real, no un martes tranquilo por la tarde. Si una prueba de velocidad marca 20 Mbps de subida el domingo a las 9:45, un stream en el rango de 4 a 6 Mbps tiene margen cómodo."
+  - question: "¿Cómo encontramos problemas de red antes de que golpeen un domingo?"
+    answer: "Deja que la red se reporte a sí misma. Conectar un controlador UniFi a WorshipMetrics revela la verdad puerto por puerto —incluyendo enlaces gigabit que calladamente cayeron a 100 Mb/s, que casi siempre es un cable dañado— y cada stream produce un reporte de salud que muestra exactamente cuándo y cómo batalló la conexión."
+---
+
+## La respuesta corta: cablea el encoder, y deja que el WiFi haga otro trabajo
+
+"¿Es suficientemente bueno nuestro WiFi para transmitir en vivo?" suele ser la pregunta equivocada, y la respuesta correcta empieza por partirla en dos:
+
+1. **La computadora que transmite no debería estar en WiFi para nada.** Corre un cable. El WiFi en un edificio lleno de teléfonos es la causa más común de frames perdidos un domingo por la mañana, y ninguna mejora de router le gana a un cable de red de $15.
+2. **La pregunta real es si tu *conexión a internet* es suficientemente buena** —y eso es medible en diez minutos, la mañana correcta.
+
+Aquí está por qué importa la distinción, cómo correr la prueba honesta, y cómo pasar de "creemos que está bien" a *saberlo*.
+
+## Por qué el WiFi traiciona a los streams específicamente
+
+El WiFi es un medio compartido: cada dispositivo en rango toma turnos en el aire. Un martes por la tarde, tu laptop de la cabina tiene el aire casi para ella sola y todo se ve genial. El domingo a las 9:55, doscientos teléfonos llegan —sincronizando fotos, registrándose en la red de invitados, buscando señal— y el encoder ahora hace cola detrás de todos ellos por su turno para transmitir.
+
+Un encoder en vivo es únicamente intolerante a eso. La navegación web ignora un tirón de medio segundo; un encoder empujando treinta frames por segundo experimenta el mismo tirón como frames que debe descartar. Por eso los frames perdidos cargan la penalización más pesada (−35) en el [puntaje de salud del stream](/es/kb/articles/reading-your-stream-health-score/): son la falla que los espectadores sienten más directamente, y la lista de arreglos empieza con *pon el encoder en Ethernet cableado* —antes que el bitrate, antes que el hardware, antes que nada.
+
+Así que dale al WiFi el trabajo en el que es bueno —los teléfonos de la congregación, los [registros por QR](/es/kb/articles/church-check-in-without-an-app/), el lobby— y dale cobre al stream.
+
+## La prueba honesta de ancho de banda
+
+Con el encoder cableado, la pregunta se vuelve la capacidad de **subida** de tu conexión a internet, y hay una regla que vale la pena pegar en el escritorio de la cabina: **transmite a no más de la mitad de tu velocidad de subida medida de forma confiable —medida un domingo por la mañana, no un martes por la tarde.**
+
+Ambas mitades de esa frase trabajan. *La mitad*, porque la capacidad de subida fluctúa y un encoder corrido al tope no tiene margen para los momentos que lo necesitan. *El domingo por la mañana*, porque es cuando los dispositivos de tu congregación, el uso del vecindario, y el desempeño real de tu ISP aparecen todos a la vez. Una conexión que marca 40 Mbps de subida un martes y 12 Mbps a las 9:45 del domingo es una conexión de 12 Mbps para tus propósitos.
+
+Si el número del domingo no puede cargar cómodamente tu bitrate objetivo, tienes tres palancas, en orden de costo: baja el bitrate y la resolución del stream (un 720p estable le gana a un 1080p que batalla cada vez —nuestra [guía de configuración del encoder](/es/kb/articles/church-encoder-settings-that-survive-sunday/) cubre los números), separa el tráfico de streaming del WiFi de invitados con VLANs y QoS para que los teléfonos no maten de hambre a la cabina (el diseño está en la [guía de red de iglesias](/es/kb/articles/church-network-av-streaming/)), y solo entonces habla con tu ISP sobre un plan más rápido.
+
+## De adivinar a saber
+
+Todo lo anterior lo puedes hacer con una prueba de velocidad y un cable. El paso que la mayoría de las iglesias nunca da es hacer que la red *se reporte a sí misma* —y es el paso que encuentra los problemas los martes en lugar de los domingos.
+
+Si tu edificio corre equipo Ubiquiti UniFi, [conectar el controlador a WorshipMetrics](/es/kb/articles/connect-unifi-worshipmetrics/) trae la verdad de red en vivo a tu documentación: qué dispositivo cuelga de qué puerto del switch, consumo PoE en vivo, y —la característica dormida— la **velocidad de enlace negociada vs. máxima**. Un puerto gigabit que calladamente cayó a 100 Mb/s se esconde detrás de una luz de enlace verde, "funciona" para navegar, y luego ahoga el primer feed NDI o subida grande que empujas por él. Casi siempre es un par dañado en un cable, y verlo en la documentación significa encontrarlo antes de que él te encuentre a ti.
+
+Mientras tanto cada stream que corres produce su propia evidencia. El [reporte de salud](/es/kb/articles/reading-your-stream-health-score/) muestrea bitrate, frames perdidos y estado del encoder cada cinco segundos, así que "el internet estuvo raro" se vuelve "el bitrate cedió por noventa segundos durante el saludo, tres semanas seguidas" —un patrón con un sospechoso obvio (el WiFi del lobby encendiéndose) y un arreglo concreto. Y [Pulse](/av-monitoring/) vigila patrones de red entre dispositivos, marcando pérdida de paquetes y deriva de latencia contra la línea base de cada dispositivo.
+
+Una red de seguridad más para los domingos en que la conexión batalla de todos modos: las [reglas de auto-reparación](/es/kb/articles/tech-manager-self-healing-explained/) de Tech Manager bajan la resolución del stream cuando el bitrate cede —manteniéndote en vivo dentro del ancho de banda que de verdad existe— y encolan una reconexión limpia a través de cortes cortos. Los espectadores perdonan la suavidad; no perdonan el congelamiento.
+
+## Cómo lo maneja WorshipMetrics
+
+WorshipMetrics no puede correr el cable Ethernet por ti, pero convierte cada otra parte de esto de folclore a datos: los [reportes de salud del stream](/live-streaming/) muestran exactamente cuándo y cómo batalló la conexión, la [integración con UniFi](/es/kb/articles/connect-unifi-worshipmetrics/) expone la verdad puerto por puerto que tus luces verdes esconden, el [monitoreo de Pulse](/av-monitoring/) vigila los patrones que preceden a las fallas, y [Tech Manager](/tech-manager/) mantiene el stream vivo a través de los tramos difíciles mientras arreglas las causas de raíz un día entre semana. Cablea el encoder, mide el domingo, transmite a la mitad —y deja que la telemetría te cuente el resto.

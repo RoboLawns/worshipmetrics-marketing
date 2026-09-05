@@ -1,0 +1,65 @@
+---
+title: "¿Puedo Recibir una Alerta en Mi Teléfono Cuando el Stream de Nuestra Iglesia Se Cae?"
+description: "Sí —con notificaciones web push que funcionan en iPhone y Android, respaldadas por correo garantizado. Aquí está cómo las alertas de caída de stream llegan a tu bolsillo, y por qué muchas caídas se arreglan solas antes de que la alerta siquiera se dispare."
+category: "streaming"
+tags: ["alerts", "stream drops", "notifications", "monitoring"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+coverImage: "/images/products/church-stream-drop-phone-alert/worshipmetrics-stream-drop-alert-phone-push.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Necesito instalar una app de la App Store para recibir alertas de stream?"
+    answer: "No. WorshipMetrics usa notificaciones web push estándar, así que las alertas llegan como notificaciones reales del sistema operativo desde tu navegador. En iPhone (iOS 16.4 o posterior), agregas la web app a tu pantalla de inicio desde Safari —como un minuto de configuración— y los push luego se comportan exactamente como los de una app nativa."
+  - question: "¿Qué pasa si mi teléfono está apagado o el push no llega?"
+    answer: "Cada alerta que importa también sale por correo, que es el canal garantizado —las alertas de caída de livestream van al dueño de la organización, admins y operadores por correo automáticamente. También se escribe siempre una entrada de notificación dentro de la app, y el feed de alertas guarda 90 días de historial."
+  - question: "¿Me van a llenar de alertas cada vez que el stream se tambalea?"
+    answer: "No. Cada corte alerta exactamente una vez, la recuperación se auto-resuelve en el feed, y las alertas de recursos usan márgenes de histéresis más un enfriamiento de 30 minutos. Cuando una alerta llega a tu teléfono, vale la pena mirarla."
+---
+
+## La respuesta corta: sí —como una notificación real, no solo un correo
+
+Si tu iglesia transmite a través de WorshipMetrics, un stream que deja el estado "en vivo" por cualquier razón que no sea que alguien presione Stop dispara una alerta de caída. Esa alerta puede llegarte como una **notificación push en tu teléfono** —una notificación real, a nivel de sistema operativo, en la pantalla de bloqueo, con el nombre e ícono de la app— y **siempre** sale por correo al dueño de la organización, admins y operadores, sin un paso de suscripción que olvidar.
+
+No hay descarga de tienda de apps involucrada. WorshipMetrics usa **web push**, el estándar abierto que los navegadores modernos soportan de forma nativa. En una laptop, escritorio o teléfono Android, activarlo es un solo permiso. En iPhone también funciona —Apple agregó web push en iOS 16.4— con un paso extra: agrega **app.worshipmetrics.com** a tu pantalla de inicio desde Safari, luego activa las notificaciones desde el ícono instalado. El recorrido completo, incluyendo el detalle del modo Concentración de iOS que retiene las alertas calladamente hasta las 9 a.m., está en nuestra [guía de configuración de alertas al teléfono](/es/kb/articles/church-av-alerts-on-your-phone/).
+
+El resto de este artículo cubre las preguntas que suelen venir a continuación: qué tan rápido se dispara la alerta, quién debe recibirla, y por qué —honestamente— muchas caídas de stream nunca alertan a nadie.
+
+## ¿Qué tan rápido se dispara la alerta?
+
+La detección corre del lado del servidor, las 24 horas, desde los latidos que la app de cabina [Tech Manager](/tech-manager/) envía cada 15 a 60 segundos. Esos latidos llevan telemetría de encoder en vivo desde OBS o vMix —bitrate contra objetivo, frames perdidos, carga del encoder, tasa de frames, escena actual— así que la plataforma conoce el estado del stream de forma continua, no solo cuando alguien tiene un tablero abierto.
+
+Ese diseño del lado del servidor es la parte que vale apreciar: la alerta no depende de que una pestaña del navegador esté abierta en ningún lado. La PC de la cabina puede estar bloqueada, el director técnico puede estar almorzando, y la detección igual sucede. Un monitoreo que solo funciona mientras alguien mira una pantalla no es monitoreo —es una página de estado.
+
+Las alertas son deliberadamente conservadoras sobre el ruido repetido. Cada corte produce **una** alerta, la recuperación la auto-resuelve en el feed, y las reglas de enfriamiento evitan que una conexión inestable ametralle tu pantalla de bloqueo. Los tiempos exactos de cada tipo de alerta —incluyendo el badge de desconexión de 90 segundos versus el correo de desconexión de 5 minutos— están publicados en la [referencia de umbrales de alerta de Pulse](/es/kb/articles/pulse-alert-thresholds-reference/).
+
+## ¿Quién debe recibir el push?
+
+No toda alerta merece vibrar en cada bolsillo, así que las preferencias de notificación son por persona y por tipo de alerta. Una división sensata para un equipo de voluntarios:
+
+| Alerta | Quién recibe push |
+|---|---|
+| Caída de livestream | Operador de streaming + director técnico |
+| Máquina de cabina desconectada | Director técnico |
+| Cámara o consola desconectada | Quien sea dueño de ese equipo |
+| Advertencia de estado de audio | Líder de sonido |
+
+Las alertas también se agrupan en áreas —Hardware, Sistema, Stream, Audio, Red, Otro— y cada persona elige qué canales llevan cada área. El ruido de red puede quedarse en el aviso de escritorio en la cabina mientras los problemas de stream escalan a los teléfonos.
+
+Haz la configuración del teléfono en **cada** teléfono que deba despertarse. La suscripción push de cada persona es propia; no hay un dispositivo compartido que configurar, y toma menos de un minuto por teléfono.
+
+## La advertencia honesta: el push es rápido, el correo es garantizado
+
+El web push es excelente, pero es de mejor-esfuerzo por diseño. Un permiso revocado, un modo No Molestar, un caché de navegador borrado, o un optimizador de batería agresivo de Android pueden interrumpirlo calladamente —y ninguno de esos produce un error que alguien vea.
+
+Por eso el stack de alertas está en capas: el push es el canal *rápido*, **el correo es el garantizado**, una entrada de notificación dentro de la app se escribe siempre sin importar tus ajustes, y el feed de alertas guarda **90 días de historial filtrable**. Si tu teléfono está muerto a las 7 a.m., el correo está esperando cuando se cargue, y el feed siempre puede responder "¿ha pasado esto antes?" con datos en lugar de memoria.
+
+## Por qué muchas caídas nunca te alertan
+
+Aquí está la parte que sorprende a los equipos que vienen del monitoreo manual: buena parte de las caídas de stream se corrigen antes de que un humano necesite saberlo. Las [reglas de auto-reparación](/es/kb/articles/tech-manager-self-healing-explained/) de Tech Manager reinician un stream que ha estado caído más de 30 segundos, bajan la resolución cuando el bitrate cede para que el stream sobreviva un tramo difícil de ancho de banda, y encolan un reinicio limpio a través de parpadeos cortos de red en lugar de martillar una conexión muerta.
+
+Cada una de esas acciones automáticas queda registrada en tu historial de soporte —nada pasa en silencio— pero el efecto práctico es que las alertas que *sí* llegan a tu teléfono son las que genuinamente necesitan una persona. Cuando una lo hace, mantén el [manual de recuperación de stream caído](/es/kb/articles/church-stream-dropped-mid-service/) guardado en el mismo teléfono que recibe la alerta: pasos calmados, en orden, escritos para el momento en que tu ritmo cardíaco se dispara.
+
+## Cómo lo maneja WorshipMetrics
+
+Las alertas de caída de stream son comportamiento estándar en [Pulse, la capa de monitoreo](/av-monitoring/) de WorshipMetrics: [Tech Manager](/tech-manager/) suministra la telemetría del encoder desde la cabina, la nube la vigila las 24 horas, las alertas de caída van a dueños, admins y operadores por correo automáticamente, y el web push —incluyendo soporte completo de iPhone vía la app de pantalla de inicio de iOS— pone la misma alerta en tu pantalla de bloqueo en segundos. Cinco minutos de configuración por teléfono esta semana, y el próximo problema te encuentra antes de que el domingo lo haga.

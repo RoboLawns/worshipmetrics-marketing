@@ -1,0 +1,65 @@
+---
+title: "¿Por Qué Nuestro Livestream Se Ve Bien a las 9:00 y Se Entrecorta para las 9:40?"
+description: "Un stream que empieza limpio y se degrada a mitad del servicio suele ser una historia de recursos —presión de memoria que trepa, un CPU calentándose, un disco llenándose, o picos de WiFi durante el saludo. La telemetría de cinco segundos atrapa el deslizamiento que los promedios por servicio esconden."
+category: "streaming"
+tags: ["troubleshooting", "stuttering", "RAM", "telemetry"]
+difficulty: "intermediate"
+publishedAt: "2026-09-01"
+coverImage: "/images/products/livestream-stutters-40-minutes-in/worshipmetrics-stream-health-telemetry-timeline.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Por qué el stream se degrada gradualmente en lugar de simplemente fallar?"
+    answer: "Porque las causas son acumulativas: la presión de memoria crece conforme corre el servicio, la temperatura del CPU trepa hacia el territorio de throttle, el espacio en disco se encoge conforme crece la grabación, y la congestión de red hace pico cuando el edificio se llena. Cada una erosiona el margen lentamente —por eso el stream estaba genuinamente bien a las 9:00."
+  - question: "¿Cómo averiguo cuál es mi causa?"
+    answer: "Mira la telemetría a lo largo del tiempo, no una sola lectura. WorshipMetrics muestrea el encoder y la máquina de la cabina cada cinco segundos durante todo el servicio, así que el reporte de salud muestra exactamente cuándo empezó el deslizamiento y qué medición se movió primero —RAM, CPU, temperatura, bitrate o frames perdidos."
+  - question: "¿Cuál es el arreglo más rápido para probar este domingo?"
+    answer: "Reinicia la PC de la cabina antes del servicio y cierra todo lo que no sea software de producción —un arranque fresco reinicia la fuga de memoria que causa la mayoría de los entrecortes a los 40 minutos. Luego deja que el reporte de salud te diga si la historia real es memoria, calor, disco o red."
+---
+
+## La respuesta corta: algo se está acabando —lentamente
+
+Un stream que está roto desde el primer minuto tiene una causa obvia. Un stream que empieza limpio y se cae a pedazos cuarenta minutos después tiene una *acumulativa*: algún recurso que estaba bien a las 9:00 está siendo consumido, calentado o saturado conforme corre el servicio. Hay cuatro sospechosos usuales, y dejan huellas distintas:
+
+1. **Presión de memoria** creciendo en la PC de la cabina —la historia más común.
+2. **Calor** empujando el CPU hacia el territorio de throttle.
+3. **Espacio en disco** encogiéndose conforme crece la grabación.
+4. **Congestión de red** haciendo pico conforme el edificio se llena de teléfonos.
+
+La razón por la que esta falla es tan enloquecedora de perseguir a mano es que quien revisa la máquina *después* del servicio la encuentra inactiva, fría y de apariencia inocente. El diagnóstico vive en lo que estaba pasando *a las 9:40*, que es exactamente para lo que sirve la telemetría continua —la app de cabina [Tech Manager](/tech-manager/) muestrea el encoder y la máquina cada cinco segundos durante todo el servicio, así que el deslizamiento queda registrado aunque nadie lo estuviera vigilando.
+
+Aquí está cada sospechoso, su huella y su arreglo.
+
+## Sospechoso 1: fuga de memoria —bien a las 9:00, paginando para las 9:40
+
+La presión de memoria causa la degradación lenta y trepadora que es la más difícil de detectar en vivo. Conforme corre el servicio, la RAM se llena —los búferes del encoder, un navegador que alguien dejó abierto con quince pestañas, una app de chat cacheando calladamente— y cuando el sistema operativo empieza a paginar al disco, "un poco lento" se vuelve entrecorte en una máquina que también está codificando video.
+
+**La huella:** RAM subiendo de forma constante a lo largo del servicio en la telemetría, con el entrecorte llegando conforme cruza los 90. Pulse dispara una alerta crítica de recursos al 90% de RAM precisamente porque ahí empieza la paginación —los [umbrales publicados](/es/kb/articles/pulse-alert-thresholds-reference/) existen para que esto se dispare antes de que la congregación lo note.
+
+**El arreglo:** un reinicio de la PC de la cabina antes del servicio (arranque fresco, memoria fresca), una disciplina de cerrar-todo para el software que no es de producción, y —si la fuga persiste en una máquina limpia— más RAM. Esta es la mejora de hardware más barata que arregla un problema de domingo.
+
+## Sospechoso 2: calor —la máquina que hace throttle en el sermón
+
+Los CPU se protegen del sobrecalentamiento bajando la velocidad, y una PC de cabina en un gabinete sellado, ahogada de polvo, o corriendo con un ventilador cansado, se calienta de forma constante desde el momento en que arranca el encoder. Cuarenta minutos después, cruza al territorio de throttle y el encoder —que ya usaba la mayoría del CPU— de repente tiene menos máquina debajo.
+
+**La huella:** temperatura del CPU subiendo todo el servicio y la carga del encoder subiendo con ella; la línea de alerta es 95°C, que es territorio de throttle para casi cualquier CPU moderno. **El arreglo** es físico y con forma de día entre semana: polvo, flujo de aire, un gabinete abierto, un ventilador que funcione —todo arreglable un martes, ninguno a las 9:58.
+
+## Sospechoso 3: el disco que la grabación se está comiendo
+
+Las grabaciones locales consumen gigabytes por hora, y un disco que cruza a su último puñado de por ciento a mitad del servicio puede llevarse la grabación —y a veces el encoder— con él. **La huella:** el espacio libre encogiéndose linealmente toda la mañana. **Las redes de seguridad:** Tech Manager [limpia el caché de señalización re-descargable automáticamente](/es/kb/articles/tech-manager-self-healing-explained/) por debajo del 10% libre y levanta una alerta para que un humano atienda la tendencia; la línea crítica se sienta en 5%. **El arreglo:** un plan de almacenamiento —archiva grabaciones viejas en un horario en lugar de descubrir el problema a las 9:40.
+
+## Sospechoso 4: el edificio despertó
+
+A veces la máquina es inocente y la *red* cambió: a las 9:00 compartías el internet con un edificio cerrado; para las 9:40 lo compartes con cada teléfono en el santuario. La congestión de subida se muestra como bitrate cediendo del objetivo y frames perdidos subiendo —a menudo en un bajón revelador durante el saludo, cuando el WiFi del lobby se enciende.
+
+**La huella:** los propios signos vitales de la máquina permaneciendo planos mientras el bitrate se tambalea y los frames perdidos hacen pico —inestabilidad con números limpios del sistema es una historia de red, no de computadora. **El arreglo:** cablea el encoder, ajusta el bitrate a la mitad de tu subida medida *el domingo por la mañana*, y separa el tráfico de streaming del WiFi de invitados —el triaje completo está en [¿es suficientemente bueno el WiFi de nuestra iglesia para transmitir en vivo?](/es/kb/articles/church-wifi-good-enough-to-livestream/) y la [guía de red de iglesias](/es/kb/articles/church-network-av-streaming/).
+
+## Por qué los promedios esconden esto —y las muestras de cinco segundos no
+
+Un promedio por servicio te diría que un domingo de entrecorte-a-las-9:40 estuvo "mayormente bien" —porque lo *estuvo*. La resolución de cinco segundos es lo que separa un bitrate que cedió por noventa segundos durante el saludo de uno que estuvo bajo toda la mañana, y una línea de RAM que trepó todo el servicio de una que hizo pico una vez. Esa es la premisa de diseño del [puntaje de salud del stream](/es/kb/articles/reading-your-stream-health-score/): cada servicio produce un reporte de 0 a 100 con la línea de tiempo completa de telemetría, cada penalización con marca de tiempo, y una recomendación en lenguaje sencillo adjunta.
+
+El reporte importa a lo largo de semanas, no solo domingos. Una mala mañana es un evento; un deslizamiento lento a lo largo de un mes es deriva —una máquina acumulando software de fondo, un disco llenándose, una red poniéndose más ocupada— y la deriva es el patrón que la memoria humana pierde y la telemetría atrapa. Si la misma penalización aparece tres semanas seguidas, encontraste un proyecto, no una casualidad.
+
+## Cómo lo maneja WorshipMetrics
+
+El misterio de las 9:40 es exactamente lo que la telemetría de la plataforma fue construida para resolver: [Tech Manager](/tech-manager/) muestrea CPU, RAM, temperatura, disco y estado del encoder cada cinco segundos; [Pulse](/av-monitoring/) dispara sus umbrales publicados *antes* de que la congregación lo note y empuja la alerta a [tu teléfono](/es/kb/articles/church-stream-drop-phone-alert/); la auto-reparación baja la resolución para mantenerte en vivo a través de un bajón de ancho de banda; y el reporte de salud de cada servicio convierte "se puso raro cerca del final" en una línea de tiempo con marcas y diagnosticable. La máquina sabe por qué se entrecortó a las 9:40. Ahora tú también lo sabes.
