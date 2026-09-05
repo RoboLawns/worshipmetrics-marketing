@@ -1,0 +1,85 @@
+---
+title: "Cómo la IA Encuentra los Momentos de Tu Sermón: Por Dentro del Pipeline de Reels"
+description: "Un recorrido en lenguaje sencillo por cómo WorshipMetrics convierte la grabación de un servicio completo en clips listos para publicar: transcripción consciente del vocabulario de iglesia, puntaje de momentos por IA, y renders con marca en tres formatos."
+category: "video-clipping"
+tags: ["Reels", "sermon clips", "AI", "transcription"]
+difficulty: "beginner"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/how-ai-finds-sermon-moments/worshipmetrics-reels-ai-sermon-moments.jpg"
+featured: false
+productCTA: true
+---
+
+## Encontrar el momento es la parte difícil
+
+Pregúntale a cualquiera que haya recortado sermones a mano y te dirá lo mismo: la edición no es el cuello de botella. El cuello de botella es el escarbar. En algún lugar de un servicio de 75 minutos hay un momento de 45 segundos que de verdad animaría a alguien deslizando un martes —pero encontrarlo significa volver a ver todo el servicio, y la mayoría de los equipos de voluntarios simplemente no tiene esa hora un lunes.
+
+Ese es el problema que el pipeline de Reels de WorshipMetrics está construido para resolver. Observa todo el servicio para que tú no tengas que hacerlo, y le entrega a tu equipo una lista rankeada de momentos candidatos en lugar de una línea de tiempo en blanco. Este artículo recorre cómo funciona el pipeline en realidad, etapa por etapa: transcripción afinada para el vocabulario de iglesia, categorización y puntaje por IA, y renderizado en los formatos que las plataformas sociales esperan. También cubriremos el modo local de privacidad, donde tu material nunca deja la computadora de la cabina.
+
+Si quieres el lado editorial —qué momentos viajan bien y cómo pensar en el ritmo y el encuadre— nuestra guía complementaria sobre [recortar sermones para redes sociales](/es/kb/articles/clipping-sermons-social-media/) cubre el oficio. Este artículo es sobre la maquinaria.
+
+## Etapa uno: transcripción que habla iglesia
+
+Todo aguas abajo depende de una transcripción precisa, y el texto-a-voz genérico la pasa mal con el lenguaje de iglesia. Los modelos de fábrica rutinariamente destrozan "Habacuc", "propiciación", "Ebenezer", y el nombre de tu pastor —y una transcripción que se equivoca en los sustantivos clave produce clips con subtítulos que no puedes publicar.
+
+El pipeline en la nube transcribe los servicios con AssemblyAI (el modelo universal-2 por defecto, con universal-3-pro soportado), y hace más que convertir audio en texto:
+
+- **Las etiquetas de hablante** distinguen al predicador del líder de adoración del anfitrión de anuncios, lo que importa después cuando la IA decide qué tipo de momento está mirando.
+- **Los capítulos y destacados automáticos** le dan a la etapa de puntaje un mapa aproximado del servicio antes de que empiece cualquier análisis más profundo.
+- **La detección de idioma** maneja servicios y segmentos que no están en inglés.
+- **Un refuerzo de vocabulario de iglesia** —hasta 80 términos— prepara al modelo con las palabras que es más probable que se equivoque: cada libro de la Biblia de Génesis a Apocalipsis, frases como "llamado al altar", y los nombres de tu propio pastor e iglesia.
+
+Ese último punto es el héroe callado del pipeline. El refuerzo de palabras es una técnica estándar de reconocimiento de voz —le dices al modelo qué palabras inusuales esperar, y las pondera más fuerte cuando el audio es ambiguo. Aplicado a los sermones, es la diferencia entre un subtítulo que dice "Libro de Filemón" y uno que dice "libro de Fila Melón". Los subtítulos se incrustan en el video final, así que la precisión de la transcripción no es cosmética; es el producto terminado.
+
+## Etapa dos: diez categorías, un puntaje, un gancho
+
+Con una transcripción limpia en mano, el pipeline le entrega los segmentos candidatos a Claude, el modelo de IA de Anthropic, para una pasada de puntaje. Aquí es donde "transcripción" se vuelve "juicio editorial a escala". Para cada clip candidato, el modelo asigna tres cosas.
+
+**Una categoría.** Cada clip aterriza en una de diez categorías canónicas: música, lectura de escritura, punto del sermón, oración, orador invitado, llamado al altar, bienvenida, anuncio, despedida, o segmento hablado general. La categorización suena mundana, pero es lo que evita que tu feed se llene de clips de anuncios. Un punto del sermón y un segmento de bienvenida son ambos "alguien hablando en el escenario" para un algoritmo genérico; la categoría le dice al pipeline —y a ti— cuál es cuál.
+
+**Un puntaje de compartibilidad de 0 a 100.** El puntaje estima qué tan bien se sostiene un momento por sí solo: ¿aterriza sin cinco minutos de contexto, abre fuerte, tendría sentido para alguien que nunca ha visitado tu iglesia? Los clips llegan rankeados, así que tu equipo revisa la cima de la lista en lugar de escarbar una línea de tiempo. Encima del puntaje, cada clip puede llevar hasta dos insignias de calidad —Citable, Emocional, Enseñanza, Llamado a la Acción, o Inspirador— que funcionan como un filtro visual rápido cuando eliges entre varios candidatos fuertes.
+
+**Una línea de gancho de ocho palabras.** Cada clip recibe una sugerencia de subtítulo corta y contundente —el tipo de línea que va en el primer segundo de un video vertical o en el texto de la publicación misma. Puedes reescribirla, por supuesto, pero empezar de un borrador le gana a empezar de un cursor.
+
+Lo importante que entender sobre esta etapa es lo que *no* hace: no publica nada. La IA propone; tu equipo dispone. Piénsalo como un voluntario diligente que vio todo el servicio, marcó doce momentos, los rankeó, y dejó notas adhesivas explicando por qué —y luego le entregó el montón a un humano.
+
+## Etapa tres: tres formatos, subtítulos incrustados
+
+Un momento elegido todavía necesita volverse un archivo de video que se vea bien en un teléfono. La etapa de renderizado produce clips en las tres proporciones que cubren esencialmente cada plataforma:
+
+| Formato | Resolución | Dónde vive |
+|---|---|---|
+| Vertical 9:16 | 1080 × 1920 | Reels, Shorts, TikTok, Stories |
+| Horizontal 16:9 | 1920 × 1080 | YouTube, embebidos de sitio web, páginas de sermón |
+| Cuadrado 1:1 | 1080 × 1080 | Publicaciones de feed |
+
+Los tres se renderizan a 30 fps con **subtítulos incrustados activados por defecto** —cuatro presets de estilo de subtítulos, con posición, escala, y desfase de sincronía ajustables para que puedas empujar el tiempo si el audio y el texto derivan. Como la abrumadora mayoría del video social se ve en silencio, los subtítulos incrustados no son un lujo; son la razón por la que alguien deja de deslizar. (Los subtítulos importan para tu audiencia en vivo también —mira nuestra guía de [subtítulos en vivo y accesibilidad](/es/kb/articles/live-captions-accessibility-streams/) para ese lado de la historia.)
+
+La marca se aplica al renderizar en lugar de en un editor: seis estilos de tercio inferior, cinco presets de fuente, tu color de marca y logo, una marca de agua de logo, y paneles opcionales de intro/outro —o tus propios videos personalizados de intro y outro si los tienes. El resultado es que cada clip que sale del pipeline luce como si viniera de tu iglesia, no de una plantilla.
+
+Los renders terminados pueden publicarse directamente en YouTube, y cada formato es su propio ítem de publicación —así que el mismo momento del sermón puede salir como un Short vertical y un clip panorámico 16:9 lado a lado, sin exportar dos veces.
+
+## El camino local de privacidad: el material nunca deja la cabina
+
+Algunas iglesias simplemente no se sienten cómodas subiendo video completo del servicio a un servicio en la nube —los momentos de cuidado pastoral, los testimonios de bautismo, y las peticiones de oración congregacionales pueden todos terminar en una grabación. Para esos equipos, el pipeline de Reels tiene un segundo camino, completamente soportado, que corre en la computadora de la cabina misma.
+
+En modo local, la app de escritorio Tech Manager de WorshipMetrics transcribe el servicio usando Whisper corriendo enteramente en tu máquina —un motor faster-whisper con tamaños de modelo seleccionables (base, small, medium, large-v3, y turbo), con FFmpeg incluido para que no haya nada extra que instalar. La app de escritorio también corre su propio análisis de audio y visual en local, incluyendo reconocimiento de texto en pantalla, para ayudar a identificar momentos candidatos.
+
+Aquí está la decisión de diseño clave: **solo el texto del clip se envía a la nube** —nunca audio, nunca video. Los extractos cortos de transcripción van al mismo endpoint de puntaje que usa el pipeline en la nube, así que las iglesias en modo local reciben la categorización idéntica de Claude, los puntajes de compartibilidad, las insignias, y las líneas de gancho. Un cerebro de puntaje, dos posturas de privacidad. El renderizado sucede en local también, en los mismos tres formatos (9:16, 1:1, y 16:9), con incrustado opcional de subtítulos, intro/outro con marca, y una elección de estilos de render —destacados, cinemático, o enseñanza.
+
+¿Cuál camino deberías elegir? Una guía aproximada:
+
+- **El modo en la nube** encaja con las iglesias que ya transmiten y graban a través de la plataforma —la grabación ya está ahí, y los clips aparecen sin computadora de cabina involucrada después del domingo.
+- **El modo local** encaja con las iglesias con políticas estrictas de manejo de material, ancho de banda de subida limitado, o una convicción de que el video crudo del servicio debe quedarse en las instalaciones. El intercambio es que la PC de la cabina hace el trabajo de transcripción y renderizado, así que ayuda tener una máquina razonablemente capaz.
+
+Ninguno de los dos modos es de segunda clase; comparten el pipeline de puntaje por diseño.
+
+## De dónde viene el video fuente
+
+El pipeline necesita una grabación de servicio sobre la cual trabajar, y si transmites a través de WorshipMetrics ya tienes una: cada servicio se graba automáticamente, y las grabaciones terminadas aterrizan en tu biblioteca sin que nadie presione un botón. Los clips que tu operador corta en vivo durante el servicio —"agarra los últimos 30 segundos de eso"— se registran como videos fuente de Reels automáticamente también, así que un momento marcado en la cabina un domingo por la mañana está esperando en el pipeline el domingo por la tarde.
+
+Si todavía estás construyendo tu cimiento de streaming, nuestra [guía de plataforma de streaming de iglesias](/es/kb/articles/church-live-streaming-platform-guide/) cubre el lado de grabación y entrega, y la [guía de restreaming](/es/kb/articles/restreaming-for-churches-one-feed/) explica cómo un feed de la cabina alcanza cada plataforma que tu congregación usa.
+
+## Cómo lo maneja WorshipMetrics
+
+El pipeline de Reels descrito aquí es [Worship Clips](/solutions/worship-clips/), parte de la plataforma WorshipMetrics. Los servicios grabados a través de [live streaming](/live-streaming/) fluyen hacia él automáticamente; las iglesias que prefieren mantener el material en las instalaciones corren el camino de Whisper local dentro de la app de escritorio [Tech Manager](/tech-manager/), con solo el texto del clip llegando a la nube. De cualquier forma, la meta es la misma: tu equipo pasa el lunes eligiendo entre buenos momentos en lugar de cazándolos.
