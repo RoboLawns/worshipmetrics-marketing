@@ -1,0 +1,98 @@
+---
+title: "Generaciones de SDI Explicadas: HD, 3G, 6G, y 12G para Video de Iglesia"
+description: "Qué carga en realidad cada generación de SDI, por qué el equipo de generaciones mezcladas se porta mal, cómo difieren los conectores micro-DIN y HD-BNC, y cómo planear tiradas de cable que sobreviven el domingo."
+category: "device-management"
+tags: ["SDI", "video", "cabling", "connectors"]
+difficulty: "intermediate"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/sdi-generations-explained-church/sdi-generations-church-video-signal-map.jpg"
+featured: false
+productCTA: true
+---
+
+## Por qué SDI sigue siendo la columna vertebral del video de iglesia
+
+Entra a casi cualquier cabina de iglesia construida en los últimos quince años y encontrarás SDI —Serial Digital Interface— cargando las cámaras. Corre sobre coaxial de 75 ohmios de aspecto ordinario, se traba con un conector BNC de cuarto de vuelta, viaja cientos de pies sin un repetidor, y carga audio y timecode embebidos junto a la imagen. No hay handshake, ni negociación HDCP, ni baile EDID: la fuente envía una señal, y el receptor se engancha a ella o no.
+
+Esa simplicidad también es donde empieza la confusión. "SDI" no es un estándar —es una familia de generaciones, cada una aproximadamente duplicando la tasa de bits de la anterior. El cable y el conector se ven idénticos a lo largo de todas ellas, así que nada en la placa de pared te dice si una tirada se construyó para 1080i o 4K60. Cuando las iglesias mezclan generaciones de cámara —una cámara de transmisión de diez años junto a una PTZ nuevecita, alimentando un switcher comprado en algún punto intermedio— la pregunta de la generación usualmente es la razón oculta por la que un "cable perfectamente bueno" no muestra imagen.
+
+## Qué carga cada generación
+
+Aquí está el árbol genealógico, en el orden en que la mayoría de las iglesias lo encontraron:
+
+| Generación | Estándar | Tasa de bits | Formatos típicos |
+|---|---|---|---|
+| SD-SDI | SMPTE 259M | 270 Mb/s | 480i / 576i |
+| HD-SDI ("1.5G") | SMPTE 292M | 1.485 Gb/s | 720p60, 1080i60, 1080p30 |
+| 3G-SDI | SMPTE 424M | 2.97 Gb/s | 1080p60 |
+| 6G-SDI | SMPTE ST 2081 | 5.94 Gb/s | 2160p30 (4K/UHD a 30) |
+| 12G-SDI | SMPTE ST 2082 | 11.88 Gb/s | 2160p60 (4K/UHD a 60) |
+
+Unas lecturas prácticas de esa tabla:
+
+- **HD-SDI tope a 1080p30.** Si tu cámara está puesta en 1080p60 y tu tirada de equipo es solo HD-SDI, no obtendrás imagen —1080p60 necesita 3G. Esta es la sorpresa de generaciones mezcladas más común, porque "1080p" suena como si debería caber donde sea que aparezca la palabra "HD".
+- **3G-SDI es el caballo de batalla de la iglesia.** 1080p60 sobre un solo cable cubre la abrumadora mayoría de la producción de adoración de hoy, y casi cada switcher, encoder, y cámara vendida en la última década lo habla.
+- **6G y 12G se tratan de 4K, no de un mejor 1080.** 6G carga UHD a 30 frames; 12G carga UHD a 60. Un puerto 12G corriendo una señal 1080p59.94 simplemente está operando como un puerto 3G.
+- **Las tasas de frames fraccionarias viajan junto.** 59.94 contra 60, 29.97 contra 30 —todas caben dentro de la misma generación. Todo tu sistema debería estar de acuerdo en una familia (la mayoría de las iglesias norteamericanas estandarizan en tasas basadas en 59.94), pero eso es una pregunta de sincronización, no de ancho de banda.
+
+Una arruga que vale la pena conocer dentro de 3G: el estándar define mapeos **Level A** y **Level B** para 1080p60. La mayoría del equipo tiene por defecto Level A, pero algunos dispositivos vienen puestos en Level B, y un receptor que espera uno puede no engancharse al otro. Si dos dispositivos 3G se niegan a hablar aunque las matemáticas del formato funcionen, revisa una configuración Level A/B en los menús antes de culpar al cable.
+
+## Mezclando generaciones: qué funciona, qué no
+
+Como SDI no tiene negociación, la compatibilidad sigue una regla simple: **las entradas usualmente son compatibles hacia atrás; las salidas nunca se actualizan solas.**
+
+- Una entrada moderna de 12G en un switcher típicamente aceptará señales 3G, HD, y a menudo SD felizmente. Los receptores multi-tasa son la norma en el equipo actual.
+- Lo inverso no es cierto. Una fuente 12G enviando 2160p60 a una entrada 3G no produce nada —no una imagen degradada, nada. El receptor más viejo no puede engancharse a una señal cuatro veces su techo.
+- El arreglo siempre está en la fuente o en medio: pon el formato de salida de la cámara o el reproductor abajo a algo que el receptor hable (la mayoría de las cámaras 4K sacarán 1080p a pedido), o inserta un convertidor descendente.
+
+Por esto un inventario que registra *cuál generación habla cada puerto* importa más que uno que solo dice "SDI". Dos patrones del mundo real a vigilar:
+
+- **La grabadora vintage.** Una iglesia agrega cámaras 1080p60 pero mantiene una grabadora de la era HD-SDI para deber de archivo. La salida de programa del switcher a 1080p59.94 le da a la grabadora una pantalla en blanco. La cura es un cross-convertidor 3G-a-HD o una segunda salida de switcher configurada en 1080i.
+- **Sobras de quad-link.** Antes de que 12G fuera accesible, 4K viajaba como cuatro cables 3G (quad-link), en arreglos de "square division" o "two-sample interleave". Si heredas equipo con cuatro puertos SDI etiquetados como una salida, eso es lo que estás viendo —y un dispositivo 12G de un solo enlace no lo leerá sin un convertidor que hable ambos.
+
+Nada de esto significa que el equipo viejo sea mal equipo. Un amplificador de distribución HD-SDI reclockeando un feed de confianza 1080i está haciendo trabajo honesto. La meta es simplemente saber, por puerto, qué generación realmente tienes —para que la resolución de problemas del domingo por la mañana empiece desde hechos en lugar de arqueología.
+
+## Micro-DIN y HD-BNC: los conectores pequeños que no se acoplan entre sí
+
+Conforme los dispositivos se volvieron más densos —tarjetas de captura multi-entrada, switchers 4K compactos, convertidores de rack— el BNC de tamaño completo se quedó sin espacio. Dos conectores de 75 ohmios de alta densidad llenaron el hueco, y son la fuente de una frustración específica y evitable:
+
+- **DIN 1.0/2.3 ("micro-DIN")** —un conector de trabado push-pull de aproximadamente un tercio de la huella del BNC. Común en tarjetas de captura y paneles de router densos.
+- **HD-BNC** —un conector de bayoneta verdadera (cuarto de vuelta) miniaturizado, eléctricamente excelente hasta 12G y más allá, encontrado en muchos dispositivos 4K compactos actuales.
+
+Aquí está la trampa: **micro-DIN y HD-BNC se ven casi idénticos a un brazo de distancia y no se acoplan entre sí.** Un plug DIN 1.0/2.3 no se asentará en un jack HD-BNC, y viceversa —los mecanismos de trabado son diseños diferentes. Si ordenas un cajón de "pigtails mini SDI" sin revisar cuál familia usa tu equipo, puedes terminar con una bolsa de cables que no le quedan a nada en tu rack. Revisa la hoja de especificaciones del dispositivo (o su entrada en tu sistema de documentación) antes de comprar adaptadores, y etiqueta los pigtails por familia una vez que lleguen —un hábito que se empareja bien con un [sistema de etiquetado de cables duradero](/es/kb/articles/cable-labeling-system-that-survives/).
+
+La gracia salvadora: ambas familias se adaptan limpiamente al BNC de tamaño completo con el pigtail correcto, así que tus placas de pared y tiradas largas pueden quedarse en BNC estándar mientras solo cambian las últimas pulgadas.
+
+## Realidades de las tiradas de cable: la distancia se encoge conforme la tasa de bits sube
+
+El mismo coaxial físico carga cada generación, pero no a la misma distancia. Conforme la tasa de bits se duplica, las pérdidas de alta frecuencia muerden más fuerte, y la tirada confiable máxima se acorta. En coaxial de grado de transmisión clase RG-6 de calidad, los números sensatos de planeación se ven así:
+
+- **HD-SDI:** aproximadamente 100 m (330 ft) con margen cómodo
+- **3G-SDI:** aproximadamente 80–100 m (260–330 ft)
+- **6G-SDI:** aproximadamente 60–80 m (200–260 ft)
+- **12G-SDI:** aproximadamente 60–70 m (200–230 ft), y solo en cable realmente clasificado para 12G
+
+Trata esos como techos de planeación, no garantías —la distancia real depende del cable específico, la calidad del conector, y qué tan limpias estén las terminaciones. Algunos hábitos que protegen tu margen:
+
+- **Compra cable clasificado para la generación en la que vas a crecer.** El coaxial de precisión moderno diseñado para 12G cuesta poco más que el stock heredado de la era HD. Si estás tirando nuevas corridas a través de paredes, tira para 12G aunque cambies en 3G hoy.
+- **Las terminaciones importan más a tasas más altas.** Un crimp BNC ligeramente andrajoso que pasó 1080i por años puede matar una señal 12G. Usa conectores de 75 ohmios apropiados y una herramienta de crimp o compresión real.
+- **Los adaptadores de barril son ladrones de margen.** Cada barril, punto de patch, y placa de pared agrega pérdida de retorno. Uno o dos están bien; una cadena de cinco es un dropout misterioso esperando el domingo de más ancho de banda del año.
+- **Los amplificadores de distribución con reclock reinician el reloj.** Un DA que reclockea (la mayoría de los de grado de transmisión lo hacen) regenera la señal, efectivamente reiniciando tu presupuesto de distancia —la forma honesta de ir lejos.
+- **Nunca sustituyas coaxial de antena o CATV.** Puede ser de 75 ohmios, pero su blindaje y precisión no están construidos para video serial de gigabit, y falla de las formas más intermitentes y difíciles de diagnosticar.
+
+Para trayectos muy largos —salas de overflow a lo largo del campus, una cámara de balcón a 400 pies de distancia— los extensores de SDI por fibra o un cambio a video basado en red como NDI se vuelven las herramientas correctas. Nuestras guías de [NDI para producción de iglesia](/es/kb/articles/ndi-church-production/) y [cuáles señales de AV sobreviven un switch de red](/es/kb/articles/av-signals-that-survive-network-switch/) cubren cuándo tiene sentido ese trato. Y una vez que la señal llega a tu encoder, las preguntas de generación pasan a un set diferente de decisiones —ve nuestra [comparación de encoders de hardware](/es/kb/articles/hardware-encoder-comparison/) para ese lado de la cadena.
+
+## Documentando las generaciones de SDI para que el siguiente voluntario no adivine
+
+Todo lo anterior se reduce a una disciplina operativa: saber, por puerto y por cable, cuál generación está en juego. Una placa de pared no puede decírtelo; una fila de hoja de cálculo que dice "SDI" tampoco puede. Lo que realmente previene el domingo de pantalla en blanco es documentación que registra:
+
+1. **La generación de cada puerto** —HD, 3G, 6G, o 12G— no solo "SDI in/out".
+2. **La familia de conector de cada puerto** —BNC, micro-DIN, o HD-BNC— para que el pigtail correcto esté en el cajón antes del día de instalación.
+3. **La identidad y los puntos finales de cada cable** —para que "la cámara 2 está oscura" se vuelva "rastrea SDI-004 desde la truss norte a la entrada 2 del switcher" en lugar de una expedición con linterna.
+4. **El formato en el que está puesta cada fuente** —porque una cámara capaz de 12G configurada en 2160p60 hacia un switcher 3G es un problema de configuración, no de cableado.
+
+## Cómo maneja esto WorshipMetrics
+
+La [Documentación del Sistema](/system-documentation/) de WorshipMetrics trata las generaciones de SDI como datos de primera clase, no una nota al pie. Su taxonomía de conectores distingue los formatos HD, 3G, 6G, y 12G SDI por puerto, junto a 76 tipos de conectores físicos —así que un puerto micro-DIN y un puerto HD-BNC se registran como los conectores diferentes que son. La biblioteca de dispositivos curada de 422 entradas de marca/modelo de 114 fabricantes viene con más de 2,000 presets de puerto de fábrica: agrega un switcher de producción actual y su panel trasero aterriza ya documentado, generaciones de SDI incluidas, con 106 entradas verificadas por humanos contra las hojas de especificaciones del fabricante y cada entrada enlazando al manual oficial visible en la app.
+
+En el Signal Map, el motor de compatibilidad trabaja mientras cableas: al arrastrar una conexión desde un puerto, cada otro puerto se ilumina verde, naranja, o rojo —distinguiendo "conecta directamente," "un adaptador pasivo funciona," y "esto necesita un convertidor con energía". Siete auditorías de cableado continuas, incluyendo detección de desajuste de conectores, marcan los problemas en el momento en que se dibujan en lugar del domingo en que importan. Y cada cable SDI que dibujas recibe un ID permanente —SDI-001, SDI-002— que nunca se renumera, indexando la hoja de patch imprimible y el diagrama de cableado en PDF vectorial que tu equipo puede pegar dentro de la puerta del rack. Cuando un voluntario pregunta "¿qué generación es la tirada del balcón?", la respuesta está en el mapa, no en la memoria de alguien.

@@ -1,0 +1,110 @@
+---
+title: "Diapositivas NDI con Canal Alfa: Un Key de Letras Limpio Sin Chroma"
+description: "Cómo el NDI con canal alfa te deja hacer key de letras y tercios inferiores sobre IMAG limpiamente, y cómo publicar y recibir un feed de diapositivas con transparencia verdadera en vMix u OBS."
+category: "display"
+tags: ["NDI", "alpha channel", "lower thirds", "vMix"]
+difficulty: "advanced"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/ndi-alpha-channel-slides-clean-key/ndi-alpha-channel-worship-lyrics-key.jpg"
+featured: false
+productCTA: true
+---
+
+## El Problema: Letras Encima de Video en Vivo
+
+La mayoría de las iglesias que corren IMAG (magnificación de imagen) eventualmente quieren lo mismo: letras de canción o un tercio inferior de notas de sermón flotando sobre la toma de cámara en vivo, con bordes limpios, una sombra suave, y ninguna basura visual alrededor del texto.
+
+Las formas tradicionales de llegar ahí todas involucran compromiso:
+
+- **Chroma key** —renderiza las letras sobre un fondo verde o azul, luego quita el color en el switcher o mezclador por software.
+- **Luma key** —renderiza texto blanco sobre negro y quita todo debajo de un umbral de brillo.
+- **Fill y key separados** —corre dos salidas de video sincronizadas (una con la gráfica, una con una máscara) hacia un keyer de hardware. Limpio, pero cuesta dos salidas, dos cables, y un switcher que lo soporte.
+
+Una fuente NDI con canal alfa colapsa todo eso en un stream de red que carga la información de transparencia en sí. El extremo receptor no tiene que adivinar cuáles píxeles son fondo —la fuente le dice, por píxel, exactamente qué tan transparente es cada punto en el cuadro.
+
+Si eres nuevo en NDI en general —qué es, qué necesita tu red, y dónde encaja en la producción de iglesia— empieza con nuestro panorama de [NDI sobre IP para producción de iglesia](/es/kb/articles/ndi-church-production/). Este artículo asume lo básico y se enfoca en el flujo alfa específicamente.
+
+## Qué Es en Realidad una Fuente NDI con Canal Alfa
+
+Un cuadro de video normal guarda tres valores por píxel: rojo, verde, y azul (o un equivalente YUV). Un cuadro con canal alfa guarda cuatro: rojo, verde, azul, y **alfa** —un valor de opacidad por píxel de completamente transparente a completamente opaco.
+
+NDI soporta cargar ese cuarto canal nativamente. Cuando un emisor publica cuadros en un formato como BGRA (azul, verde, rojo, alfa) o UYVA (video 4:2:2 más un plano alfa), cada cuadro viaja la red con su transparencia intacta. Un receptor que entiende alfa —vMix, OBS con un plugin NDI, la mayoría de los mezcladores por software modernos— puede componer esa fuente directamente sobre cualquier otra capa sin ningún paso de keying para nada.
+
+Las consecuencias prácticas son significativas:
+
+- **Los bordes suavizados (antialiased) sobreviven.** Los píxeles semi-transparentes que suavizan las curvas de una fuente llegan como píxeles semi-transparentes, no como un fleco contra el que el keyer tiene que pelear.
+- **Las sombras y los brillos funcionan.** Una sombra de 40 por ciento de opacidad es simplemente 40 por ciento de alfa. Un chroma keyer o la recortaría o dejaría una neblina verde.
+- **Sin colores prohibidos.** Con un truco de pantalla verde, cualquier verde en tu texto, bordes, o fondos de movimiento perfora un hoyo en la gráfica. Con alfa, tus diseñadores pueden usar toda la paleta.
+- **Un stream, no dos.** El fill y el key viajan juntos, siempre en sincronía, sobre una sola conexión de Ethernet.
+
+En términos de transmisión, una fuente NDI alfa es un par de fill-y-key auto-keying en un cable —excepto que el cable es tu red.
+
+## Por Qué Esto le Gana al Truco de la Diapositiva de Pantalla Verde
+
+Muchas iglesias han hecho funcionar el chroma keying: pon el fondo de la presentación en verde puro, quítalo en el mezclador, y reza. Vale la pena ser honesto sobre por qué ese enfoque pelea contigo cada semana:
+
+1. **Calidad de bordes.** Un chroma keyer clasifica cada píxel como "gráfica" o "fondo" según la similitud de color. Los bordes de texto suavizados son una mezcla de ambos, así que el keyer o se come tus letras (texto delgado y crujiente) o deja un halo de color. Apretar el key arregla uno y empeora el otro.
+2. **Derrame y compresión.** Si el feed de diapositivas pasa por cualquier enlace comprimido antes del keyer, el submuestreo de croma unta el verde en los bordes del texto antes de que el key siquiera se aplique. Estás haciendo key de un borde ligeramente borroso, y se nota.
+3. **Restricciones de diseño.** Sin verdes, sin sombras suaves, sin paneles translúcidos detrás del texto, sin desvanecidos graduales. En el momento en que un diseñador agrega un brillo sutil, el key se cae.
+4. **Carga del operador.** Los chroma keys necesitan afinación —umbral, suavidad, supresión de derrame— y las configuraciones "correctas" derivan con el contenido. Eso es algo frágil que entregarle a un voluntario a las 8:55 del domingo por la mañana.
+
+El luma keying es más simple pero comparte la falla central: el receptor está infiriendo una transparencia que la fuente ya conocía. El alpha keying quita la inferencia. No hay nada que afinar, porque no hay nada que adivinar.
+
+## Publicando la Salida de Present como Fuente NDI Alfa
+
+WorshipMetrics [Present](/present/) corre en el navegador para la edición y la proyección normal, pero la salida NDI es una capacidad de escritorio: la provee [Tech Manager](/tech-manager/), la app compañera que corre en la máquina de producción y carga el SDK NDI nativo. Cuando Tech Manager publica una salida de Present como NDI, renderiza esa salida en una ventana dedicada fuera de pantalla y envía cuadros con **alfa BGRA verdadero** —un stream genuinamente transparente, no un fondo de color que quitas después. Key limpio, sin chroma.
+
+Dos conceptos de Present hacen que este flujo funcione bien:
+
+**Los Looks controlan qué pinta una salida.** Cada salida de Present tiene un Look que determina cuáles capas renderiza. El lienzo de Present está en capas —medios, luego diapositivas, luego props, luego anuncios— así que puedes definir una salida de key cuyo Look pinta las capas de texto de las diapositivas pero no la capa de fondo de medios. Tu fondo de movimiento se queda en la salida del proyector donde pertenece; el feed de key NDI carga solo la tipografía y cualesquiera props que quieras con key, sobre transparencia.
+
+**La plantilla de tercio inferior hace el trabajo de diseño.** Present viene con seis plantillas de letras, incluyendo un layout de Tercio Inferior, y soporta grupos de tema por iglesia con tokens de marca (colores, fuente, logo). Construye tu look de transmisión una vez —letras de tercio inferior en tu fuente de marca con una sombra suave— y cada canción se renderiza en él automáticamente. Los overlays (tercios inferiores, mensajes, temporizadores, logos) viven en el mismo sistema de capas, así que una banda de notas de sermón o una cuenta regresiva puede viajar en el mismo feed alfa.
+
+Un setup sensato para una iglesia haciendo IMAG más streaming:
+
+- **Salida 1 — Programa (proyector/LED):** Look completo —fondos de medios, diapositivas, anuncios. Letras de pantalla completa para la sala.
+- **Salida 2 — Key NDI (vía Tech Manager):** solo capas de diapositiva/overlay, plantilla de tercio inferior, transparente en todo lo demás. Esta es la fuente que tu mezclador de video hace key sobre las cámaras.
+- **Pantalla de escenario** como siempre para la plataforma.
+
+Una nota sobre las rutas: Present también ofrece una salida de Network Display que publica sobre WebRTC/WHIP como H.264 a puntos finales en red. Esa ruta está diseñada para pantallas de cuadro completo —el H.264 constrained baseline no tiene canal alfa— así que para hacer key, la salida NDI de Tech Manager es la herramienta correcta. Usa Network Display para pantallas del lobby y salas de overflow; usa NDI alfa para el key.
+
+## Recibiendo el Key en vMix
+
+vMix trata las fuentes NDI que cargan alfa exactamente de la forma que esperarías:
+
+1. **Add Input → NDI**, y selecciona la fuente de Tech Manager de la lista. El descubrimiento de NDI debería encontrarla automáticamente si ambas máquinas están en la misma red de producción.
+2. Asigna la entrada a un **canal de Overlay** (Overlay 1–4). Como el stream carga alfa, vMix lo compone sobre tu programa —cortes de cámara, movimientos PTZ, lo que sea que esté en vivo— con la transparencia ya horneada. Sin filtro de chroma key, sin configuración de color key.
+3. Si los bordes del texto se ven ligeramente oscuros o con anillos, revisa la interpretación del alfa de la entrada: los compositores distinguen **premultiplicado** de **directo (straight)**, y un desajuste aparece como un fleco oscuro o brillante en los bordes suaves. Alterna la configuración y usa la que renderice la sombra limpiamente.
+
+Como el overlay es solo otra entrada, puedes hacer transiciones de entrada y salida, dedicarle un atajo, o dejar que el operador lo deje arriba por canciones enteras. Para el panorama más amplio de vMix —entradas, mix-minus, streaming, replay— ve nuestra [guía completa de vMix para iglesias](/es/kb/articles/vmix-complete-church-guide/).
+
+## Recibiendo el Key en OBS
+
+OBS Studio no habla NDI nativamente, pero el plugin gratuito DistroAV (el plugin NDI de la comunidad, antes conocido como obs-ndi) agrega un tipo de Fuente NDI:
+
+1. Instala el plugin, reinicia OBS, y agrega una **Fuente NDI** a tu escena. Elige la salida de Tech Manager de la lista de fuentes.
+2. Coloca la fuente NDI **arriba** de tu fuente de cámara en la pila de fuentes de la escena. OBS compone de arriba hacia abajo, y el canal alfa significa que la capa de letras muestra la cámara a través de cada píxel transparente.
+3. Como con vMix, si los bordes se ven mal, busca la opción de manejo de alfa/transparencia de la fuente y cambia entre la interpretación premultiplicada y directa.
+
+Las escenas de OBS hacen fácil construir variantes —"Cámara + Letras," "Cámara limpia," "Diapositivas pantalla completa"— y cortar entre ellas. Si OBS es tu motor de streaming principal, nuestra [guía de OBS Studio para iglesias](/es/kb/articles/obs-studio-complete-church-guide/) cubre la arquitectura de escenas y la configuración del encoder a profundidad.
+
+## Consideraciones de Red para un Feed Alfa
+
+Un stream NDI alfa es un stream NDI normal más un canal extra, así que todo en nuestra [guía de producción NDI](/es/kb/articles/ndi-church-production/) aplica, con un poco de margen extra:
+
+- **Ancho de banda.** Presupuesta aproximadamente 100–150 Mbps para un feed NDI 1080p de ancho de banda completo, y espera que el plano alfa se sume a eso. El switching gigabit lo maneja cómodamente; una cadena de switches de clóset no administrados puede no hacerlo.
+- **Aislamiento.** Mantén el NDI de producción en su propia VLAN o red física, lejos del WiFi de invitados y el tráfico de oficina. Nuestra [guía de diseño de red de iglesia](/es/kb/articles/church-network-av-streaming/) recorre la segmentación.
+- **Descubrimiento.** El descubrimiento de fuentes NDI usa mDNS por defecto, que no cruza subredes sin ayuda. Mantén la máquina de Tech Manager y la máquina del mezclador en la misma subred, o configura el NDI Discovery Server.
+- **Latencia.** NDI agrega un cuadro o dos de latencia. Para un key de letras eso es invisible; solo confirma que tu presupuesto de retraso de IMAG aún funcione si el mismo feed también maneja pantallas laterales.
+
+## Una Lista Rápida Previa al Servicio
+
+- Tech Manager corriendo en la máquina de producción, salida NDI activa para el Look de key.
+- El mezclador ve la fuente y muestra transparencia (estaciona una cámara detrás de ella y mira los bordes del texto).
+- Interpretación de alfa verificada —sin halos oscuros en las sombras.
+- Overlay asignado a una acción de un botón para el operador.
+- Existe una escena de respaldo de pantalla completa por si el feed de red alguna vez no está disponible a media misa.
+
+## Cómo Maneja Esto WorshipMetrics
+
+El flujo alfa está integrado en cómo [Present](/present/) y [Tech Manager](/tech-manager/) dividen el trabajo. Present te da el lado del diseño: una plantilla de letras de Tercio Inferior, temas por iglesia con tus colores y fuentes de marca, overlays para mensajes y temporizadores, y Looks por salida para que el feed de key cargue solo las capas que quieres con key. Tech Manager provee el transporte: una salida NDI nativa renderizada fuera de pantalla con alfa BGRA verdadero, así que vMix u OBS recibe un fill-y-key de grado de transmisión en un stream de red —sin fondos verdes, sin afinación del keyer, sin restricciones de color en tu diseño. Si tu equipo está construyendo hacia letras sobre IMAG para la sala y el [live stream](/live-streaming/) al mismo tiempo, esta es la forma limpia de llegar ahí.
