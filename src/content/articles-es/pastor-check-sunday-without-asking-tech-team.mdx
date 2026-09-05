@@ -1,0 +1,58 @@
+---
+title: "¿Cómo Puede un Pastor Verificar que el Domingo Salió Bien sin Preguntarle al Equipo Técnico?"
+description: "Abre un tablero el lunes por la mañana: alcance total del servicio, un puntaje de salud del stream de 0 a 100, y el historial de alertas —las respuestas honestas a '¿funcionó?' y '¿estamos creciendo?' sin un solo mensaje de 'oye, ¿cómo salió el stream?'."
+category: "operations"
+tags: ["service metrics", "attendance", "stream health", "leadership"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+coverImage: "/images/products/pastor-check-sunday-without-asking-tech-team/church-leadership-service-metrics-review.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Qué es el Alcance Total?"
+    answer: "Un número para todos los que adoraron contigo: las personas contadas en la sala más el pico de espectadores concurrentes en línea. Lo presencial y lo virtual también se muestran siempre por separado, así que los líderes ven la forma de la congregación, no solo su tamaño."
+  - question: "¿Necesita el pastor entender los detalles técnicos?"
+    answer: "No. El puntaje de salud del stream es un solo número de 0 a 100 por servicio, y cada penalización viene con una recomendación en lenguaje sencillo. Un feed de alertas tranquilo significa que la cabina estuvo genuinamente sana —el monitoreo está diseñado para que el silencio sea confiable."
+  - question: "¿Pueden los líderes comparar la asistencia entre servicios y años?"
+    answer: "Sí —Asistencia a lo Largo del Tiempo grafica presencial, virtual y total por mes, trimestre o año, con cada tipo de servicio desglosado por separado. Pascua contra la Pascua pasada, esta serie de sermones contra la anterior, domingo por la mañana contra entre semana."
+---
+
+## La respuesta corta: un tablero responde ambas preguntas del lunes
+
+Cada lunes por la mañana, un pastor quiere calladamente las respuestas a dos preguntas: **¿funcionó el domingo?** y **¿estamos creciendo?** En la mayoría de las iglesias, ambas respuestas viven ahora en las cabezas de otras personas —el director técnico sabe si el stream batalló, un ujier tiene un conteo en una nota adhesiva, y nadie sabe cuántas personas adoraron en línea.
+
+Con WorshipMetrics, ambas respuestas están en un tablero antes del primer café. [Service Metrics](/service-metrics/) muestra el **alcance total** del servicio —asistencia presencial y en línea, juntas y por separado— y el stream lleva un **puntaje de salud de 0 a 100** con notas en lenguaje sencillo. Sin mensajes de texto, sin poner al voluntario técnico en aprietos, sin preguntarse si "salió bien" significa *bien*.
+
+Aquí está lo que esa mirada del lunes contiene en realidad, y de dónde viene cada número.
+
+## "¿Funcionó?" — el puntaje de salud del stream
+
+Cada servicio transmitido recibe un solo puntaje de 0 a 100 que resume lo que el encoder y la computadora de la cabina experimentaron en vivo: estabilidad del bitrate, frames perdidos, tasa de frames, carga del encoder, y los propios signos vitales de la máquina, muestreados cada cinco segundos durante todo el servicio. Un 94 significa que la congregación en línea tuvo una mañana suave. Un 61 viene con razones específicas y legibles —y cada penalización trae una recomendación, así que el puntaje se lee menos como un veredicto y más como una lista de pendientes para el equipo.
+
+El pastor no necesita analizar nada de la telemetría; ese es el punto del número. Pero cambia la conversación del lunes de "¿cómo estuvo el stream?" (respuesta: un encogimiento de hombros) a "vi que sacamos 88 con una reconexión —¿algo que el equipo necesita?" —que es una pregunta genuinamente alentadora de recibir en la cabina. El sistema completo de puntaje está explicado en [leyendo el puntaje de salud de tu stream](/es/kb/articles/reading-your-stream-health-score/).
+
+Dos señales acompañantes completan la imagen de "¿funcionó?":
+
+- **El feed de alertas.** El [monitoreo de Pulse](/av-monitoring/) vigila cada máquina y dispositivo de la cabina las 24 horas y guarda 90 días de historial de alertas. Un feed tranquilo es confiable por diseño —los umbrales y las reglas anti-ruido están [publicados exactamente](/es/kb/articles/pulse-alert-thresholds-reference/)— así que el silencio de verdad significa sano.
+- **El registro de auto-reparación.** Si el stream se reinició solo a las 10:42 y nadie en la sala lo notó, [el registro lo muestra](/es/kb/articles/tech-manager-self-healing-explained/). Que el liderazgo vea que el sistema manejó calladamente un problema es muy distinto de que el liderazgo nunca sepa que hubo uno.
+
+## "¿Estamos creciendo?" — alcance total, contado con honestidad
+
+La sala es solo la mitad de la congregación. El miembro confinado en casa que dio fielmente por cincuenta años, la familia a tres estados de distancia, el aún-no-visitante que ha estado mirando calladamente por un mes decidiendo si tu iglesia es un lugar seguro al cual entrar —todos adoraron contigo, y un conteo en una nota adhesiva se pierde a cada uno de ellos.
+
+Service Metrics cuenta ambas mitades:
+
+- **En la sala:** los voluntarios usan un contador de mapa de asientos en Tech Manager —toca un asiento para marcarlo, mantén presionado para marcar un miembro o visitante primerizo— o el Auto-Conteo por cámara cuenta la sala automáticamente desde una cámara RTSP o webcam, en un horario o a demanda. (La configuración está en la [guía de Auto-Conteo por cámara](/es/kb/articles/camera-auto-count-attendance-setup/).)
+- **En línea:** conecta tu transmisión de YouTube o Facebook y los espectadores se cuentan automáticamente —espectadores concurrentes muestreados cada minuto, con el pico y el promedio incorporados a la asistencia de ese día cuando termina la transmisión. Los streams a través del reproductor de WorshipMetrics cuentan de la misma forma.
+
+**El alcance total** es la suma que un líder de verdad puede usar: todos los que adoraron, con las formas presencial y en línea siempre visibles por separado. Y como cada servicio se guarda de la misma forma, Asistencia a lo Largo del Tiempo responde las preguntas que las reuniones de liderazgo de verdad hacen —Pascua contra la Pascua pasada, esta serie de sermones contra la anterior, si la congregación en línea está creciendo o calladamente estancándose— por mes, trimestre o año, por tipo de servicio.
+
+## Qué cambia esto para el equipo técnico
+
+Vale decirlo con claridad: la meta no es vigilar la cabina, y el encuadre amable importa. Lo que el tablero quita es el *interrogatorio* —el voluntario que entregó su domingo por la mañana ya no recibe mensajes de "¿entonces funcionó?", porque la respuesta es de autoservicio. Lo que agrega es reconocimiento: una racha de puntajes sanos es evidencia visible de un trabajo que solía ser invisible precisamente cuando se hacía bien.
+
+También hace concreta la petición de recursos. "Necesitamos un mejor plan de internet" aterriza distinto cuando los reportes de salud muestran el bitrate cediendo durante el saludo tres semanas seguidas. Los números convierten las corazonadas en una línea de presupuesto —nuestra guía de [planeación de presupuesto de AV](/es/kb/articles/av-budget-planning-churches/) retoma ese hilo.
+
+## Cómo lo maneja WorshipMetrics
+
+Todo lo anterior es una plataforma haciendo su trabajo callado: [Tech Manager](/tech-manager/) cuenta la sala y reporta la salud de la cabina, [Pulse](/av-monitoring/) vigila la flota y guarda el historial de alertas, [live streaming](/live-streaming/) produce el reporte de salud de cada servicio, y [Service Metrics](/service-metrics/) lo junta todo en el tablero que un líder revisa en noventa segundos el lunes por la mañana. El conteo presencial viene en la plataforma gratuita; la analítica automática de espectadores en línea viene con el plan Stream. El pastor recibe respuestas honestas, el equipo técnico recibe crédito por la excelencia invisible, y "¿estamos creciendo?" por fin se responde con datos en lugar de una sensación.
