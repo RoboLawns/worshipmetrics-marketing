@@ -1,0 +1,56 @@
+---
+title: "¿Todavía Necesitamos Reportar a CCLI si Nuestro Software de Letras Rastrea las Canciones?"
+description: "Sí —la licencia igual pide tu uso. Pero si tu software registra lo que de verdad se cantó (no solo lo que se planeó), el reporte se vuelve una descarga en lugar de un proyecto de arqueología de fin de año."
+category: "operations"
+tags: ["CCLI", "copyright", "song usage", "lyrics software"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+coverImage: "/images/products/ccli-reporting-with-lyrics-software/worshipmetrics-song-library-ccli-fields.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Usar software de letras reemplaza el reporte a CCLI?"
+    answer: "No. Tu licencia CCLI igual te pide reportar lo que se cantó. Lo que el buen software cambia es el esfuerzo: si registra el uso real —canciones interpretadas, agendadas y registradas con números CCLI adjuntos— el reporte se vuelve una exportación CSV de un clic sobre el año anterior en lugar de una reconstrucción de memoria."
+  - question: "¿Y las canciones que el líder de adoración agregó espontáneamente?"
+    answer: "Para eso sirve exactamente un libro mayor de uso: una entrada durable de 'cantamos esto, en este servicio, en esta fecha' que vive independiente de cualquier plan. Regístrala después del servicio y es una línea permanente en tu reporte —incluso si el plan se edita o borra después."
+  - question: "Si corremos servicios idénticos de 9 y 11 AM, ¿cada canción cuenta dos veces?"
+    answer: "En WorshipMetrics el reporte deduplica por canción, por plan —un plan de domingo con dos horarios de servicio produce una línea de uso por canción, aplicada de forma consistente. Las dos ejecuciones se quedan como registros separados internamente; el reporte cuenta el domingo una vez."
+---
+
+## La respuesta corta: sí —pero el reporte debería construirse solo
+
+Proyectar letras, imprimir partituras, y transmitir adoración suceden todos bajo una licencia de derechos de autor —para la mayoría de las congregaciones, CCLI— y la licencia te pide reportar tu uso de canciones. Usar software de letras no cambia esa obligación. Lo que *debería* cambiar es el costo de cumplirla: si tu software registra lo que **de verdad se cantó**, la temporada de renovación se vuelve un botón de descarga en lugar de un proyecto de reconstrucción.
+
+El truco está en la palabra *de verdad*. CCLI no pregunta qué planeaste cantar —pregunta qué cantaste. Y esas son listas distintas con más frecuencia de la que los equipos esperan.
+
+## Por qué tu documento de planeación no es un reporte de uso
+
+Un plan de adoración es un pronóstico, y el domingo diverge de los pronósticos de formas predecibles: el bautismo se alarga y la canción de cierre se corta; el líder de adoración fluye hacia un coro espontáneo que nadie agendó; alguien ordena el plan el lunes y el registro ahora refleja la limpieza, no el servicio; los planes viejos se podan en noviembre, llevándose su historial de canciones con ellos.
+
+Si tu único registro de uso es el plan, tu reporte es un registro de intenciones. La salida es tratar el uso de canciones como **evidencia** de tres fuentes distintas:
+
+- **Interpretada** —el estándar de oro. En WorshipMetrics, cada interpretación de un plan es una ejecución, y las ejecuciones son *borrador* (ensayo, prueba técnica) o *comprometida* (el servicio real). Solo las ejecuciones comprometidas cuentan como evidencia de interpretación, y una vez que una ejecución comprometida termina su registro se bloquea de solo lectura —la limpieza del lunes no puede reescribir la historia.
+- **Agendada** —el rastro de papel. Una canción en un orden de servicio con fecha es evidencia razonable de que se cantó, y para los meses antes de que tu equipo construyera el hábito de ejecución en vivo puede ser el único registro. Más débil que la interpretada, pero datos honestos que vale la pena guardar.
+- **Registrada** —el libro mayor que sobrevive a todo. Una entrada durable de "cantamos esto, en este servicio, en esta fecha" que vive independiente de cualquier plan. Atrapa las canciones espontáneas y sobrevive al borrado de planes.
+
+El reporte fusiona las tres y etiqueta cada línea con su nivel de evidencia, así que un uso respaldado por una ejecución comprometida se lee con más confianza que uno respaldado solo por un plan —y nada se sube de nivel en silencio. El modelo completo, incluyendo cómo el de 9 y 11 AM deduplican a un domingo, está en [reporte a CCLI desde lo que de verdad se cantó](/es/kb/articles/ccli-reporting-from-actual-services/).
+
+## Qué te da la exportación en realidad
+
+Cuando llega el correo de renovación, la exportación produce un CSV sobre una ventana por defecto del año anterior —el lapso que las renovaciones piden— con una línea por uso: Fecha, Título, Autores, Copyright, Número CCLI, Confirmación (interpretada / agendada / registrada), y el Plan al que pertenece.
+
+Los números CCLI no se adivinan al exportar; viven en cada canción de tu [biblioteca](/songs/) como campos de primera clase, junto a los autores y la línea de copyright —y las canciones traídas de archivos .usr de SongSelect llegan con esos metadatos adjuntos. Si tu biblioteca migró de software de presentación, una pasada para confirmar que los números CCLI hicieron el viaje vale una tarde; nuestra [guía de migración de ProPresenter](/es/kb/articles/migrate-propresenter-song-library/) cubre qué se transfiere.
+
+Una nota de alcance que vale repetir: si transmites, la licencia de streaming de CCLI es una concesión separada de la licencia de copia —y la lógica de reporte es la misma, porque las canciones en tu stream son las canciones en tu ejecución.
+
+## Los tres hábitos que lo hacen automático
+
+No necesitas un departamento de cumplimiento; necesitas un ritmo:
+
+1. **Corre el domingo desde el plan.** Cuando el servicio corre en vivo desde tu herramienta de planeación, la evidencia de interpretación se acumula sola —cada ejecución comprometida es un registro permanente. (Esta es la misma [disciplina de ejecución en vivo](/es/kb/articles/live-run-test-vs-real-service/) que mantiene los ensayos fuera de tu historial de servicios.)
+2. **Registra los momentos espontáneos.** Una pregunta del domingo por la tarde —"¿cantamos algo que no estaba en el plan?"— y treinta segundos de registro cierran la mayor brecha en los registros de la mayoría de las iglesias.
+3. **Echa un vistazo cada trimestre.** No porque CCLI lo pida cada trimestre, sino porque una mirada rápida atrapa un número CCLI faltante mientras la memoria está fresca en lugar de doce meses después.
+
+## Cómo lo maneja WorshipMetrics
+
+El reporte de uso de CCLI está integrado en la [biblioteca de canciones](/songs/) y la [planeación de servicios](/services/) de WorshipMetrics: las ejecuciones en vivo comprometidas suministran la evidencia de interpretación, los planes con fecha suministran el calendario, el libro mayor durable atrapa todo lo demás, y la fusión deduplica por canción por plan para que un domingo de dos servicios cuente una vez. La exportación es un CSV por-uso —Fecha, Título, Autores, Copyright, Número CCLI, Confirmación, Plan— sobre el año anterior. El reporte sigue siendo requerido; el proyecto ya no. El reporte se vuelve un subproducto de correr el domingo de la forma que ya querías.

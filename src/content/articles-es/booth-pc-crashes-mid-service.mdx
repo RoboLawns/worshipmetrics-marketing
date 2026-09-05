@@ -1,0 +1,54 @@
+---
+title: "¿Qué Pasa si la PC de la Cabina se Cae a Mitad del Servicio?"
+description: "El servicio de adoración continúa —ese es el principio de diseño. Lo que pasa después depende de la preparación: qué fallas se arreglan solas, cuáles alertan a un humano, y la pequeña lista de cosas que configurar un martes tranquilo."
+category: "operations"
+tags: ["disaster recovery", "reliability", "booth computer", "self-healing"]
+difficulty: "beginner"
+publishedAt: "2026-09-01"
+coverImage: "/images/products/booth-pc-crashes-mid-service/worshipmetrics-pulse-booth-machine-health.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿El stream se reinicia solo si el encoder tiene un problema?"
+    answer: "Un stream caído se reinicia automáticamente tras 30 segundos abajo, una grabación detenida se reinicia en el momento en que se detecta, y los cortes cortos de red encolan una reconexión limpia. Una caída completa de la aplicación es deliberadamente distinta: se le reporta a un humano en lugar de relanzarse en silencio, porque una caída puede señalar un problema que reiniciar a ciegas enmascararía."
+  - question: "¿Qué tan rápido se entera alguien de que la máquina de la cabina se cayó?"
+    answer: "El badge de estado de la máquina cambia a desconectado tras 90 segundos de latidos perdidos, y un correo de alerta de desconexión de alta confianza sale tras más de 5 minutos de silencio —con notificaciones push en cualquier teléfono que las haya configurado. La detección corre del lado del servidor, así que no depende de que alguien mire un tablero."
+  - question: "¿Cuál es la mejor preparación única para una falla de cabina?"
+    answer: "Decide tu orden de degradación de antemano: el servicio en la sala continúa pase lo que pase, y el stream se recupera en segundo lugar. Luego configura alertas al teléfono, mantén el manual de recuperación a la mano, y documenta el sistema para que cualquier voluntario —no solo la persona que lo construyó— pueda restaurar las cosas."
+---
+
+## La respuesta corta: el servicio continúa —el resto depende del martes
+
+Aquí está el replanteamiento que le quita el terror a la pregunta: cuando la PC de la cabina muere, **la adoración no se detiene**. El pastor sigue predicando, la banda sigue tocando, y en la mayoría de las salas la consola de sonido no es la máquina que se cayó. Lo que de verdad está en juego es el stream, la grabación y las letras —pérdidas reales, pero recuperables, y qué tan rápido se recuperan se decidió antes de que el domingo siquiera llegara.
+
+Así que la respuesta honesta tiene dos mitades: lo que la plataforma hace en los segundos después de una falla, y lo que configuraste un martes tranquilo para que una caída sea una anécdota en lugar de un incidente.
+
+## Primero, las fallas que nunca se vuelven "la PC se cayó"
+
+La mayoría de los problemas de cabina del domingo no son caídas totales —son el stream cayéndose, la grabación deteniéndose calladamente, el disco llenándose, la red parpadeando. Esas fallas bien entendidas tienen arreglos bien entendidos, y [Tech Manager](/tech-manager/) los aplica automáticamente: un stream caído más de 30 segundos se reinicia; una grabación que debería estar corriendo se reinicia en el momento en que se encuentra detenida; un disco bajo 10% libre recibe una limpieza de su caché de señalización (las grabaciones y el material nunca se tocan); un corte de red bajo 60 segundos encola una reconexión limpia para el momento en que la conexión regresa, en lugar de martillar reintentos en una línea muerta.
+
+Cada una de esas acciones queda registrada en tu historial de soporte —[nada pasa en silencio](/es/kb/articles/tech-manager-self-healing-explained/)— y el efecto práctico es que una gran parte de las "caídas" que la gente recuerda de los viejos tiempos simplemente ya no llegan a la congregación.
+
+## Cómo se ve una caída real, minuto a minuto
+
+Supón que la aplicación del encoder genuinamente se cae a mitad del sermón.
+
+**El sistema dice la verdad en lugar de adivinar.** Una aplicación caída se **reporta, no se relanza en silencio**, deliberadamente. Esa contención es una característica: una caída puede significar una colección de escenas corrupta, una tarjeta de captura muriendo, o un problema de driver, y relanzar a ciegas podría agravar el daño o enmascarar hardware que necesita atención. Reiniciar una salida de stream es rutina; resucitar una aplicación caída es una decisión humana.
+
+**Los humanos se enteran rápido.** Si la máquina entera se cayó, su badge de estado cambia a desconectado tras **90 segundos** de latidos perdidos, y un correo de alerta de desconexión de alta confianza sale tras más de **5 minutos** de silencio —tiempos publicados en la [referencia de umbrales de alerta](/es/kb/articles/pulse-alert-thresholds-reference/). Cualquiera con [alertas al teléfono configuradas](/es/kb/articles/church-stream-drop-phone-alert/) recibe un aviso, incluyendo gente que no está en el edificio. La detección corre del lado del servidor, las 24 horas, así que nunca depende de que alguien mire fijamente un tablero.
+
+**La recuperación es una lista de verificación, no una improvisación.** Para el stream, la secuencia calmada está escrita en el [manual de recuperación de stream caído](/es/kb/articles/church-stream-dropped-mid-service/). Para la congregación en línea, "Stream Desconectado" en la plataforma se lee como un hipo técnico, no un servicio cancelado —resiste el impulso de sobre-anunciar, recupera el encoder, y la mayoría de los espectadores se reincorpora sin drama.
+
+**La ayuda puede ver tu sistema.** En los planes Assist y Stream, un ayudante de confianza —o, con el add-on Sunday Assurance, un profesional de producción del equipo de WorshipMetrics de turno cada domingo— puede [ver el estado de la cabina de forma remota](/cloud-control/) y asistir. Y una llamada a [910-WORSHIP](/phone-support/) parte de tu historial de soporte, donde el registro de auto-reparación ya muestra qué se intentó automáticamente y cuándo —sin arqueología de "¿entonces qué pasó?".
+
+## La lista del martes: cinco preparaciones que cambian la historia
+
+1. **Decide el orden de degradación en voz alta.** El audio en la sala le gana al stream; la cara del pastor le gana a los gráficos. Cuando todos saben qué se sacrifica primero, nadie entra en pánico. Nuestro [flujo de recuperación de fallas del domingo](/kb/workflows/church-av-disaster-recovery/) recorre las cinco fallas más comunes con esta mentalidad.
+2. **Configura alertas en más de un teléfono.** El teléfono del director técnico, el del líder de streaming, quien esté de turno. Un minuto por teléfono.
+3. **Ten una ruta de internet de respaldo.** Un hotspot celular probado convierte "el internet está caído" de un corte a un cambio de red. Pruébalo un martes, no a las 10:15.
+4. **Documenta el sistema.** Cuando la persona que construyó la cabina no está en la sala, el [Signal Map](/system-documentation/) es cómo un voluntario responde "qué se conecta con qué" —y se imprime, así que una copia en papel puede vivir en la cabina para la mañana en que la PC misma es la baja.
+5. **Vigila el patrón, no solo el incidente.** Una cabina que se auto-repara una vez por trimestre está sana; una que se auto-repara cada semana te está diciendo algo sobre su hardware o red. El historial de soporte hace visible esa tendencia —y vale actuar antes de que escale.
+
+## Cómo lo maneja WorshipMetrics
+
+La confiabilidad de la cabina en WorshipMetrics está en capas a propósito: [Tech Manager](/tech-manager/) arregla las fallas de rutina en segundos y se niega a tapar las ambiguas, el [monitoreo de Pulse](/av-monitoring/) nota una máquina muerta en 90 segundos y alerta a teléfonos reales en minutos, [cloud control](/cloud-control/) pone ojos de confianza en el sistema desde cualquier lugar, y cada acción aterriza en el historial de soporte que tus ayudantes leen cuando llamas. La meta nunca fue una cabina que no pueda fallar —es un domingo donde una falla te cuesta minutos de stream, cero minutos de adoración, y ningún misterio después sobre qué pasó.
