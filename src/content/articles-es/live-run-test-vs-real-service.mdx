@@ -1,0 +1,90 @@
+---
+title: "Corridas de Prueba vs. Lo Real: Cómo Live Run Protege tu Historial de Servicio"
+description: "Cómo el corredor de plan en vivo distingue un recorrido del jueves de un servicio del domingo —corridas borrador vs. comprometidas, la ventana de auto-clasificación de 12 horas, tiempos bloqueados, y cómo recuperarse de un arranque accidental."
+category: "operations"
+tags: ["live run", "service planning", "run of show", "timing"]
+difficulty: "beginner"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/live-run-test-vs-real-service/church-service-live-run-planning-team.jpg"
+featured: false
+productCTA: true
+---
+
+## El problema del recorrido del jueves
+
+Toda iglesia que corre su servicio desde un plan eventualmente llega al mismo problema callado de datos. El jueves por la noche la banda ensaya, el equipo técnico camina las transiciones, y alguien presiona **Start** en el run-of-show para practicar el flujo. El domingo por la mañana, alguien presiona Start otra vez —esta vez de verdad.
+
+Si tu herramienta de planeación trata esos dos presionar de botón de la misma forma, tu historial de servicio lentamente se llena de ruido. El reporte de "duración promedio del sermón" incluye un jueves donde el pastor habló por noventa segundos y dijo "luego predico aquí". Tus datos de uso de canciones cuentan cada checada técnica como una interpretación. Y el registro de tiempos de un domingo real —el que querrías al planear Pascua, o cuando un [reporte de CCLI](/es/kb/articles/ccli-reporting-from-actual-services/) pregunta qué se cantó realmente— queda enterrado en una pila de ensayos que se ven idénticos a él.
+
+El arreglo no es disciplina ("todos recuerden borrar las corridas de prueba"). El arreglo es un corredor que conoce la diferencia entre una prueba y lo real, en su mayoría sin que le digan. Este artículo explica cómo el corredor en vivo de WorshipMetrics toma esa decisión: los dos tipos de corridas, la ventana de 12 horas que clasifica los recorridos automáticamente, por qué los tiempos de servicio completados se bloquean para siempre, y qué hacer cuando alguien inicia una corrida que no quería.
+
+## Dos tipos de corridas: borrador y comprometida
+
+En WorshipMetrics, cada interpretación de un plan es su propia **corrida** —un registro separado con su propia hora de inicio, sus propios reales ítem por ítem, y su propio resultado. Un plan es el pronóstico; una corrida es una vez específica en que lo ejecutaste.
+
+Las corridas vienen en exactamente dos tipos:
+
+- **Las corridas borrador** son pruebas: ensayos, recorridos, checadas técnicas, sesiones de entrenamiento con nuevos voluntarios. Se comportan exactamente como lo real mientras estás en ellas —los ítems avanzan, los cronómetros corren, la varianza se actualiza— pero se entiende que son práctica. Cualquier borrador sin terminar puede descartarse o reiniciarse sin ceremonia, y los borradores nunca contaminan tu historial de servicio ni tu evidencia de uso de canciones.
+- **Las corridas comprometidas** son el servicio real. Una corrida comprometida es el registro de lo que realmente pasó el domingo: cuándo empezó cada ítem, cuánto corrió el sermón de verdad, qué se saltó. Las corridas comprometidas son la fuente de verdad sobre la que se construyen los reportes, las tendencias de tiempo, y la evidencia de canciones "interpretadas".
+
+Esta división es lo que hace *seguras* las corridas de prueba. Los nuevos voluntarios pueden practicar el corredor tantas veces como gusten —un hábito que vale la pena construir deliberadamente, como cubre nuestra guía de [entrenar equipos de AV voluntarios](/es/kb/articles/training-volunteer-av-teams/)— porque un recorrido es estructuralmente incapaz de sobrescribir un domingo real.
+
+## La ventana de 12 horas: los recorridos se clasifican solos
+
+La debilidad obvia de una división borrador/comprometida es el paso humano: alguien tiene que elegir el correcto, y los voluntarios del jueves por la noche no lo harán. Así que el corredor decide por ellos.
+
+Cada plan carga horarios de servicio programados —la reunión de las 9 AM, la reunión de las 11 AM. Cuando alguien presiona Start, el corredor compara el momento del presionar con el horario de servicio al que apunta. **Un inicio a más de 12 horas fuera de la ventana de servicio se clasifica automáticamente como prueba.** Sin aviso, sin casilla, sin depender de que alguien recuerde la regla.
+
+En la práctica, esto significa:
+
+- **Jueves, 7 PM**, ensayando para el servicio de las 9 AM del domingo → a más de 12 horas de distancia → **borrador**, automáticamente.
+- **Sábado por la tarde** checada técnica para el domingo por la mañana → aún fuera de la ventana → **borrador**.
+- **Domingo, 8:45 AM**, quince minutos antes del servicio de las 9 AM → dentro de la ventana → tratado como **lo real**.
+
+La ventana de 12 horas es deliberadamente generosa en la dirección que importa. Es lo suficientemente amplia para que un servicio del sábado por la tarde o una prueba de sonido temprano en la mañana cerca del horario de servicio se trate como real, y lo suficientemente ajustada para que ningún ensayo entre semana se cuele a tu historial como servicio. Tu equipo técnico no necesita ser entrenado en nada de esto —la clasificación pasa por *cuándo* presionaron el botón, que es la única cosa en que los ensayos y los servicios confiablemente difieren.
+
+## Por qué los tiempos de servicio completados se bloquean para siempre
+
+Aquí está la regla que sorprende a la gente, y luego rápidamente se vuelve la regla que más agradecen: **una vez que una corrida comprometida se completa, sus tiempos son de solo lectura. Permanentemente.**
+
+Nadie —ni un admin, ni la persona que la corrió— puede volver atrás y editar los reales de un servicio terminado. Y si alguien presiona Start en ese mismo plan y horario de servicio otra vez después de que la corrida real se completó, la nueva corrida es **forzada a borrador**. El registro completado no puede correrse por encima.
+
+¿Por qué tan estricto? Porque un historial de servicio que puedes editar es un historial de servicio en el que no puedes confiar:
+
+- **La limpieza del lunes no puede reescribir el domingo.** Es natural ordenar un plan después del fin de semana —arreglar un error de tipeo, reordenar algo para la plantilla de la próxima semana. Nada de eso toca lo que el registro dice que pasó, porque el registro no es editable.
+- **Las tendencias de tiempo se mantienen honestas.** "Nuestros sermones promedian 34 minutos" solo es útil si nadie suavizó los valores atípicos después. Los reales bloqueados significan que tus promedios describen la realidad, no la realidad después de una revisión.
+- **La evidencia de canciones se mantiene defendible.** Una corrida comprometida es el nivel de evidencia más fuerte en el [reporte de CCLI](/es/kb/articles/ccli-reporting-from-actual-services/) —"interpretada" le gana a "programada" precisamente porque no puede retocarse.
+
+La misma protección se extiende *hacia dentro* de la corrida misma. Cuando una corrida inicia, las duraciones planeadas se **capturan como instantánea** en ese momento. Si alguien edita el plan a media misa —estira la ofrenda, recorta una canción— los objetivos contra los que el corredor mide no se mueven bajo tus pies. La varianza siempre es "real contra lo que planeamos cuando empezamos," no "real contra lo que sea que el plan dice ahora".
+
+## Las 9 y las 11 AM nunca chocan: un carril de corrida por horario de servicio
+
+Las iglesias multi-servicio tienen un segundo problema de protección del historial: el mismo plan pasa dos veces en una mañana. Si tu herramienta guarda un set de reales por plan, el servicio de las 11 AM silenciosamente sobrescribe los tiempos de las 9 AM, y pierdes exactamente la comparación que querías —¿se apretaron las transiciones la segunda vez?
+
+WorshipMetrics indexa cada corrida a un **plan y un horario de servicio**, así que cada horario de servicio recibe su propio carril de corrida. La corrida comprometida de las 9 AM y la corrida comprometida de las 11 AM son registros separados que nunca se tocan. Ambos se bloquean independientemente cuando se completan. Un horario de ensayo en el mismo plan recibe su propio carril también.
+
+Los carriles se emparejan naturalmente con anulaciones por horario: el mismo plan puede cargar un espacio de sermón más corto a las 9 AM y uno más largo a las 11 AM, y la varianza de cada carril se mide contra sus propios objetivos. Y si te preocupa que esto cuente las canciones dos veces para el reporte —no lo hace. El uso se deduplica por canción por plan, así que un domingo de dos servicios aún cuenta cada canción una vez.
+
+## Varianza en vivo en la que puedes confiar a media misa
+
+Mientras una corrida está en vivo, el corredor muestra una varianza corriente —"+2:10 arriba"— para que el productor sepa si apretar los anuncios o dejar respirar el momento. Dos detalles de diseño mantienen ese número honesto:
+
+- **Solo cuentan los ítems terminados.** La varianza se calcula de los ítems que realmente se completaron, así que un sermón en progreso no se puntúa contra su objetivo mientras el pastor está a mitad de punto. Nunca te dicen que estás "arriba" por un ítem que no está terminado.
+- **El tiempo sigue lo que está realmente en pantalla.** Con el auto-avance, el corredor se mueve cuando [Present](/es/kb/articles/present-protocol-triggers-setup/) cambia lo que la congregación ve, y una cascada de tiempos resuelve a qué ítem pertenece cada minuto. Un sermón de 25 minutos se registra como un sermón de 25 minutos —no absorbido en la canción de adoración que nadie recordó pasar.
+
+## Recuperándose de un arranque accidental
+
+Los arranques accidentales pasan —un voluntario curioso, un teléfono en un bolsillo, un productor probando una transición. La historia de recuperación depende de cuándo pasó, y en cada caso tu historial real sobrevive:
+
+| Qué pasó | Qué hizo el corredor | Qué haces tú |
+|---|---|---|
+| Alguien presionó Start un martes | Auto-clasificado como **borrador** (fuera de la ventana de 12 horas) | Nada urgente —descártalo cuando sea |
+| Iniciaste la corrida del domingo a las 8:40 AM por accidente | Tratado como lo real, pero **sin terminar** | Descártalo o reinícialo —nada se bloquea hasta que una corrida comprometida se *completa* |
+| Iniciaste la corrida otra vez después de que el servicio real terminó | **Forzado a borrador** —la corrida completada es intocable | Descarta el borrador extraviado; el registro nunca estuvo en riesgo |
+| Iniciaste el carril de las 11 AM durante el servicio de las 9 AM | Carril equivocado, pero los carriles son independientes | Termínalo o descártalo; el carril de las 9 AM no se afecta |
+
+Las dos reglas que hacen el trabajo aquí vale la pena reafirmarlas: **las corridas sin terminar siempre son desechables**, y **las corridas comprometidas completadas siempre son intocables**. Entre esas dos garantías no hay secuencia de presionar botones extraviados —desde la cabina o desde la página tokenizada de control de corrida móvil— que destruya el registro de un domingo real.
+
+## Cómo maneja esto WorshipMetrics
+
+El corredor en vivo es parte de la [planeación de servicios en WorshipMetrics](/services/): construye el orden de servicio, agrega tus horarios de servicio, y presiona Start el domingo —la clasificación borrador-contra-comprometida, los carriles de corrida por horario, el tiempo por instantánea, y los reales permanentes todos vienen automáticamente. Empárejalo con [Present](/present/) para el auto-avance que mantiene tus tiempos sincronizados con lo que está realmente en pantalla, y tu historial de servicio se vuelve algo desde lo que puedes planear con confianza.
