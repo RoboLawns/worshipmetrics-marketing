@@ -1,0 +1,44 @@
+---
+title: "¿Son Seguros los Plugins de OBS para un Stream de Iglesia?"
+description: "Los plugins son el superpoder de OBS y su causa principal de inestabilidad misteriosa —a menudo tras una actualización que nadie vio pasar. La política de superficie mínima para las máquinas de domingo, y la disciplina de pruebas que te deja tener las cosas geniales con seguridad."
+category: "streaming"
+tags: ["OBS", "plugins", "stability", "troubleshooting"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+coverImage: "/images/products/obs-plugins-church-stream-safety/obs-media-room-plugins-test-bench-church.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Debería una iglesia instalar plugins de OBS en la computadora de streaming?"
+    answer: "Con moderación y deliberadamente. Los plugins extienden OBS maravillosamente, pero el código de terceros es la causa principal de caídas y fallas de arranque —especialmente tras actualizaciones de OBS o de plugins. La máquina de domingo merece una lista mínima y justificada de plugins; los experimentos pertenecen a un perfil de prueba o a una computadora distinta."
+  - question: "¿Cómo averiguamos cuál plugin está causando los problemas de OBS?"
+    answer: "El Modo Seguro es el diagnóstico integrado: arranca OBS con todos los plugins y scripts de terceros deshabilitados. Si el Modo Seguro es estable y el arranque normal no, un plugin es culpable —reactívalos uno a la vez hasta que el problema regrese, y el último activado es tu culpable."
+  - question: "¿Qué plugins necesita en realidad un stream de iglesia?"
+    answer: "Menos de los que la mayoría de las cabinas carga. Muchos plugins que antes eran esenciales (el soporte NDI siendo la gran excepción que vale mantener cuando las cámaras lo necesitan) duplican lo que OBS ahora hace nativamente o lo que tu plataforma maneja —y varios plugins clásicos 'imprescindibles' resuelven problemas que una cabina de iglesia no tiene. Audita anualmente: cada plugin que no puede nombrar su trabajo se remueve."
+---
+
+## La respuesta corta: los plugins son herramientas de poder —la máquina de domingo no es el banco de trabajo
+
+El ecosistema de plugins de OBS es genuinamente una de sus glorias: extensiones gratuitas para cámaras NDI, efectos de movimiento, transiciones avanzadas, docenas de cosas que la app central no hace. Las iglesias se benefician enormemente —[el soporte NDI](/kb/software/obs/obs-ndi-church-cameras/) por sí solo justifica todo el sistema para muchas cabinas.
+
+Y el mismo ecosistema es, por un amplio margen, **la causa principal de inestabilidad misteriosa de OBS.** Pregúntale a la [comunidad de OBS](https://obsproject.com/forum/) de dónde vienen las caídas y la respuesta es consistente: plugins de terceros —más a menudo *tras una actualización*, cuando un plugin construido para una versión de OBS se encuentra con otra. La caída llega días después de que alguien tocó algo, que es por qué se siente sobrenatural: [la máquina que "funcionó la semana pasada"](/es/kb/articles/obs-wont-launch-sunday-morning/) se encuentra con seis días de actualizaciones silenciosas el domingo por la mañana.
+
+Así que la respuesta no es "plugins malos". Es la política que cada cabina estable eventualmente adopta: **una superficie de plugins mínima y justificada en la máquina de servicio, y un lugar separado para jugar.**
+
+## La política de superficie mínima, en cuatro reglas
+
+**1. Cada plugin en la máquina de domingo debe nombrar su trabajo.** No "podría ser útil" —*se usa, en el servicio, la mayoría de las semanas.* Para una cabina de iglesia típica la lista justificada es corta: NDI si tus cámaras lo hablan, quizá una transición específica de la que el diseño del servicio depende. La acumulación clásica —un experimento de cámara virtual de 2023, un paquete de movimiento que alguien probó una vez, tres cosas que un tutorial recomendó— es puro riesgo de inicialización cargando cero valor de domingo. Audita anualmente; cuando un plugin no puede nombrar su trabajo, se va.
+
+**2. Los experimentos pasan en otro lugar.** Un [perfil y colección de escenas](/es/kb/articles/obs-settings-changed-between-sundays/) de prueba como mínimo; una computadora distinta idealmente. La máquina de la noche juvenil, la laptop de un voluntario, la caja de experimentos del [AV Club](/es/kb/articles/start-church-av-club-vmix/) —grandes lugares para el genial plugin nuevo. La máquina de la que depende la congregación no es un banco de trabajo.
+
+**3. Las actualizaciones son un evento de martes con una prueba adjunta.** Actualización de OBS, actualización de plugin, actualización de Windows —todo pasa entre semana, seguido de una prueba completa de arrancar-transmitir-grabar como una [ejecución en borrador](/es/kb/articles/train-vmix-operators-without-risking-sunday/). La caída por desajuste de versión casi siempre se anuncia en esa prueba en lugar de a las 9:15 del domingo. Nunca actualices *nada* en la máquina de servicio un domingo.
+
+**4. Conoce la salida de emergencia de memoria.** El **Modo Seguro** —ofrecido automáticamente tras una caída, o Shift-al-arrancar— inicia OBS con todos los plugins y scripts de terceros deshabilitados. Es el diagnóstico (estable en Modo Seguro = un plugin es culpable; reactiva uno a la vez para encontrarlo) y el salvamento del domingo a la vez (tus escenas sobreviven; transmite el servicio sin el plugin y caza el martes).
+
+## La pregunta incómoda de la auditoría
+
+Aquí está el patrón detrás de la mayoría de las carpetas de plugins sobrecrecidas, y vale nombrarlo amablemente: los plugins se acumulan cuando *muchas manos bienintencionadas* comparten una máquina *sin dueño y sin base* —la misma condición detrás [del misterio de los ajustes](/es/kb/articles/obs-settings-changed-between-sundays/) y [las fallas semanales rotativas](/es/kb/articles/obs-problem-every-sunday/). La carpeta de plugins no es un problema de software. Es una arqueología de cada voluntario que alguna vez trató de ayudar sin una estructura *dentro* de la cual ayudar.
+
+Lo que apunta al arreglo durable, una vez más: **propiedad y visibilidad.** Una persona con nombre es dueña de la superficie de software de la máquina de domingo —adiciones, actualizaciones, la auditoría anual. La [telemetría](/av-monitoring/) vigila la máquina para que la inestabilidad aparezca como datos ("las caídas empezaron la semana de la actualización") en lugar de folclore. El [historial de soporte y los reportes de salud](/es/kb/articles/reading-your-stream-health-score/) recuerdan qué cambió y cuándo, así que el diagnóstico parte de los hechos. Y cuando algo se cuela de todos modos, [la ayuda que puede ver el sistema](/es/kb/articles/obs-help-from-home-sunday/) —incluyendo una regla deliberada de que un OBS caído se [reporta a un humano, nunca se relanza a ciegas](/es/kb/articles/tech-manager-self-healing-explained/)— convierte la caída misteriosa en un ticket de martes en lugar de una leyenda de domingo.
+
+Mantén las herramientas de poder. Solo dales un banco de trabajo, un dueño, y un día de prueba —y deja que la máquina de domingo sea aburrida. Lo aburrido es cómo se ve la excelencia a las 10:00 a.m.

@@ -1,0 +1,48 @@
+---
+title: "¿Quién Cambió los Ajustes de OBS? Terminando el Misterio Entre Domingos"
+description: "La semana pasada el stream era perfecto; esta semana está roto, y nadie tocó nada —supuestamente. Por qué las cabinas de varios operadores derivan, la disciplina de OBS que lo contiene, y el rastro de papel de ajustes que termina el misterio para siempre."
+category: "streaming"
+tags: ["OBS", "settings", "volunteers", "troubleshooting"]
+difficulty: "beginner"
+publishedAt: "2026-09-04"
+coverImage: "/images/products/obs-settings-changed-between-sundays/obs-settings-review-two-church-operators.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Por qué los ajustes de OBS siguen cambiando entre servicios?"
+    answer: "Porque OBS recuerda todo y varios humanos comparten una máquina. Un stream juvenil entre semana, una prueba rápida, un ajuste servicial —cada sesión deja los ajustes donde terminó, y el domingo hereda lo que el jueves dejó atrás. Es deriva, no sabotaje."
+  - question: "¿Cómo evitamos que los voluntarios rompan los ajustes de OBS?"
+    answer: "La estructura le gana a las reglas: perfiles de OBS y colecciones de escenas separados por uso (servicio de domingo vs. noche juvenil vs. pruebas), una revisión pre-servicio contra una configuración base conocida, y un dueño con nombre por grupo de ajustes. La meta no es dejar afuera a la gente —es hacer la configuración del domingo aburridamente recuperable."
+  - question: "¿Cómo averiguamos qué cambió en realidad?"
+    answer: "Deja de reconstruir de memoria. El reporte de salud de cada stream en WorshipMetrics captura los ajustes con que corrió —resolución, bitrate, preset y perfil del encoder— así que '¿qué cambió desde el domingo pasado?' se vuelve una búsqueda lado a lado en lugar de un interrogatorio."
+---
+
+## La respuesta corta: nadie miente, y todos lo tocaron
+
+Es el misterio más común en la tecnología de iglesias: el domingo pasado transmitió perfectamente, este domingo está pixelado o en silencio o en la resolución equivocada, y cada persona con acceso a la cabina jura —sinceramente— que no cambió nada. Aquí está la verdad liberadora: **todos están diciendo la verdad como la recuerdan, y los ajustes cambiaron de todos modos.**
+
+OBS recuerda todo y no olvida nada. El operador de la noche juvenil bajó el bitrate por el internet compartido del edificio el miércoles y nunca lo volvió a subir. Alguien probó un micrófono nuevo el jueves y dejó el dispositivo de audio cambiado. Un ayudante bienintencionado buscó en Google "mejorar el stream", cambió tres cosas, y no mejoró nada. Nada de ello fue sabotaje; todo fue deriva —el estado natural de una máquina compartida por varios humanos sin una base. El domingo no recibe los ajustes que alguien eligió. Recibe lo que la semana dejó atrás.
+
+Así que sáltate el interrogatorio. El arreglo tiene tres partes: contén la deriva, atrápala antes del servicio, y —la parte que casi nadie tiene— un rastro de papel que responda "¿qué cambió?" en diez segundos.
+
+## Contenlo: los perfiles y las colecciones de escenas son las guardas
+
+OBS viene con las herramientas de contención; la mayoría de las iglesias simplemente nunca las separa. Los **perfiles** guardan los ajustes de salida —encoder, bitrate, resolución, dispositivos de audio. Las **colecciones de escenas** guardan las escenas y fuentes. Cambian independientemente, y la disciplina es simple:
+
+- **Un par de perfil + colección por uso**: *Servicio de Domingo*, *Noche Juvenil*, *Pruebas*. Los experimentos del miércoles pasan en el perfil del miércoles; el del domingo se queda intacto.
+- **El par del domingo es sagrado**: los cambios a él pasan deliberadamente, por su dueño, un día entre semana —nunca a media mañana por quien esté nervioso.
+- **Nombra un dueño por grupo**: una persona es dueña de los ajustes de salida, una de las escenas. Los ajustes de "todos" no son de nadie —el [principio un-asiento-un-trabajo](/es/kb/articles/nobody-else-qualified-church-tech/) aplica a la configuración exactamente como aplica a las personas.
+
+Agrega una revisión pre-servicio de 60 segundos —¿perfil correcto? ¿colección correcta? ¿medidores de audio moviéndose?— a la [lista de verificación del domingo](/kb/workflows/sunday-morning-checklist/), y la mayoría de la deriva muere antes de llegar a la congregación. (Una precaución de la [comunidad de OBS](https://obsproject.com/forum/): haz los cambios de ajustes *fuera* de las sesiones en vivo —la cirugía de ajustes a mitad del stream es su propia categoría de caída.)
+
+## Atrápalo: el rastro de papel que termina el misterio
+
+La disciplina contiene la deriva; no puede responder la pregunta del lunes —*¿entonces qué fue diferente de verdad ayer?* Para eso necesitas un registro que ningún humano tiene que recordar mantener, y aquí es donde el misterio genuinamente termina: **el [reporte de salud](/es/kb/articles/reading-your-stream-health-score/) de cada stream captura los ajustes con que corrió** —resolución, bitrate objetivo, preset y perfil del encoder, códec de audio— junto a la telemetría. El 94 limpio del domingo pasado y el 71 áspero de este domingo se sientan lado a lado, con ajustes y todo. Si el puntaje bajó la misma semana que el bitrate, encontraste tu respuesta sin pedirle a una sola persona que recuerde el jueves.
+
+El mismo registro cubre la otra dirección también: las acciones remotas por [cloud control](/cloud-control/) aterrizan en el historial de soporte con nombres adjuntos, y las [intervenciones de auto-reparación](/es/kb/articles/tech-manager-self-healing-explained/) quedan registradas en el momento en que pasan. La cabina deja de ser una caja de misterio compartida y se vuelve un sistema con memoria —lo que cambia la *cultura* tanto como la resolución de problemas. Los voluntarios dejan de ser sospechosos; la conversación cambia de "¿quién lo rompió?" a "esto es lo que cambió —regresémoslo y anotemos por qué."
+
+## El arreglo real: la deriva es un síntoma de la estructura
+
+Da un paso atrás suficientemente lejos y el misterio entre domingos rara vez es sobre OBS en absoluto. Es cómo se ve una cabina cuando varias personas comparten una máquina **sin estructura compartida** —sin asientos propios, sin base, sin registro. La misma cabina con [asientos con nombre](/es/kb/articles/serving-opportunities-teens-without-stage/), [entrenamiento que incluye el porqué](/es/kb/articles/train-vmix-operators-without-risking-sunday/), y ajustes que se capturan cada servicio simplemente deja de producir misterios. La gente no cambió. El sistema creció una memoria y una forma.
+
+Si el misterio es solo uno de varios dramas recurrentes —un incendio distinto cada semana— el patrón tiene un nombre y una salida: [un problema distinto de OBS cada domingo](/es/kb/articles/obs-problem-every-sunday/). Y para las semanas en que preferirías mostrarle a alguien el problema que describirlo, [la ayuda que puede ver tu sistema](/es/kb/articles/obs-help-from-home-sunday/) es una llamada, no un misterio.

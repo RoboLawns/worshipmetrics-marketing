@@ -1,0 +1,50 @@
+---
+title: "¿Por Qué el Audio de OBS Se Desincroniza para el Final del Sermón?"
+description: "En sincronía en el llamado a la adoración, medio segundo desfasado para la oración final —la desincronía que trepa no es un problema de retraso, es un problema de reloj. La auditoría de tasa de muestreo que arregla la mayoría, y la telemetría que atrapa el resto."
+category: "streaming"
+tags: ["OBS", "audio sync", "sample rate", "troubleshooting"]
+difficulty: "intermediate"
+publishedAt: "2026-09-04"
+coverImage: "/images/products/obs-audio-drift-long-services/obs-audio-mixer-church-livestream-booth.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Por qué empeora la sincronía del audio mientras más corre el servicio?"
+    answer: "Porque dos relojes están en desacuerdo. Cuando tu interfaz de audio y OBS corren a tasas de muestreo distintas —44.1kHz versus 48kHz es el clásico— o el reloj de un dispositivo USB corre ligeramente rápido o lento, el error se acumula cada minuto. Un desfase fijo es un retraso; la deriva que crece a lo largo de un servicio de 75 minutos son relojes."
+  - question: "¿Qué ajustes previenen la deriva de audio de OBS?"
+    answer: "Una tasa de muestreo en todos lados: pon OBS (Ajustes → Audio) y cada dispositivo de audio —la interfaz, la salida USB de la consola, los ajustes de sonido de Windows para cada dispositivo— a la misma tasa, usualmente 48kHz. Los desajustes fuerzan un remuestreo continuo, y el remuestreo bajo carga es donde nace la deriva."
+  - question: "Arreglamos las tasas de muestreo y todavía deriva. ¿Ahora qué?"
+    answer: "Mira la máquina, no la cadena de audio. Un CPU o encoder quedándose sin margen descarta búferes de audio, y la pérdida de búferes se acumula como desincronía. Si la deriva aparece en domingos ocupados y la telemetría muestra la carga trepando tarde en el servicio, estás resolviendo un problema de sobrecarga que usa un disfraz de audio."
+---
+
+## La respuesta corta: un desfase fijo es un retraso —la desincronía que crece es un reloj
+
+Hay dos problemas de sincronía de audio y las iglesias rutinariamente arreglan el equivocado. Un stream que está *consistentemente* desfasado por la misma cantidad todo el servicio tiene un **retraso** —resuelto una vez con un desfase de sincronía, cubierto en nuestra [guía de retraso de audio](/kb/troubleshooting/audio-delay-video-stream-fix/). Pero un stream que empieza en sincronía en el llamado a la adoración y está descaradamente mal para la oración final tiene **deriva** —y ningún desfase puede arreglarlo, porque el error está *creciendo*. Ajústalo bien a las 9:05 y está mal de nuevo para las 9:40.
+
+La deriva significa que dos relojes en tu cadena están en desacuerdo sobre cuánto dura un segundo. Un desacuerdo diminuto, acumulándose cada minuto, a lo largo de las sesiones de audio continuas más largas en la producción amateur —porque un servicio de iglesia de 75 minutos le da a la deriva más pista que casi cualquier otro uso de streaming. Aquí está dónde vive el desacuerdo y cómo terminarlo.
+
+## Culpable 1: el desajuste de tasa de muestreo (arregla esto primero)
+
+El clásico: tu interfaz de audio o salida USB de la consola corre a **44.1kHz** mientras OBS corre a **48kHz** —o al revés, o Windows calladamente puso un dispositivo distinto de otro. Cada desajuste fuerza un remuestreo continuo, y el remuestreo bajo carga del mundo real es donde la sincronía va a morir lentamente.
+
+**La auditoría toma diez minutos.** Elige una tasa —**48kHz es el estándar del mundo del video**— y ponla en los tres lugares: OBS (Ajustes → Audio → Tasa de Muestreo), el dispositivo de audio mismo (su panel de control o los ajustes USB de la consola), y Windows (Ajustes de sonido → cada dispositivo → Avanzado, donde se esconden las tasas por dispositivo). Luego reinicia OBS para que todo renegocie. Una tasa, en todos lados, sin excepciones —incluyendo el micrófono USB de repuesto que alguien conecta para el testimonio.
+
+Esta sola auditoría resuelve la mayoría de las quejas de deriva de iglesias. Dos culpables más cubren el resto.
+
+## Culpable 2: el reloj USB que corre ligeramente mal
+
+Cada interfaz de audio lleva el tiempo con su propio reloj de hardware, y los dispositivos USB económicos pueden correr medibles rápido o lento —no lo suficiente para oírse en un video de tres minutos, mucho a lo largo de un servicio completo. La huella: deriva que persiste *después* de la auditoría de tasa de muestreo, siempre en la misma dirección, aproximadamente proporcional a la duración del servicio, y atada a un dispositivo específico.
+
+Los arreglos honestos: prueba un puerto USB distinto (la contención del controlador es real), toma el feed de la consola por una ruta distinta si existe una, y —si una interfaz económica deriva cada semana— ese dispositivo te está diciendo que es el eslabón débil en una cadena de la que depende todo tu stream. Este es un caso donde [la conversación del presupuesto](/es/kb/articles/av-budget-planning-churches/) tiene datos detrás.
+
+## Culpable 3: la máquina sobrecargada descartando búferes de audio
+
+A veces la cadena de audio es inocente y la *computadora* es el mal reloj: un CPU o encoder [quedándose sin margen](/es/kb/articles/obs-encoding-overloaded-during-worship/) empieza a descartar búferes de audio, y cada búfer descartado son unos milisegundos de desincronía que nunca regresan. La huella es oro diagnóstico: **deriva que solo aparece en domingos ocupados** —las semanas de banda completa, el servicio de Navidad— y empeora tarde, siguiendo exactamente [la historia de recursos de los 40-minutos-adentro](/es/kb/articles/livestream-stutters-40-minutes-in/).
+
+Aquí es donde termina el adivinar y la telemetría se gana su lugar: [Tech Manager](/tech-manager/) muestrea CPU, carga del encoder, y memoria cada cinco segundos, así que el [reporte de salud](/es/kb/articles/reading-your-stream-health-score/) muestra si la carga estaba trepando mientras la sincronía se deslizaba. Si lo estaba, no tienes un problema de audio —tienes un problema de sobrecarga usando un disfraz de audio, y los arreglos son los del encoder: codificación por hardware, un preset más ligero, 720p.
+
+## Por qué la deriva atormenta a las iglesias específicamente —y qué la termina para siempre
+
+La deriva es la falla perfecta de cabina de iglesia: invisible al inicio del servicio, imposible de ignorar para el final, ida para cuando alguien investiga el lunes, y dependiente de qué voluntario conectó qué. Que es por qué las cabinas que nunca la pelean dos veces comparten la misma estructura a la que toda esta [serie](/es/kb/articles/obs-problem-every-sunday/) sigue llegando —**una configuración base** para que las tasas de muestreo no puedan divergir en silencio entre operadores ([el arreglo del misterio](/es/kb/articles/obs-settings-changed-between-sundays/)), **telemetría** para que la sobrecarga del domingo ocupado sea una gráfica en lugar de una sensación, y **un asiento de audio del que alguien de verdad es dueño** —[el oído](/av-team/audio-engineer/), a menudo un estudiante que atrapará la deriva en el minuto cinco que un operador solitario ocupado no notaría hasta el sermón.
+
+Corre la auditoría de diez minutos esta semana. Luego dale un dueño a la cadena de audio, y la deriva se une a la lista de problemas que tu cabina solía tener.

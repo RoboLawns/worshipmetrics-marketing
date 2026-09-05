@@ -1,0 +1,47 @@
+---
+title: "OBS No Arranca y el Servicio Empieza en Una Hora"
+description: "El orden de triaje de domingo por la mañana para un OBS que se cae al iniciar —Modo Seguro primero, luego drivers, plugins, y configuración— más las disciplinas del martes que hacen las sorpresas del día de lanzamiento estructuralmente raras."
+category: "streaming"
+tags: ["OBS", "crash", "troubleshooting", "Sunday morning"]
+difficulty: "intermediate"
+publishedAt: "2026-09-04"
+coverImage: "/images/products/obs-wont-launch-sunday-morning/obs-no-signal-church-booth-sunday-crisis.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Qué es lo primero que intentar cuando OBS se cae al arrancar?"
+    answer: "Modo Seguro. El OBS moderno lo ofrece tras una caída —o mantén Shift al iniciar— y arranca OBS sin plugins ni scripts de terceros. Si el Modo Seguro abre bien, un plugin es tu culpable y aún puedes transmitir el servicio; caza el plugin específico el martes, no a las 9:15."
+  - question: "¿Por qué se rompió OBS cuando nadie cambió nada?"
+    answer: "Algo cambió sin preguntar: una actualización de Windows de la madrugada, una actualización de driver de GPU, un plugin auto-actualizado, o un archivo de configuración corrompido por un apagado sucio. Las fallas de arranque son casi siempre conflictos de inicialización —por eso aparecen en las mañanas de reinicio, y por eso las máquinas de domingo necesitan una política de actualizaciones."
+  - question: "¿Cómo nos aseguramos de que esto no vuelva a pasar una hora antes de la iglesia?"
+    answer: "Tres disciplinas del martes: las actualizaciones pasan entre semana seguidas de un lanzamiento de prueba completo (nunca automáticamente el domingo), la superficie de plugins en la máquina de servicio se queda mínima, y la cabina se monitorea para que los reinicios y la deriva se noten días antes —con un ayudante capaz de ver la máquina de forma remota cuando algo se cuela."
+---
+
+## Primero: respira. Esto es diagnosticable en minutos.
+
+Son las 9:02, el servicio es a las 10:00, y OBS —que funcionó *perfectamente* el domingo pasado— rebota, se cuelga en su pantalla de inicio, o desaparece al instante de abrir. Antes que nada, escucha la buena noticia: las fallas de arranque son casi siempre un **conflicto de inicialización** —un plugin, un driver de gráficos, o un archivo de configuración corrupto fallando durante el inicio— y OBS viene con una herramienta construida para exactamente esta mañana. Trabaja la lista en orden; la mayoría de las iglesias está transmitiendo de nuevo para el paso dos.
+
+## El orden de triaje del domingo
+
+**1. Modo Seguro —el salvamento de dos minutos.** El OBS moderno ofrece el Modo Seguro automáticamente tras una caída, o **mantén Shift al iniciar**. Arranca OBS *sin plugins ni scripts de terceros*. Si abre: has diagnosticado el problema (un plugin) y rescatado el servicio a la vez —tus escenas y ajustes están intactos, y lo que sea que hacía el plugin faltante casi nunca es esencial para sacar un stream de domingo. Corre el servicio en Modo Seguro; caza al culpable el martes.
+
+**2. El reinicio simple.** Si no has reiniciado la *máquina* (no solo OBS), hazlo ahora. La mitad de "OBS no arranca" es una actualización de Windows que se aplicó a medias en la madrugada o un driver de GPU en mal estado, y un arranque limpio lo despeja. (Un reinicio pre-servicio debería ser [liturgia estándar de cabina de todos modos](/es/kb/articles/livestream-stutters-40-minutes-in/).)
+
+**3. Ejecutar como administrador, una vez.** Clic derecho → Ejecutar como administrador. Si esto funciona cuando el arranque normal no, algo cambió los permisos —usualmente software de seguridad. Anótalo para el martes.
+
+**4. El respaldo de configuración.** Si OBS sigue muriendo, una configuración corrupta de un apagado sucio es probable. OBS guarda los perfiles y colecciones de escenas como archivos —si [exportaste respaldos en una buena semana](/es/kb/articles/obs-settings-changed-between-sundays/) (lo harás después de hoy), restaurar toma minutos. Sin respaldos, una instalación fresca de OBS con una sola escena básica —una cámara, una fuente de audio— es una forma fea pero real de estar en vivo para las 10:00. Los [foros de OBS](https://obsproject.com/forum/) guardan la cirugía más profunda para el lunes.
+
+**5. Llama a la ayuda que puede ver.** Si tu iglesia corre [Tech Manager](/tech-manager/), quien esté de turno ya tiene contexto —los signos vitales de la máquina, [qué cambió recientemente](/es/kb/articles/obs-help-from-home-sunday/), si la caja se reinició en la madrugada— y [910-WORSHIP](/phone-support/) parte del historial de tu sistema en lugar de una descripción. Un límite deliberado que vale conocer: un OBS caído se **reporta, nunca se relanza en silencio** por la automatización, porque [los reinicios a ciegas pueden agravar](/es/kb/articles/tech-manager-self-healing-explained/) exactamente la corrupción que ahora estás manejando.
+
+## Por qué se rompió cuando "nadie cambió nada"
+
+Porque algo sí lo hizo —solo que no preguntó. Actualizaciones de Windows de la madrugada. Drivers de GPU que se auto-refrescan. Un plugin que se actualizó hacia un conflicto (la causa más común de inestabilidad de arranque —[más sobre la pregunta de los plugins aquí](/es/kb/articles/obs-plugins-church-stream-safety/)). O la máquina se apagó a mitad de una escritura la semana pasada y la configuración se corrompió calladamente, esperando a que el próximo arranque importara. Las fallas de arranque se agrupan en las mañanas de domingo por una razón simple: **el domingo es cuando la máquina por fin se reinicia**, así que seis días de cambio acumulado se inicializan todos a la vez, a la peor hora posible.
+
+## Las disciplinas del martes que terminan el género
+
+1. **Las actualizaciones pasan entre semana, luego una prueba completa.** Windows, drivers de GPU, OBS, plugins —actualizados deliberadamente el martes, seguidos de una prueba completa de arrancar-transmitir-grabar (como una [ejecución en borrador](/es/kb/articles/train-vmix-operators-without-risking-sunday/), para que no contamine nada). Las máquinas de domingo nunca conocen software fresco por primera vez el domingo. Deshabilita la auto-actualización que puedas; prueba después de lo que no puedas.
+2. **Mantén mínima la superficie de plugins de la máquina de servicio.** Cada plugin es un riesgo de inicialización. Los experimentos viven en un perfil de prueba —o una *máquina* de prueba— no en el OBS del domingo.
+3. **Exporta tu base.** Perfiles y colecciones de escenas, exportados después de cada cambio conocido-bueno, guardados en algún lugar localizable. Diez minutos que convierten el paso 4 de arriba de una reconstrucción a una restauración.
+4. **Deja que el monitoreo note la semana por ti.** [Pulse](/av-monitoring/) ve el reinicio que pasó el jueves a las 3 a.m., el disco llenándose, [la deriva que precede a las fallas](/es/kb/articles/obs-problem-every-sunday/) —así que las sorpresas se atrapan mientras todavía son problemas de martes.
+
+Y la meta-disciplina bajo las cuatro: una cabina donde [más de una persona](/es/kb/articles/multiple-operators-obs-church/) puede correr el triaje. La mañana descrita al inicio de este artículo solo es una crisis cuando la única persona que sabe de OBS es la única persona inalcanzable —lo cual es un [patrón de personal](/es/kb/articles/you-already-have-obs/), no de software, y es arreglable para siempre.
