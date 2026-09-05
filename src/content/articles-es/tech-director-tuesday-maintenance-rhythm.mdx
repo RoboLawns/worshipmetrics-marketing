@@ -1,0 +1,61 @@
+---
+title: "El Martes de un Director Técnico: El Ritmo de Mantenimiento que Salva los Domingos"
+description: "Noventa minutos en un martes tranquilo —historial de alertas, el log de auto-reparación, velocidades de enlace, tendencias de disco, y la parrilla de voluntarios del próximo mes— contados como la rutina real de un director técnico. Los domingos se ganan los martes."
+category: "operations"
+tags: ["tech director", "maintenance", "diary", "reliability"]
+difficulty: "beginner"
+publishedAt: "2026-09-02"
+coverImage: "/images/products/tech-director-tuesday-maintenance-rhythm/tech-director-tuesday-patch-sheet-review.jpg"
+featured: false
+productCTA: true
+faq:
+  - question: "¿Cuánto tiempo semanal toma en realidad el mantenimiento proactivo de AV?"
+    answer: "Con la telemetría haciendo la vigilancia, unos noventa minutos a la semana bastan: revisar el feed de alertas y el log de auto-reparación, checar tendencias de recursos y velocidad de enlace, y armar los horarios de voluntarios. Las máquinas señalan qué necesita atención; el humano decide qué hacer al respecto."
+  - question: "¿Qué es lo de mayor valor para revisar cada semana?"
+    answer: "El log de auto-reparación. Una cabina que se arregló sola una vez este trimestre está sana; una que se arregla sola cada domingo te está diciendo algo sobre su red o su hardware. Esa línea de tendencia es invisible a menos que las acciones automáticas queden registradas —y es la diferencia entre un proyecto de martes y una caída de domingo."
+  - question: "¿Y si el director técnico es un voluntario con un trabajo de tiempo completo?"
+    answer: "El ritmo funciona de forma asincrónica. Las alertas llegan a tu teléfono cuando algo te necesita; todo lo demás espera en el feed con 90 días de historial. Nada en esta rutina requiere estar en el edificio —incluso los conteos de asistencia se pueden disparar de forma remota."
+---
+
+## 4:30 p.m. — café, laptop, noventa minutos
+
+*Un martes compuesto, dibujado de cómo los directores técnicos más relajados que conocemos realmente lo pasan.*
+
+Dave corre el AV en una iglesia de unos doscientos, además de un trabajo de tiempo completo. Su secreto no es el heroísmo —es que dejó de apagar incendios el domingo por la mañana y empezó a leer el martes por la tarde. Noventa minutos, el mismo orden cada semana.
+
+## Minuto 0: el feed de alertas — leyendo el silencio
+
+Primera parada: el feed de alertas de [Pulse](/av-monitoring/). La mayoría de los martes es corto, y esa brevedad es confiable porque los [umbrales están publicados](/es/kb/articles/pulse-alert-thresholds-reference/): sabe exactamente qué habría disparado una alerta, así que un feed vacío es evidencia, no esperanza.
+
+Esta semana hay una entrada: una alerta crítica de RAM en la PC de la cabina, domingo, 9:38 a.m., auto-resuelta para las 10:15. Nadie notó nada en la sala. Pero Dave ha leído [por qué los streams se degradan a los cuarenta minutos](/es/kb/articles/livestream-stutters-40-minutes-in/), y una excursión de RAM es cómo empieza esa historia. Toma nota: encontrar qué se está comiendo la memoria antes de que se vuelva un patrón. El feed guarda 90 días de historial, así que el próximo martes sabrá si fue una casualidad o una tendencia.
+
+## Minuto 20: el log de auto-reparación — la confesión de la cabina
+
+Luego, el [log de auto-reparación](/es/kb/articles/tech-manager-self-healing-explained/) en el historial de soporte. Esta es la boleta de calificaciones que la mayoría de las iglesias nunca ve: todo lo que la cabina arregló sin preguntar. Esta semana —nada. Hace tres semanas fue un reinicio de stream durante una tormenta; el log lo mostró, la [alerta de caída](/es/kb/articles/church-stream-drop-phone-alert/) llegó a su teléfono, y el incidente terminó antes de que terminara de leerlo.
+
+La regla de dedo de Dave viene directo de la experiencia: **una cabina que se auto-repara una vez por trimestre está bien; una que se auto-repara semanalmente está presentando una queja.** El log es cómo la queja se escucha un martes en lugar de gritarse un domingo.
+
+## Minuto 30: la capa física — lo que la red presenció
+
+La iglesia corre UniFi, y el [controlador está conectado](/es/kb/articles/connect-unifi-worshipmetrics/), así que la documentación de Dave se audita sola. Escanea dos cosas:
+
+- **Velocidades de enlace negociadas.** Cada puerto que debería ser gigabit, lo es —excepto uno. La tirada del lado izquierdo del escenario está negociando 100 Mb/s detrás de una luz de enlace verde, lo que casi siempre significa un par dañado. Ese cable se volvió a tirar durante la remodelación del escenario del mes pasado. Quince minutos con una ponchadora este sábado, en vez de [un misterio de NDI](/es/kb/articles/church-wifi-good-enough-to-livestream/) algún domingo futuro.
+- **Consumo PoE.** La cámara trasera está jalando lo que siempre jala. El access point del lobby subió un watt —anotado, no alarmante.
+
+Luego un vistazo al [Signal Map](/system-documentation/): los cables de Ethernet auto-inferidos aún coinciden con lo que él cree sobre su propio edificio. Cuando no coinciden, el switch usualmente tiene la razón.
+
+## Minuto 50: disco, grabaciones, y el archivo
+
+El servicio del domingo se grabó automáticamente, así que la [biblioteca](/live-streaming/) lo tiene —y la tendencia de espacio en disco del domingo muestra la unidad cruzando el 40% libre, gigabytes más abajo que el mes pasado. Las grabaciones se acumulan; ese es su trabajo. Archiva dos meses de servicios en crudo a la unidad externa antes de que la [regla de limpieza al 10% libre](/es/kb/articles/booth-pc-crashes-mid-service/) tenga que ganarse el sustento. Planear el almacenamiento un martes no cuesta nada.
+
+## Minuto 60: personas, no máquinas
+
+La última media hora es la capa humana. La [parrilla de voluntarios](/es/kb/articles/scheduling-volunteers-month-at-a-time/) del próximo mes necesita armarse: llena el asiento de stream, cámara, y las posiciones de letras a lo largo de cuatro domingos —en silencio, sin correos disparándose mientras piensa— revisa las advertencias de bloqueo, y guarda el borrador para consultarlo con la almohada. El jueves le dará a Enviar una sola vez, y [el ciclo se corre solo](/es/kb/articles/volunteer-scheduling-without-text-scramble/): aceptaciones de un toque, notificaciones de rechazo, recordatorios del día antes.
+
+También pasa diez minutos en la petición del próximo trimestre. Los reportes de salud muestran el bitrate cayendo durante el tiempo de saludo tres semanas seguidas —el clásico apretón del WiFi de invitados. Tres semanas de telemetría cada cinco segundos hacen un mejor [caso de presupuesto](/es/kb/articles/av-budget-planning-churches/) para una mejora de red que cualquier corazonada.
+
+## 6:00 p.m. — listo
+
+Laptop cerrada. Nada de este martes fue urgente, lo cual es precisamente el punto: cada asunto fue un problema de domingo interceptado en el extremo barato de su vida. El [asiento del director de servicio](/av-team/service-director/) se lleva la gloria el domingo por la mañana —pero la calma que disfruta se fabricó aquí, en noventa minutos sin glamour con un café.
+
+Los domingos se ganan los martes. La telemetría solo hace legible el ganar.
