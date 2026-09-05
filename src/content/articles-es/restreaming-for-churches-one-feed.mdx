@@ -1,0 +1,49 @@
+---
+title: "Restreaming para Iglesias: Un Feed que Entra, Cada Plataforma que Sale"
+description: "Cómo funciona el restreaming, por qué le gana a transmitir a cada plataforma directamente, y qué necesita una cabina de iglesia para correr streaming multi-destino confiablemente."
+category: "streaming"
+tags: ["restreaming", "multistream", "rtmp", "bandwidth", "live streaming"]
+difficulty: "beginner"
+publishedAt: "2026-07-22"
+featured: false
+productCTA: true
+---
+
+## Qué es en realidad el restreaming
+
+Restreaming significa que tu encoder envía **un** stream a un solo servicio, y ese servicio redistribuye copias a cada destino que hayas configurado —YouTube, Facebook, el reproductor de tu sitio web, un portal denominacional, cualquier lugar que acepte RTMP.
+
+La alternativa —transmitir a cada plataforma directamente desde la cabina— multiplica todo: ancho de banda de subida, carga del encoder, claves de stream que manejar, y puntos de falla que monitorear. El restreaming lo colapsa todo de vuelta a uno.
+
+## Por qué las cuentas de ancho de banda favorecen el restreaming
+
+Un stream de iglesia 1080p sólido corre a 4,500–6,000 Kbps. Transmitir directamente a tres plataformas significa empujar tres copias por tu conexión de internet —13,500–18,000 Kbps de subida sostenida, en la misma red que tus tablets de registro, teléfonos del personal, y WiFi de invitados están usando a las 9am del domingo.
+
+Con el restreaming, tu edificio solo sube una copia. El fan-out pasa en la nube, donde el ancho de banda es efectivamente ilimitado. Para la mayoría de las iglesias, este solo hecho resuelve la decisión de arquitectura —especialmente en subidas bajo 50 Mbps.
+
+Dos cosas aún importan localmente:
+
+- **La velocidad de subida medida y sostenida a la hora del servicio** —no el número en la factura del ISP
+- **El aislamiento de red** —el encoder no debería competir con el WiFi de invitados (ve nuestra guía de [diseño de red de iglesia para AV y streaming](/es/kb/articles/church-network-av-streaming/))
+
+## Qué buscar en un setup de restreaming
+
+**Los cambios de destino no deberían tocar el encoder.** Agregar el portal de tu denominación para un servicio especial, o quitar una plataforma que no está alcanzando a nadie, debería ser un clic en un dashboard —no un cambio de configuración un domingo por la mañana en OBS. Si toca el encoder, eventualmente romperá la configuración del encoder.
+
+**El stream debería ser vigilado, no solo retransmitido.** Un relevo que se cae en silencio es peor que ningún relevo, porque seguirás transmitiendo hacia una tubería muerta. Tu capa de restreaming debería monitorear el bitrate y los frames perdidos en tiempo real y alertarte en el momento en que la calidad se degrada.
+
+**La grabación debería pasar río arriba.** Si la grabación la captura el servicio de restreaming —antes de que las copias se abran en abanico— obtienes un archivo limpio por servicio automáticamente, sin importar cuáles destinos estuvieron esa semana.
+
+**Tu sitio web merece un reproductor de primera clase.** Restransmitir a YouTube e incrustar YouTube en tu sitio funciona, pero envuelve tu servicio en la marca, los anuncios, y las recomendaciones de "a continuación" de otra plataforma. Un embed nativo de la plataforma mantiene a tu congregación en tu sitio.
+
+## La experiencia del operador el domingo
+
+La prueba real de un setup de restreaming es lo que tu voluntario hace durante el servicio. La respuesta debería ser: **nada.**
+
+Presets configurados por adelantado. Destinos activados durante la semana. Una acción de "iniciar streaming" en la cabina. Monitoreo y alertas corriendo del lado de la plataforma, con un humano de guardia si algo se sale de control. Si tu flujo actual tiene al operador haciendo malabares con pestañas del navegador para confirmar que cada plataforma está en vivo, la arquitectura les está pidiendo demasiado.
+
+## Cómo lo hace WorshipMetrics
+
+El [live streaming de WorshipMetrics](/live-streaming/) está construido restream-primero: apunta tu encoder a un ingest, y los destinos, las grabaciones automáticas, el clipping en vivo, y el monitoreo de salud del stream todos pasan del lado de la plataforma. Las alertas disparan en el momento en que algo se degrada, y 910-WORSHIP responde siete días a la semana.
+
+Si actualmente estás pagando por un servicio de restreaming separado junto a herramientas de planeación, presentación, y chat, ve [lo que la plataforma reemplaza](/replace-your-stack/) —la consolidación usualmente se paga sola antes de que llegues a la línea de soporte.

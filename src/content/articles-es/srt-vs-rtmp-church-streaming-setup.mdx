@@ -1,0 +1,123 @@
+---
+title: "SRT vs. RTMPS para Streaming de Iglesia: Cuál Protocolo de Ingest y Cómo Configurarlo"
+description: "Qué son en realidad RTMPS y SRT, cuándo cada uno le queda a un enlace de subida de iglesia, y cómo configurar vMix u OBS para empujar un stream sólido como roca a WorshipMetrics."
+category: "streaming"
+tags: ["SRT", "RTMP", "encoder setup", "live streaming"]
+difficulty: "intermediate"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/srt-vs-rtmp-church-streaming-setup/church-encoder-srt-rtmps-streaming-setup.jpg"
+featured: false
+productCTA: true
+---
+
+## Por qué importa la elección del protocolo
+
+Cada live stream empieza con una decisión sin glamour: cuál protocolo lleva tu video de la cabina a la nube. WorshipMetrics acepta dos en su hostname de ingest, `stream.worshipmetrics.com` —RTMPS y SRT— y la elección correcta depende casi por completo de la calidad del enlace de subida del internet de tu iglesia. Esta guía explica qué hace en realidad cada protocolo, cuándo SRT vale la configuración extra, y cómo configurar vMix u OBS para cualquiera de los dos antes del domingo.
+
+## Dos protocolos, un destino
+
+Cuando sales en vivo con WorshipMetrics, tu encoder empuja un solo feed a `stream.worshipmetrics.com`. De ahí la plataforma maneja la escalera de bitrate adaptativo, el DVR, la entrega a tu página de visualización y reproductor embebido, y el fan-out en la nube hacia hasta 10 destinos simultáneos —YouTube, Facebook Live, y el resto. (Si el streaming a múltiples destinos es nuevo para ti, empieza con [un feed arriba, restransmitido a todos lados](/es/kb/articles/restreaming-for-churches-one-feed/).)
+
+Esa arquitectura tiene una consecuencia práctica: tu cabina solo tiene que entregar una buena copia del stream. Todo tu esfuerzo debería ir a hacer ese único enlace de subida lo más confiable posible, y el protocolo que elijas es la primera palanca.
+
+## Qué es RTMPS
+
+RTMP (Real-Time Messaging Protocol) data de la era del video Flash, y se quedó mucho después de Flash porque cada encoder y cada plataforma lo habla. RTMPS es simplemente RTMP envuelto en encriptación TLS —la misma capa de seguridad que usa HTTPS— así que tu clave de stream y tu video viajan encriptados.
+
+RTMP corre sobre TCP, que garantiza que cada paquete llega en orden. Eso suena ideal, pero la garantía de TCP viene con una trampa llamada bloqueo de cabeza de línea: si un paquete se pierde, todo lo que está detrás espera hasta que llega la retransmisión. En una conexión cableada limpia nunca lo notarás. En una conexión con incluso pérdida ocasional de paquetes o jitter, el rendimiento se hunde, el búfer de salida del encoder se atasca, y obtienes los síntomas clásicos —frames perdidos, oscilación de bitrate, y eventualmente una desconexión.
+
+**RTMPS es el default correcto cuando** tu iglesia tiene un enlace de subida cableado sólido (fibra o cable) con margen cómodo por encima de tu bitrate de streaming, y tus tiempos de ping al internet son consistentemente bajos. Es el más simple de configurar: una URL y una clave de stream, y cada encoder en la tierra lo soporta.
+
+## Qué es SRT
+
+SRT (Secure Reliable Transport) es un protocolo de código abierto más nuevo, originalmente desarrollado por Haivision y ahora mantenido por una amplia alianza de la industria. Fue diseñado para exactamente la situación en la que muchas iglesias viven: empujar video de transmisión a través del impredecible internet público.
+
+SRT corre sobre UDP en lugar de TCP e implementa su propia recuperación más inteligente. En lugar de atorar todo el stream cuando un paquete se pierde, SRT retransmite selectivamente solo los paquetes perdidos dentro de un **búfer de latencia** que configuras. Si una retransmisión llega dentro de la ventana del búfer, el espectador nunca sabe que algo pasó. El protocolo también mide continuamente el enlace y se adapta al jitter y a los cambios de ancho de banda mucho más elegantemente de lo que TCP puede.
+
+Tres conceptos de SRT importan para la configuración:
+
+- **Stream ID** —un identificador de texto enviado durante el handshake que le dice al servidor a cuál canal pertenece este stream. Este es el equivalente de SRT al trabajo de ruteo de una clave de stream.
+- **Passphrase** —habilita la encriptación AES en el stream. SRT requiere que las passphrases sean de 10–79 caracteres. Este es el trabajo de seguridad que TLS hace para RTMPS.
+- **Latency** —el tamaño del búfer de recuperación. Los búferes más grandes sobreviven peores redes al costo de un poco de retraso extra de vidrio a vidrio. Un punto de partida común es 3–4× tu tiempo de ida y vuelta al servidor de ingest, y la mayoría de los encoders tienen por defecto algo en el rango de 120 ms–2 segundos.
+
+WorshipMetrics emite tanto un stream ID como una passphrase para el ingest de SRT, así que tu enlace de subida está autenticado y encriptado de extremo a extremo.
+
+## Cuándo SRT le gana a RTMPS para un enlace de subida de iglesia
+
+Elige SRT cuando cualquiera de estos te suene familiar:
+
+- **Tu enlace de subida pierde paquetes.** Inalámbrico fijo, DSL rural, celular combinado, o cualquier conexión donde una prueba de velocidad se ve bien pero los streams aún tartamudean. La retransmisión selectiva de SRT está construida para esto.
+- **El domingo por la mañana es la peor hora de tu red.** Los kioscos de registro, el Wi-Fi del lobby, y un edificio lleno compiten todos por el ancho de banda. La congestión causa jitter y pérdida, y SRT cabalga a través de ambos mejor que RTMPS. (Segmentar el tráfico de AV en su propia VLAN ayuda aún más.)
+- **Has tenido caídas a media misa antes.** Si tus post-mortems siguen apuntando al enlace de subida en lugar del encoder, cambiar de protocolo es uno de los cambios de mayor apalancamiento que puedes hacer. Nuestra guía de [qué hacer cuando tu stream se cae a media misa](/es/kb/articles/church-stream-dropped-mid-service/) cubre el lado de la recuperación.
+- **Tu punto de ingest está lejos.** Las rutas de red más largas significan tiempos de ida y vuelta más altos, que magnifican el bloqueo de cabeza de línea de TCP. El búfer de SRT absorbe la distancia.
+
+Quédate con RTMPS cuando tu conexión sea genuinamente sólida y valores la configuración más simple posible. No hay premio por usar el protocolo más elegante en un enlace que no lo necesita —un stream RTMPS sano sobre buena fibra es igual de mirable.
+
+## Configurando vMix
+
+vMix mantiene sus dos rutas de ingest en lugares diferentes, lo que sorprende a la gente la primera vez.
+
+**RTMPS** vive en el panel de streaming:
+
+1. Haz clic en el engrane al lado del botón de **Stream**.
+2. Elige **Custom RTMP Server** como el destino.
+3. Ingresa la URL de RTMPS y la clave de stream desde la configuración de streaming de tu canal de WorshipMetrics.
+4. Elige tu perfil de calidad (más sobre la configuración del encoder abajo) y guarda.
+
+**SRT** vive en Outputs:
+
+1. Abre **Settings → Outputs** y haz clic en el ícono de engrane al lado de una salida.
+2. Pon el tipo en **SRT** y el modo en **Caller** (tu encoder inicia la conexión).
+3. Ingresa el hostname `stream.worshipmetrics.com`, más el puerto, el **Stream ID**, y la **Passphrase** exactamente como se muestran en la configuración de ingest de tu canal.
+4. Pon **Latency** en milisegundos —empieza alrededor de 4× tu ping al servidor, y no bajes de 120 ms.
+
+Si eres más nuevo en vMix en general, la [guía completa de vMix para iglesias](/es/kb/articles/vmix-complete-church-guide/) recorre la configuración de producción completa alrededor de esto.
+
+## Configurando OBS
+
+**RTMPS** es la ruta familiar:
+
+1. **Settings → Stream**, pon el Service en **Custom**.
+2. Pega la URL de RTMPS en **Server** y la clave de stream en **Stream Key**.
+
+**SRT** en OBS va a través del mismo servicio Custom, pero toda la configuración vive en la URL, porque OBS entrega SRT a su motor FFmpeg integrado:
+
+```text
+srt://stream.worshipmetrics.com:PORT?streamid=YOUR_STREAM_ID&passphrase=YOUR_PASSPHRASE&latency=800000
+```
+
+Tres cosas a vigilar:
+
+- Usa el puerto de tu configuración de ingest de WorshipMetrics, y deja el campo **Stream Key** en blanco —todo cabalga en la URL.
+- FFmpeg espera `latency` en **microsegundos**, no milisegundos. `800000` es 800 ms. Esto le hace tropezar a casi todos una vez.
+- La passphrase debe ser de 10–79 caracteres; si la conexión se rechaza al instante, una passphrase o stream ID mal tecleados son el culpable usual.
+
+Para el resto de tu construcción de OBS —escenas, audio, y afinación del encoder— ve la [guía completa de OBS Studio para iglesias](/es/kb/articles/obs-studio-complete-church-guide/).
+
+## Configuración de encoder que funciona con cualquier protocolo
+
+El protocolo lleva el stream; la configuración del encoder determina qué hay en él. Estos defaults sirven a casi cada iglesia bien en RTMPS o SRT:
+
+| Configuración | Recomendación |
+| --- | --- |
+| Códec | H.264, perfil High |
+| Control de tasa | CBR (bitrate constante) |
+| Intervalo de keyframe | 2 segundos |
+| Bitrate 1080p30 | 4,500–6,000 kbps |
+| Bitrate 720p30 | 3,000–4,500 kbps |
+| Audio | AAC, 128–256 kbps estéreo |
+
+Dos reglas de dedo: mantén tu bitrate total de streaming bajo aproximadamente la mitad de tu velocidad de subida *medida* (medida en un domingo por la mañana, no en un martes tranquilo), y nunca uses bitrate variable para el enlace de subida —CBR mantiene la carga de red predecible, lo que ambos protocolos recompensan.
+
+## Pruébalo antes del domingo
+
+Un cambio de protocolo merece un ensayo entre semana, no un debut en vivo:
+
+1. **Transmite a tu canal entre semana** por al menos 20–30 minutos en configuración de producción completa, y observa la salida en la página de visualización o reproductor real que tu congregación usa.
+2. **Estresa la conexión.** Mientras corre el stream de prueba, haz que alguien jale descargas grandes en la red de la iglesia. Un stream SRT con un búfer de latencia de tamaño apropiado debería navegar sin problema; si no lo hace, aumenta el búfer.
+3. **Simula un tropiezo.** Interrumpe y restaura brevemente la ruta de red si puedes hacerlo con seguridad. Quieres aprender cómo tu encoder se reconecta *ahora*, no a las 10:07 del domingo.
+4. **Revisa el reporte de salud del stream.** Si corres el Tech Manager de WorshipMetrics en la PC de cabina, muestrea bitrate, FPS, carga del encoder, y frames perdidos desde vMix u OBS cada 5 segundos durante el stream y produce un puntaje de salud de 0–100 después, con recomendaciones en lenguaje sencillo para cualquier cosa que penalizó —frames perdidos, reconexiones, inestabilidad de bitrate, o sobrecarga del encoder. Un reporte limpio de entre semana es la mejor confianza que puedes cargar al domingo.
+
+## Cómo maneja esto WorshipMetrics
+
+El [live streaming](/live-streaming/) de WorshipMetrics acepta tanto RTMPS como SRT (stream ID + passphrase) en `stream.worshipmetrics.com`, con la entrada en vivo de cada canal provisionada automáticamente y auto-reparándose tras bambalinas —no hay nada que construir del lado del servidor antes de que transmitas. Tu cabina empuja un feed; la nube maneja la entrega de bitrate adaptativo, la página de visualización hospedada y el reproductor embebible, la grabación automática de cada servicio, y el fan-out hacia hasta 10 destinos a la vez. La app de escritorio [Tech Manager](/tech-manager/) redondea el ciclo, manejando vMix u OBS y convirtiendo la telemetría de cada stream en un puntaje de salud sobre el que tu equipo realmente puede actuar —así que la decisión de protocolo que tomaste en este artículo se sigue probando, semana tras semana.

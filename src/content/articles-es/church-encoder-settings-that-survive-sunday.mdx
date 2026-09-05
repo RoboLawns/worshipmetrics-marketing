@@ -1,0 +1,112 @@
+---
+title: "Configuración de Encoder de Iglesia Que Sobrevive el Domingo: Bitrate, GOP, y Perfiles"
+description: "Cómo elegir el bitrate de H.264, el tamaño de GOP, el perfil, y el control de tasa para un live stream de iglesia —y cómo leer la configuración que tu reporte de salud del stream captura cuando el domingo se sale de control."
+category: "streaming"
+tags: ["encoder settings", "H.264", "bitrate", "vMix", "OBS"]
+difficulty: "intermediate"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/church-encoder-settings-that-survive-sunday/church-encoder-settings-production-dashboard.jpg"
+featured: false
+productCTA: true
+---
+
+## Las cinco configuraciones que deciden si tu stream sobrevive
+
+La mayoría de los streams de iglesia no fallan por problemas exóticos. Fallan por cinco configuraciones ordinarias que alguien eligió hace dieciocho meses y nadie ha mirado desde entonces: **resolución, bitrate objetivo, preset y perfil del encoder, tamaño de GOP, y códec de audio**.
+
+Esas cinco no son una lista arbitraria —son exactamente las configuraciones que un buen reporte de salud del stream captura junto con la telemetría, porque cuando un stream batalla, el diagnóstico casi siempre vive en una de ellas. Si sabes qué hace cada configuración y cómo se ve lo "equivocado" en los datos, puedes auto-diagnosticar la mayoría de los problemas del domingo en minutos en lugar de adivinar.
+
+Este artículo recorre cada una con números que realmente puedes teclear en [vMix](/es/kb/articles/vmix-complete-church-guide/) u [OBS](/es/kb/articles/obs-studio-complete-church-guide/), luego mapea las firmas comunes de falla de vuelta a la configuración que las causa.
+
+## Bitrate: presupuesta contra tu subida, no el máximo de la plataforma
+
+El error de streaming de iglesia más común es poner el bitrate según lo que YouTube *acepta* en lugar de lo que el internet del edificio puede *sostener*. YouTube felizmente tomará 9,000 Kbps. Tu subida de cable de 20 Mbps, compartida con el WiFi de la oficina, las TVs del lobby, y 400 teléfonos en el WiFi de invitados, puede no darlo confiablemente.
+
+La regla de dedo que sobrevive el contacto con la realidad:
+
+> **El bitrate total de streaming (video + audio) debería ser no más de la mitad de tu velocidad de subida medida y sostenida —medida bajo condiciones de domingo, no de un martes por la tarde.**
+
+Las pruebas de velocidad en un edificio vacío mienten. Si puedes, corre una prueba durante un servicio (o al menos con la red de invitados cargada) y presupuesta desde ese número. Si tu subida del domingo por la mañana es de 10 Mbps, un stream de 4,500 Kbps es cómodo; un stream de 8,000 Kbps es un volado. Para el lado de red de esto —VLANs, QoS, y mantener el encoder fuera del WiFi de invitados— ve nuestra guía de [diseño de red de iglesia para AV y streaming](/es/kb/articles/church-network-av-streaming/).
+
+Objetivos sensatos para un solo stream de H.264:
+
+| Salida | Bitrate de video |
+|---|---|
+| 720p a 30 fps | 2,500–4,000 Kbps |
+| 1080p a 30 fps | 4,000–6,000 Kbps |
+| 1080p a 60 fps | 6,000–9,000 Kbps |
+
+Dos notas sobre esa tabla. Primero, un stream 720p limpio y bien iluminado se ve mejor para los espectadores que un stream 1080p hambriento —la resolución es la configuración a sacrificar cuando el ancho de banda está apretado, no la estabilidad. Segundo, si estás haciendo multistream a varias plataformas directamente desde la cabina, multiplica el presupuesto por el número de salidas. Por esto importa el fan-out en la nube: empujar un feed y dejar que un servicio de relevo lo distribuya significa que tu enlace de subida solo carga un stream, sin importar cuántos destinos sirvas.
+
+## CBR vs. VBR: el live streaming quiere aburrido
+
+El control de tasa decide cómo el encoder gasta tu presupuesto de bitrate a lo largo del tiempo:
+
+- **CBR (bitrate constante)** mantiene la salida aproximadamente en el objetivo todo el tiempo —rellenando los momentos tranquilos, tapando los ocupados.
+- **VBR (bitrate variable)** gasta más bits en escenas complejas y menos en simples, lo que es genial para la calidad de archivo y terrible para un enlace de subida en vivo.
+
+Para la salida en vivo, **usa CBR** (o VBR restringido con la tasa máxima fijada al objetivo, que se comporta igual). La razón es tu red, no la imagen. Un encoder VBR llega a un momento de confeti, un paneo rápido de cámara, o una congregación de pie y brevemente estalla muy por encima de su promedio —y si ese estallido excede lo que tu enlace de subida puede mover, el búfer de envío se atasca y el encoder empieza a soltar frames. Las plataformas de streaming también asumen entrada estable cuando segmentan y transcodifican; una tasa de entrada nerviosa empeora todo río abajo.
+
+En la telemetría, esta falla tiene una firma distintiva: **inestabilidad de bitrate** —el bitrate medido real haciendo sierra alrededor del objetivo en lugar de mantenerse plano. Cuando ves eso en un reporte, revisa primero el control de tasa, y segundo la ruta de red.
+
+Guarda el VBR (o codificación basada en calidad CRF) para tu grabación local, donde no hay enlace de subida que desbordar y la calidad-por-gigabyte genuinamente importa.
+
+## Tamaño de GOP: la regla de dos segundos
+
+El tamaño de GOP (grupo de imágenes) —usualmente etiquetado como **intervalo de keyframe**— controla qué tan seguido el encoder envía un frame completo en lugar de un frame de "solo cambios". Cada plataforma de streaming corta tu feed en segmentos para la entrega, y los segmentos solo pueden empezar en un keyframe. Muy pocos keyframes y la plataforma no puede segmentar limpiamente; los espectadores esperan más para unirse y el buscar se vuelve torpe. Demasiados y desperdicias bitrate reenviando frames completos.
+
+La respuesta de la industria está resuelta: **un keyframe cada 2 segundos.**
+
+- En OBS: Output → Streaming → Keyframe Interval = **2 s** (no lo dejes en 0/auto para live streaming).
+- En vMix: pon la frecuencia de keyframe en **2 segundos** en la configuración de calidad de streaming.
+- Si tu encoder pide el GOP en *frames*, multiplica por tu framerate: **60** a 30 fps, **120** a 60 fps.
+
+Dos segundos también divide de forma pareja en las longitudes de segmento que los sistemas de entrega realmente usan —el reproductor de WorshipMetrics, por ejemplo, entrega HLS en segmentos de 4 segundos, así que una cadencia de keyframe de 2 segundos se alinea con cada frontera de segmento. Prefiere un **GOP cerrado** y deshabilita la inserción de keyframe por corte de escena si tu encoder la expone; las plataformas en vivo quieren el metrónomo, no el tiempo artístico.
+
+## Perfil, nivel, y preset: qué elegir y qué dejar en paz
+
+El **perfil** describe cuáles herramientas de compresión de H.264 puede usar el encoder. Usa **perfil High**. Es aproximadamente 10% más eficiente que Main al mismo bitrate, y cada plataforma, navegador, y decodificador de hardware de la última década lo soporta. El perfil Baseline existe para dispositivos muy viejos y de baja potencia —y como las plataformas modernas transcodifican tu feed en una escalera adaptativa para los espectadores de todos modos, lisiar tu codificación de contribución a Baseline no ayuda a nadie.
+
+El **nivel** (4.0, 4.1, 4.2…) es un techo sobre resolución × framerate × bitrate para que los decodificadores sepan a qué se enfrentan. El nivel 4.0 cubre 1080p30; 1080p60 necesita 4.2. Casi cada encoder pone esto automáticamente desde tus otras configuraciones —déjalo en auto a menos que un destino específicamente se queje.
+
+El **preset** (ultrafast → veryfast → medium → slow, en x264) intercambia CPU por eficiencia de compresión, y aquí es donde las buenas intenciones lastiman a las iglesias. Un preset más lento sí produce una imagen ligeramente mejor por bit —pero solo si la CPU termina cada frame a tiempo. En el momento en que no puede, el encoder empieza a saltarse frames, y un frame saltado se ve mucho peor que uno marginalmente menos eficiente. En la telemetría de salud esto aparece como **sobrecarga del encoder** y **FPS bajo sostenido**, dos de las condiciones más penalizadas que hay.
+
+Guía práctica:
+
+- En x264, **veryfast** es el default correcto para una PC de cabina que también está corriendo gráficas, fuentes NDI, y multiview. Solo baja más lento si el margen de CPU se queda cómodamente bajo ~70% durante la parte más ocupada del servicio.
+- Si tu máquina tiene una GPU NVIDIA, **NVENC** descarga la codificación por completo y las generaciones modernas rivalizan con x264 veryfast/faster en calidad —usualmente la mejor elección para cabinas corridas por voluntarios.
+- Los aparatos de encoder de hardware dedicados esquivan la pregunta de la CPU por completo si la PC de cabina está crónicamente sobrecargada.
+
+**Audio:** AAC-LC, estéreo, 48 kHz, **128–192 Kbps**. Recuerda que sale del mismo presupuesto de enlace de subida que el video —pequeño, pero no gratis.
+
+## Una línea base que sobrevive el domingo
+
+Si quieres una configuración desde la cual empezar y afinar con datos:
+
+- **Resolución/framerate:** 1080p a 30 fps (baja a 720p30 si tu subida del domingo está bajo ~8 Mbps)
+- **Bitrate de video:** 4,500 Kbps, **CBR**
+- **Encoder:** x264 **veryfast** o NVENC, **perfil High**, nivel auto
+- **Intervalo de keyframe:** 2 segundos (GOP 60 a 30 fps)
+- **Audio:** AAC-LC 160 Kbps, 48 kHz estéreo
+
+Ese es un stream que casi cualquier enlace de subida de iglesia puede cargar, cualquier plataforma puede segmentar, y cualquier PC de cabina puede codificar con margen de sobra.
+
+## Auto-diagnóstico desde el reporte de salud del stream
+
+La configuración y los síntomas van juntos, que es por lo que el reporte de salud del stream de WorshipMetrics registra ambos. Durante cada stream, la app de escritorio Tech Manager muestrea bitrate, FPS, carga del encoder, porcentaje de frames perdidos, CPU, RAM, y disco libre **cada 5 segundos** directamente desde vMix u OBS, luego puntúa la sesión 0–100 —con la configuración exacta del encoder (resolución, bitrate objetivo, preset y perfil, GOP, códec de audio) adjunta al reporte. Cuando algo puntúa mal, nunca te quedas preguntándote qué configuración lo produjo.
+
+Aquí está cómo las penalizaciones ponderadas se mapean de vuelta a las configuraciones de este artículo:
+
+| Qué marca el reporte | Penalización | Primera configuración a revisar |
+|---|---|---|
+| Frames perdidos al 5% o más | −35 | Bitrate demasiado alto para el enlace de subida real —bájalo, confirma CBR |
+| 3+ reconexiones por hora | −25 | Ruta de red y estabilidad del enlace, no el encoder —ve el [manual de stream caído](/es/kb/articles/church-stream-dropped-mid-service/) |
+| FPS bajo sostenido | −20 | Preset demasiado lento o CPU hambrienta —ve más rápido, o descarga a NVENC |
+| Sobrecarga del encoder | −18 | Los mismos culpables que el FPS bajo; también revisa apps de fondo y térmicas |
+| Inestabilidad de bitrate | −15 | Control de tasa —cambia VBR a CBR, luego mira la congestión de red |
+
+Cada problema marcado viene con una recomendación en lenguaje sencillo, y una ventana de gracia de reconexión de 45 segundos significa que un servicio accidentado produce un reporte honesto en lugar de una pila de fragmentos —las reconexiones se cuentan como reconexiones, no como sesiones frescas. Revisa el reporte el lunes por la mañana, cambia una configuración, y compara el puntaje de la próxima semana. Ese ciclo —no el folclore— es cómo la configuración del encoder se vuelve buena y se queda buena.
+
+## Cómo maneja esto WorshipMetrics
+
+[WorshipMetrics Live Streaming](/live-streaming/) está construido para que las configuraciones de arriba solo tengan que estar bien una vez. Tu encoder empuja un solo stream —RTMPS o SRT— al ingest de WorshipMetrics, y la nube maneja la escalera de calidad adaptativa para los espectadores y abre tu feed en abanico hacia hasta 10 destinos a la vez, así que tu presupuesto de enlace de subida nunca se multiplica. La [app de escritorio Tech Manager](/tech-manager/) vigila vMix u OBS durante cada servicio, captura la configuración exacta del encoder con cada reporte de salud del stream, y convierte los puntajes débiles en recomendaciones específicas sobre las que tus voluntarios pueden actuar. Si el stream del domingo batalló, el reporte ya sabe cuál de estas cinco configuraciones mirar primero.
