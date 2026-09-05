@@ -1,0 +1,105 @@
+---
+title: "Disparando Luces, Switchers, y Sonido desde tus Diapositivas: Triggers de Protocolo en Present"
+description: "Cómo configurar triggers de OSC, RossTalk, MIDI, HTTP, OBS WebSocket, y Q-SYS QRC en diapositivas y macros en Present, y por qué los protocolos de red se retransmiten a través de Tech Manager."
+category: "display"
+tags: ["OSC", "RossTalk", "MIDI", "automation", "Present"]
+difficulty: "advanced"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/present-protocol-triggers-setup/worshipmetrics-present-protocol-triggers-slides.jpg"
+featured: false
+productCTA: true
+---
+
+## ¿Por qué disparar desde las diapositivas para empezar?
+
+La mayoría de las cabinas técnicas de adoración corren al menos cuatro sistemas en paralelo: presentación, iluminación, switching de video, y audio. En un domingo con personal completo, cuatro personas los mantienen en sincronía de oído y de vistazo. En un domingo de dos voluntarios, no pueden —y las fallas son las que la gente nota: luces que se quedan brillantes durante el primer verso, un switcher demorándose en la toma amplia, música de entrada aún sonando bajo la bienvenida.
+
+Los triggers de protocolo colapsan esa coordinación en la única acción que tu equipo ya realiza cientos de veces por servicio: avanzar una diapositiva. En Present, un trigger puede adjuntarse a una diapositiva —disparando en el momento en que va a programa— o colocarse dentro de un macro como un paso en una secuencia nombrada. De cualquier forma, la persona corriendo las letras ahora también está, invisiblemente, corriendo las luces, el switcher, la reproducción, y la consola.
+
+Present soporta seis protocolos de trigger: OSC, RossTalk, HTTP, MIDI, OBS WebSocket, y Q-SYS QRC. Esta guía recorre cada uno, explica la regla arquitectónica que los gobierna a todos (los navegadores no pueden abrir sockets de red crudos), y muestra cómo el catálogo de presets te salva de memorizar la sintaxis de comandos.
+
+## La única regla que explica todo: el relevo de Tech Manager
+
+Present corre en el navegador. Eso es una fortaleza genuina —cualquier máquina Chromium en el edificio puede manejar tus salidas— pero los navegadores, por diseño, no pueden abrir conexiones UDP o TCP arbitrarias. Una página web no tiene permitido lanzar un paquete UDP a tu consola de iluminación ni mantener una sesión TCP cruda con un switcher Ross. Ese sandbox mantiene la web segura, y ningún proveedor puede optar por salirse de él.
+
+Así que Present divide los triggers en dos clases:
+
+- **El MIDI local** usa la Web MIDI API, que los navegadores *sí* exponen. Si una interfaz o controlador USB MIDI está conectado a la máquina corriendo Present, los triggers MIDI disparan directamente desde el navegador sin intermediario.
+- **Todo lo basado en red** —OSC sobre UDP, RossTalk sobre TCP, RTP-MIDI, llamadas HTTP a equipo en tu VLAN de producción, OBS WebSocket, y Q-SYS QRC— se retransmite a través de la app de escritorio [Tech Manager](/tech-manager/) conectada en tu cabina. Present envía el trigger a Tech Manager, y Tech Manager, como una aplicación nativa con acceso completo a la red, abre el socket real y entrega el comando en tu LAN.
+
+La consecuencia práctica: **si no hay Tech Manager conectado, los triggers de red no pueden disparar.** Present te lo dice claramente —el trigger falla con un error "No connected Tech Manager" en lugar de silenciosamente no hacer nada. Trata "Tech Manager en línea" como parte de tu lista previa al servicio, justo al lado de "proyector encendido" y "consola recuperada." Los triggers de Web MIDI local no se afectan de cualquier forma, ya que nunca dejan la máquina.
+
+El relevo también significa que los triggers se originan de un punto estable y conocido —la máquina de la cabina— en lugar de cualquier laptop que resulte estar corriendo Present esa semana. Si has segmentado tu red de producción (y deberías —ve nuestra guía de [diseño de red de iglesia para AV y streaming](/es/kb/articles/church-network-av-streaming/)), solo la máquina de Tech Manager necesita una ruta a las VLANs de iluminación, switching, y audio.
+
+## Protocolo por protocolo
+
+### OSC (UDP)
+
+Open Sound Control es la lengua franca del control de shows moderno: las consolas de iluminación, los media servers, y los controladores por software todos lo hablan. OSC viaja en UDP —rápido y sin conexión. Envías un patrón de dirección como `/cue/next/fire` con argumentos opcionales, y el receptor actúa sobre él.
+
+En Present, un trigger OSC toma un objetivo (de un preset de proveedor o un host y puerto manuales) más el patrón de dirección y los argumentos a enviar. Como UDP es de disparar-y-olvidar, no hay confirmación de entrega —que es exactamente por lo que los dispositivos OSC deberían vivir en el mismo tejido de switch que tu cabina, no a través de un salto de Wi-Fi. Usos típicos: disparar señales de iluminación en la primera diapositiva de cada canción, avanzar un media server, o pegarle a un botón de Companion que se abre en abanico a una docena de otras acciones.
+
+### RossTalk (TCP 7788)
+
+RossTalk es el protocolo de control de texto plano usado por los switchers Ross Video, con default en el puerto TCP 7788. A diferencia de OSC, corre sobre TCP, así que la conexión es basada en sesión y la entrega es ordenada. Los comandos son cadenas legibles por humanos —cut, transición, recuperar una memoria, disparar un control personalizado— lo que hace los triggers fáciles de auditar después.
+
+Configura la IP y el puerto del switcher (7788 a menos que se cambie en el frame), luego adjunta comandos a las diapositivas: recupera la memoria de "sermón" cuando la diapositiva de título del mensaje dispara, corta a la toma amplia en la diapositiva de cierre. Si tu iglesia corre un ATEM u otra marca en su lugar, los mismos momentos de avance de diapositiva usualmente pueden alcanzarse a través de Companion vía OSC o HTTP —el patrón se transfiere aunque el protocolo no.
+
+### MIDI: Web MIDI local vs. RTP-MIDI de red
+
+Los triggers MIDI vienen en dos sabores, y elegir el correcto importa:
+
+- **Local (Web MIDI):** el navegador le habla directamente a un dispositivo MIDI conectado a la máquina de Present. Cero dependencia de red, latencia más baja, funciona incluso si Tech Manager está offline. Ideal cuando tu consola de iluminación o interfaz está físicamente en la posición de cabina donde corre Present.
+- **Red (RTP-MIDI):** los paquetes MIDI viajan sobre la red usando el estándar RTP-MIDI (el mismo MIDI de red basado en sesión que macOS trae nativamente). Como esto es tráfico de red, se retransmite a través de Tech Manager como cualquier otro protocolo de red. Úsalo cuando el destino MIDI —una consola en el cuarto de amplificadores, un rig de reproducción en el escenario— no está físicamente conectado a la máquina de Present.
+
+De cualquier forma, los mensajes mismos son MIDI ordinario: note on/off, control change, program change. Las consolas de iluminación comúnmente mapean las notas o los program changes entrantes a acciones del stack de señales, y muchos mezcladores digitales aceptan MIDI para la recuperación de escenas —un compañero natural para la disciplina de ganancia y escenas cubierta en nuestra guía de configuración de consola digital.
+
+### HTTP
+
+El trigger HTTP es el generalista. Configuras una URL base para un dispositivo o servicio, luego defines llamadas con plantilla contra ella —rutas, parámetros de query, cuerpos de solicitud. Cualquier cosa con una API tipo REST se vuelve alcanzable desde una diapositiva: una recuperación de preset PTZ, un relé inteligente, la API web de vMix, un punto final de automatización de edificios que atenúa las luces de la casa.
+
+Como los puntos finales HTTP en tu equipo de producción viven en la LAN, estas llamadas también se retransmiten a través de Tech Manager. Mantén tus plantillas parametrizadas en lugar de codificar duro una URL por diapositiva; cuando la IP del dispositivo cambie, actualizas la URL base una vez.
+
+### OBS WebSocket
+
+OBS Studio expone una superficie de control WebSocket (protocolo v5 en los lanzamientos actuales), y Present lo habla directamente como un tipo de trigger. Cambios de escena, visibilidad de fuentes, control de grabación y streaming —todo alcanzable desde una acción de diapositiva. El patrón clásico: la diapositiva previa al servicio inicia el stream y selecciona la escena del lobby; la primera diapositiva de adoración cambia a la escena de IMAG; la diapositiva final detiene la grabación.
+
+Si OBS es central para tu domingo, nuestra [guía completa de OBS Studio para iglesias](/es/kb/articles/obs-studio-complete-church-guide/) cubre la arquitectura de escenas que se empareja bien con el switching manejado por diapositivas —entre menos escenas deba elegir manualmente un voluntario, más se gana el sustento la automatización.
+
+### Q-SYS QRC (TCP 1710)
+
+La plataforma Q-SYS de QSC acepta control externo a través de QRC, un protocolo de control remoto basado en JSON en el puerto TCP 1710. Si tu iglesia corre un Q-SYS Core para DSP y ruteo, los triggers de Present pueden poner valores de control nombrados y recuperar snapshots —mutear el feed del lobby durante la oración, intercambiar escenas de monitor entre adoración y habla, subir el envío de escucha asistida cuando la diapositiva del sermón dispara.
+
+QRC requiere que los controles nombrados estén expuestos en el diseño de Q-SYS, así que planea esto con quien mantenga tu archivo de diseño. Una vez que los controles existen, el lado del trigger es simplemente: IP del Core, puerto 1710, nombre del control, valor.
+
+## El catálogo de presets: empieza desde un objetivo que sabes que funciona
+
+Cada protocolo de arriba tiene un problema de dialecto: el *transporte* es estándar, pero cada producto espera sus propias direcciones, comandos, y convenciones. Present viene con un catálogo de presets para objetivos de producción comunes para que empieces desde una plantilla que funciona en lugar de un campo en blanco:
+
+- **vMix** y **OBS Studio** para switching y streaming por software
+- **Bitfocus Companion** —a menudo el objetivo único más inteligente, ya que un botón de Companion puede manejar muchos dispositivos
+- **Resolume Arena** y **disguise** para media servers
+- **Behringer X32 / Midas M32** para control de consola
+- **QLab** para reproducción basada en señales
+- **ProPresenter 7** —muchas iglesias corren ambos en diferentes lugares, y el sistema de triggers lo trata como solo otro dispositivo controlable
+- **Q-SYS Core** para DSP
+
+Elige el preset, llena la dirección IP, y las convenciones de direccionamiento ya están correctas. Si tu dispositivo no está en el catálogo, las opciones manuales de OSC, HTTP, y MIDI cubren casi todo con una especificación de control publicada —los usuarios de vMix encontrarán la superficie de la API cubierta en nuestra [guía de vMix para iglesias](/es/kb/articles/vmix-complete-church-guide/).
+
+## Triggers dentro de macros: secuenciar, no solo disparar
+
+Adjuntar un trigger a una diapositiva es el comienzo; el sistema de macros es donde la automatización se vuelve una herramienta de diseño de servicio. Un macro en Present es una secuencia nombrada de acciones —limpiar a logo, ir a un ítem de playlist, poner un fondo o plantilla, mostrar u ocultar un overlay, reproducir o detener audio, esperar un intervalo definido— y los triggers de protocolo encajan como pasos de primera clase.
+
+Ese paso de `wait` es el héroe callado. Las salas reales necesitan secuenciar: recupera la señal de iluminación, espera dos segundos para el fundido, *luego* corta el switcher, *luego* inicia el track de entrada. Un macro de "Inicio del Servicio" hace todo ello desde una acción de operador, en el orden correcto, cada semana. Construye macros para tus transiciones recurrentes —previo al servicio, adoración-a-anuncios, inicio del sermón, respuesta, salida— y tu voluntario menos experimentado hereda el tiempo de tu operador más experimentado. Esa consistencia se compone con los hábitos de nuestra guía de [entrenar equipos de AV voluntarios](/es/kb/articles/training-volunteer-av-teams/).
+
+## Una lista previa al servicio para setups con muchos triggers
+
+1. **Tech Manager conectado** —los triggers de red dependen de él; verifica antes de que abran las puertas.
+2. **Haz ping a los objetivos** —switcher, consola, Core, máquina de OBS todos alcanzables.
+3. **Dispara cada macro una vez** durante la prueba de sonido, en condiciones de show, viendo a los dispositivos reales responder.
+4. **Confirma los dispositivos MIDI locales** enumeran en el navegador si usas triggers de Web MIDI.
+5. **Documenta el mapa** —cuáles diapositivas y macros disparan qué, para que un operador suplente nunca esté adivinando.
+
+## Cómo maneja esto WorshipMetrics
+
+Los triggers de protocolo están integrados en [Present](/present/), nuestro ambiente de presentación basado en navegador: OSC, RossTalk, HTTP, MIDI (Web MIDI local o RTP-MIDI de red), OBS WebSocket, y Q-SYS QRC están todos disponibles como acciones de diapositiva y como pasos dentro de macros, con presets para vMix, Companion, Resolume, ProPresenter 7, X32/M32, QLab, disguise, OBS, y Q-SYS Core. Los protocolos de red disparan a través de [Tech Manager](/tech-manager/), el compañero de escritorio que le da a la máquina de tu cabina acceso nativo a la LAN de producción —así que el navegador se queda en el sandbox, tus triggers se originan de un punto conocido, y Present te dice claramente si el relevo está offline antes de que pueda sorprenderte un domingo.

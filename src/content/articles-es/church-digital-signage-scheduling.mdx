@@ -1,0 +1,114 @@
+---
+title: "Programación de Señalización Digital Que Entiende los Calendarios de Iglesia"
+description: "Cómo los horarios de señalización por día de la semana y las anulaciones de calendario por rango de fechas trabajan juntos, para que una toma de pantalla de Navidad pueda correr por una temporada y devolver las pantallas automáticamente."
+category: "display"
+tags: ["digital signage", "scheduling", "displays", "announcements"]
+difficulty: "intermediate"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/church-digital-signage-scheduling/church-digital-signage-scheduling-displays.jpg"
+featured: false
+productCTA: true
+---
+
+## Los dos relojes con los que corre todo lobby de iglesia
+
+La vida de la iglesia lleva el tiempo en dos relojes a la vez. El primero es el ritmo semanal: los servicios del domingo, la noche de jóvenes del miércoles, el ensayo del jueves, el desayuno de hombres del sábado. El segundo es el calendario estacional: Adviento, Nochebuena, Cuaresma, Pascua, la semana de la Escuela Bíblica de Vacaciones, el arranque de otoño. Ambos relojes siempre están corriendo, y tus pantallas del lobby necesitan responder a ambos.
+
+La mayoría de las herramientas de señalización digital fueron diseñadas para el comercio minorista, donde el contenido cambia cuando una campaña cambia y "estacional" significa que alguien recuerda intercambiar el playlist. Ese modelo se cae en una iglesia, usualmente de una de dos formas. O el contenido estacional nunca sube a tiempo porque subirlo significa desmantelar el loop semanal cuidadosamente construido, o sube y luego se queda —la clásica diapositiva de Navidad aún sonando el 20 de enero porque nadie recordó quitarla.
+
+Un sistema de programación construido para iglesias trata estos como dos capas distintas: un **horario por día de la semana** que define la semana normal, y **anulaciones de calendario por rango de fechas** que se sientan encima de él por una ventana definida y luego se quitan del camino. Este artículo recorre cómo funcionan esas capas en la señalización de WorshipMetrics, cómo los grupos de pantallas y las prioridades resuelven los conflictos, y por qué detalles como las fronteras de día correctas por zona horaria importan más de lo que parecen al principio.
+
+## La columna vertebral semanal: horarios por día de la semana
+
+El horario por día de la semana es la base. Responde la pregunta "en un martes normal, ¿qué muestra la pantalla del ala de niños?" —y la responde una vez, permanentemente, en lugar de requerir que alguien programe cada semana a mano.
+
+En WorshipMetrics, cada pantalla (o grupo de pantallas —más sobre grupos abajo) reproduce un playlist en loop, y los ítems del playlist cargan **programación por ítem**. Eso significa que el loop mismo puede ser más inteligente que una rotación plana:
+
+- La secuencia de bienvenida del domingo por la mañana aparece solo los domingos por la mañana.
+- La cuenta regresiva de la noche de jóvenes se muestra los miércoles, no toda la semana.
+- La rotación de anuncios generales corre cada día como el tejido conectivo entre las piezas programadas.
+
+Los ítems también cargan **transiciones** y pueden usar **layouts de canvas y plantilla**, así que un cambio de horario nunca significa reconstruir el arte —el layout se define una vez y el horario decide cuándo se reproduce.
+
+La propiedad importante de la capa semanal es que es *estable*. Una vez que tu semana normal está definida, debería sobrevivir intacta a través de cada temporada del año. Todo lo estacional pasa en la siguiente capa.
+
+## Tomas estacionales: anulaciones de calendario por rango de fechas
+
+Una **anulación de calendario** es una entrada de horario atada a un rango de fechas en lugar de un día de la semana. El ejemplo canónico: un deck de Adviento programado para el 1 de diciembre al 2 de enero. Durante esa ventana, la anulación toma la pantalla. El 3 de enero, el horario semanal es simplemente lo que queda —la anulación expira y las pantallas **revierten automáticamente**, sin una tarea de quitar en la lista de nadie.
+
+Este es el detalle que hace funcionar el modelo de dos capas. El contenido estacional nunca se fusionó al loop semanal, así que no hay nada que des-fusionar. El horario semanal nunca se editó, así que no hay nada que restaurar. La anulación fue un invitado, y se fue en la fecha impresa en su invitación.
+
+### Prioridades: cuando las anulaciones se traslapan
+
+Los calendarios de iglesia reales se apilan. El Adviento corre del 1 de diciembre al 2 de enero, pero la Nochebuena es su propio evento dentro de esa ventana, y un cierre por clima puede aterrizar encima de cualquier cosa. Las anulaciones de calendario de WorshipMetrics cargan una **prioridad de 0 a 1000**, y la entrada de mayor prioridad gana cuando las ventanas se traslapan. Una convención viable se ve así:
+
+| Capa | Ejemplo | Prioridad sugerida |
+|---|---|---|
+| Horario semanal | Loop de anuncios normal | (capa base —no se necesita prioridad) |
+| Temporada | Deck de Adviento, 1 dic – 2 ene | 100 |
+| Día especial | Deck de Nochebuena, solo 24 dic | 500 |
+| Aviso urgente | Cierre por clima, un solo día | 900 |
+
+Los números exactos importan menos que el espaciado: deja espacio entre niveles para que una nueva entrada pueda encajar sin renumerar todo. Con una escalera como esta, el 24 de diciembre reproduce el deck de Nochebuena, el 26 de diciembre cae de vuelta al deck de Adviento, y el 3 de enero está calladamente de vuelta a lo normal —todo desde entradas que creaste en noviembre.
+
+## Grupos de pantallas: programa lugares, no televisiones
+
+La programación se vuelve inmanejable rápido si cada TV física es su propio objetivo de programación. Siete pantallas del lobby deberían comportarse como un *lugar*, no siete dispositivos.
+
+Las pantallas de WorshipMetrics se registran a sí mismas con un token —cualquier TV con un navegador puede unirse ingresándolo— y las pantallas registradas se organizan en **grupos**: Lobby, Ala de Niños, Café, Salón de Jóvenes. Los horarios y las anulaciones apuntan al grupo, así que la toma de Adviento que construiste una vez aterriza en cada pantalla del lobby simultáneamente, mientras el ala de niños mantiene su propio loop con su propia anulación estacional.
+
+Los grupos también mantienen barato el crecimiento. Cuando el café agrega una segunda pantalla, se une al grupo Café y hereda todo el horario —capa semanal, anulaciones estacionales, prioridades y todo— con cero programación adicional.
+
+## Diez tipos de contenido, un loop
+
+Un horario solo es tan útil como lo que puede reproducir. Los playlists de WorshipMetrics se construyen de **diez tipos de contenido**, y ayuda pensar en ellos en dos familias.
+
+**Contenido creado** —cosas que diseñas y subes:
+
+1. **Diapositivas** —gráficas de anuncios construidas en layouts de canvas/plantilla
+2. **Imágenes** —fotos y arte prefabricado
+3. **Videos** —promos, clips de testimonio, bumpers de sermón
+4. **Páginas web (URL)** —cualquier página web en vivo, útil para dashboards o calendarios embebidos
+
+**Contenido en vivo** —cosas que se renderizan a sí mismas desde datos actuales:
+
+5. **Cuentas regresivas** —"El servicio empieza en 4:32," contando hacia una hora de evento real
+6. **Versículos bíblicos** —despliegues de escritura
+7. **Horarios de servicio** —tu calendario de reuniones publicado
+8. **Mensajes de bienvenida** —pantallas de saludo para la puerta del frente
+9. **Feeds sociales** —publicaciones recientes de las cuentas de tu iglesia
+10. **Clima** —condiciones actuales, una pequeña amabilidad en un lobby lleno de abrigos
+
+La familia en vivo es lo que evita que un loop de señalización se ponga rancio entre ediciones: una cuenta regresiva siempre es correcta, el clima siempre es el de hoy, y el despliegue de horarios de servicio se actualiza cuando los datos fuente lo hacen —ninguno de ellos necesita que un voluntario re-exporte una diapositiva.
+
+## Por qué las fronteras de día necesitan una zona horaria
+
+Aquí hay un modo de falla que ha quemado a muchas iglesias en las plataformas de señalización hospedadas: el horario dice "domingo," pero el servidor piensa en UTC. Para una iglesia en Dallas, la medianoche UTC son las 6:00 PM hora local la noche anterior —así que el "contenido de domingo" aparece durante el servicio del sábado por la tarde, y el propio servicio del domingo por la tarde reproduce el loop del lunes.
+
+La programación por día de la semana solo es significativa si "martes" significa *martes donde cuelga la pantalla*. WorshipMetrics computa las fronteras de día del horario **conscientes de la zona horaria**, así que el día cambia a la medianoche local, las anulaciones por rango de fechas empiezan y terminan en fechas locales, y una iglesia multi-campus con edificios en diferentes zonas horarias obtiene el comportamiento correcto en cada campus sin que nadie haga aritmética de UTC. Cuando evalúes cualquier producto de señalización, esto vale la pena probarlo explícitamente: programa algo para "mañana" a las 11 PM hora local y ve cuándo aparece realmente.
+
+## Saber que una pantalla está apagada antes que el anfitrión
+
+Un horario perfecto reproduciéndose en una pantalla colapsada sigue siendo una pared en blanco, y las TVs del lobby fallan calladamente —un parpadeo de energía, una caída de Wi-Fi, una pestaña del navegador que alguien cerró. La persona que usualmente lo descubre es un anfitrión el domingo por la mañana, que es el peor momento posible.
+
+WorshipMetrics revisa cada pantalla registrada y marca las pantallas offline dentro de **cinco minutos**, así que la oficina se entera el martes por la tarde, no el domingo a las 8:55. Junto a la detección, cada pantalla reporta una **miniatura de reproduciendo-ahora** —una imagen en vivo de lo que realmente está mostrando— y acepta comandos remotos de **refrescar** e **ir-a-diapositiva**. Esa combinación convierte "manejar al edificio y mirar" en una revisión de escritorio de treinta segundos: ve la miniatura, confirma que la anulación tomó efecto, empuja un refresco si una pantalla está atorada.
+
+Dos prácticas relacionadas hacen esto aún más efectivo. Primero, pon tus pantallas sobre una base de red sólida —nuestra guía de [diseño de red de iglesia para AV y streaming](/es/kb/articles/church-network-av-streaming/) cubre segmentar los dispositivos de pantalla para que un WiFi de invitados ocupado nunca los mate de hambre. Segundo, rastrea las pantallas mismas como el equipo que son; la [guía de inventario y mantenimiento de AV](/es/kb/articles/av-inventory-maintenance/) muestra cómo mantener ubicaciones, modelos, e historial de servicio encontrables cuando una TV específica empieza a portarse mal.
+
+## Ejemplo trabajado: Navidad sin desmantelar la semana
+
+Junta las piezas para un diciembre que se corre solo:
+
+1. **Deja la capa semanal en paz.** Tus loops normales mantienen su programación por ítem por día de la semana todo el año.
+2. **Crea la anulación de Adviento** para los grupos Lobby y Café: 1 de diciembre – 2 de enero, prioridad 100, reproduciendo el deck de Adviento —diapositivas estacionales, una cuenta regresiva al servicio de Nochebuena, horarios de servicio para el calendario festivo.
+3. **Crea la anulación de Nochebuena**: solo 24 de diciembre, prioridad 500, con el contenido específico de esa noche —cuenta regresiva del servicio, pantallas de bienvenida, notas de estacionamiento.
+4. **Durante la temporada, revisa por muestra desde un escritorio.** Las miniaturas de reproduciendo-ahora confirman que cada pantalla del lobby captó la toma; la detección de offline marca la TV del café cuando alguien la desconecta para la fiesta del personal.
+5. **No hagas nada en enero.** El 3 de enero, cada pantalla está de vuelta al loop semanal normal porque las anulaciones expiraron.
+
+El horario semanal y la toma de Navidad nunca pelearon, porque nunca vivieron en la misma capa. Ese es todo el diseño.
+
+Un truco estacional más: para las salas de overflow y la visualización del lobby durante la Nochebuena misma, los puntos finales WMDisplay basados en Raspberry Pi pueden recibir **salida de Present en vivo sobre WHIP (WebRTC)** —las mismas pantallas que loopearon anuncios todo el mes se vuelven pantallas de servicio en vivo por la noche. Ve [salida multi-pantalla de Present](/es/kb/articles/present-multi-screen-output-setup/) para saber cómo se configuran esas salidas, y la [guía de entrenamiento de voluntarios](/es/kb/articles/training-volunteer-av-teams/) para convertir todo el plan de diciembre en una lista que alguien más pueda correr el próximo año.
+
+## Cómo maneja esto WorshipMetrics
+
+Todo lo anterior es el modelo de programación integrado de [WorshipMetrics Signage](/signage-display/): las pantallas se auto-registran desde cualquier navegador de TV con un token, se organizan en grupos, y loopean playlists sacados de diez tipos de contenido con programación por ítem, transiciones, y layouts de plantilla. Los horarios por día de la semana definen la semana normal con fronteras de día correctas por zona horaria; las anulaciones de calendario por rango de fechas con prioridades de 0 a 1000 manejan las temporadas y los días especiales, luego revierten automáticamente. Las pantallas offline se marcan dentro de cinco minutos, y las miniaturas de reproduciendo-ahora más los comandos remotos de refrescar e ir-a-diapositiva le dan a la oficina de la iglesia control en vivo —así que las pantallas junto a la puerta del frente dicen lo correcto en la temporada correcta, sin que una tarea de quitar en enero jamás haga la lista.

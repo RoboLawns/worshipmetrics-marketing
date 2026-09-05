@@ -1,0 +1,97 @@
+---
+title: "Proyector, Pantalla de Escenario, y Más Allá: Salida Multi-Pantalla desde un Navegador"
+description: "Cómo WorshipMetrics Present maneja proyectores, monitores de confianza, y pantallas de escenario desde una pestaña del navegador, con looks, resoluciones, y ruteo de audio por salida."
+category: "display"
+tags: ["Present", "stage display", "outputs", "confidence monitor"]
+difficulty: "beginner"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/present-multi-screen-output-setup/church-presentation-multi-screen-output.jpg"
+featured: false
+productCTA: true
+---
+
+## De software instalado a una pestaña del navegador
+
+Por años, la presentación multi-pantalla "de verdad" significaba software de escritorio instalado: una máquina, una licencia, una configuración de pantalla cuidadosamente guardada que nadie se atrevía a tocar un domingo por la mañana. Los navegadores modernos cambiaron eso calladamente. Un navegador Chromium ahora puede enumerar cada monitor conectado a una computadora, abrir una ventana de pantalla completa sin bordes en cualquiera de ellos, y mantener esas ventanas en perfecta sincronía —lo que significa que un feed de proyector, una pantalla de escenario, y una pantalla del lobby pueden todos salir de una sola pestaña del navegador.
+
+Este artículo recorre cómo funciona eso en WorshipMetrics Present: la tecnología del navegador por debajo, cómo se configuran y guardan las salidas, qué resoluciones están disponibles, y cómo construir una pantalla de escenario que tus músicos realmente te agradecerán.
+
+## Cómo un navegador maneja más de una pantalla
+
+La pieza clave de tecnología es la **Window Management API**, una capacidad integrada en los navegadores basados en Chromium como Google Chrome y Microsoft Edge. Cuando Present la pide (vía una llamada que la especificación nombra `getScreenDetails`), el navegador solicita tu permiso, luego reporta cada pantalla conectada a la máquina —su posición, tamaño, y densidad de píxeles.
+
+Una vez que Present conoce el layout de monitores, puede abrir una ventana en cualquier pantalla específica y ponerla en pantalla completa sin bordes. Sin barra de título, sin chrome del navegador, sin barra de tareas —solo píxeles, borde a borde, exactamente como una aplicación de presentación nativa. Tu operador mantiene la interfaz de control en el monitor principal mientras el proyector y las pantallas de escenario cada uno recibe su propia ventana de salida dedicada.
+
+Tras bambalinas, esas ventanas se quedan al unísono usando un canal de mensajería del navegador (BroadcastChannel), así que en el momento en que el operador avanza una diapositiva, cada ventana de salida se repinta junta. No hay sondeo, no hay retraso por pantalla, y nada que instalar.
+
+Dos notas prácticas para un setup de principiante:
+
+- **Usa un navegador Chromium.** La Window Management API es una capacidad de Chromium, así que Chrome o Edge se requiere para la salida multi-monitor. Vale la pena escribir esto en la documentación de tu cabina para que un voluntario servicial no resuelva un problema de "característica faltante" en un navegador diferente.
+- **Otorga el permiso una vez.** La primera vez que colocas una salida, el navegador pide permiso de gestión de ventanas. Apruébalo en la máquina de la cabina y persiste, así que los domingos por la mañana no empiezan con un aviso de permiso.
+
+Si de todas formas estás documentando el setup de tu cabina para voluntarios, nuestra guía de [entrenar equipos de AV voluntarios](/es/kb/articles/training-volunteer-av-teams/) tiene un marco para convertir detalles como este en una lista de una página.
+
+## Las salidas se guardan, no se improvisan
+
+Present mantiene una **lista persistida de salidas**. Esa distinción importa más de lo que suena: configuras cada salida una vez —en cuál pantalla física vive, qué muestra, a qué resolución renderiza— y la configuración se guarda. El próximo domingo, el operador reabre las salidas y todo aterriza donde pertenece.
+
+Cada salida en la lista carga unas configuraciones:
+
+- **Un rol.** ¿Es esta una salida de programa (lo que la congregación ve) o una salida de escenario (lo que la plataforma ve)? Present soporta **múltiples salidas de programa y múltiples de escenario al mismo tiempo**, así que un proyector principal, una pantalla de confirmación de pared lateral, y dos monitores de escenario pueden correr todos juntos, cada uno con su propia resolución.
+- **Un Look.** Un Look controla cuáles capas pinta la salida. Present compone cada pantalla desde una pila de capas —medios al fondo, luego diapositivas, luego props, luego anuncios. Una salida de programa típicamente las pinta todas; otra salida podría pintar solo la capa de medios para una pared limpia de fondo de movimiento, o saltarse los anuncios en una pantalla donde serían una distracción.
+- **Un formato.** La resolución y el comportamiento de escalado para esa salida específica (más sobre esto abajo).
+- **Un dispositivo de audio.** Cada salida puede rutear su audio a un dispositivo de reproducción específico. Hay un default de toda la organización, y cualquier salida individual puede anularlo —así que el audio de un video puede alimentar la entrada de la consola en la cabina mientras la pantalla del lobby se queda en silencio. Por debajo esto usa el ruteo de audio por elemento del navegador (`setSinkId`), que es por lo que funciona por salida en lugar de por computadora.
+- **Un layout de escenario opcional.** Las salidas de escenario cada una pueden cargar su propio layout, así que la pantalla del baterista y la pantalla del líder de alabanza no tienen que verse iguales.
+
+## Resoluciones de 720p a 4K —y de lado
+
+Cada salida renderiza a una resolución que eliges, independiente de las otras salidas. Las opciones integradas cubren las pantallas que la mayoría de las iglesias realmente tienen:
+
+| Preset | Uso típico |
+| --- | --- |
+| 1920×1080 (default) | La mayoría de los proyectores, TVs, y monitores de confianza |
+| 1280×720 | Proyectores más viejos y tiradas de cable largas de bajo ancho de banda |
+| 3840×2160 (4K) | Paredes LED y pantallas de gran formato más nuevas |
+| 1920×1200 | Proyectores instalados 16:10 |
+| 1024×768 | Proyectores legacy 4:3 aún sirviendo fielmente |
+| 1080×1920 (retrato) | Señalización vertical del lobby y pantallas de puerta |
+
+Si ninguna de esas encaja —una pared LED inusual, una entrada de procesador de video recortada— puedes ingresar una **resolución personalizada**, y hay una opción **"Match display"** que simplemente renderiza a lo que sea que la pantalla conectada reporte.
+
+Cada salida también tiene un **modo de ajuste de pantalla**: *fit* (letterbox, nada recortado), *fill* (cubrir la pantalla, bordes recortados), o *stretch* (distorsionar para llenar exactamente). Para un proyector que coincide con tu resolución de renderizado estos son indistinguibles; se ganan el sustento cuando un render 16:9 se encuentra con un proyector 4:3 o una pared LED de forma extraña.
+
+Una regla de dedo amigable para principiantes: renderiza a la resolución nativa de la pantalla siempre que la sepas, y usa *fit* hasta que tengas una razón para no hacerlo. El texto nítido en una diapositiva de letra es en su mayoría cuestión de igualar resoluciones.
+
+## La pantalla de escenario: más que letras espejadas
+
+Un monitor de confianza que solo espeja el proyector es mejor que nada, pero hace que la banda lea lo que la congregación lee. Present trata la pantalla de escenario como su propia composición, construida de **fuentes vinculables** —campos en vivo que colocas en un layout de la misma forma que colocas cajas de texto en una diapositiva. El mismo editor que construye tus diapositivas de letras construye tus layouts de escenario, así que no hay una segunda herramienta que aprender.
+
+Las fuentes que puedes vincular incluyen:
+
+- **Texto de la diapositiva actual** y **texto de la siguiente diapositiva** —el par de confianza clásico
+- **Notas de la diapositiva actual y siguiente** —señales de operador o vocales que nunca tocan el proyector
+- **Etiqueta de sección** y **siguiente sección** —"Coro" ahora, "Puente" viniendo
+- **Título de la canción**, **tonalidad de la canción**, y **conteo de diapositivas**
+- **Mensaje de escenario** —una línea que el operador puede empujar a la plataforma ("2 minutos," "repetir coro")
+- **Chart de acordes, transpuesto** —el chart de acordes completo para la canción actual, renderizado en la tonalidad en que la estás tocando
+- **Relojes y temporizadores** —cuentas regresivas del servicio, relojes de 12/24 horas
+- **Espejo de programa** —una miniatura en vivo de lo que la congregación está viendo
+
+El chart de acordes transpuesto merece un resalte. Si tu equipo importa charts de ChordPro o trae arreglos de tu plan de servicio, la pantalla de escenario puede mostrarle al guitarrista el chart real —ya transpuesto a la tonalidad de la canción— mientras la pantalla de los vocalistas muestra las letras y las señales de siguiente sección. Eso son dos salidas de escenario diferentes, dos layouts diferentes, un operador.
+
+Los layouts de escenario también **siguen al operador entre máquinas**. Construye el layout de la tarima de batería en casa el jueves, inicia sesión en la cabina el domingo, y ahí está —porque Present está basado en la nube, la configuración no está atrapada en una computadora.
+
+Si tu equipo viene de un paquete de presentación instalado, mucho de esto se sentirá familiar; nuestra [guía de configuración avanzada de ProPresenter 7](/es/kb/articles/propresenter-7-advanced-setup/) cubre los conceptos equivalentes ahí, y Present importa archivos de ProPresenter directamente si estás corriendo ambos.
+
+## Más allá de los monitores en tu escritorio
+
+Las salidas de monitor físico cubren las propias pantallas de la máquina de la cabina, pero dos rutas más extienden Present a lo largo del edificio:
+
+- **La salida NDI** convierte una salida de Present en una fuente NDI en tu red, disponible para vMix, OBS Studio, o cualquier switcher consciente de NDI. Esta ruta corre a través del compañero de escritorio Tech Manager (los navegadores no pueden hablar NDI nativamente) e incluye un canal alfa verdadero —así que las letras pueden hacer key sobre las cámaras limpiamente, sin chroma keying y sin fleco. Nuestra [guía de producción NDI de iglesia](/es/kb/articles/ndi-church-production/) cubre dónde encaja NDI en un sistema de iglesia.
+- **Network Display** publica una salida sobre WebRTC a pequeños puntos finales receptores (dispositivos clase Raspberry Pi) que Present auto-descubre en la red —una forma ordenada de alimentar una TV de sala de llanto o una pantalla de overflow sin correr cable de video. Como cualquier video en red, se beneficia de un switch sano y VLANs sensatas; ve [redes de iglesia para AV y streaming](/es/kb/articles/church-network-av-streaming/) para el trabajo de base.
+
+Para un primer domingo, sin embargo, nada de eso se requiere: una computadora de cabina, un navegador Chromium, y cuantos monitores tu tarjeta gráfica maneje es un sistema multi-pantalla completo.
+
+## Cómo maneja esto WorshipMetrics
+
+La salida multi-pantalla es una capacidad central de [WorshipMetrics Present](/present/), la herramienta de presentación basada en navegador en la plataforma WorshipMetrics. Como corre en la nube, tus salidas, Looks, layouts de escenario, y arreglos de canciones viajan con tu equipo en lugar de vivir en una máquina —y como renderiza programa y escenario desde el mismo motor que el editor, lo que construyes es exactamente lo que cada pantalla muestra. Cuando estés listo para alcanzar más allá de la sala, el compañero [Tech Manager](/tech-manager/) agrega salida NDI con alfa limpio para tu switcher de video, y la misma plataforma lleva tu servicio a [live streaming](/live-streaming/). Empieza con un proyector; el resto de las pantallas están a un panel de configuración de distancia.
