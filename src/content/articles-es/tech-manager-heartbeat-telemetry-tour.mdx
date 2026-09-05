@@ -1,0 +1,91 @@
+---
+title: "Qué Envía Realmente Tech Manager: Un Recorrido del Latido de la Cabina"
+description: "Un recorrido transparente, campo por campo, de los payloads de telemetría de Tech Manager —el latido ligero de 15 segundos, la instantánea completa de 60 segundos, qué se queda local, y por qué la conexión es solo saliente."
+category: "device-management"
+tags: ["telemetry", "Tech Manager", "heartbeat", "monitoring"]
+difficulty: "advanced"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/tech-manager-heartbeat-telemetry-tour/tech-manager-heartbeat-telemetry-dashboard.jpg"
+featured: false
+productCTA: true
+---
+
+## Por qué te estamos mostrando el payload
+
+Cualquier software que se sienta en tu cabina y llama a casa merece una pregunta franca de tu equipo técnico: *¿qué exactamente estás enviando?* Es una pregunta justa. Las computadoras de AV de iglesia viven cerca de cosas sensibles —grabaciones de sermones, medios de la congregación, la red sobre la que todo lo demás corre— y "confía en nosotros, es solo telemetría" no es una respuesta que un director técnico cuidadoso deba aceptar de nadie.
+
+Así que este artículo es la respuesta completa. Es un recorrido campo por campo de lo que la app de escritorio Tech Manager transmite desde tu cabina a la nube, en qué horario, sobre qué tipo de conexión, y —tan importante— qué nunca sale de la sala. Si alguna vez has querido explicarle a un miembro de la junta o a un voluntario consciente de la seguridad exactamente qué está haciendo esta cosa en la PC de producción, esta es la página para enviarles.
+
+La versión corta: Tech Manager envía **mediciones e inventario, nunca medios**. Todo en los payloads de abajo es un número, un nombre, o un estado. Sin cuadros de video, sin contenido de audio, sin capturas de pantalla, sin pulsaciones de teclas —ninguno de esos existe en ningún lado del esquema.
+
+## Dos latidos, dos trabajos
+
+Tech Manager envía telemetría en dos cadencias en capas, cada una dimensionada para su trabajo:
+
+| Latido | Intervalo | Contenidos | Propósito |
+|---|---|---|---|
+| Latido ligero | Cada **15 segundos** | Carga de CPU, RAM, temperatura de CPU, uptime | Mantiene honesta la insignia de en línea, fresca al segundo |
+| Latido completo | Cada **60 segundos** | Instantánea completa de hardware + resultados de sondeo de dispositivos de AV + telemetría de stream | La imagen profunda detrás de los dashboards de Pulse |
+
+El latido ligero viaja sobre un WebSocket persistente que la cabina mantiene abierto a la nube, con un respaldo HTTPS (a una cadencia más gentil de ~45 segundos) si algo en tu red bloquea el socket. Es deliberadamente diminuto —cuatro signos vitales— porque su único trabajo es responder "¿está esta máquina viva y respirando?" El umbral compartido de en línea es 90 segundos, lo que significa que una máquina se voltea a *offline* en la vista de flota después de exactamente tres latidos ligeros perdidos. El servidor y el dashboard leen la misma constante, así que nunca pueden estar en desacuerdo sobre quién está arriba.
+
+El latido completo es donde viaja la sustancia. Una vez por minuto, la cabina empaqueta todo lo de abajo y lo envía. Lo que le pasa a esos datos del otro lado —los umbrales, las alertas, las notificaciones al teléfono— se cubre en la [referencia de umbrales de alerta de Pulse](/es/kb/articles/pulse-alert-thresholds-reference/); este artículo se queda en el lado del envío.
+
+## La instantánea de hardware, campo por campo
+
+El latido de 60 segundos carga una instantánea completa de la máquina. Aquí está todo en ella:
+
+**Procesador.** Carga general de CPU, carga por núcleo, velocidades de reloj actuales, temperatura de CPU, y la cadena de marca del procesador. La temperatura importa más de lo que la mayoría de los equipos esperan —una PC de cabina en un gabinete sellado anuncia su ventilador fallando semanas por adelantado a través de este único número.
+
+**Memoria.** RAM total y usada.
+
+**Almacenamiento.** Cada disco individualmente, con el modelo de la unidad y si es NVMe o SATA SSD, más el espacio libre por volumen. Esto es lo que impulsa las advertencias tempranas antes de que una unidad de grabación se llene a media misa.
+
+**GPU.** Modelo, tamaño de VRAM, y la versión y fecha del driver instalado. (Nota lo que *no* está aquí: Tech Manager no reporta porcentajes de utilización de GPU —rastrea qué hardware tienes y si el driver está al día, que es lo que realmente importa para la resolución de problemas.)
+
+**Pantallas.** Cada pantalla conectada con resolución, tasa de refresco, estado HDR, profundidad de bits, espacio de color, rotación, escala DPI, y tipo de conexión (HDMI o DisplayPort). Si alguien mueve un feed de proyector de 60 Hz a 30 Hz el miércoles, así es como te enteras antes del domingo.
+
+**Puntos finales de audio.** Cada dispositivo de entrada y salida que el OS ve, con nivel de volumen en vivo, estado de mute, y tasa de muestreo. Esto es lo que habilita la advertencia previa al servicio de "tu salida principal está muteada." La cabina también enumera los drivers ASIO instalados desde el registro de Windows —que es cómo un Dante Virtual Soundcard aparece aunque sea invisible para la enumeración de puntos finales normal— y descubre el hardware Dante físico en la red vía mDNS.
+
+**Red.** Todos los adaptadores de red, incluyendo las NICs desconectadas con sus direcciones MAC (útil al documentar cuál puerto va a dónde), y para WiFi: el SSID, la fuerza de señal en dBm, y la banda. Si una máquina de cabina que debería estar en Ethernet cableado calladamente falla hacia el WiFi de invitados, el latido la delata —y nuestra guía de [diseño de red de iglesia para AV](/es/kb/articles/church-network-av-streaming/) cubre por qué esa distinción importa tanto.
+
+**Sistema.** Versión y build del OS, más uptime.
+
+## Inventario de USB y software
+
+Dos capas de inventario viajan junto con la telemetría, y ambas están construidas para ser *estables* en lugar de parlanchinas.
+
+**Los dispositivos USB** no se sondean con un temporizador —Tech Manager se suscribe a los eventos de creación y borrado de dispositivos Plug-and-Play de Windows e identifica cada dispositivo por su ID de dispositivo PnP estable. Esa elección de diseño importa: el monitoreo de USB basado en sondeo es notorio por los "aleteos fantasma," donde un dispositivo parece desconectarse y reconectarse porque un sondeo lo atrapó a mitad de enumeración. El rastreo basado en eventos con IDs estables significa que cuando tu línea de tiempo dice que el receptor del clicker de presentación se desconectó a las 9:47, realmente lo hizo. Cada conectar y desconectar aterriza en el log de eventos de la máquina con una marca de tiempo.
+
+**El inventario de software** se recolecta cada hora del registro de desinstalación de Windows —la misma lista que verías en Configuración, capturada programáticamente. El inventario de drivers se recolecta de la misma forma (solo Windows), y un trabajo diario del lado de la nube revisa el driver más reciente publicado de NVIDIA para que la vista de flota pueda mostrar "actualización disponible" sin que visites el sitio de un proveedor. La recompensa práctica: cuando un voluntario instala algo en la PC de cabina, o un encoder se actualiza silenciosamente a sí mismo la semana antes de que empiece un problema, la instalación aparece en la línea de tiempo justo al lado de los síntomas. Convierte "¿qué cambió?" de un interrogatorio en una consulta.
+
+## Telemetría de stream y de dispositivos de AV
+
+Cuando un stream está corriendo, el latido carga los signos vitales del encoder: bitrate contra objetivo (kbps), porcentaje de frames perdidos, porcentaje de carga del encoder, frames por segundo, la escena actual, la resolución de salida, el destino, y los intentos de reconexión. Junto a esos viajan las mediciones de red —rendimiento de subida y bajada, latencia, jitter, y porcentaje de pérdida de paquetes— más las banderas de silencio de audio y clipping. Estos son los insumos crudos detrás del número compuesto explicado en [leer tu puntaje de salud del stream](/es/kb/articles/reading-your-stream-health-score/), y son lo que permite que una alerta de caída salga mientras aún puedes hacer algo al respecto.
+
+El equipo de AV monitoreado —cámaras, consolas, switchers, cualquier cosa que hayas marcado para vigilar— se sondea en su propio ritmo: barridos de salud cada 20 a 60 segundos. Aquí la meta de diseño es la eficiencia sin la obsolescencia. Cada resultado de barrido se hashea en sus campos salientes, y los resultados solo se transmiten cuando algo realmente cambió, con un keepalive forzado cada 5 minutos para que el silencio nunca sea ambiguo. Del lado de la nube, un observador que se queda callado por 10 minutos se degrada a un honesto estado "rancio" en lugar de un congelado "en línea." Tu red nunca carga tráfico redundante, y el dashboard nunca te muestra un fósil.
+
+## Qué se queda local
+
+Tan importante como lo que se envía es lo que no. Varias de las funciones más hambrientas de ancho de banda de Tech Manager son deliberadamente solo-locales:
+
+- **Los medios nunca salen a través de la telemetría.** El esquema del latido contiene mediciones, nombres, y estados —no hay campo en ningún lado de él para cuadros de video, audio de programa, o grabaciones.
+- **La medición de audio se queda en la sala.** Los datos de medidor de alta tasa que manejan la vista del mezclador local (aproximadamente 30 actualizaciones por segundo desde el switcher) nunca cruzan el internet; las vistas remotas reciben instantáneas pequeñas a una tasa mucho menor en su lugar.
+- **El remoto de voluntario corre en tu LAN.** Cuando un voluntario maneja el rundown del servicio desde un teléfono, ese tráfico va de teléfono-a-cabina sobre tu red local con un token rotativo por sesión —sin ida y vuelta a la nube, que también es por lo que sigue funcionando si tu internet tiene un hipo a media misa.
+- **El procesamiento de clips por IA puede correr enteramente en la máquina de la cabina.** La transcripción y el renderizado locales significan que los medios de sermón pueden procesarse sin subir el video de origen para nada.
+
+Y del lado de la nube, la retención está acotada, no es indefinida: las observaciones de telemetría crudas y las métricas de dispositivos de AV se guardan 30 días, los eventos de hardware y salud de dispositivos 90 días, y el historial de alertas 90 días.
+
+## El modelo de conexión: solo saliente
+
+La última pieza del panorama de confianza es *cómo* viaja todo esto.
+
+Tech Manager hace **conexiones solo salientes** —un WebSocket encriptado persistente (WSS) a la nube, mantenido vivo con un ping cada 25 segundos, más un pull de provisión cada 5 minutos. Nunca abres un puerto entrante, nunca configuras reenvío de puertos, nunca tocas NAT. Desde el punto de vista de tu firewall, la PC de cabina se comporta como un navegador web.
+
+El control remoto funciona sobre ese mismo socket saliente, con varias restricciones deliberadas. Una máquina se vincula a exactamente una organización al momento del emparejamiento, usando un código de una sola vez emitido por un admin que expira después de 30 minutos. Cada comando desde la web viaja a través de rutas autenticadas y verificadas por organización, y la cabina solo honra las acciones en una lista de permitidos explícita —no hay un canal general de "ejecutar cualquier cosa." Los comandos cargan un timeout de correlación de 30 segundos, y si la cabina está offline, la solicitud falla de inmediato y honestamente en lugar de encolarse silenciosamente. Cada acción remota aterriza en la misma línea de tiempo por máquina que los eventos de hardware, así que el rastro de auditoría es completo —la misma filosofía de visibilidad detrás de [cómo la auto-reparación de Tech Manager muestra su trabajo](/es/kb/articles/tech-manager-self-healing-explained/).
+
+Ese es el payload completo, de extremo a extremo. Sin campos misteriosos, sin medios, sin puertos escuchando. Si tu equipo alguna vez quiere verificar cualquier parte de él, las páginas de telemetría por máquina te muestran exactamente lo que tu propia cabina reportó, latido por latido.
+
+## Cómo maneja esto WorshipMetrics
+
+Todo en este recorrido es el trabajo del día a día de [Tech Manager](/tech-manager/), la aplicación de cabina de WorshipMetrics para Windows. Se sienta en la bandeja del sistema con una insignia de punto de salud, envía sus latidos ligeros de 15 segundos y sus instantáneas de 60 segundos automáticamente, y no necesita cambios de firewall para hacerlo. El extremo receptor es el [monitoreo de AV con Pulse](/av-monitoring/), donde esos payloads se vuelven la parrilla de máquinas en vivo, el feed de alertas, las líneas de tiempo por máquina, y la vista de salud del stream que todo tu equipo —incluyendo al pastor con un teléfono— puede leer de un vistazo. Si algo en tu telemetría alguna vez se ve mal, esos mismos datos ya están en pantalla cuando alcanzas a un humano a través del [soporte telefónico](/phone-support/), así que la conversación empieza en el diagnóstico, no en la arqueología.

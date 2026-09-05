@@ -1,0 +1,100 @@
+---
+title: "DMX 3-Pines vs. 5-Pines: Cableando la Iluminación de Iglesia Sin Freír Nada"
+description: "Qué significa en realidad la pregunta de 3-pines vs. 5-pines, por qué el género de DMX corre al revés del XLR de audio, cuándo el cable de micrófono te quemará, cómo funciona la terminación, y dónde encajan los nodos Art-Net y sACN en un rig de iglesia."
+category: "device-management"
+tags: ["DMX", "lighting", "XLR", "Art-Net"]
+difficulty: "beginner"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/dmx-3pin-vs-5pin-church-lighting/dmx-church-lighting-av-system-layout.jpg"
+featured: false
+productCTA: true
+---
+
+## La pregunta de conector que todo rig de iluminación de iglesia eventualmente hace
+
+Usualmente empieza inocentemente. La iglesia compra cuatro luminarias LED de wash, y llegan con jacks XLR de 3-pines en la parte trasera. La consola de iluminación tiene una salida de 5-pines. Y el cajón en la cabina técnica está lleno de cables de micrófono que le quedan perfectamente a los jacks de 3-pines.
+
+Así que las preguntas llegan rápido: ¿Necesitamos adaptadores? ¿Podemos solo usar cables de micrófono? ¿Por qué el plug en la consola se ve al revés? ¿Y por qué las luces empezaron a parpadear cuando agregamos la cuarta luminaria?
+
+DMX es un sistema genuinamente simple una vez que entiendes unas cuantas reglas, y la mayoría de los errores son baratos de arreglar —pero un par de ellos *pueden* dañar el equipo, que es por lo que vale la pena diez minutos para hacer esto bien.
+
+## DMX en noventa segundos
+
+DMX512 es el protocolo de control detrás de casi cada luz de escenario hecha en las últimas tres décadas. Una línea DMX —llamada un **universo**— carga hasta 512 canales de control. Un par LED básico puede usar 4–8 canales (rojo, verde, azul, dimmer); una cabeza móvil puede usar 16–30.
+
+Eléctricamente, DMX es EIA-485 (a menudo llamado RS-485): una señal de datos diferencial corriendo sobre un par trenzado blindado. Los datos fluyen en **una dirección solamente**, desde la consola hacia afuera, y los dispositivos se conectan en una **cadena** (daisy chain): salida de la consola a la entrada DMX IN de la primera luminaria, el DMX THRU de esa luminaria a la entrada IN de la siguiente luminaria, y así por la línea. La última luminaria en la cadena recibe un terminador (más sobre eso abajo).
+
+Sin hubs, sin cables en Y, sin cableado en estrella —una línea, una dirección, una cadena.
+
+## 3-pines vs. 5-pines: qué dice el estándar, y qué venden los fabricantes
+
+El estándar DMX512 especifica un conector **XLR de 5-pines**:
+
+- **Pin 1** —común de señal (blindaje)
+- **Pin 2** —Data − (data menos)
+- **Pin 3** —Data + (data más)
+- **Pines 4 y 5** —reservados para un segundo enlace de datos opcional que casi ninguna luminaria implementó jamás
+
+Así que en la práctica, un cable DMX de 5-pines carga los mismos tres conductores activos que un cable de 3-pines, más dos pines que usualmente no conectan a nada. Los fabricantes de luminarias económicas y de nivel de entrada notaron esto hace décadas y empezaron a vender jacks XLR de 3-pines en su lugar —los conectores son más baratos, y los cables de 3-pines están en todos lados. Técnicamente se aparta del estándar, pero eléctricamente es la señal idéntica.
+
+Por eso los rigs de iglesia del mundo real casi siempre están mezclados: una consola de 5-pines, algunas luminarias profesionales de 5-pines, un lote de barras LED de 3-pines. Esto está bien. No es un problema de compatibilidad —es un problema de adaptador, y los adaptadores pasivos lo resuelven por completo.
+
+¿Por qué el estándar eligió 5-pines para empezar? En parte por ese segundo par de datos nunca usado, pero en gran parte por una razón muy práctica: **un conector de 5-pines físicamente no puede conectarse a equipo de audio.** Lo que nos lleva al punto de seguridad más importante de este artículo.
+
+## El género corre al revés del audio —a propósito
+
+Si has cableado micrófonos, conoces la convención de audio: la señal *sale* de un dispositivo en un XLR macho y *entra* en un XLR hembra. La entrada de micrófono de un mezclador es hembra; las salidas principales son macho.
+
+DMX deliberadamente revierte esto:
+
+- El **DMX OUT de una consola es hembra**
+- El **DMX IN de una luminaria es macho**
+- El **DMX THRU de una luminaria es hembra**
+
+Así que en el panel trasero de una luminaria, el jack macho es la entrada —el exacto opuesto de lo que un cerebro de audio espera. Una vez que conoces la convención, en realidad es un regalo: en una cabina oscura puedes decir en cuál dirección fluye una cadena solo con mirar los conectores del panel, sin etiquetas requeridas.
+
+La reversión —junto con el conector de 5-pines— existe para evitar que los datos de iluminación y las señales de audio se conecten cruzados, y el peligro es real: las entradas de micrófono de un mezclador de audio pueden suministrar **48 voltios de phantom power** en los pines 2 y 3, y los transceptores DMX son chips de datos de bajo voltaje que nunca esperan ver 48 V. Conecta un dispositivo DMX a una línea de micrófono con phantom power a través de un patchbay o placa de pared, y puedes genuinamente freír el driver de datos de la luminaria. Esa es la parte de "sin freír nada" del título, y el mejor argumento único para mantener las líneas de iluminación y audio visual y físicamente distintas.
+
+## Por qué el cable de micrófono y el cable DMX no son lo mismo
+
+Aquí está la trampa: un jack DMX de 3-pines acepta un cable de micrófono perfectamente, y para una luminaria en una tirada de diez pies, usualmente incluso funcionará. Así que las iglesias concluyen que el cable de micrófono está bien —hasta que el rig crece.
+
+La diferencia es la **impedancia característica**. El cable DMX está construido como cable de datos de baja capacitancia de 110–120 Ω, emparejado a la señal EIA-485. El cable de micrófono está diseñado para audio analógico y típicamente cae en algún lugar alrededor de 40–70 Ω con mucha mayor capacitancia. A la tasa de datos de DMX, ese desajuste causa reflexiones de señal —partes de la forma de onda rebotan de vuelta por la línea y chocan con los datos detrás de ellas.
+
+Los síntomas son enloquecedores porque son intermitentes: luminarias que parpadean, hacen strobe aleatoriamente, saltan a lleno, o ignoran la consola —usualmente solo después de que la cadena se alarga, se agrega una luminaria, o alguien golpea un cable. La tirada que funcionó en el demo falla el domingo. Si tus luces se están comportando como si estuvieran embrujadas y la cadena incluye cable de micrófono, muy probablemente encontraste el fantasma.
+
+El arreglo es barato y aburrido: compra cable clasificado para DMX real para las tiradas de iluminación, y etiquétalo para que nunca se vaya al cajón de audio. (Un esquema de etiquetado consistente vale su propia lectura —ve [nuestra guía de etiquetado de cables](/es/kb/articles/cable-labeling-system-that-survives/).) Los cables de micrófono y los cables DMX deberían vivir en cajones diferentes, punto final —no porque el cable de audio sea malo en su propio trabajo, sino porque los dos se ven lo suficientemente similares como para que "casualmente intercambiable" se vuelva "parpadeo misterioso en el peor momento."
+
+## Adaptadores, cables cruzados, y la trampa del intercambio de pines
+
+Como los pines 4 y 5 casi siempre están sin usar, convertir entre 3-pines y 5-pines es trivial. Un **adaptador pasivo** o cable adaptador conecta el pin 1 al pin 1, el pin 2 al pin 2, el pin 3 al pin 3, y deja 4 y 5 sin conectar. Sin electrónica, sin energía, nada que configurar. Mantén unos cuantos de cada dirección (3-pines macho a 5-pines hembra, y el reverso) en el kit de iluminación permanentemente.
+
+Una arruga histórica: un puñado de líneas de luminarias más viejas venían con **polaridad de datos invertida** —los pines 2 y 3 intercambiados relativo al estándar. El equipo así ignora una cadena correctamente cableada hasta que insertas un **cable cruzado pasivo** que intercambia los pines 2 y 3. Si heredas luminarias vintage que se quedan oscuras en una línea que sabes está buena, la reversión de polaridad vale la pena revisar. Si sí construyes o compras un cable cruzado, etiquétalo en colores gritones —un cruzado sin etiquetar que se cuela al stock de cable normal "romperá" las luminarias estándar de una forma miserable de diagnosticar.
+
+## Terminación: la parte de tres dólares que exorciza los rigs embrujados
+
+Una línea EIA-485 necesita estar **terminada**: un resistor de 120 Ω a través de los pines 2 y 3 en el extremo lejano de la cadena, absorbiendo la señal para que no se refleje de vuelta por la línea. Puedes comprar un plug terminador de DMX por unos dólares, soldar un resistor en una carcasa XLR de repuesto, o accionar el switch de terminación que muchas luminarias incluyen en el panel trasero.
+
+Una cadena sin terminar a menudo funciona —justo hasta que no. Las cadenas cortas son indulgentes; las cadenas más largas producen los mismos síntomas de parpadeo-fantasma que el cable equivocado. Y si tu rig usa RDM (Remote Device Management, que envía datos *de vuelta* por la línea), la terminación limpia importa aún más, porque la línea ahora carga tráfico en ambas direcciones.
+
+Dos reglas de cadena completan el panorama:
+
+- **Nunca dividas una línea DMX con un cable en Y.** EIA-485 no tolera las ramas pasivas. Cuando necesitas dos tiradas —digamos, lado izquierdo y lado derecho del escenario— usa un **splitter DMX** con energía (idealmente aislado ópticamente), que regenera la señal en cada salida y protege la consola de fallas en cualquier pierna.
+- **Mantén las cadenas modestas.** La especificación eléctrica permite hasta 32 cargas de unidad por línea, pero usualmente querrás un splitter bastante antes de eso por cordura de ruteo y aislamiento de fallas.
+
+## Dónde encajan los nodos Art-Net y sACN
+
+Una vez que un rig crece más allá de un par de universos —o la consola vive muy lejos del escenario— las iglesias mueven DMX a la red. **Art-Net** y **sACN (E1.31)** ambos envuelven universos DMX en paquetes IP, lo que significa que viajan sobre Ethernet ordinario: a través de switches, a lo largo de VLANs, sobre el cableado estructurado existente del edificio.
+
+La arquitectura es simple: la consola (o el software de iluminación) envía Art-Net o sACN a la red, y **nodos** —cajas pequeñas montadas cerca de las luminarias— lo convierten de vuelta a puertos DMX físicos. En lugar de una larga cadena frágil serpenteando por el techo, corres cadenas DMX locales cortas desde un nodo en cada posición de escenario. Muchos nodos se alimentan a sí mismos sobre PoE, lo que hace la ubicación aún más fácil ([aquí está cómo funcionan las clases y presupuestos PoE](/es/kb/articles/poe-classes-church-av-guide/)).
+
+Dos notas de red que vale la pena conocer:
+
+- **sACN usa multicast**, así que en switches administrados querrás IGMP snooping (con un querier) configurado, o el tráfico de iluminación puede inundar puertos a los que no pertenece.
+- **Art-Net tradicionalmente hace broadcast**, lo cual es parlanchín; las consolas modernas pueden hacer unicast a nodos específicos. De cualquier forma, el tráfico de iluminación está más feliz en su propia VLAN, junto a —pero lógicamente separado de— tu tráfico Dante y NDI. Nuestras guías de [cuáles señales de AV sobreviven un switch de red](/es/kb/articles/av-signals-that-survive-network-switch/) y [construir una red de iglesia para AV](/es/kb/articles/church-network-av-streaming/) cubren el panorama más grande.
+
+El modelo mental: **Art-Net y sACN son ciudadanos de red; el DMX clásico es una cadena punto-a-punto.** El nodo es el cruce fronterizo entre los dos mundos. Todo del lado de la red sigue las reglas de red; todo río abajo del nodo sigue las reglas de cadena, terminación, y género de arriba.
+
+## Cómo maneja esto WorshipMetrics
+
+Todo este artículo se trata en realidad de una disciplina: saber cuál cable es cuál, y cuáles reglas aplican a él. Eso es exactamente lo que el Signal Map de WorshipMetrics está construido para capturar. La iluminación es una de sus ocho categorías de dispositivos, y su vocabulario de señal ya sabe que Art-Net y sACN son señales de red conmutables mientras una cadena DMX clásica es un enlace punto-a-punto —la distinción de "¿muere en el switch?" está modelada en el mapa mismo. Al dibujar una conexión, los puertos compatibles se iluminan verde, naranja, o rojo, distinguiendo "un adaptador pasivo funciona aquí" de "esto necesita un convertidor con energía," y las auditorías de cableado continuas marcan conflictos de dirección y desajustes de conectores —exactamente los errores que un protocolo de una vía como DMX invita. Cada tirada de iluminación que dibujas recibe un ID de cable estable por señal que fluye a una hoja de patch imprimible y un PDF de diagrama de cableado vectorial, así que el voluntario reconectando el rig el sábado por la noche sabe precisamente cuál XLR es datos y cuál es audio. Aprende más en la [página de documentación del sistema](/system-documentation/).
