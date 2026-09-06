@@ -1,0 +1,116 @@
+---
+title: "Conteo Automático de Asistencia con Cámara: Configuración, Programación, y Ejecuciones Remotas"
+description: "Cómo configurar el conteo de asistencia basado en cámara —eligiendo entre una cámara RTSP y una webcam, construyendo plantillas de asientos para conteos manuales, programando conteos automáticos, y disparando un conteo remotamente desde la web."
+category: "operations"
+tags: ["attendance", "auto-count", "RTSP", "cameras"]
+difficulty: "intermediate"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/camera-auto-count-attendance-setup/camera-auto-count-church-attendance-seats.jpg"
+featured: false
+productCTA: true
+---
+
+## Por qué automatizar el conteo de cabezas
+
+En algún lugar de casi toda iglesia, un ujier está parado al fondo de la sala el domingo por la mañana, contando cabezas en silencio con un clicker. Funciona —las iglesias lo han hecho así por generaciones— pero tiene debilidades conocidas. El conteo sucede en el momento en que el ujier está libre, que rara vez es el mismo momento semana tras semana. Los que llegan tarde se pierden. Las salas de overflow se estiman. Y el número vive en un papelito hasta que alguien se acuerda de teclearlo en una hoja de cálculo.
+
+El conteo automático basado en cámara arregla el problema de consistencia: una cámara mira la sala en un momento definido, la computadora de la cabina cuenta las personas que ve, y el resultado aterriza en el mismo registro de servicio que tus métricas de espectadores en línea —sin necesidad de portapapeles. Esta guía recorre toda la configuración en WorshipMetrics: elegir una fuente de cámara, mantener una opción de conteo manual al lado, programar conteos, y disparar uno remotamente desde la web cuando no estás en el edificio.
+
+Vale la pena decir algo desde el principio: el conteo automático reemplaza el portapapeles, no a las personas que se preocupan por las personas. Tus ujieres todavía notan a la familia nueva en la fila seis —la cámara solo les quita la aritmética de encima.
+
+## Eligiendo una fuente: cámara RTSP o webcam
+
+El contador automático corre en la computadora de la cabina —la misma máquina que corre la app de escritorio Tech Manager— y puede tomar su imagen de cualquiera de dos tipos de fuente.
+
+### Cámaras de red RTSP
+
+RTSP (Real Time Streaming Protocol) es la forma estándar en que las cámaras IP publican video en una red. Casi toda cámara PTZ moderna, cámara de seguridad, y cámara IP dedicada expone una URL RTSP que se ve algo así:
+
+```
+rtsp://192.168.20.51:554/stream1
+```
+
+La ruta exacta varía por fabricante —revisa la documentación de tu cámara o su página de administración web para encontrar la URL del stream. Muchas cámaras publican tanto un stream principal a resolución completa como un substream más ligero; para contar, prefiere el stream principal nítido. Estás analizando un momento en el tiempo, no movimiento, así que la resolución importa mucho más que la tasa de cuadros.
+
+RTSP usualmente es la mejor opción para asistencia porque:
+
+- **Libertad de colocación.** La cámara puede vivir donde la línea de vista sea mejor —típicamente alta al fondo de la sala, angulada hacia abajo para que las cabezas no se oculten unas a otras— sin importar dónde esté la PC de la cabina.
+- **Puede que ya tengas una.** Si tienes una cámara PTZ al fondo de la sala para tu stream, probablemente publica RTSP junto a sus otras salidas. Guarda un preset amplio que encuadre toda el área de asientos y tienes una vista de conteo bajo demanda. Nuestra [guía de configuración de cámaras PTZ](/es/kb/articles/ptz-camera-setup-church/) cubre presets y montaje a profundidad.
+- **Cobertura.** Una cámara montada para este propósito puede ver toda el área de asientos en un solo cuadro, que es el factor individual más importante en la precisión del conteo.
+
+Unas notas de red: dale a la cámara una IP estática o una reservación DHCP para que la URL RTSP no cambie silenciosamente, y asegúrate de que la computadora de la cabina y la cámara realmente puedan alcanzarse —si tu equipo AV vive en su propia VLAN, la cabina necesita una ruta hacia ella. Nuestra guía de [diseño de red de iglesia para AV y streaming](/es/kb/articles/church-network-av-streaming/) cubre el layout de VLANs, y la mayoría de las cámaras IP se alimentan limpiamente por PoE desde el mismo switch que lleva su video.
+
+### Webcams
+
+Una webcam USB conectada directamente a la computadora de la cabina es el camino más simple: sin configuración de red, sin URLs de stream, sin preguntas de VLAN. Es una gran opción cuando:
+
+- La cabina tiene una línea de vista natural sobre el área de asientos (una cabina en un balcón trasero a menudo la tiene).
+- Estás en una sala más pequeña donde un campo de visión modesto cubre todo.
+- Quieres probar el flujo de trabajo antes de montar una cámara dedicada.
+
+La desventaja es la colocación: la cámara va hasta donde alcanza el cable USB, y los lentes de webcam tienden a ser más anchos y más suaves que los de una cámara dedicada. Si la cabina está a nivel de piso detrás de la congregación, una webcam verá las espaldas de las últimas tres filas y poco más —en ese caso, una cámara RTSP montada en alto vale la configuración extra.
+
+### Posicionamiento, sea cual sea la fuente
+
+La precisión del conteo es mayormente un problema de encuadre. Apunta a:
+
+- **Altura y ángulo.** Monta alto y angula hacia abajo 20–40 grados para que cada persona ocupe espacio propio en el cuadro en lugar de esconderse detrás de la fila de adelante.
+- **Toda la sala en un cuadro.** Cada asiento que no puedes ver es un asiento que vas a contar de menos. Si una cámara no puede cubrir un balcón o una sala de overflow, para eso exactamente existe el contador manual de asientos (siguiente sección).
+- **Iluminación consistente.** Las luces de sala a su nivel normal de servicio. Los looks dramáticos de entrada se ven hermosos en el stream y son duros para cualquier sistema de conteo.
+
+## Plantillas de asientos: conteo manual junto a la cámara
+
+WorshipMetrics no te obliga a elegir entre conteo automático y manual —la página de Service Metrics incluye un contador manual con mapa de asientos construido sobre **plantillas de asientos** reutilizables, y vive justo al lado del conteo automático.
+
+Una plantilla de asientos es un mapa guardado de tu sala: secciones, filas, y asientos, trazados una vez y reutilizados cada semana. Los asientos individuales incluso pueden asignarse a miembros específicos. Construye una plantilla para cada recinto que cuentes —auditorio principal, capilla, overflow— y el conteo manual del domingo se convierte en tocar el mapa en lugar de dibujar la sala desde cero.
+
+Las plantillas de asientos se ganan su lugar en tres situaciones:
+
+1. **Validación.** Cuando enciendas el conteo automático por primera vez, corre conteos manuales junto a él por unas semanas. Si la cámara y el mapa de asientos concuerdan dentro de tu margen de comodidad, puedes confiar en la cámara; si divergen, la sección de encuadre de arriba usualmente es el porqué.
+2. **Huecos de cobertura.** Balcones, salas de bebés, lobbies con asientos de overflow —donde la cámara no puede ver, un voluntario con el mapa de asientos lo cubre en un minuto o dos.
+3. **Recintos sin cámara.** Un servicio en la capilla o una reunión fuera del edificio puede usar el mismo flujo de asistencia sin hardware alguno.
+
+Asignar tus mapas de asientos y el ritmo de conteo a un rol específico de voluntario encaja natural con un equipo de servicio —un trabajo más, pequeño y bien definido, que un voluntario nuevo puede apropiarse con confianza.
+
+## Programando los conteos
+
+La propiedad más valiosa de un número de asistencia es la consistencia, y la programación es cómo la obtienes. El contador automático soporta horarios de conteo, así que la cabina captura la sala en un punto definido del servicio todas las semanas sin que nadie tenga que acordarse de hacerlo.
+
+Cuando elijas el momento, piensa en cómo fluyen realmente tus servicios:
+
+- **No demasiado temprano.** Contar a la hora publicada de inicio captura a la mitad puntual de tu congregación. La mayoría de las salas siguen llenándose bien entrada la segunda canción.
+- **No durante el movimiento.** Evita los tiempos de saludo, la comunión, y la despedida —la gente en movimiento es más difícil de contar y no representa una sala asentada.
+- **El mismo momento cada semana.** Sea a los veinte minutos o justo al inicio del mensaje, la elección específica importa menos que nunca cambiarla. Una vara de medir consistente es lo que hace reales las tendencias.
+
+Si corres múltiples servicios, programa un conteo para cada uno. Cada conteo se adjunta a su servicio, así que tu 9:00 y tu 11:00 se mantienen como números distintos en lugar de difuminarse en un solo total dominical.
+
+## Disparando un conteo remotamente desde la web
+
+Los horarios manejan la rutina, pero algunos domingos no son rutina —un inicio retrasado por nieve, un evento especial, o un momento en que simplemente quieres un número fresco. Para esos, puedes disparar un conteo bajo demanda desde la app web de WorshipMetrics, desde donde sea.
+
+Esto es lo que pasa cuando presionas **Run count now** (ejecutar conteo ahora) desde la web: la solicitud viaja por la nube hasta tu computadora de cabina emparejada, la cabina toma un cuadro de su fuente de cámara configurada, corre el conteo localmente, y reporta el resultado de vuelta a tu registro de servicio.
+
+Unos detalles que vale la pena conocer sobre cómo funciona esa ruta remota:
+
+- **Sin cambios de firewall.** La cabina mantiene una conexión segura únicamente de salida hacia la nube, así que el disparo remoto funciona sin abrir puertos de entrada ni tocar la configuración NAT de tu router. Si tu cabina puede navegar la web, los conteos remotos pueden alcanzarla.
+- **Autenticado y acotado.** Las acciones remotas pasan por rutas autenticadas y verificadas por organización, y solo una lista específica de acciones permitidas puede retransmitirse a una cabina. Una cabina queda vinculada a exactamente una organización cuando un admin la empareja con un código de un solo uso, así que una solicitud de conteo solo puede venir de tu propio equipo.
+- **Falla honesta.** La app web espera hasta 30 segundos a que la cabina confirme la acción. Si la cabina está fuera de línea, te lo dice de inmediato en lugar de que la solicitud se desvanezca en una cola. La insignia de en línea de la cabina sigue la misma lógica de heartbeat que el resto de la plataforma —una máquina se marca fuera de línea tras 90 segundos de silencio— así que el estado que ves antes de hacer clic es confiable. Nuestra [referencia de umbrales de alertas](/es/kb/articles/pulse-alert-thresholds-reference/) documenta ese timing completo.
+
+El resultado práctico: un director técnico en casa con un hijo enfermo todavía puede asegurarse de que el servicio especial de Nochebuena quede contado, desde un teléfono.
+
+## Cómo lo de la sala y lo en línea se unen en un solo registro
+
+Un número de asistencia que ignora a tu congregación en línea cuenta una historia incompleta, y uno que amontona todo junto esconde los detalles. WorshipMetrics mantiene ambos, lado a lado, en un solo lugar.
+
+La página de Service Metrics en Pulse empareja el plan de servicio de cada semana con su recap. Para cada servicio obtienes:
+
+- **Asistencia presencial** —del conteo automático por cámara, del contador manual con mapa de asientos, o de ambos.
+- **Métricas de espectadores en línea** —cuántas personas se unieron a tu transmisión.
+- **Comentarios de la transmisión** —el engagement que llegó durante el stream.
+- **Historial de SPL de la cabina** —qué tan fuerte estuvo realmente la sala, si estás capturando niveles de presión sonora.
+
+Como todo se ancla al plan de servicio, la "asistencia" se convierte en una imagen completa de quién se reunió —en la sala y en línea— para ese servicio específico. Semana tras semana, eso responde preguntas reales: ¿está creciendo el de las 9:00? ¿Subió la audiencia en línea cuando la asistencia presencial bajó en julio? Si tus planes se originan en Planning Center, fluyen automáticamente —mira [conectar Planning Center con WorshipMetrics](/es/kb/articles/connect-planning-center-worshipmetrics/).
+
+## Cómo maneja esto WorshipMetrics
+
+El conteo de asistencia vive dentro de Pulse, la capa de monitoreo de WorshipMetrics, y corre sobre la misma app de cabina Tech Manager que ya vigila tus máquinas y streams. El contador automático por cámara acepta una cámara RTSP o una webcam, corre por horario o bajo demanda, y puede dispararse desde la web a través de tu cabina emparejada —mientras las plantillas de asientos reutilizables mantienen el conteo manual a un toque de distancia para las salas que ninguna cámara ve. Cada conteo aterriza en el recap de Service Metrics junto a tus números de espectadores en línea, así que el registro de cada semana refleja a toda tu congregación. Aprende más sobre el [monitoreo Pulse](/av-monitoring/) y la [app de cabina Tech Manager](/tech-manager/).

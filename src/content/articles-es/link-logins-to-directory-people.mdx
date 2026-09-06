@@ -1,0 +1,100 @@
+---
+title: "Vinculando Logins con Personas del Directorio: Invitaciones, Coincidencia por Correo, y Corrección de Errores"
+description: "Cómo WorshipMetrics conecta cada cuenta de inicio de sesión con el perfil correcto del directorio —invitaciones deterministas, la regla de coincidencia de correo sin ambigüedad, correos compartidos del hogar, y cómo corregir un vínculo equivocado."
+category: "operations"
+tags: ["accounts", "directory", "auth", "administration"]
+difficulty: "intermediate"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/link-logins-to-directory-people/link-logins-church-directory-people.jpg"
+featured: false
+productCTA: true
+---
+
+## Dos registros, una persona: por qué importa la distinción
+
+Todo sistema de gestión de iglesia tiene que responder una pregunta engañosamente simple: cuando alguien inicia sesión, *¿cuál persona del directorio es?*
+
+Esos son dos registros diferentes. Tu **directorio** contiene a todos los que le importan a tu iglesia —miembros, asistentes regulares, invitados por primera vez, niños, la santa que no sale de casa y jamás ha tocado una computadora. Un **login** es algo mucho más raro: una cuenta autenticada para alguien que realmente inicia sesión para trabajar o revisar su propio horario. En una iglesia típica, el directorio puede tener 400 personas mientras que solo 25 de ellas inician sesión alguna vez.
+
+El vínculo entre los dos es lo que hace posible el autoservicio. Cuando un voluntario abre Mi Horario y ve *sus* próximas asignaciones —no las de su cónyuge, no las de su adolescente— eso solo funciona porque su login está atado a exactamente una persona del directorio. Haz el vínculo bien y todo lo que sigue (asignaciones de servicio, identidad en Team Chat, fechas de bloqueo) simplemente funciona. Hazlo mal y un baterista está declinando cortésmente el horario de la sala cuna.
+
+WorshipMetrics resuelve este vínculo exactamente de dos maneras, en orden de preferencia:
+
+1. **Metadatos de invitación** —determinista, sin adivinar.
+2. **Coincidencia de correo sin ambigüedad** —un respaldo estricto que vincula solo cuando existe exactamente una respuesta posible.
+
+No hay un tercer camino. Sin coincidencia difusa de nombres, sin heurísticas de "probablemente es esta persona". Si ninguna de las dos reglas produce una respuesta segura, el login queda sin vincular hasta que un administrador lo conecta a mano —lo cual, como veremos con los correos compartidos del hogar, es una virtud y no una carencia.
+
+## El camino determinista: vinculación por invitación
+
+Las organizaciones de WorshipMetrics son solo por invitación. No hay una página pública de auto-registro donde un extraño (o un miembro de la iglesia demasiado entusiasta) pueda crear una cuenta y pasearse por tus datos. Todo login comienza con la decisión de un administrador.
+
+Este es el ciclo de vida:
+
+1. **Un admin envía la invitación.** Desde la pantalla de gestión del equipo, invitas a un compañero por dirección de correo y eliges su rol —**miembro** (member) o **visor** (viewer) (más sobre esa elección abajo). Críticamente, la invitación se crea *para una persona específica del directorio*. Esa asociación viaja con la invitación misma.
+2. **Sale un correo con tu marca.** El correo de invitación lleva un token criptográficamente aleatorio —32 bytes de aleatoriedad, es decir, inadivinable— válido por **7 días**. Como el token codifica a cuál invitación pertenece, quien lo redima queda vinculado a la persona del directorio que el admin eligió. Sin inferencia, sin lógica de emparejamiento. Esto es lo que "determinista" significa en la práctica: el resultado se decidió al momento del envío.
+3. **Si la entrega del correo falla, todavía tienes un camino.** Las situaciones de correo en las iglesias pueden ser desordenadas —una dirección con un error de dedo, un filtro de spam agresivo en el trabajo de alguien. Si el correo no puede entregarse, WorshipMetrics le entrega al admin el enlace de invitación funcional directamente, para que puedas mandarlo por texto o compartirlo en persona en el ensayo. El enlace es la invitación; el método de entrega no cambia el modelo de seguridad.
+4. **El invitado acepta con una cuenta con sesión iniciada.** Aceptar requiere una cuenta autenticada (WorshipMetrics usa Clerk, un servicio dedicado de autenticación, por debajo). En el momento en que acepta, el vínculo queda escrito: este login ↔ esa persona del directorio, con el rol que el admin asignó.
+
+Una consecuencia importante del determinismo: **las invitaciones nunca deben reenviarse.** Como el vínculo va horneado en el token, quien acepte la invitación se convierte en esa persona en tu sistema. Si Dave le reenvía su invitación a su esposa porque "ella maneja el correo de la familia", ella quedará con sesión iniciada *como Dave* —viendo su horario de servicio, apareciendo como él en Team Chat. Envíale a cada persona su propia invitación; en el nivel gratuito los usuarios son ilimitados, así que nunca hay una razón de costo para compartir.
+
+## El respaldo: la regla de coincidencia de correo sin ambigüedad
+
+A veces un login llega sin una persona adjunta a su invitación —por ejemplo, un admin invitó a alguien a la organización antes de que existiera su perfil en el directorio. En ese caso, WorshipMetrics intenta un único respaldo cuidadoso: busca una persona del directorio cuya dirección de correo coincida con el correo del login.
+
+La regla es estricta, y la palabra que hace el trabajo es **sin ambigüedad**:
+
+- **Exactamente una persona del directorio lleva ese correo** → el login se vincula automáticamente. Esto es seguro porque la coincidencia no puede significar nadie más.
+- **Cero personas llevan ese correo** → sin vínculo. El login funciona, pero todavía no es nadie en el directorio.
+- **Dos o más personas llevan ese correo** → sin vínculo, punto final. El sistema no va a adivinar.
+
+Ese último caso no es una condición rara de borde en la vida de iglesia —es un martes cualquiera. Lo que nos lleva a los hogares.
+
+## Por qué los hogares que comparten un correo necesitan un vínculo de admin
+
+WorshipMetrics agrupa a las personas en hogares, y los hogares comparten información de contacto rutinariamente —una dirección de casa, un teléfono fijo, y muy a menudo una dirección de correo. `lafamiliasanchez@example.com` puede legítimamente aparecer en los perfiles de Tomás y de Karina Sánchez, porque genuinamente así es como los Sánchez hacen el correo.
+
+Ahora Karina acepta una invitación simple a la organización e inicia sesión con esa dirección compartida. La regla de coincidencia de correo encuentra *dos* candidatos. ¿Debería el sistema elegir a Tomás porque su perfil se creó primero? ¿Elegir a Karina porque su nombre se parece más al nombre visible del login? Absolutamente no. Una adivinanza equivocada aquí es peor que ninguna adivinanza: Karina heredaría silenciosamente las asignaciones de servicio de Tomás, sus fechas de bloqueo, su identidad de chat —y ninguno de los dos sabría por qué el horario parece embrujado.
+
+Así que el sistema deliberadamente no hace nada, y un **administrador hace el vínculo a mano**. Miras el login, conoces a tu gente, lo conectas con Karina. Treinta segundos de juicio humano le ganan a cualquier cantidad de confianza algorítmica.
+
+Dos hábitos hacen de los correos de hogar un no-problema con el tiempo:
+
+- **Prefiere las invitaciones sobre la coincidencia de correo.** Una invitación creada para Karina se vincula con Karina sin importar a qué dirección se envió. El determinismo esquiva la ambigüedad por completo.
+- **Usa métodos de contacto etiquetados.** Los perfiles del directorio soportan múltiples correos etiquetados —casa, trabajo, móvil. Mantén la dirección familiar compartida como *casa* en ambos perfiles, y agrega la dirección personal de cada adulto como *móvil* o *trabajo*. Las direcciones personales le dan a las futuras invitaciones y coincidencias de correo un objetivo limpio y sin ambigüedad, y son donde los correos de programación deberían aterrizar de todos modos.
+
+## Eligiendo el rol: visor versus miembro
+
+Toda invitación lleva un rol, y vale la pena decidirlo deliberadamente en lugar de dejar a todos en el mismo default:
+
+- **Miembro** (member) es el rol estándar para la gente que trabaja en el sistema —directores técnicos, líderes de alabanza, admins, voluntarios que gestionan sus propios horarios y participan en Team Chat.
+- **Visor** (viewer) es el rol más ligero para la gente que necesita *ver* en lugar de gestionar —un pastor del equipo que quiere visibilidad de la salud del servicio sin editar nada, un miembro de la junta revisando información.
+
+Como los usuarios son ilimitados en todos los planes incluyendo el gratuito, nunca necesitas economizar cuentas. El patrón correcto es un login por humano, cada uno vinculado a su propia persona del directorio, cada uno con el rol mínimo que sirva a su trabajo real. Los logins compartidos de "equipo de medios" se sienten convenientes como por una semana, y luego ya no puedes saber quién confirmó una asignación o quién dijo qué en el chat.
+
+## Arreglando un vínculo equivocado
+
+Los vínculos equivocados pasan. Los síntomas clásicos:
+
+- Un voluntario abre Mi Horario y ve las asignaciones de alguien más.
+- Los mensajes de chat aparecen bajo el nombre equivocado.
+- Alguien acepta una invitación a servir y se confirma contra el perfil equivocado.
+
+Las causas usuales, más o menos en orden de frecuencia:
+
+1. **Una invitación reenviada.** El token vinculó a quien aceptó con la persona para quien se creó la invitación.
+2. **Un correo en el perfil equivocado.** Una dirección compartida o mal tecleada dejó que la coincidencia de correo aterrizara en la persona equivocada (pero técnicamente sin ambigüedad).
+3. **Perfiles duplicados.** El mismo humano existe dos veces en el directorio, y el login se adjuntó a la copia que no usas.
+
+La corrección es directa porque el vínculo es solo un apuntador —reapuntarlo no destruye los datos de directorio de nadie:
+
+- **Revincular a mano.** Un administrador usa el mismo vínculo manual de admin que resuelve la ambigüedad de los hogares: desconecta el login de la persona equivocada y conéctalo con la correcta. El perfil mal vinculado conserva su historial; el login simplemente deja de hablar por él.
+- **Arreglar el correo de fondo.** Mueve o reetiqueta la dirección que causó el desajuste para que el mismo accidente no pueda repetirse —direcciones personales en los perfiles individuales, la dirección compartida etiquetada como *casa*.
+- **Resolver los duplicados.** La revisión de duplicados de WorshipMetrics marca a las personas que comparten un correo o teléfono como pares de alta confianza. Fusiona los duplicados primero, y luego confirma que el login apunta al perfil sobreviviente. Si tu directorio entró por una hoja de cálculo, la [guía de importación CSV de miembros](/es/kb/articles/church-member-csv-import-guide/) explica cómo la deduplicación por correo, teléfono, y nombre previene estos gemelos desde el origen.
+- **Reinvitar ante la duda.** Los tokens de invitación expiran a los 7 días de todos modos, así que una invitación vieja o mal dirigida muere sola. Enviar una invitación fresca a la dirección personal de la persona correcta es a menudo el borrón y cuenta nueva más rápido.
+
+Una lista rápida de despliegue que previene la mayoría de esto: limpia los correos y fusiona los duplicados *antes* de invitar a nadie; dale a cada adulto un correo personal etiquetado; envía invitaciones individuales con los roles decididos de antemano; y dile a la gente claramente que no las reenvíe. Si estás trayendo registros desde Planning Center, mira [conectar Planning Center con WorshipMetrics](/es/kb/articles/connect-planning-center-worshipmetrics/) para que los perfiles lleguen con los datos de contacto de los que depende la vinculación. Y cuando integres a los humanos detrás de los logins, [entrenar equipos AV de voluntarios](/es/kb/articles/training-volunteer-av-teams/) cubre el lado de los hábitos de la misma moneda.
+
+## Cómo maneja esto WorshipMetrics
+
+WorshipMetrics trata el vínculo login-a-persona como algo que hay que hacer comprobablemente bien en lugar de probablemente bien: invitaciones deterministas con tokens inadivinables de 7 días, un respaldo de coincidencia de correo que solo se dispara cuando existe exactamente una respuesta, y un vínculo manual de admin para cada caso donde un humano debe decidir. Los roles vienen en sabores miembro y visor, los usuarios son ilimitados en todos los planes, y las ediciones se sincronizan en vivo entre web y escritorio en el momento en que un vínculo cambia. Explora el conjunto completo de directorio, hogares, e invitaciones de equipo en la [página de People](/people/).

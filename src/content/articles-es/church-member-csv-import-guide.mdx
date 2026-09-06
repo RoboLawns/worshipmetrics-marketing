@@ -1,0 +1,93 @@
+---
+title: "Importando tu Directorio de Iglesia por CSV: Mapeo, Duplicados, y un Aterrizaje Limpio"
+description: "Una guía paso a paso para importar tu directorio de iglesia desde un archivo CSV —mapeo de campos, estrategias de duplicados, exportaciones de ida y vuelta desde otros sistemas, y limpieza post-importación."
+category: "operations"
+tags: ["CSV import", "people", "directory", "migration"]
+difficulty: "beginner"
+publishedAt: "2026-08-02"
+coverImage: "/images/products/church-member-csv-import-guide/church-member-csv-import-people-directory.jpg"
+featured: false
+productCTA: true
+---
+
+## Por Qué Vale la Pena Hacer la Importación con Cuidado
+
+Mover un directorio de iglesia entre sistemas es uno de esos trabajos que toma veinte minutos cuando sale bien y veinte horas cuando no. La diferencia casi nunca es el software —es si la hoja de cálculo que entra fue preparada, previsualizada, y deduplicada en el camino.
+
+La buena noticia: una importación CSV moderna es mucho más indulgente que los maratones de copiar y pegar que muchas oficinas de iglesia recuerdan. WorshipMetrics incluye un asistente de importación guiado que reconoce los encabezados de columna comunes automáticamente, te muestra una vista previa antes de que un solo registro se escriba, y te da tres opciones explícitas para qué hacer cuando una fila entrante se parece a alguien que ya tienes. Esta guía recorre el viaje completo —desde exportar de tu sistema anterior hasta un directorio ordenado y libre de duplicados al otro lado.
+
+## El Vocabulario de Campos: Qué Puede Llevar un Registro de Persona
+
+El asistente de importación habla un vocabulario de dieciséis campos que se mapean a los mismos campos de perfil que ves al abrir cualquier persona en el directorio. En lugar de memorizar los dieciséis, ayuda pensar en cuatro grupos:
+
+| Grupo | Los campos incluyen |
+|---|---|
+| Identidad | Nombre, apellido, nombre preferido, género |
+| Contacto | Correo, teléfono, dirección postal |
+| Fechas | Cumpleaños (la edad se calcula automáticamente), aniversario, fecha de ingreso |
+| Vida de iglesia | Tipo de miembro, estado de membresía, estado civil, campus |
+
+Unas notas sobre el grupo de vida de iglesia, porque aquí es donde las migraciones tropiezan más seguido:
+
+- **El tipo de miembro** usa los valores integrados Miembro, Invitado, y Asistente —y si tu iglesia usa su propio vocabulario (Socio en Pacto, Asistente Regular, Personal), puedes crear tipos de miembro personalizados ilimitados e importar directo hacia ellos.
+- **El estado de membresía** es simplemente Activo o Inactivo. Si tu sistema anterior usaba una escalera de estados más rica, decide antes de la importación cómo cada estado viejo se mapea a Activo/Inactivo más un tipo de miembro. Escribir ese mapeo como una nota de dos columnas toma cinco minutos y ahorra una tarde.
+- **El campus** importa para las iglesias multi-sitio: la lista de personas, la importación, y la exportación están todas acotadas por campus, así que el directorio de cada campus puede traerse y gestionarse por su cuenta.
+
+No necesitas las dieciséis columnas para importar. Una hoja de cálculo con solo nombre, apellido, y correo es un punto de partida perfectamente válido —siempre puedes enriquecer los perfiles después, y una importación de seguimiento configurada en *actualizar* (más sobre eso abajo) puede agregar campos adicionales en capas.
+
+## Auto-Mapeo de Encabezados: Por Qué tus Encabezados Viejos Usualmente Simplemente Funcionan
+
+Cada sistema de gestión de iglesia nombra sus columnas de exportación un poco diferente. El importador de WorshipMetrics maneja esto con auto-mapeo basado en alias: cada uno de los dieciséis campos reconoce un conjunto de escrituras comunes de encabezado, así que una columna que tu sistema anterior etiquetó ligeramente distinto todavía aterriza en el lugar correcto sin que tengas que reteclear encabezados.
+
+El emparejamiento es deliberadamente conservador. Trabaja sobre palabras completas con coincidencia de límites de palabra, lo que previene el clásico bug de mapeo por aproximación —una columna llamada "Estado Civil" nunca puede confundirse con "Estado de Membresía", aunque los dos encabezados compartan la mayoría de sus letras. Si el asistente no está seguro sobre una columna, no adivina.
+
+Implicación práctica: si una columna de tu hoja de cálculo no se mapea automáticamente, el arreglo más rápido usualmente es renombrar el encabezado en tu hoja al nombre simple del campo (por ejemplo, `Birthday` o `Join Date`) y pasar el archivo de nuevo. Como nada se escribe hasta que confirmas, volver a correr el asistente no te cuesta nada.
+
+## Vista Previa Antes de que Nada se Escriba
+
+Después del mapeo, el asistente muestra un paso de vista previa: qué leyó de tu archivo, y cómo aterrizó cada columna. Trata esta pantalla como tu red de seguridad y léela de verdad.
+
+Tres cosas que revisar en la vista previa:
+
+1. **El aterrizaje de las columnas.** Confirma que cada columna mapeada contiene lo que esperas —números de teléfono en teléfono, fechas en fechas.
+2. **El parseo de fechas.** Las fechas son la fuente más común de problemas silenciosos de CSV en cualquier sistema, porque `03/04/1985` significa cosas distintas en formatos distintos. Los formatos sin ambigüedad como `1985-04-03` (año-mes-día) se parsean con más confiabilidad; la vista previa te muestra exactamente cómo se leyó cada valor, así que un problema de formato es visible antes de tocar tu directorio.
+3. **Los rezagados.** Escanea las últimas filas. Las exportaciones de hoja de cálculo a menudo arrastran una fila de totales, una línea en blanco, o una nota al fondo que no debería convertirse en una persona.
+
+Nada se confirma hasta que apruebas la vista previa. Si algo se ve mal, cierra el asistente, arregla la hoja de cálculo, y empieza de nuevo —el ciclo completo toma un par de minutos.
+
+## Las Tres Estrategias de Duplicados
+
+El corazón de una importación segura es qué pasa cuando una fila entrante coincide con alguien que ya está en tu directorio. WorshipMetrics revisa cada fila contra las personas existentes usando tres llaves de deduplicación —**correo**, **teléfono**, y **nombre y apellido exactos**— y te deja elegir una de tres estrategias para lo que una coincidencia debe disparar:
+
+- **Omitir (skip)** —las filas con coincidencia se dejan completamente en paz; solo se crean las personas genuinamente nuevas. Es el default más seguro, y es lo que hace inofensivo volver a correr una importación: si tu primera pasada importó 400 de 450 filas antes de que notaras un problema, arregla el archivo y córrelo de nuevo con *omitir* —los 400 que ya están en el directorio no serán tocados ni duplicados.
+- **Actualizar (update)** —las filas con coincidencia actualizan los campos de la persona existente con los valores de tu archivo. Esta es la estrategia para pasadas de enriquecimiento: importaste nombres y correos el mes pasado, y ahora tienes una segunda hoja con cumpleaños y direcciones. Empareja por correo, elige *actualizar*, y los datos nuevos se agregan en capas a los perfiles existentes.
+- **Crear (create)** —cada fila crea una persona nueva, con coincidencia o sin ella. Existe para el caso raro donde genuinamente tienes personas distintas que comparten una llave (dos entradas diferentes de "Juan Pérez" sin correo ni teléfono que las distinga). Úsala deliberadamente y con moderación, y planea una pasada por el detector de duplicados después.
+
+Si la importación encuentra filas que no puede procesar —un valor malformado, un campo requerido faltante— obtienes reporte de errores por fila con números de fila, no un vago "algunas filas fallaron". Abre la hoja de cálculo, salta a las filas listadas, arréglalas, y reimporta con *omitir*. Los errores nunca bloquean el aterrizaje limpio de las filas sanas a su alrededor.
+
+## Ida y Vuelta desde Otro Sistema
+
+La mayoría de las plataformas de gestión de iglesia —Planning Center, Breeze, ChurchTrac, y otras— pueden exportar su lista de personas a CSV, y esa exportación es tu vehículo de migración. Una secuencia simple:
+
+1. **Exporta las personas a CSV** desde tu sistema actual, incluyendo tantos campos de perfil como te dé.
+2. **Abre el archivo y ordénalo.** Borra las columnas que no quieres migrar, divide cualquier columna combinada de "Nombre Completo" en columnas de nombre y apellido, y estandariza las fechas a año-mes-día.
+3. **Mapea tu vocabulario viejo.** Traduce los estados y tipos heredados a Miembro / Invitado / Asistente (o tus tipos personalizados) más Activo / Inactivo, usando la nota de dos columnas que escribiste antes.
+4. **Corre el asistente** con *omitir* como tu estrategia de duplicados, revisa la vista previa, y confirma.
+
+Dentro de WorshipMetrics mismo, el ciclo se cierra por completo: el CSV de exportación usa el mismo vocabulario de dieciséis campos que la importación, así que un archivo que exportes hará el viaje de ida y vuelta sin pérdidas de regreso por el importador. La exportación de la lista de Personas también respeta lo que está en pantalla —exporta exactamente las filas que has filtrado o seleccionado, lo que hace fácil entregarle a un líder de ministerio solo su campus, solo los miembros activos, o solo las doce personas que marcaste.
+
+## Limpieza Post-Importación: Aterrizar Limpio y Mantenerse Limpio
+
+Hasta una importación cuidadosa merece una pasada corta de limpieza. Tres herramientas que usar en la primera semana:
+
+**El detector de duplicados.** WorshipMetrics marca continuamente los pares de probables duplicados y los ordena por confianza: las personas que comparten un correo o un número de teléfono se marcan como coincidencias de alta confianza, mientras que las coincidencias de nombre o apodo ("Beto Sánchez" / "Roberto Sánchez") se ponen en cola para revisión. Cada par recibe una decisión humana —fusionar o descartar— y los descartes persisten, así que un par que ya juzgaste como dos personas reales no seguirá reapareciendo. Pasa por esta cola una vez después del día de la importación, y luego revísala ocasionalmente conforme llega gente nueva.
+
+**Los hogares.** En WorshipMetrics cada persona pertenece a un hogar, así que después de una importación grande vale una pasada para agrupar a los miembros de cada familia y designar una cabeza de hogar donde sea útil. La estructura de hogares es indulgente por diseño: quitar un hogar nunca quita a sus personas, y mover a alguien fuera de un hogar vacío lo limpia tras de sí.
+
+**Acciones masivas y archivo.** Si la importación sacó a la superficie personas que hace tiempo siguieron su camino, selecciona cualquier conjunto filtrado y archívalas en masa. Las personas archivadas desaparecen de los selectores y las listas de equipo pero conservan su historial completo, y pueden restaurarse en cualquier momento —archivar es una decisión de archivero, no una eliminación.
+
+Un directorio limpio rinde frutos mucho más allá de la oficina. Es la base para programar voluntarios en equipos de servicio —la misma disciplina que hace que [entrenar equipos AV de voluntarios](/es/kb/articles/training-volunteer-av-teams/) se sostenga— y el mismo hábito de mantenerlo al día que hace confiable un [inventario AV](/es/kb/articles/av-inventory-maintenance/) aplica a un directorio de personas: la herramienta solo es tan buena como la última actualización honesta.
+
+## Cómo Maneja Esto WorshipMetrics
+
+Todo lo de esta guía está construido dentro del pilar [People](/people/) de WorshipMetrics. El vocabulario de dieciséis campos del asistente de importación, el auto-mapeo por alias con coincidencia de límites de palabra, el paso de vista previa antes de escribir, y las estrategias de duplicados omitir / actualizar / crear son estándar —igual que el detector de duplicados, la gestión de hogares, el archivo y restauración masivos, y el viaje CSV de ida y vuelta sin pérdidas. No hay tope de miembros que planear: el nivel gratuito incluye personas ilimitadas y usuarios ilimitados, así que puedes migrar el directorio completo el primer día. Y una vez que tu gente está adentro, fluye directo a la [planeación de servicios y programación de voluntarios](/services/) —que usualmente es la razón por la que valía la pena importar el directorio en primer lugar.

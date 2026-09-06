@@ -1,0 +1,94 @@
+---
+title: "Configurando el Check-In por QR: Del Póster del Lobby a un Directorio Limpio"
+description: "Cómo imprimir códigos QR de check-in de toda la organización y por servicio, entender el emparejamiento de tres niveles que evita que los asistentes que regresan se dupliquen, y correr un flujo de lobby que cualquier voluntario puede manejar."
+category: "operations"
+tags: ["check-in", "QR codes", "guests", "directory"]
+difficulty: "beginner"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/qr-check-in-setup-church/church-qr-check-in-directory-setup.jpg"
+featured: false
+productCTA: true
+---
+
+## Por Qué un Código QR le Gana a un Portapapeles
+
+La mayoría de las iglesias ya rastrean la asistencia de alguna forma —un portapapeles junto a la puerta, un conteo de cabezas desde el balcón, una tarjeta de conexión que puede o no llegar de vuelta a la oficina. Todos esos métodos comparten la misma debilidad: un humano tiene que transcribirlos después, y la transcripción es donde los nombres se escriben mal, los invitados se pierden, y la misma persona termina en el directorio tres veces.
+
+El check-in por QR elimina el paso de transcripción por completo. La persona teclea su propio nombre en su propio teléfono, el registro aterriza directamente en tu directorio, y la asistencia se registra en el mismo momento. Nadie en la oficina reteclea nada el lunes.
+
+El detalle —y la razón por la que este artículo existe— es que una página de check-in de autoservicio solo es tan buena como su lógica de emparejamiento. Si Sara hace check-in cada semana y el sistema crea una "Sara" nueva cada semana, cambiaste un portapapeles desordenado por una base de datos desordenada. Así que cubriremos la configuración en diez minutos, y luego dedicaremos tiempo de verdad a cómo se emparejan los asistentes que regresan, cómo aterrizan los que vienen por primera vez, y cómo se ve una rutina de lobby amigable con los voluntarios.
+
+## Dos Tipos de Códigos QR
+
+WorshipMetrics le da a cada iglesia dos sabores de código público de check-in, y vale la pena decidir desde el principio cuál va en dónde.
+
+**El código de toda la organización** apunta a la página de check-in propia de tu iglesia. Como la dirección le pertenece a tu iglesia y no a ningún evento en particular, el póster que imprimes en agosto todavía funciona en diciembre. Este es el código para las piezas permanentes: el póster enmarcado del lobby, la tarjeta de mesa del mostrador de bienvenida, la diapositiva en tu loop previo al servicio.
+
+**Los códigos por servicio** son variantes atadas a una reunión en particular. Úsalos cuando corres múltiples servicios y quieres la asistencia atribuida limpiamente —un código para las 9:00 AM y otro para las 11:00 AM, o un código dedicado para un estudio entre semana o un evento especial. Cada servicio también puede habilitar un enlace público de registro con su propio código QR listo para imprimir y límites de capacidad por servicio, que es la herramienta correcta cuando necesitas que la gente reserve un lugar por adelantado (Nochebuena, una conferencia de matrimonios, una clase con cupo limitado) en lugar de hacer check-in en la puerta.
+
+Una regla simple: **la señalización permanente lleva el código de toda la organización; cualquier cosa con fecha específica lleva un código por servicio.**
+
+### Consejos de impresión que hacen confiables los escaneos
+
+Los códigos se generan listos para imprimir, pero unos hábitos del mundo físico ayudan:
+
+- **Dimensiona según la distancia.** Un código QR debería medir aproximadamente un décimo de la distancia máxima desde la que esperas que alguien lo escanee. Un código en un póster carta se escanea cómodamente desde unos cuantos pies; un código en una pantalla de proyección necesita ser mucho más grande de lo que se siente natural.
+- **El contraste importa más que el color.** Código oscuro sobre fondo claro, con espacio en blanco generoso (la "zona silenciosa") alrededor de los cuatro bordes. Resiste la tentación de imprimirlo sobre una foto.
+- **Mate sobre brillante.** La iluminación del lobby se refleja en el laminado brillante y puede vencer a la cámara de un teléfono. El papel mate o el laminado mate se escanean con más confiabilidad.
+- **Prueba con las dos plataformas principales de teléfono** antes de imprimir cincuenta copias. Párate donde se pararía un asistente, bajo las luces reales del lobby.
+
+## Qué Pasa Cuando Alguien Escanea
+
+La página de check-in es una página web independiente, diseñada primero para móvil. No hay app que instalar ni cuenta que crear —el asistente escanea, la página abre en el navegador de su teléfono, ingresa sus datos, y toca el botón de check-in. Esa propiedad de "sin login" es la razón entera por la que esto funciona con invitados por primera vez: estás pidiendo treinta segundos de tecleo, no un registro de cuenta.
+
+Detrás de ese formulario simple pueden pasar dos cosas muy distintas, y entender ambas es lo que mantiene limpio tu directorio.
+
+## Los Tres Niveles de Emparejamiento: Correo, Luego Teléfono, Luego Nombre + Cumpleaños
+
+Cuando llega un check-in, WorshipMetrics intenta emparejarlo con una persona que ya existe en tu directorio antes de siquiera considerar crear a alguien nuevo. El emparejamiento corre en niveles, la señal más fuerte primero:
+
+1. **Correo.** Si la dirección de correo ingresada coincide con el correo de una persona existente, esa es la coincidencia. El correo es el identificador más fuerte porque es único de un individuo en casi todos los casos.
+2. **Teléfono.** Si no hay coincidencia de correo, el número de teléfono se revisa después. El teléfono es casi igual de fuerte, con una salvedad que vale conocer: algunos hogares comparten un número de teléfono, y por eso el teléfono va debajo del correo en el orden.
+3. **Nombre más cumpleaños.** Si ningún método de contacto coincide, el sistema busca un nombre exacto combinado con un cumpleaños que coincida. El nombre solo nunca es suficiente —tu iglesia casi con seguridad tiene dos personas que comparten un nombre— pero nombre *y* cumpleaños juntos son una huella confiable.
+
+La lección práctica para tu señalización del lobby y tus voluntarios: **anima con gentileza a la gente a incluir su correo al hacer check-in.** Un asistente que regresa y que ingresa el mismo correo cada semana va a coincidir con su registro existente todas y cada una de las veces, y su historial de asistencia se acumula en un solo perfil. Alguien que ingresa solo un nombre todavía puede coincidir por el nivel del cumpleaños, pero le estás dando menos al sistema con qué trabajar.
+
+Este diseño por niveles también es la razón por la que la página de check-in nunca duplica a una persona que da información consistente. El modo de falla que hay que vigilar es la información *inconsistente* —el asistente que usó su correo del trabajo en marzo y su correo personal en junio. Las herramientas de revisión de duplicados descritas abajo existen exactamente para ese caso.
+
+## Cómo los Invitados por Primera Vez Aterrizan en el Directorio
+
+Cuando ninguno de los tres niveles encuentra una coincidencia, el sistema concluye que este es un invitado genuino por primera vez —y lo crea como **Invitado** en tu directorio, con su asistencia registrada automáticamente para ese servicio.
+
+Esto importa pastoralmente, no solo administrativamente. El invitado que escaneó un póster en su primer domingo nervioso ahora es un registro real que tu equipo de seguimiento puede ver, con una marca de tiempo real. Invitado es uno de los tipos de persona integrados (junto a Miembro y Asistente, más cualquier tipo personalizado que tu iglesia defina), así que puedes filtrar el directorio a "Invitados agregados este mes" y entregarle a tu equipo de hospitalidad una lista de verdad en lugar de una pila de tarjetas de conexión medio legibles.
+
+Como cada cambio de personas se sincroniza en vivo por toda la plataforma, un miembro del personal con la página de Personas abierta en la oficina ve aparecer los check-ins nuevos en momentos —sin refrescar, sin exportar. Algunas iglesias usan esto durante el servicio mismo: para cuando empieza el sermón, la oficina ya sabe quién es nuevo hoy.
+
+Si estás configurando el check-in al mismo tiempo que migras un directorio existente, haz la migración primero —los niveles de emparejamiento solo pueden coincidir contra registros que existen. Nuestra [guía de importación CSV](/es/kb/articles/church-member-csv-import-guide/) recorre cómo traer tu directorio actual limpiamente, y si tus registros también viven en Planning Center, mira [conectar Planning Center con WorshipMetrics](/es/kb/articles/connect-planning-center-worshipmetrics/).
+
+## Limitación de Tasa: La Barrera que Probablemente Nunca Notarás
+
+Todo formulario web público necesita protección contra bots y abuso, y el check-in no es la excepción. Los envíos públicos de check-in y registro están limitados a **300 envíos por 10 minutos, por dirección IP, por organización**.
+
+Este es el porqué ese número es amigable con las congregaciones reales:
+
+- **Los teléfonos con datos celulares** llegan cada uno desde su propia dirección IP, así que un lobby lleno de gente escaneando a la vez no cuenta unos contra otros para nada.
+- **Los teléfonos en tu Wi-Fi de invitados** típicamente comparten una sola IP pública —y aun así, 300 check-ins en una ventana de diez minutos es un lobby muy grande. Una iglesia que procesa más que eso por una sola conexión probablemente corre múltiples servicios de todos modos, lo que reparte la carga en el tiempo.
+- **Una tablet operada por un voluntario** en el mostrador de bienvenida es una sola IP, y 300 por diez minutos está mucho más allá de lo que un voluntario puede teclear.
+
+El límite existe para que un script no pueda inundar tu directorio con registros basura. Para humanos sosteniendo teléfonos, es efectivamente invisible.
+
+## Un Flujo de Lobby que los Voluntarios Pueden Correr
+
+Aquí hay una rutina dominical simple que funciona con uno o dos anfitriones y no requiere trasfondo técnico:
+
+1. **Antes del primer servicio:** confirma que el póster está puesto, escanéalo una vez con tu propio teléfono para verificar que la página carga, y abre la página de check-in en una tablet del mostrador de bienvenida como respaldo para quien no traiga teléfono.
+2. **Conforme llega la gente:** los anfitriones dirigen a los de primera vez al póster con una sola frase —"Si escaneas eso, sabremos que estuviste aquí y no te perderemos la pista." Los regulares no necesitan recordatorio después de la segunda semana.
+3. **Para quien prefiera no escanear:** el anfitrión le hace el check-in en la tablet, pidiendo nombre y correo. Aplican los mismos niveles de emparejamiento, así que un regular registrado por un voluntario todavía aterriza en su registro existente.
+4. **El único hábito que entrenar:** anima el correo en el check-in. Es el nivel más alto de emparejamiento, y el correo consistente es lo que mantiene a una persona en un solo perfil.
+5. **El lunes, en la oficina:** abre la cola de revisión de duplicados. El detector marca los pares probables —un correo o teléfono compartido es alta confianza, un nombre o apodo que coincide se marca para revisión— y un humano toma la decisión de fusionar o descartar. Esas decisiones persisten, así que un par descartado no te va a estar molestando la próxima semana. Luego saca la lista de Invitados nuevos y encamínala a tu equipo de seguimiento.
+
+Ese último paso es la mitad de "directorio limpio" del título de este artículo. El check-in por QR mete los datos con precisión; una revisión de cinco minutos los lunes los mantiene precisos. Las iglesias que se saltan el paso cinco por seis meses terminan haciendo una tarde entera de fusiones en su lugar —el mismo argumento de disciplina que hacemos sobre [entrenar equipos de voluntarios](/es/kb/articles/training-volunteer-av-teams/): los hábitos pequeños semanales le ganan a las limpiezas heroicas ocasionales.
+
+## Cómo Maneja Esto WorshipMetrics
+
+Todo lo anterior está construido dentro de [WorshipMetrics People](/people/): el enlace de check-in compartible y el código QR imprimible que toda organización recibe, las variantes de código por servicio, los niveles de emparejamiento correo → teléfono → nombre-más-cumpleaños, la creación automática de Invitados con la asistencia registrada, la limitación de tasa en los endpoints públicos, y la cola de revisión de duplicados para los lunes por la mañana. El registro por servicio con límites de capacidad y correos de confirmación vive junto a tus planes de servicio en [Services](/services/), y si quieres el código de check-in en una pantalla del lobby en lugar de papel, [Signage Display](/signage-display/) puede ponerlo en tu rotación. El directorio mismo —personas ilimitadas, en el nivel gratuito— significa que no hay matemática por miembro parada entre tu iglesia y un registro limpio de quién estuvo realmente en la sala.

@@ -1,0 +1,88 @@
+---
+title: "Gestión de Personas Multi-Campus: Zonas Horarias, Roles, y Listas por Campus"
+description: "Cómo estructurar un directorio multi-sitio en WorshipMetrics —campus con su propia zona horaria, roles de campus por usuario, importación y exportación acotadas por campus, y patrones para equipos compartidos versus específicos de un campus."
+category: "operations"
+tags: ["multi-campus", "people", "campuses", "administration"]
+difficulty: "intermediate"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/multi-campus-people-management/multi-campus-church-people-management.jpg"
+featured: false
+productCTA: true
+---
+
+## El momento en que un directorio se vuelve dos congregaciones
+
+La transición de un campus a dos es una de las cosas más disruptivas operacionalmente que una iglesia puede hacer —y casi nada de la disrupción aparece donde la esperas. El escenario se construye, el contrato de renta se firma, el equipo de lanzamiento se comisiona. Entonces alguien del personal hace una pregunta que nadie planeó: *"¿Me puedes dar una lista de solo nuestra gente del Campus Norte?"*
+
+De repente, cada suposición horneada en un directorio de un solo campus empieza a crujir. Los reportes mezclan congregaciones. Una exportación destinada al equipo de bienvenida del Campus Este incluye cuatrocientos nombres de la sede original. Y si los campus están en zonas horarias diferentes, "domingo a las 9:00 AM" silenciosamente deja de significar una sola cosa.
+
+Este artículo recorre cómo WorshipMetrics modela las iglesias multi-sitio —campus con su propia zona horaria, roles asignados por usuario por campus, y un directorio, importación, y exportación que entienden todos los límites de campus— más los patrones organizacionales que deciden si un equipo debe vivir en un campus o flotar entre todos.
+
+## Creando campus: una zona horaria real para cada uno
+
+En WorshipMetrics, un campus es un objeto de primera clase, y cada campus lleva su propia zona horaria IANA —`America/Chicago`, `America/Indiana/Indianapolis`, `Pacific/Honolulu`, lo que sea cierto para ese edificio.
+
+Si no te has topado antes con los nombres de zona IANA, son la forma estándar de la industria de nombrar zonas horarias por *lugar* en vez de por desplazamiento, y la distinción importa más de lo que parece. Un offset crudo como "UTC−6" es una fotografía; una zona IANA es un libro de reglas. `America/Chicago` sabe que Chicago observa el horario de verano y exactamente cuál domingo se adelanta el reloj. `America/Phoenix` sabe que Arizona no lo observa en absoluto. Una iglesia con campus en El Paso y Phoenix está a una hora de distancia parte del año y a cero horas el resto —un offset fijo se equivoca dos veces al año, y una zona basada en lugar no se equivoca nunca.
+
+Por eso las zonas horarias por campus pertenecen al registro del campus y no enterradas en una configuración global de la organización. Cuando cada campus sabe dónde está físicamente:
+
+- Los horarios de servicio significan lo que la gente de esa sala cree que significan, todo el año.
+- Una iglesia multi-estado nunca tiene que hacer a mano la aritmética de "okey, entonces las 9 AM de allá son las 10 AM de acá, excepto en marzo...".
+- Todo lo anclado al tiempo río abajo —horarios, recordatorios, reportes— hereda el reloj local correcto por sitio en lugar de que un campus viva en la hora de otro.
+
+Consejo práctico al crear tus campus: elige la zona IANA *más específica* que corresponda al edificio, no la ciudad grande más cercana que reconozcas. Indiana, Arizona, y partes de varios otros estados tienen condados con sus propias entradas de zona precisamente porque su comportamiento de horario de verano difiere del de sus vecinos. Cinco segundos de cuidado aquí previenen una década de confusión de una hora de más o de menos.
+
+## Cada persona pertenece a algún lugar: el campus en el perfil
+
+El perfil de cada persona en el directorio de WorshipMetrics lleva un campus junto a los campos que esperarías —nombre, nombre preferido, métodos de contacto etiquetados, cumpleaños, fecha de ingreso, foto, tipo de miembro, y estado. Ese único campo es lo que hace posible todo lo demás en este artículo: como el campus vive en la persona, el directorio puede filtrarse por él, las importaciones pueden asignarlo, y las exportaciones pueden respetarlo.
+
+Una disciplina que vale la pena al lanzar un sitio nuevo: decide *antes* del domingo de lanzamiento quién se muda. Recorre tu lista del equipo de lanzamiento y fija el campus de cada persona como una pasada deliberada, en lugar de esperar a que los datos de asistencia acomoden a la gente orgánicamente. El directorio se convierte en tu fuente de verdad para "quién es una persona del Campus Norte" desde el día uno —exactamente cuando tu nuevo pastor de campus más necesita esa respuesta.
+
+## Roles de campus por usuario: la misma persona, sombreros distintos
+
+La gente multi-sitio rara vez es ordenada. Tu pastor de alabanza puede liderar en el campus de transmisión y entrenar al equipo en el sitio nuevo. Una maestra jubilada puede coordinar a los anfitriones en un campus y simplemente asistir al otro cuando visita a los nietos.
+
+WorshipMetrics modela esto asignando roles por usuario, por campus, en lugar de forzar un rol plano a lo largo de toda la organización. La misma persona puede llevar responsabilidades diferentes en sitios diferentes, y el sistema mantiene el registro de cuál sombrero trae puesto en dónde. Esta es la pieza que le permite a una iglesia multi-sitio responder las dos preguntas que los sistemas de rol plano no pueden:
+
+1. **"¿Qué hace esta persona *aquí*?"** —en contraste con en algún lugar de la organización.
+2. **"¿Quiénes son los líderes *de este campus*?"** —sin una hoja de cálculo aparte.
+
+Los roles de campus se emparejan naturalmente con cómo funcionan los logins en WorshipMetrics en general: las organizaciones son solo por invitación, los administradores invitan a los compañeros por correo con un rol, y cada login se vincula determinísticamente con una persona del directorio. Si estás configurando al personal y a los voluntarios clave en varios sitios, vale la pena leer primero [cómo los logins se vinculan con las personas del directorio](/es/kb/articles/link-logins-to-directory-people/) —hacer bien el vínculo login-a-persona es el cimiento sobre el que se sientan los roles de campus.
+
+## El filtro de campus que sabe cuándo desaparecer
+
+Aquí hay una pequeña decisión de diseño que creemos importa muchísimo: **si tu iglesia tiene un solo campus, nunca verás un filtro de campus.**
+
+La lista de Personas, como el resto de la plataforma, solo muestra el filtro de campus cuando hay más de un campus por el cual filtrar. Una iglesia de un solo campus —que es la mayoría de las iglesias— obtiene un directorio sin dropdown fantasma, sin selector de "Todos los Campus (1)", sin vocabulario prestado de un organigrama que no tiene. En el momento en que existe un segundo campus, el filtro aparece donde corresponde.
+
+Esto suena cosmético. No lo es. El software de iglesia es operado abrumadoramente por voluntarios, y cada control en pantalla es algo que un voluntario tiene que decidir ignorar. Los controles de alcance que se ocultan solos significan que la iglesia de dos campus obtiene el poder multi-sitio y la iglesia de un campus obtiene la simplicidad, del mismo producto, sin que nadie configure nada.
+
+Para la iglesia multi-sitio, el filtro también es donde realmente suceden las operaciones diarias de campus: filtra el directorio a un campus, y estás viendo a esa congregación. Combínalo con los otros filtros y herramientas masivas del directorio —selecciona con casillas un conjunto filtrado para archivo, restauración, o exportación masivos— y "hacer algo para todos los del Campus Este" se vuelve una operación de dos clics en lugar de una solicitud de datos.
+
+## Importación y exportación acotadas por campus
+
+El pipeline de importación y exportación del directorio es consciente del campus de extremo a extremo, lo que importa en dos momentos multi-sitio muy comunes.
+
+**Importando.** Cuando traes gente por el asistente de importación CSV —con su auto-mapeo de encabezados, paso de vista previa, y estrategias de duplicados omitir/actualizar/crear— el campus es parte de la historia, así que una hoja de cálculo del equipo de lanzamiento puede aterrizar en el sitio correcto en lugar de llegar como una pila indiferenciada para reordenar a mano. La protección de duplicados importa doble en las importaciones multi-sitio: las familias que asistieron al campus original por años van a aparecer, con toda seguridad, en la lista de lanzamiento del campus nuevo, y las llaves de deduplicación de la importación (correo, luego teléfono, luego nombre exacto) son lo que evita que los Hernández existan dos veces, una por campus. El vocabulario completo de columnas, las reglas de coincidencia por alias, y los detalles de estrategia viven en la [guía de importación CSV de miembros](/es/kb/articles/church-member-csv-import-guide/).
+
+**Exportando.** Las exportaciones desde la lista de Personas honran exactamente lo que está en pantalla —las filas filtradas y seleccionadas, no la base de datos completa. Filtra a un campus, selecciona, exporta, y el archivo contiene ese campus. Esto es en parte conveniencia y en parte cuidado pastoral: el archivo que le entregas a un líder del equipo de bienvenida de un campus debería contener a *su* gente, y una exportación acotada significa que la información de contacto del resto de la congregación nunca viaja en un adjunto en el que no necesitaba estar. La exportación también hace el viaje de ida y vuelta sin pérdidas por el mismo conjunto de campos que la importación, así que una exportación acotada a un campus es inmediatamente usable como una importación acotada a un campus en otro lugar.
+
+## Equipos compartidos versus específicos de campus: tres patrones que funcionan
+
+La estructura de campus en el software es la mitad fácil; decidir cómo tus *equipos* se mapean a los campus es la mitad que genera debates en las juntas de personal. Tres patrones cubren a la mayoría de las iglesias:
+
+**1. Equipos específicos de campus (el default).** Anfitriones, sala cuna, estacionamiento, hospitalidad —cualquier cosa donde el servicio sucede en un edificio para la gente de ese edificio. Constrúyelos por campus, dótalos desde el directorio de ese campus (filtra el campus, y estás viendo tu banca de reclutamiento), y deja que el coordinador de cada sitio sea dueño de su lista. Esta debería ser tu suposición inicial; solo promueve un equipo fuera de ella por una razón.
+
+**2. Equipos compartidos que viajan.** Muchas iglesias multi-sitio corren un solo equipo de alabanza o de producción que rota entre sitios, especialmente en el primer año de un campus nuevo cuando la banca de talento está delgada. Mantén este equipo a nivel de organización en lugar de duplicarlo por campus, y apóyate en la programación en vez de la estructura para expresar "quién está dónde este domingo". El ritmo para dotar esto bien —construyendo listas por adelantado en lugar del apuro semana a semana— se cubre en [programar voluntarios un mes a la vez](/es/kb/articles/scheduling-volunteers-month-at-a-time/).
+
+**3. Equipos centrales con enlaces de campus.** Finanzas, comunicaciones, y a menudo el equipo de artes técnicas viven centralmente, con una persona identificada por campus. Aquí es donde los roles de campus por usuario se ganan su lugar: el equipo central sigue siendo un solo equipo, mientras el rol de campus de cada integrante registra cuál sitio cubre. Tu equipo AV reconocerá esta forma —es el mismo patrón de centro-y-radios que funciona para el equipamiento, cubierto desde el lado del hardware en [gestionar dispositivos AV en múltiples campus](/es/kb/articles/managing-av-devices-multi-campus/).
+
+Elijas la mezcla que elijas, resiste la tentación de espejear tu organigrama perfectamente en el software el día uno. Empieza con equipos específicos de campus, comparte solo lo que genuinamente viaja, y revisita después de tu primer trimestre de domingos multi-sitio —la realidad de quién realmente maneja entre campus va a sobrescribir el plan de lanzamiento de todos modos.
+
+## Un directorio, honestamente compartido
+
+Un ánimo final: el multi-campus bien hecho sigue siendo *una sola iglesia*. Los campus, las listas acotadas, y los roles por sitio no son muros entre congregaciones —le permiten a cada sitio ver a su propia gente con claridad mientras el cuerpo entero sigue siendo un directorio, un modelo de hogares, un conjunto de registros. Como ese directorio está sincronizado en vivo (las ediciones hechas en cualquier lugar aparecen en todos lados en unos cincuenta milisegundos, en web y escritorio por igual), una familia que se muda del campus de transmisión al sitio nuevo es un cambio de un campo —no una exportación, un correo, y una reimportación entre dos sistemas que ya empezaron a estar en desacuerdo.
+
+## Cómo maneja esto WorshipMetrics
+
+El soporte multi-campus está construido dentro del pilar People en lugar de atornillado encima: cada campus lleva su propia zona horaria IANA, los roles se asignan por usuario por campus, el directorio, la importación CSV, y la exportación están todos acotados por campus, y el filtro de campus se oculta por completo para las iglesias de un solo campus —así que el producto crece al multi-sitio el domingo que tú lo hagas, y se mantiene simple hasta entonces. El directorio, los hogares, las herramientas masivas, y la protección de duplicados que lo hacen funcionar —para personas ilimitadas, en todos los planes— se cubren en la [página de People](/people/).
