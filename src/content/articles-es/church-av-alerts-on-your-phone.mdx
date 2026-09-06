@@ -1,0 +1,107 @@
+---
+title: "Alertas AV de tu Iglesia en tu Teléfono: Web Push y la App de Pantalla de Inicio del iPhone"
+description: "Cómo configurar notificaciones web push para alertas AV de iglesia, instalar la app de pantalla de inicio en iOS 16.4+, elegir canales por tipo de alerta, y por qué el correo sigue siendo el canal garantizado."
+category: "operations"
+tags: ["alerts", "notifications", "web push", "mobile"]
+difficulty: "beginner"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/church-av-alerts-on-your-phone/church-av-alerts-phone-notifications.jpg"
+featured: false
+productCTA: true
+---
+
+## Por qué las alertas AV pertenecen a un teléfono
+
+La característica definitoria de un problema AV de iglesia es que sucede cuando nadie está mirando una pantalla. El stream se cae mientras el operador arregla una diapositiva de letras. El disco de la PC de la cabina se llena un jueves por la noche cuando el edificio está vacío. Una cámara se apaga a las 7 a.m. del domingo, dos horas antes de que alguien abra una laptop.
+
+Un monitoreo que solo funciona mientras un dashboard está abierto no es realmente monitoreo —es una página de estado. Pulse, la capa de monitoreo de WorshipMetrics, vigila la flota desde el lado del servidor las veinticuatro horas, así que la detección no depende de que alguien tenga una pestaña del navegador abierta. Pero la detección es solo la mitad del trabajo. La alerta todavía tiene que *llegar a un humano*, y para la mayoría de los voluntarios la única pantalla que confiablemente está cerca a las 7 a.m. de un domingo es un teléfono.
+
+La buena noticia: no necesitas instalar nada de una tienda de apps para llegar ahí. Los navegadores modernos pueden entregar notificaciones reales, a nivel del sistema operativo, desde un sitio web —un estándar llamado **web push**— y desde iOS 16.4, los iPhone también pueden recibirlas, con un paso extra que esta guía recorre.
+
+## Un curso de dos minutos sobre cómo funciona el web push
+
+El web push es un estándar abierto de la web, no un truco propietario. Tres piezas lo hacen funcionar:
+
+1. **Un service worker.** Cuando habilitas las notificaciones, el sitio registra un pequeño script de fondo con tu navegador. Puede despertarse para mostrar una notificación incluso cuando el sitio no está abierto.
+2. **Una suscripción push.** Tu navegador le pide a su servicio de push (el de Apple para Safari y las apps de pantalla de inicio en iOS, el de Google para Chrome, el de Mozilla para Firefox) una dirección de entrega única y se la entrega al sitio.
+3. **Llaves VAPID.** El servidor firma cada mensaje push con un par de llaves criptográficas —VAPID, siglas de Voluntary Application Server Identification— para que el servicio de push pueda verificar que el mensaje realmente vino de la aplicación a la que te suscribiste y no de cualquiera que haya conocido tu dirección de entrega.
+
+WorshipMetrics usa exactamente este web push estándar firmado con VAPID para entregar sus notificaciones de alerta: una máquina de cabina desconectándose, una línea roja de recursos cruzada, un livestream cayéndose a media misa. Como es el estándar de la plataforma y no una app a la medida, las notificaciones aterrizan por la misma tubería del sistema operativo que todo lo demás en tu teléfono —los mismos banners, la misma pantalla de bloqueo, el mismo centro de notificaciones.
+
+## Configurando el push en escritorio y Android
+
+En una laptop, un escritorio, o un teléfono Android, la configuración es un solo aviso de permiso:
+
+1. Inicia sesión en WorshipMetrics en tu navegador y abre tus preferencias de notificación de alertas en Pulse.
+2. Habilita el push al teléfono (y el toast de escritorio, si también quieres notificaciones en la máquina de la cabina o en tu computadora de la oficina).
+3. Cuando el navegador pregunte si el sitio puede enviar notificaciones, elige **Permitir**.
+
+Eso es todo. Chrome, Edge, y Firefox en Windows, macOS, y Android entregan web push nativamente, quede o no quede abierta la pestaña. En Android puedes además instalar el sitio a tu pantalla de inicio para tener un ícono tipo app, pero no es requerido para las notificaciones —Android entrega el web push de cualquier forma.
+
+Dos salvedades de Android que vale conocer, porque son la razón más común de que una configuración "que funcionaba" se quede callada después:
+
+- **Optimizadores de batería agresivos.** Algunos fabricantes incluyen ahorradores de batería que suspenden la entrega en segundo plano para apps y navegadores que deciden que no estás usando. Si las alertas dejan de llegar a un teléfono en particular, revisa primero la configuración de optimización de batería del navegador.
+- **Borrar los datos del navegador.** Limpiar los datos de sitio de un navegador borra la suscripción push junto con las cookies. El arreglo es simplemente volver a iniciar sesión y rehabilitar las notificaciones.
+
+## El paso del iPhone: instalando la app de pantalla de inicio (iOS 16.4+)
+
+Los iPhone manejan el web push diferente, y esta es la parte que la mayoría de los equipos pasa por alto. Apple agregó soporte de web push en **iOS 16.4** (lanzado en marzo de 2023), pero con una condición: un sitio web solo puede enviar notificaciones después de que ha sido **agregado a la pantalla de inicio**. Una pestaña en Safari —incluso una fijada y siempre abierta— no puede recibir push en un iPhone. La instalación en la pantalla de inicio es lo que le dice a iOS que trate al sitio como una app.
+
+Aquí está el proceso completo, y toma menos de un minuto:
+
+1. Abre **app.worshipmetrics.com** en **Safari** en el iPhone (tiene que ser Safari, no un navegador dentro de otra app como Mail o una app de chat).
+2. Toca el botón de **Compartir** —el cuadrado con la flecha apuntando hacia arriba.
+3. Desplázate por la hoja de compartir y toca **Agregar a pantalla de inicio**, luego **Agregar**.
+4. De aquí en adelante, abre WorshipMetrics **desde el nuevo ícono de la pantalla de inicio**, no desde una pestaña de Safari.
+5. Inicia sesión, abre tus preferencias de notificación de alertas, habilita el push al teléfono, y toca **Permitir** cuando iOS pida el permiso de notificaciones.
+
+Una vez instalado así, las alertas llegan como notificaciones de iOS de primera clase —con el nombre y el ícono de WorshipMetrics, en la pantalla de bloqueo, en el centro de notificaciones, sujetas a los mismos controles que cualquier app nativa. La app incluso aparece en **Configuración → Notificaciones** como todo lo demás, lo que nos lleva al paso de seguimiento que recomendamos con fuerza:
+
+- **Revisa tus modos de Concentración.** Si corres una Concentración de Dormir o No Molestar por la noche, o una Concentración de domingo por la mañana durante los servicios, agrega WorshipMetrics a las apps permitidas de esa Concentración. Una alerta de desconexión que iOS retiene cortésmente hasta las 9 a.m. se perdió el punto por completo.
+- **Requiere iOS 16.4 o posterior.** Cualquier iPhone de los últimos varios años califica; si el flujo de Agregar a pantalla de inicio no produce notificaciones, una actualización del sistema es lo primero que revisar.
+
+Haz esto en cada teléfono que deba ser despertado —el del director técnico, el del líder de streaming, el de quien esté de guardia esa semana. La suscripción de cada persona es suya propia; no hay un dispositivo compartido que configurar.
+
+## Eligiendo canales por tipo de alerta
+
+No toda alerta merece vibrar en todos los bolsillos. Pulse organiza sus preferencias de notificación en dos dimensiones para que cada persona afine qué le llega y cómo:
+
+- **Suscripciones por tipo.** Los tipos de alerta —máquina desconectada, dispositivo AV monitoreado desconectado, uso crítico de recursos, advertencias de estado de audio, y caídas de livestream— pueden suscribirse cada uno individualmente. El líder de streaming puede tomar las caídas de stream y nada más; el director técnico probablemente quiere todo.
+- **Una matriz de canales por área.** Las alertas se agrupan en seis áreas —Hardware, Sistema, Stream, Audio, Red, y Otros— y para cada área eliges los canales que deben llevarla, incluyendo push al teléfono y toast de escritorio. El ruido de red puede quedarse en el toast de escritorio mientras los problemas de stream escalan a tu teléfono.
+
+Un punto de partida sensato para un equipo típico de voluntarios:
+
+| Alerta | Quién debería recibir push | Por qué |
+|---|---|---|
+| Caída de livestream | Operador de streaming + director técnico | Los minutos importan; esta interrumpe el domingo |
+| Máquina desconectada | Director técnico | Usualmente un arreglo entre semana, pero sensible al tiempo |
+| Recurso crítico | Director técnico | Accionable antes de que se vuelva un problema de domingo |
+| Dispositivo AV desconectado | Quien sea dueño de ese equipo | Los dueños de cámaras y consolas conocen el arreglo |
+| Estado de audio | Líder de sonido | Una salida muteada atrapada el sábado le gana a una atrapada a medio preludio |
+
+Un detalle que elimina toda una categoría de errores de configuración: las alertas de caída de livestream van al dueño de la organización, a los admins, y a los operadores por correo automáticamente. No tienes que acordarte de suscribir a las personas correctas a la alerta que más importa.
+
+Y como nadie confía en un canal ruidoso, el sistema de alertas detrás de estas notificaciones es deliberadamente silencioso: una alerta por caída por incidente, la recuperación la auto-resuelve en el feed, y las alertas de recursos observan márgenes de histéresis y un enfriamiento de 30 minutos para que una máquina rondando un umbral no pueda ametrallar tu pantalla de bloqueo. Los números exactos están publicados en la [referencia de umbrales de alertas de Pulse](/es/kb/articles/pulse-alert-thresholds-reference/).
+
+## Por qué el correo sigue siendo el canal garantizado
+
+Después de toda esa configuración, aquí está la salvedad honesta: **el web push es mejor-esfuerzo por diseño**. Es excelente —pero varias cosas fuera del control de cualquiera pueden interrumpirlo silenciosamente:
+
+- El usuario revoca el permiso de notificaciones, o un modo de Concentración se traga el banner.
+- Los datos de sitio del navegador se borran, invalidando la suscripción.
+- Un optimizador de batería suspende la entrega en segundo plano.
+- El teléfono está apagado o inalcanzable cuando el servicio de push intenta la entrega.
+
+Ninguna de estas produce un error que alguien vea. Por eso WorshipMetrics trata el push como el canal *rápido* y el correo como el *garantizado*. Cada alerta que importa también sale como un correo, entregado por infraestructura de correo transaccional con el comportamiento de reintentos y almacenar-y-reenviar que el ecosistema del correo ha pasado décadas endureciendo. Si tu teléfono está muerto a las 7 a.m., el correo está esperando cuando cargue.
+
+Dos capas más respaldan eso. Una entrada de notificación en la app **siempre** se escribe para cada alerta sin importar tus elecciones de canal, y el feed de alertas guarda 90 días de historial filtrable —así que nada depende jamás de que una notificación haya sido vista en el momento. Y si por casualidad tienes una página de Pulse abierta cuando algo se dispara, se actualiza en vivo sin refrescar.
+
+Así que la guía práctica es simple: configura el push en cada teléfono que deba ser despertado, mantén el correo habilitado como respaldo, y trata el feed en la app como la fuente de registro cuando estés reconstruyendo qué pasó.
+
+## Qué hacer cuando llega la alerta
+
+Recibir la notificación es el paso uno; la respuesta es el paso dos. Para la alerta con más probabilidad de disparar tu pulso —la caída de stream a media misa— mantén el [playbook de recuperación de stream caído](/es/kb/articles/church-stream-dropped-mid-service/) guardado en el mismo teléfono que recibe la alerta. Y encuentra algo de consuelo en que muchos problemas del lado del encoder se corrigen automáticamente antes de que jamás te llamaran —las [reglas de auto-reparación de Tech Manager](/es/kb/articles/tech-manager-self-healing-explained/) existen precisamente para que las alertas que *sí* llegan a tu teléfono sean las que genuinamente necesitan a un humano.
+
+## Cómo maneja esto WorshipMetrics
+
+La entrega de alertas en WorshipMetrics está en capas a propósito: web push estándar con VAPID para la velocidad —incluyendo soporte completo de iPhone mediante la app de pantalla de inicio de iOS 16.4+—, el correo como canal garantizado, un feed de notificaciones en la app que siempre se escribe con 90 días de historial, y páginas de Pulse que se actualizan en vivo para quien ya esté mirando. Detrás de todo, el [monitoreo Pulse](/av-monitoring/) vigila cada máquina, dispositivo, y stream las veinticuatro horas desde el lado del servidor, y la [app de escritorio Tech Manager](/tech-manager/) aporta la telemetría desde la cabina. Cinco minutos de configuración en cada teléfono esta semana significan que el próximo problema te encuentra antes de que el domingo lo haga.

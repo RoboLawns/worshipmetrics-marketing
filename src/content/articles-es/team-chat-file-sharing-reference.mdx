@@ -1,0 +1,98 @@
+---
+title: "Compartir Archivos en Team Chat: Formatos, Límites, y Por Qué tus Archivos se Mantienen Privados"
+description: "Una referencia en lenguaje simple para compartir archivos en Team Chat de WorshipMetrics —las familias de formato soportadas, el límite de 25 MB, por qué SVG y HTML están bloqueados, y cómo el almacenamiento privado con enlaces que expiran mantiene seguros los archivos de la iglesia."
+category: "operations"
+tags: ["team chat", "file sharing", "security", "storage"]
+difficulty: "beginner"
+publishedAt: "2026-08-03"
+coverImage: "/images/products/team-chat-file-sharing-reference/church-team-chat-file-sharing.jpg"
+featured: false
+productCTA: true
+---
+
+## Dónde Viven Usualmente los Archivos del Equipo (y Por Qué Eso Sale Mal)
+
+Todo equipo técnico de iglesia ha vivido alguna versión de este sábado por la noche: el stage plot está en el hilo de mensajes de una persona, la hoja de corrida es un adjunto de correo tres respuestas hacia abajo, y el PDF del setlist está "en algún lugar del drive compartido". Ninguna de esas herramientas es mala. Simplemente no fueron construidas para un equipo que planea junto, y los archivos terminan regados en tantos lugares como voluntarios tienes.
+
+El arreglo es simple: pon los archivos donde ya está la conversación. Team Chat de WorshipMetrics te deja soltar un archivo directo en un canal o mensaje directo —los mismos canales donde tu banda, tu crew técnico, y tu personal ya están hablando— para que el stage plot viva junto a la discusión sobre el stage plot.
+
+Este artículo es la referencia de cómo funciona ese compartir de archivos: cuáles formatos están soportados, por qué hay un límite de 25 MB por archivo, por qué SVG y HTML se declinan deliberadamente, y cómo el almacenamiento detrás mantiene privados los archivos de la iglesia.
+
+## Qué Puedes Compartir: Las Familias de Formato Soportadas
+
+En lugar de mantener una lista larga de extensiones individuales, Team Chat acepta archivos por *familia* —categorías amplias de tipos de archivo que son seguras de almacenar y ver. Cinco familias cubren casi todo lo que un equipo de alabanza o técnico se pasa entre sí:
+
+| Familia | Archivos típicos | Usos comunes de iglesia |
+|---|---|---|
+| Imágenes | JPG, PNG, GIF, WebP | Fotos del escenario, tomas del cableado de la cabina, capturas de pizarrón, pruebas de gráficos |
+| Video | MP4, MOV, y similares | Clips cortos: un momento del ensayo, un look de iluminación, una vista previa del countdown |
+| Audio | MP3, WAV, M4A, y similares | Pistas de click/referencia, memos de voz, un fragmento de mezcla para retroalimentación |
+| PDF | Cualquier PDF | Hojas de corrida, stage plots, charts de acordes, manuales, formularios firmados |
+| Documentos de Office | Word, Excel, PowerPoint | Borradores de anuncios, listas de voluntarios, hojas de cálculo de planeación |
+
+Los archivos de texto plano (una hoja de letras `.txt` o una exportación `.csv`) viajan también.
+
+La verificación de subida es una *lista de permitidos*: si un archivo pertenece a una de estas familias, pasa; si no, la subida se declina cortésmente en lugar de aceptarse calladamente y preocuparse después. Eso significa que los archivos comprimidos (`.zip`), los instaladores, y los ejecutables no pertenecen al chat —y dos formatos que quizá esperarías que funcionaran, SVG y HTML, se declinan a propósito. Más sobre el porqué abajo.
+
+## El Tope de 25 MB: Qué Cabe, y Qué Hacer Cuando No
+
+Cada archivo compartido en Team Chat puede pesar hasta **25 MB**. En la práctica, ese techo es más espacioso de lo que suena:
+
+- **Las fotos** de un teléfono moderno pesan 2–8 MB cada una. Caben con espacio de sobra.
+- **Los PDFs** —hasta un manual de 40 páginas con imágenes— rara vez pasan de 10 MB.
+- **Los documentos de Office** casi nunca se acercan al límite a menos que estén rellenos de fotos a resolución completa.
+- **El audio** cabe cómodamente para memos de voz y pistas de referencia MP3; un WAV completo de la grabación de un servicio no cabrá, y está bien —el chat es para el fragmento, no para el archivo histórico.
+- **El video** es la única familia donde te vas a topar con el tope. Un minuto o algo así de 720p H.264 cabe; una grabación de ensayo de diez minutos en 4K no.
+
+Cuando un archivo genuinamente pesa más de 25 MB, tienes dos buenas opciones:
+
+1. **Encógelo.** Exporta la presentación como PDF en lugar del archivo original, recorta el video a los treinta segundos que importan, o exporta la foto a una resolución sensata. Nueve de cada diez veces, la versión más pequeña comunica igual de bien.
+2. **Enlázalo.** Los medios grandes —grabaciones completas de servicios, archivos crudos de cámara, sesiones multipista— pertenecen al almacenamiento de archivos grandes que tu iglesia ya use. Pega el enlace en el chat, agrega una oración de contexto, y ancla el mensaje. La conversación se queda en un solo lugar aunque los bytes vivan en otro.
+
+El tope no es arbitrario. Mantener modestos los archivos del chat significa que las subidas terminan rápido en el Wi-Fi del santuario y que los mensajes cargan rápido en el teléfono de un voluntario en la cabina. El chat es la capa de *coordinación*; funciona mejor cargando los documentos de trabajo, no el archivo histórico.
+
+## Por Qué los Archivos SVG y HTML Están Bloqueados
+
+Esta es la pregunta que sorprende a la gente, porque un SVG se siente como "solo una imagen" —muchas herramientas de stage plots y diagramas lo exportan por defecto. Aquí está la razón honesta por la que ambos se declinan.
+
+**Un SVG no es una imagen; es un programa que dibuja una imagen.** Los archivos SVG son documentos XML, y el formato legítimamente permite JavaScript incrustado y referencias a recursos externos. Cuando un navegador muestra un SVG, no solo pinta píxeles como lo hace con un JPG —*interpreta un documento*, scripts incluidos. Un SVG creado maliciosamente y compartido a un chat de equipo podría correr código en el navegador de todos los que lo vean.
+
+**HTML es un documento ejecutable por definición.** Un archivo `.html` compartido y abierto desde el chat es una página web completa corriendo con scripts, formularios, y redirecciones —dentro de un contexto donde tu equipo tiene la sesión iniciada y confía. Esa es la receta clásica del ataque que la gente de seguridad llama *cross-site scripting almacenado*: esconder código en un archivo subido, y esperar a que los compañeros lo abran.
+
+¿Podría un filtro limpiar las partes peligrosas en lugar de bloquear estos formatos? Sanitizar contenido activo es una carrera armamentista, y el primer deber de una plataforma de chat de iglesia es ser aburrida y segura. Bloquear de tajo los dos formatos de documento activo —mientras se acepta cada familia de medios *pasivos* que tu equipo realmente necesita— elimina la categoría entera de riesgo.
+
+La solución práctica toma diez segundos: **exporta tu SVG como PNG o PDF antes de compartirlo.** Toda herramienta de diagramas y diseño lo ofrece. Tu stage plot se ve idéntico, se imprime mejor, y se previsualiza en cualquier teléfono —y el archivo que compartiste nunca puede hacer nada excepto ser mirado.
+
+## Cómo el Almacenamiento Privado y los Enlaces que Expiran Protegen tus Archivos
+
+¿A dónde van los archivos en realidad? No a un servidor web público, y no dentro del mensaje mismo. Cada archivo compartido en Team Chat se almacena en **almacenamiento de objetos privado en la nube** —un bucket cerrado con llave que el internet público no puede navegar, listar, ni adivinar. Las subidas viajan por una conexión cifrada directo a ese almacenamiento, así que tu archivo toma la ruta segura más corta desde tu dispositivo hasta su hogar bajo llave.
+
+El acceso funciona mediante **URLs firmadas**, y el concepto merece dos oraciones porque es el corazón de la historia de privacidad. Una URL firmada es un enlace que carga su propio pase de permiso criptográfico: nombra exactamente un archivo, es matemáticamente verificable, y **expira una hora después de emitirse**. Cuando tocas un archivo en el chat, WorshipMetrics te emite un enlace firmado fresco en el momento; una hora después, ese enlace en particular está muerto.
+
+Piénsalo como la diferencia entre una llave maestra copiada y un gafete de visitante. Un enlace público simple es una llave maestra —cualquiera que alguna vez obtenga una copia puede usarla para siempre, y los enlaces tienen su manera de escaparse por mensajes reenviados, historial del navegador, y capturas de pantalla. Un enlace firmado es un gafete de visitante con hora de salida sellada: aunque uno se fugue, muere dentro de la hora, y el archivo detrás de él nunca fue públicamente alcanzable en primer lugar.
+
+Para una iglesia, esto importa más de lo que importaría para un club de pasatiempos. Los canales del equipo llevan listas con datos de contacto, fotos que incluyen menores, notas cercanas a la consejería, y documentos del edificio. Esos merecen algo mejor que "cualquiera con el enlace". Y como el acceso al chat mismo sigue los inicios de sesión de tu equipo —canales públicos para todo el equipo, canales privados solo por invitación, y mensajes directos— los archivos heredan la audiencia de la conversación en la que se compartieron. Si estás configurando quién puede iniciar sesión en primer lugar, nuestra guía de [vincular logins con personas del directorio](/es/kb/articles/link-logins-to-directory-people/) cubre ese cimiento.
+
+## Patrones Prácticos: Stage Plots, Hojas de Corrida, y Setlists
+
+Unos hábitos en los que los equipos sanos convergen en un mes:
+
+**Ancla el stage plot en el canal de la banda.** Expórtalo como PDF o PNG (recuerda: no SVG), compártelo con un resumen de una línea de qué cambió, y ancla el mensaje. Los mensajes anclados viven en la parte superior del canal, así que "¿dónde está el plot actual?" tiene una respuesta permanente. Cuando el plot cambie, comparte la versión nueva y mueve el ancla —la vieja se queda en el historial como referencia.
+
+**Suelta la hoja de corrida donde el crew ya lee.** Una publicación el sábado por la tarde con el PDF de la hoja de corrida del domingo, con una @mención para los roles que afecta, le gana a un correo que la mitad del equipo no abrirá hasta que ya esté en el edificio. Si tus voluntarios todavía están aprendiendo el ritmo de un servicio, emparejar este hábito con un plan simple de integración ayuda —nuestra guía de [entrenar equipos AV de voluntarios](/es/kb/articles/training-volunteer-av-teams/) tiene una estructura que vale la pena tomar prestada.
+
+**Comparte setlists y charts como PDF o texto plano.** Los charts de acordes viajan hermosamente como PDFs, y los formatos de texto plano también funcionan —si tu equipo escribe charts en ChordPro, nuestra [referencia de ChordPro para equipos de alabanza](/es/kb/articles/chordpro-worship-team-reference/) cubre ese formato a profundidad.
+
+**Usa las fotos como documentación.** Una foto de teléfono del patch bay después de un re-rackeo, publicada en el canal técnico, es la documentación de sistema más barata que jamás crearás —y se empareja naturalmente con una disciplina real de etiquetado como la de nuestra [guía de etiquetado de cables](/es/kb/articles/cable-labeling-system-that-survives/).
+
+**Deja las decisiones rápidas en encuestas, no en adjuntos.** Para preguntas de "¿cuál noche de ensayo les funciona?", una encuesta integrada (de dos a diez opciones, de elección única o múltiple, con conteos en vivo) le gana a una hoja de cálculo todas las veces.
+
+## Solución Rápida de Problemas
+
+- **"Mi subida fue declinada."** Revisa el formato primero —SVG, HTML, archivos comprimidos, y ejecutables están bloqueados por diseño. Exporta a PDF o PNG e intenta de nuevo.
+- **"Mi archivo es demasiado grande."** El límite es 25 MB por archivo. Comprime, recorta, o exporta a un formato más ligero; para medios genuinamente grandes, comparte un enlace al almacenamiento de archivos grandes de tu iglesia en su lugar.
+- **"Un enlace de archivo dejó de funcionar."** Los enlaces firmados expiran después de una hora —una característica, no una falla. Abre el archivo desde el mensaje del chat otra vez y un enlace fresco se emite automáticamente.
+
+## Cómo Maneja Esto WorshipMetrics
+
+Team Chat es parte del lado de [People](/people/) de WorshipMetrics, así que tus canales, mensajes directos, y archivos compartidos viven junto a tu directorio, tus equipos, y tus horarios de servicio —la misma gente, los mismos inicios de sesión, un solo lugar. Los archivos de hasta 25 MB en las familias de imagen, video, audio, PDF, Office, y texto se almacenan privadamente con enlaces firmados que expiran; los formatos de documento activo se quedan fuera por diseño. El chat funciona idéntico en las apps web y de escritorio y es amigable con el móvil en la cabina, y como el nivel gratuito incluye usuarios ilimitados, todo tu equipo puede estar en la conversación desde el día uno. Cuando esos archivos están coordinando un orden de servicio real, la [planeación de servicios](/services/) mantiene el plan en el mismo lugar donde tu equipo ya está hablando.
