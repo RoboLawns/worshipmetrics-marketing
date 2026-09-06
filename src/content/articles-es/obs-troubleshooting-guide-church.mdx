@@ -1,0 +1,99 @@
+---
+title: "Solución de Problemas de OBS para Streams de Iglesia: Los 10 Problemas Detrás de Casi Toda Falla Dominical"
+description: "Una guía de campo por síntomas para las fallas de OBS que las cabinas de iglesia realmente enfrentan —fuentes en negro, conexiones rechazadas, frames perdidos, streams silenciosos— con las verificaciones rápidas para cada una, y las dos mejoras que hacen más rápida la solución de problemas del próximo domingo: un sistema mapeado y una IA que conoce tu cableado."
+category: "streaming"
+tags: ["OBS", "troubleshooting", "live-streaming", "Luminos"]
+difficulty: "beginner"
+publishedAt: "2026-09-06"
+featured: true
+productCTA: true
+faq:
+  - question: "¿Cuál es la forma más rápida de solucionar problemas de OBS durante un servicio de iglesia?"
+    answer: "Trabaja desde el síntoma, no desde la teoría: identifica cuál de las diez formas de falla estás viendo —fuente en negro, conexión rechazada, frames perdidos, encoder sobrecargado, audio silencioso, desfase, stream borroso, degradación tardía, un crash, o configuración cambiada— y corre la lista corta de verificaciones de ese síntoma en orden. Cambia una cosa a la vez, y anota qué tocaste para que el siguiente operador herede el arreglo y no el misterio."
+  - question: "¿Por qué nuestro OBS falla de una forma diferente cada domingo?"
+    answer: "Las fallas rotativas rara vez son diez problemas separados —son una sola condición produciendo síntomas: una máquina sin vigilar, sin línea base de configuración, cableado que vive en la cabeza de una persona, y un solo operador sobrecargado. Arreglar el síntoma de este domingo no toca la condición, así que el próximo domingo produce uno nuevo. El arreglo es el sistema alrededor de OBS: telemetría, automatización, documentación, y un equipo."
+  - question: "¿Cómo conservamos el conocimiento de solución de problemas de OBS cuando los voluntarios se van?"
+    answer: "Mueve el conocimiento fuera de las cabezas y dentro del sistema: un Signal Map que documenta cada cable y puerto, configuraciones de OBS capturadas de cada servicio, y un historial de soporte de lo que se intentó. Esa documentación entrena más rápido a los voluntarios nuevos —y una vez que un asistente de IA como Luminos la lee, cada respuesta que le da a cualquier voluntario está anclada en tu cabina real, no en consejos genéricos."
+---
+
+## Cómo usar esta guía cuando el servicio empieza en veinte minutos
+
+Esta es una guía de campo, no una cátedra. Escanea los diez síntomas de abajo, encuentra el que está en tu pantalla, y corre sus verificaciones rápidas **en orden** —cada una enlaza a una guía profunda si la versión corta no aterriza el arreglo. Dos reglas hacen más seguro cada arreglo de abajo: **cambia una cosa a la vez**, y **di en voz alta (o escribe en el chat del equipo) qué tocaste**. La mitad del misterio de la próxima semana es el arreglo sin documentar de esta.
+
+Y si ya sabes que tu verdadero problema es que regresas a esta página *todas* las semanas —sáltate a [las dos mejoras](#cuando-la-lista-deja-de-ayudar-dos-mejoras-que-cambian-el-juego) del final. Una cabina que rota por un [problema diferente cada domingo](/es/kb/articles/obs-problem-every-sunday/) no tiene diez problemas; tiene uno.
+
+## 1. Una fuente se puso en negro — cámara, captura de pantalla, o NDI
+
+Revisa lo obvio primero: ¿está en vivo la escena correcta, y el ícono del ojo de la fuente realmente está encendido? Luego sigue la señal *hacia atrás*: ¿la utilidad propia del dispositivo de captura ve imagen? Si sí, el problema está dentro de OBS (re-selecciona el dispositivo en las propiedades de la fuente); si no, es el cable o la cámara, y OBS nunca fue el culpable. La captura de pantalla en negro en una laptop es su propio clásico —la captura está corriendo en el GPU equivocado.
+
+Guías profundas: [arreglos para pantalla negra en OBS](/kb/troubleshooting/obs-black-screen-church-stream/), [cámara NDI que no aparece](/kb/troubleshooting/ndi-camera-not-showing-obs-vmix/), y [señal HDMI que se cae o se va a negro](/kb/troubleshooting/hdmi-signal-dropping-church-setup/).
+
+## 2. "Failed to connect to server" — el stream no arranca
+
+Nueve de cada diez veces esto es la clave de stream o el destino, no tu red: las claves rotan cuando alguien hace clic en "End Stream" del lado de la plataforma, y una clave copiada con un espacio al final falla en silencio. Vuelve a pegar la clave, confirma el servicio y el servidor correctos, e intenta una vez más antes de tocar cualquier otra cosa. Si la plataforma misma está caída, no existe arreglo local —revisa su página de estado antes de reconstruir tu configuración en pánico.
+
+Guías profundas: [OBS que no conecta con YouTube o Twitch](/kb/troubleshooting/obs-not-connecting-twitch-youtube/), [errores de clave de stream inválida](/kb/troubleshooting/stream-key-invalid-church-fix/), y [fallas de conexión de Facebook Live](/kb/troubleshooting/facebook-live-connection-failed-church/).
+
+## 3. Frames perdidos — la red no puede cargar tu bitrate
+
+Los frames perdidos (el indicador poniéndose naranja o rojo) son un síntoma de *red*, distinto de los problemas de encoding. Secuencia rápida: confirma que estás en ethernet cableado y no en WiFi, mata cualquier otra cosa comiéndose la subida (el respaldo en la nube de la PC de la oficina cuenta), y si persiste, baja tu bitrate 25% en vivo —[un stream conservador que se sostiene le gana a uno ambicioso que colapsa](/es/kb/articles/obs-studio-complete-church-guide/).
+
+Guías profundas: [frames perdidos durante un stream de iglesia](/kb/troubleshooting/stream-dropping-frames-church/), [¿nuestro WiFi de iglesia es suficiente?](/es/kb/articles/church-wifi-good-enough-to-livestream/), y [cuánto ancho de banda necesita realmente el streaming](/kb/troubleshooting/church-network-bandwidth-streaming/).
+
+## 4. "Encoding overloaded" — la computadora no puede seguir el paso
+
+El problema opuesto: tu máquina, no tu red. Secuencia rápida: cierra todo lo que no sea OBS, baja el preset del encoder un escalón (la calidad cae menos de lo que temes), y si la máquina tiene un GPU capaz, muévete de x264 al encoder por hardware. A esta advertencia le encanta aparecer *a media adoración*, cuando seis cámaras, fondos en movimiento, y una fuente de navegador hacen pico juntos.
+
+Guía profunda: [por qué OBS dice "Encoding Overloaded" en medio de la adoración](/es/kb/articles/obs-encoding-overloaded-during-worship/), más [configuración de bitrate y resolución que le queda a tu máquina](/kb/software/obs/obs-bitrate-settings-church/).
+
+## 5. El stream está en silencio
+
+Mira el mezclador de audio de OBS antes que nada: ¿los medidores se mueven? Medidores moviéndose pero sin audio en línea significa una pista muteada o un monitoreo mal dirigido; medidores muertos significa que el feed de la mezcladora se detuvo río arriba —lo más común, un dispositivo USB que se re-enumeró y OBS ahora está escuchando al "USB Audio Device" equivocado. Grabaciones silenciosas pero stream bien (o viceversa) es asignación de pistas, no hardware.
+
+Guías profundas: [sin audio en YouTube o Facebook](/kb/troubleshooting/no-audio-youtube-facebook-stream/), [USB de la mezcladora no reconocido](/kb/troubleshooting/mixer-usb-not-recognized-computer/), y [ruteo de audio desde la mezcladora de tu iglesia](/kb/software/obs/obs-audio-routing-church-mixer/).
+
+## 6. El audio y el video se desfasan
+
+Si empiezan juntos y se separan a lo largo del servicio, eso es deriva —usualmente un desajuste de tasa de muestreo (un dispositivo a 44.1 kHz en un mundo de 48 kHz) o un dispositivo de captura almacenando en búfer bajo carga. Si están desfasados por la misma cantidad todo el servicio, eso es latencia —arréglala con un offset de sincronización en la fuente, medido una vez, anotado.
+
+Guías profundas: [audio y video fuera de sincronía](/kb/troubleshooting/audio-delay-video-stream-fix/), [por qué el audio de OBS se desfasa para el final del sermón](/es/kb/articles/obs-audio-drift-long-services/), y [video de cámara retrasado respecto al audio](/kb/troubleshooting/camera-lagging-behind-audio-stream/).
+
+## 7. La vista previa se ve perfecta, el stream se ve mal
+
+La vista previa es tu máquina renderizando a calidad completa; el stream es esa imagen exprimida por tu bitrate y el transcode de la plataforma. Borroso-solo-en-línea significa la configuración del encoder, no las cámaras: bitrate demasiado bajo para la resolución, o un desajuste de reescalado. El arreglo vive en tres ajustes, no en equipo nuevo.
+
+Guía profunda: [por qué OBS se ve perfecto en la vista previa pero borroso en el stream](/es/kb/articles/obs-preview-fine-stream-looks-bad/).
+
+## 8. Bien a las 9:00, batallando a las 9:40
+
+La firma de la *acumulación*: calor, fuga de memoria, un disco llenándose, una fuente de navegador goteando —nada está mal al inicio, todo está al límite cuarenta minutos después. Esta es la falla que convence a los equipos de que están embrujados, porque cada prueba pre-servicio pasa. La señal está en la curva, no en la foto instantánea —y por eso las cabinas sin vigilancia nunca la atrapan.
+
+Guías profundas: [por qué el livestream se entrecorta a los cuarenta minutos](/es/kb/articles/livestream-stutters-40-minutes-in/), y [qué pasa si la PC de la cabina se estrella a media misa](/es/kb/articles/booth-pc-crashes-mid-service/).
+
+## 9. OBS no abre, se estrelló, o la grabación no reproduce
+
+Para fallas de arranque: modo seguro primero (desactiva plugins y fuentes de terceros —si OBS abre limpio, [un plugin es tu sospechoso](/es/kb/articles/obs-plugins-church-stream-safety/)). Para un crash que se llevó la grabación: deja de escribir en ese disco e intenta el remux —y cambia las grabaciones futuras a MKV para que un crash nunca más pueda secuestrar un servicio.
+
+Guías profundas: [OBS no abre y el servicio empieza en una hora](/es/kb/articles/obs-wont-launch-sunday-morning/), y [rescatar una grabación que no reproduce tras un crash](/es/kb/articles/obs-recording-unplayable-after-crash/).
+
+## 10. Funcionaba el domingo pasado — alguien cambió algo
+
+La falla más humana de la lista. Un operador invitado "mejoró" una escena, una actualización reseteó un encoder, alguien le dio clic a un diálogo en el ensayo. Sin una línea base estás haciendo arqueología de tu propia cabina a las 8:40 a.m. Con una —perfiles y colecciones de escenas exportados, configuración capturada por servicio— "¿qué cambió?" es un diff de treinta segundos en lugar de un interrogatorio.
+
+Guías profundas: [terminando el misterio de la configuración entre domingos](/es/kb/articles/obs-settings-changed-between-sundays/), y [dejar que más de una persona corra OBS con seguridad](/es/kb/articles/multiple-operators-obs-church/).
+
+## Cuando la lista deja de ayudar: dos mejoras que cambian el juego
+
+Si esta página arregló tu mañana, guárdala y ve a hacer el servicio. Pero nota lo que cada arreglo de arriba asumió en silencio: que *tú* estabas ahí, que sabías cuál cable alimenta qué, y que ibas a recordar todo esto la próxima vez. Esas suposiciones son la parte realmente frágil de un stream de iglesia —y son mejorables.
+
+### Mejora uno: un sistema mapeado es un sistema que puedes entregarle a alguien más
+
+Casi cada verificación rápida de arriba empieza igual —*sigue la señal hacia atrás*. Eso toma treinta segundos en una cabina con un mapa real y medio servicio en una cabina donde el cableado vive en la memoria de un veterano. Un [Signal Map](/system-documentation/) —cada dispositivo, cada cable etiquetado, cada puerto, imprimible como hojas de patch— convierte la solución de problemas de adivinanza en orientación, y hace algo más grande entre domingos: **vuelve transferible el conocimiento.** Los voluntarios nuevos [se entrenan contra el mapa en lugar de contra el folclor](/es/kb/articles/train-obs-volunteers-church/), una [disciplina de etiquetado](/es/kb/articles/cable-labeling-system-that-survives/) sobrevive los re-rackeos, y la cabina [sobrevive a que su constructor se vaya](/es/kb/articles/when-your-vmix-person-leaves/) —porque la memoria del sistema dejó de ser una persona.
+
+### Mejora dos: Luminos — ayuda para solucionar problemas que ya conoce tu cabina
+
+Ahora pon algo del otro lado de esa documentación. [Luminos](/luminos-ai-assistant/), el asistente de IA de WorshipMetrics, no responde preguntas de OBS desde listas genéricas de internet —[lee tu iglesia](/es/kb/articles/ai-that-knows-your-wiring/): tu inventario, tu Signal Map hasta los IDs de cable, la telemetría en vivo de la máquina de la cabina, y el reporte de salud de cada servicio pasado. Pregunta "¿por qué la cámara dos está en negro?" y razona sobre *tu* ruta de señal real y lo que el sistema puede observar en este momento —la diferencia entre "¿ya revisaste los cables?" y "revisa NET-014 en la entrada 2 del switcher, porque el encoder está sano y la cámara uno comparte todo lo demás". Está ahí para [el voluntario solo en la cabina](/es/kb/articles/obs-help-from-home-sunday/), contesta [910-WORSHIP](/phone-support/) por voz como Journey, y cada dispositivo que documentas afila su siguiente respuesta. El nivel gratuito incluye una probada real; [Assist](/pricing/) lo vuelve ilimitado, 24/7.
+
+## Cómo maneja esto WorshipMetrics
+
+Los diez síntomas de arriba dejan de ser emergencias cuando el sistema alrededor de OBS hace su trabajo: [Tech Manager](/tech-manager/) vigila la máquina y el encoder cada pocos segundos y [arregla las fallas rutinarias por sí mismo](/es/kb/articles/tech-manager-self-healing-explained/), [Pulse](/av-monitoring/) alerta tu teléfono [en el momento en que el stream se cae](/es/kb/articles/church-stream-drop-phone-alert/), cada servicio termina con un [reporte de salud](/es/kb/articles/reading-your-stream-health-score/) que captura la configuración con la que corrió, el [Signal Map](/system-documentation/) guarda el cableado que tu equipo solía llevar en la cabeza —y Luminos lee todo eso, así que la siguiente sesión de solución de problemas empieza con las respuestas precargadas. El monitoreo, el mapa, y las alertas son [gratis para siempre](/pricing/); el camino más rápido a un domingo más calmado es dejar que el sistema empiece a vigilar esta semana.
