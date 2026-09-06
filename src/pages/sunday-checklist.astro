@@ -1,0 +1,332 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BrandLockup from "../components/BrandLockup.astro";
+
+export const prerender = true;
+
+const checklist = [
+  {
+    time: "T-45",
+    heading: "Power & facility",
+    items: [
+      "Power on in order, 60s apart: network switch → cameras → switcher → mixer → streaming PC",
+      "Walk the room: every camera shows power + network (no dark or red LEDs)",
+      "House lights at real service level — not rehearsal look",
+      "Booth PC: no updates pending, no extra apps running",
+    ],
+  },
+  {
+    time: "T-30",
+    heading: "Internet",
+    items: [
+      "Streaming PC is on wired ethernet — not WiFi",
+      "Speed test: upload is at least 2× your streaming bitrate",
+      "Backup path (hotspot) charged, tested, credentials written down",
+      "Nothing else on the network is eating upload (backups, sync, updates)",
+    ],
+  },
+  {
+    time: "T-20",
+    heading: "Audio",
+    items: [
+      "Every mic used today tested against the meters — speech peaking ≈ −6 dB, vocals ≈ −12 dB",
+      "Wireless mic batteries ≥ 75% (swap anything below 50%)",
+      "Master fader up and NOT muted",
+      "Headphone check on the stream mix — not just the room",
+    ],
+  },
+  {
+    time: "T-15",
+    heading: "Video & presentation",
+    items: [
+      "Every camera live, framed, responding (quick PTZ pan test on each)",
+      "Presentation file is TODAY's — songs and message notes verified",
+      "Press through every scene/transition while watching the program monitor",
+      "Confidence monitor and lobby feeds showing what they should",
+    ],
+  },
+  {
+    time: "T-10",
+    heading: "Encoder (OBS / vMix)",
+    items: [
+      "Correct profile / preset loaded — the dated, last-known-good one",
+      "Stream key + destination verified (re-paste if anyone clicked End Stream last week)",
+      "Encoder audio meters moving; correct source and track/bus selected",
+      "15-second test stream — confirmed live on the platform, then stopped",
+      "Recording path set, drive healthy, plenty of free space",
+      "OBS: preview via Studio Mode · vMix: render FPS steady at project rate",
+    ],
+  },
+  {
+    time: "T-5",
+    heading: "Operators ready",
+    items: [
+      "Run sheet visible at the operator position; cue points marked",
+      "Backup person walk-through: viewer's-eye check of cameras and room",
+      "Pastor sound check at normal speaking voice",
+      "Two-minute crew cue: audio ✓ switcher ✓ stream ✓",
+    ],
+  },
+  {
+    time: "LIVE",
+    heading: "During the service",
+    items: [
+      "Start stream at the agreed signal point — verify it's live on the platform",
+      "Watch audio meters continuously; adjust gently, never dramatically",
+      "Watch dropped frames (OBS) / render FPS (vMix) — the curve, not the snapshot",
+      "One change at a time — and say out loud (or type) what you touched",
+      "Non-critical problems wait; you're worshipping, not troubleshooting",
+    ],
+  },
+  {
+    time: "POST",
+    heading: "After the service",
+    items: [
+      "Stop stream after the closing music — confirm the platform shows offline",
+      "Shut down properly: encoder closed normally, faders zeroed, master muted, PC shut down cleanly",
+      "Recording copied to a second location — never one copy of a service",
+      "Post in team chat: what broke, what you touched, what next week should know",
+      "Batteries, storage space, and cables checked for next Sunday",
+    ],
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "The Sunday Morning AV Checklist",
+  description:
+    "A printable pre-service, during-service, and post-service checklist for church AV and streaming teams running OBS or vMix.",
+  step: checklist.map((section) => ({
+    "@type": "HowToSection",
+    name: `${section.time} — ${section.heading}`,
+    itemListElement: section.items.map((item, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      text: item,
+    })),
+  })),
+};
+---
+
+<Layout
+  title="The Sunday Morning AV Checklist (Printable)"
+  description="The free, printable pre-service checklist church AV teams tape to the booth desk — power-on order, internet, audio, video, OBS/vMix encoder checks, and post-service shutdown. Print it, laminate it, hand it to the new volunteer."
+  canonical="/sunday-checklist"
+  structuredData={structuredData}
+>
+  <style is:global>
+    @media print {
+      header, nav, footer, .no-print { display: none !important; }
+      body { background: #fff !important; }
+      main { padding: 0 !important; }
+    }
+  </style>
+  <style>
+    .wrap { max-width: 52rem; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+    .eyebrow {
+      font-family: var(--font-mono-brand);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 0.75rem;
+    }
+    .wrap h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .lede { font-size: 1.05rem; line-height: 1.7; color: #5a6a8a; max-width: 40rem; margin-bottom: 1.5rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 2.5rem; }
+
+    .sheet {
+      border: 1px solid var(--border); border-radius: 1rem; padding: 2rem;
+      background: var(--bg, #fff);
+    }
+    .sheet-head {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+      border-bottom: 2px solid #0B0D10; padding-bottom: 0.75rem; margin-bottom: 1.25rem;
+    }
+    .sheet-head .brand { font-weight: 800; }
+    .sheet-head .brand span { color: #8494b0; font-weight: 500; font-size: 0.8rem; }
+    .sheet-blanks { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.8rem; color: #5a6a8a; }
+    .sheet-blanks b { font-weight: 600; }
+    .sheet-blanks i { display: inline-block; min-width: 6rem; border-bottom: 1px solid #8494b0; }
+
+    .section { break-inside: avoid; margin-bottom: 1.1rem; }
+    .section-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.4rem; }
+    .section-time {
+      font-family: var(--font-mono-brand); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      color: var(--primary); border: 1px solid currentColor; border-radius: 999px; padding: 0.1rem 0.55rem;
+    }
+    .section-head h2 { font-size: 1rem; font-weight: 700; }
+    .items { list-style: none; margin: 0; padding: 0; }
+    .items li { display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.28rem 0; font-size: 0.92rem; line-height: 1.5; }
+    .box {
+      flex: none; width: 0.95rem; height: 0.95rem; margin-top: 0.22rem;
+      border: 1.5px solid #0B0D10; border-radius: 0.2rem;
+    }
+    .sheet-foot { margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: #8494b0; }
+
+    .after { margin-top: 3rem; }
+    .after h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .after p { line-height: 1.7; color: #5a6a8a; margin-bottom: 1rem; max-width: 42rem; }
+    .after a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    .after a:hover { text-decoration: underline; }
+
+    .signup {
+      margin-top: 2rem; padding: 1.5rem 1.75rem; border: 1px solid var(--border); border-radius: 1rem;
+      background: var(--bg-soft);
+    }
+    .signup h3 { font-weight: 800; margin-bottom: 0.35rem; }
+    .signup p { font-size: 0.85rem; color: #5a6a8a; line-height: 1.6; margin-bottom: 0.9rem; }
+    .signup form { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .signup input[type="email"] {
+      flex: 1 1 14rem; min-width: 0; padding: 0.55rem 0.9rem; font-size: 0.85rem;
+      border: 1px solid var(--border); border-radius: 9999px; background: var(--bg, #fff);
+    }
+    .signup input[type="email"]:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+    .signup-msg { flex-basis: 100%; font-size: 0.78rem; margin: 0; }
+    .signup-msg.is-ok { color: #15803d; }
+    .signup-msg.is-err { color: #b91c1c; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    @media print {
+      .sheet { border: none; border-radius: 0; padding: 0; }
+      .items li { padding: 0.16rem 0; font-size: 10.5pt; }
+      .section-time { color: #000; }
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="no-print">
+      <p class="eyebrow">Printable · Free · No signup required</p>
+      <h1>The Sunday Morning AV Checklist.</h1>
+      <p class="lede">
+        The pre-service routine that catches problems before the congregation does — power-on order, internet, audio,
+        video, and the OBS/vMix encoder checks — on one sheet you can tape to the booth desk and hand to a brand-new volunteer.
+      </p>
+      <div class="actions">
+        <button
+          type="button"
+          class="btn-primary"
+          style="font-size:0.9rem;padding:0.6rem 1.4rem;"
+          onclick="window.print()"
+          data-wm-track="cta_click"
+          data-wm-track-label="checklist_print"
+          data-wm-track-location="sunday_checklist"
+        >Print the checklist</button>
+        <span style="font-size:0.8rem;color:#8494b0;">Prints clean in black &amp; white — no nav, no ads, just the list.</span>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-head">
+        <p class="brand" style="display:flex;align-items:center;gap:0.5rem;"><BrandLockup width={128} /> <span>· worshipmetrics.com/sunday-checklist</span></p>
+        <p class="sheet-blanks">
+          <span><b>Church</b> <i></i></span>
+          <span><b>Date</b> <i></i></span>
+          <span><b>Operator</b> <i></i></span>
+        </p>
+      </div>
+
+      {checklist.map(({ time, heading, items }) => (
+        <div class="section">
+          <div class="section-head">
+            <span class="section-time">{time}</span>
+            <h2>{heading}</h2>
+          </div>
+          <ul class="items">
+            {items.map((item) => (
+              <li><span class="box" aria-hidden="true"></span>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <p class="sheet-foot">
+        Two rules that make every fix safer: change one thing at a time, and say what you touched.
+        Free AV monitoring, alerts, and the Signal Map: <strong>worshipmetrics.com</strong> · Help 7 days a week: <strong>910-WORSHIP</strong>
+      </p>
+    </div>
+
+    <div class="after no-print">
+      <h2>Why these exact steps?</h2>
+      <p>
+        Every line above earned its place by failing somewhere on a Sunday. The full reasoning — with the training
+        narrative for new volunteers — lives in the <a href="/kb/workflows/sunday-morning-checklist/">complete Sunday morning AV guide</a>,
+        and when something still breaks mid-service, the symptom-first field guides have your back:
+        <a href="/kb/articles/obs-troubleshooting-guide-church/">OBS troubleshooting</a> and
+        <a href="/kb/articles/vmix-troubleshooting-guide-church/">vMix troubleshooting</a>.
+      </p>
+      <p>
+        And half of this list can simply stop being manual: <a href="/av-monitoring/">Pulse</a> watches the machines,
+        streams, and devices from the moment the booth powers on, <a href="/tech-manager/">Tech Manager</a> runs the
+        encoder checks every few seconds and fixes the routine failures itself, and every service ends with a
+        <a href="/kb/articles/reading-your-stream-health-score/">health report</a> — free forever, for the whole team.
+      </p>
+
+      <div class="signup">
+        <h3>Keep the checklist current.</h3>
+        <p>
+          Get the refreshed checklist each season plus one practical booth email a week — streaming, volunteers,
+          and the gear between them. No spam, unsubscribe anytime.
+        </p>
+        <form id="checklist-newsletter" method="post" action="/api/newsletter/">
+          <label class="hp" aria-hidden="true">
+            Leave this field empty
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </label>
+          <input type="hidden" name="source" value="sunday-checklist" />
+          <input type="email" name="email" required placeholder="you@yourchurch.org" aria-label="Email address" autocomplete="email" />
+          <button
+            type="submit"
+            class="btn-primary"
+            style="font-size:0.85rem;padding:0.55rem 1.25rem;"
+            data-wm-track="cta_click"
+            data-wm-track-label="checklist_newsletter_subscribe"
+            data-wm-track-location="sunday_checklist"
+          >Send me the updates</button>
+          <p class="signup-msg" role="status" hidden></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('checklist-newsletter') as HTMLFormElement | null;
+    if (form) {
+      const msg = form.querySelector('.signup-msg') as HTMLElement;
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        msg.hidden = true;
+        button.disabled = true;
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: data.get('email'),
+              source: data.get('source'),
+              website: data.get('website'),
+            }),
+          });
+          const result = await response.json().catch(() => ({ ok: false }));
+          if (response.ok && result.ok) {
+            form.reset();
+            msg.textContent = "You're on the list. Watch your inbox.";
+            msg.classList.add('is-ok');
+            msg.classList.remove('is-err');
+          } else {
+            msg.textContent = result.error || 'Signup failed. Please try again.';
+            msg.classList.add('is-err');
+            msg.classList.remove('is-ok');
+          }
+        } catch {
+          msg.textContent = 'Network problem — please try again.';
+          msg.classList.add('is-err');
+          msg.classList.remove('is-ok');
+        } finally {
+          msg.hidden = false;
+          button.disabled = false;
+        }
+      });
+    }
+  </script>
+</Layout>
