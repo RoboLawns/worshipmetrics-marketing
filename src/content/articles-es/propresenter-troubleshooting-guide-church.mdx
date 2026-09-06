@@ -1,0 +1,104 @@
+---
+title: "Solución de Problemas de ProPresenter para Equipos de Iglesia: Los 10 Problemas Detrás de Casi Toda Falla Dominical"
+description: "Una guía de campo por síntomas para las fallas de ProPresenter que las cabinas de iglesia realmente enfrentan —salidas en blanco, NDI invisible, lag a media misa, la pantalla de escenario mostrando lo equivocado— con las verificaciones rápidas para cada una, y las mejoras que hacen más rápido el próximo domingo: un sistema mapeado, IA que conoce tu cableado, y menos partes móviles."
+category: "display"
+tags: ["ProPresenter", "troubleshooting", "presentation", "Luminos"]
+difficulty: "beginner"
+publishedAt: "2026-09-06"
+featured: true
+productCTA: true
+coverImage: "/images/products/propresenter-7-advanced-setup/propresenter-worship-production.png"
+faq:
+  - question: "¿Cuál es la forma más rápida de solucionar problemas de ProPresenter durante un servicio de iglesia?"
+    answer: "Trabaja desde el síntoma, no desde la teoría: identifica cuál de las diez formas de falla estás viendo —pantalla de audiencia en blanco, salida NDI invisible, lag o crashes, medios que no reproducen, pantalla de escenario equivocada, arreglo equivocado, una importación fallida de Planning Center, un key roto, configuración cambiada, o una biblioteca que nadie puede navegar— y corre las verificaciones cortas de ese síntoma en orden. Cambia una cosa a la vez, y dile al equipo qué tocaste."
+  - question: "¿Por qué ProPresenter se rompe de una forma diferente cada domingo?"
+    answer: "Las fallas rotativas rara vez son diez problemas separados —son una sola condición produciendo síntomas: una máquina de presentación sin vigilar, sin línea base de configuración, cableado de salidas que vive en la cabeza de una persona, y un solo operador sobrecargado. Arreglar el síntoma de este domingo no toca la condición. El arreglo es el sistema alrededor del software: documentación, telemetría, un equipo entrenado —y a veces menos partes móviles."
+  - question: "¿Debería nuestra iglesia dejar ProPresenter?"
+    answer: "No si está funcionando —un rig estable de ProPresenter que tu equipo conoce vale la pena conservarlo. La pregunta honesta es la complejidad total: una máquina dedicada, archivos locales, licencias por asiento, y un solo operador experto es mucha superficie para un equipo de voluntarios. Si la lista de arreglos sigue creciendo, una herramienta basada en navegador que construye las presentaciones desde el plan del servicio —y que importa documentos de ProPresenter 4 al 7— merece una tarde de prueba."
+---
+
+## Cómo usar esta guía cuando el servicio empieza en veinte minutos
+
+Esta es una guía de campo, no una cátedra. Escanea los diez síntomas de abajo, encuentra el que está en tu pantalla, y corre sus verificaciones rápidas **en orden** —cada una enlaza a una guía profunda si la versión corta no aterriza el arreglo. Dos reglas hacen más seguro cada arreglo: **cambia una cosa a la vez**, y **di en voz alta (o escribe en el chat del equipo) qué tocaste**. La mitad del misterio de la próxima semana es el arreglo sin documentar de esta.
+
+Esta guía es parte de una serie —las otras dos puertas de la cabina son [solución de problemas de OBS](/es/kb/articles/obs-troubleshooting-guide-church/) y [solución de problemas de vMix](/es/kb/articles/vmix-troubleshooting-guide-church/), y la mitad pre-servicio de las tres vive en una [lista imprimible](/sunday-checklist/) que puedes pegar en el escritorio.
+
+## 1. La pantalla de la audiencia está en blanco — o mostrando tu escritorio
+
+La falla más pública de la tecnología de iglesia. Secuencia rápida: revisa la configuración de salidas antes de tocar cables —a macOS y a Windows les encanta reacomodar las pantallas después de que un proyector encendió en el orden equivocado, un adaptador se reasentó, o el sistema se actualizó. Reasigna la pantalla de audiencia en la configuración de pantallas de ProPresenter, y solo entonces camina la ruta del cable. Si el proyector muestra "sin señal" en lugar de tu escritorio, el problema es [la ruta del cable, no el software](/kb/troubleshooting/hdmi-signal-dropping-church-setup/).
+
+Guía profunda: [la configuración completa de ProPresenter para iglesias](/kb/software/propresenter/propresenter-7-church-setup/) cubre la configuración de salidas desde cero.
+
+## 2. La salida NDI no es visible en OBS o vMix
+
+Tus diapositivas llegan al stream por la red, así que una salida NDI invisible usualmente es un síntoma de *red*: misma subred y VLAN, descubrimiento no bloqueado por un firewall que decidió que la red es "Pública", y la salida NDI realmente habilitada en la configuración de pantallas de ProPresenter. La lista de fuentes del software de streaming es el último sospechoso, no el primero.
+
+Guías profundas: [salida NDI de ProPresenter no visible](/kb/troubleshooting/propresenter-ndi-output-not-visible/), [configurar bien la salida NDI de ProPresenter](/kb/software/propresenter/propresenter-ndi-output-obs-vmix/), y [correr OBS y ProPresenter juntos](/kb/software/obs/obs-propresenter-ndi-together/).
+
+## 3. Lag, congelamientos, o crashes a media misa
+
+ProPresenter bajo carga es casi siempre un problema de *medios* disfrazado de software: archivos de video sobredimensionados, fondos en movimiento decodificando en el CPU, una biblioteca en un disco casi lleno. Secuencia rápida: reinicia ProPresenter (no la máquina) entre el ensayo y el servicio, cierra todo lo demás, y anota *cuál diapositiva* disparó el tartamudeo —la respuesta usualmente está en ese archivo.
+
+Guía profunda: [ProPresenter estrellándose, con lag, o lento — los arreglos de rendimiento](/kb/software/propresenter/propresenter-troubleshooting-performance/), más la [disciplina de medios que lo previene](/es/kb/articles/propresenter-7-advanced-setup/).
+
+## 4. Los medios no reproducen — miniatura negra, video mudo
+
+El archivo se movió, el disco no montó, o el códec nunca perteneció a un rig en vivo. Secuencia rápida: ¿el archivo reproduce en el reproductor del propio sistema? Si no, ProPresenter nunca tuvo oportunidad. Si ahí reproduce pero en ProPresenter no, re-enlaza los medios y revisa códecs exóticos —la presentación en vivo quiere H.264 aburrido, no lo que el editor exportó a medianoche.
+
+Guía profunda: la [guía de rendimiento](/kb/software/propresenter/propresenter-troubleshooting-performance/) cubre códecs y re-enlace de medios.
+
+## 5. La pantalla de escenario está en blanco o muestra lo equivocado
+
+La plataforma la ve, la congregación no —lo que la hace sentir de bajo riesgo hasta que el líder de alabanza pierde la letra a medio verso. Las pantallas de escenario fallan de dos formas: la *salida* murió (trátalo como el síntoma 1 —configuración de pantallas, luego cable), o el *layout* cambió (alguien editó el layout de escenario, o el layout equivocado está asignado a este look).
+
+Guía profunda: [configuración de la pantalla de escenario de ProPresenter para líderes de alabanza](/kb/software/propresenter/propresenter-stage-display-setup/).
+
+## 6. La letra o el arreglo equivocado está en pantalla
+
+La banda se fue al puente y las diapositivas no. Esto rara vez es un bug del software —es un desajuste de *arreglo*: la versión en la biblioteca no es el arreglo que el líder de alabanza planeó, o un operador invitado eligió la otra copia de la canción. El arreglo está río arriba: una sola fuente de verdad para los arreglos, acordada antes del ensayo, y las canciones duplicadas purgadas antes de que embosquen a alguien.
+
+Guías profundas: [qué se transfiere al migrar una biblioteca de canciones de ProPresenter](/es/kb/articles/migrate-propresenter-song-library/) cubre el lado de la higiene de biblioteca, y si el reporte de licencias es parte de tu flujo de letras, [la respuesta sobre CCLI](/es/kb/articles/ccli-reporting-with-lyrics-software/).
+
+## 7. La importación de Planning Center no trajo el servicio
+
+El plan del domingo vive en Planning Center; las diapositivas viven en ProPresenter —y cuando la sincronización se rompe, alguien reconstruye el servicio a mano a las 8 a.m. Secuencia rápida: confirma que la integración tiene la sesión iniciada (los tokens expiran en silencio), que el tipo de servicio correcto está seleccionado, y que los elementos del plan realmente llevan las canciones (un plan vacío se importa vacío).
+
+Guía profunda: [ProPresenter + Planning Center, de punta a punta](/kb/software/propresenter/propresenter-planning-center-integration/).
+
+## 8. Los tercios inferiores no están keyando sobre el video
+
+Las letras que deberían flotar sobre las cámaras muestran una caja negra —la ruta de alpha key entre ProPresenter y el switcher perdió su par fill/key. Secuencia rápida: confirma que ambas salidas (fill y key) siguen asignadas y cableadas, y que el keyer del switcher está mirando el par correcto —un cable re-parchado que intercambió fill y key produce exactamente esto.
+
+Guía profunda: [alpha keying de ProPresenter con un ATEM](/kb/software/propresenter/propresenter-alpha-keyer-atem/).
+
+## 9. Funcionaba el domingo pasado — alguien cambió algo
+
+Un operador invitado "limpió" los looks, una edición de tema se propagó a cada canción, una actualización reseteó una salida. Sin una línea base estás haciendo arqueología de tu propio rig a las 8:40 a.m. El hábito que lo arregla: exporta la configuración funcional después de cada domingo bueno, mantén deliberados los cambios en la computadora de presentación, y [entrena a los voluntarios en el flujo de trabajo](/es/kb/articles/training-volunteer-av-teams/) en lugar del folclor.
+
+Guía profunda: la [disciplina de respaldos de la guía avanzada](/es/kb/articles/propresenter-7-advanced-setup/) —archivos del show, plantillas, y notas de salidas.
+
+## 10. Nadie encuentra la presentación correcta bajo presión
+
+No es un desperfecto —es la falla lenta que empeora todas las demás. Si el operador está cazando entre carpetas de "Pascua_FINAL_v3(2)" mientras la sala espera, la estructura de la biblioteca está trabajando contra el ministerio. Organiza según cómo corren realmente los servicios, nombra las cosas de forma que un extraño pueda navegarlas, y purga los duplicados cada trimestre.
+
+Guía profunda: [organización de biblioteca para servicios reales](/es/kb/articles/propresenter-7-advanced-setup/).
+
+## Cuando la lista deja de ayudar: tres mejoras que cambian el juego
+
+Si esta página arregló tu mañana, guárdala y ve a hacer el servicio. Pero nota lo que cada arreglo de arriba asumió: que tú estabas ahí, que sabías cuál cable alimenta cuál pantalla, y que ibas a recordar todo esto la próxima vez. Esas suposiciones son la parte frágil —y son mejorables.
+
+### Mejora uno: un sistema mapeado es un sistema que puedes entregarle a alguien más
+
+Un rig de ProPresenter es una *máquina de ruteo de salidas* —pantallas de audiencia, pantallas de escenario, NDI al stream, fill y key al switcher— y casi cada arreglo de arriba empieza con "sigue la señal hacia atrás". Eso toma treinta segundos con un mapa real y medio servicio sin uno. Un [Signal Map](/system-documentation/) —cada dispositivo, cada cable etiquetado, cada puerto, imprimible como hojas de patch— convierte la solución de problemas en orientación y, más grande, **vuelve transferible el conocimiento**: los voluntarios nuevos se entrenan contra el mapa, una [disciplina de etiquetado](/es/kb/articles/cable-labeling-system-that-survives/) sobrevive los re-rackeos, y la cabina sobrevive a que su constructor se vaya.
+
+### Mejora dos: Luminos — ayuda que ya conoce tu cabina
+
+[Luminos](/luminos-ai-assistant/), el asistente de IA de WorshipMetrics, no responde desde listas genéricas de internet —[lee tu iglesia](/es/kb/articles/ai-that-knows-your-wiring/): tu inventario, tu Signal Map hasta los IDs de cable, la telemetría en vivo de las máquinas que [Tech Manager](/tech-manager/) vigila, y el reporte de salud de cada servicio pasado. Pregunta "¿por qué el monitor de confianza está oscuro?" y nombra el cable real y el puerto real. Está ahí para el voluntario solo en el escritorio de presentación, y contesta [910-WORSHIP](/phone-support/) por voz como Journey.
+
+### Mejora tres: a veces el arreglo es menos partes móviles
+
+Aquí va la honesta. Si ProPresenter está estable y tu equipo lo conoce —consérvalo, genuinamente. Pero si estás en esta página todas las semanas, nota cuántos síntomas de arriba vienen de la *arquitectura*: una máquina dedicada, archivos de medios locales, ruleta de hardware de pantallas, un solo operador experto. [WorshipMetrics Present](/present/) tiene otra forma —las presentaciones se construyen solas desde el plan del servicio, las [letras](/church-lyrics-software/) siguen el arreglo que el líder de alabanza realmente eligió (el síntoma 6 deja de existir), la [pantalla de escenario](/stage-display-software/) corre en cualquier navegador en la pantalla que esté libre (el síntoma 5 gana una llanta de refacción), y [la salida multi-pantalla funciona desde el navegador](/es/kb/articles/present-multi-screen-output-setup/) sin arqueología de arreglos de pantallas. Importa documentos de ProPresenter 4 al 7, así que [probarlo cuesta una tarde, no una reconstrucción](/es/kb/articles/migrate-propresenter-song-library/).
+
+## Cómo maneja esto WorshipMetrics
+
+Los diez síntomas de arriba dejan de ser emergencias cuando el sistema alrededor del rig de presentación hace su trabajo: [Tech Manager](/tech-manager/) vigila las máquinas cada pocos segundos, [Pulse](/av-monitoring/) alerta tu teléfono cuando algo se apaga, el [Signal Map](/system-documentation/) guarda el cableado de salidas que tu equipo solía llevar en la cabeza, y Luminos lee todo eso —así que la siguiente sesión de solución de problemas empieza con las respuestas precargadas. El monitoreo, el mapa, y las alertas son [gratis para siempre](/pricing/), y si la pregunta de la arquitectura más simple está viva para tu equipo, [Present](/present/) está en la misma plataforma, ya conectado a todo lo de arriba.
