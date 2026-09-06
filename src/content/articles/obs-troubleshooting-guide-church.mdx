@@ -7,6 +7,7 @@ difficulty: "beginner"
 publishedAt: "2026-09-06"
 featured: true
 productCTA: true
+coverImage: "/images/products/obs-troubleshooting-guide-church/obs-tech-support-church-booth-phone-call.jpg"
 faq:
   - question: "What is the fastest way to troubleshoot OBS during a church service?"
     answer: "Work from the symptom, not from theory: identify which of the ten failure shapes you're looking at — black source, refused connection, dropped frames, overloaded encoder, silent audio, drift, blurry stream, late-service degradation, a crash, or changed settings — and run that symptom's short check list in order. Change one thing at a time, and note what you touched so the next operator inherits the fix instead of the mystery."
@@ -20,7 +21,19 @@ faq:
 
 This is a field guide, not a lecture. Scan the ten symptoms below, find the one on your screen, and run its fast checks **in order** — each one links to a full deep dive if the quick version doesn't land the fix. Two rules make every fix below safer: **change one thing at a time**, and **say out loud (or type in the team chat) what you touched**. Half of next week's mystery is this week's undocumented fix.
 
-And if you already know your real problem is that you're back on this page *every* week — skip to [the two upgrades](#when-the-list-stops-helping-two-upgrades-that-change-the-game) at the end. A booth that rotates through a [different problem every Sunday](/kb/articles/obs-problem-every-sunday/) doesn't have ten problems; it has one.
+And if you already know your real problem is that you're back on this page *every* week — skip to [the two upgrades](#when-the-list-stops-helping-two-upgrades-that-change-the-game) at the end. A booth that rotates through a [different problem every Sunday](/kb/articles/obs-problem-every-sunday/) doesn't have ten problems; it has one. (Running vMix instead? This guide has a twin: [vMix troubleshooting for church production](/kb/articles/vmix-troubleshooting-guide-church/).)
+
+<figure>
+  <img
+    src="/images/products/obs-troubleshooting-guide-church/obs-church-video-production-booth-live.jpg"
+    alt="Church volunteer running OBS at the booth with a PTZ camera and audio mixer while the choir leads worship"
+    title="Using OBS for church video production — a volunteer-run booth mid-service with PTZ camera, mixer, and OBS scenes"
+    width="1408"
+    height="768"
+    loading="lazy"
+  />
+  <figcaption>Most Sunday OBS problems announce themselves mid-service, with the room full and one volunteer at the desk. A symptom-first checklist — and a booth where the signal paths are documented — is what turns those moments from panic into procedure.</figcaption>
+</figure>
 
 ## 1. A source went black — camera, display capture, or NDI
 
