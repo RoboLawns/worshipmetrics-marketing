@@ -36,36 +36,50 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
   }
 
+  // Secrets pasted into dashboards routinely carry stray whitespace or a
+  // trailing newline — trim, or the Authorization header / URL construction throws.
   const runtimeEnv = (locals as { runtime?: { env?: Record<string, string> } }).runtime?.env;
-  const resendApiKey = runtimeEnv?.RESEND_API_KEY;
-  const resendFromEmail = runtimeEnv?.RESEND_FROM_EMAIL || 'WorshipMetrics <no-reply@worshipmetrics.com>';
-  const resendAudienceId = runtimeEnv?.RESEND_AUDIENCE_ID;
+  const resendApiKey = runtimeEnv?.RESEND_API_KEY?.trim();
+  const resendFromEmail = runtimeEnv?.RESEND_FROM_EMAIL?.trim() || 'WorshipMetrics <no-reply@worshipmetrics.com>';
+  const resendAudienceId = runtimeEnv?.RESEND_AUDIENCE_ID?.trim();
 
+  // 503, not 500: Astro replaces the body of 500-status responses with its
+  // error page, which turns this JSON into an empty response for the client.
   if (!resendApiKey) {
-    return new Response(JSON.stringify({ ok: false, error: 'Signup is temporarily unavailable.' }), {
-      status: 500,
+    return new Response(JSON.stringify({ ok: false, error: 'Signup is temporarily unavailable.', code: 'no_key' }), {
+      status: 503,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
   // Add to the Resend audience when one is configured — the durable list.
   if (resendAudienceId) {
-    const contactResponse = await fetch(`https://api.resend.com/audiences/${resendAudienceId}/contacts`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${resendApiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        first_name: name || undefined,
-        unsubscribed: false,
-      }),
-    });
+    let contactResponse: Response;
+    try {
+      contactResponse = await fetch(`https://api.resend.com/audiences/${encodeURIComponent(resendAudienceId)}/contacts`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${resendApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          first_name: name || undefined,
+          unsubscribed: false,
+        }),
+      });
+    } catch (error) {
+      console.error('newsletter: audience request threw', error);
+      return new Response(JSON.stringify({ ok: false, error: 'Signup failed. Please try again.', code: 'audience_exception' }), {
+        status: 502,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
 
     // 409 means the contact already exists — that is a success from the subscriber's side.
     if (!contactResponse.ok && contactResponse.status !== 409) {
-      return new Response(JSON.stringify({ ok: false, error: 'Signup failed. Please try again.' }), {
+      console.error('newsletter: audience add failed', contactResponse.status, await contactResponse.text().catch(() => ''));
+      return new Response(JSON.stringify({ ok: false, error: 'Signup failed. Please try again.', code: 'audience_error' }), {
         status: 502,
         headers: { 'Content-Type': 'application/json' },
       });

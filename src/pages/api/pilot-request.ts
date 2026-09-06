@@ -27,12 +27,15 @@ export const POST: APIRoute = async ({ request, redirect, locals }) => {
     return new Response('Missing required fields', { status: 400 });
   }
 
+  // Trimmed: dashboard-pasted secrets routinely carry a trailing newline,
+  // which makes the Authorization header throw. 503 not 500: Astro replaces
+  // 500-status response bodies with its error page.
   const runtimeEnv = (locals as { runtime?: { env?: Record<string, string> } }).runtime?.env;
-  const resendApiKey = runtimeEnv?.RESEND_API_KEY;
-  const resendFromEmail = runtimeEnv?.RESEND_FROM_EMAIL || 'WorshipMetrics <no-reply@worshipmetrics.com>';
+  const resendApiKey = runtimeEnv?.RESEND_API_KEY?.trim();
+  const resendFromEmail = runtimeEnv?.RESEND_FROM_EMAIL?.trim() || 'WorshipMetrics <no-reply@worshipmetrics.com>';
 
   if (!resendApiKey) {
-    return new Response('Missing RESEND_API_KEY', { status: 500 });
+    return new Response('This form is temporarily unavailable. Please email paul@worshipmetrics.com or call 910-WORSHIP.', { status: 503 });
   }
 
   const text = [
@@ -61,25 +64,31 @@ export const POST: APIRoute = async ({ request, redirect, locals }) => {
     <p>${escapeHtml(payload.notes || 'None provided').replaceAll('\n', '<br />')}</p>
   `;
 
-  const resendResponse = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: resendFromEmail,
-      to: [PILOT_RECIPIENT],
-      reply_to: payload.email,
-      subject: 'New Pilot Program Request - WorshipMetrics',
-      text,
-      html,
-    }),
-  });
+  let resendResponse: Response;
+  try {
+    resendResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: resendFromEmail,
+        to: [PILOT_RECIPIENT],
+        reply_to: payload.email,
+        subject: 'New Pilot Program Request - WorshipMetrics',
+        text,
+        html,
+      }),
+    });
+  } catch (error) {
+    console.error('pilot-request: send threw', error);
+    return new Response('Sending failed. Please email paul@worshipmetrics.com or call 910-WORSHIP.', { status: 502 });
+  }
 
   if (!resendResponse.ok) {
-    const errorText = await resendResponse.text();
-    return new Response(`Resend error: ${errorText}`, { status: 502 });
+    console.error('pilot-request: send failed', resendResponse.status, await resendResponse.text().catch(() => ''));
+    return new Response('Sending failed. Please email paul@worshipmetrics.com or call 910-WORSHIP.', { status: 502 });
   }
 
   return redirect('/pilot-program/thank-you', 303);
