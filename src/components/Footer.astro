@@ -148,6 +148,36 @@ const cols = [
   .col-links a { font-size: 0.82rem; color: #8494b0; text-decoration: none; transition: color 0.15s; }
   .col-links a:hover { color: var(--primary); }
 
+  .footer-news {
+    max-width: 80rem; margin: 0 auto 2.5rem;
+    display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    background: var(--bg, #fff);
+  }
+  .footer-news-eyebrow { font-family: var(--font-mono-brand); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.4rem; }
+  .footer-news h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.35rem; }
+  .footer-news-sub { font-size: 0.82rem; color: #8494b0; line-height: 1.6; max-width: 30rem; }
+  .footer-news-form { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: flex-end; }
+  .footer-news-form input[type="email"] {
+    flex: 1 1 14rem; min-width: 0;
+    padding: 0.55rem 0.9rem; font-size: 0.85rem;
+    border: 1px solid var(--border); border-radius: 9999px;
+    background: var(--bg-soft); color: inherit;
+  }
+  .footer-news-form input[type="email"]:focus { outline: 2px solid var(--primary); outline-offset: 1px; border-color: var(--primary); }
+  .footer-news-msg { flex-basis: 100%; font-size: 0.78rem; margin: 0; text-align: right; }
+  .footer-news-msg.is-ok { color: #15803d; }
+  .footer-news-msg.is-err { color: #b91c1c; }
+  .footer-news-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  @media (max-width: 900px) {
+    .footer-news { grid-template-columns: 1fr; }
+    .footer-news-form { justify-content: flex-start; }
+    .footer-news-msg { text-align: left; }
+  }
+
   .footer-bottom {
     max-width: 80rem; margin: 2.5rem auto 0;
     padding-top: 1.5rem; border-top: 1px solid var(--border);
@@ -161,6 +191,24 @@ const cols = [
 </style>
 
 <footer>
+  <div class="footer-news">
+    <div>
+      <p class="footer-news-eyebrow">Newsletter</p>
+      <h3>Church tech help, in your inbox.</h3>
+      <p class="footer-news-sub">Streaming, volunteers, and the booth — practical help from the team that answers 910-WORSHIP. No spam, unsubscribe anytime.</p>
+    </div>
+    <form id="footer-newsletter" class="footer-news-form" method="post" action="/api/newsletter/">
+      <label class="footer-news-hp" aria-hidden="true">
+        Leave this field empty
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+      <input type="hidden" name="source" value="footer" />
+      <input type="email" name="email" required placeholder="you@yourchurch.org" aria-label="Email address" autocomplete="email" />
+      <button type="submit" class="btn-primary" style="justify-content:center;font-size:0.85rem;padding:0.55rem 1.25rem;" data-wm-track="cta_click" data-wm-track-label="footer_newsletter_subscribe" data-wm-track-location="footer">Subscribe</button>
+      <p class="footer-news-msg" role="status" hidden></p>
+    </form>
+  </div>
+
   <div class="footer-inner">
     <div class="brand-col">
       <a href="/" class="brand-logo" aria-label="WorshipMetrics home">
@@ -195,3 +243,46 @@ const cols = [
     </p>
   </div>
 </footer>
+
+<script>
+  const form = document.getElementById('footer-newsletter') as HTMLFormElement | null;
+  if (form) {
+    const msg = form.querySelector('.footer-news-msg') as HTMLElement;
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      msg.hidden = true;
+      button.disabled = true;
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: data.get('email'),
+            source: data.get('source'),
+            website: data.get('website'),
+          }),
+        });
+        const result = await response.json().catch(() => ({ ok: false }));
+        if (response.ok && result.ok) {
+          form.reset();
+          msg.textContent = "You're on the list. Watch your inbox.";
+          msg.classList.add('is-ok');
+          msg.classList.remove('is-err');
+        } else {
+          msg.textContent = result.error || 'Signup failed. Please try again.';
+          msg.classList.add('is-err');
+          msg.classList.remove('is-ok');
+        }
+      } catch {
+        msg.textContent = 'Network problem — please try again.';
+        msg.classList.add('is-err');
+        msg.classList.remove('is-ok');
+      } finally {
+        msg.hidden = false;
+        button.disabled = false;
+      }
+    });
+  }
+</script>
