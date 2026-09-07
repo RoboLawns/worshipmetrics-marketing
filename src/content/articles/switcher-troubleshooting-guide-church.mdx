@@ -1,0 +1,104 @@
+---
+title: "Video Switcher Troubleshooting for Churches: The 10 Problems Behind Almost Every Sunday Failure"
+description: "A symptom-first field guide to the ATEM and video switcher failures church booths actually hit — switchers the computer can't see, black inputs, webcam outputs that vanish, direct streams that drop, keyers gone wrong — with fast checks for each, and the upgrades that end the guessing."
+category: "streaming"
+tags: ["ATEM", "switchers", "troubleshooting", "Luminos"]
+difficulty: "beginner"
+publishedAt: "2026-09-06"
+featured: true
+productCTA: true
+coverImage: "/images/products/video-switcher-atem-roland-vmix/blackmagic-atem-mini-pro-video-switcher-church.jpg"
+faq:
+  - question: "What is the fastest way to troubleshoot a video switcher during a church service?"
+    answer: "Work from the symptom, not from theory: identify which of the ten failure shapes you're looking at — a switcher the computer can't see, a vanished webcam output, a black input, no output at all, a dropping direct stream, wrong audio, a broken keyer, missing multiview, lost macros, or a rig that worked last Sunday — and run that symptom's short checks in order. Remember what the box really is: a video router, an audio mixer, and often an encoder in one chassis. Every failure belongs to exactly one of the three."
+  - question: "Why can't my computer see the ATEM Mini?"
+    answer: "Two different connections fail two different ways: the USB webcam path (what OBS and Zoom see) and the control path (what ATEM Software Control uses, over USB or Ethernet). Identify which one is broken first — a missing webcam feed with working software control is a driver or cable issue on the webcam path, while software control failing alone usually means an IP or network problem on Ethernet-connected units."
+  - question: "Should we stream directly from the ATEM or through OBS?"
+    answer: "Direct streaming from a Pro-model ATEM is beautifully simple — one box, one cable, no computer in the chain — and completely blind: when it drops, the box can't tell you why. Streaming through software adds monitoring, telemetry, and a system that can alert your phone and write a health report. Many churches run the hybrid: ATEM as the switcher, software as the watched encoder."
+---
+
+## How to use this guide when the service starts in twenty minutes
+
+This is a field guide, not a lecture. Scan the ten symptoms below, find the one on your screen, and run its fast checks **in order** — each links to a full deep dive if the quick version doesn't land the fix. Keep the box's secret in mind: a modern switcher is **three devices in one chassis — a video router, an audio mixer, and (on Pro models) an encoder** — and every failure below belongs to exactly one of them. And as everywhere in the booth: change one thing at a time, and say what you touched.
+
+This guide completes a series — the other front doors are [OBS](/kb/articles/obs-troubleshooting-guide-church/), [vMix](/kb/articles/vmix-troubleshooting-guide-church/), [ProPresenter](/kb/articles/propresenter-troubleshooting-guide-church/), [PTZ cameras](/kb/articles/ptz-camera-troubleshooting-guide-church/), [stream audio](/kb/articles/audio-troubleshooting-guide-church/), and [hardware encoders](/kb/articles/encoder-troubleshooting-guide-church/), and the pre-service half of all of them lives on one [printable checklist](/sunday-checklist/).
+
+## 1. The computer can't see the switcher at all
+
+First, split the problem: the *webcam path* (what OBS sees) and the *control path* (what ATEM Software Control uses) are different connections that fail differently. Software control dead but webcam alive points at the control link — on Ethernet units, almost always an IP mismatch. Both dead over USB points at the cable or port: swap to a known-good USB-C cable that carries data (charging cables exist to ruin Sundays) and a direct port, not a hub.
+
+Deep dives: [ATEM Mini not detected by the computer](/kb/troubleshooting/atem-mini-not-detected-computer/), and [ATEM Software Control setup done right](/kb/switchers/blackmagic-design/blackmagic-atem-mini-pro-atem-software-control/).
+
+## 2. The webcam output vanished from OBS or Zoom
+
+The ATEM presents itself to the computer as a webcam, and webcams are hostage to the operating system: a Windows update re-enumerated devices, a privacy setting blocked camera access, or another app grabbed the device exclusively. Close everything that might hold the camera, re-select the device, and check OS camera permissions before touching the switcher.
+
+Deep dive: [ATEM USB webcam output not recognized](/kb/troubleshooting/atem-mini-usb-webcam-not-recognized/).
+
+## 3. An input is black — but the source is on
+
+The router third of the box is the patient, and HDMI handshakes are the usual culprit: a source outputting a format the box dislikes, an EDID negotiation gone stale after a power-order change, or a marginal cable finally failing. Power-cycle the *source* first (it renegotiates the handshake), then swap the cable, then try the source on another input to isolate which side is broken.
+
+Deep dive: [HDMI signal dropping or going black](/kb/troubleshooting/hdmi-signal-dropping-church-setup/).
+
+## 4. No output at all
+
+When the program output itself is dark, work the output chain exactly like an input in reverse: does the switcher's own multiview or preview show a picture (the box is alive, the output path is the patient), and does the display/capture device on the other end see *any* signal? A dead output with a healthy multiview is a cable, adapter, or format-setting problem nine times out of ten.
+
+Deep dive: [Roland V-1HD no video output, fixed](/kb/troubleshooting/roland-v1hd-no-video-output/).
+
+## 5. Direct streaming from the switcher keeps dropping
+
+Pro-model ATEMs stream straight to the platform — wonderfully simple, and completely blind when it fails. Fast sequence: wired ethernet (never WiFi for the box), drop the streaming quality preset one notch, and confirm nothing else is eating the upload. If drops persist, the honest diagnosis is that a blind encoder can't tell you what a watched one can.
+
+Deep dives: [ATEM Mini stream dropping, root-caused](/kb/switchers/blackmagic-design/blackmagic-atem-mini-stream-dropping-fix/), and [how much bandwidth the stream really needs](/kb/troubleshooting/church-network-bandwidth-streaming/).
+
+## 6. The audio from the switcher is wrong
+
+The mixer third of the box, and its signature surprise is **audio-follow-video**: inputs configured to unmute when cut to, producing sudden silence or sudden chaos depending on which camera is live. Check each input's audio state (on/off/AFV), confirm the master fader, and if a mixer feeds the switcher, verify that path before service — [the stream audio guide](/kb/articles/audio-troubleshooting-guide-church/) takes jurisdiction upstream of the box.
+
+Deep dive: [routing a Behringer mixer into the ATEM properly](/kb/switchers/blackmagic-design/blackmagic-atem-mini-audio-routing-behringer/).
+
+## 7. The keyer stopped keying — lower thirds are a black box
+
+Fill-and-key is a *pairing*: the keyer needs both signals on the inputs it expects, with the key settings matching what the graphics source actually sends. A re-patched cable that swapped fill and key, or a ProPresenter output change, produces exactly this. Confirm the pair, then the keyer's source assignment, then the clip/gain settings.
+
+Deep dives: [ProPresenter alpha keying with the ATEM](/kb/software/propresenter/propresenter-alpha-keyer-atem/), and the [ATEM-side keyer configuration](/kb/switchers/blackmagic-design/blackmagic-atem-mini-propresenter-keyer/).
+
+## 8. You're switching blind — no multiview, no confidence
+
+Not a malfunction, but the condition that makes every other failure worse: on a base ATEM Mini there is no multiview output, so the operator sees only program — every cut is a leap of faith. If your model has multiview (Pro and up), put it on a dedicated screen and configure it deliberately; if it doesn't, that missing confidence is a real line item in the upgrade conversation.
+
+Deep dive: [setting up the ATEM multiview properly](/kb/switchers/blackmagic-design/blackmagic-atem-mini-pro-multiview/).
+
+## 9. The macros or settings vanished
+
+ATEMs hold their running state, but macros and configurations live safest as *saved files* — an unexpected power loss or a factory reset takes the unsaved state with it. The discipline: save the configuration XML after every good Sunday, name it with the date, and store it where the next operator can find it — the switcher version of a settings baseline.
+
+Deep dives: [building reliable ATEM macros](/kb/switchers/blackmagic-design/blackmagic-atem-mini-macros-church/), and [Software Control's save/restore workflow](/kb/switchers/blackmagic-design/blackmagic-atem-mini-pro-atem-software-control/).
+
+## 10. It worked last Sunday
+
+Nothing changed on the switcher — something changed around it: a source's output format after an update, a re-patched cable nobody mentioned, a USB port that moved. The box with no screen is always the innocent-looking suspect; the paths around it are where the ghosts live.
+
+Deep dives: [which AV signals survive which paths](/kb/articles/av-signals-that-survive-network-switch/), and [an AV inventory that stays true](/kb/articles/av-inventory-maintenance/).
+
+## When the list stops helping: three upgrades that change the game
+
+If this page fixed your morning, bookmark it and go do the service. Then notice the assumption under every fix: someone who knew the box's inputs, cables, and history was standing in the booth. That assumption is upgradeable.
+
+### Upgrade one: a mapped system is a system you can hand to someone else
+
+A switcher is the junction box of the whole booth — every camera, the presentation machine, the graphics key, the stream all pass through it — which makes it the page of the [Signal Map](/system-documentation/) that pays for the rest. Every device, every labeled cable, every input assignment, printable as patch sheets: troubleshooting becomes wayfinding, [labeling discipline](/kb/articles/cable-labeling-system-that-survives/) survives re-racks, and the booth survives its builder leaving.
+
+### Upgrade two: put the booth around the switcher on watch
+
+The switcher can't tell you when it's in trouble — but the system around it can. [Pulse](/av-monitoring/) watches the machines, the stream, and every networked device flagged ["Alert when offline"](/kb/articles/multi-observer-device-health/), pages your phone [the moment the stream drops](/kb/articles/church-stream-drop-phone-alert/), and ends every service with a [health report](/kb/articles/reading-your-stream-health-score/). A blind box inside a watched booth stops being blind where it counts.
+
+### Upgrade three: Luminos — help that already knows your booth
+
+[Luminos](/luminos-ai-assistant/), the AI assistant in WorshipMetrics, doesn't answer switcher questions from generic checklists — [it reads your church](/kb/articles/ai-that-knows-your-wiring/): your inventory, your Signal Map down to which camera feeds input 3, live telemetry, and every past incident. "Why is input 2 black but input 1 fine?" gets an answer that reasons over *your* wiring. It's there for the volunteer alone in the booth, and it answers [910-WORSHIP](/phone-support/) by voice as Journey.
+
+## How WorshipMetrics handles this
+
+The ten symptoms above stop being emergencies when the switcher lives inside a watched, documented booth: [Tech Manager](/tech-manager/) controls ATEM switchers — plus OBS, vMix, and your PTZ cameras — from one window at no cost, [Pulse](/av-monitoring/) watches everything around the box, the [Signal Map](/system-documentation/) holds the input assignments your team used to keep in their heads, and Luminos reads all of it. [Cloud control](/cloud-control/) extends the reach further for the software side of the booth. Monitoring, the map, and alerts are [free forever](/pricing/) — the fastest way to calmer switching is to put the booth around the box on watch this week.

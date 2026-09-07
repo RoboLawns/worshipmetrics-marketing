@@ -1,0 +1,104 @@
+---
+title: "Solución de Problemas de Switchers de Video para Iglesias: Los 10 Problemas Detrás de Casi Toda Falla Dominical"
+description: "Una guía de campo por síntomas para las fallas de ATEM y switchers de video que las cabinas de iglesia realmente enfrentan —switchers que la computadora no ve, entradas en negro, salidas webcam que desaparecen, streams directos que se caen, keyers descompuestos— con verificaciones rápidas para cada una, y las mejoras que terminan con las adivinanzas."
+category: "streaming"
+tags: ["ATEM", "switchers", "troubleshooting", "Luminos"]
+difficulty: "beginner"
+publishedAt: "2026-09-06"
+featured: true
+productCTA: true
+coverImage: "/images/products/video-switcher-atem-roland-vmix/blackmagic-atem-mini-pro-video-switcher-church.jpg"
+faq:
+  - question: "¿Cuál es la forma más rápida de solucionar un switcher de video durante un servicio?"
+    answer: "Trabaja desde el síntoma, no desde la teoría: identifica cuál de las diez formas de falla estás viendo —un switcher que la computadora no ve, una salida webcam desaparecida, una entrada en negro, sin salida, un stream directo que se cae, audio equivocado, un keyer roto, multiview faltante, macros perdidos, o un rig que funcionaba el domingo pasado— y corre las verificaciones cortas de ese síntoma en orden. Recuerda lo que la caja realmente es: un ruteador de video, una mezcladora de audio, y a menudo un encoder en un solo chasis. Cada falla pertenece exactamente a uno de los tres."
+  - question: "¿Por qué mi computadora no ve el ATEM Mini?"
+    answer: "Dos conexiones diferentes fallan de dos formas diferentes: la ruta webcam por USB (lo que OBS y Zoom ven) y la ruta de control (lo que ATEM Software Control usa, por USB o Ethernet). Identifica primero cuál está rota —un feed webcam faltante con software control funcionando es un problema de driver o cable en la ruta webcam, mientras que software control fallando solo usualmente significa un problema de IP o red en las unidades por Ethernet."
+  - question: "¿Deberíamos transmitir directo desde el ATEM o a través de OBS?"
+    answer: "El streaming directo desde un ATEM modelo Pro es hermosamente simple —una caja, un cable, sin computadora en la cadena— y completamente ciego: cuando se cae, la caja no puede decirte por qué. Transmitir por software agrega monitoreo, telemetría, y un sistema que puede alertar tu teléfono y escribir un reporte de salud. Muchas iglesias corren el híbrido: el ATEM como switcher, el software como el encoder vigilado."
+---
+
+## Cómo usar esta guía cuando el servicio empieza en veinte minutos
+
+Esta es una guía de campo, no una cátedra. Escanea los diez síntomas de abajo, encuentra el que está en tu pantalla, y corre sus verificaciones rápidas **en orden** —cada una enlaza a una guía profunda si la versión corta no aterriza el arreglo. Ten presente el secreto de la caja: un switcher moderno es **tres dispositivos en un chasis —un ruteador de video, una mezcladora de audio, y (en los modelos Pro) un encoder**— y cada falla de abajo pertenece exactamente a uno de ellos. Y como en toda la cabina: cambia una cosa a la vez, y di qué tocaste.
+
+Esta guía completa una serie —las otras puertas son la solución de problemas de [OBS](/es/kb/articles/obs-troubleshooting-guide-church/), [vMix](/es/kb/articles/vmix-troubleshooting-guide-church/), [ProPresenter](/es/kb/articles/propresenter-troubleshooting-guide-church/), [cámaras PTZ](/es/kb/articles/ptz-camera-troubleshooting-guide-church/), [audio del stream](/es/kb/articles/audio-troubleshooting-guide-church/), y [encoders de hardware](/es/kb/articles/encoder-troubleshooting-guide-church/), y la mitad pre-servicio de todas vive en una [lista imprimible](/sunday-checklist/).
+
+## 1. La computadora no ve el switcher para nada
+
+Primero, divide el problema: la *ruta webcam* (lo que OBS ve) y la *ruta de control* (lo que ATEM Software Control usa) son conexiones diferentes que fallan diferente. Software control muerto pero webcam viva apunta al enlace de control —en unidades por Ethernet, casi siempre un desajuste de IP. Ambas muertas por USB apunta al cable o al puerto: cambia a un cable USB-C conocido-bueno que lleve datos (los cables de solo-carga existen para arruinar domingos) y a un puerto directo, no un hub.
+
+Guías profundas: [ATEM Mini no detectado por la computadora](/kb/troubleshooting/atem-mini-not-detected-computer/), y [ATEM Software Control configurado bien](/kb/switchers/blackmagic-design/blackmagic-atem-mini-pro-atem-software-control/).
+
+## 2. La salida webcam desapareció de OBS o Zoom
+
+El ATEM se presenta a la computadora como una webcam, y las webcams son rehenes del sistema operativo: una actualización de Windows re-enumeró los dispositivos, un ajuste de privacidad bloqueó el acceso a la cámara, o otra app agarró el dispositivo en exclusiva. Cierra todo lo que pudiera estar sosteniendo la cámara, re-selecciona el dispositivo, y revisa los permisos de cámara del sistema antes de tocar el switcher.
+
+Guía profunda: [salida webcam USB del ATEM no reconocida](/kb/troubleshooting/atem-mini-usb-webcam-not-recognized/).
+
+## 3. Una entrada está en negro — pero la fuente está encendida
+
+El tercio ruteador de la caja es el paciente, y los handshakes HDMI son el culpable usual: una fuente sacando un formato que a la caja no le gusta, una negociación EDID rancia tras un cambio en el orden de encendido, o un cable marginal fallando por fin. Apaga y prende la *fuente* primero (renegocia el handshake), luego cambia el cable, luego prueba la fuente en otra entrada para aislar cuál lado está roto.
+
+Guía profunda: [señal HDMI que se cae o se va a negro](/kb/troubleshooting/hdmi-signal-dropping-church-setup/).
+
+## 4. Sin salida para nada
+
+Cuando la salida de programa misma está oscura, trabaja la cadena de salida exactamente como una entrada en reversa: ¿el propio multiview o preview del switcher muestra imagen (la caja está viva, la ruta de salida es la paciente)?, ¿y el display o dispositivo de captura del otro extremo ve *alguna* señal? Una salida muerta con un multiview sano es un problema de cable, adaptador, o ajuste de formato nueve de cada diez veces.
+
+Guía profunda: [Roland V-1HD sin salida de video, arreglado](/kb/troubleshooting/roland-v1hd-no-video-output/).
+
+## 5. El streaming directo desde el switcher se sigue cayendo
+
+Los ATEM modelo Pro transmiten directo a la plataforma —maravillosamente simple, y completamente ciego cuando falla. Secuencia rápida: ethernet cableado (nunca WiFi para la caja), baja el preset de calidad de streaming un escalón, y confirma que nada más se está comiendo la subida. Si las caídas persisten, el diagnóstico honesto es que un encoder ciego no puede decirte lo que uno vigilado sí.
+
+Guías profundas: [caídas del stream del ATEM Mini, con causa raíz](/kb/switchers/blackmagic-design/blackmagic-atem-mini-stream-dropping-fix/), y [cuánto ancho de banda necesita realmente el stream](/kb/troubleshooting/church-network-bandwidth-streaming/).
+
+## 6. El audio del switcher está mal
+
+El tercio mezcladora de la caja, y su sorpresa firma es el **audio-follow-video**: entradas configuradas para des-mutearse al cortar hacia ellas, produciendo silencio súbito o caos súbito según cuál cámara esté al aire. Revisa el estado de audio de cada entrada (on/off/AFV), confirma el fader master, y si una mezcladora alimenta al switcher, verifica esa ruta antes del servicio —[la guía de audio del stream](/es/kb/articles/audio-troubleshooting-guide-church/) toma jurisdicción río arriba de la caja.
+
+Guía profunda: [rutear una mezcladora Behringer al ATEM correctamente](/kb/switchers/blackmagic-design/blackmagic-atem-mini-audio-routing-behringer/).
+
+## 7. El keyer dejó de keyar — los tercios inferiores son una caja negra
+
+Fill-y-key es un *par*: el keyer necesita ambas señales en las entradas que espera, con los ajustes del key coincidiendo con lo que la fuente de gráficos realmente envía. Un cable re-parchado que intercambió fill y key, o un cambio en la salida de ProPresenter, produce exactamente esto. Confirma el par, luego la asignación de fuentes del keyer, luego los ajustes de clip/gain.
+
+Guías profundas: [alpha keying de ProPresenter con el ATEM](/kb/software/propresenter/propresenter-alpha-keyer-atem/), y la [configuración del keyer del lado del ATEM](/kb/switchers/blackmagic-design/blackmagic-atem-mini-propresenter-keyer/).
+
+## 8. Estás switcheando a ciegas — sin multiview, sin confianza
+
+No es un desperfecto, sino la condición que empeora todas las demás fallas: en un ATEM Mini base no hay salida de multiview, así que el operador solo ve programa —cada corte es un salto de fe. Si tu modelo tiene multiview (Pro en adelante), ponlo en una pantalla dedicada y configúralo deliberadamente; si no lo tiene, esa confianza faltante es un renglón real en la conversación de actualización.
+
+Guía profunda: [configurar bien el multiview del ATEM](/kb/switchers/blackmagic-design/blackmagic-atem-mini-pro-multiview/).
+
+## 9. Los macros o la configuración desaparecieron
+
+Los ATEM retienen su estado en ejecución, pero los macros y las configuraciones viven más seguros como *archivos guardados* —una pérdida de energía inesperada o un reset de fábrica se lleva el estado sin guardar. La disciplina: guarda el XML de configuración después de cada domingo bueno, nómbralo con la fecha, y almacénalo donde el siguiente operador lo encuentre —la versión switcher de una línea base de configuración.
+
+Guías profundas: [construir macros confiables en el ATEM](/kb/switchers/blackmagic-design/blackmagic-atem-mini-macros-church/), y el [flujo de guardar/restaurar de Software Control](/kb/switchers/blackmagic-design/blackmagic-atem-mini-pro-atem-software-control/).
+
+## 10. Funcionaba el domingo pasado
+
+Nada cambió en el switcher —algo cambió a su alrededor: el formato de salida de una fuente tras una actualización, un cable re-parchado que nadie mencionó, un puerto USB que se movió. La caja sin pantalla siempre es el sospechoso de apariencia inocente; las rutas a su alrededor son donde viven los fantasmas.
+
+Guías profundas: [cuáles señales AV sobreviven cuáles rutas](/es/kb/articles/av-signals-that-survive-network-switch/), y [un inventario AV que se mantiene verdadero](/es/kb/articles/av-inventory-maintenance/).
+
+## Cuando la lista deja de ayudar: tres mejoras que cambian el juego
+
+Si esta página arregló tu mañana, guárdala y ve a hacer el servicio. Luego nota la suposición debajo de cada arreglo: alguien que conocía las entradas, los cables, y la historia de la caja estaba parado en la cabina. Esa suposición es mejorable.
+
+### Mejora uno: un sistema mapeado es un sistema que puedes entregarle a alguien más
+
+El switcher es la caja de empalmes de toda la cabina —cada cámara, la máquina de presentación, el key de gráficos, el stream, todo pasa por él— lo que hace de su página del [Signal Map](/system-documentation/) la que paga por todas las demás. Cada dispositivo, cada cable etiquetado, cada asignación de entrada, imprimible como hojas de patch: la solución de problemas se vuelve orientación, la [disciplina de etiquetado](/es/kb/articles/cable-labeling-system-that-survives/) sobrevive los re-rackeos, y la cabina sobrevive a que su constructor se vaya.
+
+### Mejora dos: pon bajo vigilancia la cabina alrededor del switcher
+
+El switcher no puede decirte cuándo está en problemas —pero el sistema a su alrededor sí. [Pulse](/av-monitoring/) vigila las máquinas, el stream, y cada dispositivo en red marcado con ["Alertar cuando esté desconectado"](/es/kb/articles/multi-observer-device-health/), alerta tu teléfono [en el momento en que el stream se cae](/es/kb/articles/church-stream-drop-phone-alert/), y termina cada servicio con un [reporte de salud](/es/kb/articles/reading-your-stream-health-score/). Una caja ciega dentro de una cabina vigilada deja de ser ciega donde cuenta.
+
+### Mejora tres: Luminos — ayuda que ya conoce tu cabina
+
+[Luminos](/luminos-ai-assistant/), el asistente de IA de WorshipMetrics, no responde preguntas de switchers desde listas genéricas —[lee tu iglesia](/es/kb/articles/ai-that-knows-your-wiring/): tu inventario, tu Signal Map hasta cuál cámara alimenta la entrada 3, la telemetría en vivo, y cada incidente pasado. "¿Por qué la entrada 2 está en negro pero la 1 está bien?" recibe una respuesta que razona sobre *tu* cableado. Está ahí para el voluntario solo en la cabina, y contesta [910-WORSHIP](/phone-support/) por voz como Journey.
+
+## Cómo maneja esto WorshipMetrics
+
+Los diez síntomas de arriba dejan de ser emergencias cuando el switcher vive dentro de una cabina vigilada y documentada: [Tech Manager](/tech-manager/) controla los switchers ATEM —además de OBS, vMix, y tus cámaras PTZ— desde una sola ventana sin costo, [Pulse](/av-monitoring/) vigila todo alrededor de la caja, el [Signal Map](/system-documentation/) guarda las asignaciones de entradas que tu equipo solía llevar en la cabeza, y Luminos lee todo eso. El [control en la nube](/cloud-control/) extiende el alcance más allá para el lado de software de la cabina. El monitoreo, el mapa, y las alertas son [gratis para siempre](/pricing/) —el camino más rápido a un switching más calmado es poner bajo vigilancia la cabina alrededor de la caja esta semana.
