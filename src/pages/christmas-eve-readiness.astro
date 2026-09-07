@@ -1,0 +1,275 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BrandLockup from "../components/BrandLockup.astro";
+
+export const prerender = true;
+
+const phases = [
+  {
+    time: "6 WEEKS OUT",
+    heading: "Prove the system, not the hope",
+    items: [
+      "Stream a full-length test at Christmas settings — candlelight-dark room, full band, real graphics",
+      "Turn on monitoring for every booth machine and every camera, console, and encoder that matters",
+      "Save known-good baselines: encoder profile, mixer scene, switcher config, presentation looks — dated files",
+      "Walk the Signal Map (or draw it): every cable labeled, every input assignment written down",
+      "Book gear purchases NOW — new equipment needs three Sundays of real services before the 24th",
+    ],
+  },
+  {
+    time: "1 WEEK OUT",
+    heading: "Close the gaps people cause",
+    items: [
+      "Confirm the volunteer roster against holiday travel — name a backup for every position",
+      "Schedule the platform event early (YouTube processes new events slowly in December)",
+      "Test the stream at the real service time — December networks behave differently at night",
+      "Verify backup internet: hotspot charged, tested, credentials written where anyone can find them",
+      "Print the run sheet and the morning checklist; walk the newest volunteer through both",
+    ],
+  },
+  {
+    time: "DECEMBER 24",
+    heading: "The night itself",
+    items: [
+      "Run the full pre-service checklist with double margins — start 90 minutes out, not 45",
+      "Camera exposure check under actual candlelight before the doors open",
+      "Fresh batteries in every wireless mic — no exceptions on the one night with no second chance",
+      "Recording redundancy on: local recording plus the platform's, two copies before you sleep",
+      "Know who answers the phone if something breaks — and have the number taped to the desk",
+    ],
+  },
+];
+
+const faq = [
+  {
+    question: "What is a Christmas Eve Readiness Check?",
+    answer:
+      "A free 30-minute review of your actual system with a person who runs church production: monitoring coverage, stream health history, settings baselines, alert routing, and your volunteer coverage plan for the night. You leave with a written list of what is solid and what needs attention before December 24 — whether or not you ever pay us anything.",
+  },
+  {
+    question: "Why start six weeks before Christmas Eve?",
+    answer:
+      "Because readiness is evidence, not confidence. Monitoring needs a few real Sundays to establish what normal looks like for your system, new gear needs services under its belt before the highest-stakes night of the year, and volunteer gaps need time to fill. A check in mid-November leaves time to fix what it finds; a check on December 20 mostly documents the risk.",
+  },
+  {
+    question: "What does it cost to get ready?",
+    answer:
+      "The readiness check is free, and so is the foundation: AV monitoring, instant alerts, and the Signal Map are free forever in WorshipMetrics, for unlimited users. If you want a person standing behind your team on the night itself, that is what the Sunday Assurance add-on exists for — but the free tier alone catches the failures that ruin most Christmas Eves.",
+  },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  },
+];
+---
+
+<Layout
+  title="Is Your System Ready for Christmas Eve?"
+  description="The biggest room of the year, the most first-time guests, family watching from three time zones away — and no second chance. The free Christmas Eve Readiness Check and the six-week countdown checklist church AV teams use to walk into December 24 calm."
+  canonical="/christmas-eve-readiness"
+  structuredData={structuredData}
+>
+  <style is:global>
+    @media print {
+      header, nav, footer, .no-print { display: none !important; }
+      body { background: #fff !important; }
+      main { padding: 0 !important; }
+    }
+  </style>
+  <style>
+    .wrap { max-width: 52rem; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+    .eyebrow {
+      font-family: var(--font-mono-brand);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 0.75rem;
+    }
+    .wrap h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .lede { font-size: 1.05rem; line-height: 1.7; color: #5a6a8a; max-width: 42rem; margin-bottom: 1.5rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1rem; }
+    .actions-note { font-size: 0.8rem; color: #8494b0; margin-bottom: 2.5rem; }
+
+    .stakes { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin-bottom: 3rem; }
+    .stake { border: 1px solid var(--border); border-radius: 1rem; padding: 1.1rem 1.25rem; background: var(--bg-soft); }
+    .stake b { display: block; font-weight: 700; margin-bottom: 0.3rem; }
+    .stake p { font-size: 0.85rem; line-height: 1.6; color: #5a6a8a; }
+
+    .sheet { border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; background: var(--bg, #fff); }
+    .sheet-head {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+      border-bottom: 2px solid #0B0D10; padding-bottom: 0.75rem; margin-bottom: 1.25rem;
+    }
+    .sheet-head .brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 800; }
+    .sheet-head .brand span { color: #8494b0; font-weight: 500; font-size: 0.8rem; }
+    .sheet-blanks { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.8rem; color: #5a6a8a; }
+    .sheet-blanks b { font-weight: 600; }
+    .sheet-blanks i { display: inline-block; min-width: 6rem; border-bottom: 1px solid #8494b0; }
+    .section { break-inside: avoid; margin-bottom: 1.25rem; }
+    .section-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.4rem; }
+    .section-time {
+      font-family: var(--font-mono-brand); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      color: var(--primary); border: 1px solid currentColor; border-radius: 999px; padding: 0.1rem 0.55rem; white-space: nowrap;
+    }
+    .section-head h2 { font-size: 1rem; font-weight: 700; }
+    .items { list-style: none; margin: 0; padding: 0; }
+    .items li { display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.28rem 0; font-size: 0.92rem; line-height: 1.5; }
+    .box { flex: none; width: 0.95rem; height: 0.95rem; margin-top: 0.22rem; border: 1.5px solid #0B0D10; border-radius: 0.2rem; }
+    .sheet-foot { margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: #8494b0; }
+
+    .after { margin-top: 3rem; }
+    .after h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .after p { line-height: 1.7; color: #5a6a8a; margin-bottom: 1rem; max-width: 42rem; }
+    .after a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    .after a:hover { text-decoration: underline; }
+    .after ul { margin: 0 0 1rem 1.2rem; color: #5a6a8a; line-height: 1.7; }
+
+    .faq { margin-top: 2.5rem; }
+    .faq h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; }
+    .faq details { border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.9rem 1.1rem; margin-bottom: 0.6rem; background: var(--bg, #fff); }
+    .faq summary { font-weight: 700; cursor: pointer; }
+    .faq details p { margin-top: 0.6rem; font-size: 0.92rem; line-height: 1.7; color: #5a6a8a; }
+
+    .closing {
+      margin-top: 3rem; padding: 1.75rem; border-radius: 1.5rem;
+      border: 1px solid rgba(43, 127, 240, 0.25);
+      background: linear-gradient(135deg, #0B0D10 0%, #1C4685 55%, #0B0D10 100%);
+      color: #fff;
+    }
+    .closing h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .closing p { color: rgba(226, 232, 240, 0.85); line-height: 1.7; margin-bottom: 1.1rem; max-width: 38rem; }
+    @media print { .stakes, .faq, .closing { display: none !important; } }
+  </style>
+
+  <div class="wrap">
+    <div class="no-print">
+      <p class="eyebrow">Christmas Eve · One service · No second chances</p>
+      <h1>Is your system ready for Christmas Eve?</h1>
+      <p class="lede">
+        The biggest room of the year. The most first-time guests. Grandparents watching the stream from
+        three time zones away. Volunteers running cues they see once a year, in a room lit by candles.
+        December 24 is the service you cannot redo — and readiness is evidence, not a feeling.
+      </p>
+      <div class="actions">
+        <a
+          href="/discovery-call/"
+          class="btn-primary"
+          style="font-size:0.9rem;padding:0.6rem 1.4rem;"
+          data-wm-track="cta_click"
+          data-wm-track-label="christmas_readiness_book_check"
+          data-wm-track-location="christmas_readiness_hero"
+        >Book a free Readiness Check</a>
+        <button
+          type="button"
+          class="btn-outline"
+          style="font-size:0.9rem;padding:0.6rem 1.4rem;"
+          onclick="window.print()"
+          data-wm-track="cta_click"
+          data-wm-track-label="christmas_readiness_print"
+          data-wm-track-location="christmas_readiness_hero"
+        >Print the countdown checklist</button>
+      </div>
+      <p class="actions-note">The check is a free 30-minute review of your actual system with a person who runs church production. No card, no commitment — you keep the findings either way.</p>
+
+      <div class="stakes">
+        <div class="stake"><b>The fullest room of the year.</b><p>Twice the attendance means overflow feeds, lobby screens, and a booth that can't hide a mistake.</p></div>
+        <div class="stake"><b>The stream carries family.</b><p>More people watch a church's Christmas Eve stream than any other service — many of them the relatives of the people in the room.</p></div>
+        <div class="stake"><b>Candlelight fights cameras.</b><p>The most beautiful lighting of the year is the hardest to expose, and nobody tests for it in November's rehearsals.</p></div>
+        <div class="stake"><b>Volunteers travel.</b><p>Your most experienced operator has a one-in-four chance of being at their in-laws' on the 24th. The plan has to survive that.</p></div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-head">
+        <p class="brand"><BrandLockup width={128} /> <span>· worshipmetrics.com/christmas-eve-readiness</span></p>
+        <p class="sheet-blanks">
+          <span><b>Church</b> <i></i></span>
+          <span><b>Owner</b> <i></i></span>
+        </p>
+      </div>
+
+      {phases.map(({ time, heading, items }) => (
+        <div class="section">
+          <div class="section-head">
+            <span class="section-time">{time}</span>
+            <h2>{heading}</h2>
+          </div>
+          <ul class="items">
+            {items.map((item) => (
+              <li><span class="box" aria-hidden="true"></span>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <p class="sheet-foot">
+        The morning-of routine lives on its own sheet: <strong>worshipmetrics.com/sunday-checklist</strong> ·
+        Free monitoring &amp; alerts: <strong>worshipmetrics.com</strong> · A person, 7 days a week: <strong>910-WORSHIP</strong>
+      </p>
+    </div>
+
+    <div class="after no-print">
+      <h2>What the free Readiness Check covers</h2>
+      <p>
+        Thirty minutes, your actual system, a person who runs church production. Together we look at:
+      </p>
+      <ul>
+        <li><strong>Coverage</strong> — is every machine, camera, console, and encoder that matters actually being watched, with alerts routed to phones that will be awake?</li>
+        <li><strong>Evidence</strong> — what do your last month of <a href="/kb/articles/reading-your-stream-health-score/">stream health reports</a> say about where the system is fragile?</li>
+        <li><strong>Baselines</strong> — are the known-good settings saved as files someone can restore at 4 p.m. on the 24th?</li>
+        <li><strong>The map</strong> — can a substitute volunteer <a href="/system-documentation/">follow the signal path</a> without calling the person who built it?</li>
+        <li><strong>The night plan</strong> — who runs each position, who backs them up, and who answers the phone when something breaks?</li>
+      </ul>
+      <p>
+        You leave with a written punch list, ranked by risk. Fix it yourselves, or ask us to help —
+        <a href="/pricing/">the ladder</a> runs from free monitoring to
+        a pro on call for the night itself. <a href="/discovery-call/" data-wm-track="cta_click" data-wm-track-label="christmas_readiness_book_check_body" data-wm-track-location="christmas_readiness_body">Book the check here</a>.
+      </p>
+
+      <h2>Why six weeks matters: the baseline problem</h2>
+      <p>
+        Monitoring proves readiness only after it has watched some real Sundays — alert thresholds, stream
+        health scores, and "what does normal look like for us" all need history. Turn
+        <a href="/av-monitoring/">Pulse</a> on now and December 24 arrives with a month of evidence behind it;
+        turn it on December 20 and you're guessing with better tools. The same logic applies to
+        <a href="/kb/articles/church-encoder-settings-that-survive-sunday/">settings baselines</a>,
+        new gear, and volunteers: everything trustworthy on Christmas Eve got that way in November.
+        When something does break in the run-up, the seven
+        <a href="/kb/articles/obs-troubleshooting-guide-church/">troubleshooting front doors</a> and the
+        <a href="/sunday-checklist/">Sunday morning checklist</a> are the fast path back.
+      </p>
+
+      <div class="faq">
+        <h2>Questions churches ask</h2>
+        {faq.map(({ question, answer }) => (
+          <details>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="closing">
+        <h2>Walk into December 24 calm.</h2>
+        <p>
+          Start the free monitoring today so the system has a baseline by Advent, put the countdown on the
+          booth wall, and let a person look over the whole thing with you — free, in thirty minutes.
+        </p>
+        <a
+          href="/discovery-call/"
+          class="btn-primary"
+          style="font-size:0.9rem;padding:0.6rem 1.4rem;background:#fff;color:#0B0D10;"
+          data-wm-track="cta_click"
+          data-wm-track-label="christmas_readiness_book_check_footer"
+          data-wm-track-location="christmas_readiness_closing"
+        >Book the free Readiness Check</a>
+      </div>
+    </div>
+  </div>
+</Layout>
