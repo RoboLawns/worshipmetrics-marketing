@@ -1,0 +1,445 @@
+---
+import Layout from "../layouts/Layout.astro";
+import KBQuestions from "../components/KBQuestions.astro";
+import TechManagerCTA from "../components/TechManagerCTA.astro";
+
+const APP_URL = "https://app.worshipmetrics.com";
+const HERO_IMAGE = "/images/lifestyle/church-ptz-camera-operator.jpg";
+const APP_IMAGE = "/images/app/worship-metrics-video-switcher.jpg";
+
+const proofStats = [
+  { n: "56", l: "PTZ models in the built-in device catalog" },
+  { n: "3", l: "control protocols, picked automatically per camera" },
+  { n: "9", l: "presets per camera, each with a picture of the shot" },
+];
+
+const safetyPoints = [
+  "Dead-man stop at the booth if the browser goes quiet",
+  "Stops on tab hide, tab close and page unload",
+  "Direction changes replace each other instead of queueing — no rubber-banding after a fast drag",
+  "Round-trip time shown per camera, named to the machine that ran the command",
+];
+
+const inputs = [
+  { title: "On the picture", body: "Click where you want the camera to look, or drag a box around a subject and the head frames it." },
+  { title: "Virtual joystick or button pad", body: "Whichever you prefer, switchable per operator — the same panel works either way." },
+  { title: "Keyboard", body: "WASD to move, diagonals on Q/E/Z/C, 1–9 to recall a preset, Shift+1–9 to save one, space to stop." },
+  { title: "Game controller", body: "Right stick pans and tilts, left stick zooms, D-pad steps — with the layout shown on screen." },
+  { title: "Touch", body: "The whole surface works on a tablet in the back row, or a phone in the green room." },
+];
+
+const pointerTools = [
+  { title: "Target", body: "Click a spot in the picture and the camera centres on it." },
+  { title: "Frame", body: "Drag a box around a subject and the camera pans, tilts and zooms to fill it." },
+  { title: "Search", body: "Lost the pastor mid-move? Click the picture: the camera re-centres there and pulls wide for a moment so you can find them again." },
+  { title: "Move", body: "Classic drag-to-pan with scroll-to-zoom, on the booth machine." },
+];
+
+const craft = [
+  {
+    title: "Presets that show you the shot, not the word “Preset 3”",
+    body: "Store up to nine positions per camera and name them the way your volunteers talk — Pulpit, Wide, Piano, Baptistry. When a preset is stored, the booth grabs a still of that exact shot and syncs it, so the tiles show the framing instead of a number. A volunteer who has never touched the system can look at four pictures and pick the right one.",
+  },
+  {
+    title: "Stop autofocus hunting in the middle of the sermon",
+    body: "Someone crosses in front of the camera, autofocus grabs them, and the shot goes soft on the person actually speaking. You get the whole focus system instead of the head's defaults: auto or manual, focus lock to freeze it, one-push autofocus, fixed or variable pan, tilt and zoom speeds, and digital zoom past the optical range when you need it.",
+  },
+  {
+    title: "Match the cameras without learning four menu systems",
+    body: "Most churches end up with mixed brands — a PTZOptics on the balcony, a Sony on the platform, whatever was on sale for the third angle. Image adjustment for every brand sits behind one identical set of controls, so matching your cameras is one screen instead of four browser tabs. Mirror and flip are there too, for the head that had to go up upside down.",
+  },
+  {
+    title: "Found, named and running in an afternoon",
+    body: "Scan the network and the cameras on it come back with make and model already identified. Add anything the scan missed by IP. Camera logins are stored encrypted, not in a spreadsheet taped inside the rack door. If a head stops responding, you can reboot it over the network without walking up a ladder.",
+  },
+];
+
+const featureCards = [
+  { t: "Browser control", d: "Drive every PTZ head from a tab. No booth seat required." },
+  { t: "Live WebRTC preview", d: "Real moving video while you frame, not a still that updates every second." },
+  { t: "Self-installing relay", d: "The booth sets up the video path the first time someone needs it." },
+  { t: "Runaway protection", d: "Lose your connection mid-move and the camera stops within a second." },
+  { t: "Visible latency", d: "Every camera shows its round-trip time and the machine that ran the command." },
+  { t: "Control leases", d: "See who's driving, take control, and everyone gets told." },
+  { t: "Smart routing", d: "Commands go to the computer that can actually reach that camera." },
+  { t: "Three protocols", d: "VISCA over TCP, VISCA over IP and ONVIF — detected per camera." },
+  { t: "Picture presets", d: "Nine per camera, each tile showing the shot it recalls." },
+  { t: "Frame and target tools", d: "Click a spot or drag a box; the camera works out the move." },
+  { t: "Controller and keyboard", d: "Game pad, keyboard shortcuts, joystick, touch — all on the same screen." },
+  { t: "Focus lock", d: "Hold focus on the speaker while people cross the frame." },
+];
+
+const compatibility = [
+  { brand: "PTZOptics", models: "PT12X / PT20X / PT30X SDI, PT20X-4K, PT12X-4K, PT30X-4K, Link 4K, SE G3 series, Studio SE, Studio 4K, SimplTrack3" },
+  { brand: "Sony", models: "SRG-300H, SRG-A40, BRC-H800, FR7" },
+  { brand: "Panasonic", models: "AW-UE150, AW-UE100, AW-HE40" },
+  { brand: "BirdDog", models: "P200, P100, Eyes, Studio" },
+  { brand: "Marshall", models: "CV612HT, CV630-BI, CV355" },
+  { brand: "Vaddio", models: "RoboSHOT 12E, ConferenceSHOT AV" },
+  { brand: "AVer", models: "PTZ310, TR323" },
+  { brand: "OBSBOT", models: "Tail Air, Tail 2" },
+  { brand: "Minrray", models: "UV510A, UV5120A 4K" },
+  { brand: "BZBGEAR", models: "VPTZ-12, BG-4KPTZ-30X NDI" },
+  { brand: "SMTAV", models: "BC20N, BC30N NDI" },
+  { brand: "Avkans", models: "AV-E20, LV20N NDI" },
+  { brand: "Hikvision · Dahua · Axis", models: "DS-2DE4A425, SD49425XB-HNR, Q6135-LE" },
+  { brand: "HuddleCamHD", models: "10X USB G3" },
+  { brand: "Amcrest · Reolink · Foscam", models: "IP8M-2526EW, RLC-823A, SD2X" },
+  { brand: "Zowietek · Wivien · and more", models: "TS980S NDI, 20X PTZ, plus generic VISCA and ONVIF heads" },
+];
+
+const faqItems = [
+  {
+    question: "Do I need new cameras?",
+    answer: "No. Camera Control drives the PTZ cameras you already have, over the network they're already on. If your heads speak VISCA or ONVIF — and nearly all of them do — they'll work.",
+  },
+  {
+    question: "Does something have to be running at the church?",
+    answer: "Yes. The WorshipMetrics Tech Manager runs on a computer in the booth and is what actually talks to the cameras on your local network. Your browser talks to Tech Manager. That's also what keeps your cameras off the open internet.",
+  },
+  {
+    question: "Can I control cameras from outside the church?",
+    answer: "Yes. That's the point. As long as the booth computer is on and signed in, you can drive the cameras from anywhere you can open a browser.",
+  },
+  {
+    question: "What if two people try to drive the same camera?",
+    answer: "The first person holds a control lease and the second sees who has it. They can take control, and the first operator is told. The activity trail records both, so you can see afterwards that PTZ 2 went to Pulpit at 10:52 and who sent it there.",
+  },
+  {
+    question: "What happens if my connection drops mid-move?",
+    answer: "The camera stops. The booth watches for a heartbeat from whoever is driving, and issues the stop itself if that heartbeat goes quiet — so a dropped Wi-Fi connection can't leave a camera panning during the service.",
+  },
+  {
+    question: "Does it work with more than one campus?",
+    answer: "Yes. Each location's Tech Manager reports which cameras it can reach, and every command is routed to a machine that can actually reach the camera you're driving.",
+  },
+  {
+    question: "Is camera control free?",
+    answer: "Locally, yes — on every plan, including Free. Tech Manager drives your PTZ cameras from the booth at no cost, alongside OBS, vMix, and Blackmagic ATEM switchers. Cloud control — the same panel from anywhere, for everyone you authorize — comes with Assist ($49/mo) and Stream ($99/mo per campus).",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+---
+
+<Layout
+  title="PTZ Camera Control for Churches"
+  socialTitle="Run your church's cameras from a browser tab"
+  description="Control your church's PTZ cameras from any browser. Live video, picture presets, focus lock and multi-operator handoff — with the cameras you already own."
+  canonical="/camera-control"
+  ogImage={HERO_IMAGE}
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-indigo-50 via-white to-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-4 py-1 shadow-sm">
+          <img src="/images/nav/pillars/produce.png" alt="" class="h-7 w-7 rounded-md" /> Produce &middot; Camera Control
+        </p>
+        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          Nobody has to sit at the booth PC to run the cameras.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+          Open a browser tab and drive every PTZ camera in your building &mdash; live picture, presets, focus, framing. From the sound booth, the back row, the green room, or a laptop three states away.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <a href={`${APP_URL}/sign-up`} class="btn-primary text-base px-8 py-3.5" data-wm-track="cta_click" data-wm-track-label="camera_hero_start" data-wm-track-location="camera_hero">Start free</a>
+          <a href="#how-it-works" class="btn-outline">See how it works</a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Works with the PTZ cameras you already own &mdash; no new hardware. Tech Manager runs on a booth computer and does the talking to them.</p>
+      </div>
+      <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+        <img src={HERO_IMAGE} alt="A church production volunteer driving PTZ cameras from a laptop at the booth, with the multiview and switcher panel beside her" loading="eager" decoding="async" class="w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof stats -->
+  <section class="border-y border-slate-200 bg-white px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-8 sm:grid-cols-3">
+      {proofStats.map(({ n, l }) => (
+        <div class="text-center sm:text-left">
+          <p class="text-4xl font-extrabold tracking-tight text-slate-900 tabular-nums">{n}</p>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600">{l}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Core promise -->
+  <section id="how-it-works" class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">The core promise</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Run the cameras from wherever you&apos;re standing.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Camera Control lives in the browser, so the person running cameras doesn&apos;t have to be the person sitting in the booth. A volunteer can frame a shot from a phone in the back of the room. A campus tech can help a second location from home on a Saturday. The Tech Manager PC in the booth does the talking to the cameras &mdash; you just point and click.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The same controls are in the desktop Tech Manager, driving the same cameras through the same path. One operator on the booth PC and one on a laptop never fight over a head.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/tech-manager" class="btn-outline">About Tech Manager</a>
+          <a href="/cloud-control" class="btn-outline">See cloud control</a>
+        </div>
+      </div>
+      <div>
+        <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 shadow-sm">
+          <img src={APP_IMAGE} alt="The WorshipMetrics Tech Manager Produce workspace, with Camera Control beside Switcher in the sidebar and live camera inputs on screen" loading="lazy" decoding="async" class="w-full object-contain" />
+        </div>
+        <p class="mt-3 text-center text-sm text-slate-500">Camera Control sits in the Produce workspace beside the switcher &mdash; same booth, same team, same login.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live video + safety -->
+  <section class="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">What makes remote control trustworthy</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">A live picture while you drive &mdash; and a camera that never runs away.</h2>
+      </div>
+      <div class="mt-12 grid gap-8 lg:grid-cols-2">
+        <div class="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl">
+          <h3 class="text-2xl font-bold text-white">Real video, not a slideshow.</h3>
+          <p class="mt-4 text-base leading-relaxed text-slate-300">
+            Framing a shot off a still that updates every second and a half is guesswork. Camera Control streams real video from the booth to your browser over WebRTC, so the picture moves when the camera moves.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-300">
+            The relay that makes that possible installs itself. The first time somebody opens Camera Control from a browser, the booth downloads and verifies it in the background and the preview upgrades on its own &mdash; nobody has to walk to the booth PC and press a button.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-300">
+            And the page always tells you which picture you&apos;re looking at. <em class="text-white not-italic font-semibold">LIVE &middot; WebRTC</em> means full-rate video. <em class="text-white not-italic font-semibold">Booth relay</em> means the fallback stream. <em class="text-white not-italic font-semibold">Snapshots</em> means it fell back to stills, and the badge says exactly why.
+          </p>
+          <p class="mt-6 rounded-xl border border-white/10 bg-slate-900/70 px-4 py-3 font-mono text-sm text-indigo-200">LIVE &middot; WebRTC &middot; via BOOTH-PC &middot; 180 ms</p>
+        </div>
+        <div class="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl">
+          <h3 class="text-2xl font-bold text-white">A camera that never runs away.</h3>
+          <p class="mt-4 text-base leading-relaxed text-slate-300">
+            Every remote PTZ system has the same nightmare: someone holds down pan, their laptop drops the Wi-Fi, and the camera keeps sweeping across the platform in front of the whole church.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-300">
+            It can&apos;t happen here. Holding a direction opens a move session with a heartbeat. If that heartbeat stops &mdash; closed tab, dead browser, lost network, a laptop lid shut mid-move &mdash; the booth issues the stop itself, within a second.
+          </p>
+          <ul class="mt-6 space-y-3">
+            {safetyPoints.map((point) => (
+              <li class="flex items-start gap-3 text-sm text-slate-200 sm:text-base"><span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-indigo-400"></span><span>{point}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team: leases + routing -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Built for a real team</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Two people, one camera, no wrestling match.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900">Control leases, not collisions</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+            When a volunteer in the booth and a director on a laptop both grab the same head, most systems interleave the commands and the camera judders between them. Camera Control gives each camera a control lease instead.
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+            Open a camera someone else is driving and you see who has it. Take control and they&apos;re told you did &mdash; no silent stealing, no mystery. Preset recalls don&apos;t need the lease unless the head is actively being driven, so an operator can still hit &ldquo;Pulpit&rdquo; while someone else fine-tunes a different camera.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900">Commands go to the machine that can reach the camera</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+            Churches rarely have exactly one computer signed in. There&apos;s the booth PC, the tech director&apos;s laptop, maybe a second campus. Every one of those Tech Managers reports which cameras it can actually see on its own network, and commands route to one that can &mdash; first time, not after a fifteen-second timeout on the wrong machine.
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+            When no machine on that camera&apos;s network is online, the page says so in those words. It doesn&apos;t tell you the camera is offline when the real problem is that the booth PC is asleep.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inputs + pointer tools -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">However your hands work</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Drive it with a stick, a keyboard, or your finger.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Some operators want a joystick. Some want to tap a picture on a tablet. A surprising number of volunteers are fastest on a game controller they already know. All of it works on the same screen, with no setup.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {inputs.map(({ title, body }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16 mx-auto max-w-3xl text-center">
+        <p class="eyebrow">The aiming tools</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Point at the shot instead of nudging toward it.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          Bumping a camera into frame one arrow-press at a time is how shots get missed. Four pointer tools let you say where the shot should be and let the head work out the move.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {pointerTools.map(({ title, body }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Shot craft -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">The shot itself</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Everything between &ldquo;it&apos;s pointed the right way&rdquo; and &ldquo;it looks right.&rdquo;</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {craft.map(({ title, body }) => (
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <h3 class="text-xl font-bold text-slate-900">{title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        Watch them all at once, too: the grid view shows every camera live, adapting preview quality to what your connection can carry. On heads that ship with their own subject tracking, the toggle is in the same panel.
+      </p>
+    </div>
+  </section>
+
+  <!-- Protocols + compatibility -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Compatibility</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">It speaks your cameras&apos; language &mdash; all three of them.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          PTZ cameras don&apos;t agree on how to be controlled. PTZOptics and its many clones take VISCA over a TCP socket. Sony, BirdDog, Canon, Lumens, Marshall and most NDI heads want VISCA over UDP with Sony&apos;s own framing. Panasonic, AVer, Axis, Hikvision and Dahua lines are driven over ONVIF.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {[
+          { t: "VISCA over TCP", d: "PTZOptics and compatible heads." },
+          { t: "VISCA over IP", d: "UDP 52381 with Sony framing — auto-detected and remembered per camera." },
+          { t: "ONVIF", d: "Pan, tilt, zoom, preset store and recall, home, and focus through the Imaging service." },
+          { t: "No URL hunting", d: "On ONVIF cameras it asks the camera for its own stream address, so there's no RTSP URL to dig out of a PDF." },
+        ].map(({ t, d }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900">{t}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{d}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div class="border-b border-slate-200 px-6 py-5">
+          <h3 class="text-lg font-bold text-slate-900">In the built-in catalog</h3>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600">
+            These models arrive pre-configured with the right control port and protocol. Cameras outside the list still work if they speak VISCA or ONVIF &mdash; which nearly all of them do.
+          </p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[32rem] text-left text-sm">
+            <thead class="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+              <tr>
+                <th class="px-6 py-3 font-semibold">Brand</th>
+                <th class="px-6 py-3 font-semibold">Catalogued models</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              {compatibility.map(({ brand, models }) => (
+                <tr>
+                  <td class="whitespace-nowrap px-6 py-3 font-semibold text-slate-900">{brand}</td>
+                  <td class="px-6 py-3 text-slate-600">{models}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow">Everything in Camera Control</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The whole surface, in one list.</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {featureCards.map(({ t, d }) => (
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900">{t}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Camera control, answered.</h2>
+      </div>
+      <div class="mt-10 space-y-4">
+        {faqItems.map(({ question, answer }) => (
+          <details class="group rounded-2xl border border-slate-200 bg-white p-6">
+            <summary class="cursor-pointer text-base font-semibold text-slate-900 marker:content-none">{question}</summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">{answer}</p>
+          </details>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-slate-500">
+        Switchers live next door: <a href="/obs-integration" class="font-semibold text-indigo-600 hover:text-indigo-800">OBS</a>, <a href="/vmix-integration" class="font-semibold text-indigo-600 hover:text-indigo-800">vMix</a>, and Blackmagic ATEM control are all built into <a href="/tech-manager" class="font-semibold text-indigo-600 hover:text-indigo-800">Tech Manager</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-indigo-600 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Your best camera operator shouldn&apos;t have to be in the room.</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-indigo-100 sm:text-lg">
+        Set up Camera Control with the cameras you already own and find out what your Sunday looks like when anyone on the team can frame a shot.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`${APP_URL}/sign-up`} class="btn-primary" style="background:#fff;color:#4361ee;box-shadow:0 10px 30px rgba(15,23,42,0.18);" data-wm-track="cta_click" data-wm-track-label="camera_footer_start" data-wm-track-location="camera_footer">Start free</a>
+        <a href="/discovery-call" class="btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">Book a walkthrough</a>
+      </div>
+      <p class="mt-6 text-sm text-indigo-100">Works with 56 catalogued PTZ models and any VISCA or ONVIF camera.</p>
+    </div>
+  </section>
+
+  <KBQuestions heading="PTZ camera questions churches actually ask." items={[
+    { question: "PTZ camera setup for churches: the complete guide", href: "/kb/articles/ptz-camera-setup-church/" },
+    { question: "PTZ camera troubleshooting: the 10 problems behind almost every Sunday failure", href: "/kb/articles/ptz-camera-troubleshooting-guide-church/" },
+    { question: "PTZ camera preset not recalling to the right position", href: "/kb/troubleshooting/ptz-preset-not-recalling-correctly/" },
+    { question: "PTZ camera keeps losing its IP address", href: "/kb/troubleshooting/ptz-camera-losing-ip-address/" },
+  ]} />
+  <TechManagerCTA />
+</Layout>
